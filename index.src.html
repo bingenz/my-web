@@ -31,6 +31,12 @@
      - KHÔNG thêm thanh fixed nào khác mà không cập nhật scroll-padding-top và hero padding.
 
   6. FLUID RESPONSIVE — KHÔNG DÙNG BREAKPOINT CỨNG DUY NHẤT:
+     ⚠️  QUY TẮC VÀNG — ÁP DỤNG CHO MỌI ELEMENT TRÊN TRANG:
+     - KHÔNG dùng height cố định (px) cho bất kỳ block nào — luôn để nội dung tự định chiều cao qua padding.
+     - Nếu element bắt buộc có height (vd: banner ảnh): dùng aspect-ratio (vd: 16/9) + max-height, KHÔNG dùng height:Xpx.
+     - Slide/banner nội dung text: KHÔNG dùng height — dùng padding:clamp(...) để tự co giãn theo content.
+     - Mọi font-size, padding, gap, border-radius có thể thay đổi theo viewport: PHẢI dùng clamp().
+     - Mục tiêu: mọi thứ trên trang tự co giãn mượt theo kích thước trình duyệt, không bao giờ bị cắt nội dung.
      - Dùng clamp() cho font-size, padding, gap thay vì px cố định (vd: clamp(10px,2.5vw,13.5px)).
      - Grid dùng auto-fit/minmax thay vì columns cố định khi có thể.
      - Nút trong cùng 1 row: flex:1 + min-width:0 + white-space:nowrap — tự chia đều, không wrap.
@@ -167,12 +173,13 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .topbar-nav-text{line-height:1.5;word-break:break-word;white-space:normal;}
 
 /* BANNER CAROUSEL */
-.site-banner{position:relative;overflow:hidden;margin-top:60px;height:300px;}
+.site-banner{position:relative;overflow:hidden;margin-top:60px;}
 .site-banner-slides{display:flex;height:100%;transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);}
-.site-banner-slide{flex:0 0 100%;height:100%;position:relative;overflow:hidden;display:flex;align-items:center;}
-.sbs-1{background:linear-gradient(135deg,#0d0520 0%,#1e0a45 45%,#2d0a5a 75%,#1a0438 100%);}
+.site-banner-slide{flex:0 0 100%;position:relative;overflow:hidden;display:flex;align-items:center;}
+
+.sbs-1{background:linear-gradient(135deg,#0d0520 0%,#1e0a45 45%,#2d0a5a 75%,#1a0438 100%);aspect-ratio:16/9;max-height:360px;}
 .sbs-1::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 75% 80% at 82% 48%,rgba(168,85,247,0.32) 0%,transparent 58%),radial-gradient(ellipse 45% 50% at 12% 78%,rgba(236,72,153,0.14) 0%,transparent 55%);}
-.sbs-2{background:linear-gradient(135deg,#170530 0%,#240745 45%,#1e0540 75%,#110325 100%);}
+.sbs-2{background:linear-gradient(135deg,#170530 0%,#240745 45%,#1e0540 75%,#110325 100%);padding:clamp(28px,6vw,52px) 0;}
 .sbs-2::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 75% at 78% 52%,rgba(196,72,247,0.28) 0%,transparent 58%),radial-gradient(ellipse 40% 45% at 18% 30%,rgba(168,85,247,0.18) 0%,transparent 55%);}
 .sbs-3{background:linear-gradient(135deg,#0e0322 0%,#1c0638 45%,#280855 75%,#130325 100%);}
 .sbs-3::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 72% 78% at 84% 45%,rgba(236,72,153,0.26) 0%,transparent 58%),radial-gradient(ellipse 42% 48% at 10% 68%,rgba(244,114,182,0.14) 0%,transparent 55%);}
@@ -201,7 +208,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .sbs-arrow:hover{background:rgba(168,85,247,0.3);border-color:rgba(168,85,247,0.5);}
 .sbs-arr-l{left:14px;}.sbs-arr-r{right:14px;}
 @media(max-width:640px){
-  .site-banner{height:220px;}
+
   .sbs-art{width:28%;opacity:0.4;}
   .sbs-content{padding:0 18px;}
   .sbs-title{font-size:clamp(1.2rem,6vw,1.6rem);}

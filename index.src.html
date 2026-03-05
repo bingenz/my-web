@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+  BINPINKGOLD CODE STORE — DEV GUIDELINES (ĐỌC TRƯỚC KHI SỬA)
+=============================================================
+  1. RESPONSIVE BẮT BUỘC:
+     - KHÔNG dùng white-space:nowrap cho text/tiêu đề có thể dài.
+     - Luôn dùng word-break:break-word hoặc white-space:normal cho text.
+     - Dùng max-width:100% + box-sizing:border-box cho mọi block mới.
+     - Dùng clamp() cho font-size thay vì px cố định khi có thể.
+     - white-space:nowrap CHỈ được dùng cho button CTA hoặc chip ngắn cố định.
+
+  2. KHI THÊM CHIP / BADGE / NOTE MỚI:
+     - Dùng display:flex (KHÔNG dùng inline-flex) + flex-wrap:wrap.
+     - Thêm max-width:100% và box-sizing:border-box.
+     - Tham khảo chip "1 mình bạn dùng 1 tài khoản" làm mẫu.
+
+  3. CẬP NHẬT NỘI DUNG:
+     - Model hiện tại: GPT-5.3 Instant (ra mắt 3/3/2026).
+     - Cập nhật cả: subtitle card, feature grid chip, modal tính năng, mọi nơi nhắc tên model.
+
+  4. ĐỒNG BỘ MOBILE / DESKTOP (QUAN TRỌNG):
+     - Feature grid (6 chips) luôn dùng grid-template-columns:1fr 1fr trên cả 2 nền tảng.
+     - Mobile (<640px): chip padding 9px 10px, font-size 10.5px, word-break:break-word.
+     - SVG icon trong chip: 15px trên mobile, 18px trên desktop.
+     - Mọi thành phần mới thêm vào desktop PHẢI có media query trong @media(max-width:640px).
+
+  5. CẤU TRÚC FIXED HEADER:
+     - .topbar: position:fixed; top:0; z-index:100
+     - scroll-padding-top hiện tại: 72px
+     - KHÔNG thêm thanh fixed nào khác mà không cập nhật scroll-padding-top và hero padding.
+
+  6. FLUID RESPONSIVE — KHÔNG DÙNG BREAKPOINT CỨNG DUY NHẤT:
+     - Dùng clamp() cho font-size, padding, gap thay vì px cố định (vd: clamp(10px,2.5vw,13.5px)).
+     - Grid dùng auto-fit/minmax thay vì columns cố định khi có thể.
+     - Nút trong cùng 1 row: flex:1 + min-width:0 + white-space:nowrap — tự chia đều, không wrap.
+     - Breakpoint 3 tầng: 480px / 640px / 768px — không chỉ 640px.
+     - Stat cards (4 neon cards): grid repeat(4,1fr) desktop, repeat(2,1fr) tablet/mobile.
+
+  7. CHIP / CARD CÓ ELEMENT ABSOLUTE (tag NEW / HOT / badge):
+     - Text label bên trong PHẢI có padding-right đủ lớn (tối thiểu 30px) để tự wrap
+       xuống dòng TRƯỚC KHI chạm vào vùng element absolute.
+     - KHÔNG để text và element absolute cùng lớp mà thiếu padding — sẽ bị đè chữ
+       trên màn hình nhỏ (≤ 6.2 inch / ~390px).
+     - Kích thước text (font-size) và chip/card luôn dùng size auto (word-break:break-word,
+       white-space:normal), KHÔNG cố định width — để layout tự co giãn theo màn hình.
+=============================================================
+-->
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<base target="_top">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Binpinkgold Code Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+html{scroll-padding-top:72px;}
+:root{
+  --purple:#A855F7;--magenta:#EC4899;--pink:#F472B6;--indigo:#6366F1;
+  --bg:#000007;--bg2:#020110;--surface:rgba(255,255,255,0.03);
+  --surface2:rgba(168,85,247,0.06);--border:rgba(168,85,247,0.2);
+  --border-glow:rgba(168,85,247,0.45);--text:#F0ECF8;
+  --muted:rgba(240,236,248,0.45);--subtle:rgba(240,236,248,0.25);
+  --card-shadow:
+    0 1px 0 rgba(255,255,255,0.08) inset,
+    0 0 0 1.5px rgba(168,85,247,0.32),
+    0 4px 8px rgba(0,0,0,0.65),
+    0 16px 40px rgba(0,0,0,0.5),
+    0 40px 80px rgba(0,0,0,0.32),
+    0 0 60px rgba(168,85,247,0.14),
+    4px 8px 24px rgba(0,0,0,0.4),
+    -4px 8px 24px rgba(0,0,0,0.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;}
+body::after{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(0,0,0,0.92) 0%,transparent 70%),radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.78) 0%,transparent 60%);pointer-events:none;}
+body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(168,85,247,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.08) 1px,transparent 1px),linear-gradient(rgba(168,85,247,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.035) 1px,transparent 1px);background-size:96px 96px,96px 96px,24px 24px,24px 24px;-webkit-mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);pointer-events:none;}
+.glow-orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;will-change:transform;}
+.glow-orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(168,85,247,0.12) 0%,transparent 70%);top:-300px;left:-280px;transform:translateZ(0);}
+.glow-orb-2{width:700px;height:700px;background:radial-gradient(circle,rgba(236,72,153,0.09) 0%,transparent 70%);bottom:-120px;right:-120px;transform:translateZ(0);}
+.glow-orb-3{width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%) translateZ(0);}
+.gradient-text{background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.gradient-text-white{background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.font-syne{font-family:'Inter',sans-serif;}
+
+/* === GLASS CARD - stronger radius + 3D border/shadow === */
+.glass-card{
+  background:linear-gradient(145deg,rgba(17,9,48,0.72) 0%,rgba(12,7,36,0.68) 40%,rgba(19,8,48,0.72) 70%,rgba(9,5,30,0.65) 100%);
+  border:1px solid rgba(168,85,247,0.32);
+  border-radius:48px;
+  position:relative;overflow:hidden;
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  will-change:transform;
+  transition:border-color 0.28s,box-shadow 0.28s,transform 0.2s;
+}
+.glass-card:hover{border-color:rgba(168,85,247,0.6);transform:translateY(-2px);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);}
+.glass-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.65),rgba(236,72,153,0.45),transparent);border-radius:48px 48px 0 0;pointer-events:none;}
+.glass-card-glow{box-shadow:var(--card-shadow);}
+
+/* === SUB-CARD - same strong radius + 3D === */
+.sub-card{
+  background:linear-gradient(145deg,rgba(20,10,44,0.88),rgba(12,7,32,0.92));
+  border:1px solid rgba(168,85,247,0.28);
+  border-radius:48px;
+  padding:26px 26px 22px;
+  display:flex;flex-direction:column;gap:0;
+  position:relative;overflow:hidden;
+  transition:border-color 0.28s,box-shadow 0.28s,transform 0.22s;
+  box-shadow:var(--card-shadow);
+}
+.sub-card:hover{border-color:rgba(168,85,247,0.62);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-3px);}
+.sub-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.55),rgba(236,72,153,0.35),transparent);}
+
+/* === KHO BANNER - same radius === */
+.kho-banner-link{display:block;text-decoration:none;color:var(--text);background:linear-gradient(145deg,rgba(28,10,58,0.9) 0%,rgba(18,6,40,0.95) 100%);border:1px solid rgba(168,85,247,0.28);border-radius:48px;position:relative;overflow:hidden;transition:border-color 0.28s ease,box-shadow 0.28s ease,transform 0.2s;box-shadow:var(--card-shadow);}
+.kho-banner-link:hover{border-color:rgba(168,85,247,0.6);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-2px);}
+.kho-banner-top-line{height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
+.kho-banner-body{display:flex;align-items:stretch;gap:28px;padding:44px 52px;flex-wrap:wrap;}
+.kho-banner-title{font-size:1.25rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:6px;color:#fff;}
+.kho-chip{display:inline-flex;align-items:center;gap:4px;background:rgba(168,85,247,0.09);border:1px solid rgba(168,85,247,0.2);color:rgba(192,132,252,0.85);border-radius:100px;padding:5px 12px;font-size:11px;font-weight:600;white-space:nowrap;}
+.kho-chip-more{color:rgba(192,132,252,0.45);border-color:rgba(168,85,247,0.1);background:transparent;}
+.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Inter',sans-serif;white-space:nowrap;transition:background 0.2s;}
+.kho-banner-link:hover .kho-banner-btn{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
+
+/* === LED BUTTON === */
+@property --led-angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+@keyframes spinLED{from{--led-angle:0deg;}to{--led-angle:360deg;}}
+.btn-primary-wrap{position:relative;display:inline-flex;border-radius:100px;padding:2.5px;background:conic-gradient(from var(--led-angle,0deg),#6b21a8 0%,#a855f7 15%,#ffffff 25%,#ec4899 35%,#a855f7 50%,#6b21a8 60%,#ffffff 70%,#a855f7 85%,#6b21a8 100%);animation:spinLED 3s linear infinite;box-shadow:0 0 18px rgba(168,85,247,0.6),0 0 36px rgba(168,85,247,0.25);will-change:--led-angle;}
+.btn-primary-wrap::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
+@keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
+@keyframes shimmerCTA{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
+.btn-register-shimmer{position:relative;overflow:hidden;z-index:1;}
+.btn-register-shimmer::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.35),transparent);animation:shimmerCTA 1.1s linear infinite;pointer-events:none;will-change:transform;z-index:2;}
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Inter',sans-serif;}
+.btn-ghost:hover{background:rgba(168,85,247,0.2);border-color:rgba(168,85,247,0.6);}
+.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Inter',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
+.sub-card-btn:hover{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
+
+/* === TOPBAR === */
+.logo-br{display:none;}.logo-mobile{display:none;}.logo-desktop{display:inline;}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(180deg,rgba(18,8,38,0.99) 0%,rgba(10,5,22,0.98) 100%);border-bottom:1px solid rgba(80,40,120,0.35);padding:clamp(10px,2vw,14px) clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 rgba(220,170,255,0.15) inset,0 8px 24px rgba(0,0,0,0.35);will-change:transform;height:60px;}
+.topbar-logo{display:inline-flex;align-items:center;gap:clamp(4px,1vw,6px);white-space:nowrap;flex-shrink:1;min-width:0;overflow:hidden;text-decoration:none;}
+.topbar-logo-diamond{font-size:clamp(13px,3.5vw,20px);color:#fff;flex-shrink:0;filter:drop-shadow(0 0 6px rgba(168,85,247,0.7));}
+.topbar-logo-name{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
+.topbar-logo-sub{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
+.topbar-dot{display:none;}
+.topbar-nav{display:none;}
+
+/* HAMBURGER */
+.topbar-hamburger{width:42px;height:42px;border-radius:12px;flex-shrink:0;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.22);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:background 0.2s,border-color 0.2s;}
+.topbar-hamburger:hover{background:rgba(168,85,247,0.18);border-color:rgba(168,85,247,0.45);}
+.topbar-hamburger span{width:18px;height:2px;background:rgba(192,132,252,0.8);border-radius:2px;transition:all 0.3s;display:block;}
+.topbar-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.topbar-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.topbar-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* NAV DROPDOWN */
+.topbar-dropdown{position:fixed;top:60px;right:0;width:min(340px,92vw);background:rgba(8,4,22,0.97);border-left:1px solid rgba(168,85,247,0.18);border-bottom:1px solid rgba(168,85,247,0.18);border-radius:0 0 0 20px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 0;transform:translateX(100%);transition:transform 0.3s cubic-bezier(0.34,1.2,0.64,1);z-index:99;box-shadow:-8px 8px 32px rgba(0,0,0,0.6);}
+.topbar-dropdown.open{transform:translateX(0);}
+.topbar-nav-item{display:flex;align-items:center;gap:12px;padding:13px 22px;font-size:clamp(13px,3.5vw,14px);font-weight:600;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(168,85,247,0.07);transition:color 0.2s,background 0.2s;cursor:pointer;word-break:break-word;white-space:normal;box-sizing:border-box;max-width:100%;}
+.topbar-nav-item:last-child{border-bottom:none;}
+.topbar-nav-item:hover{color:#C084FC;background:rgba(168,85,247,0.07);}
+.topbar-nav-icon{flex-shrink:0;opacity:0.65;}
+.topbar-nav-text{line-height:1.5;word-break:break-word;white-space:normal;}
+
+/* BANNER CAROUSEL */
+.site-banner{position:relative;overflow:hidden;margin-top:60px;height:300px;}
+.site-banner-slides{display:flex;height:100%;transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);}
+.site-banner-slide{flex:0 0 100%;height:100%;position:relative;overflow:hidden;display:flex;align-items:center;}
+.sbs-1{background:linear-gradient(135deg,#0d0520 0%,#1e0a45 45%,#2d0a5a 75%,#1a0438 100%);}
+.sbs-1::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 75% 80% at 82% 48%,rgba(168,85,247,0.32) 0%,transparent 58%),radial-gradient(ellipse 45% 50% at 12% 78%,rgba(236,72,153,0.14) 0%,transparent 55%);}
+.sbs-2{background:linear-gradient(135deg,#170530 0%,#240745 45%,#1e0540 75%,#110325 100%);}
+.sbs-2::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 75% at 78% 52%,rgba(196,72,247,0.28) 0%,transparent 58%),radial-gradient(ellipse 40% 45% at 18% 30%,rgba(168,85,247,0.18) 0%,transparent 55%);}
+.sbs-3{background:linear-gradient(135deg,#0e0322 0%,#1c0638 45%,#280855 75%,#130325 100%);}
+.sbs-3::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 72% 78% at 84% 45%,rgba(236,72,153,0.26) 0%,transparent 58%),radial-gradient(ellipse 42% 48% at 10% 68%,rgba(244,114,182,0.14) 0%,transparent 55%);}
+.sbs-content{position:relative;z-index:2;padding:0 clamp(22px,5vw,48px);max-width:620px;}
+.sbs-badge{display:inline-flex;align-items:center;gap:6px;border-radius:100px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;}
+.sbs-badge-purple{background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.38);color:#C084FC;}
+.sbs-badge-blue{background:rgba(196,72,247,0.13);border:1px solid rgba(196,72,247,0.33);color:#D08CFC;}
+.sbs-badge-green{background:rgba(236,72,153,0.13);border:1px solid rgba(236,72,153,0.33);color:#F472B6;}
+.sbs-title{font-size:clamp(1.4rem,4.5vw,2.2rem);font-weight:900;line-height:1.1;letter-spacing:-0.03em;margin-bottom:10px;color:#fff;word-break:break-word;white-space:normal;}
+.sbs-title em{font-style:normal;background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sbs-title .em-blue{background:linear-gradient(135deg,#818CF8,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sbs-title .em-green{background:linear-gradient(135deg,#6EE7B7,#34D399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sbs-sub{font-size:clamp(11px,2vw,13.5px);color:rgba(240,236,248,0.55);margin-bottom:16px;line-height:1.65;word-break:break-word;white-space:normal;}
+.sbs-pills{display:flex;gap:7px;flex-wrap:wrap;}
+.sbs-pill{font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(240,236,248,0.7);display:inline-flex;align-items:center;gap:5px;}
+.sbs-art{position:absolute;right:0;top:0;bottom:0;width:38%;display:flex;align-items:center;justify-content:center;z-index:1;}
+.sbs-icon-box{width:100px;height:100px;border-radius:28px;display:flex;align-items:center;justify-content:center;}
+.sbs-icon-box svg{width:52px;height:52px;flex-shrink:0;}
+.sbs-box-gpt{background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.1));border:1px solid rgba(168,85,247,0.35);box-shadow:0 0 40px rgba(168,85,247,0.25),0 8px 32px rgba(0,0,0,0.4);}
+.sbs-box-code{background:linear-gradient(135deg,rgba(99,102,241,0.18),rgba(34,211,238,0.1));border:1px solid rgba(99,102,241,0.3);box-shadow:0 0 40px rgba(99,102,241,0.2),0 8px 32px rgba(0,0,0,0.4);}
+.sbs-box-web{background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(16,185,129,0.1));border:1px solid rgba(52,211,153,0.3);box-shadow:0 0 40px rgba(52,211,153,0.2),0 8px 32px rgba(0,0,0,0.4);}
+.sbs-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;}
+.sbs-dot{width:24px;height:4px;border-radius:4px;background:rgba(255,255,255,0.2);cursor:pointer;transition:all 0.3s;}
+.sbs-dot.active{background:#A855F7;width:36px;box-shadow:0 0 8px rgba(168,85,247,0.6);}
+.sbs-arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.12);color:#fff;font-size:18px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.sbs-arrow:hover{background:rgba(168,85,247,0.3);border-color:rgba(168,85,247,0.5);}
+.sbs-arr-l{left:14px;}.sbs-arr-r{right:14px;}
+@media(max-width:640px){
+  .site-banner{height:220px;}
+  .sbs-art{width:28%;opacity:0.4;}
+  .sbs-content{padding:0 18px;}
+  .sbs-title{font-size:clamp(1.2rem,6vw,1.6rem);}
+  .sbs-sub{font-size:11px;}
+  .sbs-icon-box{width:72px;height:72px;border-radius:20px;}
+  .sbs-icon-box svg{width:36px;height:36px;}
+}
+.container{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
+.section-wrap{text-align:center;margin-bottom:28px;}
+.section-beams{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:12px;}
+.section-beam{flex:1;max-width:200px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#A855F7,#EC4899);box-shadow:0 0 12px rgba(168,85,247,0.7);}
+.section-beam.r{background:linear-gradient(270deg,transparent,#A855F7,#EC4899);}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(192,132,252,0.7);white-space:nowrap;}
+
+/* === HERO === */
+.hero{padding:28px 0 36px;text-align:center;position:relative;}
+.hero-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:min(700px,110vw);height:min(700px,110vw);border-radius:50%;border:1px solid rgba(168,85,247,0.08);pointer-events:none;z-index:0;}
+.hero-ring-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:75%;height:75%;border-radius:50%;border:1px solid rgba(236,72,153,0.07);pointer-events:none;}
+.hero>.container{position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.25);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:600;color:#C084FC;margin-bottom:28px;animation:fadeUp 0.7s ease both;}
+.hero-eyebrow-dot{width:5px;height:5px;border-radius:50%;background:#A855F7;box-shadow:0 0 8px #A855F7;animation:pulse 1.8s ease-in-out infinite;}
+.hero-h1{font-size:clamp(2.2rem,7.5vw,6rem);font-weight:800;line-height:1.05;letter-spacing:-0.04em;margin-bottom:20px;white-space:normal;animation:fadeUp 0.7s 0.1s ease both;}
+@media(max-width:480px){.hero-h1{font-size:clamp(1.9rem,9vw,2.8rem);line-height:0.97;}}
+.hero-tagline{font-size:clamp(15px,2.2vw,18px);color:var(--muted);max-width:480px;margin:0 auto 38px;line-height:1.8;animation:fadeUp 0.7s 0.2s ease both;}
+.hero-cta{animation:fadeUp 0.7s 0.3s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+/* === PRICE === */
+.price-main{font-size:3.8rem;font-weight:800;line-height:1;letter-spacing:-0.04em;}
+.price-main.gradient-text{background:linear-gradient(90deg,#B06EF5 0%,#D44FBF 50%,#F0359A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;}
+
+/* === PLUS CARD override === */
+#chatgptPlusCard .glass-card{border-radius:48px;border:1px solid transparent;background:linear-gradient(#110930,#0c0724) padding-box,linear-gradient(135deg,rgba(168,85,247,0.65),rgba(236,72,153,0.35),rgba(168,85,247,0.18)) border-box;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);overflow:hidden;}
+
+/* === NEON STAT CARDS — icon left, val+sub RIGHT stacked === */
+.neon-card{flex:1 1 200px;max-width:calc(50% - 8px);min-width:160px;background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:100px;padding:14px 20px;display:flex;flex-direction:column;justify-content:center;border:1px solid transparent;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:default;animation:fadeUp 0.7s 0.4s ease both;text-align:left;}
+.neon-card:hover{transform:translateY(-3px);}
+.neon-card-top{display:flex;align-items:center;gap:12px;width:100%;text-align:left;}
+.neon-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid;flex-shrink:0;}
+.neon-val{font-size:1.15rem;font-weight:900;line-height:1.1;letter-spacing:-0.02em;}
+.neon-sub{font-size:11px;color:rgba(240,236,248,0.42);font-weight:500;text-align:left;line-height:1.3;margin-top:2px;}
+.neon-cyan{border-color:rgba(34,211,238,0.22);box-shadow:0 0 18px rgba(34,211,238,0.1),0 0 40px rgba(34,211,238,0.06),inset 0 1px 0 rgba(34,211,238,0.07);}
+.neon-cyan:hover{box-shadow:0 0 28px rgba(34,211,238,0.22),inset 0 1px 0 rgba(34,211,238,0.1);}
+.neon-icon-cyan{background:rgba(34,211,238,0.1);border-color:rgba(34,211,238,0.4);box-shadow:0 0 12px rgba(34,211,238,0.35);}
+.neon-purple{border-color:rgba(168,85,247,0.22);box-shadow:0 0 18px rgba(168,85,247,0.1),0 0 40px rgba(168,85,247,0.06),inset 0 1px 0 rgba(168,85,247,0.07);}
+.neon-purple:hover{box-shadow:0 0 28px rgba(168,85,247,0.22),inset 0 1px 0 rgba(168,85,247,0.1);}
+.neon-icon-purple{background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.42);box-shadow:0 0 12px rgba(168,85,247,0.38);}
+.neon-pink{border-color:rgba(236,72,153,0.22);box-shadow:0 0 18px rgba(236,72,153,0.1),0 0 40px rgba(236,72,153,0.06),inset 0 1px 0 rgba(236,72,153,0.07);}
+.neon-pink:hover{box-shadow:0 0 28px rgba(236,72,153,0.22),inset 0 1px 0 rgba(236,72,153,0.1);}
+.neon-icon-pink{background:rgba(236,72,153,0.1);border-color:rgba(236,72,153,0.42);box-shadow:0 0 12px rgba(236,72,153,0.38);}
+.neon-yellow{border-color:rgba(234,179,8,0.22);box-shadow:0 0 18px rgba(234,179,8,0.1),0 0 40px rgba(234,179,8,0.06),inset 0 1px 0 rgba(234,179,8,0.07);}
+.neon-yellow:hover{box-shadow:0 0 28px rgba(234,179,8,0.22),inset 0 1px 0 rgba(234,179,8,0.08);}
+.neon-icon-yellow{background:rgba(234,179,8,0.08);border-color:rgba(234,179,8,0.42);box-shadow:0 0 12px rgba(234,179,8,0.38);}
+@media(max-width:560px){.neon-card{flex:1 1 calc(50% - 7px);max-width:calc(50% - 7px);min-width:0;padding:12px 14px;border-radius:100px;}.neon-icon{width:30px;height:30px;}.neon-val{font-size:0.95rem;}.neon-sub{font-size:10px;}}
+
+/* === MISC === */
+.chip{display:inline-flex;align-items:center;gap:5px;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:5px 12px;font-size:10.5px;font-weight:600;color:rgba(192,132,252,0.85);white-space:nowrap;}
+.service-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);color:rgba(192,132,252,0.8);border-radius:100px;padding:8px 14px;font-size:13px;font-weight:600;transition:background 0.2s;}
+.service-tag:hover{background:rgba(168,85,247,0.14);}
+.contact-list{display:flex;flex-direction:column;gap:0;max-width:440px;margin:0;}
+.contact-item{display:flex;align-items:center;gap:18px;padding:16px 4px;border-bottom:1px solid rgba(168,85,247,0.1);text-decoration:none;color:var(--text);transition:opacity 0.18s;}
+.contact-item:first-child{border-top:1px solid rgba(168,85,247,0.1);}
+.contact-item:hover{opacity:0.8;}
+.contact-img{width:50px;height:50px;border-radius:14px;object-fit:cover;flex-shrink:0;box-shadow:0 2px 12px rgba(0,0,0,0.45);}
+.contact-name{font-size:18px;font-weight:700;color:#fff;letter-spacing:-0.02em;}
+.contact-arrow{margin-left:auto;color:rgba(192,132,252,0.4);font-size:20px;}
+.ribbon{display:none;}
+.feat-list-item{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(168,85,247,0.07);}
+.feat-list-item:last-child{border-bottom:none;}
+.feat-list-icon{width:28px;height:28px;border-radius:8px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.feat-list-text{font-size:12.5px;color:rgba(240,236,248,0.65);font-weight:500;line-height:1.6;}
+footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;color:var(--subtle);font-size:12.5px;position:relative;z-index:1;}
+
+/* === MODAL === */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:300;align-items:flex-start;justify-content:center;padding:clamp(12px,3vw,20px);overscroll-behavior:contain;overflow-y:auto;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.3);border-radius:32px;padding:clamp(20px,4vw,30px) clamp(16px,4vw,28px);width:100%;max-width:400px;max-height:none;margin:auto;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;overflow:visible;flex-shrink:0;}
+.modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
+@keyframes popIn{from{opacity:0;transform:scale(0.92) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--subtle);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;transition:background 0.18s;}
+.modal-close-btn:hover{background:rgba(255,255,255,0.09);color:var(--text);}
+.feat-modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.28);border-radius:32px;width:100%;max-width:500px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;display:flex;flex-direction:column;margin:auto;}
+.feat-modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);z-index:2;pointer-events:none;}
+.feat-modal-head{padding:20px 22px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(168,85,247,0.15);position:sticky;top:0;z-index:10;background:#0e0b1a;border-radius:32px 32px 0 0;flex-shrink:0;}
+.feat-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:8px;}
+.feat-close-btn{width:32px;height:32px;border-radius:50%;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.28);color:#C084FC;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;}
+.feat-close-btn:hover{background:rgba(168,85,247,0.25);}
+.detail-item{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.18);border-radius:16px;margin-bottom:8px;transition:background 0.2s;}
+.detail-item:hover{background:rgba(168,85,247,0.13);border-color:rgba(168,85,247,0.38);}
+.detail-icon{font-size:16px;flex-shrink:0;width:20px;text-align:center;margin-top:1px;}
+.detail-title{font-size:13px;font-weight:700;color:rgba(192,132,252,0.9);margin-bottom:3px;}
+.detail-desc{font-size:11.5px;color:rgba(240,236,248,0.38);line-height:1.65;}
+
+@media(max-width:768px) and (min-width:641px){
+  .topbar{padding:12px 20px;}
+}
+/* === RESPONSIVE === */
+@media(max-width:640px){
+  .topbar{padding:18px 16px;}
+  .hero{padding:48px 0 48px!important;}
+  .hero{padding:100px 0 48px;}.hero-h1{white-space:normal;font-size:clamp(1.6rem,8vw,2.4rem);}
+  .hero-tagline{font-size:12px;}.hero-eyebrow{font-size:10px;}
+  .container{padding-left:18px!important;padding-right:18px!important;}
+  .section-beams{gap:8px;}.section-beam{max-width:60px;}.section-label{font-size:9px;}
+  #accounts{padding:44px 0 36px!important;}
+  #services{padding:36px 0 36px!important;}#contact{padding:36px 0 52px!important;}
+  .price-main{font-size:2.6rem;}
+  .sub-cards-grid{grid-template-columns:1fr!important;gap:20px!important;}
+  #heroCta{flex-direction:column!important;align-items:stretch!important;gap:10px!important;padding:0 4px!important;}
+  #heroPrimaryWrap{width:100%!important;display:flex!important;justify-content:center!important;}
+  #heroPrimaryBtn{width:100%!important;justify-content:center!important;font-size:14px!important;padding:13px 20px!important;}
+  #heroGhostBtn{width:100%!important;justify-content:center!important;text-align:center!important;font-size:14px!important;padding:13px 20px!important;box-sizing:border-box!important;}
+  #chatgptPlusCard{width:100%;box-sizing:border-box;min-width:0;}
+  #chatgptPlusCard .glass-card{overflow:hidden;width:100%;box-sizing:border-box;min-width:0;border-radius:40px!important;}
+  #plusBestBadge{top:12px!important;right:12px!important;padding:4px 10px!important;border-radius:100px!important;}
+  #plusBestBadgeText{font-size:7.5px!important;}
+  #chatgptPlusCard [style*="padding-right:110px"]{padding-right:80px!important;}
+  #plusPriceFlexRow{flex-wrap:nowrap!important;gap:10px!important;align-items:center!important;}
+  #plusYearlyBox{flex:1 1 0!important;min-width:0!important;padding:9px 10px!important;}
+  #plusYearlyBox #plusYearlyListFull{font-size:clamp(0.7rem,2.2vw,0.92rem)!important;}
+  #plusYearlyBox #plusYearlyOur{font-size:clamp(0.75rem,2.3vw,1rem)!important;}
+  #plusYearlyBox #plusYearlySaving{font-size:7.5px!important;}
+  #plusPriceDivider{min-height:50px!important;margin:2px 0!important;flex-shrink:0;}
+  #plusPriceRight .price-main{font-size:2.3rem!important;}
+  #plusPriceRight #plusOldPrice{font-size:8px!important;}
+  #plusShareNote{display:flex!important;width:100%!important;box-sizing:border-box!important;white-space:normal!important;border-radius:12px!important;padding:7px 12px!important;gap:6px!important;align-items:flex-start!important;}
+  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"]{gap:8px!important;}
+  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"]>div{min-width:0;overflow:hidden;padding:9px 10px!important;}
+  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"] span{font-size:10.5px!important;word-break:break-word;white-space:normal!important;line-height:1.35!important;}
+  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"] svg{width:15px!important;height:15px!important;flex-shrink:0;}
+  #accountsGrid{gap:28px!important;}
+  #promoPill{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;text-align:center!important;padding:9px 16px!important;gap:4px!important;border-radius:16px!important;}
+  #promoPillText{font-size:12px!important;line-height:1.6!important;white-space:normal!important;}
+  .sub-price-row{flex-direction:column!important;gap:10px!important;}
+  .sub-price-divider{display:none!important;}
+  .kho-banner-body{padding:24px 22px;gap:14px;flex-direction:column;}
+  .kho-banner-btn{align-self:flex-end;font-size:12px;}
+  #services .glass-card>div{padding:36px 28px!important;}
+  .contact-list{max-width:100%;}.contact-name{font-size:14px;}
+  .modal-box{border-radius:24px!important;padding:20px 18px!important;}
+  .feat-modal-box{border-radius:24px!important;max-height:calc(100vh - 24px)!important;}
+  .modal-overlay{padding:12px!important;align-items:flex-start!important;}
+  .feat-modal-head{padding:14px 16px 12px;}.feat-modal-body{padding:12px 16px 18px;}
+  .sub-card{border-radius:40px!important;}
+}
+/* === FLUID BREAKPOINTS === */
+/* tablet 641–768px */
+@media(min-width:641px) and (max-width:768px){
+  #chatgptPlusCard .glass-card{border-radius:40px!important;}
+  #plusBestBadge{top:14px!important;right:14px!important;}
+}
+/* small mobile ≤480px */
+@media(max-width:480px){
+  .neon-card{padding:10px 12px!important;border-radius:100px;}
+  .neon-val{font-size:0.88rem!important;}
+  .neon-sub{font-size:9.5px!important;}
+  .neon-icon{width:28px!important;height:28px!important;}
+  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"] span{font-size:10px!important;}
+  #plusPriceRight .price-main{font-size:2rem!important;}
+}
+
+.sub-card-compact{padding:20px 22px 18px!important;}
+.sub-card-compact .sub-price-row{flex-direction:row!important;gap:10px!important;}
+.sub-card-compact .sub-price-divider{display:block!important;}
+@media(min-width:641px){
+  .sub-cards-yt-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,16px);align-items:stretch;grid-column:1/-1;}
+  .sub-cards-yt-wrap .sub-card{height:100%;}
+}
+@media(max-width:640px){.sub-cards-yt-wrap{display:contents;}}
+</style>
+</head>
+<body>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+<div class="glow-orb glow-orb-3"></div>
+
+<nav class="topbar">
+  <div class="topbar-logo">
+    <span class="topbar-logo-diamond">✦</span>
+    <span class="topbar-logo-name">Binpinkgold</span>
+    <span class="topbar-logo-sub">Code Store</span>
+  </div>
+  <div class="topbar-hamburger" id="topHam" onclick="toggleTopMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<nav class="topbar-dropdown" id="topDrop">
+  <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu()">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="topbar-nav-text">ChatGPT &bull; Youtube &bull; CapCut</span>
+  </a>
+  <a class="topbar-nav-item" href="kho.html" onclick="closeTopMenu()">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+    <span class="topbar-nav-text">Kho Code</span>
+  </a>
+  <a class="topbar-nav-item" href="#services" onclick="closeTopMenu()">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    <span class="topbar-nav-text">Dịch Vụ Thiết Kế Web &bull; Bot Telegram</span>
+  </a>
+  <a class="topbar-nav-item" href="#contact" onclick="closeTopMenu()">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span class="topbar-nav-text">Liên Hệ</span>
+  </a>
+</nav>
+
+<!-- BANNER CAROUSEL -->
+<div class="site-banner" id="siteBanner">
+  <div class="site-banner-slides" id="sbSlides">
+
+    <!-- SLIDE 1 — Banner image -->
+    <div class="site-banner-slide sbs-1" style="padding:0;">
+      <img src="assets/images/banner.jpg" alt="Binpinkgold Code Store Banner" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
+    </div>
+
+    <!-- SLIDE 2 — Kho Code -->
+    <div class="site-banner-slide sbs-2">
+      <div class="sbs-content">
+        <div class="sbs-badge sbs-badge-blue">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Kho Code
+        </div>
+        <div class="sbs-title">Code chất lượng<br><em style="font-style:normal;background:linear-gradient(135deg,#D08CFC,#B060F8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">sẵn sàng deploy</em></div>
+        <div class="sbs-sub">Bot, web app, automation, scripts<br>Tiết kiệm hàng trăm giờ lập trình</div>
+        <div class="sbs-pills">
+          <span class="sbs-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>Source code bản quyền</span>
+          <span class="sbs-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Dễ tùy chỉnh</span>
+          <span class="sbs-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Tiết kiệm thời gian</span>
+        </div>
+      </div>
+      <div class="sbs-art">
+        <div class="sbs-icon-box sbs-box-code" style="background:rgba(196,72,247,0.13);border:1px solid rgba(196,72,247,0.3);box-shadow:0 0 36px rgba(196,72,247,0.2),0 8px 32px rgba(0,0,0,0.4);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#D08CFC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="sbs-dots" id="sbDots">
+    <div class="sbs-dot active" onclick="sbGoTo(0)"></div>
+    <div class="sbs-dot" onclick="sbGoTo(1)"></div>
+  </div>
+  <button class="sbs-arrow sbs-arr-l" onclick="sbPrev()" style="display:none">‹</button>
+  <button class="sbs-arrow sbs-arr-r" onclick="sbNext()" style="display:none">›</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ring"><div class="hero-ring-inner"></div></div>
+  <div class="container" style="text-align:center;">
+    <div class="hero-cta" id="heroCta" style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:36px;">
+      <div class="btn-primary-wrap" id="heroPrimaryWrap" style="flex:none;">
+        <button onclick="var el=document.getElementById('accounts');var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:72;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'})" class="btn-register-shimmer" id="heroPrimaryBtn" style="font-size:13.5px;padding:11px 26px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Inter',sans-serif;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 22px rgba(168,85,247,0.55),0 0 40px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22);white-space:nowrap;">Khám phá ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+      </div>
+      <a href="kho.html" class="btn-ghost" id="heroGhostBtn" style="font-size:13.5px;padding:11px 26px;border-radius:100px;background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.18);color:rgba(240,236,248,0.8);">Xem Kho Code</a>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2vw,16px);max-width:min(680px,100%);margin:0 auto;">
+      <div class="neon-card neon-cyan">
+        <div class="neon-card-top">
+          <div class="neon-icon neon-icon-cyan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="neon-val" style="color:#67e8f9;">200+</div><div class="neon-sub">Khách hàng</div></div>
+        </div>
+      </div>
+      <div class="neon-card neon-purple">
+        <div class="neon-card-top">
+          <div class="neon-icon neon-icon-purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="neon-val" style="color:#c084fc;">24/7</div><div class="neon-sub">Hỗ trợ</div></div>
+        </div>
+      </div>
+      <div class="neon-card neon-pink">
+        <div class="neon-card-top">
+          <div class="neon-icon neon-icon-pink"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <div><div class="neon-val" style="color:#f472b6;">Giao ngay</div><div class="neon-sub">Sau khi mua</div></div>
+        </div>
+      </div>
+      <div class="neon-card neon-yellow">
+        <div class="neon-card-top">
+          <div class="neon-icon neon-icon-yellow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/><polyline points="9 8 11 10 15 6"/></svg></div>
+          <div><div class="neon-val" style="color:#fde047;">Uy tín</div><div class="neon-sub">Hoàn tiền nếu lỗi</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM ACCOUNTS -->
+<section id="accounts" style="padding:clamp(60px,8vw,90px) 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
+  <div class="container">
+    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">ChatGPT · Youtube · CapCut</div><div class="section-beam r"></div></div></div>
+    <div style="text-align:center;margin:-4px 0 32px;">
+      <div id="promoPill" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.35);border-radius:100px;padding:10px 24px;">
+        <span id="promoPillText" style="font-size:13.5px;font-weight:700;color:#E0B4FF;letter-spacing:0.01em;">Gói <strong style="color:#fff;">12 tháng</strong> tặng <strong style="color:#fff;">1 tháng miễn phí</strong></span>
+      </div>
+    </div>
+    <div id="accountsGrid" style="display:grid;grid-template-columns:1fr;gap:clamp(24px,5vw,60px);">
+
+      <!-- ChatGPT Plus -->
+      <div id="chatgptPlusCard" style="max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;min-width:0;">
+        <div class="glass-card glass-card-glow" style="position:relative;">
+
+          <!-- GÓI TỐT NHẤT — pill shape like other badges -->
+          <div id="plusBestBadge" style="position:absolute;top:22px;right:22px;z-index:10;display:inline-flex;align-items:center;gap:6px;border:2px solid #FFD700;border-radius:100px;padding:5px 14px;background:rgba(255,215,0,0.07);box-shadow:0 0 10px rgba(255,200,0,0.45),0 0 24px rgba(255,160,0,0.2);">
+            <span id="plusBestBadgeText" style="font-size:9px;font-weight:900;color:#FFD700;letter-spacing:0.18em;text-transform:uppercase;text-shadow:0 0 8px rgba(255,215,0,0.8);">GÓI TỐT NHẤT</span>
+          </div>
+
+          <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(168,85,247,0.7) 30%,rgba(236,72,153,0.5) 70%,transparent 100%);margin:0 5%;"></div>
+
+          <div style="padding:clamp(32px,5vw,56px) clamp(20px,4vw,44px) 0;">
+            <div style="display:flex;align-items:center;gap:16px;padding-right:110px;">
+              <img src="assets/images/GPT.jpg" alt="ChatGPT Plus" style="width:56px;height:56px;min-width:56px;max-width:56px;border-radius:16px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.3);box-shadow:0 0 24px rgba(168,85,247,0.25);display:block;">
+              <div>
+                <div style="font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;word-break:break-word;">ChatGPT PLUS</div>
+                <div style="font-size:11px;color:rgba(192,132,252,0.5);font-weight:500;">GPT-5.3 · Codex · Sora AI · Agent · ADA</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Price row: 12-month LEFT | divider | 199K RIGHT -->
+          <div style="padding:18px clamp(18px,4vw,44px) 24px;border-bottom:1px solid rgba(168,85,247,0.1);">
+            <div id="plusPriceFlexRow" style="display:flex;align-items:stretch;gap:18px;flex-wrap:wrap;">
+              <div id="plusYearlyBox" style="flex:1;min-width:150px;background:rgba(255,255,255,0.025);border:1px solid rgba(168,85,247,0.22);border-radius:20px;padding:11px 13px;">
+                <div style="font-size:7px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:rgba(192,132,252,0.55);margin-bottom:8px;">GÓI 12 THÁNG TẶNG 1 THÁNG MIỄN PHÍ</div>
+                <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:5px;"><span style="font-size:8px;color:rgba(240,236,248,0.3);font-weight:500;white-space:nowrap;">Giá niêm yết:</span><span style="font-size:clamp(0.75rem,2.5vw,1.1rem);font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.85);text-decoration-thickness:3px;line-height:1.15;white-space:nowrap;" id="plusYearlyListFull">—</span></div>
+                <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:2px;"><span style="font-size:7.5px;color:rgba(192,132,252,0.65);font-weight:600;white-space:nowrap;">còn lại</span><span style="font-size:clamp(0.8rem,2.5vw,1.15rem);font-weight:800;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;" id="plusYearlyOur">—</span></div>
+                <div style="height:1px;background:rgba(168,85,247,0.14);margin:7px 0;"></div>
+                <div style="font-size:8px;font-weight:800;color:rgba(99,220,150,0.9);" id="plusYearlySaving">—</div>
+              </div>
+              <div id="plusPriceDivider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:4px 0;min-height:70px;flex-shrink:0;"></div>
+              <!-- RIGHT: 199K -->
+              <div id="plusPriceRight" style="display:flex;flex-direction:column;justify-content:center;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:8px;">Giá / tháng</div>
+                <div class="price-main gradient-text" style="font-size:3.22rem;line-height:1;filter:drop-shadow(0 0 22px rgba(220,130,255,0.85)) drop-shadow(0 0 40px rgba(236,72,153,0.55));">199K</div>
+                <div style="display:flex;align-items:center;gap:7px;margin-top:6px;">
+                  <span style="font-size:8px;color:rgba(240,236,248,0.45);text-decoration:line-through;text-decoration-color:rgba(255,80,80,0.6);text-decoration-thickness:1.5px;font-weight:600;" id="plusOldPrice">522.000đ</span>
+                  <span style="font-size:10px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 9px;box-shadow:0 0 10px rgba(220,38,38,0.5);" class="discount-badge" data-orig="522000" data-sale-personal="199000" id="plusDiscountBadge">-62%</span>
+                </div>
+                <div style="margin-top:6px;font-size:8px;font-weight:700;color:rgba(255,180,50,0.8);">≈ chỉ 6.600đ / ngày</div>
+              </div>
+            </div>
+            <div style="margin-top:14px;display:flex;align-items:center;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:100px;padding:5px 14px;max-width:100%;box-sizing:border-box;flex-wrap:wrap;">
+              <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;">✓</span>
+              <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;">1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu)</span>
+            </div>
+
+          </div>
+
+          <!-- Feature grid 2x3 -->
+          <div style="padding:20px clamp(18px,4vw,44px) 24px;border-bottom:1px solid rgba(168,85,247,0.1);display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,1.5vw,12px);width:100%;box-sizing:border-box;min-width:0;">
+            <div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(234,179,8,0.18),rgba(245,158,11,0.12));border:1.5px solid rgba(234,179,8,0.65);border-radius:20px;padding:12px 14px;position:relative;overflow:hidden;box-shadow:0 0 18px rgba(234,179,8,0.22),0 0 40px rgba(234,179,8,0.1),inset 0 1px 0 rgba(255,255,255,0.06);">
+              <style>.pulse-ring-new{animation:pingNew 1.4s cubic-bezier(0,0,0.2,1) infinite;}@keyframes pingNew{0%{transform:scale(1);opacity:1}75%,100%{transform:scale(2.2);opacity:0}}</style>
+              <span style="position:absolute;top:5px;right:15px;font-size:6.5px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#FCD34D;">NEW</span>
+              <div style="position:absolute;top:7px;right:7px;width:6px;height:6px;">
+                <div class="pulse-ring-new" style="position:absolute;inset:0;border-radius:50%;background:rgba(234,179,8,0.55);"></div>
+                <div style="position:absolute;inset:1px;border-radius:50%;background:#F59E0B;box-shadow:0 0 4px #F59E0B;"></div>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FDE047"/><stop offset="100%" stop-color="#F59E0B"/></linearGradient></defs><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="url(#g1)"/></svg>
+              <span style="font-size:clamp(10px,2.8vw,11.5px);color:#FEF08A;font-weight:700;line-height:1.4;word-break:break-word;white-space:normal;padding-right:18px;">GPT-5.3 Instant</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(236,72,153,0.18),rgba(168,85,247,0.12));border:1px solid rgba(236,72,153,0.45);border-radius:20px;padding:12px 14px;position:relative;overflow:hidden;box-shadow:0 0 14px rgba(236,72,153,0.18);">
+              <style>.pulse-ring-hot{animation:pingHot 1.4s cubic-bezier(0,0,0.2,1) infinite;}@keyframes pingHot{0%{transform:scale(1);opacity:1}75%,100%{transform:scale(2.2);opacity:0}}</style>
+              <span style="position:absolute;top:5px;right:15px;font-size:6.5px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#FB7185;">HOT</span>
+              <div style="position:absolute;top:7px;right:7px;width:6px;height:6px;">
+                <div class="pulse-ring-hot" style="position:absolute;inset:0;border-radius:50%;background:rgba(244,63,94,0.55);"></div>
+                <div style="position:absolute;inset:1px;border-radius:50%;background:#f43f5e;box-shadow:0 0 4px #f43f5e;"></div>
+              </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g4b" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F472B6"/><stop offset="100%" stop-color="#FB923C"/></linearGradient></defs><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.82v6.36a1 1 0 0 1-1.447.89L15 14M3 8h12v8H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" stroke="url(#g4b)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span style="font-size:clamp(10px,2.8vw,11.5px);color:rgba(255,220,240,0.95);font-weight:700;line-height:1.4;white-space:normal;word-break:break-word;padding-right:18px;">Sora Video AI</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);border-radius:20px;padding:12px 14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g2b" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#818CF8"/><stop offset="100%" stop-color="#EC4899"/></linearGradient></defs><circle cx="12" cy="12" r="10" stroke="url(#g2b)" stroke-width="2"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4" stroke="url(#g2b)" stroke-width="2" stroke-linecap="round"/></svg>
+              <span style="font-size:11.5px;color:rgba(240,236,248,0.7);font-weight:600;line-height:1.4;">Duyệt web · ADA</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);border-radius:20px;padding:12px 14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A855F7"/><stop offset="100%" stop-color="#F472B6"/></linearGradient></defs><rect x="3" y="8" width="18" height="13" rx="2" stroke="url(#g3)" stroke-width="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2" stroke="url(#g3)" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14" r="1.5" fill="url(#g3)"/></svg>
+              <span style="font-size:11.5px;color:rgba(240,236,248,0.7);font-weight:600;line-height:1.4;">Agent &amp; Codex</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);border-radius:20px;padding:12px 14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#818CF8"/></linearGradient></defs><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="url(#g5)" stroke-width="2" stroke-linecap="round"/></svg>
+              <span style="font-size:11.5px;color:rgba(240,236,248,0.7);font-weight:600;line-height:1.4;">Bộ nhớ nâng cao</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);border-radius:20px;padding:12px 14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FBBF24"/><stop offset="100%" stop-color="#F97316"/></linearGradient></defs><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="url(#g6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span style="font-size:11.5px;color:rgba(240,236,248,0.7);font-weight:600;line-height:1.4;">Ưu tiên truy cập</span>
+            </div>
+          </div>
+
+          <div style="padding:20px clamp(18px,4vw,44px) clamp(24px,4vw,44px);display:flex;gap:clamp(8px,2vw,12px);align-items:center;flex-wrap:nowrap;min-width:0;">
+            <button class="btn-ghost" onclick="openFeatModal()" style="font-family:'Inter',sans-serif;font-size:clamp(11px,2.5vw,12.5px);white-space:nowrap;flex-shrink:0;padding:10px clamp(12px,3vw,20px);"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Xem chi tiết</button>
+            <div class="btn-primary-wrap" style="flex:1;">
+              <button onclick="openPlusModal()" class="btn-register-shimmer" style="width:100%;justify-content:center;font-size:clamp(12px,3vw,14.5px);display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#FF2D8B 0%,#FF6B35 100%);color:#fff;font-weight:800;font-family:'Inter',sans-serif;padding:13px clamp(14px,3vw,24px);border-radius:100px;border:1.5px solid rgba(255,255,255,0.35);cursor:pointer;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 28px rgba(255,45,139,0.55),0 0 50px rgba(255,107,53,0.3),inset 0 1px 0 rgba(255,255,255,0.25);white-space:nowrap;">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub cards -->
+      <div class="sub-cards-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:clamp(12px,2vw,16px);isolation:isolate;align-items:stretch;">
+
+        <!-- ChatGPT GO -->
+        <div class="sub-card" style="display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <img src="assets/images/GPT.jpg" alt="ChatGPT GO" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
+            <div>
+              <div style="font-size:1.05rem;font-weight:800;color:#fff;">ChatGPT GO <span style="font-size:0.78rem;color:rgba(192,132,252,0.55);font-weight:600;">(1 năm)</span></div>
+              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Model GPT-5.3</div>
+            </div>
+          </div>
+          <div style="font-size:12.5px;color:rgba(240,236,248,0.45);line-height:1.65;margin-bottom:14px;flex:1;"><strong style="color:rgba(240,236,248,0.78);">Không giới hạn</strong> chat, gửi file, phân tích dữ liệu cơ bản &amp; <strong style="color:rgba(240,236,248,0.78);">tạo ảnh AI</strong>.</div>
+          <div style="background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:16px;padding:12px 14px;margin-bottom:16px;">
+            <div style="font-size:8px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:8px;">Gói 12 tháng · Tặng 1 tháng miễn phí</div>
+            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
+              <span style="font-size:clamp(1rem,3.5vw,1.5rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">539.000đ</span>
+              <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.596.000đ</span></span>
+            </div>
+            <div style="font-size:9px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 1.057.000đ &nbsp;·&nbsp; ≈ 49K/tháng</div>
+          </div>
+          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('✦ ChatGPT GO · Gói năm 539K (≈49K/tháng)')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+
+        <!-- YouTube Premium + CapCut in equal-height sub-grid -->
+        <div class="sub-cards-yt-wrap" style="grid-column:1/-1;">
+
+        <!-- YouTube Premium: 1-month price LEFT + 12-month box RIGHT -->
+        <div class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <img src="assets/images/YT.jpg" alt="YouTube Premium" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
+            <div>
+              <div style="font-size:1.05rem;font-weight:800;color:#fff;">YouTube Premium</div>
+              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Không quảng cáo · YouTube Music</div>
+            </div>
+          </div>
+          <!-- Price: 1-month left | divider | 12-month box right -->
+          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
+            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
+              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
+              <div style="font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">35K</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">79.000đ</span></div>
+            </div>
+            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
+            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
+              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
+              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
+                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">455.000đ</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.027.000đ</span></span>
+              </div>
+              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 572.000đ</div>
+            </div>
+          </div>
+          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('✦ YouTube Premium · 35K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+
+        <!-- CapCut Pro: 1-month price LEFT + 12-month box RIGHT -->
+        <div class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
+            <div>
+              <div style="font-size:1.05rem;font-weight:800;color:#fff;">CapCut Pro</div>
+              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Mở khóa toàn bộ · Xuất 4K</div>
+            </div>
+          </div>
+          <!-- Price: 1-month left | divider | 12-month box right -->
+          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
+            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
+              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
+              <div style="font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">59K</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">145.000đ</span></div>
+            </div>
+            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
+            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
+              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
+              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
+                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">767.000đ</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.885.000đ</span></span>
+              </div>
+              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 1.118.000đ</div>
+            </div>
+          </div>
+          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('❆ CapCut Pro · 59K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+
+        </div><!-- end sub-cards-yt-wrap -->
+    </div>
+  </div>
+</section>
+
+<!-- KHO CODE -->
+<!-- SERVICES -->
+<section id="services" style="padding:60px 0 64px;position:relative;z-index:1;">
+  <div class="container">
+    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dịch Vụ Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
+    <div class="glass-card glass-card-glow">
+      <div style="padding:clamp(28px,5vw,48px) clamp(24px,5vw,52px);">
+        <div style="margin-bottom:28px;">
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.7);margin-bottom:12px;">Dịch Vụ Lập Trình</div>
+          <div style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:20px;">Thiết Kế Website&nbsp;•&nbsp;Tạo Bot Telegram&nbsp;•&nbsp;Hỗ Trợ Làm Bài Tập</div>
+          <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:22px;">
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Thiết kế Website theo yêu cầu — từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bot Telegram thông minh — bot bán hàng, box chat, tự động hoá quy trình &amp; phân tích dữ liệu.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Hỗ trợ làm bài tập lập trình — code theo yêu cầu, giải thích chi tiết, giao bài đúng tiến độ.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bảo hành miễn phí sau bàn giao · Báo giá nhanh · Giao hàng đúng hẹn.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:72px 0 96px;position:relative;z-index:1;">
+  <div class="container">
+    <div style="margin-bottom:40px;position:relative;padding-left:24px;">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:2px;background:linear-gradient(180deg,#A855F7,#EC4899);box-shadow:0 0 12px rgba(168,85,247,0.6);"></div>
+      <div style="font-size:10px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;color:#A855F7;margin-bottom:14px;text-shadow:0 0 10px rgba(168,85,247,0.5);">Kết Nối</div>
+      <div style="font-size:clamp(2.4rem,7vw,3.8rem);font-weight:900;letter-spacing:-0.04em;line-height:1;color:#fff;margin-bottom:12px;">Liên Hệ</div>
+      <div style="font-size:13px;color:rgba(240,236,248,0.38);font-weight:400;max-width:320px;line-height:1.7;">Liên hệ <strong style="color:rgba(192,132,252,0.7);">Telegram</strong> hoặc <strong style="color:rgba(192,132,252,0.7);">Zalo</strong> để được hỗ trợ nhanh nhất</div>
+    </div>
+    <div class="contact-list">
+      <a href="https://zalo.me/0898908101" target="_blank" class="contact-item"><img src="assets/images/zalo.jpg" alt="Zalo" class="contact-img"><span class="contact-name">Zalo</span><span class="contact-arrow">›</span></a>
+      <a href="https://t.me/binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tele.jpg" alt="Telegram" class="contact-img"><span class="contact-name">Telegram</span><span class="contact-arrow">›</span></a>
+      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" class="contact-item"><img src="assets/images/fb.jpg" alt="Facebook" class="contact-img"><span class="contact-name">Facebook</span><span class="contact-arrow">›</span></a>
+      <a href="https://www.tiktok.com/@binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tiktok.jpg" alt="TikTok" class="contact-img"><span class="contact-name">TikTok</span><span class="contact-arrow">›</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 <span style="background:linear-gradient(135deg,#C084FC,#A855F7,#EC4899,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;">Binpinkgold Code Store</span> · 08989 08101</footer>
+
+<!-- FEAT MODAL -->
+<div class="modal-overlay" id="featModal" onclick="if(event.target===this){document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';}">
+  <div class="feat-modal-box">
+    <div class="feat-modal-head">
+      <div class="font-syne" style="font-size:1rem;font-weight:800;color:#C084FC;">✨ ChatGPT Plus · Tất cả tính năng 2026</div>
+      <button class="feat-close-btn" onclick="document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';">✕</button>
+    </div>
+    <div class="feat-modal-body">
+      <div class="detail-item"><div class="detail-icon">🧠</div><div><div class="detail-title">GPT-5.3 Instant — Nhanh hơn, chính xác hơn</div><div class="detail-desc">Ra mắt 3/3/2026. Trò chuyện tự nhiên hơn, giảm nội dung thừa, tăng độ tin cậy 19–26% so với GPT-5.2.</div></div></div>
+      <div class="detail-item"><div class="detail-icon">🌐</div><div><div class="detail-title">Tìm kiếm web thông minh + ADA</div><div class="detail-desc">Câu trả lời liên quan, cập nhật thời gian thực. Phân tích dữ liệu, tạo báo cáo ngay trong chat.</div></div></div>
+      <div class="detail-item"><div class="detail-icon">🤖</div><div><div class="detail-title">Agent &amp; Codex + Custom GPTs</div><div class="detail-desc">Tự động hoá quy trình với AI Agent, lập trình nâng cao và GPT riêng theo workflow.</div></div></div>
+      <div class="detail-item"><div class="detail-icon">🧬</div><div><div class="detail-title">Bộ nhớ nâng cao (Enhanced Memory)</div><div class="detail-desc">Lưu ngữ cảnh xuyên suốt nhiều cuộc hội thoại, nhớ thông tin cá nhân và ưu tiên dự án.</div></div></div>
+      <div class="detail-item"><div class="detail-icon">🎬</div><div><div class="detail-title">Sora Video AI</div><div class="detail-desc">Tạo video AI ngắn trực tiếp trong ChatGPT. Tính năng độc quyền cho người dùng Plus.</div></div></div>
+      <div class="detail-item"><div class="detail-icon">✍️</div><div><div class="detail-title">Viết sáng tạo nâng cao</div><div class="detail-desc">GPT-5.3 hỗ trợ viết nội dung hấp dẫn, giọng điệu mượt mà, phù hợp nhiều phong cách hơn.</div></div></div>
+      <div class="detail-item"><div class="detail-icon">🎙️</div><div><div class="detail-title">Voice &amp; Audio nâng cấp</div><div class="detail-desc">Nhập liệu giọng nói chính xác hơn, phản hồi thoại tự nhiên.</div></div></div>
+      <div class="detail-item"><div class="detail-icon">⚡</div><div><div class="detail-title">Ưu tiên truy cập · Không giới hạn giờ cao điểm</div><div class="detail-desc">Phản hồi nhanh hơn, không bị gián đoạt kể cả lúc server cao điểm.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="if(event.target===this){closeModal();}">
+  <div class="modal-box">
+    <div id="modalHeader" style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:14px 18px;margin-bottom:16px;text-align:center;">
+      <div id="modalSelected" style="font-size:14px;font-weight:800;color:#E0B4FF;line-height:1.5;"></div>
+    </div>
+    <div id="plusNotesBox" style="display:none;background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:14px 16px;margin-bottom:16px;">
+      <div style="font-size:9.5px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(192,132,252,0.55);margin-bottom:10px;">📌 Lưu ý quan trọng</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Nhận tài khoản riêng (có thể đổi mật khẩu) ngay sau khi mua.</div>
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu).</div>
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Có thể đăng nhập được nhiều thiết bị, share cho bạn bè dùng chung.</div>
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Truy cập đầy đủ Sora (Video AI) &amp; Codex.</div>
+      </div>
+    </div>
+    <div style="font-size:14px;font-weight:800;margin-bottom:20px;color:var(--text);">Liên hệ để nhận code ngay:</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+      <a href="https://t.me/binpinkgold" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/tele.jpg" alt="Telegram" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Telegram</span>
+      </a>
+      <a href="https://zalo.me/0898908101" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/zalo.jpg" alt="Zalo" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
+      </a>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal()">✕ Đóng</button>
+  </div>
+</div>
+
+<script>
+const PLUS_LIST_PRICE = 522000;
+const PLUS_OUR_PRICE  = 199000;
+
+function fmtVND(n){ return n.toLocaleString('vi-VN') + 'đ'; }
+
+function initYearlyPricing() {
+  var listFull  = PLUS_LIST_PRICE * 12;
+  var ourYearly = PLUS_OUR_PRICE  * 12;
+  var saving    = listFull - ourYearly;
+  document.getElementById('plusYearlyListFull').textContent = fmtVND(listFull);
+  document.getElementById('plusYearlyOur').textContent      = fmtVND(ourYearly);
+  document.getElementById('plusYearlySaving').textContent   = '💰 Tiết kiệm ' + fmtVND(saving);
+}
+
+function openModal(n){
+  document.getElementById('modalSelected').textContent=n;
+  document.getElementById('plusNotesBox').style.display='none';
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
+
+function openPlusModal(){
+  document.getElementById('modalSelected').innerHTML='✨ ChatGPT Plus &bull; 199K/tháng';
+  document.getElementById('plusNotesBox').style.display='block';
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function openFeatModal(){document.getElementById('featModal').classList.add('open');document.body.style.overflow='hidden';}
+
+function calcDiscounts(){
+  var pb=document.getElementById('plusDiscountBadge');
+  if(pb){
+    var orig=+pb.dataset.orig, sale=+pb.dataset.salePersonal;
+    if(orig&&sale) pb.textContent='-'+Math.round((1-sale/orig)*100)+'%';
+  }
+}
+
+// BANNER
+const SB_INTERVAL=4500;
+let sbCur=0,sbTot=2,sbTimer,sbPaused=false;
+const sbSlides=document.getElementById('sbSlides');
+const sbDots=document.querySelectorAll('.sbs-dot');
+function sbGoTo(i){sbCur=i;sbSlides.style.transform=`translateX(-${sbCur*100}%)`;sbDots.forEach((d,j)=>d.classList.toggle('active',j===sbCur));}
+function sbNext(){sbGoTo((sbCur+1)%sbTot);}
+function sbPrev(){sbGoTo((sbCur-1+sbTot)%sbTot);}
+function sbStartTimer(){clearInterval(sbTimer);if(!sbPaused)sbTimer=setInterval(sbNext,SB_INTERVAL);}
+function sbPause(){sbPaused=true;clearInterval(sbTimer);}
+function sbResume(){sbPaused=false;sbStartTimer();}
+sbStartTimer();
+const sbEl=document.getElementById('siteBanner');
+let sbTx=0,sbDrag=false;
+sbEl.addEventListener('touchstart',e=>{sbTx=e.touches[0].clientX;sbDrag=true;sbPause();},{passive:true});
+sbEl.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sbTx;if(Math.abs(dx)>40){dx<0?sbNext():sbPrev();}sbDrag=false;sbResume();});
+sbEl.addEventListener('touchcancel',()=>{sbDrag=false;sbResume();});
+sbEl.addEventListener('mousedown',e=>{sbTx=e.clientX;sbDrag=true;sbPause();});
+sbEl.addEventListener('mouseup',e=>{const dx=e.clientX-sbTx;if(Math.abs(dx)>40){dx<0?sbNext():sbPrev();}sbDrag=false;sbResume();});
+sbEl.addEventListener('mouseleave',()=>{if(sbDrag){sbDrag=false;sbResume();}});
+
+// HAMBURGER MENU
+function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');}
+function toggleTopMenu(){document.getElementById('topHam').classList.toggle('open');document.getElementById('topDrop').classList.toggle('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target.closest('#topDrop')){closeTopMenu();}});
+history.scrollRestoration='manual';window.scrollTo(0,0);
+document.addEventListener('DOMContentLoaded',function(){calcDiscounts();initYearlyPricing();});
+</script>
+<script src="protect.js"></script>
+</body>
+</html>
+
+

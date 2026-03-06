@@ -172,49 +172,437 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .topbar-nav-icon{flex-shrink:0;opacity:0.65;}
 .topbar-nav-text{line-height:1.5;word-break:break-word;white-space:normal;}
 
-/* BANNER CAROUSEL */
+/* =====================================================================
+   BANNER CAROUSEL — style card ChatGPT Plus, bỏ LED spin
+   Rule 6: aspect-ratio:16/9 + max-height. Rule 1: clamp, word-break.
+   Rule 2: flex+flex-wrap. Rule 4: 3 breakpoint. Rule 7: padding-right.
+===================================================================== */
 .site-banner{position:relative;overflow:hidden;margin-top:60px;}
-.site-banner-slides{display:flex;height:100%;transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);}
-.site-banner-slide{flex:0 0 100%;position:relative;overflow:hidden;display:flex;align-items:center;}
+.site-banner-slides{display:flex;transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);}
+.site-banner-slide{
+  flex:0 0 100%;position:relative;
+  aspect-ratio:16/9;
+  max-height:clamp(240px,42vw,440px);
+  min-height:190px;
+  display:flex;align-items:center;
+  cursor:pointer;overflow:hidden;
+}
 
-.sbs-1{background:linear-gradient(135deg,#0d0520 0%,#1e0a45 45%,#2d0a5a 75%,#1a0438 100%);aspect-ratio:16/9;max-height:360px;}
-.sbs-1::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 75% 80% at 82% 48%,rgba(168,85,247,0.32) 0%,transparent 58%),radial-gradient(ellipse 45% 50% at 12% 78%,rgba(236,72,153,0.14) 0%,transparent 55%);}
-.sbs-2{background:linear-gradient(135deg,#170530 0%,#240745 45%,#1e0540 75%,#110325 100%);padding:clamp(28px,6vw,52px) 0;cursor:pointer;}
-.sbs-2::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 75% at 78% 52%,rgba(196,72,247,0.28) 0%,transparent 58%),radial-gradient(ellipse 40% 45% at 18% 30%,rgba(168,85,247,0.18) 0%,transparent 55%);}
-.sbs-3{background:linear-gradient(135deg,#0e0322 0%,#1c0638 45%,#280855 75%,#130325 100%);}
-.sbs-3::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 72% 78% at 84% 45%,rgba(236,72,153,0.26) 0%,transparent 58%),radial-gradient(ellipse 42% 48% at 10% 68%,rgba(244,114,182,0.14) 0%,transparent 55%);}
-.sbs-content{position:relative;z-index:2;padding:0 clamp(22px,5vw,48px);max-width:620px;}
-.sbs-badge{display:inline-flex;align-items:center;gap:6px;border-radius:100px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;}
-.sbs-badge-purple{background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.38);color:#C084FC;}
-.sbs-badge-blue{background:rgba(196,72,247,0.13);border:1px solid rgba(196,72,247,0.33);color:#D08CFC;}
-.sbs-badge-green{background:rgba(236,72,153,0.13);border:1px solid rgba(236,72,153,0.33);color:#F472B6;}
-.sbs-title{font-size:clamp(1.4rem,4.5vw,2.2rem);font-weight:900;line-height:1.1;letter-spacing:-0.03em;margin-bottom:10px;color:#fff;word-break:break-word;white-space:normal;}
+/* ── BG gradients ── */
+.sbs-1{background:linear-gradient(145deg,#080318 0%,#130630 55%,#08021a 100%);}
+.sbs-1::before{content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse 60% 80% at 80% 40%,rgba(168,85,247,0.26) 0%,transparent 60%),
+  radial-gradient(ellipse 35% 45% at 15% 70%,rgba(236,72,153,0.12) 0%,transparent 55%);}
+.sbs-2{background:linear-gradient(145deg,#020e18 0%,#061828 55%,#020a14 100%);}
+.sbs-2::before{content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse 60% 75% at 82% 38%,rgba(52,211,153,0.2) 0%,transparent 60%),
+  radial-gradient(ellipse 35% 45% at 12% 65%,rgba(34,211,238,0.1) 0%,transparent 55%);}
+.sbs-3{background:linear-gradient(145deg,#120320 0%,#1e0535 55%,#0e0218 100%);}
+.sbs-3::before{content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse 60% 75% at 80% 42%,rgba(236,72,153,0.22) 0%,transparent 60%),
+  radial-gradient(ellipse 35% 45% at 14% 65%,rgba(244,114,182,0.1) 0%,transparent 55%);}
+
+/* ── 3D GRID — isolation:isolate để không che content ── */
+.sbs-grid{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;isolation:isolate;}
+.sbs-grid-floor{
+  position:absolute;left:-60%;right:-60%;bottom:0;height:56%;
+  transform:rotateX(68deg);transform-origin:bottom center;
+  background-size:clamp(32px,5vw,52px) clamp(32px,5vw,52px);
+  -webkit-mask-image:radial-gradient(ellipse 90% 100% at 50% 100%,black 25%,transparent 80%);
+  mask-image:radial-gradient(ellipse 90% 100% at 50% 100%,black 25%,transparent 80%);
+}
+.sbs-grid-wall{
+  position:absolute;left:-40%;right:-40%;top:0;height:50%;
+  background-size:clamp(32px,5vw,52px) clamp(32px,5vw,52px);
+  -webkit-mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 15%,transparent 70%);
+  mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 15%,transparent 70%);
+}
+.sbs-grid-horizon{position:absolute;top:38%;left:-5%;right:-5%;height:1.5px;}
+.sbs-grid-vignette{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 100% 55% at 50% 100%,rgba(0,0,0,0.92) 0%,transparent 65%),
+  radial-gradient(ellipse 100% 45% at 50% 0%,rgba(0,0,0,0.82) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 60% at 50% 50%,rgba(0,0,0,0.3) 0%,transparent 80%);
+}
+/* Grid màu theo slide */
+.sbs-1 .sbs-grid-floor{background-image:linear-gradient(rgba(168,85,247,0.28) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.28) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(168,85,247,0.45));}
+.sbs-1 .sbs-grid-wall{background-image:linear-gradient(rgba(236,72,153,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.14) 1px,transparent 1px);}
+.sbs-1 .sbs-grid-horizon{background:linear-gradient(90deg,transparent,rgba(168,85,247,0) 4%,rgba(168,85,247,1) 22%,rgba(236,72,153,1) 50%,rgba(244,114,182,1) 78%,rgba(168,85,247,0) 96%,transparent);box-shadow:0 0 6px rgba(168,85,247,0.9),0 0 18px rgba(168,85,247,0.5),0 0 36px rgba(236,72,153,0.25);}
+.sbs-2 .sbs-grid-floor{background-image:linear-gradient(rgba(52,211,153,0.26) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.26) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(52,211,153,0.4));}
+.sbs-2 .sbs-grid-wall{background-image:linear-gradient(rgba(34,211,238,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.14) 1px,transparent 1px);}
+.sbs-2 .sbs-grid-horizon{background:linear-gradient(90deg,transparent,rgba(52,211,153,0) 4%,rgba(52,211,153,1) 22%,rgba(34,211,238,1) 50%,rgba(52,211,153,1) 78%,rgba(52,211,153,0) 96%,transparent);box-shadow:0 0 6px rgba(52,211,153,0.8),0 0 18px rgba(34,211,238,0.45),0 0 36px rgba(52,211,153,0.2);}
+.sbs-3 .sbs-grid-floor{background-image:linear-gradient(rgba(236,72,153,0.26) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.26) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(236,72,153,0.4));}
+.sbs-3 .sbs-grid-wall{background-image:linear-gradient(rgba(244,114,182,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.14) 1px,transparent 1px);}
+.sbs-3 .sbs-grid-horizon{background:linear-gradient(90deg,transparent,rgba(236,72,153,0) 4%,rgba(236,72,153,1) 22%,rgba(244,114,182,1) 50%,rgba(236,72,153,1) 78%,rgba(236,72,153,0) 96%,transparent);box-shadow:0 0 6px rgba(236,72,153,0.85),0 0 18px rgba(244,114,182,0.45),0 0 36px rgba(236,72,153,0.22);}
+
+/* ── SLIDE INNER LAYOUT — 2 cột: content left + card panel right ── */
+.sbs-inner{
+  position:relative;z-index:10;
+  width:100%;height:100%;
+  display:flex;align-items:center;
+  padding:0 clamp(16px,4vw,44px);
+  gap:clamp(12px,3vw,28px);
+  box-sizing:border-box;
+}
+
+/* LEFT — badge + title + sub + pills (gọn) */
+.sbs-left{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;justify-content:center;
+  gap:clamp(5px,1.2vw,8px);
+  word-break:break-word;
+}
+
+/* Badge — Rule 2: display:flex */
+.sbs-badge{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px;width:fit-content;max-width:100%;
+  border-radius:100px;padding:4px 12px;box-sizing:border-box;
+  font-size:clamp(8.5px,1.5vw,10px);font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+}
+.sbs-badge-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;animation:sbsDot 1.8s ease-in-out infinite;}
+@keyframes sbsDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.sbs-badge-purple{background:rgba(168,85,247,0.14);border:1px solid rgba(168,85,247,0.38);color:#C084FC;}
+.sbs-badge-purple .sbs-badge-dot{background:#A855F7;box-shadow:0 0 5px #A855F7;}
+.sbs-badge-teal{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.32);color:#6EE7B7;}
+.sbs-badge-teal .sbs-badge-dot{background:#34d399;box-shadow:0 0 5px #34d399;}
+.sbs-badge-pink{background:rgba(236,72,153,0.12);border:1px solid rgba(236,72,153,0.32);color:#F472B6;}
+.sbs-badge-pink .sbs-badge-dot{background:#EC4899;box-shadow:0 0 5px #EC4899;}
+
+/* Title */
+.sbs-title{font-size:clamp(1.1rem,3.8vw,2rem);font-weight:900;line-height:1.08;letter-spacing:-0.03em;color:#fff;word-break:break-word;white-space:normal;margin:0;}
 .sbs-title em{font-style:normal;background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sbs-title .em-blue{background:linear-gradient(135deg,#818CF8,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sbs-title .em-green{background:linear-gradient(135deg,#6EE7B7,#34D399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sbs-sub{font-size:clamp(11px,2vw,13.5px);color:rgba(240,236,248,0.55);margin-bottom:16px;line-height:1.65;word-break:break-word;white-space:normal;}
-.sbs-pills{display:flex;gap:7px;flex-wrap:wrap;}
-.sbs-pill{font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(240,236,248,0.7);display:inline-flex;align-items:center;gap:5px;}
-.sbs-art{position:absolute;right:0;top:0;bottom:0;width:38%;display:flex;align-items:center;justify-content:center;z-index:1;}
-.sbs-icon-box{width:100px;height:100px;border-radius:28px;display:flex;align-items:center;justify-content:center;}
-.sbs-icon-box svg{width:52px;height:52px;flex-shrink:0;}
-.sbs-box-gpt{background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.1));border:1px solid rgba(168,85,247,0.35);box-shadow:0 0 40px rgba(168,85,247,0.25),0 8px 32px rgba(0,0,0,0.4);}
-.sbs-box-code{background:linear-gradient(135deg,rgba(99,102,241,0.18),rgba(34,211,238,0.1));border:1px solid rgba(99,102,241,0.3);box-shadow:0 0 40px rgba(99,102,241,0.2),0 8px 32px rgba(0,0,0,0.4);}
-.sbs-box-web{background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(16,185,129,0.1));border:1px solid rgba(52,211,153,0.3);box-shadow:0 0 40px rgba(52,211,153,0.2),0 8px 32px rgba(0,0,0,0.4);}
-.sbs-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;}
+.sbs-title .em-teal{background:linear-gradient(135deg,#6EE7B7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sbs-title .em-pink{background:linear-gradient(135deg,#F472B6,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* Sub */
+.sbs-sub{font-size:clamp(9.5px,1.6vw,11.5px);color:rgba(240,236,248,0.5);line-height:1.55;word-break:break-word;white-space:normal;margin:0;}
+
+/* Pills */
+.sbs-pills{display:flex;gap:5px;flex-wrap:wrap;max-width:100%;box-sizing:border-box;}
+.sbs-pill{font-size:clamp(8.5px,1.4vw,10px);font-weight:600;padding:3px 8px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(240,236,248,0.65);display:inline-flex;align-items:center;gap:3px;white-space:nowrap;}
+
+/* RIGHT — card panel (feature grid + bench) — style từ ChatGPT Plus card */
+.sbs-right{
+  flex-shrink:0;
+  width:clamp(170px,38%,320px);
+  display:flex;flex-direction:column;gap:clamp(5px,1vw,7px);
+  box-sizing:border-box;
+}
+
+/* Feature grid 2 cột — giống grid tính năng card ChatGPT */
+.sbs-feat-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(4px,0.8vw,6px);
+}
+.sbs-feat-item{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);
+  border-radius:14px;padding:clamp(6px,1.2vw,9px) clamp(8px,1.4vw,11px);
+  position:relative;overflow:hidden;
+  transition:border-color 0.2s;
+  box-sizing:border-box;
+}
+.sbs-feat-item.highlight-gold{background:linear-gradient(135deg,rgba(234,179,8,0.14),rgba(245,158,11,0.08));border-color:rgba(234,179,8,0.55);}
+.sbs-feat-item.highlight-hot{background:linear-gradient(135deg,rgba(236,72,153,0.14),rgba(168,85,247,0.08));border-color:rgba(236,72,153,0.4);}
+.sbs-feat-item.highlight-teal{background:linear-gradient(135deg,rgba(52,211,153,0.12),rgba(34,211,238,0.06));border-color:rgba(52,211,153,0.38);}
+.sbs-feat-item.highlight-pink{background:linear-gradient(135deg,rgba(236,72,153,0.12),rgba(244,114,182,0.06));border-color:rgba(236,72,153,0.35);}
+/* NEW/HOT badge — Rule 7: padding-right trên text để không đè badge */
+.sbs-feat-badge{
+  position:absolute;top:4px;right:5px;
+  font-size:5.5px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
+}
+.sbs-feat-badge.gold{color:#FCD34D;}
+.sbs-feat-badge.hot{color:#FB7185;}
+.sbs-feat-ico{width:clamp(14px,2.2vw,18px);height:clamp(14px,2.2vw,18px);flex-shrink:0;}
+.sbs-feat-name{font-size:clamp(8.5px,1.4vw,10.5px);font-weight:700;color:rgba(240,236,248,0.85);line-height:1.25;word-break:break-word;padding-right:16px;}
+
+/* Benchmark block */
+.sbs-bench{
+  background:linear-gradient(135deg,rgba(168,85,247,0.08),rgba(236,72,153,0.04));
+  border:1px solid rgba(168,85,247,0.18);border-radius:12px;
+  padding:clamp(7px,1.2vw,10px) clamp(8px,1.4vw,12px);
+  box-sizing:border-box;
+}
+.sbs-bench-title{font-size:clamp(6.5px,1.1vw,8px);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:6px;}
+.sbs-bench-row{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.sbs-bench-row:last-child{margin-bottom:0;}
+.sbs-bench-name{font-size:clamp(7.5px,1.2vw,9px);color:rgba(240,236,248,0.45);width:clamp(65px,10vw,95px);min-width:0;flex-shrink:0;line-height:1.3;word-break:break-word;white-space:normal;}
+.sbs-bench-bar-wrap{flex:1;height:4px;background:rgba(168,85,247,0.1);border-radius:10px;overflow:hidden;}
+.sbs-bench-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,#A855F7,#EC4899);}
+.sbs-bench-bar.dim{background:rgba(168,85,247,0.22);}
+.sbs-bench-pct{font-size:clamp(7.5px,1.2vw,9px);font-weight:800;color:#C084FC;width:clamp(26px,3.5vw,32px);text-align:right;flex-shrink:0;}
+.sbs-bench-pct.dim{color:rgba(240,236,248,0.3);}
+/* teal/pink bench variants */
+.sbs-bench-teal{background:linear-gradient(135deg,rgba(52,211,153,0.07),rgba(34,211,238,0.03));border-color:rgba(52,211,153,0.16);}
+.sbs-bench-teal .sbs-bench-title{color:rgba(110,231,183,0.45);}
+.sbs-bench-teal .sbs-bench-bar{background:linear-gradient(90deg,#34D399,#22D3EE);}
+.sbs-bench-teal .sbs-bench-pct{color:#6EE7B7;}
+.sbs-bench-pink{background:linear-gradient(135deg,rgba(236,72,153,0.07),rgba(244,114,182,0.03));border-color:rgba(236,72,153,0.16);}
+.sbs-bench-pink .sbs-bench-title{color:rgba(244,114,182,0.45);}
+.sbs-bench-pink .sbs-bench-bar{background:linear-gradient(90deg,#EC4899,#F472B6);}
+.sbs-bench-pink .sbs-bench-pct{color:#F472B6;}
+
+/* Dots & arrows */
+.sbs-dots{position:absolute;bottom:clamp(8px,1.5vw,12px);left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:20;}
+.sbs-dot{width:22px;height:3.5px;border-radius:4px;background:rgba(255,255,255,0.18);cursor:pointer;transition:all 0.3s;}
+.sbs-dot.active{background:#A855F7;width:34px;box-shadow:0 0 7px rgba(168,85,247,0.6);}
+.sbs-arrow{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:16px;cursor:pointer;z-index:20;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.sbs-arrow:hover{background:rgba(168,85,247,0.3);border-color:rgba(168,85,247,0.5);}
+.sbs-arr-l{left:10px;}.sbs-arr-r{right:10px;}
+
+/* ── RESPONSIVE 3 tầng (Rule 4) ── */
+@media(max-width:768px){
+  .sbs-right{width:clamp(150px,34%,240px);}
+  .sbs-bench{display:none;}
+  .sbs-feat-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:640px){
+  .sbs-right{width:clamp(120px,30%,180px);}
+  .sbs-feat-grid{grid-template-columns:1fr;}
+  .sbs-feat-item{padding:5px 8px;border-radius:10px;}
+  .sbs-feat-name{font-size:8.5px;}
+  .sbs-title{font-size:clamp(1rem,5vw,1.4rem);}
+  .sbs-sub{display:none;}
+  .sbs-pills{gap:3px;}
+  .sbs-pill{font-size:8.5px;padding:2px 7px;}
+  .sbs-inner{padding:0 clamp(12px,3.5vw,20px);gap:10px;}
+}
+@media(max-width:480px){
+  .sbs-right{display:none;}
+  .sbs-title{font-size:clamp(0.95rem,5.5vw,1.25rem);}
+  .sbs-left{width:100%;}
+  .sbs-badge{font-size:8px;}
+}
+
+/* ── 3D GRID BACKGROUND (shared) ─────────────────────────────── */
+/* floor plane — dùng ::after để không dùng thêm div */
+.sbs-grid-wall{
+  position:absolute;
+  left:-40%;right:-40%;top:0;
+  height:52%;
+  background-size:clamp(36px,5.5vw,56px) clamp(36px,5.5vw,56px);
+  -webkit-mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 18%,transparent 70%);
+  mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 18%,transparent 70%);
+}
+/* HORIZON glow line — z-index trong isolation context của .sbs-grid */
+.sbs-grid-horizon{
+  position:absolute;top:39%;left:-5%;right:-5%;height:1.5px;
+}
+/* Vignette — CŨNG nằm trong .sbs-grid isolation, không leak ra ngoài */
+.sbs-grid-vignette{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 100% 55% at 50% 100%,rgba(0,0,0,0.92) 0%,transparent 65%),
+    radial-gradient(ellipse 100% 45% at 50% 0%,rgba(0,0,0,0.82) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 50%,rgba(0,0,0,0.35) 0%,transparent 80%);
+}
+
+/* slide-1 grid colors — purple/magenta */
+.sbs-1 .sbs-grid-floor{
+  background-image:linear-gradient(rgba(168,85,247,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.3) 1px,transparent 1px);
+  filter:drop-shadow(0 0 6px rgba(168,85,247,0.5));
+}
+.sbs-1 .sbs-grid-wall{
+  background-image:linear-gradient(rgba(236,72,153,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.16) 1px,transparent 1px);
+  filter:drop-shadow(0 0 4px rgba(236,72,153,0.3));
+}
+.sbs-1 .sbs-grid-horizon{
+  background:linear-gradient(90deg,transparent 0%,rgba(168,85,247,0) 4%,rgba(168,85,247,1) 22%,rgba(236,72,153,1) 50%,rgba(244,114,182,1) 78%,rgba(168,85,247,0) 96%,transparent 100%);
+  box-shadow:0 0 6px rgba(168,85,247,0.9),0 0 18px rgba(168,85,247,0.55),0 0 40px rgba(236,72,153,0.28);
+}
+
+/* slide-2 grid colors — teal/indigo */
+.sbs-2 .sbs-grid-floor{
+  background-image:linear-gradient(rgba(52,211,153,0.28) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.28) 1px,transparent 1px);
+  filter:drop-shadow(0 0 6px rgba(52,211,153,0.45));
+}
+.sbs-2 .sbs-grid-wall{
+  background-image:linear-gradient(rgba(34,211,238,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.15) 1px,transparent 1px);
+  filter:drop-shadow(0 0 4px rgba(34,211,238,0.28));
+}
+.sbs-2 .sbs-grid-horizon{
+  background:linear-gradient(90deg,transparent 0%,rgba(52,211,153,0) 4%,rgba(52,211,153,1) 22%,rgba(34,211,238,1) 50%,rgba(52,211,153,1) 78%,rgba(52,211,153,0) 96%,transparent 100%);
+  box-shadow:0 0 6px rgba(52,211,153,0.8),0 0 18px rgba(34,211,238,0.5),0 0 38px rgba(52,211,153,0.22);
+}
+
+/* slide-3 grid colors — pink/magenta */
+.sbs-3 .sbs-grid-floor{
+  background-image:linear-gradient(rgba(236,72,153,0.28) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.28) 1px,transparent 1px);
+  filter:drop-shadow(0 0 6px rgba(236,72,153,0.45));
+}
+.sbs-3 .sbs-grid-wall{
+  background-image:linear-gradient(rgba(244,114,182,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.16) 1px,transparent 1px);
+  filter:drop-shadow(0 0 4px rgba(244,114,182,0.28));
+}
+.sbs-3 .sbs-grid-horizon{
+  background:linear-gradient(90deg,transparent 0%,rgba(236,72,153,0) 4%,rgba(236,72,153,1) 22%,rgba(244,114,182,1) 50%,rgba(236,72,153,1) 78%,rgba(236,72,153,0) 96%,transparent 100%);
+  box-shadow:0 0 6px rgba(236,72,153,0.85),0 0 18px rgba(244,114,182,0.5),0 0 38px rgba(236,72,153,0.25);
+}
+
+/* ── CONTENT LAYOUT ──────────────────────────────────────── */
+.sbs-content{
+  position:relative;
+  z-index:10;
+  padding:0 clamp(20px,5vw,52px);
+  /* nhường đủ chỗ cho .sbs-art bên phải */
+  width:calc(100% - clamp(160px,34%,310px));
+  max-width:620px;
+  box-sizing:border-box;
+  word-break:break-word;
+  flex-shrink:0;
+}
+
+/* Badge — Rule 2: display:flex + flex-wrap */
+.sbs-badge{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+  border-radius:100px;padding:5px 14px;
+  font-size:clamp(9.5px,1.8vw,11px);font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;margin-bottom:clamp(10px,2vw,14px);
+  max-width:100%;box-sizing:border-box;width:fit-content;
+}
+.sbs-badge-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;animation:sbsDotBlink 1.8s ease-in-out infinite;}
+@keyframes sbsDotBlink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.sbs-badge-purple{background:rgba(168,85,247,0.14);border:1px solid rgba(168,85,247,0.38);color:#C084FC;}
+.sbs-badge-purple .sbs-badge-dot{background:#A855F7;box-shadow:0 0 6px #A855F7;}
+.sbs-badge-teal{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.32);color:#6EE7B7;}
+.sbs-badge-teal .sbs-badge-dot{background:#34d399;box-shadow:0 0 6px #34d399;}
+.sbs-badge-pink{background:rgba(236,72,153,0.12);border:1px solid rgba(236,72,153,0.32);color:#F472B6;}
+.sbs-badge-pink .sbs-badge-dot{background:#EC4899;box-shadow:0 0 6px #EC4899;}
+
+/* Title — Rule 1: clamp, word-break */
+.sbs-title{
+  font-size:clamp(1.25rem,4.2vw,2.1rem);
+  font-weight:900;line-height:1.1;letter-spacing:-0.03em;
+  margin-bottom:clamp(8px,1.5vw,12px);
+  color:#fff;word-break:break-word;white-space:normal;
+}
+.sbs-title em{font-style:normal;background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sbs-title .em-teal{background:linear-gradient(135deg,#6EE7B7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sbs-title .em-pink{background:linear-gradient(135deg,#F472B6,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* Subtitle */
+.sbs-sub{
+  font-size:clamp(10.5px,1.8vw,13px);color:rgba(240,236,248,0.55);
+  margin-bottom:clamp(12px,2vw,18px);line-height:1.65;
+  word-break:break-word;white-space:normal;
+}
+
+/* Pills row — Rule 2: flex+flex-wrap */
+.sbs-pills{display:flex;gap:6px;flex-wrap:wrap;max-width:100%;box-sizing:border-box;}
+.sbs-pill{
+  font-size:clamp(9.5px,1.6vw,10.5px);font-weight:600;
+  padding:4px 10px;border-radius:100px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  color:rgba(240,236,248,0.7);
+  display:inline-flex;align-items:center;gap:4px;
+  white-space:nowrap;/* chip ngắn cố định — Rule 1 exception */
+}
+
+/* ── RIGHT ART PANEL ─────────────────────────────────────── */
+.sbs-art{
+  position:absolute;right:0;top:0;bottom:0;
+  width:clamp(160px,34%,310px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(8px,1.5vw,12px);
+  z-index:10;
+  padding:clamp(10px,2vw,18px) clamp(14px,2.5vw,24px);
+  box-sizing:border-box;
+  pointer-events:none;
+}
+
+/* Icon box */
+.sbs-icon-box{
+  width:clamp(64px,8vw,90px);height:clamp(64px,8vw,90px);
+  border-radius:clamp(18px,3vw,26px);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.sbs-icon-box svg{width:clamp(32px,4.5vw,46px);height:clamp(32px,4.5vw,46px);flex-shrink:0;}
+.sbs-box-gpt{background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.1));border:1px solid rgba(168,85,247,0.35);box-shadow:0 0 36px rgba(168,85,247,0.3),0 8px 24px rgba(0,0,0,0.5);}
+.sbs-box-web{background:linear-gradient(135deg,rgba(52,211,153,0.16),rgba(34,211,238,0.09));border:1px solid rgba(52,211,153,0.32);box-shadow:0 0 36px rgba(52,211,153,0.25),0 8px 24px rgba(0,0,0,0.5);}
+.sbs-box-kho{background:linear-gradient(135deg,rgba(236,72,153,0.16),rgba(244,114,182,0.08));border:1px solid rgba(236,72,153,0.3);box-shadow:0 0 36px rgba(236,72,153,0.25),0 8px 24px rgba(0,0,0,0.5);}
+
+/* Benchmark panel — exact .fm-bench style từ feat modal */
+.sbs-bench{
+  background:linear-gradient(135deg,rgba(168,85,247,0.09),rgba(236,72,153,0.05));
+  border:1px solid rgba(168,85,247,0.2);border-radius:14px;
+  padding:clamp(9px,1.8vw,13px) clamp(10px,2vw,14px);
+  width:100%;max-width:100%;box-sizing:border-box;
+}
+.sbs-bench-title{
+  font-size:clamp(7.5px,1.3vw,9px);font-weight:800;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(192,132,252,0.45);margin-bottom:8px;
+}
+.sbs-bench-row{display:flex;align-items:center;gap:7px;margin-bottom:5px;}
+.sbs-bench-row:last-child{margin-bottom:0;}
+.sbs-bench-name{
+  font-size:clamp(8px,1.4vw,9.5px);color:rgba(240,236,248,0.48);
+  width:clamp(72px,11vw,100px);min-width:0;flex-shrink:0;
+  line-height:1.3;word-break:break-word;white-space:normal;
+}
+.sbs-bench-bar-wrap{flex:1;height:5px;background:rgba(168,85,247,0.1);border-radius:10px;overflow:hidden;}
+.sbs-bench-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,#A855F7,#EC4899);}
+.sbs-bench-bar.dim{background:rgba(168,85,247,0.22);}
+.sbs-bench-pct{
+  font-size:clamp(8px,1.4vw,9.5px);font-weight:800;color:#C084FC;
+  width:clamp(28px,4vw,34px);text-align:right;flex-shrink:0;
+}
+.sbs-bench-pct.dim{color:rgba(240,236,248,0.3);}
+
+/* teal variant bench */
+.sbs-bench-teal{background:linear-gradient(135deg,rgba(52,211,153,0.08),rgba(34,211,238,0.04));border-color:rgba(52,211,153,0.18);}
+.sbs-bench-teal .sbs-bench-title{color:rgba(110,231,183,0.45);}
+.sbs-bench-teal .sbs-bench-bar{background:linear-gradient(90deg,#34D399,#22D3EE);}
+.sbs-bench-teal .sbs-bench-bar.dim{background:rgba(52,211,153,0.2);}
+.sbs-bench-teal .sbs-bench-pct{color:#6EE7B7;}
+.sbs-bench-teal .sbs-bench-pct.dim{color:rgba(240,236,248,0.3);}
+
+/* pink variant bench */
+.sbs-bench-pink{background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(244,114,182,0.04));border-color:rgba(236,72,153,0.18);}
+.sbs-bench-pink .sbs-bench-title{color:rgba(244,114,182,0.45);}
+.sbs-bench-pink .sbs-bench-bar{background:linear-gradient(90deg,#EC4899,#F472B6);}
+.sbs-bench-pink .sbs-bench-bar.dim{background:rgba(236,72,153,0.2);}
+.sbs-bench-pink .sbs-bench-pct{color:#F472B6;}
+.sbs-bench-pink .sbs-bench-pct.dim{color:rgba(240,236,248,0.3);}
+
+/* Dots & arrows */
+.sbs-dots{position:absolute;bottom:clamp(10px,2vw,14px);left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:20;}
 .sbs-dot{width:24px;height:4px;border-radius:4px;background:rgba(255,255,255,0.2);cursor:pointer;transition:all 0.3s;}
 .sbs-dot.active{background:#A855F7;width:36px;box-shadow:0 0 8px rgba(168,85,247,0.6);}
-.sbs-arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.12);color:#fff;font-size:18px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.sbs-arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.12);color:#fff;font-size:18px;cursor:pointer;z-index:20;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
 .sbs-arrow:hover{background:rgba(168,85,247,0.3);border-color:rgba(168,85,247,0.5);}
 .sbs-arr-l{left:14px;}.sbs-arr-r{right:14px;}
-@media(max-width:640px){
 
-  .sbs-art{width:28%;opacity:0.4;}
-  .sbs-content{padding:0 18px;}
-  .sbs-title{font-size:clamp(1.2rem,6vw,1.6rem);}
-  .sbs-sub{font-size:11px;}
-  .sbs-icon-box{width:72px;height:72px;border-radius:20px;}
-  .sbs-icon-box svg{width:36px;height:36px;}
+/* ── RESPONSIVE — 3 breakpoint (Rule 4) ─────────────────────── */
+@media(max-width:768px){
+  .sbs-art{width:clamp(130px,28%,190px);}
+  .sbs-bench{display:none;}
+  .sbs-content{width:calc(100% - clamp(130px,28%,190px));}
+}
+@media(max-width:640px){
+  .sbs-content{
+    width:calc(100% - clamp(100px,26%,150px));
+    padding:0 clamp(14px,4vw,20px);
+  }
+  .sbs-title{font-size:clamp(1rem,5.2vw,1.4rem);}
+  .sbs-sub{font-size:clamp(9.5px,2.2vw,11px);margin-bottom:8px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .sbs-pills{gap:4px;}
+  .sbs-pill{font-size:9px;padding:3px 8px;}
+  .sbs-art{width:clamp(100px,26%,150px);padding:8px 10px;}
+  .sbs-icon-box{width:clamp(40px,8.5vw,58px);height:clamp(40px,8.5vw,58px);}
+  .sbs-icon-box svg{width:clamp(20px,4.5vw,28px);height:clamp(20px,4.5vw,28px);}
+  .sbs-badge{padding:3px 10px;}
+  .sbs-dots{bottom:8px;}
+}
+@media(max-width:480px){
+  .sbs-content{width:calc(100% - clamp(80px,24%,120px));}
+  .sbs-art{width:clamp(80px,24%,120px);opacity:0.7;padding:6px 8px;}
+  .sbs-title{font-size:clamp(0.88rem,5.5vw,1.15rem);margin-bottom:4px;}
+  .sbs-sub{-webkit-line-clamp:1;}
+  .sbs-pills{gap:3px;}
+  .sbs-pill{font-size:8.5px;padding:2px 7px;}
+  .sbs-badge{font-size:8.5px;padding:2px 8px;}
 }
 .container{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
 .section-wrap{text-align:center;margin-bottom:28px;}
@@ -415,45 +803,162 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
   </a>
 </nav>
 
-<!-- BANNER CAROUSEL -->
+<!-- BANNER CAROUSEL — ChatGPT > Web Bot > Kho Code -->
 <div class="site-banner" id="siteBanner">
   <div class="site-banner-slides" id="sbSlides">
 
-    <!-- SLIDE 1 — Banner image -->
-    <div class="site-banner-slide sbs-1" style="padding:0;">
-      <img src="assets/images/banner.jpg" alt="Binpinkgold Code Store Banner" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;">
-    </div>
-
-    <!-- SLIDE 2 — Kho Code -->
-    <div class="site-banner-slide sbs-2">
-      <div class="sbs-content">
-        <div class="sbs-badge sbs-badge-green">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-          Hiệu Ứng &amp; Tool
+    <!-- ═══ SLIDE 1 — ChatGPT Plus ═══ -->
+    <div class="site-banner-slide sbs-1" onclick="sbSlideClick(0)">
+      <div class="sbs-grid" aria-hidden="true">
+        <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
+        <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
+      </div>
+      <div class="sbs-inner">
+        <!-- LEFT -->
+        <div class="sbs-left">
+          <div class="sbs-badge sbs-badge-purple"><div class="sbs-badge-dot"></div>ChatGPT Plus · GPT-5.4</div>
+          <div class="sbs-title">Trí Tuệ AI<br><em>Đỉnh Cao Nhất.</em></div>
+          <div class="sbs-sub">Tài khoản Plus chính hãng — GPT-5.4 Thinking, Sora, Codex. Chỉ 199K/tháng.</div>
+          <div class="sbs-pills">
+            <span class="sbs-pill">🧠 GPT-5.4</span>
+            <span class="sbs-pill">🎬 Sora AI</span>
+            <span class="sbs-pill">💻 Codex</span>
+            <span class="sbs-pill">✓ 199K/tháng</span>
+          </div>
         </div>
-        <div class="sbs-title">Kho Code TikTok<br><em style="font-style:normal;background:linear-gradient(135deg,#F472B6,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">độc lạ, không đụng hàng</em></div>
-        <div class="sbs-sub">Thiệp động, hiệu ứng nhạc, tool sáng tạo<br>Phù hợp mọi dịp — dùng là thích</div>
-        <div class="sbs-pills">
-          <span class="sbs-pill">✨ Hiệu ứng đẹp</span>
-          <span class="sbs-pill">🎁 Quà tặng độc</span>
-          <span class="sbs-pill">⚡ Dùng ngay</span>
+        <!-- RIGHT — feature grid + benchmark -->
+        <div class="sbs-right">
+          <div class="sbs-feat-grid">
+            <div class="sbs-feat-item highlight-gold">
+              <span class="sbs-feat-badge gold">NEW</span>
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FDE047"/><stop offset="100%" stop-color="#F59E0B"/></linearGradient></defs><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="url(#fg1)"/></svg>
+              <div class="sbs-feat-name">GPT-5.4<br><span style="font-size:7px;opacity:0.55;font-weight:600;">Flagship</span></div>
+            </div>
+            <div class="sbs-feat-item highlight-hot">
+              <span class="sbs-feat-badge hot">HOT</span>
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F472B6"/><stop offset="100%" stop-color="#FB923C"/></linearGradient></defs><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.82v6.36a1 1 0 0 1-1.447.89L15 14M3 8h12v8H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" stroke="url(#fg2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="sbs-feat-name">Sora Video AI</div>
+            </div>
+            <div class="sbs-feat-item">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#818CF8"/><stop offset="100%" stop-color="#EC4899"/></linearGradient></defs><circle cx="12" cy="12" r="10" stroke="url(#fg3)" stroke-width="2"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4" stroke="url(#fg3)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-name">Duyệt web · ADA</div>
+            </div>
+            <div class="sbs-feat-item">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A855F7"/><stop offset="100%" stop-color="#F472B6"/></linearGradient></defs><rect x="3" y="8" width="18" height="13" rx="2" stroke="url(#fg4)" stroke-width="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2" stroke="url(#fg4)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-name">Agent &amp; Codex</div>
+            </div>
+          </div>
+          <div class="sbs-bench">
+            <div class="sbs-bench-title">Benchmark so sánh</div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">MMMU-Pro GPT-5.4</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:81.2%"></div></div><div class="sbs-bench-pct">81.2%</div></div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">Gemini 3.1 Pro</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar dim" style="width:80.5%"></div></div><div class="sbs-bench-pct dim">80.5%</div></div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">GDPval</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:83%"></div></div><div class="sbs-bench-pct">83%</div></div>
+          </div>
         </div>
       </div>
-      <div class="sbs-art">
-        <div class="sbs-icon-box" style="background:rgba(236,72,153,0.13);border:1px solid rgba(236,72,153,0.3);box-shadow:0 0 36px rgba(236,72,153,0.25),0 8px 32px rgba(0,0,0,0.4);width:100px;height:100px;border-radius:28px;display:flex;align-items:center;justify-content:center;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+    </div>
+
+    <!-- ═══ SLIDE 2 — Web Bot ═══ -->
+    <div class="site-banner-slide sbs-2" onclick="sbSlideClick(1)">
+      <div class="sbs-grid" aria-hidden="true">
+        <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
+        <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
+      </div>
+      <div class="sbs-inner">
+        <div class="sbs-left">
+          <div class="sbs-badge sbs-badge-teal"><div class="sbs-badge-dot"></div>Dịch Vụ Lập Trình</div>
+          <div class="sbs-title">Website &amp; Bot<br><em class="em-teal">Telegram thông minh</em></div>
+          <div class="sbs-sub">Thiết kế web, bot tự động, hỗ trợ code — báo giá 15 phút, bảo hành miễn phí.</div>
+          <div class="sbs-pills">
+            <span class="sbs-pill">🌐 Website</span>
+            <span class="sbs-pill">🤖 Bot Telegram</span>
+            <span class="sbs-pill">📚 Hỗ trợ code</span>
+            <span class="sbs-pill">⚡ Nhanh</span>
+          </div>
+        </div>
+        <div class="sbs-right">
+          <div class="sbs-feat-grid">
+            <div class="sbs-feat-item highlight-teal">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fw1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6EE7B7"/><stop offset="100%" stop-color="#22D3EE"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="2" stroke="url(#fw1)" stroke-width="2"/><path d="M3 9h18M9 21V9" stroke="url(#fw1)" stroke-width="2"/></svg>
+              <div class="sbs-feat-name">Website pro</div>
+            </div>
+            <div class="sbs-feat-item highlight-teal">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fw2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#34D399"/><stop offset="100%" stop-color="#6EE7B7"/></linearGradient></defs><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="url(#fw2)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-name">Bot Telegram</div>
+            </div>
+            <div class="sbs-feat-item">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fw3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#818CF8"/><stop offset="100%" stop-color="#6EE7B7"/></linearGradient></defs><polyline points="16 18 22 12 16 6" stroke="url(#fw3)" stroke-width="2" stroke-linecap="round"/><polyline points="8 6 2 12 8 18" stroke="url(#fw3)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-name">Hỗ trợ bài tập</div>
+            </div>
+            <div class="sbs-feat-item">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fw4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FBBF24"/><stop offset="100%" stop-color="#34D399"/></linearGradient></defs><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="url(#fw4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="sbs-feat-name">Báo giá 15 phút</div>
+            </div>
+          </div>
+          <div class="sbs-bench sbs-bench-teal">
+            <div class="sbs-bench-title">Dịch vụ nổi bật</div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">Website pro</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:95%"></div></div><div class="sbs-bench-pct">✓</div></div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">Bot Telegram</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:90%"></div></div><div class="sbs-bench-pct">✓</div></div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">Hỗ trợ code</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:85%"></div></div><div class="sbs-bench-pct">✓</div></div>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- ═══ SLIDE 3 — Kho Code ═══ -->
+    <div class="site-banner-slide sbs-3" onclick="sbSlideClick(2)">
+      <div class="sbs-grid" aria-hidden="true">
+        <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
+        <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
+      </div>
+      <div class="sbs-inner">
+        <div class="sbs-left">
+          <div class="sbs-badge sbs-badge-pink"><div class="sbs-badge-dot"></div>Hiệu Ứng &amp; Tool</div>
+          <div class="sbs-title">Kho Code TikTok<br><em class="em-pink">độc lạ, không đụng hàng</em></div>
+          <div class="sbs-sub">Thiệp động, hiệu ứng nhạc, tool sáng tạo — phù hợp mọi dịp, dùng là thích.</div>
+          <div class="sbs-pills">
+            <span class="sbs-pill">✨ Hiệu ứng đẹp</span>
+            <span class="sbs-pill">🎁 Quà tặng độc</span>
+            <span class="sbs-pill">⚡ Dùng ngay</span>
+          </div>
+        </div>
+        <div class="sbs-right">
+          <div class="sbs-feat-grid">
+            <div class="sbs-feat-item highlight-pink">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fk1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F472B6"/><stop offset="100%" stop-color="#EC4899"/></linearGradient></defs><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="url(#fk1)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-name">Thiệp động</div>
+            </div>
+            <div class="sbs-feat-item highlight-pink">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fk2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EC4899"/><stop offset="100%" stop-color="#F97316"/></linearGradient></defs><path d="M9 18V5l12-2v13" stroke="url(#fk2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="url(#fk2)" stroke-width="2"/><circle cx="18" cy="16" r="3" stroke="url(#fk2)" stroke-width="2"/></svg>
+              <div class="sbs-feat-name">Hiệu ứng nhạc</div>
+            </div>
+            <div class="sbs-feat-item">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fk3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FBBF24"/><stop offset="100%" stop-color="#F472B6"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="url(#fk3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="sbs-feat-name">Tool sáng tạo</div>
+            </div>
+            <div class="sbs-feat-item">
+              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fk4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#F472B6"/></linearGradient></defs><polyline points="20 12 20 22 4 22 4 12" stroke="url(#fk4)" stroke-width="2" stroke-linecap="round"/><rect x="2" y="7" width="20" height="5" stroke="url(#fk4)" stroke-width="2"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" stroke="url(#fk4)" stroke-width="2"/></svg>
+              <div class="sbs-feat-name">Kho code độc</div>
+            </div>
+          </div>
+          <div class="sbs-bench sbs-bench-pink">
+            <div class="sbs-bench-title">Nội dung kho code</div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">Thiệp động</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:100%"></div></div><div class="sbs-bench-pct">🔥</div></div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">Hiệu ứng nhạc</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:88%"></div></div><div class="sbs-bench-pct">✨</div></div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">Tool sáng tạo</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:80%"></div></div><div class="sbs-bench-pct">⚡</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
   <div class="sbs-dots" id="sbDots">
     <div class="sbs-dot active" onclick="sbGoTo(0)"></div>
     <div class="sbs-dot" onclick="sbGoTo(1)"></div>
+    <div class="sbs-dot" onclick="sbGoTo(2)"></div>
   </div>
-  <button class="sbs-arrow sbs-arr-l" onclick="sbPrev()" style="display:none">‹</button>
-  <button class="sbs-arrow sbs-arr-r" onclick="sbNext()" style="display:none">›</button>
+  <button class="sbs-arrow sbs-arr-l" onclick="sbPrev()">‹</button>
+  <button class="sbs-arrow sbs-arr-r" onclick="sbNext()">›</button>
 </div>
 
 <!-- HERO -->
@@ -549,9 +1054,9 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
                 <div style="margin-top:6px;font-size:8px;font-weight:700;color:rgba(255,180,50,0.8);">≈ chỉ 6.600đ / ngày</div>
               </div>
             </div>
-            <div style="margin-top:14px;display:flex;align-items:center;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:100px;padding:5px 14px;max-width:100%;box-sizing:border-box;flex-wrap:wrap;">
-              <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;">✓</span>
-              <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;">1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu)</span>
+            <div id="plusShareNote" style="margin-top:14px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
+              <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">✓</span>
+              <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu)</span>
             </div>
 
           </div>
@@ -936,7 +1441,7 @@ function calcDiscounts(){
 
 // BANNER
 const SB_INTERVAL=4500;
-let sbCur=0,sbTot=2,sbTimer,sbPaused=false;
+let sbCur=0,sbTot=3,sbTimer,sbPaused=false;
 const sbSlides=document.getElementById('sbSlides');
 const sbDots=document.querySelectorAll('.sbs-dot');
 function sbGoTo(i){sbCur=i;sbSlides.style.transform=`translateX(-${sbCur*100}%)`;sbDots.forEach((d,j)=>d.classList.toggle('active',j===sbCur));}
@@ -945,6 +1450,23 @@ function sbPrev(){sbGoTo((sbCur-1+sbTot)%sbTot);}
 function sbStartTimer(){clearInterval(sbTimer);if(!sbPaused)sbTimer=setInterval(sbNext,SB_INTERVAL);}
 function sbPause(){sbPaused=true;clearInterval(sbTimer);}
 function sbResume(){sbPaused=false;sbStartTimer();}
+
+// Click banner → scroll tới section tương ứng
+// Slide 0: ChatGPT Plus → #accounts
+// Slide 1: Web Bot → #services  
+// Slide 2: Kho Code → kho.html
+const SB_TARGETS=['#accounts','#services','kho.html'];
+function sbSlideClick(idx){
+  var target=SB_TARGETS[idx];
+  if(!target)return;
+  if(target.startsWith('#')){
+    var el=document.querySelector(target);
+    if(el){var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:72;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}
+  } else {
+    window.location.href=target;
+  }
+}
+
 sbStartTimer();
 const sbEl=document.getElementById('siteBanner');
 let sbTx=0,sbDrag=false;
@@ -954,9 +1476,6 @@ sbEl.addEventListener('touchcancel',()=>{sbDrag=false;sbResume();});
 sbEl.addEventListener('mousedown',e=>{sbTx=e.clientX;sbDrag=true;sbPause();});
 sbEl.addEventListener('mouseup',e=>{const dx=e.clientX-sbTx;if(Math.abs(dx)>40){dx<0?sbNext():sbPrev();}sbDrag=false;sbResume();});
 sbEl.addEventListener('mouseleave',()=>{if(sbDrag){sbDrag=false;sbResume();}});
-// KHO SLIDE CLICK → navigate to kho.html
-const khoSlide=document.querySelector('.sbs-2');
-if(khoSlide){khoSlide.addEventListener('click',function(e){if(Math.abs(e.clientX-sbTx)<=40){window.location.href='kho.html';}});}
 
 // HAMBURGER MENU
 function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');}
@@ -968,3 +1487,4 @@ document.addEventListener('DOMContentLoaded',function(){calcDiscounts();initYear
 <script src="protect.js"></script>
 </body>
 </html>
+

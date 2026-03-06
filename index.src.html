@@ -179,7 +179,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 
 .sbs-1{background:linear-gradient(135deg,#0d0520 0%,#1e0a45 45%,#2d0a5a 75%,#1a0438 100%);aspect-ratio:16/9;max-height:360px;}
 .sbs-1::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 75% 80% at 82% 48%,rgba(168,85,247,0.32) 0%,transparent 58%),radial-gradient(ellipse 45% 50% at 12% 78%,rgba(236,72,153,0.14) 0%,transparent 55%);}
-.sbs-2{background:linear-gradient(135deg,#170530 0%,#240745 45%,#1e0540 75%,#110325 100%);padding:clamp(28px,6vw,52px) 0;}
+.sbs-2{background:linear-gradient(135deg,#170530 0%,#240745 45%,#1e0540 75%,#110325 100%);padding:clamp(28px,6vw,52px) 0;cursor:pointer;}
 .sbs-2::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 75% at 78% 52%,rgba(196,72,247,0.28) 0%,transparent 58%),radial-gradient(ellipse 40% 45% at 18% 30%,rgba(168,85,247,0.18) 0%,transparent 55%);}
 .sbs-3{background:linear-gradient(135deg,#0e0322 0%,#1c0638 45%,#280855 75%,#130325 100%);}
 .sbs-3::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 72% 78% at 84% 45%,rgba(236,72,153,0.26) 0%,transparent 58%),radial-gradient(ellipse 42% 48% at 10% 68%,rgba(244,114,182,0.14) 0%,transparent 55%);}
@@ -847,6 +847,9 @@ sbEl.addEventListener('touchcancel',()=>{sbDrag=false;sbResume();});
 sbEl.addEventListener('mousedown',e=>{sbTx=e.clientX;sbDrag=true;sbPause();});
 sbEl.addEventListener('mouseup',e=>{const dx=e.clientX-sbTx;if(Math.abs(dx)>40){dx<0?sbNext():sbPrev();}sbDrag=false;sbResume();});
 sbEl.addEventListener('mouseleave',()=>{if(sbDrag){sbDrag=false;sbResume();}});
+// KHO SLIDE CLICK → navigate to kho.html
+const khoSlide=document.querySelector('.sbs-2');
+if(khoSlide){khoSlide.addEventListener('click',function(e){if(Math.abs(e.clientX-sbTx)<=40){window.location.href='kho.html';}});}
 
 // HAMBURGER MENU
 function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');}
@@ -858,6 +861,7 @@ document.addEventListener('DOMContentLoaded',function(){calcDiscounts();initYear
 <script src="protect.js"></script>
 </body>
 </html>
+
 
 
 

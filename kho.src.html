@@ -197,14 +197,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   .modal-box{border-radius:20px!important;}
   .modal-overlay{padding:12px!important;align-items:flex-start!important;}
 }
-/* TAG VĨNH VIỄN */
-@property --led-tag{syntax:'<angle>';initial-value:0deg;inherits:false;}
-@keyframes spinTag{to{--led-tag:360deg;}}
-
-.trasua-tag-wrap{position:fixed;left:-1px;top:50%;transform:translateY(-50%);z-index:200;border-radius:0 16px 16px 0;padding:2px 2px 2px 0;background:conic-gradient(from var(--led-tag,0deg),transparent 60%,rgba(255,180,50,0.18) 72%,rgba(255,220,100,0.28) 78%,rgba(255,180,50,0.18) 84%,transparent 92%);animation:spinTag 4s linear infinite;box-shadow:none;}
-.trasua-tag{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(20,10,5,0.92),rgba(15,8,3,0.95));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:0 14px 14px 0;padding:12px 18px 12px 13px;font-size:12px;font-weight:700;color:rgba(255,235,210,0.6);cursor:default;user-select:none;line-height:1.55;transition:transform 0.2s;}
-.trasua-tag-wrap:hover .trasua-tag{transform:translateX(4px);}
-.trasua-tag .highlight{background:linear-gradient(90deg,#FFD700,#FF8C00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;white-space:nowrap;}
+.pb-sep{margin:0 12px;opacity:0.2;font-weight:300;font-size:14px;}
+.pb-trasua{display:inline-flex;align-items:center;gap:5px;}
 </style>
 <script src="protect.js"></script>
 </head>
@@ -221,15 +215,10 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 <div class="price-banner" id="priceBanner">
   <span class="price-banner-text">
     <span class="price-banner-dot"></span>
-    <span class="highlight">CODE</span> <span class="highlight-white">vĩnh viễn</span>, THAY TEXT TÙY Ý
+    <span class="highlight">CODE</span> <span class="highlight-white">vĩnh viễn</span> · THAY TEXT TÙY Ý
     <span class="price-banner-dot"></span>
   </span>
 </div>
-<!-- TAG VĨNH VIỄN -->
-<div class="trasua-tag-wrap"><div class="trasua-tag">
-  <span style="font-size:20px;line-height:1;">🧋</span>
-  <span>Giá chỉ bằng<br><span class="highlight">1 ly trà sữa</span></span>
-</div></div>
 <div class="page-header">
   <div class="container">
     <h1><span class="gradient-text-white">Kho Code</span> <span class="gradient-text">Giao Diện Đẹp</span></h1>
@@ -341,27 +330,29 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   <!-- FREE SECTION -->
   <div id="section-free" style="display:none">
     <div class="free-grid">
+      <!-- 1. Giao Diện Login -->
       <div class="free-card">
         <div class="free-img-wrap" style="background:rgba(20,8,40,.95)">
           <div class="free-tag">🎁 FREE</div>
-          <img class="free-img" src="assets/images/veTraiTim.jpg" alt="Vẽ Trái Tim" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="free-img-placeholder" style="display:none">❤️</span>
-          <a href="https://vt.tiktok.com/ZSmf9kQSs/" target="_blank" class="free-play-overlay">
+          <img class="free-img" src="assets/images/giaoDienLoginTest.jpg" alt="Giao Diện Login" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="free-img-placeholder" style="display:none">🔐</span>
+          <a href="https://www.tiktok.com/@binpinkgold/video/7613988711948274965?lang=en" target="_blank" class="free-play-overlay">
             <div class="free-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
           </a>
         </div>
         <div class="free-body">
-          <div class="free-title">Vẽ Trái Tim ❤️ · Python Animation</div>
-          <div class="free-desc">Hiệu ứng vẽ trái tim bằng Python, animation mượt mà siêu đẹp</div>
+          <div class="free-title">Giao Diện Login - DEMO · HTML</div>
+          <div class="free-desc"></div>
           <div class="free-footer">
-            <a href="https://vt.tiktok.com/ZSmf9kQSs/" target="_blank" class="btn-video">▶ Xem Video Demo</a>
-            <a href="https://github.com/lengocthuan09-ship-it/tiktokfree_VeTraiTimPY" target="_blank" class="btn-github">
+            <a href="https://www.tiktok.com/@binpinkgold/video/7613988711948274965?lang=en" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+            <a href="https://github.com/lengocthuan09-ship-it/giaoDienLoginTEST/tree/main" target="_blank" class="btn-github">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               Lấy Code
             </a>
           </div>
         </div>
       </div>
+      <!-- 2. Giao Diện Web Màu Mè (FE) -->
       <div class="free-card">
         <div class="free-img-wrap" style="background:rgba(20,8,40,.95)">
           <div class="free-tag">🎁 FREE</div>
@@ -377,6 +368,28 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
           <div class="free-footer">
             <a href="https://www.tiktok.com/@binpinkgold/video/7613229316679257365?lang=en" target="_blank" class="btn-video">▶ Xem Video Demo</a>
             <a href="https://github.com/lengocthuan09-ship-it/tiktokfree_webTESTfunny" target="_blank" class="btn-github">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              Lấy Code
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- 3. Vẽ Trái Tim -->
+      <div class="free-card">
+        <div class="free-img-wrap" style="background:rgba(20,8,40,.95)">
+          <div class="free-tag">🎁 FREE</div>
+          <img class="free-img" src="assets/images/veTraiTim.jpg" alt="Vẽ Trái Tim" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="free-img-placeholder" style="display:none">❤️</span>
+          <a href="https://vt.tiktok.com/ZSmf9kQSs/" target="_blank" class="free-play-overlay">
+            <div class="free-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          </a>
+        </div>
+        <div class="free-body">
+          <div class="free-title">Vẽ Trái Tim ❤️ · Python Animation</div>
+          <div class="free-desc">Hiệu ứng vẽ trái tim bằng Python, animation mượt mà siêu đẹp</div>
+          <div class="free-footer">
+            <a href="https://vt.tiktok.com/ZSmf9kQSs/" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+            <a href="https://github.com/lengocthuan09-ship-it/tiktokfree_VeTraiTimPY" target="_blank" class="btn-github">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               Lấy Code
             </a>
@@ -427,8 +440,6 @@ function switchTab(tab,btn){
   const banner=document.getElementById('priceBanner');
   if(tab==='free'){banner.classList.add('hidden');document.body.classList.add('free-mode');}
   else{banner.classList.remove('hidden');document.body.classList.remove('free-mode');}
-  const tag=document.querySelector('.trasua-tag');
-  if(tag)tag.style.display=tab==='free'?'none':'flex';
 }
 window.addEventListener('load',()=>{
   const active=document.querySelector('.tab-toggle-btn.active');

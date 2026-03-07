@@ -189,10 +189,11 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 }
 
 /* ── BG gradients ── */
-.sbs-1{background:linear-gradient(145deg,#080318 0%,#130630 55%,#08021a 100%);}
+.sbs-1{background:linear-gradient(145deg,#0a0700 0%,#180f02 55%,#0c0800 100%);}
 .sbs-1::before{content:"";position:absolute;inset:0;z-index:0;
-  background:radial-gradient(ellipse 60% 80% at 80% 40%,rgba(168,85,247,0.26) 0%,transparent 60%),
-  radial-gradient(ellipse 35% 45% at 15% 70%,rgba(236,72,153,0.12) 0%,transparent 55%);}
+  background:radial-gradient(ellipse 65% 85% at 82% 38%,rgba(234,179,8,0.28) 0%,transparent 60%),
+  radial-gradient(ellipse 35% 45% at 15% 70%,rgba(251,191,36,0.1) 0%,transparent 55%),
+  radial-gradient(ellipse 40% 40% at 50% 0%,rgba(255,255,255,0.03) 0%,transparent 60%);}
 .sbs-2{background:linear-gradient(145deg,#020e18 0%,#061828 55%,#020a14 100%);}
 .sbs-2::before{content:"";position:absolute;inset:0;z-index:0;
   background:radial-gradient(ellipse 60% 75% at 82% 38%,rgba(52,211,153,0.2) 0%,transparent 60%),
@@ -217,7 +218,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
   -webkit-mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 15%,transparent 70%);
   mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 15%,transparent 70%);
 }
-.sbs-grid-horizon{position:absolute;top:38%;left:-5%;right:-5%;height:1.5px;}
+.sbs-grid-horizon{display:none;}
 .sbs-grid-vignette{
   position:absolute;inset:0;
   background:radial-gradient(ellipse 100% 55% at 50% 100%,rgba(0,0,0,0.92) 0%,transparent 65%),
@@ -225,15 +226,12 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
   radial-gradient(ellipse 50% 60% at 50% 50%,rgba(0,0,0,0.3) 0%,transparent 80%);
 }
 /* Grid màu theo slide */
-.sbs-1 .sbs-grid-floor{background-image:linear-gradient(rgba(168,85,247,0.28) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.28) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(168,85,247,0.45));}
-.sbs-1 .sbs-grid-wall{background-image:linear-gradient(rgba(236,72,153,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.14) 1px,transparent 1px);}
-.sbs-1 .sbs-grid-horizon{background:linear-gradient(90deg,transparent,rgba(168,85,247,0) 4%,rgba(168,85,247,1) 22%,rgba(236,72,153,1) 50%,rgba(244,114,182,1) 78%,rgba(168,85,247,0) 96%,transparent);box-shadow:0 0 6px rgba(168,85,247,0.9),0 0 18px rgba(168,85,247,0.5),0 0 36px rgba(236,72,153,0.25);}
+.sbs-1 .sbs-grid-floor{background-image:linear-gradient(rgba(234,179,8,0.25) 1px,transparent 1px),linear-gradient(90deg,rgba(234,179,8,0.25) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(234,179,8,0.4));}
+.sbs-1 .sbs-grid-wall{background-image:linear-gradient(rgba(234,179,8,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(251,191,36,0.15) 1px,transparent 1px);}
 .sbs-2 .sbs-grid-floor{background-image:linear-gradient(rgba(52,211,153,0.26) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.26) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(52,211,153,0.4));}
 .sbs-2 .sbs-grid-wall{background-image:linear-gradient(rgba(34,211,238,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.14) 1px,transparent 1px);}
-.sbs-2 .sbs-grid-horizon{background:linear-gradient(90deg,transparent,rgba(52,211,153,0) 4%,rgba(52,211,153,1) 22%,rgba(34,211,238,1) 50%,rgba(52,211,153,1) 78%,rgba(52,211,153,0) 96%,transparent);box-shadow:0 0 6px rgba(52,211,153,0.8),0 0 18px rgba(34,211,238,0.45),0 0 36px rgba(52,211,153,0.2);}
 .sbs-3 .sbs-grid-floor{background-image:linear-gradient(rgba(236,72,153,0.26) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.26) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(236,72,153,0.4));}
 .sbs-3 .sbs-grid-wall{background-image:linear-gradient(rgba(244,114,182,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.14) 1px,transparent 1px);}
-.sbs-3 .sbs-grid-horizon{background:linear-gradient(90deg,transparent,rgba(236,72,153,0) 4%,rgba(236,72,153,1) 22%,rgba(244,114,182,1) 50%,rgba(236,72,153,1) 78%,rgba(236,72,153,0) 96%,transparent);box-shadow:0 0 6px rgba(236,72,153,0.85),0 0 18px rgba(244,114,182,0.45),0 0 36px rgba(236,72,153,0.22);}
 
 /* ── SLIDE INNER LAYOUT — 2 cột: content left + card panel right ── */
 .sbs-inner{
@@ -295,7 +293,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
   gap:clamp(4px,0.8vw,6px);
 }
 .sbs-feat-item{
-  display:flex;align-items:center;gap:7px;
+  display:flex;align-items:center;gap:8px;
   background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);
   border-radius:14px;padding:clamp(6px,1.2vw,9px) clamp(8px,1.4vw,11px);
   position:relative;overflow:hidden;
@@ -306,14 +304,21 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .sbs-feat-item.highlight-hot{background:linear-gradient(135deg,rgba(236,72,153,0.14),rgba(168,85,247,0.08));border-color:rgba(236,72,153,0.4);}
 .sbs-feat-item.highlight-teal{background:linear-gradient(135deg,rgba(52,211,153,0.12),rgba(34,211,238,0.06));border-color:rgba(52,211,153,0.38);}
 .sbs-feat-item.highlight-pink{background:linear-gradient(135deg,rgba(236,72,153,0.12),rgba(244,114,182,0.06));border-color:rgba(236,72,153,0.35);}
-/* NEW/HOT badge — Rule 7: padding-right trên text để không đè badge */
+/* NEW/HOT badge */
 .sbs-feat-badge{
   position:absolute;top:4px;right:5px;
   font-size:5.5px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
 }
 .sbs-feat-badge.gold{color:#FCD34D;}
 .sbs-feat-badge.hot{color:#FB7185;}
-.sbs-feat-ico{width:clamp(14px,2.2vw,18px);height:clamp(14px,2.2vw,18px);flex-shrink:0;}
+.sbs-feat-ico-wrap{
+  width:clamp(26px,3.5vw,32px);height:clamp(26px,3.5vw,32px);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.sbs-feat-ico{width:clamp(14px,2vw,18px);height:clamp(14px,2vw,18px);flex-shrink:0;display:block;}
 .sbs-feat-name{font-size:clamp(8.5px,1.4vw,10.5px);font-weight:700;color:rgba(240,236,248,0.85);line-height:1.25;word-break:break-word;padding-right:16px;}
 
 /* Benchmark block */
@@ -332,7 +337,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .sbs-bench-bar.dim{background:rgba(168,85,247,0.22);}
 .sbs-bench-pct{font-size:clamp(7.5px,1.2vw,9px);font-weight:800;color:#C084FC;width:clamp(26px,3.5vw,32px);text-align:right;flex-shrink:0;}
 .sbs-bench-pct.dim{color:rgba(240,236,248,0.3);}
-/* teal/pink bench variants */
+/* teal/pink/gold bench variants */
 .sbs-bench-teal{background:linear-gradient(135deg,rgba(52,211,153,0.07),rgba(34,211,238,0.03));border-color:rgba(52,211,153,0.16);}
 .sbs-bench-teal .sbs-bench-title{color:rgba(110,231,183,0.45);}
 .sbs-bench-teal .sbs-bench-bar{background:linear-gradient(90deg,#34D399,#22D3EE);}
@@ -341,6 +346,14 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .sbs-bench-pink .sbs-bench-title{color:rgba(244,114,182,0.45);}
 .sbs-bench-pink .sbs-bench-bar{background:linear-gradient(90deg,#EC4899,#F472B6);}
 .sbs-bench-pink .sbs-bench-pct{color:#F472B6;}
+.sbs-bench-gold{background:linear-gradient(135deg,rgba(234,179,8,0.1),rgba(251,191,36,0.04));border-color:rgba(234,179,8,0.22);}
+.sbs-bench-gold .sbs-bench-title{color:rgba(253,211,77,0.55);}
+.sbs-bench-gold .sbs-bench-bar{background:linear-gradient(90deg,#EAB308,#FDE047,#ffffff 120%);}
+.sbs-bench-gold .sbs-bench-bar.dim{background:rgba(234,179,8,0.25);}
+.sbs-bench-gold .sbs-bench-pct{color:#FCD34D;}
+/* gold badge */
+.sbs-badge-gold{background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.4);color:#FDE047;}
+.sbs-badge-gold .sbs-badge-dot{background:#EAB308;box-shadow:0 0 5px #EAB308;}
 
 /* Dots & arrows */
 .sbs-dots{position:absolute;bottom:clamp(8px,1.5vw,12px);left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:20;}
@@ -375,20 +388,17 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 }
 
 /* ── 3D GRID BACKGROUND (shared) ─────────────────────────────── */
-/* floor plane — dùng ::after để không dùng thêm div */
 .sbs-grid-wall{
   position:absolute;
-  left:-40%;right:-40%;top:0;
-  height:52%;
-  background-size:clamp(36px,5.5vw,56px) clamp(36px,5.5vw,56px);
-  -webkit-mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 18%,transparent 70%);
-  mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 18%,transparent 70%);
+  left:-60%;right:-60%;top:0;
+  height:60%;
+  background-size:clamp(40px,6vw,64px) clamp(40px,6vw,64px);
+  -webkit-mask-image:radial-gradient(ellipse 85% 100% at 50% 0%,black 20%,transparent 75%);
+  mask-image:radial-gradient(ellipse 85% 100% at 50% 0%,black 20%,transparent 75%);
 }
-/* HORIZON glow line — z-index trong isolation context của .sbs-grid */
-.sbs-grid-horizon{
-  position:absolute;top:39%;left:-5%;right:-5%;height:1.5px;
-}
-/* Vignette — CŨNG nằm trong .sbs-grid isolation, không leak ra ngoài */
+/* HORIZON hidden — no LED line */
+.sbs-grid-horizon{ display:none; }
+/* Vignette */
 .sbs-grid-vignette{
   position:absolute;inset:0;
   background:
@@ -397,19 +407,16 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
     radial-gradient(ellipse 50% 60% at 50% 50%,rgba(0,0,0,0.35) 0%,transparent 80%);
 }
 
-/* slide-1 grid colors — purple/magenta */
+/* slide-1 grid colors — GOLD */
 .sbs-1 .sbs-grid-floor{
-  background-image:linear-gradient(rgba(168,85,247,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.3) 1px,transparent 1px);
-  filter:drop-shadow(0 0 6px rgba(168,85,247,0.5));
+  background-image:linear-gradient(rgba(234,179,8,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(234,179,8,0.3) 1px,transparent 1px);
+  filter:drop-shadow(0 0 6px rgba(234,179,8,0.5));
 }
 .sbs-1 .sbs-grid-wall{
-  background-image:linear-gradient(rgba(236,72,153,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.16) 1px,transparent 1px);
-  filter:drop-shadow(0 0 4px rgba(236,72,153,0.3));
+  background-image:linear-gradient(rgba(234,179,8,0.22) 1px,transparent 1px),linear-gradient(90deg,rgba(251,191,36,0.18) 1px,transparent 1px);
+  filter:drop-shadow(0 0 4px rgba(234,179,8,0.3));
 }
-.sbs-1 .sbs-grid-horizon{
-  background:linear-gradient(90deg,transparent 0%,rgba(168,85,247,0) 4%,rgba(168,85,247,1) 22%,rgba(236,72,153,1) 50%,rgba(244,114,182,1) 78%,rgba(168,85,247,0) 96%,transparent 100%);
-  box-shadow:0 0 6px rgba(168,85,247,0.9),0 0 18px rgba(168,85,247,0.55),0 0 40px rgba(236,72,153,0.28);
-}
+.sbs-1 .sbs-grid-horizon{ display:none; }
 
 /* slide-2 grid colors — teal/indigo */
 .sbs-2 .sbs-grid-floor{
@@ -417,13 +424,10 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
   filter:drop-shadow(0 0 6px rgba(52,211,153,0.45));
 }
 .sbs-2 .sbs-grid-wall{
-  background-image:linear-gradient(rgba(34,211,238,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.15) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(34,211,238,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.18) 1px,transparent 1px);
   filter:drop-shadow(0 0 4px rgba(34,211,238,0.28));
 }
-.sbs-2 .sbs-grid-horizon{
-  background:linear-gradient(90deg,transparent 0%,rgba(52,211,153,0) 4%,rgba(52,211,153,1) 22%,rgba(34,211,238,1) 50%,rgba(52,211,153,1) 78%,rgba(52,211,153,0) 96%,transparent 100%);
-  box-shadow:0 0 6px rgba(52,211,153,0.8),0 0 18px rgba(34,211,238,0.5),0 0 38px rgba(52,211,153,0.22);
-}
+.sbs-2 .sbs-grid-horizon{ display:none; }
 
 /* slide-3 grid colors — pink/magenta */
 .sbs-3 .sbs-grid-floor{
@@ -431,13 +435,10 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
   filter:drop-shadow(0 0 6px rgba(236,72,153,0.45));
 }
 .sbs-3 .sbs-grid-wall{
-  background-image:linear-gradient(rgba(244,114,182,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.16) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(244,114,182,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.18) 1px,transparent 1px);
   filter:drop-shadow(0 0 4px rgba(244,114,182,0.28));
 }
-.sbs-3 .sbs-grid-horizon{
-  background:linear-gradient(90deg,transparent 0%,rgba(236,72,153,0) 4%,rgba(236,72,153,1) 22%,rgba(244,114,182,1) 50%,rgba(236,72,153,1) 78%,rgba(236,72,153,0) 96%,transparent 100%);
-  box-shadow:0 0 6px rgba(236,72,153,0.85),0 0 18px rgba(244,114,182,0.5),0 0 38px rgba(236,72,153,0.25);
-}
+.sbs-3 .sbs-grid-horizon{ display:none; }
 
 /* ── CONTENT LAYOUT ──────────────────────────────────────── */
 .sbs-content{
@@ -892,8 +893,8 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
       <div class="sbs-inner">
         <!-- LEFT -->
         <div class="sbs-left">
-          <div class="sbs-badge sbs-badge-purple"><div class="sbs-badge-dot"></div>ChatGPT Plus · GPT-5.4</div>
-          <div class="sbs-title">Trí Tuệ AI<br><em>Đỉnh Cao Nhất.</em></div>
+          <div class="sbs-badge sbs-badge-gold"><div class="sbs-badge-dot"></div>ChatGPT Plus · GPT-5.4</div>
+          <div class="sbs-title">Trí Tuệ AI<br><em style="background:linear-gradient(135deg,#EAB308,#FDE047,#ffffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Đỉnh Cao Nhất.</em></div>
           <div class="sbs-sub">Tài khoản Plus chính hãng — GPT-5.4 Thinking, Sora, Codex. Chỉ 199K/tháng.</div>
           <div class="sbs-pills">
             <span class="sbs-pill">🧠 GPT-5.4</span>
@@ -907,24 +908,24 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
           <div class="sbs-feat-grid">
             <div class="sbs-feat-item highlight-gold">
               <span class="sbs-feat-badge gold">NEW</span>
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FDE047"/><stop offset="100%" stop-color="#F59E0B"/></linearGradient></defs><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="url(#fg1)"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#FDE047" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 3.9 2.4-7.4L2 9.4h7.6z"/></svg></div>
               <div class="sbs-feat-name">GPT-5.4<br><span style="font-size:7px;opacity:0.55;font-weight:600;">Flagship</span></div>
             </div>
             <div class="sbs-feat-item highlight-hot">
               <span class="sbs-feat-badge hot">HOT</span>
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F472B6"/><stop offset="100%" stop-color="#FB923C"/></linearGradient></defs><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.82v6.36a1 1 0 0 1-1.447.89L15 14M3 8h12v8H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" stroke="url(#fg2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
               <div class="sbs-feat-name">Sora Video AI</div>
             </div>
             <div class="sbs-feat-item">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#818CF8"/><stop offset="100%" stop-color="#EC4899"/></linearGradient></defs><circle cx="12" cy="12" r="10" stroke="url(#fg3)" stroke-width="2"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4" stroke="url(#fg3)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#e0c97a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
               <div class="sbs-feat-name">Duyệt web · ADA</div>
             </div>
             <div class="sbs-feat-item">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A855F7"/><stop offset="100%" stop-color="#F472B6"/></linearGradient></defs><rect x="3" y="8" width="18" height="13" rx="2" stroke="url(#fg4)" stroke-width="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2" stroke="url(#fg4)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#e0c97a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
               <div class="sbs-feat-name">Agent &amp; Codex</div>
             </div>
           </div>
-          <div class="sbs-bench">
+          <div class="sbs-bench sbs-bench-gold">
             <div class="sbs-bench-title">Benchmark so sánh</div>
             <div class="sbs-bench-row"><div class="sbs-bench-name">MMMU-Pro GPT-5.4</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:81.2%"></div></div><div class="sbs-bench-pct">81.2%</div></div>
             <div class="sbs-bench-row"><div class="sbs-bench-name">Gemini 3.1 Pro</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar dim" style="width:80.5%"></div></div><div class="sbs-bench-pct dim">80.5%</div></div>
@@ -955,19 +956,19 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
         <div class="sbs-right">
           <div class="sbs-feat-grid">
             <div class="sbs-feat-item highlight-teal">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fw1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6EE7B7"/><stop offset="100%" stop-color="#22D3EE"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="2" stroke="url(#fw1)" stroke-width="2"/><path d="M3 9h18M9 21V9" stroke="url(#fw1)" stroke-width="2"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
               <div class="sbs-feat-name">Website pro</div>
             </div>
             <div class="sbs-feat-item highlight-teal">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fw2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#34D399"/><stop offset="100%" stop-color="#6EE7B7"/></linearGradient></defs><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="url(#fw2)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
               <div class="sbs-feat-name">Bot Telegram</div>
             </div>
             <div class="sbs-feat-item">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fw3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#818CF8"/><stop offset="100%" stop-color="#6EE7B7"/></linearGradient></defs><polyline points="16 18 22 12 16 6" stroke="url(#fw3)" stroke-width="2" stroke-linecap="round"/><polyline points="8 6 2 12 8 18" stroke="url(#fw3)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
               <div class="sbs-feat-name">Hỗ trợ bài tập</div>
             </div>
             <div class="sbs-feat-item">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fw4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FBBF24"/><stop offset="100%" stop-color="#34D399"/></linearGradient></defs><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="url(#fw4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
               <div class="sbs-feat-name">Báo giá 15 phút</div>
             </div>
           </div>
@@ -1001,19 +1002,19 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
         <div class="sbs-right">
           <div class="sbs-feat-grid">
             <div class="sbs-feat-item highlight-pink">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fk1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F472B6"/><stop offset="100%" stop-color="#EC4899"/></linearGradient></defs><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="url(#fk1)" stroke-width="2" stroke-linecap="round"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
               <div class="sbs-feat-name">Thiệp động</div>
             </div>
             <div class="sbs-feat-item highlight-pink">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fk2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EC4899"/><stop offset="100%" stop-color="#F97316"/></linearGradient></defs><path d="M9 18V5l12-2v13" stroke="url(#fk2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="url(#fk2)" stroke-width="2"/><circle cx="18" cy="16" r="3" stroke="url(#fk2)" stroke-width="2"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
               <div class="sbs-feat-name">Hiệu ứng nhạc</div>
             </div>
             <div class="sbs-feat-item">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fk3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FBBF24"/><stop offset="100%" stop-color="#F472B6"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="url(#fk3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
               <div class="sbs-feat-name">Tool sáng tạo</div>
             </div>
             <div class="sbs-feat-item">
-              <svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none"><defs><linearGradient id="fk4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#F472B6"/></linearGradient></defs><polyline points="20 12 20 22 4 22 4 12" stroke="url(#fk4)" stroke-width="2" stroke-linecap="round"/><rect x="2" y="7" width="20" height="5" stroke="url(#fk4)" stroke-width="2"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" stroke="url(#fk4)" stroke-width="2"/></svg>
+              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
               <div class="sbs-feat-name">Kho code độc</div>
             </div>
           </div>
@@ -1033,8 +1034,6 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
     <div class="sbs-dot" onclick="sbGoTo(1)"></div>
     <div class="sbs-dot" onclick="sbGoTo(2)"></div>
   </div>
-  <button class="sbs-arrow sbs-arr-l" onclick="sbPrev()">‹</button>
-  <button class="sbs-arrow sbs-arr-r" onclick="sbNext()">›</button>
 </div>
 
 <!-- HERO -->
@@ -1607,4 +1606,5 @@ function idxNavClick(e, idx, target){
 <script src="protect.js"></script>
 </body>
 </html>
+
 

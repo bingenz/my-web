@@ -103,9 +103,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .tab-toggle-btn.active{color:#fff;text-shadow:0 0 16px rgba(255,255,255,0.4);}
 @media(max-width:599px){.tab-toggle-btn{padding:9px 16px;font-size:12px;}}
 /* PRODUCT GRID */
-.product-grid{display:grid;grid-template-columns:1fr;gap:36px}
-@media(min-width:600px){.product-grid{grid-template-columns:repeat(2,1fr);gap:40px}}
-@media(min-width:900px){.product-grid{grid-template-columns:repeat(3,1fr);gap:44px}}
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(14px,3vw,36px)}
+@media(min-width:900px){.product-grid{grid-template-columns:repeat(3,1fr);gap:clamp(28px,3vw,44px)}}
 /* PRODUCT CARD */
 .product-card{background:linear-gradient(145deg,rgba(17,9,48,0.72) 0%,rgba(12,7,36,0.68) 40%,rgba(19,8,48,0.72) 70%,rgba(9,5,30,0.65) 100%);border:1px solid rgba(168,85,247,.18);border-radius:48px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--card-shadow);animation:fadeUp .45s ease both;will-change:transform;}
 .product-card::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.6),rgba(236,72,153,.4),transparent)}
@@ -136,9 +135,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .btn-mua::before{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.28),transparent);animation:shimmer 1.4s linear infinite;pointer-events:none;}
 .btn-mua:hover{box-shadow:0 0 40px rgba(168,85,247,0.65),0 0 60px rgba(168,85,247,0.3),inset 0 1px 0 rgba(255,255,255,0.28);}
 /* FREE CODE GRID */
-.free-grid{display:grid;grid-template-columns:1fr;gap:20px}
-@media(min-width:500px){.free-grid{grid-template-columns:repeat(2,1fr);gap:22px}}
-@media(min-width:800px){.free-grid{grid-template-columns:repeat(3,1fr);gap:26px}}
+.free-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,2.5vw,20px)}
+@media(min-width:800px){.free-grid{grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.5vw,26px)}}
 @media(min-width:1100px){.free-grid{grid-template-columns:repeat(4,1fr);gap:26px}}
 .free-card{background:linear-gradient(145deg,rgba(17,9,48,0.72) 0%,rgba(12,7,36,0.68) 40%,rgba(19,8,48,0.72) 70%,rgba(9,5,30,0.65) 100%);border:1px solid rgba(168,85,247,.18);border-radius:48px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--card-shadow);animation:fadeUp .45s ease both;will-change:transform;}
 .free-card::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.6),rgba(236,72,153,.4),transparent)}
@@ -180,22 +178,29 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .product-card:nth-child(1){animation-delay:.05s}.product-card:nth-child(2){animation-delay:.1s}.product-card:nth-child(3){animation-delay:.15s}.product-card:nth-child(4){animation-delay:.2s}.product-card:nth-child(5){animation-delay:.25s}.product-card:nth-child(6){animation-delay:.3s}
 .free-card:nth-child(1){animation-delay:.05s}.free-card:nth-child(2){animation-delay:.1s}.free-card:nth-child(3){animation-delay:.15s}.free-card:nth-child(4){animation-delay:.2s}
 @media(max-width:599px){
-  .container{padding:0 14px}
+  .container{padding:0 12px}
   .page-header{padding:20px 0 20px}
-  .product-body{padding:18px 18px 20px}
-  .free-body{padding:18px 18px 20px}
+  .product-body{padding:clamp(10px,3vw,14px)}
+  .free-body{padding:clamp(10px,3vw,14px)}
   .tab-toggle-btn{padding:9px 16px;font-size:11.5px}
-  .product-card{border-radius:40px}
-  .free-card{border-radius:40px}
-  .product-name{font-size:.82rem}
-  .product-price{font-size:1.5rem}
-  .product-grid{gap:28px}
-  .free-grid{gap:22px}
+  .product-card{border-radius:clamp(22px,5vw,36px)}
+  .free-card{border-radius:clamp(22px,5vw,36px)}
+  .product-name{font-size:clamp(.72rem,3vw,.82rem)}
+  .free-title{font-size:clamp(.72rem,3vw,.82rem)}
+  .product-desc{font-size:clamp(10px,2.5vw,11px);margin-bottom:10px}
+  .free-desc{font-size:clamp(10px,2.5vw,11px);margin-bottom:10px}
+  .product-price{font-size:clamp(1.15rem,5vw,1.5rem)}
+  .btn-mua{font-size:clamp(11px,3vw,13px);padding:9px 14px}
+  .btn-video{font-size:clamp(9px,2.5vw,10.5px);padding:5px 8px}
+  .btn-github{font-size:clamp(10px,2.5vw,12px);padding:8px 12px}
+  .product-grid{gap:clamp(10px,2.5vw,16px)}
+  .free-grid{gap:clamp(10px,2.5vw,14px)}
   .topbar{padding:14px 14px}
   .back-btn{padding:6px 12px;font-size:12px}
   .topbar-title{font-size:14px}
   .modal-box{border-radius:20px!important;}
   .modal-overlay{padding:12px!important;align-items:flex-start!important;}
+  .product-footer-top{flex-wrap:wrap;gap:6px}
 }
 .pb-sep{margin:0 12px;opacity:0.2;font-weight:300;font-size:14px;}
 .pb-trasua{display:inline-flex;align-items:center;gap:5px;}
@@ -306,7 +311,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="product-footer">
             <div class="product-footer-top">
               <div class="product-price">39K</div>
-              <a href="https://www.tiktok.com/@binpinkgold/video/7612513240043523348?lang=en" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7612513240043523348?lang=en" target="_blank" class="btn-video">▶ Xem Video</a>
             </div>
             <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('💌 Thiệp Mừng 8/3 · 39K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
           </div>
@@ -324,7 +329,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="product-footer">
             <div class="product-footer-top">
               <div class="product-price">49K</div>
-              <a href="https://www.tiktok.com/@binpinkgold/video/7594325546524232967" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7594325546524232967" target="_blank" class="btn-video">▶ Xem Video</a>
             </div>
             <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('🌈 Lyrics Rainbow · 49K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
           </div>
@@ -342,7 +347,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="product-footer">
             <div class="product-footer-top">
               <div class="product-price">55K</div>
-              <a href="https://www.tiktok.com/@binpinkgold/video/7601372387925445896" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7601372387925445896" target="_blank" class="btn-video">▶ Xem Video</a>
             </div>
             <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('🎵 Tool Canh Nhạc · 55K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
           </div>
@@ -359,7 +364,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="product-footer">
             <div class="product-footer-top">
               <div class="product-price">30K</div>
-              <a href="https://www.tiktok.com/@binpinkgold/video/7606404380841135368" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7606404380841135368" target="_blank" class="btn-video">▶ Xem Video</a>
             </div>
             <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('💫 Nút Bấm Trái Tim · 30K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
           </div>
@@ -376,7 +381,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="product-footer">
             <div class="product-footer-top">
               <div class="product-price">40K</div>
-              <a href="https://www.tiktok.com/@binpinkgold/video/7606539539678612757" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7606539539678612757" target="_blank" class="btn-video">▶ Xem Video</a>
             </div>
             <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('🌿 Cây Trái Tim · 40K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
           </div>
@@ -401,7 +406,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="free-title">Giao Diện Login - DEMO · HTML</div>
           <div class="free-desc"></div>
           <div class="free-footer">
-            <a href="https://www.tiktok.com/@binpinkgold/video/7613988711948274965?lang=en" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+            <a href="https://www.tiktok.com/@binpinkgold/video/7613988711948274965?lang=en" target="_blank" class="btn-video">▶ Xem Video</a>
             <a href="https://github.com/lengocthuan09-ship-it/giaoDienLoginTEST/tree/main" target="_blank" class="btn-github">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               Lấy Code
@@ -423,7 +428,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="free-title">Giao Diện Web Màu Mè - TEST · HTML</div>
           <div class="free-desc"></div>
           <div class="free-footer">
-            <a href="https://www.tiktok.com/@binpinkgold/video/7613229316679257365?lang=en" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+            <a href="https://www.tiktok.com/@binpinkgold/video/7613229316679257365?lang=en" target="_blank" class="btn-video">▶ Xem Video</a>
             <a href="https://github.com/lengocthuan09-ship-it/tiktokfree_webTESTfunny" target="_blank" class="btn-github">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               Lấy Code
@@ -445,7 +450,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="free-title">Vẽ Trái Tim ❤️ · Python Animation</div>
           <div class="free-desc">Hiệu ứng vẽ trái tim bằng Python, animation mượt mà siêu đẹp</div>
           <div class="free-footer">
-            <a href="https://vt.tiktok.com/ZSmf9kQSs/" target="_blank" class="btn-video">▶ Xem Video Demo</a>
+            <a href="https://vt.tiktok.com/ZSmf9kQSs/" target="_blank" class="btn-video">▶ Xem Video</a>
             <a href="https://github.com/lengocthuan09-ship-it/tiktokfree_VeTraiTimPY" target="_blank" class="btn-github">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               Lấy Code

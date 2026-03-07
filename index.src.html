@@ -177,8 +177,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
    Rule 6: aspect-ratio:16/9 + max-height. Rule 1: clamp, word-break.
    Rule 2: flex+flex-wrap. Rule 4: 3 breakpoint. Rule 7: padding-right.
 ===================================================================== */
-.site-banner{position:relative;overflow:hidden;margin-top:60px;}
-.site-banner-slides{display:flex;transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);}
+.site-banner{position:relative;overflow:hidden;margin-top:60px;contain:layout style;}
+.site-banner-slides{display:flex;transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);will-change:transform;transform:translateZ(0);}
 .site-banner-slide{
   flex:0 0 100%;position:relative;
   aspect-ratio:16/9;
@@ -403,7 +403,10 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .price-main.gradient-text{background:linear-gradient(90deg,#B06EF5 0%,#D44FBF 50%,#F0359A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;}
 
 /* === PLUS CARD override === */
-#chatgptPlusCard .glass-card{border-radius:48px;border:1px solid transparent;background:linear-gradient(#110930,#0c0724) padding-box,linear-gradient(135deg,rgba(168,85,247,0.65),rgba(236,72,153,0.35),rgba(168,85,247,0.18)) border-box;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);overflow:hidden;}
+@keyframes ledGlowPulse{0%,100%{box-shadow:var(--card-shadow),0 0 8px rgba(255,200,0,0.3),0 0 16px rgba(255,160,0,0.12);}50%{box-shadow:var(--card-shadow),0 0 14px rgba(255,210,0,0.45),0 0 24px rgba(255,160,0,0.18);}}
+#chatgptPlusCard .glass-card{border-radius:48px;border:2px solid transparent;background:linear-gradient(#110930,#0c0724) padding-box,linear-gradient(135deg,#FFD700 0%,#FFA500 35%,#FFE566 60%,#FFB300 80%,#FFD700 100%) border-box;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);overflow:hidden;animation:ledGlowPulse 3s ease-in-out infinite;}
+#plusLedLabel{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:20;display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#B8860B,#FFD700,#FFA500);border-radius:100px;padding:4px 14px;white-space:nowrap;box-shadow:0 0 8px rgba(255,200,0,0.45),0 2px 6px rgba(0,0,0,0.5);}
+#plusLedLabel span{font-size:9.5px;font-weight:900;color:#1a0a00;letter-spacing:0.16em;text-transform:uppercase;}
 
 /* === NEON STAT CARDS — icon left, val+sub RIGHT stacked === */
 .neon-card{flex:1 1 200px;max-width:calc(50% - 8px);min-width:160px;background:rgba(255,255,255,0.05);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:100px;padding:14px 20px;display:flex;flex-direction:column;justify-content:center;border:1px solid transparent;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:default;animation:fadeUp 0.7s 0.4s ease both;text-align:left;}
@@ -498,9 +501,8 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
   #heroPrimaryBtn{width:100%!important;justify-content:center!important;font-size:14px!important;padding:13px 20px!important;}
   #heroGhostBtn{width:100%!important;justify-content:center!important;text-align:center!important;font-size:14px!important;padding:13px 20px!important;box-sizing:border-box!important;}
   #chatgptPlusCard{width:100%;box-sizing:border-box;min-width:0;}
+  #plusLedWrap{border-radius:44px!important;}
   #chatgptPlusCard .glass-card{overflow:hidden;width:100%;box-sizing:border-box;min-width:0;border-radius:40px!important;}
-  #plusBestBadge{top:12px!important;right:12px!important;padding:4px 10px!important;border-radius:100px!important;}
-  #plusBestBadgeText{font-size:7.5px!important;}
   #chatgptPlusCard [style*="padding-right:110px"]{padding-right:80px!important;}
   #plusPriceFlexRow{flex-wrap:nowrap!important;gap:10px!important;align-items:center!important;}
   #plusYearlyBox{flex:1 1 0!important;min-width:0!important;padding:9px 10px!important;}
@@ -534,7 +536,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 /* tablet 641–768px */
 @media(min-width:641px) and (max-width:768px){
   #chatgptPlusCard .glass-card{border-radius:40px!important;}
-  #plusBestBadge{top:14px!important;right:14px!important;}
+  #plusLedWrap{border-radius:44px!important;}
 }
 /* small mobile ≤480px */
 @media(max-width:480px){
@@ -790,13 +792,10 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <div id="accountsGrid" style="display:grid;grid-template-columns:1fr;gap:clamp(24px,5vw,60px);">
 
       <!-- ChatGPT Plus -->
-      <div id="chatgptPlusCard" style="max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;min-width:0;">
-        <div class="glass-card glass-card-glow" style="position:relative;">
-
-          <!-- GÓI TỐT NHẤT — pill shape like other badges -->
-          <div id="plusBestBadge" style="position:absolute;top:22px;right:22px;z-index:10;display:inline-flex;align-items:center;gap:6px;border:2px solid #FFD700;border-radius:100px;padding:5px 14px;background:rgba(255,215,0,0.07);box-shadow:0 0 10px rgba(255,200,0,0.45),0 0 24px rgba(255,160,0,0.2);">
-            <span id="plusBestBadgeText" style="font-size:9px;font-weight:900;color:#FFD700;letter-spacing:0.18em;text-transform:uppercase;text-shadow:0 0 8px rgba(255,215,0,0.8);">GÓI TỐT NHẤT</span>
-          </div>
+      <div style="max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;min-width:0;padding-top:16px;padding-bottom:16px;">
+          <div id="chatgptPlusCard" style="width:100%;box-sizing:border-box;min-width:0;position:relative;">
+            <div id="plusLedLabel"><span>✦ Lựa chọn tối ưu</span></div>
+            <div class="glass-card glass-card-glow" style="position:relative;">
 
           <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(168,85,247,0.7) 30%,rgba(236,72,153,0.5) 70%,transparent 100%);margin:0 5%;"></div>
 
@@ -893,6 +892,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
           </div>
         </div>
+      </div>
       </div>
 
       <!-- Sub cards -->
@@ -1309,3 +1309,4 @@ function idxNavClick(e, idx, target){
 <script src="protect.js"></script>
 </body>
 </html>
+

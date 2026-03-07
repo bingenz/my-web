@@ -244,6 +244,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     0 4px 14px rgba(120,60,210,0.55),
     0 8px 22px rgba(120,60,210,0.28);
 }
+.kho-bnav-item:not(.active):hover{background:rgba(120,60,200,0.1);}
 .kho-bnav-item:not(.active):active{
   background:rgba(120,60,200,0.12);
   transform:scale(0.97);
@@ -257,10 +258,13 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   color:#ffffff;
   text-shadow:0 1px 4px rgba(0,0,0,0.3);
 }
-/* hide old top toggle on mobile since bottom nav handles it */
-@media(max-width:767px){
-  .tab-toggle-wrap{display:none;}
+@media(min-width:768px){
+  .kho-bottom-nav-inner{max-width:560px;}
+  .kho-bnav-item{padding:9px 40px;}
 }
+/* hide tab toggle on all sizes — bottom nav handles switching */
+.tab-toggle-wrap{display:none!important;}
+
 </style>
 <script src="protect.js"></script>
 </head>
@@ -535,4 +539,3 @@ function closeModalOutside(e){if(e.target===document.getElementById('contactModa
 </script>
 </body>
 </html>
-

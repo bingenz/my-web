@@ -199,6 +199,63 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 }
 .pb-sep{margin:0 12px;opacity:0.2;font-weight:300;font-size:14px;}
 .pb-trasua{display:inline-flex;align-items:center;gap:5px;}
+
+/* ═══════════════════════════════════════
+   BOTTOM NAV — Telegram A1 Style (kho)
+   ═══════════════════════════════════════ */
+body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
+.kho-bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  padding:0 14px calc(10px + env(safe-area-inset-bottom));
+  pointer-events:none;
+}
+.kho-bottom-nav-inner{
+  max-width:480px;margin:0 auto;
+  background:rgba(22,13,48,0.97);
+  border:1px solid rgba(100,55,175,0.25);
+  border-radius:24px;
+  padding:7px;
+  display:flex;align-items:center;justify-content:space-around;
+  pointer-events:all;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.07) inset,
+    0 -1px 0 rgba(0,0,0,0.55) inset,
+    0 -6px 20px rgba(0,0,0,0.5),
+    0 -14px 40px rgba(0,0,0,0.4),
+    0 0 28px rgba(120,55,200,0.15);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+}
+.kho-bnav-item{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:9px 28px;border-radius:18px;cursor:pointer;
+  transition:all .2s cubic-bezier(.34,1.56,.64,1);
+  flex:1;user-select:none;
+}
+.kho-bnav-item.active{
+  background:linear-gradient(145deg,#7040D0 0%,#8E50E4 55%,#8045DC 100%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.22) inset,
+    0 -1px 0 rgba(0,0,0,0.28) inset,
+    0 4px 14px rgba(120,60,210,0.55),
+    0 8px 22px rgba(120,60,210,0.28);
+}
+.kho-bnav-item:not(.active):active{
+  background:rgba(120,60,200,0.12);
+  transform:scale(0.97);
+}
+.kho-bnav-item span{
+  font-size:12.5px;font-weight:700;letter-spacing:-.01em;
+  color:rgba(255,255,255,0.3);
+  transition:color .18s;
+}
+.kho-bnav-item.active span{
+  color:#ffffff;
+  text-shadow:0 1px 4px rgba(0,0,0,0.3);
+}
+/* hide old top toggle on mobile since bottom nav handles it */
+@media(max-width:767px){
+  .tab-toggle-wrap{display:none;}
+}
 </style>
 <script src="protect.js"></script>
 </head>
@@ -419,10 +476,32 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
     <button class="modal-close-btn" onclick="closeModal()">✕ Đóng</button>
   </div>
 </div>
+<!-- BOTTOM NAV — Telegram A1 Style -->
+<div class="kho-bottom-nav" id="khoBottomNav">
+  <div class="kho-bottom-nav-inner">
+    <div class="kho-bnav-item active" id="kbNav0" onclick="khoNavSwitch(0)">
+      <span>Code Hiệu Ứng</span>
+    </div>
+    <div class="kho-bnav-item" id="kbNav1" onclick="khoNavSwitch(1)">
+      <span>Code Miễn Phí</span>
+    </div>
+  </div>
+</div>
+
 <script>
 history.scrollRestoration='manual';window.scrollTo(0,0);
 function calcDiscounts(){document.querySelectorAll('.discount-badge').forEach(function(el){var o=+el.dataset.orig,s=+el.dataset.sale;if(o&&s)el.textContent='-'+Math.round((1-s/o)*100)+'%';});}
 document.addEventListener('DOMContentLoaded',calcDiscounts);
+function khoNavSwitch(idx){
+  document.getElementById('kbNav0').classList.toggle('active', idx===0);
+  document.getElementById('kbNav1').classList.toggle('active', idx===1);
+  // sync with existing tab logic
+  var paidBtn=document.querySelectorAll('.tab-toggle-btn')[0];
+  var freeBtn=document.querySelectorAll('.tab-toggle-btn')[1];
+  if(idx===0 && paidBtn) switchTab('paid', paidBtn);
+  if(idx===1 && freeBtn) switchTab('free', freeBtn);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 function updateSlider(activeBtn){
   const slider=document.getElementById('pillSlider');
   const wrap=document.getElementById('pillWrap');
@@ -451,3 +530,4 @@ function closeModalOutside(e){if(e.target===document.getElementById('contactModa
 </script>
 </body>
 </html>
+

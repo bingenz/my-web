@@ -183,7 +183,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
   flex:0 0 100%;position:relative;
   aspect-ratio:16/9;
   max-height:clamp(240px,42vw,440px);
-  min-height:190px;
+  min-height:clamp(200px,28vw,260px);
   display:flex;align-items:center;
   cursor:pointer;overflow:hidden;
 }
@@ -275,51 +275,42 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 /* Sub */
 .sbs-sub{font-size:clamp(9.5px,1.6vw,11.5px);color:rgba(240,236,248,0.5);line-height:1.55;word-break:break-word;white-space:normal;margin:0;}
 
-/* Pills */
 .sbs-pills{display:flex;gap:5px;flex-wrap:wrap;max-width:100%;box-sizing:border-box;}
-.sbs-pill{font-size:clamp(8.5px,1.4vw,10px);font-weight:600;padding:3px 8px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(240,236,248,0.65);display:inline-flex;align-items:center;gap:3px;white-space:nowrap;}
+.sbs-pill{font-size:clamp(8.5px,1.4vw,10px);font-weight:600;padding:3px 8px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(240,236,248,0.65);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
+.sbs-pill svg{flex-shrink:0;}
 
-/* RIGHT — card panel (feature grid + bench) — style từ ChatGPT Plus card */
+/* RIGHT — benchmark panel (slide 1 only) */
 .sbs-right{
   flex-shrink:0;
-  width:clamp(170px,38%,320px);
-  display:flex;flex-direction:column;gap:clamp(5px,1vw,7px);
+  width:clamp(140px,30%,220px);
+  display:flex;flex-direction:column;
   box-sizing:border-box;
 }
 
-/* Feature grid 2 cột — giống grid tính năng card ChatGPT */
+/* Feature grid 2 cột */
 .sbs-feat-grid{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:clamp(4px,0.8vw,6px);
+  gap:clamp(4px,0.8vw,5px);
 }
 .sbs-feat-item{
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:7px;
   background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);
-  border-radius:14px;padding:clamp(6px,1.2vw,9px) clamp(8px,1.4vw,11px);
-  position:relative;overflow:hidden;
-  transition:border-color 0.2s;
-  box-sizing:border-box;
+  border-radius:12px;padding:clamp(5px,1vw,8px) clamp(7px,1.2vw,10px);
+  position:relative;overflow:hidden;box-sizing:border-box;
 }
-.sbs-feat-item.highlight-gold{background:linear-gradient(135deg,rgba(234,179,8,0.14),rgba(245,158,11,0.08));border-color:rgba(234,179,8,0.55);}
-.sbs-feat-item.highlight-hot{background:linear-gradient(135deg,rgba(236,72,153,0.14),rgba(168,85,247,0.08));border-color:rgba(236,72,153,0.4);}
-.sbs-feat-item.highlight-teal{background:linear-gradient(135deg,rgba(52,211,153,0.12),rgba(34,211,238,0.06));border-color:rgba(52,211,153,0.38);}
-.sbs-feat-item.highlight-pink{background:linear-gradient(135deg,rgba(236,72,153,0.12),rgba(244,114,182,0.06));border-color:rgba(236,72,153,0.35);}
-/* NEW/HOT badge */
-.sbs-feat-badge{
-  position:absolute;top:4px;right:5px;
-  font-size:5.5px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;
-}
-.sbs-feat-badge.gold{color:#FCD34D;}
-.sbs-feat-badge.hot{color:#FB7185;}
+.sbs-feat-item.highlight-gold{background:linear-gradient(135deg,rgba(234,179,8,0.14),rgba(245,158,11,0.08));border-color:rgba(234,179,8,0.5);}
+.sbs-feat-item.highlight-hot{background:linear-gradient(135deg,rgba(236,72,153,0.14),rgba(168,85,247,0.08));border-color:rgba(236,72,153,0.38);}
+.sbs-feat-item.highlight-teal{background:linear-gradient(135deg,rgba(52,211,153,0.12),rgba(34,211,238,0.06));border-color:rgba(52,211,153,0.35);}
+.sbs-feat-item.highlight-pink{background:linear-gradient(135deg,rgba(236,72,153,0.12),rgba(244,114,182,0.06));border-color:rgba(236,72,153,0.33);}
+.sbs-feat-badge{position:absolute;top:3px;right:4px;font-size:5px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;}
+.sbs-feat-badge.gold{color:#FCD34D;}.sbs-feat-badge.hot{color:#FB7185;}
 .sbs-feat-ico-wrap{
-  width:clamp(26px,3.5vw,32px);height:clamp(26px,3.5vw,32px);
-  border-radius:8px;display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.08);
+  width:clamp(22px,3vw,28px);height:clamp(22px,3vw,28px);
+  border-radius:7px;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.07);
 }
-.sbs-feat-ico{width:clamp(14px,2vw,18px);height:clamp(14px,2vw,18px);flex-shrink:0;display:block;}
-.sbs-feat-name{font-size:clamp(8.5px,1.4vw,10.5px);font-weight:700;color:rgba(240,236,248,0.85);line-height:1.25;word-break:break-word;padding-right:16px;}
+.sbs-feat-ico{width:clamp(12px,1.8vw,16px);height:clamp(12px,1.8vw,16px);flex-shrink:0;display:block;}
+.sbs-feat-name{font-size:clamp(7.5px,1.2vw,9.5px);font-weight:700;color:rgba(240,236,248,0.85);line-height:1.2;word-break:break-word;padding-right:8px;}
 
 /* Benchmark block */
 .sbs-bench{
@@ -365,246 +356,28 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 
 /* ── RESPONSIVE 3 tầng (Rule 4) ── */
 @media(max-width:768px){
-  .sbs-right{width:clamp(150px,34%,240px);}
-  .sbs-bench{display:none;}
-  .sbs-feat-grid{grid-template-columns:1fr 1fr;}
+  .sbs-right{width:clamp(130px,28%,195px);}
 }
 @media(max-width:640px){
-  .sbs-right{width:clamp(120px,30%,180px);}
-  .sbs-feat-grid{grid-template-columns:1fr;}
-  .sbs-feat-item{padding:5px 8px;border-radius:10px;}
-  .sbs-feat-name{font-size:8.5px;}
+  .sbs-right{width:clamp(120px,32%,175px);}
+  .sbs-bench{padding:clamp(7px,1.8vw,11px) clamp(8px,2vw,12px);}
+  .sbs-bench-title{font-size:clamp(6px,1.6vw,7.5px);}
+  .sbs-bench-name{width:clamp(52px,13vw,80px);font-size:clamp(7px,1.9vw,9px);}
+  .sbs-bench-pct{font-size:clamp(7px,1.9vw,9px);}
   .sbs-title{font-size:clamp(1rem,5vw,1.4rem);}
-  .sbs-sub{display:none;}
+  .sbs-sub{font-size:clamp(9px,2vw,11px);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   .sbs-pills{gap:3px;}
   .sbs-pill{font-size:8.5px;padding:2px 7px;}
   .sbs-inner{padding:0 clamp(12px,3.5vw,20px);gap:10px;}
 }
 @media(max-width:480px){
-  .sbs-right{display:none;}
+  .sbs-right{width:clamp(110px,32%,150px);}
   .sbs-title{font-size:clamp(0.95rem,5.5vw,1.25rem);}
-  .sbs-left{width:100%;}
   .sbs-badge{font-size:8px;}
+  .sbs-bench-bar-wrap{height:3px;}
 }
 
-/* ── 3D GRID BACKGROUND (shared) ─────────────────────────────── */
-.sbs-grid-wall{
-  position:absolute;
-  left:-60%;right:-60%;top:0;
-  height:60%;
-  background-size:clamp(40px,6vw,64px) clamp(40px,6vw,64px);
-  -webkit-mask-image:radial-gradient(ellipse 85% 100% at 50% 0%,black 20%,transparent 75%);
-  mask-image:radial-gradient(ellipse 85% 100% at 50% 0%,black 20%,transparent 75%);
-}
-/* HORIZON hidden — no LED line */
-.sbs-grid-horizon{ display:none; }
-/* Vignette */
-.sbs-grid-vignette{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 100% 55% at 50% 100%,rgba(0,0,0,0.92) 0%,transparent 65%),
-    radial-gradient(ellipse 100% 45% at 50% 0%,rgba(0,0,0,0.82) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 60% at 50% 50%,rgba(0,0,0,0.35) 0%,transparent 80%);
-}
-
-/* slide-1 grid colors — GOLD */
-.sbs-1 .sbs-grid-floor{
-  background-image:linear-gradient(rgba(234,179,8,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(234,179,8,0.3) 1px,transparent 1px);
-  filter:drop-shadow(0 0 6px rgba(234,179,8,0.5));
-}
-.sbs-1 .sbs-grid-wall{
-  background-image:linear-gradient(rgba(234,179,8,0.22) 1px,transparent 1px),linear-gradient(90deg,rgba(251,191,36,0.18) 1px,transparent 1px);
-  filter:drop-shadow(0 0 4px rgba(234,179,8,0.3));
-}
-.sbs-1 .sbs-grid-horizon{ display:none; }
-
-/* slide-2 grid colors — teal/indigo */
-.sbs-2 .sbs-grid-floor{
-  background-image:linear-gradient(rgba(52,211,153,0.28) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.28) 1px,transparent 1px);
-  filter:drop-shadow(0 0 6px rgba(52,211,153,0.45));
-}
-.sbs-2 .sbs-grid-wall{
-  background-image:linear-gradient(rgba(34,211,238,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.18) 1px,transparent 1px);
-  filter:drop-shadow(0 0 4px rgba(34,211,238,0.28));
-}
-.sbs-2 .sbs-grid-horizon{ display:none; }
-
-/* slide-3 grid colors — pink/magenta */
-.sbs-3 .sbs-grid-floor{
-  background-image:linear-gradient(rgba(236,72,153,0.28) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.28) 1px,transparent 1px);
-  filter:drop-shadow(0 0 6px rgba(236,72,153,0.45));
-}
-.sbs-3 .sbs-grid-wall{
-  background-image:linear-gradient(rgba(244,114,182,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.18) 1px,transparent 1px);
-  filter:drop-shadow(0 0 4px rgba(244,114,182,0.28));
-}
-.sbs-3 .sbs-grid-horizon{ display:none; }
-
-/* ── CONTENT LAYOUT ──────────────────────────────────────── */
-.sbs-content{
-  position:relative;
-  z-index:10;
-  padding:0 clamp(20px,5vw,52px);
-  /* nhường đủ chỗ cho .sbs-art bên phải */
-  width:calc(100% - clamp(160px,34%,310px));
-  max-width:620px;
-  box-sizing:border-box;
-  word-break:break-word;
-  flex-shrink:0;
-}
-
-/* Badge — Rule 2: display:flex + flex-wrap */
-.sbs-badge{
-  display:flex;flex-wrap:wrap;align-items:center;gap:6px;
-  border-radius:100px;padding:5px 14px;
-  font-size:clamp(9.5px,1.8vw,11px);font-weight:700;
-  letter-spacing:0.08em;text-transform:uppercase;margin-bottom:clamp(10px,2vw,14px);
-  max-width:100%;box-sizing:border-box;width:fit-content;
-}
-.sbs-badge-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;animation:sbsDotBlink 1.8s ease-in-out infinite;}
-@keyframes sbsDotBlink{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.sbs-badge-purple{background:rgba(168,85,247,0.14);border:1px solid rgba(168,85,247,0.38);color:#C084FC;}
-.sbs-badge-purple .sbs-badge-dot{background:#A855F7;box-shadow:0 0 6px #A855F7;}
-.sbs-badge-teal{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.32);color:#6EE7B7;}
-.sbs-badge-teal .sbs-badge-dot{background:#34d399;box-shadow:0 0 6px #34d399;}
-.sbs-badge-pink{background:rgba(236,72,153,0.12);border:1px solid rgba(236,72,153,0.32);color:#F472B6;}
-.sbs-badge-pink .sbs-badge-dot{background:#EC4899;box-shadow:0 0 6px #EC4899;}
-
-/* Title — Rule 1: clamp, word-break */
-.sbs-title{
-  font-size:clamp(1.25rem,4.2vw,2.1rem);
-  font-weight:900;line-height:1.1;letter-spacing:-0.03em;
-  margin-bottom:clamp(8px,1.5vw,12px);
-  color:#fff;word-break:break-word;white-space:normal;
-}
-.sbs-title em{font-style:normal;background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sbs-title .em-teal{background:linear-gradient(135deg,#6EE7B7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sbs-title .em-pink{background:linear-gradient(135deg,#F472B6,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-
-/* Subtitle */
-.sbs-sub{
-  font-size:clamp(10.5px,1.8vw,13px);color:rgba(240,236,248,0.55);
-  margin-bottom:clamp(12px,2vw,18px);line-height:1.65;
-  word-break:break-word;white-space:normal;
-}
-
-/* Pills row — Rule 2: flex+flex-wrap */
-.sbs-pills{display:flex;gap:6px;flex-wrap:wrap;max-width:100%;box-sizing:border-box;}
-.sbs-pill{
-  font-size:clamp(9.5px,1.6vw,10.5px);font-weight:600;
-  padding:4px 10px;border-radius:100px;
-  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
-  color:rgba(240,236,248,0.7);
-  display:inline-flex;align-items:center;gap:4px;
-  white-space:nowrap;/* chip ngắn cố định — Rule 1 exception */
-}
-
-/* ── RIGHT ART PANEL ─────────────────────────────────────── */
-.sbs-art{
-  position:absolute;right:0;top:0;bottom:0;
-  width:clamp(160px,34%,310px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:clamp(8px,1.5vw,12px);
-  z-index:10;
-  padding:clamp(10px,2vw,18px) clamp(14px,2.5vw,24px);
-  box-sizing:border-box;
-  pointer-events:none;
-}
-
-/* Icon box */
-.sbs-icon-box{
-  width:clamp(64px,8vw,90px);height:clamp(64px,8vw,90px);
-  border-radius:clamp(18px,3vw,26px);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.sbs-icon-box svg{width:clamp(32px,4.5vw,46px);height:clamp(32px,4.5vw,46px);flex-shrink:0;}
-.sbs-box-gpt{background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.1));border:1px solid rgba(168,85,247,0.35);box-shadow:0 0 36px rgba(168,85,247,0.3),0 8px 24px rgba(0,0,0,0.5);}
-.sbs-box-web{background:linear-gradient(135deg,rgba(52,211,153,0.16),rgba(34,211,238,0.09));border:1px solid rgba(52,211,153,0.32);box-shadow:0 0 36px rgba(52,211,153,0.25),0 8px 24px rgba(0,0,0,0.5);}
-.sbs-box-kho{background:linear-gradient(135deg,rgba(236,72,153,0.16),rgba(244,114,182,0.08));border:1px solid rgba(236,72,153,0.3);box-shadow:0 0 36px rgba(236,72,153,0.25),0 8px 24px rgba(0,0,0,0.5);}
-
-/* Benchmark panel — exact .fm-bench style từ feat modal */
-.sbs-bench{
-  background:linear-gradient(135deg,rgba(168,85,247,0.09),rgba(236,72,153,0.05));
-  border:1px solid rgba(168,85,247,0.2);border-radius:14px;
-  padding:clamp(9px,1.8vw,13px) clamp(10px,2vw,14px);
-  width:100%;max-width:100%;box-sizing:border-box;
-}
-.sbs-bench-title{
-  font-size:clamp(7.5px,1.3vw,9px);font-weight:800;
-  letter-spacing:0.12em;text-transform:uppercase;
-  color:rgba(192,132,252,0.45);margin-bottom:8px;
-}
-.sbs-bench-row{display:flex;align-items:center;gap:7px;margin-bottom:5px;}
-.sbs-bench-row:last-child{margin-bottom:0;}
-.sbs-bench-name{
-  font-size:clamp(8px,1.4vw,9.5px);color:rgba(240,236,248,0.48);
-  width:clamp(72px,11vw,100px);min-width:0;flex-shrink:0;
-  line-height:1.3;word-break:break-word;white-space:normal;
-}
-.sbs-bench-bar-wrap{flex:1;height:5px;background:rgba(168,85,247,0.1);border-radius:10px;overflow:hidden;}
-.sbs-bench-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,#A855F7,#EC4899);}
-.sbs-bench-bar.dim{background:rgba(168,85,247,0.22);}
-.sbs-bench-pct{
-  font-size:clamp(8px,1.4vw,9.5px);font-weight:800;color:#C084FC;
-  width:clamp(28px,4vw,34px);text-align:right;flex-shrink:0;
-}
-.sbs-bench-pct.dim{color:rgba(240,236,248,0.3);}
-
-/* teal variant bench */
-.sbs-bench-teal{background:linear-gradient(135deg,rgba(52,211,153,0.08),rgba(34,211,238,0.04));border-color:rgba(52,211,153,0.18);}
-.sbs-bench-teal .sbs-bench-title{color:rgba(110,231,183,0.45);}
-.sbs-bench-teal .sbs-bench-bar{background:linear-gradient(90deg,#34D399,#22D3EE);}
-.sbs-bench-teal .sbs-bench-bar.dim{background:rgba(52,211,153,0.2);}
-.sbs-bench-teal .sbs-bench-pct{color:#6EE7B7;}
-.sbs-bench-teal .sbs-bench-pct.dim{color:rgba(240,236,248,0.3);}
-
-/* pink variant bench */
-.sbs-bench-pink{background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(244,114,182,0.04));border-color:rgba(236,72,153,0.18);}
-.sbs-bench-pink .sbs-bench-title{color:rgba(244,114,182,0.45);}
-.sbs-bench-pink .sbs-bench-bar{background:linear-gradient(90deg,#EC4899,#F472B6);}
-.sbs-bench-pink .sbs-bench-bar.dim{background:rgba(236,72,153,0.2);}
-.sbs-bench-pink .sbs-bench-pct{color:#F472B6;}
-.sbs-bench-pink .sbs-bench-pct.dim{color:rgba(240,236,248,0.3);}
-
-/* Dots & arrows */
-.sbs-dots{position:absolute;bottom:clamp(10px,2vw,14px);left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:20;}
-.sbs-dot{width:24px;height:4px;border-radius:4px;background:rgba(255,255,255,0.2);cursor:pointer;transition:all 0.3s;}
-.sbs-dot.active{background:#A855F7;width:36px;box-shadow:0 0 8px rgba(168,85,247,0.6);}
-.sbs-arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.12);color:#fff;font-size:18px;cursor:pointer;z-index:20;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
-.sbs-arrow:hover{background:rgba(168,85,247,0.3);border-color:rgba(168,85,247,0.5);}
-.sbs-arr-l{left:14px;}.sbs-arr-r{right:14px;}
-
-/* ── RESPONSIVE — 3 breakpoint (Rule 4) ─────────────────────── */
-@media(max-width:768px){
-  .sbs-art{width:clamp(130px,28%,190px);}
-  .sbs-bench{display:none;}
-  .sbs-content{width:calc(100% - clamp(130px,28%,190px));}
-}
-@media(max-width:640px){
-  .sbs-content{
-    width:calc(100% - clamp(100px,26%,150px));
-    padding:0 clamp(14px,4vw,20px);
-  }
-  .sbs-title{font-size:clamp(1rem,5.2vw,1.4rem);}
-  .sbs-sub{font-size:clamp(9.5px,2.2vw,11px);margin-bottom:8px;
-    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-  .sbs-pills{gap:4px;}
-  .sbs-pill{font-size:9px;padding:3px 8px;}
-  .sbs-art{width:clamp(100px,26%,150px);padding:8px 10px;}
-  .sbs-icon-box{width:clamp(40px,8.5vw,58px);height:clamp(40px,8.5vw,58px);}
-  .sbs-icon-box svg{width:clamp(20px,4.5vw,28px);height:clamp(20px,4.5vw,28px);}
-  .sbs-badge{padding:3px 10px;}
-  .sbs-dots{bottom:8px;}
-}
-@media(max-width:480px){
-  .sbs-content{width:calc(100% - clamp(80px,24%,120px));}
-  .sbs-art{width:clamp(80px,24%,120px);opacity:0.7;padding:6px 8px;}
-  .sbs-title{font-size:clamp(0.88rem,5.5vw,1.15rem);margin-bottom:4px;}
-  .sbs-sub{-webkit-line-clamp:1;}
-  .sbs-pills{gap:3px;}
-  .sbs-pill{font-size:8.5px;padding:2px 7px;}
-  .sbs-badge{font-size:8.5px;padding:2px 8px;}
-}
+/* ── 3D GRID BACKGROUND (shared) — duplicate block removed ── */
 .container{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
 .section-wrap{text-align:center;margin-bottom:28px;}
 .section-beams{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:12px;}
@@ -834,14 +607,15 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
   color:rgba(255,255,255,0.3);transition:color .18s;
 }
 .idx-bnav-item.active span{color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,0.3);}
-/* hide hamburger on mobile since bottom nav replaces it */
+/* Always show bottom nav, always add body padding */
+body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 @media(max-width:767px){
-  body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .topbar-hamburger{display:none;}
   .topbar-dropdown{display:none!important;}
 }
 @media(min-width:768px){
-  .idx-bottom-nav{display:none;}
+  .idx-bottom-nav-inner{max-width:560px;}
+  .idx-bnav-item{padding:8px 22px;}
 }
 </style>
 </head>
@@ -897,39 +671,20 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
           <div class="sbs-title">Trí Tuệ AI<br><em style="background:linear-gradient(135deg,#EAB308,#FDE047,#ffffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Đỉnh Cao Nhất.</em></div>
           <div class="sbs-sub">Tài khoản Plus chính hãng — GPT-5.4 Thinking, Sora, Codex. Chỉ 199K/tháng.</div>
           <div class="sbs-pills">
-            <span class="sbs-pill">🧠 GPT-5.4</span>
-            <span class="sbs-pill">🎬 Sora AI</span>
-            <span class="sbs-pill">💻 Codex</span>
-            <span class="sbs-pill">✓ 199K/tháng</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FDE047" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 3.9 2.4-7.4L2 9.4h7.6z"/></svg> GPT-5.4</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg> Sora AI</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Codex</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 199K/tháng</span>
           </div>
         </div>
-        <!-- RIGHT — feature grid + benchmark -->
+        <!-- RIGHT — benchmark only -->
         <div class="sbs-right">
-          <div class="sbs-feat-grid">
-            <div class="sbs-feat-item highlight-gold">
-              <span class="sbs-feat-badge gold">NEW</span>
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#FDE047" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 3.9 2.4-7.4L2 9.4h7.6z"/></svg></div>
-              <div class="sbs-feat-name">GPT-5.4<br><span style="font-size:7px;opacity:0.55;font-weight:600;">Flagship</span></div>
-            </div>
-            <div class="sbs-feat-item highlight-hot">
-              <span class="sbs-feat-badge hot">HOT</span>
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
-              <div class="sbs-feat-name">Sora Video AI</div>
-            </div>
-            <div class="sbs-feat-item">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#e0c97a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-              <div class="sbs-feat-name">Duyệt web · ADA</div>
-            </div>
-            <div class="sbs-feat-item">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#e0c97a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-              <div class="sbs-feat-name">Agent &amp; Codex</div>
-            </div>
-          </div>
           <div class="sbs-bench sbs-bench-gold">
-            <div class="sbs-bench-title">Benchmark so sánh</div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">MMMU-Pro GPT-5.4</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:81.2%"></div></div><div class="sbs-bench-pct">81.2%</div></div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">Gemini 3.1 Pro</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar dim" style="width:80.5%"></div></div><div class="sbs-bench-pct dim">80.5%</div></div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">GDPval</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:83%"></div></div><div class="sbs-bench-pct">83%</div></div>
+            <div class="sbs-bench-title">Benchmark GPT-5.4</div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">MMLU</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:91%"></div></div><div class="sbs-bench-pct">91%</div></div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">HumanEval</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:87%"></div></div><div class="sbs-bench-pct">87%</div></div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">GSM8K</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:95%"></div></div><div class="sbs-bench-pct">95%</div></div>
+            <div class="sbs-bench-row"><div class="sbs-bench-name">Claude 3.5</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar dim" style="width:72%"></div></div><div class="sbs-bench-pct dim">72%</div></div>
           </div>
         </div>
       </div>
@@ -947,36 +702,10 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
           <div class="sbs-title">Website &amp; Bot<br><em class="em-teal">Telegram thông minh</em></div>
           <div class="sbs-sub">Thiết kế web, bot tự động, hỗ trợ code — báo giá 15 phút, bảo hành miễn phí.</div>
           <div class="sbs-pills">
-            <span class="sbs-pill">🌐 Website</span>
-            <span class="sbs-pill">🤖 Bot Telegram</span>
-            <span class="sbs-pill">📚 Hỗ trợ code</span>
-            <span class="sbs-pill">⚡ Nhanh</span>
-          </div>
-        </div>
-        <div class="sbs-right">
-          <div class="sbs-feat-grid">
-            <div class="sbs-feat-item highlight-teal">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-              <div class="sbs-feat-name">Website pro</div>
-            </div>
-            <div class="sbs-feat-item highlight-teal">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-              <div class="sbs-feat-name">Bot Telegram</div>
-            </div>
-            <div class="sbs-feat-item">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-              <div class="sbs-feat-name">Hỗ trợ bài tập</div>
-            </div>
-            <div class="sbs-feat-item">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-              <div class="sbs-feat-name">Báo giá 15 phút</div>
-            </div>
-          </div>
-          <div class="sbs-bench sbs-bench-teal">
-            <div class="sbs-bench-title">Dịch vụ nổi bật</div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">Website pro</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:95%"></div></div><div class="sbs-bench-pct">✓</div></div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">Bot Telegram</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:90%"></div></div><div class="sbs-bench-pct">✓</div></div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">Hỗ trợ code</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:85%"></div></div><div class="sbs-bench-pct">✓</div></div>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Website</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Bot Telegram</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Hỗ trợ code</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Nhanh</span>
           </div>
         </div>
       </div>
@@ -994,35 +723,9 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
           <div class="sbs-title">Kho Code TikTok<br><em class="em-pink">độc lạ, không đụng hàng</em></div>
           <div class="sbs-sub">Thiệp động, hiệu ứng nhạc, tool sáng tạo — phù hợp mọi dịp, dùng là thích.</div>
           <div class="sbs-pills">
-            <span class="sbs-pill">✨ Hiệu ứng đẹp</span>
-            <span class="sbs-pill">🎁 Quà tặng độc</span>
-            <span class="sbs-pill">⚡ Dùng ngay</span>
-          </div>
-        </div>
-        <div class="sbs-right">
-          <div class="sbs-feat-grid">
-            <div class="sbs-feat-item highlight-pink">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-              <div class="sbs-feat-name">Thiệp động</div>
-            </div>
-            <div class="sbs-feat-item highlight-pink">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-              <div class="sbs-feat-name">Hiệu ứng nhạc</div>
-            </div>
-            <div class="sbs-feat-item">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-              <div class="sbs-feat-name">Tool sáng tạo</div>
-            </div>
-            <div class="sbs-feat-item">
-              <div class="sbs-feat-ico-wrap"><svg class="sbs-feat-ico" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
-              <div class="sbs-feat-name">Kho code độc</div>
-            </div>
-          </div>
-          <div class="sbs-bench sbs-bench-pink">
-            <div class="sbs-bench-title">Nội dung kho code</div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">Thiệp động</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:100%"></div></div><div class="sbs-bench-pct">🔥</div></div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">Hiệu ứng nhạc</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:88%"></div></div><div class="sbs-bench-pct">✨</div></div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">Tool sáng tạo</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:80%"></div></div><div class="sbs-bench-pct">⚡</div></div>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Hiệu ứng đẹp</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg> Quà tặng độc</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Dùng ngay</span>
           </div>
         </div>
       </div>
@@ -1606,5 +1309,3 @@ function idxNavClick(e, idx, target){
 <script src="protect.js"></script>
 </body>
 </html>
-
-

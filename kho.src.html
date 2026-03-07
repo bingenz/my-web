@@ -110,8 +110,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .product-card::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.6),rgba(236,72,153,.4),transparent)}
 .product-card:hover{transform:translateY(-10px) scale(1.015) rotateX(1.5deg);border-color:rgba(168,85,247,.55);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,.18),0 0 80px rgba(168,85,247,.08);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.product-image-wrap{width:100%;aspect-ratio:4/3;background:rgba(12,9,25,.95);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(168,85,247,.08);border-radius:48px 48px 0 0;}
-.free-img-wrap{width:100%;aspect-ratio:4/3;background:rgba(12,9,25,.95);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(168,85,247,.08);border-radius:48px 48px 0 0;}
+.product-image-wrap{width:100%;aspect-ratio:4/3;background:rgba(12,9,25,.95);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(168,85,247,.08);border-radius:20px 20px 0 0;}
 .product-tag-hot{position:absolute;top:18px;right:-28px;z-index:2;background:linear-gradient(135deg,rgba(168,85,247,0.9),rgba(236,72,153,0.9));color:#fff;font-size:10px;font-weight:800;padding:5px 40px;transform:rotate(45deg);letter-spacing:0.08em;box-shadow:0 0 14px rgba(168,85,247,0.7),0 0 28px rgba(168,85,247,0.3);text-shadow:0 0 8px rgba(255,255,255,0.5);}
 .product-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
 .product-card:hover .product-thumb{transform:scale(1.04)}
@@ -141,7 +140,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .free-card{background:linear-gradient(145deg,rgba(17,9,48,0.72) 0%,rgba(12,7,36,0.68) 40%,rgba(19,8,48,0.72) 70%,rgba(9,5,30,0.65) 100%);border:1px solid rgba(168,85,247,.18);border-radius:48px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--card-shadow);animation:fadeUp .45s ease both;will-change:transform;}
 .free-card::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.6),rgba(236,72,153,.4),transparent)}
 .free-card:hover{transform:translateY(-10px) scale(1.015) rotateX(1.5deg);border-color:rgba(168,85,247,.55);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,.18),0 0 80px rgba(168,85,247,.08);}
-.free-img-wrap{width:100%;aspect-ratio:4/3;background:rgba(12,9,25,.95);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(168,85,247,.08)}
+.free-img-wrap{width:100%;aspect-ratio:4/3;background:rgba(12,9,25,.95);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(168,85,247,.08);border-radius:20px 20px 0 0;}
 .free-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .free-card:hover .free-img{transform:scale(1.04)}
 .free-img-placeholder{font-size:3.5rem;opacity:.25}
@@ -217,17 +216,18 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 .kho-bottom-nav-inner{
   max-width:480px;margin:0 auto;
   background:rgba(22,13,48,0.97);
-  border:1px solid rgba(100,55,175,0.25);
+  border:1px solid rgba(140,75,220,0.55);
   border-radius:24px;
   padding:7px;
   display:flex;align-items:center;justify-content:space-around;
   pointer-events:all;
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.07) inset,
+    0 1px 0 rgba(255,255,255,0.12) inset,
     0 -1px 0 rgba(0,0,0,0.55) inset,
-    0 -6px 20px rgba(0,0,0,0.5),
-    0 -14px 40px rgba(0,0,0,0.4),
-    0 0 28px rgba(120,55,200,0.15);
+    0 -6px 24px rgba(0,0,0,0.55),
+    0 -14px 44px rgba(0,0,0,0.4),
+    0 0 36px rgba(140,70,220,0.35),
+    0 0 60px rgba(140,70,220,0.15);
   backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
 }
 .kho-bnav-item{
@@ -539,3 +539,4 @@ function closeModalOutside(e){if(e.target===document.getElementById('contactModa
 </script>
 </body>
 </html>
+

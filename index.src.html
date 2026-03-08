@@ -763,8 +763,9 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   display:flex;align-items:center;justify-content:space-between;padding:12px 18px;}
 .fm-tier:hover{border-color:rgba(234,179,8,0.4);background:rgba(234,179,8,0.09);}
 .fm-tier-range{font-size:13.5px;font-weight:800;color:#fff;letter-spacing:-0.01em;line-height:1.2;flex:1;}
+.fm-tier-right{display:flex;align-items:baseline;gap:4px;min-width:110px;justify-content:flex-end;}
 .fm-tier-pct{font-size:1rem;font-weight:800;color:rgba(253,224,71,0.65);white-space:nowrap;}
-.fm-tier-label{font-size:9px;color:rgba(234,179,8,0.35);font-weight:600;white-space:nowrap;margin-left:4px;}
+.fm-tier-label{font-size:9px;color:rgba(234,179,8,0.35);font-weight:600;white-space:nowrap;}
 .fm-note{font-size:11px;color:rgba(240,236,248,0.35);line-height:1.65;text-align:center;padding:0 4px;}
 .fm-eg{background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.16);border-radius:16px;padding:14px 16px;}
 .fm-eg-title{font-size:8px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(234,179,8,0.45);margin-bottom:10px;}
@@ -1010,35 +1011,35 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <div style="max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;min-width:0;padding-top:16px;padding-bottom:16px;">
           <div id="chatgptPlusCard" style="width:100%;box-sizing:border-box;min-width:0;position:relative;">
             <div id="plusLedLabel"><span>✦ Lựa chọn tối ưu</span></div>
-            <div class="glass-card glass-card-glow" style="position:relative;">
+            <div class="tth-card" style="border-radius:40px;max-width:100%;position:relative;">
 
-          <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(168,85,247,0.7) 30%,rgba(236,72,153,0.5) 70%,transparent 100%);margin:0 5%;"></div>
+          <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(234,179,8,0.9) 30%,rgba(251,191,36,0.6) 70%,transparent 100%);margin:0 5%;"></div>
 
           <div style="padding:clamp(32px,5vw,56px) clamp(20px,4vw,44px) 0;">
             <div style="display:flex;align-items:center;gap:16px;padding-right:110px;">
-              <img src="assets/images/GPT.jpg" alt="ChatGPT Plus" style="width:56px;height:56px;min-width:56px;max-width:56px;border-radius:16px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.3);box-shadow:0 0 24px rgba(168,85,247,0.25);display:block;">
+              <img src="assets/images/GPT.jpg" alt="ChatGPT Plus" style="width:56px;height:56px;min-width:56px;max-width:56px;border-radius:16px;object-fit:cover;flex-shrink:0;border:1px solid rgba(234,179,8,0.4);box-shadow:0 0 24px rgba(234,179,8,0.25);display:block;">
               <div>
                 <div style="font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;word-break:break-word;">ChatGPT PLUS</div>
-                <div style="font-size:11px;color:rgba(192,132,252,0.5);font-weight:500;">GPT-5.4 · Codex · Sora AI · Agent · ADA</div>
+                <div style="font-size:11px;color:rgba(253,224,71,0.5);font-weight:500;">GPT-5.4 · Codex · Sora AI · Agent · ADA</div>
               </div>
             </div>
           </div>
 
           <!-- Price row: 12-month LEFT | divider | 199K RIGHT -->
-          <div style="padding:18px clamp(18px,4vw,44px) 24px;border-bottom:1px solid rgba(168,85,247,0.1);">
+          <div style="padding:18px clamp(18px,4vw,44px) 24px;border-bottom:1px solid rgba(234,179,8,0.15);">
             <div id="plusPriceFlexRow" style="display:flex;align-items:stretch;gap:18px;flex-wrap:wrap;">
-              <div id="plusYearlyBox" style="flex:1;min-width:150px;background:rgba(255,255,255,0.025);border:1px solid rgba(168,85,247,0.22);border-radius:20px;padding:11px 13px;">
-                <div style="font-size:7px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:rgba(192,132,252,0.55);margin-bottom:8px;">GÓI 12 THÁNG TẶNG 1 THÁNG MIỄN PHÍ</div>
+              <div id="plusYearlyBox" style="flex:1;min-width:150px;background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.28);border-radius:20px;padding:11px 13px;">
+                <div style="font-size:7px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:rgba(253,224,71,0.55);margin-bottom:8px;">GÓI 12 THÁNG TẶNG 1 THÁNG MIỄN PHÍ</div>
                 <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:5px;"><span style="font-size:8px;color:rgba(240,236,248,0.3);font-weight:500;white-space:nowrap;">Giá niêm yết:</span><span style="font-size:clamp(0.75rem,2.5vw,1.1rem);font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.85);text-decoration-thickness:3px;line-height:1.15;white-space:nowrap;" id="plusYearlyListFull">—</span></div>
-                <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:2px;"><span style="font-size:7.5px;color:rgba(192,132,252,0.65);font-weight:600;white-space:nowrap;">còn lại</span><span style="font-size:clamp(0.8rem,2.5vw,1.15rem);font-weight:800;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;" id="plusYearlyOur">—</span></div>
-                <div style="height:1px;background:rgba(168,85,247,0.14);margin:7px 0;"></div>
+                <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:2px;"><span style="font-size:7.5px;color:rgba(253,224,71,0.65);font-weight:600;white-space:nowrap;">còn lại</span><span style="font-size:clamp(0.8rem,2.5vw,1.15rem);font-weight:800;background:linear-gradient(90deg,#EAB308,#FDE047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;" id="plusYearlyOur">—</span></div>
+                <div style="height:1px;background:rgba(234,179,8,0.18);margin:7px 0;"></div>
                 <div style="font-size:8px;font-weight:800;color:rgba(99,220,150,0.9);" id="plusYearlySaving">—</div>
               </div>
-              <div id="plusPriceDivider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:4px 0;min-height:70px;flex-shrink:0;"></div>
+              <div id="plusPriceDivider" style="width:1px;background:rgba(234,179,8,0.22);align-self:stretch;margin:4px 0;min-height:70px;flex-shrink:0;"></div>
               <!-- RIGHT: 199K -->
               <div id="plusPriceRight" style="display:flex;flex-direction:column;justify-content:center;">
-                <div style="font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:8px;">Giá / tháng</div>
-                <div class="price-main gradient-text" style="font-size:3.22rem;line-height:1;filter:drop-shadow(0 0 22px rgba(220,130,255,0.85)) drop-shadow(0 0 40px rgba(236,72,153,0.55));">199K</div>
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(253,224,71,0.45);margin-bottom:8px;">Giá / tháng</div>
+                <div class="price-main" style="font-size:3.22rem;line-height:1;background:linear-gradient(90deg,#EAB308 0%,#FDE047 50%,#F59E0B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 22px rgba(234,179,8,0.85)) drop-shadow(0 0 40px rgba(251,191,36,0.55));">199K</div>
                 <div style="display:flex;align-items:center;gap:7px;margin-top:6px;">
                   <span style="font-size:8px;color:rgba(240,236,248,0.45);text-decoration:line-through;text-decoration-color:rgba(255,80,80,0.6);text-decoration-thickness:1.5px;font-weight:600;" id="plusOldPrice">522.000đ</span>
                   <span style="font-size:10px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 9px;box-shadow:0 0 10px rgba(220,38,38,0.5);" class="discount-badge" data-orig="522000" data-sale-personal="199000" id="plusDiscountBadge">-62%</span>
@@ -1053,57 +1054,38 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 
           </div>
 
-          <!-- Feature grid 2x3 -->
-          <div style="padding:20px clamp(18px,4vw,44px) 24px;border-bottom:1px solid rgba(168,85,247,0.1);display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,1.5vw,12px);width:100%;box-sizing:border-box;min-width:0;">
-            <div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(234,179,8,0.18),rgba(245,158,11,0.12));border:1.5px solid rgba(234,179,8,0.65);border-radius:20px;padding:12px 14px;position:relative;overflow:hidden;box-shadow:0 0 18px rgba(234,179,8,0.22),0 0 40px rgba(234,179,8,0.1),inset 0 1px 0 rgba(255,255,255,0.06);">
-              <style>.pulse-ring-new{animation:pingNew 1.4s cubic-bezier(0,0,0.2,1) infinite;}@keyframes pingNew{0%{transform:scale(1);opacity:1}75%,100%{transform:scale(2.2);opacity:0}}</style>
-              <span style="position:absolute;top:5px;right:15px;font-size:6.5px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#FCD34D;">NEW</span>
-              <div style="position:absolute;top:7px;right:7px;width:6px;height:6px;">
-                <div class="pulse-ring-new" style="position:absolute;inset:0;border-radius:50%;background:rgba(234,179,8,0.55);"></div>
-                <div style="position:absolute;inset:1px;border-radius:50%;background:#F59E0B;box-shadow:0 0 4px #F59E0B;"></div>
+          <!-- Info block: badge + description + marquee -->
+          <div style="padding:0 clamp(18px,4vw,44px) 20px;">
+            <div class="tth-any">
+              <div class="tth-any-badge"><div class="tth-dot"></div>GPT-5.4 Flagship · Sora · Agent · ADA</div>
+              <div class="tth-note" style="margin-bottom:12px;"><strong style="color:rgba(253,224,71,0.85);font-weight:700;">GPT-5.4</strong> hiển thị <strong style="color:rgba(240,236,248,0.7);">kế hoạch suy nghĩ realtime</strong> — điều chỉnh ngay khi AI đang xử lý. Hỗ trợ <strong style="color:rgba(240,236,248,0.7);">1 triệu token context</strong> (preview), nghiên cứu web sâu vượt GPT-5.3 và đạt <strong style="color:rgba(240,236,248,0.7);">81.2% MMMU-Pro</strong> — cao hơn Gemini 3.1 Pro.</div>
+              <div class="tth-mq-wrap">
+                <div class="tth-mq-track">
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyệt web · ADA</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent · Codex</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bộ nhớ nâng cao</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Ưu tiên truy cập</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mình bạn dùng</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyệt web · ADA</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent · Codex</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bộ nhớ nâng cao</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Ưu tiên truy cập</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mình bạn dùng</span>
+                </div>
               </div>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FDE047"/><stop offset="100%" stop-color="#F59E0B"/></linearGradient></defs><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="url(#g1)"/></svg>
-              <span style="font-size:clamp(10px,2.8vw,11.5px);color:#FEF08A;font-weight:700;line-height:1.3;word-break:break-word;white-space:normal;padding-right:18px;">GPT-5.4<br><span style="font-size:9px;font-weight:600;color:rgba(254,240,138,0.6);letter-spacing:0.04em;">Flagship model</span></span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(236,72,153,0.18),rgba(168,85,247,0.12));border:1px solid rgba(236,72,153,0.45);border-radius:20px;padding:12px 14px;position:relative;overflow:hidden;box-shadow:0 0 14px rgba(236,72,153,0.18);">
-              <style>.pulse-ring-hot{animation:pingHot 1.4s cubic-bezier(0,0,0.2,1) infinite;}@keyframes pingHot{0%{transform:scale(1);opacity:1}75%,100%{transform:scale(2.2);opacity:0}}</style>
-              <span style="position:absolute;top:5px;right:15px;font-size:6.5px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#FB7185;">HOT</span>
-              <div style="position:absolute;top:7px;right:7px;width:6px;height:6px;">
-                <div class="pulse-ring-hot" style="position:absolute;inset:0;border-radius:50%;background:rgba(244,63,94,0.55);"></div>
-                <div style="position:absolute;inset:1px;border-radius:50%;background:#f43f5e;box-shadow:0 0 4px #f43f5e;"></div>
-              </div>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g4b" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F472B6"/><stop offset="100%" stop-color="#FB923C"/></linearGradient></defs><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.82v6.36a1 1 0 0 1-1.447.89L15 14M3 8h12v8H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" stroke="url(#g4b)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span style="font-size:clamp(10px,2.8vw,11.5px);color:rgba(255,220,240,0.95);font-weight:700;line-height:1.4;white-space:normal;word-break:break-word;padding-right:18px;">Sora Video AI</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);border-radius:20px;padding:12px 14px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g2b" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#818CF8"/><stop offset="100%" stop-color="#EC4899"/></linearGradient></defs><circle cx="12" cy="12" r="10" stroke="url(#g2b)" stroke-width="2"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4" stroke="url(#g2b)" stroke-width="2" stroke-linecap="round"/></svg>
-              <span style="font-size:11.5px;color:rgba(240,236,248,0.7);font-weight:600;line-height:1.4;">Duyệt web · ADA</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);border-radius:20px;padding:12px 14px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A855F7"/><stop offset="100%" stop-color="#F472B6"/></linearGradient></defs><rect x="3" y="8" width="18" height="13" rx="2" stroke="url(#g3)" stroke-width="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2" stroke="url(#g3)" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="14" r="1.5" fill="url(#g3)"/></svg>
-              <span style="font-size:11.5px;color:rgba(240,236,248,0.7);font-weight:600;line-height:1.4;">Agent &amp; Codex</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);border-radius:20px;padding:12px 14px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#818CF8"/></linearGradient></defs><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7" stroke="url(#g5)" stroke-width="2" stroke-linecap="round"/></svg>
-              <span style="font-size:11.5px;color:rgba(240,236,248,0.7);font-weight:600;line-height:1.4;">Bộ nhớ nâng cao</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);border-radius:20px;padding:12px 14px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><defs><linearGradient id="g6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FBBF24"/><stop offset="100%" stop-color="#F97316"/></linearGradient></defs><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="url(#g6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span style="font-size:11.5px;color:rgba(240,236,248,0.7);font-weight:600;line-height:1.4;">Ưu tiên truy cập</span>
-            </div>
-          </div>
-
-          <!-- Short description -->
-          <div style="padding:0 clamp(18px,4vw,44px) 16px;">
-            <div style="font-size:clamp(11px,2.2vw,12px);color:rgba(240,236,248,0.45);line-height:1.75;background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.12);border-radius:16px;padding:12px 15px;word-break:break-word;">
-              <strong style="color:rgba(192,132,252,0.85);font-weight:700;">GPT-5.4</strong> hiển thị <strong style="color:rgba(240,236,248,0.7);">kế hoạch suy nghĩ realtime</strong> — điều chỉnh ngay khi AI đang xử lý. Hỗ trợ <strong style="color:rgba(240,236,248,0.7);">1 triệu token context</strong> (preview), nghiên cứu web sâu vượt GPT-5.3 và đạt <strong style="color:rgba(240,236,248,0.7);">81.2% MMMU-Pro</strong> — cao hơn Gemini 3.1 Pro.
             </div>
           </div>
 
           <div style="padding:0 clamp(18px,4vw,44px) clamp(24px,4vw,44px);display:flex;gap:clamp(8px,2vw,12px);align-items:center;flex-wrap:nowrap;min-width:0;">
-            <button class="btn-ghost" onclick="openFeatModal()" style="font-family:'Inter',sans-serif;font-size:clamp(11px,2.5vw,12.5px);white-space:nowrap;flex-shrink:0;padding:10px clamp(12px,3vw,20px);"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Xem chi tiết</button>
-            <div class="btn-primary-wrap" style="flex:1;">
-              <button onclick="openPlusModal()" class="btn-register-shimmer" style="width:100%;justify-content:center;font-size:clamp(12px,3vw,14.5px);display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#FF2D8B 0%,#FF6B35 100%);color:#fff;font-weight:800;font-family:'Inter',sans-serif;padding:13px clamp(14px,3vw,24px);border-radius:100px;border:1.5px solid rgba(255,255,255,0.35);cursor:pointer;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 28px rgba(255,45,139,0.55),0 0 50px rgba(255,107,53,0.3),inset 0 1px 0 rgba(255,255,255,0.25);white-space:nowrap;">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            <button onclick="openFeatModal()" style="font-family:'Inter',sans-serif;font-size:clamp(11px,2.5vw,12.5px);white-space:nowrap;flex-shrink:0;padding:10px clamp(12px,3vw,20px);display:inline-flex;align-items:center;gap:7px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;border-radius:100px;cursor:pointer;transition:background .2s;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Xem chi tiết</button>
+            <div class="tth-btn-cw" style="flex:1;">
+              <button onclick="openPlusModal()" class="tth-btn-c">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
             </div>
           </div>
         </div>
@@ -1593,53 +1575,34 @@ const FEE_CONFIG = {
   ],
 };
 
+function vndFmt(n) {
+  return Math.round(n).toLocaleString('vi-VN') + 'đ';
+}
+
 function calcFee(vnd) {
   const fixedVND = FEE_CONFIG.fixedUSD * FEE_CONFIG.usdRate;
   const tier = FEE_CONFIG.tiers.find(t => vnd <= t.max);
   return Math.round(vnd * tier.rate + (vnd < 1000000 ? fixedVND : 0));
 }
 
-function fmtK(n) {
-  if (n >= 1000000) return (n/1000000).toFixed(n%1000000===0?0:2).replace(/\.?0+$/,'') + 'tr';
-  return Math.round(n/1000) + 'K';
-}
-
 function renderFeeModal() {
   const cfg = FEE_CONFIG;
   const fixedVND = cfg.fixedUSD * cfg.usdRate;
 
-  // Tiers
-  const tiersHTML = cfg.tiers.map(t =>
+  // Tiers — chỉ hiện "+ phí cố định" cho 2 tier đầu (dưới 1tr)
+  const tiersHTML = cfg.tiers.map((t, i) =>
     `<div class="fm-tier">
       <div class="fm-tier-range">${t.label}</div>
-      <div style="display:flex;align-items:baseline;gap:4px;">
+      <div class="fm-tier-right">
         <div class="fm-tier-pct">${Math.round(t.rate*100)}%</div>
-        <div class="fm-tier-label">+ phí cố định</div>
+        ${i < 2 ? '<div class="fm-tier-label">+ phí cố định</div>' : ''}
       </div>
     </div>`
   ).join('');
 
-  // Examples
-  const egRows = cfg.examples.map(e => {
-    const vnd = Math.round(e.usd * cfg.usdRate);
-    const fee = Math.round(vnd * cfg.tiers.find(t => vnd <= t.max).rate + (vnd < 1000000 ? fixedVND : 0));
-    const total = vnd + fee;
-    return `<div class="fm-eg-row">
-      <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;">
-        <span class="fm-eg-name">${e.name} <span style="color:rgba(240,236,248,0.35);font-weight:500;">$${e.usd} ≈ ${fmtK(vnd)}</span></span>
-        <span style="font-size:10px;font-weight:700;color:rgba(99,220,150,0.75);">gồm phí dịch vụ ${fmtK(fee)}</span>
-      </div>
-      <span class="fm-eg-result">~${total.toLocaleString('vi-VN')}đ</span>
-    </div>`;
-  }).join('');
-
   document.getElementById('feeModalBody').innerHTML = `
     <div class="fm-tiers">${tiersHTML}</div>
     <div class="fm-note">Phí % tính trên giá dịch vụ quy đổi VNĐ · Tỷ giá theo Vietcombank tại thời điểm thanh toán<br><span style="color:rgba(253,224,71,0.5);">* Phí cố định ${cfg.fixedUSD} USD chỉ áp dụng cho đơn dưới 1.000.000đ</span></div>
-    <div class="fm-eg" style="position:relative;">
-      <div class="fm-eg-title">Ví dụ tính phí</div>
-      ${egRows}
-    </div>
     <div class="fm-calc">
       <div class="fm-calc-title">🧮 Tính phí nhanh</div>
       <div class="fm-calc-row">
@@ -1663,8 +1626,8 @@ function updateFeeCalc() {
   var fee  = calcFee(n);
   var total = n + fee;
   val.innerHTML =
-    '<span style="font-size:10px;font-weight:700;color:rgba(99,220,150,0.8);display:block;margin-bottom:2px;">gồm phí dịch vụ ' + fee.toLocaleString('vi-VN') + 'đ</span>' +
-    '~' + total.toLocaleString('vi-VN') + 'đ';
+    '<span style="font-size:10px;font-weight:700;color:rgba(99,220,150,0.8);display:block;margin-bottom:2px;">gồm phí dịch vụ ' + vndFmt(fee) + '</span>' +
+    '~' + vndFmt(total);
   res.style.display = 'flex';
 }
 
@@ -1746,5 +1709,6 @@ function idxNavClick(e, idx, target){
 <script src="protect.js"></script>
 </body>
 </html>
+
 
 

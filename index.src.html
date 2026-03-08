@@ -232,6 +232,33 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .sbs-2 .sbs-grid-wall{background-image:linear-gradient(rgba(34,211,238,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.14) 1px,transparent 1px);}
 .sbs-3 .sbs-grid-floor{background-image:linear-gradient(rgba(236,72,153,0.26) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.26) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(236,72,153,0.4));}
 .sbs-3 .sbs-grid-wall{background-image:linear-gradient(rgba(244,114,182,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.14) 1px,transparent 1px);}
+/* SLIDE 4 — Thanh Toán Quốc Tế · amber-bronze */
+.sbs-4{background:linear-gradient(145deg,#080600 0%,#140900 55%,#0a0500 100%);}
+.sbs-4::before{content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse 60% 80% at 80% 38%,rgba(217,119,6,0.32) 0%,transparent 60%),
+  radial-gradient(ellipse 38% 48% at 14% 68%,rgba(251,191,36,0.12) 0%,transparent 55%),
+  radial-gradient(ellipse 40% 35% at 50% 0%,rgba(255,255,255,0.025) 0%,transparent 55%);}
+.sbs-4 .sbs-grid-floor{background-image:linear-gradient(rgba(217,119,6,0.28) 1px,transparent 1px),linear-gradient(90deg,rgba(217,119,6,0.28) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(234,179,8,0.42));}
+.sbs-4 .sbs-grid-wall{background-image:linear-gradient(rgba(251,191,36,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(234,179,8,0.14) 1px,transparent 1px);}
+.sbs-badge-amber{background:rgba(217,119,6,0.16);border:1px solid rgba(217,119,6,0.42);color:#FDE047;}
+.sbs-badge-amber .sbs-badge-dot{background:#D97706;box-shadow:0 0 5px #D97706;}
+/* Fee preview panel (right of slide 4) */
+.sbs-fee-panel{
+  flex-shrink:0;width:clamp(130px,28%,200px);
+  background:linear-gradient(145deg,rgba(20,12,0,0.88),rgba(10,6,0,0.92));
+  border:1px solid rgba(217,119,6,0.38);border-radius:14px;
+  padding:clamp(8px,1.4vw,12px) clamp(9px,1.5vw,14px);
+  box-sizing:border-box;display:flex;flex-direction:column;gap:clamp(4px,.8vw,6px);
+}
+.sbs-fee-panel::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(217,119,6,0.7),transparent);}
+.sbs-fee-hd{font-size:clamp(7px,1.1vw,9px);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(253,224,71,0.5);margin-bottom:clamp(3px,.6vw,5px);}
+.sbs-fee-row{display:flex;align-items:center;justify-content:space-between;gap:6px;
+  background:rgba(217,119,6,0.08);border:1px solid rgba(217,119,6,0.2);border-radius:8px;
+  padding:clamp(4px,.7vw,6px) clamp(6px,1vw,9px);}
+.sbs-fee-range{font-size:clamp(7px,1.1vw,9px);color:rgba(240,236,248,0.6);font-weight:600;flex:1;}
+.sbs-fee-pct{font-size:clamp(9px,1.5vw,12px);font-weight:900;color:#FDE047;white-space:nowrap;}
+.sbs-fee-note{font-size:clamp(6.5px,1vw,8px);color:rgba(253,224,71,0.32);line-height:1.5;margin-top:2px;}
 
 /* ── SLIDE INNER LAYOUT — 2 cột: content left + card panel right ── */
 .sbs-inner{
@@ -611,6 +638,149 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .idx-bnav-item.active span{color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,0.3);}
 /* Always show bottom nav, always add body padding */
 body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
+
+/* ══════════════════════════════════════════
+   THANH TOÁN HỘ CARD — TTH namespace
+══════════════════════════════════════════ */
+.tth-card{
+  background:linear-gradient(145deg,rgba(20,14,4,0.93) 0%,rgba(13,9,2,0.97) 50%,rgba(22,15,3,0.93) 100%);
+  border:1.5px solid rgba(234,179,8,0.45);
+  border-radius:40px;position:relative;overflow:hidden;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 0 0 1.5px rgba(234,179,8,0.38),
+    0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),
+    0 0 80px rgba(234,179,8,0.14),0 0 140px rgba(234,179,8,0.06);
+  transition:border-color .28s,box-shadow .28s,transform .2s;
+  max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;
+}
+.tth-card:hover{border-color:rgba(234,179,8,0.65);transform:translateY(-2px);
+  box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 0 0 1.5px rgba(234,179,8,0.5),
+    0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),
+    0 0 90px rgba(234,179,8,0.22),0 0 160px rgba(234,179,8,0.1);}
+.tth-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(234,179,8,0.9),rgba(251,191,36,0.6),transparent);pointer-events:none;}
+.tth-inner{padding:clamp(24px,5vw,36px);}
+.tth-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.tth-ico{width:54px;height:54px;min-width:54px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(234,179,8,0.2),rgba(180,130,0,0.1));
+  border:1.5px solid rgba(234,179,8,0.55);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 20px rgba(234,179,8,0.3);flex-shrink:0;}
+.tth-ttl{font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;line-height:1.25;}
+.tth-sub{font-size:11px;color:rgba(240,236,248,0.42);font-weight:500;line-height:1.55;word-break:break-word;margin-bottom:8px;}
+.tth-badges{display:flex;gap:7px;flex-wrap:wrap;}
+.tth-badge{display:inline-flex;align-items:center;gap:5px;border-radius:9px;padding:5px 11px;
+  font-size:11px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}
+.tth-bv{background:rgba(30,80,200,0.18);border:1.5px solid rgba(60,120,255,0.45);color:#93C5FD;}
+.tth-bm{background:rgba(200,50,30,0.14);border:1.5px solid rgba(234,67,53,0.4);color:#FCA5A5;}
+.tth-dv{height:1px;background:rgba(234,179,8,0.14);margin:0 0 20px;}
+/* Any-service block */
+.tth-any{background:linear-gradient(135deg,rgba(234,179,8,0.1) 0%,rgba(180,130,0,0.05) 100%);
+  border:1.5px solid rgba(234,179,8,0.38);border-radius:22px;padding:18px 20px 16px;margin-bottom:18px;
+  position:relative;overflow:hidden;}
+.tth-any::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),transparent);}
+.tth-any-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.14);
+  border:1px solid rgba(234,179,8,0.4);border-radius:100px;padding:4px 11px;
+  font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#FDE047;margin-bottom:8px;}
+.tth-dot{width:5px;height:5px;border-radius:50%;background:#EAB308;box-shadow:0 0 6px #EAB308;
+  animation:tthDot 1.8s ease-in-out infinite;flex-shrink:0;}
+@keyframes tthDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.tth-stmt{font-size:clamp(1.05rem,4vw,1.3rem);font-weight:900;line-height:1.2;letter-spacing:-0.03em;
+  color:#fff;margin-bottom:8px;word-break:break-word;}
+.tth-stmt em{font-style:normal;background:linear-gradient(90deg,#EAB308 0%,#FDE047 40%,#fff 70%,#FDE047 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 12px rgba(234,179,8,0.6));}
+.tth-note{font-size:11.5px;color:rgba(240,236,248,0.5);line-height:1.6;margin-bottom:14px;}
+.tth-note strong{color:rgba(253,224,71,0.85);font-weight:700;}
+/* Marquee */
+.tth-mq-wrap{overflow:hidden;position:relative;border-radius:100px;
+  border:1px solid rgba(234,179,8,0.18);background:rgba(0,0,0,0.3);}
+.tth-mq-wrap::before,.tth-mq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none;}
+.tth-mq-wrap::before{left:0;background:linear-gradient(90deg,rgba(13,9,2,1),transparent);}
+.tth-mq-wrap::after{right:0;background:linear-gradient(270deg,rgba(13,9,2,1),transparent);}
+.tth-mq-track{display:flex;animation:tthScroll 20s linear infinite;width:max-content;padding:8px 0;}
+@keyframes tthScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.tth-mq-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 14px;font-size:10px;font-weight:700;
+  white-space:nowrap;color:rgba(253,224,71,0.55);flex-shrink:0;border-right:1px solid rgba(234,179,8,0.12);}
+.tth-mq-chip svg{opacity:0.5;flex-shrink:0;}
+/* Info strip */
+.tth-strip{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.22);border-radius:16px;
+  padding:12px 16px;display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
+.tth-ir{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(240,236,248,0.6);line-height:1.55;}
+.tth-ii{color:#EAB308;font-weight:700;flex-shrink:0;}
+/* Buttons */
+.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;
+  font-weight:700;font-family:'Inter',sans-serif;font-size:13.5px;padding:13px 20px;
+  border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
+.tth-btn-fee:hover{background:rgba(234,179,8,0.16);border-color:rgba(234,179,8,0.7);box-shadow:0 0 18px rgba(234,179,8,0.25);}
+@property --tth-la{syntax:'<angle>';initial-value:0deg;inherits:false;}
+@keyframes tthSpin{from{--tth-la:0deg;}to{--tth-la:360deg;}}
+@keyframes tthShim{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
+.tth-btn-cw{width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;
+  background:conic-gradient(from var(--tth-la,0deg),#78350f 0%,#eab308 15%,#fef08a 25%,#f59e0b 35%,#eab308 50%,#78350f 60%,#fef08a 70%,#eab308 85%,#78350f 100%);
+  animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(234,179,8,0.75),0 0 44px rgba(234,179,8,0.32);}
+.tth-btn-cw::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
+.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;
+  justify-content:center;gap:8px;
+  background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);
+  color:#1a0800;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;
+  padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;
+  white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
+.tth-btn-c::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,0.45),transparent);
+  animation:tthShim 1.1s linear infinite;pointer-events:none;z-index:2;}
+/* Fee Modal */
+.fee-modal{
+  background:#100a02;border:1px solid rgba(234,179,8,0.35);border-radius:32px;
+  width:100%;max-width:420px;max-height:calc(100vh - clamp(24px,6vw,40px));
+  overflow-y:auto;overscroll-behavior:contain;
+  animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow:0 0 0 1px rgba(234,179,8,0.2),0 4px 8px rgba(0,0,0,0.65),
+    0 16px 40px rgba(0,0,0,0.5),0 0 60px rgba(234,179,8,0.18);
+  position:relative;display:flex;flex-direction:column;margin:auto;
+}
+.fee-modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),rgba(251,191,36,0.5),transparent);
+  z-index:2;pointer-events:none;}
+.fee-modal-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(234,179,8,0.12);position:sticky;top:0;z-index:10;
+  background:#100a02;border-radius:32px 32px 0 0;flex-shrink:0;}
+.fee-modal-title{font-size:1rem;font-weight:800;color:#FDE047;display:flex;align-items:center;gap:8px;}
+.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(234,179,8,0.1);
+  border:1px solid rgba(234,179,8,0.3);color:#EAB308;font-size:14px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Inter',sans-serif;}
+.fee-modal-close:hover{background:rgba(234,179,8,0.22);}
+.fee-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:10px;}
+.fm-fixed{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:linear-gradient(135deg,rgba(234,179,8,0.15),rgba(180,130,0,0.08));
+  border:1.5px solid rgba(234,179,8,0.45);border-radius:18px;padding:14px 18px;}
+.fm-fixed-lbl{font-size:12px;color:rgba(240,236,248,0.75);font-weight:700;display:flex;align-items:center;gap:7px;}
+.fm-fixed-val{font-size:1.4rem;font-weight:900;color:#FDE047;white-space:nowrap;letter-spacing:-0.02em;filter:drop-shadow(0 0 10px rgba(234,179,8,0.5));}
+.fm-tiers{display:flex;flex-direction:column;gap:8px;}
+.fm-tier{background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.18);
+  border-radius:16px;padding:12px 10px;text-align:center;transition:border-color 0.2s,background 0.2s;
+  display:flex;align-items:center;justify-content:space-between;padding:12px 18px;}
+.fm-tier:hover{border-color:rgba(234,179,8,0.4);background:rgba(234,179,8,0.09);}
+.fm-tier-range{font-size:13.5px;font-weight:800;color:#fff;letter-spacing:-0.01em;line-height:1.2;flex:1;}
+.fm-tier-pct{font-size:1rem;font-weight:800;color:rgba(253,224,71,0.65);white-space:nowrap;}
+.fm-tier-label{font-size:9px;color:rgba(234,179,8,0.35);font-weight:600;white-space:nowrap;margin-left:4px;}
+.fm-note{font-size:11px;color:rgba(240,236,248,0.35);line-height:1.65;text-align:center;padding:0 4px;}
+.fm-eg{background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.16);border-radius:16px;padding:14px 16px;}
+.fm-eg-title{font-size:8px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(234,179,8,0.45);margin-bottom:10px;}
+.fm-eg-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid rgba(234,179,8,0.07);}
+.fm-eg-row:last-child{border-bottom:none;}
+.fm-eg-name{font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:600;flex:1;}
+.fm-eg-result{font-size:12px;font-weight:800;color:#FDE047;white-space:nowrap;}
+@media(max-width:480px){
+  .tth-inner{padding:22px 18px 26px!important;}
+  .tth-ttl{font-size:1.05rem;}
+  .tth-ico{width:46px;height:46px;min-width:46px;}
+  .tth-stmt{font-size:1rem;}
+  .fm-tiers{gap:6px;}
+  .fee-modal-body{padding:14px 16px 20px;}
+  .fee-modal-head{padding:14px 16px 12px;}
+}
 @media(max-width:767px){
   .topbar-hamburger{display:none;}
   .topbar-dropdown{display:none!important;}
@@ -692,8 +862,39 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       </div>
     </div>
 
-    <!-- ═══ SLIDE 2 — Web Bot ═══ -->
-    <div class="site-banner-slide sbs-2" onclick="sbSlideClick(1)">
+    <!-- ═══ SLIDE 2 — Thanh Toán Quốc Tế ═══ -->
+    <div class="site-banner-slide sbs-4" onclick="sbSlideClick(1)">
+      <div class="sbs-grid" aria-hidden="true">
+        <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
+        <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
+      </div>
+      <div class="sbs-inner">
+        <div class="sbs-left">
+          <div class="sbs-badge sbs-badge-amber"><div class="sbs-badge-dot"></div>Thanh Toán Hộ · Visa / Mastercard</div>
+          <div class="sbs-title">Không thẻ quốc tế?<br><em style="background:linear-gradient(135deg,#D97706,#FDE047,#ffffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Tôi thanh toán hộ.</em></div>
+          <div class="sbs-sub">Netflix, Spotify, Adobe, Steam, AI tools hay bất kỳ dịch vụ nào — chỉ cần chuyển khoản nội địa, xử lý trong 1 phút.</div>
+          <div class="sbs-pills">
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FDE047" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg> Visa/MC</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 1 phút</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Uy tín</span>
+            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg> Mọi web quốc tế</span>
+          </div>
+        </div>
+        <!-- RIGHT — fee preview panel -->
+        <div class="sbs-right" style="position:relative;">
+          <div class="sbs-fee-panel">
+            <div class="sbs-fee-hd">Phí dịch vụ</div>
+            <div class="sbs-fee-row"><span class="sbs-fee-range">Dưới 400K</span><span class="sbs-fee-pct">31%</span></div>
+            <div class="sbs-fee-row"><span class="sbs-fee-range">400K – 1tr</span><span class="sbs-fee-pct">19%</span></div>
+            <div class="sbs-fee-row"><span class="sbs-fee-range">Trên 1tr</span><span class="sbs-fee-pct">12%</span></div>
+            <div class="sbs-fee-note">+ phí cố định 2 USD / giao dịch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SLIDE 3 — Web Bot ═══ -->
+    <div class="site-banner-slide sbs-2" onclick="sbSlideClick(2)">
       <div class="sbs-grid" aria-hidden="true">
         <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
         <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
@@ -713,8 +914,8 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       </div>
     </div>
 
-    <!-- ═══ SLIDE 3 — Kho Code ═══ -->
-    <div class="site-banner-slide sbs-3" onclick="sbSlideClick(2)">
+    <!-- ═══ SLIDE 4 — Kho Code ═══ -->
+    <div class="site-banner-slide sbs-3" onclick="sbSlideClick(3)">
       <div class="sbs-grid" aria-hidden="true">
         <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
         <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
@@ -738,6 +939,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <div class="sbs-dot active" onclick="sbGoTo(0)"></div>
     <div class="sbs-dot" onclick="sbGoTo(1)"></div>
     <div class="sbs-dot" onclick="sbGoTo(2)"></div>
+    <div class="sbs-dot" onclick="sbGoTo(3)"></div>
   </div>
 </div>
 
@@ -989,7 +1191,106 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <!-- SERVICES -->
 <section id="services" style="padding:60px 0 64px;position:relative;z-index:1;">
   <div class="container">
-    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dịch Vụ Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
+    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Thanh Toán Hộ · Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
+
+    <!-- ══ THANH TOÁN HỘ CARD ══ -->
+    <div class="tth-card" style="margin-bottom:clamp(24px,4vw,40px);">
+      <div class="tth-inner">
+
+        <!-- Header -->
+        <div class="tth-hd">
+          <div class="tth-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <defs><linearGradient id="tth-gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EAB308"/><stop offset="100%" stop-color="#FDE047"/></linearGradient></defs>
+              <rect x="2" y="5" width="20" height="14" rx="3" stroke="url(#tth-gi)" stroke-width="1.8"/>
+              <path d="M2 9h20" stroke="url(#tth-gi)" stroke-width="1.8"/>
+              <rect x="5" y="13" width="5" height="2.5" rx="1" fill="url(#tth-gi)"/>
+              <circle cx="17" cy="14.5" r="2" fill="rgba(234,179,8,0.4)" stroke="url(#tth-gi)" stroke-width="1.2"/>
+              <circle cx="15" cy="14.5" r="2" fill="rgba(251,146,60,0.4)"/>
+            </svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div class="tth-ttl">Thanh Toán Hộ Quốc Tế</div>
+            <div class="tth-sub">Nạp tiền, mua sub, đăng ký dịch vụ nước ngoài không cần thẻ quốc tế</div>
+            <div class="tth-badges">
+              <div class="tth-badge tth-bv">VISA</div>
+              <div class="tth-badge tth-bm">
+                <svg width="18" height="12" viewBox="0 0 36 24" fill="none">
+                  <circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/>
+                  <circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/>
+                  <path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/>
+                </svg>MC
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tth-dv"></div>
+
+        <!-- Any-service hero -->
+        <div class="tth-any">
+          <div class="tth-any-badge"><div class="tth-dot"></div>Không giới hạn dịch vụ</div>
+          <div class="tth-stmt">Bạn muốn dịch vụ nào,<br>tôi thanh toán <em>dịch vụ đó.</em></div>
+          <div class="tth-note">Không cần thẻ quốc tế — tôi dùng <strong>Visa/Mastercard</strong> của mình thanh toán hộ bạn. Netflix, AI tools, game, phần mềm hay bất kỳ website nào trên thế giới.</div>
+          <div class="tth-mq-wrap">
+            <div class="tth-mq-track">
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg>Netflix</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Spotify</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Adobe</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Steam</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Cursor AI</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Claude Pro</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Midjourney</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5l4 4L7 21H3v-4z"/></svg>Canva</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Disney+</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>Notion</span>
+              <span class="tth-mq-chip">✦ &amp; mọi web quốc tế</span>
+              <!-- duplicate for seamless loop -->
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg>Netflix</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Spotify</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Adobe</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Steam</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Cursor AI</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Claude Pro</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Midjourney</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5l4 4L7 21H3v-4z"/></svg>Canva</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Disney+</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>Notion</span>
+              <span class="tth-mq-chip">✦ &amp; mọi web quốc tế</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info strip -->
+        <div class="tth-strip">
+          <div class="tth-ir"><span class="tth-ii">✓</span><span>Không cần thẻ Visa/MC — chỉ cần chuyển khoản nội địa.</span></div>
+          <div class="tth-ir"><span class="tth-ii">✓</span><span>Xử lý nhanh trong <strong style="color:rgba(253,224,71,0.95);">1 phút</strong> sau khi nhận tiền.</span></div>
+          <div class="tth-ir"><span class="tth-ii">✓</span><span>Hỗ trợ tạo tài khoản mới hoặc gia hạn tài khoản có sẵn.</span></div>
+        </div>
+
+        <!-- Nút xem phí -->
+        <button class="tth-btn-fee" onclick="openFeeModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Xem phí dịch vụ
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </button>
+
+        <!-- Nút liên hệ ngay (dùng contact modal có sẵn) -->
+        <div class="tth-btn-cw">
+          <button class="tth-btn-c" onclick="openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Liên hệ ngay
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <!-- ══ END THANH TOÁN HỘ CARD ══ -->
+
+    <!-- Section label cho Bot/Web -->
+    <div class="section-wrap" style="margin-bottom:20px;"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dịch Vụ Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
+
     <div class="glass-card glass-card-glow">
       <div style="padding:clamp(28px,5vw,48px) clamp(24px,5vw,52px);">
         <div style="margin-bottom:28px;">
@@ -1048,6 +1349,49 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       <span>Liên Hệ</span>
     </a>
+  </div>
+</div>
+
+<!-- FEE MODAL -->
+<div class="modal-overlay" id="feeModal" onclick="if(event.target===this)closeFeeModal()">
+  <div class="fee-modal">
+    <div class="fee-modal-head">
+      <div class="fee-modal-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        Bảng Phí Dịch Vụ
+      </div>
+      <button class="fee-modal-close" onclick="closeFeeModal()">✕</button>
+    </div>
+    <div class="fee-modal-body">
+      <div class="fm-fixed">
+        <span class="fm-fixed-lbl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Phí cố định / giao dịch
+        </span>
+        <span class="fm-fixed-val">+2 USD</span>
+      </div>
+      <div class="fm-tiers">
+        <div class="fm-tier">
+          <div class="fm-tier-range">Dưới 400.000đ</div>
+          <div style="display:flex;align-items:baseline;gap:4px;"><div class="fm-tier-pct">31%</div><div class="fm-tier-label">+ phí cố định</div></div>
+        </div>
+        <div class="fm-tier">
+          <div class="fm-tier-range">400K – 1.000K</div>
+          <div style="display:flex;align-items:baseline;gap:4px;"><div class="fm-tier-pct">19%</div><div class="fm-tier-label">+ phí cố định</div></div>
+        </div>
+        <div class="fm-tier">
+          <div class="fm-tier-range">Trên 1.000K</div>
+          <div style="display:flex;align-items:baseline;gap:4px;"><div class="fm-tier-pct">12%</div><div class="fm-tier-label">+ phí cố định</div></div>
+        </div>
+      </div>
+      <div class="fm-note">Phí % tính trên giá dịch vụ quy đổi VNĐ · Tỷ giá theo Vietcombank tại thời điểm thanh toán</div>
+      <div class="fm-eg">
+        <div class="fm-eg-title">Ví dụ tính phí</div>
+        <div class="fm-eg-row"><span class="fm-eg-name">Netflix $6.99 ≈ 180K</span><span class="fm-eg-result">~287.000đ</span></div>
+        <div class="fm-eg-row"><span class="fm-eg-name">Disney+ $13.99 ≈ 360K</span><span class="fm-eg-result">~523.000đ</span></div>
+        <div class="fm-eg-row"><span class="fm-eg-name">Adobe $54.99 ≈ 1.4tr</span><span class="fm-eg-result">~1.619.000đ</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1186,7 +1530,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Truy cập đầy đủ Sora (Video AI) &amp; Codex.</div>
       </div>
     </div>
-    <div style="font-size:14px;font-weight:800;margin-bottom:20px;color:var(--text);">Liên hệ để nhận code ngay:</div>
+    <div id="modalSubtitle" style="font-size:14px;font-weight:800;margin-bottom:20px;color:var(--text);">Liên hệ để mua ngay:</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
       <a href="https://t.me/binpinkgold" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
         <img src="assets/images/tele.jpg" alt="Telegram" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
@@ -1219,6 +1563,15 @@ function initYearlyPricing() {
 function openModal(n){
   document.getElementById('modalSelected').textContent=n;
   document.getElementById('plusNotesBox').style.display='none';
+  var sub=document.getElementById('modalSubtitle');
+  if(sub){
+    if(n.indexOf('Thanh Toán')!==-1||n.indexOf('Dịch Vụ')!==-1||n.indexOf('Bot')!==-1||n.indexOf('Website')!==-1)
+      sub.textContent='Liên hệ để đặt dịch vụ ngay:';
+    else if(n.indexOf('YouTube')!==-1||n.indexOf('CapCut')!==-1||n.indexOf('Plus')!==-1||n.indexOf('ChatGPT')!==-1)
+      sub.textContent='Liên hệ để nhận tài khoản ngay:';
+    else
+      sub.textContent='Liên hệ để mua ngay:';
+  }
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -1227,9 +1580,14 @@ function closeModal(){document.getElementById('contactModal').classList.remove('
 function openPlusModal(){
   document.getElementById('modalSelected').innerHTML='✨ ChatGPT Plus &bull; 199K/tháng';
   document.getElementById('plusNotesBox').style.display='block';
+  var sub=document.getElementById('modalSubtitle');
+  if(sub) sub.textContent='Liên hệ để nhận tài khoản ngay:';
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
+
+function openFeeModal(){document.getElementById('feeModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeFeeModal(){document.getElementById('feeModal').classList.remove('open');document.body.style.overflow='';}
 
 function openFeatModal(){document.getElementById('featModal').classList.add('open');document.body.style.overflow='hidden';}
 
@@ -1243,7 +1601,7 @@ function calcDiscounts(){
 
 // BANNER
 const SB_INTERVAL=4500;
-let sbCur=0,sbTot=3,sbTimer,sbPaused=false;
+let sbCur=0,sbTot=4,sbTimer,sbPaused=false;
 const sbSlides=document.getElementById('sbSlides');
 const sbDots=document.querySelectorAll('.sbs-dot');
 function sbGoTo(i){sbCur=i;sbSlides.style.transform=`translateX(-${sbCur*100}%)`;sbDots.forEach((d,j)=>d.classList.toggle('active',j===sbCur));}
@@ -1257,7 +1615,7 @@ function sbResume(){sbPaused=false;sbStartTimer();}
 // Slide 0: ChatGPT Plus → #accounts
 // Slide 1: Web Bot → #services  
 // Slide 2: Kho Code → kho.html
-const SB_TARGETS=['#accounts','#services','kho.html'];
+const SB_TARGETS=['#accounts','#services','#services','kho.html'];
 function sbSlideClick(idx){
   var target=SB_TARGETS[idx];
   if(!target)return;
@@ -1309,4 +1667,5 @@ function idxNavClick(e, idx, target){
 <script src="protect.js"></script>
 </body>
 </html>
+
 

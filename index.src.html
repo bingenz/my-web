@@ -781,6 +781,17 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .fee-modal-body{padding:14px 16px 20px;}
   .fee-modal-head{padding:14px 16px 12px;}
 }
+/* Fee calculator */
+.fm-calc{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.25);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
+.fm-calc-title{font-size:8px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(234,179,8,0.5);}
+.fm-calc-row{display:flex;align-items:center;gap:8px;}
+.fm-calc-input{flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;color:#FDE047;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
+.fm-calc-input:focus{border-color:rgba(234,179,8,0.65);}
+.fm-calc-input::placeholder{color:rgba(253,224,71,0.25);font-weight:500;}
+.fm-calc-unit{font-size:11px;font-weight:700;color:rgba(234,179,8,0.45);white-space:nowrap;flex-shrink:0;}
+.fm-calc-result{background:linear-gradient(135deg,rgba(234,179,8,0.12),rgba(180,130,0,0.07));border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.fm-calc-result-lbl{font-size:11px;color:rgba(240,236,248,0.5);font-weight:600;}
+.fm-calc-result-val{font-size:1.1rem;font-weight:900;color:#FDE047;letter-spacing:-0.02em;filter:drop-shadow(0 0 8px rgba(234,179,8,0.45));}
 @media(max-width:767px){
   .topbar-hamburger{display:none;}
   .topbar-dropdown{display:none!important;}
@@ -880,14 +891,16 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg> Mọi web quốc tế</span>
           </div>
         </div>
-        <!-- RIGHT — fee preview panel -->
+        <!-- RIGHT — curiosity teaser -->
         <div class="sbs-right" style="position:relative;">
-          <div class="sbs-fee-panel">
-            <div class="sbs-fee-hd">Phí dịch vụ</div>
-            <div class="sbs-fee-row"><span class="sbs-fee-range">Dưới 400K</span><span class="sbs-fee-pct">31%</span></div>
-            <div class="sbs-fee-row"><span class="sbs-fee-range">400K – 1tr</span><span class="sbs-fee-pct">19%</span></div>
-            <div class="sbs-fee-row"><span class="sbs-fee-range">Trên 1tr</span><span class="sbs-fee-pct">12%</span></div>
-            <div class="sbs-fee-note">+ phí cố định 2 USD / giao dịch</div>
+          <div class="sbs-fee-panel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(6px,1vw,10px);text-align:center;cursor:pointer;" onclick="sbSlideClick(1)">
+            <div style="font-size:clamp(22px,4vw,32px);line-height:1;">💳</div>
+            <div style="font-size:clamp(8px,1.3vw,11px);font-weight:800;color:#FDE047;letter-spacing:0.06em;text-transform:uppercase;line-height:1.4;">Phí rẻ hơn<br>bạn nghĩ</div>
+            <div style="font-size:clamp(7px,1.1vw,9px);color:rgba(253,224,71,0.45);font-weight:600;line-height:1.5;">Xem bảng phí<br>& tính tiền ngay</div>
+            <div style="display:flex;align-items:center;gap:4px;background:rgba(234,179,8,0.15);border:1px solid rgba(234,179,8,0.4);border-radius:100px;padding:4px 10px;">
+              <span style="font-size:clamp(7px,1.1vw,9px);font-weight:800;color:#FDE047;">Xem ngay</span>
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#FDE047" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </div>
           </div>
         </div>
       </div>
@@ -1094,9 +1107,101 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
           </div>
         </div>
-      </div>
-      </div>
 
+      <!-- ══ THANH TOÁN HỘ CARD ══ -->
+        <div id="tth-anchor" class="tth-card" style="margin-top:clamp(24px,4vw,40px);margin-bottom:clamp(24px,4vw,40px);">
+      <div class="tth-inner">
+
+        <!-- Header -->
+        <div class="tth-hd">
+          <div class="tth-ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <defs><linearGradient id="tth-gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EAB308"/><stop offset="100%" stop-color="#FDE047"/></linearGradient></defs>
+              <rect x="2" y="5" width="20" height="14" rx="3" stroke="url(#tth-gi)" stroke-width="1.8"/>
+              <path d="M2 9h20" stroke="url(#tth-gi)" stroke-width="1.8"/>
+              <rect x="5" y="13" width="5" height="2.5" rx="1" fill="url(#tth-gi)"/>
+              <circle cx="17" cy="14.5" r="2" fill="rgba(234,179,8,0.4)" stroke="url(#tth-gi)" stroke-width="1.2"/>
+              <circle cx="15" cy="14.5" r="2" fill="rgba(251,146,60,0.4)"/>
+            </svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div class="tth-ttl">Thanh Toán Hộ Quốc Tế</div>
+            <div class="tth-sub">Nạp tiền, mua sub, đăng ký dịch vụ nước ngoài không cần thẻ quốc tế</div>
+            <div class="tth-badges">
+              <div class="tth-badge tth-bv">VISA</div>
+              <div class="tth-badge tth-bm">
+                <svg width="18" height="12" viewBox="0 0 36 24" fill="none">
+                  <circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/>
+                  <circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/>
+                  <path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/>
+                </svg>MC
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tth-dv"></div>
+
+        <!-- Any-service hero -->
+        <div class="tth-any">
+          <div class="tth-any-badge"><div class="tth-dot"></div>Không giới hạn dịch vụ</div>
+          <div class="tth-stmt">Bạn muốn dịch vụ nào,<br>tôi thanh toán <em>dịch vụ đó.</em></div>
+          <div class="tth-note">Không cần thẻ quốc tế — tôi dùng <strong>Visa/Mastercard</strong> của mình thanh toán hộ bạn. Netflix, AI tools, game, phần mềm hay bất kỳ website nào trên thế giới.</div>
+          <div class="tth-mq-wrap">
+            <div class="tth-mq-track">
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg>Netflix</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Spotify</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Adobe</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Steam</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Cursor AI</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Claude Pro</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Midjourney</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5l4 4L7 21H3v-4z"/></svg>Canva</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Disney+</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>Notion</span>
+              <span class="tth-mq-chip">✦ &amp; mọi web quốc tế</span>
+              <!-- duplicate for seamless loop -->
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg>Netflix</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Spotify</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Adobe</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Steam</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Cursor AI</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Claude Pro</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Midjourney</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5l4 4L7 21H3v-4z"/></svg>Canva</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Disney+</span>
+              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>Notion</span>
+              <span class="tth-mq-chip">✦ &amp; mọi web quốc tế</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info strip -->
+        <div class="tth-strip">
+          <div class="tth-ir"><span class="tth-ii">✓</span><span>Không cần thẻ Visa/MC — chỉ cần chuyển khoản nội địa.</span></div>
+          <div class="tth-ir"><span class="tth-ii">✓</span><span>Xử lý nhanh trong <strong style="color:rgba(253,224,71,0.95);">1 phút</strong> sau khi nhận tiền.</span></div>
+          <div class="tth-ir"><span class="tth-ii">✓</span><span>Hỗ trợ tạo tài khoản mới hoặc gia hạn tài khoản có sẵn.</span></div>
+        </div>
+
+        <!-- Nút xem phí -->
+        <button class="tth-btn-fee" onclick="openFeeModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Xem phí dịch vụ
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </button>
+
+        <!-- Nút liên hệ ngay (dùng contact modal có sẵn) -->
+        <div class="tth-btn-cw">
+          <button class="tth-btn-c" onclick="openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Liên hệ ngay
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+      </div>
+      </div>
+      <!-- ══ END THANH TOÁN HỘ CARD ══ -->
       <!-- Sub cards -->
       <div class="sub-cards-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:clamp(12px,2vw,16px);isolation:isolate;align-items:stretch;">
 
@@ -1191,105 +1296,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <!-- SERVICES -->
 <section id="services" style="padding:60px 0 64px;position:relative;z-index:1;">
   <div class="container">
-    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Thanh Toán Hộ · Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
-
-    <!-- ══ THANH TOÁN HỘ CARD ══ -->
-    <div class="tth-card" style="margin-bottom:clamp(24px,4vw,40px);">
-      <div class="tth-inner">
-
-        <!-- Header -->
-        <div class="tth-hd">
-          <div class="tth-ico">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-              <defs><linearGradient id="tth-gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EAB308"/><stop offset="100%" stop-color="#FDE047"/></linearGradient></defs>
-              <rect x="2" y="5" width="20" height="14" rx="3" stroke="url(#tth-gi)" stroke-width="1.8"/>
-              <path d="M2 9h20" stroke="url(#tth-gi)" stroke-width="1.8"/>
-              <rect x="5" y="13" width="5" height="2.5" rx="1" fill="url(#tth-gi)"/>
-              <circle cx="17" cy="14.5" r="2" fill="rgba(234,179,8,0.4)" stroke="url(#tth-gi)" stroke-width="1.2"/>
-              <circle cx="15" cy="14.5" r="2" fill="rgba(251,146,60,0.4)"/>
-            </svg>
-          </div>
-          <div style="flex:1;min-width:0;">
-            <div class="tth-ttl">Thanh Toán Hộ Quốc Tế</div>
-            <div class="tth-sub">Nạp tiền, mua sub, đăng ký dịch vụ nước ngoài không cần thẻ quốc tế</div>
-            <div class="tth-badges">
-              <div class="tth-badge tth-bv">VISA</div>
-              <div class="tth-badge tth-bm">
-                <svg width="18" height="12" viewBox="0 0 36 24" fill="none">
-                  <circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/>
-                  <circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/>
-                  <path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/>
-                </svg>MC
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tth-dv"></div>
-
-        <!-- Any-service hero -->
-        <div class="tth-any">
-          <div class="tth-any-badge"><div class="tth-dot"></div>Không giới hạn dịch vụ</div>
-          <div class="tth-stmt">Bạn muốn dịch vụ nào,<br>tôi thanh toán <em>dịch vụ đó.</em></div>
-          <div class="tth-note">Không cần thẻ quốc tế — tôi dùng <strong>Visa/Mastercard</strong> của mình thanh toán hộ bạn. Netflix, AI tools, game, phần mềm hay bất kỳ website nào trên thế giới.</div>
-          <div class="tth-mq-wrap">
-            <div class="tth-mq-track">
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg>Netflix</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Spotify</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Adobe</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Steam</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Cursor AI</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Claude Pro</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Midjourney</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5l4 4L7 21H3v-4z"/></svg>Canva</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Disney+</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>Notion</span>
-              <span class="tth-mq-chip">✦ &amp; mọi web quốc tế</span>
-              <!-- duplicate for seamless loop -->
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg>Netflix</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Spotify</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Adobe</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Steam</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Cursor AI</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Claude Pro</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Midjourney</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5l4 4L7 21H3v-4z"/></svg>Canva</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Disney+</span>
-              <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>Notion</span>
-              <span class="tth-mq-chip">✦ &amp; mọi web quốc tế</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Info strip -->
-        <div class="tth-strip">
-          <div class="tth-ir"><span class="tth-ii">✓</span><span>Không cần thẻ Visa/MC — chỉ cần chuyển khoản nội địa.</span></div>
-          <div class="tth-ir"><span class="tth-ii">✓</span><span>Xử lý nhanh trong <strong style="color:rgba(253,224,71,0.95);">1 phút</strong> sau khi nhận tiền.</span></div>
-          <div class="tth-ir"><span class="tth-ii">✓</span><span>Hỗ trợ tạo tài khoản mới hoặc gia hạn tài khoản có sẵn.</span></div>
-        </div>
-
-        <!-- Nút xem phí -->
-        <button class="tth-btn-fee" onclick="openFeeModal()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-          Xem phí dịch vụ
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        </button>
-
-        <!-- Nút liên hệ ngay (dùng contact modal có sẵn) -->
-        <div class="tth-btn-cw">
-          <button class="tth-btn-c" onclick="openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            Liên hệ ngay
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-        </div>
-
-      </div>
-    </div>
-    <!-- ══ END THANH TOÁN HỘ CARD ══ -->
-
-    <!-- Section label cho Bot/Web -->
-    <div class="section-wrap" style="margin-bottom:20px;"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dịch Vụ Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
+    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dịch Vụ Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
 
     <div class="glass-card glass-card-glow">
       <div style="padding:clamp(28px,5vw,48px) clamp(24px,5vw,52px);">
@@ -1362,35 +1369,8 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       </div>
       <button class="fee-modal-close" onclick="closeFeeModal()">✕</button>
     </div>
-    <div class="fee-modal-body">
-      <div class="fm-fixed">
-        <span class="fm-fixed-lbl">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Phí cố định / giao dịch
-        </span>
-        <span class="fm-fixed-val">+2 USD</span>
-      </div>
-      <div class="fm-tiers">
-        <div class="fm-tier">
-          <div class="fm-tier-range">Dưới 400.000đ</div>
-          <div style="display:flex;align-items:baseline;gap:4px;"><div class="fm-tier-pct">31%</div><div class="fm-tier-label">+ phí cố định</div></div>
-        </div>
-        <div class="fm-tier">
-          <div class="fm-tier-range">400K – 1.000K</div>
-          <div style="display:flex;align-items:baseline;gap:4px;"><div class="fm-tier-pct">19%</div><div class="fm-tier-label">+ phí cố định</div></div>
-        </div>
-        <div class="fm-tier">
-          <div class="fm-tier-range">Trên 1.000K</div>
-          <div style="display:flex;align-items:baseline;gap:4px;"><div class="fm-tier-pct">12%</div><div class="fm-tier-label">+ phí cố định</div></div>
-        </div>
-      </div>
-      <div class="fm-note">Phí % tính trên giá dịch vụ quy đổi VNĐ · Tỷ giá theo Vietcombank tại thời điểm thanh toán</div>
-      <div class="fm-eg">
-        <div class="fm-eg-title">Ví dụ tính phí</div>
-        <div class="fm-eg-row"><span class="fm-eg-name">Netflix $6.99 ≈ 180K</span><span class="fm-eg-result">~287.000đ</span></div>
-        <div class="fm-eg-row"><span class="fm-eg-name">Disney+ $13.99 ≈ 360K</span><span class="fm-eg-result">~523.000đ</span></div>
-        <div class="fm-eg-row"><span class="fm-eg-name">Adobe $54.99 ≈ 1.4tr</span><span class="fm-eg-result">~1.619.000đ</span></div>
-      </div>
+    <div class="fee-modal-body" id="feeModalBody">
+      <!-- rendered by renderFeeModal() -->
     </div>
   </div>
 </div>
@@ -1586,8 +1566,107 @@ function openPlusModal(){
   document.body.style.overflow='hidden';
 }
 
-function openFeeModal(){document.getElementById('feeModal').classList.add('open');document.body.style.overflow='hidden';}
+function openFeeModal(){
+  renderFeeModal();
+  document.getElementById('feeModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
 function closeFeeModal(){document.getElementById('feeModal').classList.remove('open');document.body.style.overflow='';}
+
+// ══════════════════════════════════════════
+//  FEE CONFIG — chỉ sửa đây, mọi thứ tự cập nhật
+// ══════════════════════════════════════════
+const FEE_CONFIG = {
+  fixedUSD: 2,          // phí cố định mỗi giao dịch (USD)
+  usdRate: 25800,       // tỷ giá USD→VNĐ (cập nhật theo Vietcombank)
+  tiers: [
+    { max: 400000,  rate: 0.27, label: 'Dưới 400.000đ' },
+    { max: 1000000, rate: 0.19, label: '400K – 1.000K'  },
+    { max: Infinity, rate: 0.12, label: 'Trên 1.000K'   },
+  ],
+  examples: [
+    // Chọn theo tâm lý: total dưới ngưỡng 500K / 1tr / 2tr
+    // fee hiển thị riêng để khách thấy khoản thêm rẻ
+    { name: 'Spotify Premium', usd: 6.99  },   // ~180K → total ~280K, fee ~100K
+    { name: 'ChatGPT Plus',    usd: 20    },   // ~516K → total ~672K, fee ~156K
+    { name: 'Adobe CC',        usd: 55    },   // ~1.419tr → total ~1.64tr, fee ~222K
+  ],
+};
+
+function calcFee(vnd) {
+  const fixedVND = FEE_CONFIG.fixedUSD * FEE_CONFIG.usdRate;
+  const tier = FEE_CONFIG.tiers.find(t => vnd <= t.max);
+  return Math.round(vnd * tier.rate + (vnd < 1000000 ? fixedVND : 0));
+}
+
+function fmtK(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(n%1000000===0?0:2).replace(/\.?0+$/,'') + 'tr';
+  return Math.round(n/1000) + 'K';
+}
+
+function renderFeeModal() {
+  const cfg = FEE_CONFIG;
+  const fixedVND = cfg.fixedUSD * cfg.usdRate;
+
+  // Tiers
+  const tiersHTML = cfg.tiers.map(t =>
+    `<div class="fm-tier">
+      <div class="fm-tier-range">${t.label}</div>
+      <div style="display:flex;align-items:baseline;gap:4px;">
+        <div class="fm-tier-pct">${Math.round(t.rate*100)}%</div>
+        <div class="fm-tier-label">+ phí cố định</div>
+      </div>
+    </div>`
+  ).join('');
+
+  // Examples
+  const egRows = cfg.examples.map(e => {
+    const vnd = Math.round(e.usd * cfg.usdRate);
+    const fee = Math.round(vnd * cfg.tiers.find(t => vnd <= t.max).rate + (vnd < 1000000 ? fixedVND : 0));
+    const total = vnd + fee;
+    return `<div class="fm-eg-row">
+      <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0;">
+        <span class="fm-eg-name">${e.name} <span style="color:rgba(240,236,248,0.35);font-weight:500;">$${e.usd} ≈ ${fmtK(vnd)}</span></span>
+        <span style="font-size:10px;font-weight:700;color:rgba(99,220,150,0.75);">gồm phí dịch vụ ${fmtK(fee)}</span>
+      </div>
+      <span class="fm-eg-result">~${total.toLocaleString('vi-VN')}đ</span>
+    </div>`;
+  }).join('');
+
+  document.getElementById('feeModalBody').innerHTML = `
+    <div class="fm-tiers">${tiersHTML}</div>
+    <div class="fm-note">Phí % tính trên giá dịch vụ quy đổi VNĐ · Tỷ giá theo Vietcombank tại thời điểm thanh toán<br><span style="color:rgba(253,224,71,0.5);">* Phí cố định ${cfg.fixedUSD} USD chỉ áp dụng cho đơn dưới 1.000.000đ</span></div>
+    <div class="fm-eg" style="position:relative;">
+      <div class="fm-eg-title">Ví dụ tính phí</div>
+      ${egRows}
+    </div>
+    <div class="fm-calc">
+      <div class="fm-calc-title">🧮 Tính phí nhanh</div>
+      <div class="fm-calc-row">
+        <input class="fm-calc-input" id="feeCalcInput" type="number" min="0" placeholder="Nhập giá dịch vụ..." oninput="updateFeeCalc()">
+        <span class="fm-calc-unit">VNĐ</span>
+      </div>
+      <div class="fm-calc-result" id="feeCalcResult" style="display:none;">
+        <span class="fm-calc-result-lbl">Tổng cần chuyển khoản</span>
+        <span class="fm-calc-result-val" id="feeCalcVal">—</span>
+      </div>
+    </div>
+  `;
+}
+
+function updateFeeCalc() {
+  var inp = document.getElementById('feeCalcInput');
+  var res = document.getElementById('feeCalcResult');
+  var val = document.getElementById('feeCalcVal');
+  var n = parseFloat(inp.value);
+  if (!n || n <= 0) { res.style.display='none'; return; }
+  var fee  = calcFee(n);
+  var total = n + fee;
+  val.innerHTML =
+    '<span style="font-size:10px;font-weight:700;color:rgba(99,220,150,0.8);display:block;margin-bottom:2px;">gồm phí dịch vụ ' + fee.toLocaleString('vi-VN') + 'đ</span>' +
+    '~' + total.toLocaleString('vi-VN') + 'đ';
+  res.style.display = 'flex';
+}
 
 function openFeatModal(){document.getElementById('featModal').classList.add('open');document.body.style.overflow='hidden';}
 
@@ -1615,7 +1694,7 @@ function sbResume(){sbPaused=false;sbStartTimer();}
 // Slide 0: ChatGPT Plus → #accounts
 // Slide 1: Web Bot → #services  
 // Slide 2: Kho Code → kho.html
-const SB_TARGETS=['#accounts','#services','#services','kho.html'];
+const SB_TARGETS=['#accounts','#tth-anchor','#services','kho.html'];
 function sbSlideClick(idx){
   var target=SB_TARGETS[idx];
   if(!target)return;

@@ -177,7 +177,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
    Rule 2: flex+flex-wrap. Rule 4: 3 breakpoint. Rule 7: padding-right.
 ===================================================================== */
 .site-banner{position:relative;overflow:hidden;margin-top:60px;contain:layout style;}
-.site-banner-slides{display:flex;transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);will-change:transform;transform:translateZ(0);}
+.site-banner-slides{display:flex;transition:transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94);will-change:transform;transform:translateZ(0);}
 .site-banner-slide{
   flex:0 0 100%;position:relative;
   aspect-ratio:16/9;
@@ -601,20 +601,23 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
   max-width:480px;margin:0 auto;
   background:rgba(22,13,48,0.98);
   border:1px solid rgba(100,55,175,0.25);
-  border-radius:24px;
+  border-radius:40px;
   padding:7px;
   display:flex;align-items:center;justify-content:space-around;
   pointer-events:all;
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.07) inset,
-    0 -1px 0 rgba(0,0,0,0.55) inset,
-    0 -6px 20px rgba(0,0,0,0.5),
-    0 -14px 40px rgba(0,0,0,0.4),
-    0 0 28px rgba(120,55,200,0.15);
+    0 2px 0 rgba(255,255,255,0.13) inset,
+    0 -2px 0 rgba(0,0,0,0.7) inset,
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 8px 0 rgba(0,0,0,0.55),
+    0 12px 24px rgba(0,0,0,0.65),
+    0 20px 50px rgba(0,0,0,0.45),
+    0 0 40px rgba(120,55,200,0.22),
+    0 0 80px rgba(100,40,180,0.1);
 }
 .idx-bnav-item{
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-  padding:8px 16px;border-radius:18px;cursor:pointer;
+  padding:8px 16px;border-radius:28px;cursor:pointer;
   transition:all .2s cubic-bezier(.34,1.56,.64,1);
   flex:1;user-select:none;text-decoration:none;
 }
@@ -1675,13 +1678,39 @@ function sbSlideClick(idx){
 
 sbStartTimer();
 const sbEl=document.getElementById('siteBanner');
-let sbTx=0,sbDrag=false;
-sbEl.addEventListener('touchstart',e=>{sbTx=e.touches[0].clientX;sbDrag=true;sbPause();},{passive:true});
-sbEl.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sbTx;if(Math.abs(dx)>40){dx<0?sbNext():sbPrev();}sbDrag=false;sbResume();});
-sbEl.addEventListener('touchcancel',()=>{sbDrag=false;sbResume();});
-sbEl.addEventListener('mousedown',e=>{sbTx=e.clientX;sbDrag=true;sbPause();});
-sbEl.addEventListener('mouseup',e=>{const dx=e.clientX-sbTx;if(Math.abs(dx)>40){dx<0?sbNext():sbPrev();}sbDrag=false;sbResume();});
-sbEl.addEventListener('mouseleave',()=>{if(sbDrag){sbDrag=false;sbResume();}});
+let sbTx=0,sbDrag=false,sbDx=0,sbVx=0,sbLastX=0,sbLastT=0;
+const sbW=()=>sbEl.offsetWidth;
+function sbSetTransition(on){sbSlides.style.transition=on?'transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94)':'none';}
+function sbDragMove(cx){
+  sbDx=cx-sbTx;
+  const now=Date.now();
+  sbVx=(cx-sbLastX)/(now-sbLastT||1);
+  sbLastX=cx;sbLastT=now;
+  sbSlides.style.transform=`translateX(calc(-${sbCur*100}% + ${sbDx}px))`;
+}
+function sbDragEnd(cx){
+  sbDx=cx-sbTx;
+  const threshold=sbW()*0.2;
+  sbSetTransition(true);
+  if(sbDx<-threshold||sbVx<-0.3){sbNext();}
+  else if(sbDx>threshold||sbVx>0.3){sbPrev();}
+  else{sbGoTo(sbCur);}
+  sbDrag=false;sbDx=0;sbResume();
+}
+sbEl.addEventListener('touchstart',e=>{
+  sbTx=e.touches[0].clientX;sbLastX=sbTx;sbLastT=Date.now();
+  sbDrag=true;sbSetTransition(false);sbPause();
+},{passive:true});
+sbEl.addEventListener('touchmove',e=>{
+  if(!sbDrag)return;
+  sbDragMove(e.touches[0].clientX);
+},{passive:true});
+sbEl.addEventListener('touchend',e=>{if(!sbDrag)return;sbDragEnd(e.changedTouches[0].clientX);});
+sbEl.addEventListener('touchcancel',()=>{if(!sbDrag)return;sbSetTransition(true);sbGoTo(sbCur);sbDrag=false;sbResume();});
+sbEl.addEventListener('mousedown',e=>{sbTx=e.clientX;sbLastX=sbTx;sbLastT=Date.now();sbDrag=true;sbSetTransition(false);sbPause();});
+sbEl.addEventListener('mousemove',e=>{if(!sbDrag)return;sbDragMove(e.clientX);});
+sbEl.addEventListener('mouseup',e=>{if(!sbDrag)return;sbDragEnd(e.clientX);});
+sbEl.addEventListener('mouseleave',()=>{if(!sbDrag)return;sbSetTransition(true);sbGoTo(sbCur);sbDrag=false;sbResume();});
 
 // HAMBURGER MENU
 function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');}
@@ -1713,6 +1742,7 @@ function idxNavClick(e, idx, target){
 <script src="protect.js"></script>
 </body>
 </html>
+
 
 
 

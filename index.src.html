@@ -70,8 +70,8 @@ LƯU Ý: KHÔNG ĐƯỢC SỬ DỤNG HIỆU ỨNG GÂY LAG KHI LƯỚT WEB, CH�
 html{scroll-padding-top:72px;}
 :root{
   --purple:#A855F7;--magenta:#EC4899;--pink:#F472B6;--indigo:#6366F1;
-  --bg:#000007;--bg2:#020110;--surface:rgba(255,255,255,0.03);
-  --surface2:rgba(168,85,247,0.06);--border:rgba(168,85,247,0.2);
+  --bg:#06020f;--bg2:#080418;--surface:rgba(255,255,255,0.04);
+  --surface2:rgba(168,85,247,0.08);--border:rgba(168,85,247,0.2);
   --border-glow:rgba(168,85,247,0.45);--text:#F0ECF8;
   --muted:rgba(240,236,248,0.45);--subtle:rgba(240,236,248,0.25);
   --card-shadow:
@@ -86,28 +86,28 @@ body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-h
 /* body::after & ::before — will-change:transform đẩy lên GPU compositor layer riêng,
    tránh repaint toàn trang khi scroll */
 body::after{content:'';position:fixed;inset:0;z-index:0;
-  background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(0,0,0,0.92) 0%,transparent 70%),
-             radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.78) 0%,transparent 60%);
+  background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(0,0,0,0.55) 0%,transparent 70%),
+             radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.38) 0%,transparent 60%);
   pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
 body::before{content:'';position:fixed;inset:0;z-index:0;
   /* mobile: chỉ lưới thô (96px) — bỏ sub-grid 24px để giảm tải paint */
-  background-image:linear-gradient(rgba(168,85,247,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.07) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(168,85,247,0.13) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.13) 1px,transparent 1px);
   background-size:96px 96px,96px 96px;
   -webkit-mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
   mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
   pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
 @media(min-width:768px){
   body::before{
-    background-image:linear-gradient(rgba(168,85,247,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.08) 1px,transparent 1px),linear-gradient(rgba(168,85,247,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.035) 1px,transparent 1px);
+    background-image:linear-gradient(rgba(168,85,247,0.14) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.14) 1px,transparent 1px),linear-gradient(rgba(168,85,247,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.06) 1px,transparent 1px);
     background-size:96px 96px,96px 96px,24px 24px,24px 24px;
   }
 }
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 /* glow-orb: ẩn hoàn toàn trên mobile — filter:blur() rất nặng */
 .glow-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;will-change:transform;transform:translateZ(0);}
-.glow-orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(168,85,247,0.10) 0%,transparent 70%);top:-280px;left:-240px;filter:blur(70px);}
-.glow-orb-2{width:600px;height:600px;background:radial-gradient(circle,rgba(236,72,153,0.07) 0%,transparent 70%);bottom:-100px;right:-100px;filter:blur(70px);}
-.glow-orb-3{width:500px;height:500px;background:radial-gradient(circle,rgba(99,102,241,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%) translateZ(0);filter:blur(60px);}
+.glow-orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(168,85,247,0.22) 0%,transparent 70%);top:-280px;left:-240px;filter:blur(70px);}
+.glow-orb-2{width:700px;height:700px;background:radial-gradient(circle,rgba(236,72,153,0.18) 0%,transparent 70%);bottom:-100px;right:-100px;filter:blur(70px);}
+.glow-orb-3{width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.16) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%) translateZ(0);filter:blur(60px);}
 @media(max-width:767px){.glow-orb{display:none;}}
 .gradient-text{background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .gradient-text-white{background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -278,7 +278,12 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   transition:background 0.18s,border-color 0.18s;
   cursor:default;
 }
-.hb-chip:hover{background:rgba(168,85,247,0.07);border-color:rgba(168,85,247,0.26);}
+a.hb-chip:hover{background:rgba(168,85,247,0.14);border-color:rgba(168,85,247,0.38);}
+a.hb-chip:active{transform:scale(0.97);}
+
+/* ── 3D SPACE CANVAS ── */
+#bannerCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;}
+.hero-banner-inner{position:relative;z-index:1;}
 .hb-chip-ico{
   width:18px;height:18px;min-width:18px;border-radius:5px;
   background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.18);
@@ -322,9 +327,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .topbar-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .topbar-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .topbar-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.topbar-dropdown{position:fixed;top:60px;right:0;width:min(340px,92vw);background:rgba(8,4,22,0.97);border-left:1px solid rgba(168,85,247,0.18);border-bottom:1px solid rgba(168,85,247,0.18);border-radius:0 0 0 20px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 0;transform:translateX(100%);transition:transform 0.3s cubic-bezier(0.34,1.2,0.64,1);z-index:99;box-shadow:-8px 8px 32px rgba(0,0,0,0.6);}
-.topbar-dropdown.open{transform:translateX(0);}
-.topbar-nav-item{display:flex;align-items:center;gap:12px;padding:13px 22px;font-size:clamp(13px,3.5vw,14px);font-weight:600;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(168,85,247,0.07);transition:color 0.2s,background 0.2s;cursor:pointer;word-break:break-word;white-space:normal;box-sizing:border-box;max-width:100%;}
+.topbar-dropdown{position:fixed;top:60px;left:0;right:0;width:100%;background:rgba(8,4,22,0.98);border-bottom:1px solid rgba(168,85,247,0.22);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:6px 0 10px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform 0.25s cubic-bezier(0.34,1.2,0.64,1),opacity 0.2s ease;z-index:99;box-shadow:0 8px 32px rgba(0,0,0,0.55);}
+.topbar-dropdown.open{transform:translateY(0);opacity:1;pointer-events:all;}
+.topbar-nav-item{display:flex;align-items:center;gap:12px;padding:12px clamp(18px,5vw,40px);font-size:clamp(13px,3.5vw,14px);font-weight:600;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(168,85,247,0.07);transition:color 0.2s,background 0.2s;cursor:pointer;word-break:break-word;white-space:normal;box-sizing:border-box;max-width:100%;}
 .topbar-nav-item:last-child{border-bottom:none;}
 .topbar-nav-item:hover{color:#C084FC;background:rgba(168,85,247,0.07);}
 .topbar-nav-icon{flex-shrink:0;opacity:0.65;}
@@ -451,35 +456,43 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
 .tth-btn-c::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.38),transparent);animation:tthShim 2.4s ease-in-out infinite;pointer-events:none;z-index:2;will-change:transform;}
 
-/* FEE MODAL */
-.fee-modal{background:#100a02;border:1px solid rgba(234,179,8,0.35);border-radius:32px;width:100%;max-width:420px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 0 0 1px rgba(234,179,8,0.2),0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),0 0 60px rgba(234,179,8,0.18);position:relative;display:flex;flex-direction:column;margin:auto;}
-.fee-modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),rgba(251,191,36,0.5),transparent);z-index:2;pointer-events:none;}
-.fee-modal-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(234,179,8,0.12);position:sticky;top:0;z-index:10;background:#100a02;border-radius:32px 32px 0 0;flex-shrink:0;}
-.fee-modal-title{font-size:1rem;font-weight:800;color:#FDE047;display:flex;align-items:center;gap:8px;}
-.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3);color:#EAB308;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Inter',sans-serif;}
-.fee-modal-close:hover{background:rgba(234,179,8,0.22);}
+/* FEE MODAL — green theme */
+.fee-modal{background:rgba(4,14,8,0.99);border:1px solid rgba(34,197,94,0.4);border-radius:32px;width:100%;max-width:420px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 0 0 1px rgba(34,197,94,0.15),0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),0 0 60px rgba(34,197,94,0.14);position:relative;display:flex;flex-direction:column;margin:auto;}
+.fee-modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.85),rgba(16,185,129,0.55),transparent);z-index:2;pointer-events:none;}
+.fee-modal-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(34,197,94,0.12);position:sticky;top:0;z-index:10;background:rgba(4,14,8,0.99);border-radius:32px 32px 0 0;flex-shrink:0;}
+.fee-modal-title{font-size:1rem;font-weight:800;color:#4ade80;display:flex;align-items:center;gap:8px;}
+.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Inter',sans-serif;}
+.fee-modal-close:hover{background:rgba(34,197,94,0.22);}
 .fee-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:10px;}
-.fm-fixed{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,rgba(234,179,8,0.15),rgba(180,130,0,0.08));border:1.5px solid rgba(234,179,8,0.45);border-radius:18px;padding:14px 18px;}
-.fm-fixed-lbl{font-size:12px;color:rgba(240,236,248,0.75);font-weight:700;display:flex;align-items:center;gap:7px;}
-.fm-fixed-val{font-size:1.4rem;font-weight:900;color:#FDE047;white-space:nowrap;letter-spacing:-0.02em;filter:drop-shadow(0 0 10px rgba(234,179,8,0.5));}
-.fm-tiers{display:flex;flex-direction:column;gap:8px;}
-.fm-tier{background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.18);border-radius:16px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.2s,background 0.2s;}
-.fm-tier:hover{border-color:rgba(234,179,8,0.4);background:rgba(234,179,8,0.09);}
-.fm-tier-range{font-size:13.5px;font-weight:800;color:#fff;letter-spacing:-0.01em;line-height:1.2;flex:1;}
-.fm-tier-right{display:flex;align-items:baseline;gap:4px;min-width:110px;justify-content:flex-end;}
-.fm-tier-pct{font-size:1rem;font-weight:800;color:rgba(253,224,71,0.65);white-space:nowrap;}
-.fm-tier-label{font-size:9px;color:rgba(234,179,8,0.35);font-weight:600;white-space:nowrap;}
-.fm-note{font-size:11px;color:rgba(240,236,248,0.35);line-height:1.65;text-align:center;padding:0 4px;}
-.fm-calc{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.25);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
-.fm-calc-title{font-size:8px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(234,179,8,0.5);}
+/* tiers */
+.fm-tiers{display:flex;flex-direction:column;gap:7px;}
+.fm-tier{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.18);border-radius:16px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;transition:border-color 0.2s,background 0.2s;}
+.fm-tier:hover{border-color:rgba(34,197,94,0.4);background:rgba(34,197,94,0.09);}
+.fm-tier.cheapest{border-color:rgba(34,197,94,0.42);background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(16,185,129,0.06));}
+.fm-tier-range{font-size:13px;font-weight:800;color:#fff;letter-spacing:-0.01em;line-height:1.2;flex:1;}
+.fm-tier-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.fm-tier-pct{font-size:1.1rem;font-weight:900;color:#4ade80;white-space:nowrap;letter-spacing:-0.02em;}
+.fm-tier-tag{font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:100px;white-space:nowrap;}
+.fm-tier-tag.fixed{background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:rgba(74,222,128,0.7);}
+.fm-tier-tag.best{background:rgba(34,197,94,0.2);border:1px solid rgba(34,197,94,0.5);color:#4ade80;}
+/* note */
+.fm-note{font-size:10.5px;color:rgba(240,236,248,0.3);line-height:1.65;text-align:center;padding:0 4px;}
+.fm-note em{color:rgba(74,222,128,0.5);font-style:normal;}
+/* calculator */
+.fm-calc{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.22);border-radius:18px;padding:15px 16px;display:flex;flex-direction:column;gap:10px;}
+.fm-calc-title{font-size:8px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:rgba(74,222,128,0.5);}
 .fm-calc-row{display:flex;align-items:center;gap:8px;}
-.fm-calc-input{flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;color:#FDE047;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
-.fm-calc-input:focus{border-color:rgba(234,179,8,0.65);}
-.fm-calc-input::placeholder{color:rgba(253,224,71,0.25);font-weight:500;}
-.fm-calc-unit{font-size:11px;font-weight:700;color:rgba(234,179,8,0.45);white-space:nowrap;flex-shrink:0;}
-.fm-calc-result{background:linear-gradient(135deg,rgba(234,179,8,0.12),rgba(180,130,0,0.07));border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.fm-calc-result-lbl{font-size:11px;color:rgba(240,236,248,0.5);font-weight:600;}
-.fm-calc-result-val{font-size:1.1rem;font-weight:900;color:#FDE047;letter-spacing:-0.02em;filter:drop-shadow(0 0 8px rgba(234,179,8,0.45));}
+.fm-calc-input{flex:1;background:rgba(0,0,0,0.45);border:1px solid rgba(34,197,94,0.28);border-radius:10px;padding:10px 13px;font-size:13px;font-weight:700;color:#4ade80;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
+.fm-calc-input:focus{border-color:rgba(34,197,94,0.65);box-shadow:0 0 0 3px rgba(34,197,94,0.08);}
+.fm-calc-input::placeholder{color:rgba(74,222,128,0.22);font-weight:500;}
+.fm-calc-unit{font-size:11px;font-weight:700;color:rgba(74,222,128,0.45);white-space:nowrap;flex-shrink:0;}
+.fm-calc-breakdown{background:rgba(0,0,0,0.3);border:1px solid rgba(34,197,94,0.2);border-radius:13px;padding:11px 14px;display:flex;flex-direction:column;gap:6px;}
+.fm-calc-row-item{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;}
+.fm-calc-row-item.divider{height:1px;background:rgba(34,197,94,0.15);margin:2px 0;}
+.fm-calc-row-item .lbl{color:rgba(240,236,248,0.4);font-weight:500;}
+.fm-calc-row-item .val{color:rgba(240,236,248,0.6);font-weight:700;}
+.fm-calc-row-item.total .lbl{color:rgba(240,236,248,0.6);font-weight:700;font-size:12px;}
+.fm-calc-row-item.total .val{font-size:1.1rem;font-weight:900;color:#4ade80;letter-spacing:-0.02em;filter:drop-shadow(0 0 8px rgba(34,197,94,0.4));}
 
 /* MODAL SHARED */
 @keyframes popIn{from{opacity:0;transform:scale(0.92) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
@@ -564,7 +577,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 /* ─────────────────────────────────
    RESPONSIVE OVERRIDES
 ───────────────────────────────── */
-@media(max-width:767px){.topbar-hamburger{display:none;}.topbar-dropdown{display:none!important;}}
+/* hamburger hiển thị ở mọi breakpoint */.topbar-hamburger{display:flex!important;}
 @media(min-width:768px){.idx-bottom-nav-inner{max-width:560px;}.idx-bnav-item{padding:8px 22px;}}
 #services,#contact{content-visibility:auto;contain-intrinsic-size:0 400px;}
 
@@ -654,6 +667,10 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     <span class="topbar-nav-text">ChatGPT · Youtube · CapCut</span>
   </a>
+  <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu();setTimeout(()=>{var el=document.querySelector('#chatgptPlusCard+.sub-cards-yt-wrap+.sub-card,#accountsGrid>.sub-card:last-child');if(el){var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:60;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}},100);">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+    <span class="topbar-nav-text">Visa / Mastercard</span>
+  </a>
   <a class="topbar-nav-item" href="kho.html" onclick="closeTopMenu()">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
     <span class="topbar-nav-text">Kho Code</span>
@@ -672,6 +689,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
      HERO BANNER — compact redesign
 ═══════════════════════════════════════ -->
 <div class="hero-banner" id="siteBanner">
+  <canvas id="bannerCanvas"></canvas>
   <div class="hero-banner-topline"></div>
   <div class="hero-banner-inner">
 
@@ -704,45 +722,48 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         </div>
       </div>
 
-      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        Check uy tín Facebook
-        <div class="fb-btn-arrow"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-      </a>
+      <div style="display:flex;flex-direction:column;gap:5px;width:fit-content;">
+        <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Follow FB
+          <div class="fb-btn-arrow"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </a>
+        <div style="font-size:clamp(8.5px,1.2vw,10px);color:rgba(240,236,248,0.72);font-weight:600;text-align:center;letter-spacing:0.01em;">🎁 Follow Facebook để nhận giảm giá đơn đầu tiên</div>
+      </div>
     </div>
 
     <!-- RIGHT: 2×3 chip grid — icon + tên -->
     <div class="hb-right">
 
-      <div class="hb-chip">
+      <a class="hb-chip" href="#chatgptPlusCard" onclick="event.preventDefault();scrollToId('chatgptPlusCard');" style="text-decoration:none;cursor:pointer;">
         <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><circle cx="12" cy="5" r="2"/></svg></div>
         <span class="hb-chip-name">ChatGPT Plus</span>
-      </div>
+      </a>
 
-      <div class="hb-chip">
+      <a class="hb-chip" href="#ytCard" onclick="event.preventDefault();scrollToId('ytCard');" style="text-decoration:none;cursor:pointer;">
         <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg></div>
         <span class="hb-chip-name">YouTube Premium</span>
-      </div>
+      </a>
 
-      <div class="hb-chip">
+      <a class="hb-chip" href="#capcutCard" onclick="event.preventDefault();scrollToId('capcutCard');" style="text-decoration:none;cursor:pointer;">
         <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
         <span class="hb-chip-name">CapCut Pro</span>
-      </div>
+      </a>
 
-      <div class="hb-chip">
+      <a class="hb-chip" href="kho.html" style="text-decoration:none;cursor:pointer;">
         <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
         <span class="hb-chip-name">Kho Code TikTok</span>
-      </div>
+      </a>
 
-      <div class="hb-chip">
+      <a class="hb-chip" href="#services" onclick="event.preventDefault();scrollToId('services');" style="text-decoration:none;cursor:pointer;">
         <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <span class="hb-chip-name">Web &amp; Bot</span>
-      </div>
+      </a>
 
-      <div class="hb-chip">
+      <a class="hb-chip" href="#tth-anchor" onclick="event.preventDefault();scrollToId('tth-anchor');" style="text-decoration:none;cursor:pointer;">
         <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
         <span class="hb-chip-name">Thanh Toán Visa</span>
-      </div>
+      </a>
 
     </div><!-- end hb-right -->
   </div><!-- end hero-banner-inner -->
@@ -805,8 +826,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <div id="accountsGrid" style="display:flex;flex-direction:column;gap:clamp(32px,5vw,48px);max-width:680px;margin:0 auto;">
 
       <!-- ── CHATGPT PLUS CARD ── -->
-      <div style="width:100%;box-sizing:border-box;padding-top:18px;position:relative;" id="chatgptPlusCard">
-        <div id="plusLedLabel"><span>✦ Lựa chọn tối ưu</span></div>
+      <div style="width:100%;box-sizing:border-box;position:relative;" id="chatgptPlusCard">
         <div class="tth-card" style="border-radius:40px;max-width:100%;position:relative;">
 
           <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(234,179,8,0.9) 30%,rgba(251,191,36,0.6) 70%,transparent 100%);margin:0 5%;"></div>
@@ -843,7 +863,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
             <div id="plusShareNote" style="margin-top:14px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
               <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">✓</span>
-              <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu)</span>
+              <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">Tài khoản cá nhân riêng</span>
             </div>
           </div>
 
@@ -890,7 +910,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <div class="sub-cards-yt-wrap" style="width:100%;">
 
         <!-- YouTube Premium -->
-        <div class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
+        <div id="ytCard" class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
             <img src="assets/images/YT.jpg" alt="YouTube Premium" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
             <div>
@@ -901,7 +921,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
             <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
               <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
-              <div style="font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">35K</div>
+              <div style="font-size:clamp(2rem,6vw,3.22rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">35K</div>
               <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">79.000đ</span></div>
             </div>
             <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
@@ -914,11 +934,15 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
               <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 572.000đ</div>
             </div>
           </div>
+          <div style="margin-bottom:10px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
+            <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">✓</span>
+            <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">Thêm gmail vào nhóm gia đình, ổn định, lâu dài</span>
+          </div>
           <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('✦ YouTube Premium · 35K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         </div>
 
         <!-- CapCut Pro -->
-        <div class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
+        <div id="capcutCard" class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
             <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
             <div>
@@ -929,7 +953,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
             <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
               <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
-              <div style="font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">59K</div>
+              <div style="font-size:clamp(2rem,6vw,3.22rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">59K</div>
               <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">145.000đ</span></div>
             </div>
             <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
@@ -946,6 +970,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         </div>
 
       </div><!-- end sub-cards-yt-wrap -->
+
     </div><!-- end accountsGrid -->
   </div>
 </section>
@@ -959,12 +984,17 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <div style="margin-bottom:28px;">
           <div style="font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.7);margin-bottom:12px;">Dịch Vụ Lập Trình</div>
           <div style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:20px;">Thiết Kế Website&nbsp;•&nbsp;Tạo Bot Telegram&nbsp;•&nbsp;Hỗ Trợ Làm Bài Tập</div>
-          <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:22px;">
+          <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px;">
             <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Thiết kế Website theo yêu cầu — từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</span></div>
             <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bot Telegram thông minh — bot bán hàng, box chat, tool, script &amp; phân tích dữ liệu.</span></div>
             <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Hỗ trợ làm bài tập lập trình — code theo yêu cầu, giải thích chi tiết, giao bài đúng tiến độ.</span></div>
             <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bảo hành miễn phí sau bàn giao · Báo giá nhanh · Giao hàng đúng hẹn.</span></div>
           </div>
+          <button onclick="openServiceModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.45);border-radius:100px;color:#C084FC;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;letter-spacing:0.02em;" onmouseover="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.25),rgba(236,72,153,0.18))';this.style.borderColor='rgba(168,85,247,0.7)';this.style.boxShadow='0 0 22px rgba(168,85,247,0.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1))';this.style.borderColor='rgba(168,85,247,0.45)';this.style.boxShadow='none'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Liên hệ nhận tư vấn miễn phí
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -974,39 +1004,67 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <!-- THANH TOÁN HỘ -->
 <section style="padding:0 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
   <div class="container">
-    <div id="tth-anchor" class="tth-card" style="max-width:680px;margin:0 auto;">
+    <div id="tth-anchor" class="tth-card" style="max-width:680px;margin:0 auto;border-color:rgba(34,197,94,0.45);background:linear-gradient(145deg,rgba(6,20,12,0.97) 0%,rgba(4,14,8,0.99) 50%,rgba(7,22,13,0.97) 100%);box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 4px 24px rgba(0,0,0,0.6),0 20px 60px rgba(0,0,0,0.4),0 0 60px rgba(34,197,94,0.1);">
+      <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(34,197,94,0.85) 30%,rgba(16,185,129,0.55) 70%,transparent 100%);margin:0 5%;"></div>
       <div class="tth-inner" style="cursor:pointer;" onclick="openTthModal()">
-        <div class="tth-hd" style="margin-bottom:0;">
-          <div class="tth-ico">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:52px;height:52px;min-width:52px;border-radius:16px;background:linear-gradient(135deg,rgba(34,197,94,0.2),rgba(16,185,129,0.1));border:1.5px solid rgba(34,197,94,0.55);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(34,197,94,0.3);flex-shrink:0;">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-              <defs><linearGradient id="tth-gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EAB308"/><stop offset="100%" stop-color="#FDE047"/></linearGradient></defs>
-              <rect x="2" y="5" width="20" height="14" rx="3" stroke="url(#tth-gi)" stroke-width="1.8"/>
-              <path d="M2 9h20" stroke="url(#tth-gi)" stroke-width="1.8"/>
-              <rect x="5" y="13" width="5" height="2.5" rx="1" fill="url(#tth-gi)"/>
-              <circle cx="17" cy="14.5" r="2" fill="rgba(234,179,8,0.4)" stroke="url(#tth-gi)" stroke-width="1.2"/>
+              <defs><linearGradient id="tth-gi2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#10b981"/></linearGradient></defs>
+              <rect x="2" y="5" width="20" height="14" rx="3" stroke="url(#tth-gi2)" stroke-width="1.8"/>
+              <path d="M2 9h20" stroke="url(#tth-gi2)" stroke-width="1.8"/>
+              <rect x="5" y="13" width="5" height="2.5" rx="1" fill="url(#tth-gi2)"/>
+              <circle cx="17" cy="14.5" r="2" fill="rgba(34,197,94,0.4)" stroke="url(#tth-gi2)" stroke-width="1.2"/>
               <circle cx="15" cy="14.5" r="2" fill="rgba(251,146,60,0.4)"/>
             </svg>
           </div>
           <div style="flex:1;min-width:0;">
-            <div class="tth-ttl">Thanh Toán Hộ Quốc Tế</div>
-            <div class="tth-sub">Nạp tiền, mua sub, đăng ký dịch vụ nước ngoài không cần thẻ quốc tế</div>
-            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;">
-              <div class="tth-badge tth-bv">VISA</div>
-              <div class="tth-badge tth-bm">
-                <svg width="18" height="12" viewBox="0 0 36 24" fill="none">
-                  <circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/>
-                  <circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/>
-                  <path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/>
-                </svg>MC
-              </div>
-              <div style="margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:rgba(234,179,8,0.7);">Xem chi tiết <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(234,179,8,0.7)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+            <div style="font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px;">Thanh Toán Hộ Quốc Tế</div>
+            <div style="font-size:11px;color:rgba(52,211,153,0.55);font-weight:500;line-height:1.5;">Không cần thẻ quốc tế · Nhanh · Uy tín</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;">
+            <div class="tth-badge tth-bv">VISA</div>
+            <div class="tth-badge tth-bm">
+              <svg width="18" height="12" viewBox="0 0 36 24" fill="none">
+                <circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/>
+                <circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/>
+                <path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/>
+              </svg>MC
             </div>
           </div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">✓</span> Xử lý nhanh</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">✓</span> Hoàn tiền nếu lỗi</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:rgba(34,197,94,0.75);">Xem chi tiết <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,0.75)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- SERVICE CONTACT MODAL -->
+<div class="modal-overlay" id="serviceModal" onclick="if(event.target===this)closeServiceModal()">
+  <div class="modal-box" style="max-width:380px;">
+    <div id="serviceModalHeader" style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:14px 18px;margin-bottom:16px;text-align:center;">
+      <div style="font-size:13px;font-weight:800;color:#E0B4FF;line-height:1.5;">💻 Dịch Vụ Lập Trình · Tư Vấn Miễn Phí</div>
+    </div>
+    <div style="font-size:13.5px;font-weight:800;margin-bottom:18px;color:var(--text);">Chọn kênh liên hệ:</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+      <a href="https://t.me/binpinkgold" target="_blank" onclick="closeServiceModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/tele.jpg" alt="Telegram" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Telegram</span>
+      </a>
+      <a href="https://zalo.me/0898908101" target="_blank" onclick="closeServiceModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/zalo.jpg" alt="Zalo" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
+      </a>
+    </div>
+    <button class="modal-close-btn" onclick="closeServiceModal()">✕ Đóng</button>
+  </div>
+</div>
 
 <!-- CONTACT -->
 <section id="contact" style="padding:48px 0 96px;position:relative;z-index:1;">
@@ -1058,43 +1116,37 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 
 <!-- TTH DETAIL MODAL -->
 <div class="modal-overlay" id="tthModal" onclick="if(event.target===this)closeTthModal()">
-  <div class="fee-modal" style="background:#100a02;border-color:rgba(234,179,8,0.35);max-width:460px;">
-    <div class="fee-modal-head">
-      <div class="fee-modal-title">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>
+  <div class="fee-modal" style="background:rgba(4,14,8,0.99);border-color:rgba(34,197,94,0.45);box-shadow:0 0 0 1px rgba(34,197,94,0.18),0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),0 0 60px rgba(34,197,94,0.15);max-width:420px;">
+    <div style="position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.85),rgba(16,185,129,0.55),transparent);z-index:2;pointer-events:none;border-radius:32px 32px 0 0;"></div>
+    <div class="fee-modal-head" style="background:rgba(4,14,8,0.99);border-bottom-color:rgba(34,197,94,0.15);border-radius:32px 32px 0 0;">
+      <div class="fee-modal-title" style="color:#4ade80;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>
         Thanh Toán Hộ Quốc Tế
       </div>
-      <button class="fee-modal-close" onclick="closeTthModal()">✕</button>
+      <button class="fee-modal-close" onclick="closeTthModal()" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#4ade80;">✕</button>
     </div>
     <div class="fee-modal-body">
-      <div class="tth-any">
-        <div class="tth-any-badge"><div class="tth-dot"></div>Không giới hạn dịch vụ</div>
-        <div class="tth-stmt">Bạn muốn dịch vụ nào,<br>tôi thanh toán <em>dịch vụ đó.</em></div>
-        <div class="tth-note">Không cần thẻ quốc tế — tôi dùng <strong>Visa/Mastercard</strong> của mình thanh toán hộ bạn. Netflix, AI tools, game, phần mềm hay bất kỳ website nào trên thế giới.</div>
-        <div class="tth-mq-wrap">
-          <div class="tth-mq-track">
-            <span class="tth-mq-chip">Spotify</span><span class="tth-mq-chip">Adobe</span>
-            <span class="tth-mq-chip">Steam</span><span class="tth-mq-chip">Cursor AI</span>
-            <span class="tth-mq-chip">Claude Pro</span><span class="tth-mq-chip">Midjourney</span>
-            <span class="tth-mq-chip">Netflix</span><span class="tth-mq-chip">✦ mọi web quốc tế</span>
-            <span class="tth-mq-chip">Spotify</span><span class="tth-mq-chip">Adobe</span>
-            <span class="tth-mq-chip">Steam</span><span class="tth-mq-chip">Cursor AI</span>
-            <span class="tth-mq-chip">Claude Pro</span><span class="tth-mq-chip">Midjourney</span>
-            <span class="tth-mq-chip">Netflix</span><span class="tth-mq-chip">✦ mọi web quốc tế</span>
-          </div>
-        </div>
+      <!-- badges -->
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px;">
+        <div class="tth-badge tth-bv">VISA</div>
+        <div class="tth-badge tth-bm"><svg width="18" height="12" viewBox="0 0 36 24" fill="none"><circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/><circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/><path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/></svg>MC</div>
+        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,0.1);border:1.5px solid rgba(34,197,94,0.35);border-radius:9px;padding:4px 11px;font-size:10px;font-weight:800;color:rgba(74,222,128,0.9);white-space:nowrap;">Mọi dịch vụ quốc tế</div>
       </div>
-      <div class="tth-strip">
-        <div class="tth-ir"><span class="tth-ii">✓</span><span>Không cần thẻ Visa/MC — chỉ cần chuyển khoản nội địa.</span></div>
-        <div class="tth-ir"><span class="tth-ii">✓</span><span>Xử lý nhanh trong <strong style="color:rgba(253,224,71,0.95);">1 phút</strong> sau khi nhận tiền.</span></div>
-        <div class="tth-ir"><span class="tth-ii">✓</span><span>Hỗ trợ tạo tài khoản mới hoặc gia hạn tài khoản có sẵn.</span></div>
+      <!-- bullets -->
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:16px;padding:13px 15px;display:flex;flex-direction:column;gap:8px;">
+        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span><span>Không cần thẻ Visa/MC — chỉ cần chuyển khoản nội địa.</span></div>
+        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span><span>Xử lý nhanh trong <strong style="color:#4ade80;">1 phút</strong> sau khi nhận tiền.</span></div>
+        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span><span>Hỗ trợ thanh toán mọi dịch vụ nước ngoài.</span></div>
       </div>
-      <button class="tth-btn-fee" onclick="closeTthModal();openFeeModal()">
+      <!-- fee button -->
+      <button class="tth-btn-fee" onclick="closeTthModal();openFeeModal()" style="background:rgba(34,197,94,0.09);border-color:rgba(34,197,94,0.4);color:#4ade80;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
         Xem phí dịch vụ
       </button>
-      <div class="tth-btn-cw">
-        <button class="tth-btn-c" onclick="closeTthModal();openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
+      <!-- CTA button — green spin border -->
+      <div style="width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;background:conic-gradient(from var(--tth-la,0deg),#14532d 0%,#22c55e 15%,#86efac 25%,#16a34a 35%,#22c55e 50%,#14532d 60%,#86efac 70%,#22c55e 85%,#14532d 100%);animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(34,197,94,0.65),0 0 44px rgba(34,197,94,0.25);contain:layout style paint;">
+        <div style="position:absolute;inset:2.5px;border-radius:100px;background:rgba(4,14,8,0.99);z-index:0;pointer-events:none;"></div>
+        <button style="width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#14532d 0%,#16a34a 40%,#22c55e 70%,#4ade80 100%);color:#031a0a;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25);" onclick="closeTthModal();openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           Liên hệ ngay
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1109,7 +1161,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   <div class="fee-modal">
     <div class="fee-modal-head">
       <div class="fee-modal-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
         Bảng Phí Dịch Vụ
       </div>
       <button class="fee-modal-close" onclick="closeFeeModal()">✕</button>
@@ -1259,17 +1311,52 @@ function openPlusModal(){
 }
 function openFeeModal(){renderFeeModal();document.getElementById('feeModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeFeeModal(){document.getElementById('feeModal').classList.remove('open');document.body.style.overflow='';}
-const FEE_CONFIG={fixedUSD:2,usdRate:25800,tiers:[{max:400000,rate:0.27,label:'Dưới 400.000đ'},{max:1000000,rate:0.19,label:'400K – 1.000K'},{max:Infinity,rate:0.12,label:'Trên 1.000K'}]};
+const FEE_CONFIG={tiers:[{max:1000000,rate:0.22,label:'Dưới 1.000.000đ'},{max:Infinity,rate:0.15,label:'Từ 1.000.000đ trở lên'}]};
 function vndFmt(n){return Math.round(n).toLocaleString('vi-VN')+'đ';}
-function calcFee(vnd){var cfg=FEE_CONFIG,fixedVND=cfg.fixedUSD*cfg.usdRate,tier=cfg.tiers.find(t=>vnd<=t.max);return Math.round(vnd*tier.rate+(vnd<1000000?fixedVND:0));}
+function calcFee(vnd){var tier=FEE_CONFIG.tiers.find(t=>vnd<=t.max);return Math.round(vnd*tier.rate);}
 function renderFeeModal(){
   var cfg=FEE_CONFIG;
-  var tiersHTML=cfg.tiers.map((t,i)=>`<div class="fm-tier"><div class="fm-tier-range">${t.label}</div><div class="fm-tier-right"><div class="fm-tier-pct">${Math.round(t.rate*100)}%</div>${i<2?'<div class="fm-tier-label">+ phí cố định</div>':''}</div></div>`).join('');
-  document.getElementById('feeModalBody').innerHTML=`<div class="fm-tiers">${tiersHTML}</div><div class="fm-note">Phí % tính trên giá dịch vụ quy đổi VNĐ · Tỷ giá theo Vietcombank<br><span style="color:rgba(253,224,71,0.5);">* Phí cố định ${cfg.fixedUSD} USD chỉ áp dụng cho đơn dưới 1.000.000đ</span></div><div class="fm-calc"><div class="fm-calc-title">🧮 Tính phí nhanh</div><div class="fm-calc-row"><input class="fm-calc-input" id="feeCalcInput" type="number" min="0" placeholder="Nhập giá dịch vụ..." oninput="updateFeeCalc()"><span class="fm-calc-unit">VNĐ</span></div><div class="fm-calc-result" id="feeCalcResult" style="display:none;"><span class="fm-calc-result-lbl">Tổng cần chuyển khoản</span><span class="fm-calc-result-val" id="feeCalcVal">—</span></div></div>`;
+  var tiersHTML=cfg.tiers.map((t,i)=>{
+    var isCheap=i===1;
+    return `<div class="fm-tier${isCheap?' cheapest':''}">
+      <div class="fm-tier-range">${t.label}</div>
+      <div class="fm-tier-right">
+        <div class="fm-tier-pct">${Math.round(t.rate*100)}%</div>
+        ${isCheap?'<div class="fm-tier-tag best">Đơn lớn</div>':''}
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('feeModalBody').innerHTML=`
+    <div class="fm-tiers">${tiersHTML}</div>
+
+    <div class="fm-calc">
+      <div class="fm-calc-title">🧮 Tính phí nhanh</div>
+      <div class="fm-calc-row">
+        <input class="fm-calc-input" id="feeCalcInput" type="number" min="0" placeholder="Nhập giá dịch vụ..." oninput="updateFeeCalc()">
+        <span class="fm-calc-unit">VNĐ</span>
+      </div>
+      <div class="fm-calc-breakdown" id="feeCalcResult" style="display:none;">
+        <div class="fm-calc-row-item"><span class="lbl">Giá dịch vụ</span><span class="val" id="fcBaseVal">—</span></div>
+        <div class="fm-calc-row-item"><span class="lbl">Phí dịch vụ</span><span class="val" id="fcFeeVal">—</span></div>
+        <div class="fm-calc-row-item divider"></div>
+        <div class="fm-calc-row-item total"><span class="lbl">Tổng chuyển khoản</span><span class="val" id="fcTotalVal">—</span></div>
+      </div>
+    </div>`;
 }
-function updateFeeCalc(){var inp=document.getElementById('feeCalcInput'),res=document.getElementById('feeCalcResult'),val=document.getElementById('feeCalcVal'),n=parseFloat(inp.value);if(!n||n<=0){res.style.display='none';return;}var fee=calcFee(n),total=n+fee;val.innerHTML='<span style="font-size:10px;font-weight:700;color:rgba(99,220,150,0.8);display:block;margin-bottom:2px;">gồm phí dịch vụ '+vndFmt(fee)+'</span>~'+vndFmt(total);res.style.display='flex';}
+function updateFeeCalc(){
+  var inp=document.getElementById('feeCalcInput'),res=document.getElementById('feeCalcResult'),n=parseFloat(inp.value);
+  if(!n||n<=0){res.style.display='none';return;}
+  var tier=FEE_CONFIG.tiers.find(t=>n<=t.max),fee=Math.round(n*tier.rate),total=n+fee;
+  document.getElementById('fcBaseVal').textContent=vndFmt(n);
+  document.getElementById('fcFeeVal').textContent=vndFmt(fee)+' ('+Math.round(tier.rate*100)+'%)';
+  document.getElementById('fcTotalVal').textContent='~'+vndFmt(total);
+  res.style.display='flex';res.style.flexDirection='column';
+}
 function openFeatModal(){document.getElementById('featModal').classList.add('open');document.body.style.overflow='hidden';}
 function calcDiscounts(){var pb=document.getElementById('plusDiscountBadge');if(pb){var orig=+pb.dataset.orig,sale=+pb.dataset.salePersonal;if(orig&&sale)pb.textContent='-'+Math.round((1-sale/orig)*100)+'%';}}
+function openServiceModal(){document.getElementById('serviceModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeServiceModal(){document.getElementById('serviceModal').classList.remove('open');document.body.style.overflow='';}
+function scrollToId(id){var el=document.getElementById(id);if(!el)return;var tb=document.querySelector('.topbar');var offset=tb?tb.offsetHeight+10:70;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}
 function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');}
 function toggleTopMenu(){document.getElementById('topHam').classList.toggle('open');document.getElementById('topDrop').classList.toggle('open');}
 document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target.closest('#topDrop')){closeTopMenu();}});
@@ -1282,6 +1369,102 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
   function cycle(){if(!ptxt)return;ptxt.style.opacity='0';setTimeout(function(){ptxt.textContent=TEXTS[idx++%TEXTS.length];ptxt.style.opacity='1';},190);setTimeout(cycle,2400);}
   setTimeout(function(){if(pill)pill.classList.add('in');cycle();},900);
 })();
+
+// ── 3D SPACE BANNER ──────────────────────────────────────
+(function(){
+  var cv=document.getElementById('bannerCanvas');
+  if(!cv)return;
+  var ctx=cv.getContext('2d');
+  var W,H,RAF;
+  // Code tokens — lập trình, hàm, toán học
+  var TOKENS=['function()','const x=','</>','{}','[]','01','if()','async','return','π','∑','λ','⟨⟩','git','npm','API','JSON','true','null','fetch()','class','export','import','void','type','var','for()','[]=>','!0','∞','AI','⚡','≈','0x','++','&&','||','//','::','>>','<<','===','!==','px','rem','vw','vh','rgb()','let','new','this','try{}','catch','map()','[…]','~$ ','sudo','ping','ssh','curl','async/await','Promise','useState'];
+  var particles=[];
+  var DEPTH=900;
+
+  function resize(){
+    var banner=document.getElementById('siteBanner');
+    if(!banner)return;
+    W=cv.width=banner.offsetWidth;
+    H=cv.height=banner.offsetHeight;
+  }
+
+  function rand(a,b){return a+Math.random()*(b-a);}
+
+  function initParticles(){
+    particles=[];
+    var count=Math.min(55,Math.floor(W*H/5500));
+    for(var i=0;i<count;i++){
+      spawnParticle(true);
+    }
+  }
+
+  function spawnParticle(randomZ){
+    var t=TOKENS[Math.floor(Math.random()*TOKENS.length)];
+    particles.push({
+      x:rand(-W*0.6,W*1.6),
+      y:rand(-H*0.3,H*1.3),
+      z:randomZ?rand(80,DEPTH):DEPTH,
+      vz:rand(0.55,1.8),
+      vx:rand(-0.06,0.06),
+      vy:rand(-0.04,0.04),
+      token:t,
+      opacity:rand(0.3,0.85),
+      hue:Math.random()<0.55?270+rand(-30,30):rand(300,340),
+      size:rand(9,15)
+    });
+  }
+
+  function draw(ts){
+    ctx.clearRect(0,0,W,H);
+    var alive=[];
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i];
+      p.z-=p.vz;
+      p.x+=p.vx;
+      p.y+=p.vy;
+      if(p.z<10){spawnParticle(false);continue;}
+      // perspective projection
+      var scale=DEPTH/p.z;
+      var sx=(p.x-W/2)*scale+W/2;
+      var sy=(p.y-H/2)*scale+H/2;
+      if(sx<-80||sx>W+80||sy<-40||sy>H+40){spawnParticle(false);continue;}
+      var alpha=p.opacity*(1-p.z/DEPTH)*1.4;
+      alpha=Math.min(alpha,0.78);
+      var fs=Math.max(6,p.size*scale*0.6);
+      ctx.save();
+      ctx.globalAlpha=alpha;
+      ctx.font='600 '+fs.toFixed(1)+'px "SF Mono","Fira Code",monospace';
+      ctx.fillStyle='hsl('+p.hue+',80%,72%)';
+      ctx.shadowColor='hsl('+p.hue+',90%,65%)';
+      ctx.shadowBlur=fs*0.9;
+      ctx.fillText(p.token,sx,sy);
+      ctx.restore();
+      alive.push(p);
+    }
+    particles=alive;
+    // keep population stable
+    while(particles.length<Math.min(55,Math.floor(W*H/5500))){spawnParticle(false);}
+    RAF=requestAnimationFrame(draw);
+  }
+
+  function init(){
+    resize();
+    initParticles();
+    cancelAnimationFrame(RAF);
+    RAF=requestAnimationFrame(draw);
+  }
+
+  // pause when banner not in viewport (perf)
+  var obs=new IntersectionObserver(function(e){
+    if(e[0].isIntersecting){if(!RAF)RAF=requestAnimationFrame(draw);}
+    else{cancelAnimationFrame(RAF);RAF=null;}
+  },{threshold:0});
+  obs.observe(cv);
+
+  window.addEventListener('resize',function(){resize();initParticles();});
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+// ─────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded',function(){calcDiscounts();initYearlyPricing();});
 

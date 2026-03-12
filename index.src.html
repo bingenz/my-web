@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <!--
 =============================================================
   BINPINKGOLD CODE STORE — DEV GUIDELINES (ĐỌC TRƯỚC KHI SỬA)
@@ -54,6 +55,8 @@
 LƯU Ý: KHÔNG ĐƯỢC SỬ DỤNG HIỆU ỨNG GÂY LAG KHI LƯỚT WEB, CHẤT LƯỢNG VÀ HIỆU ỨNG PHẢI NHƯ YÊU CẦU MIỄN LÀ KHI LƯỚT KHÔNG GÂY LAG
 =============================================================
 -->
+
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -80,20 +83,36 @@ html{scroll-padding-top:72px;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;}
-body::after{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(0,0,0,0.92) 0%,transparent 70%),radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.78) 0%,transparent 60%);pointer-events:none;contain:layout style paint;}
-body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(168,85,247,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.08) 1px,transparent 1px),linear-gradient(rgba(168,85,247,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.035) 1px,transparent 1px);background-size:96px 96px,96px 96px,24px 24px,24px 24px;-webkit-mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);pointer-events:none;contain:layout style paint;}
-/* missing pulse keyframe — reuse sbsDot */
+/* body::after & ::before — will-change:transform đẩy lên GPU compositor layer riêng,
+   tránh repaint toàn trang khi scroll */
+body::after{content:'';position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(0,0,0,0.92) 0%,transparent 70%),
+             radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.78) 0%,transparent 60%);
+  pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
+body::before{content:'';position:fixed;inset:0;z-index:0;
+  /* mobile: chỉ lưới thô (96px) — bỏ sub-grid 24px để giảm tải paint */
+  background-image:linear-gradient(rgba(168,85,247,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.07) 1px,transparent 1px);
+  background-size:96px 96px,96px 96px;
+  -webkit-mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
+  mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
+  pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
+@media(min-width:768px){
+  body::before{
+    background-image:linear-gradient(rgba(168,85,247,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.08) 1px,transparent 1px),linear-gradient(rgba(168,85,247,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.035) 1px,transparent 1px);
+    background-size:96px 96px,96px 96px,24px 24px,24px 24px;
+  }
+}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-/* glow orbs: no will-change (prevents extra layer churn), contain paint */
-.glow-orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;contain:layout style paint;}
-.glow-orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(168,85,247,0.10) 0%,transparent 70%);top:-280px;left:-240px;}
-.glow-orb-2{width:600px;height:600px;background:radial-gradient(circle,rgba(236,72,153,0.07) 0%,transparent 70%);bottom:-100px;right:-100px;}
-.glow-orb-3{width:500px;height:500px;background:radial-gradient(circle,rgba(99,102,241,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);}
+/* glow-orb: ẩn hoàn toàn trên mobile — filter:blur() rất nặng */
+.glow-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;will-change:transform;transform:translateZ(0);}
+.glow-orb-1{width:600px;height:600px;background:radial-gradient(circle,rgba(168,85,247,0.10) 0%,transparent 70%);top:-280px;left:-240px;filter:blur(70px);}
+.glow-orb-2{width:600px;height:600px;background:radial-gradient(circle,rgba(236,72,153,0.07) 0%,transparent 70%);bottom:-100px;right:-100px;filter:blur(70px);}
+.glow-orb-3{width:500px;height:500px;background:radial-gradient(circle,rgba(99,102,241,0.06) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%) translateZ(0);filter:blur(60px);}
+@media(max-width:767px){.glow-orb{display:none;}}
 .gradient-text{background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .gradient-text-white{background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .font-syne{font-family:'Inter',sans-serif;}
 
-/* === GLASS CARD - stronger radius + 3D border/shadow === */
 .glass-card{
   background:linear-gradient(145deg,rgba(17,9,48,0.92) 0%,rgba(12,7,36,0.95) 40%,rgba(19,8,48,0.92) 70%,rgba(9,5,30,0.95) 100%);
   border:1px solid rgba(168,85,247,0.32);
@@ -105,7 +124,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .glass-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.65),rgba(236,72,153,0.45),transparent);border-radius:48px 48px 0 0;pointer-events:none;}
 .glass-card-glow{box-shadow:var(--card-shadow);}
 
-/* === SUB-CARD - same strong radius + 3D === */
 .sub-card{
   background:linear-gradient(145deg,rgba(20,10,44,0.88),rgba(12,7,32,0.92));
   border:1px solid rgba(168,85,247,0.28);
@@ -120,51 +138,190 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .sub-card:hover{border-color:rgba(168,85,247,0.62);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-3px);}
 .sub-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.55),rgba(236,72,153,0.35),transparent);}
 
-/* === KHO BANNER - same radius === */
-.kho-banner-link{display:block;text-decoration:none;color:var(--text);background:linear-gradient(145deg,rgba(28,10,58,0.9) 0%,rgba(18,6,40,0.95) 100%);border:1px solid rgba(168,85,247,0.28);border-radius:48px;position:relative;overflow:hidden;transition:border-color 0.28s ease,box-shadow 0.28s ease,transform 0.2s;box-shadow:var(--card-shadow);}
-.kho-banner-link:hover{border-color:rgba(168,85,247,0.6);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-2px);}
-.kho-banner-top-line{height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
-.kho-banner-body{display:flex;align-items:stretch;gap:28px;padding:44px 52px;flex-wrap:wrap;}
-.kho-banner-title{font-size:1.25rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:6px;color:#fff;}
-.kho-chip{display:inline-flex;align-items:center;gap:4px;background:rgba(168,85,247,0.09);border:1px solid rgba(168,85,247,0.2);color:rgba(192,132,252,0.85);border-radius:100px;padding:5px 12px;font-size:11px;font-weight:600;white-space:nowrap;}
-.kho-chip-more{color:rgba(192,132,252,0.45);border-color:rgba(168,85,247,0.1);background:transparent;}
-.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Inter',sans-serif;white-space:nowrap;transition:background 0.2s;}
-.kho-banner-link:hover .kho-banner-btn{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
-
-/* === LED BUTTON === */
+/* ===================================================
+   HERO BANNER — compact, icon-right layout
+   KHÔNG dùng hiệu ứng lag (conic-gradient animation,
+   will-change, shimmer đã xóa khỏi banner)
+=================================================== */
 @property --led-angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
 @keyframes spinLED{from{--led-angle:0deg;}to{--led-angle:360deg;}}
-.btn-primary-wrap{position:relative;display:inline-flex;border-radius:100px;padding:2.5px;background:conic-gradient(from var(--led-angle,0deg),#6b21a8 0%,#a855f7 15%,#ffffff 25%,#ec4899 35%,#a855f7 50%,#6b21a8 60%,#ffffff 70%,#a855f7 85%,#6b21a8 100%);animation:spinLED 3s linear infinite;box-shadow:0 0 18px rgba(168,85,247,0.6),0 0 36px rgba(168,85,247,0.25);will-change:--led-angle;contain:layout style paint;}
-.btn-primary-wrap::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
-.btn-primary-wrap>*{position:relative;z-index:1;}
-@keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
+@keyframes sbsDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 @keyframes shimmerCTA{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
-.btn-register-shimmer{position:relative;overflow:hidden;z-index:1;}
-.btn-register-shimmer::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmerCTA 2.4s ease-in-out infinite;pointer-events:none;will-change:transform;z-index:2;}
-.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Inter',sans-serif;}
-.btn-ghost:hover{background:rgba(168,85,247,0.2);border-color:rgba(168,85,247,0.6);}
-.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Inter',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
-.sub-card-btn:hover{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
 
-/* === TOPBAR === */
-.logo-br{display:none;}.logo-mobile{display:none;}.logo-desktop{display:inline;}
+/* ── HERO BANNER ── */
+.hero-banner{
+  margin-top:60px;
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,rgba(10,4,28,0.98) 0%,rgba(16,8,40,0.97) 50%,rgba(8,4,22,0.99) 100%);
+  border-bottom:1px solid rgba(168,85,247,0.14);
+  contain:layout style;
+}
+.hero-banner::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 100% at 0% 50%,rgba(168,85,247,0.11) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 80% at 100% 20%,rgba(236,72,153,0.07) 0%,transparent 55%);
+}
+.hero-banner-topline{
+  height:2px;
+  background:linear-gradient(90deg,transparent 0%,rgba(168,85,247,0.75) 35%,rgba(236,72,153,0.55) 65%,transparent 100%);
+  position:relative;z-index:1;
+}
+.hero-banner-inner{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:clamp(20px,4vw,52px);
+  padding:clamp(22px,3.5vw,38px) clamp(20px,4vw,52px);
+  max-width:1100px;margin:0 auto;
+  box-sizing:border-box;
+}
+
+/* LEFT: tagline block */
+.hb-left{
+  display:flex;flex-direction:column;
+  gap:clamp(10px,1.8vw,14px);
+  min-width:0;
+}
+.hb-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:clamp(8.5px,1.2vw,10px);font-weight:800;letter-spacing:0.18em;
+  text-transform:uppercase;color:rgba(168,85,247,0.65);
+  width:fit-content;
+}
+.hb-eyebrow-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:#A855F7;box-shadow:0 0 6px #A855F7;
+  animation:sbsDot 2s ease-in-out infinite;flex-shrink:0;
+}
+.hb-title{
+  font-size:clamp(1.15rem,4.5vw,2.2rem);font-weight:900;
+  line-height:1.07;letter-spacing:-0.035em;
+  color:#fff;word-break:break-word;margin:0;
+}
+.hb-title em{
+  font-style:normal;
+  background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 70%,#F472B6 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hb-checks{display:flex;flex-direction:column;gap:5px;}
+.hb-check{
+  display:flex;align-items:center;gap:7px;
+  font-size:clamp(10px,1.4vw,12px);
+  color:rgba(240,236,248,0.48);font-weight:500;
+}
+.hb-check svg{flex-shrink:0;}
+
+/* FIRE PRICE BADGE */
+.hb-fire-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,rgba(234,60,10,0.28),rgba(251,100,20,0.18));
+  border:1px solid rgba(251,100,20,0.6);
+  border-radius:9px;padding:5px 13px;
+  font-size:11px;font-weight:800;
+  color:#FF8040;
+  white-space:nowrap;width:fit-content;
+  box-shadow:0 0 14px rgba(251,100,20,0.28),0 2px 8px rgba(0,0,0,0.3);
+  text-shadow:0 0 10px rgba(255,120,40,0.6);
+}
+
+/* FB button — xanh dương style FB, bo góc mạnh, hiệu ứng nổi 3D */
+.fb-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(180deg,#2d8ef5 0%,#1877F2 45%,#1464d4 100%);
+  color:#fff;
+  font-size:clamp(10.5px,1.4vw,12.5px);font-weight:700;
+  font-family:'Inter',sans-serif;
+  padding:9px 18px;border-radius:100px;
+  text-decoration:none;white-space:nowrap;
+  border:1px solid rgba(255,255,255,0.18);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.25) inset,
+    0 -1px 0 rgba(0,0,0,0.25) inset,
+    0 4px 12px rgba(24,119,242,0.5),
+    0 8px 24px rgba(24,119,242,0.2);
+  transition:transform 0.15s,box-shadow 0.15s;
+  width:fit-content;
+}
+.fb-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.25) inset,
+    0 -1px 0 rgba(0,0,0,0.25) inset,
+    0 6px 18px rgba(24,119,242,0.65),
+    0 12px 32px rgba(24,119,242,0.28);
+}
+.fb-btn:active{transform:translateY(0);}
+.fb-btn svg{flex-shrink:0;}
+.fb-btn-arrow{
+  width:16px;height:16px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+
+/* RIGHT: 1 cột chip — đều nhau, hiển thị đủ */
+.hb-right{
+  display:flex;flex-direction:column;gap:4px;
+  width:clamp(150px,20vw,195px);flex-shrink:0;
+  align-self:stretch;justify-content:center;
+}
+.hb-chip{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(168,85,247,0.13);
+  border-radius:8px;
+  padding:0 10px;
+  flex:1;
+  min-height:30px;max-height:40px;
+  transition:background 0.18s,border-color 0.18s;
+  cursor:default;
+}
+.hb-chip:hover{background:rgba(168,85,247,0.07);border-color:rgba(168,85,247,0.26);}
+.hb-chip-ico{
+  width:18px;height:18px;min-width:18px;border-radius:5px;
+  background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.18);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.hb-chip-name{
+  font-size:clamp(8.5px,1.05vw,10px);font-weight:700;
+  color:rgba(240,236,248,0.75);
+  white-space:nowrap;
+}
+
+/* Responsive */
+@media(max-width:640px){
+  .hero-banner-inner{
+    grid-template-columns:1fr auto;
+    align-items:flex-start;
+    gap:10px;
+    padding:18px 14px 22px;
+  }
+  .hb-right{width:clamp(118px,36vw,148px);gap:3px;}
+  .hb-chip{padding:0 7px;min-height:26px;max-height:34px;gap:5px;}
+  .hb-chip-ico{width:14px;height:14px;min-width:14px;border-radius:4px;}
+  .hb-chip-ico svg{width:8px;height:8px;}
+  .hb-chip-name{font-size:clamp(7px,2.3vw,8.5px);}
+}
+@media(min-width:641px) and (max-width:900px){
+  .hb-right{width:clamp(135px,18vw,170px);}
+}
+
+/* ─────────────────────────────────
+   TOPBAR
+───────────────────────────────── */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(180deg,rgba(18,8,38,0.99) 0%,rgba(10,5,22,0.98) 100%);border-bottom:1px solid rgba(80,40,120,0.35);padding:clamp(10px,2vw,14px) clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 rgba(220,170,255,0.15) inset,0 8px 24px rgba(0,0,0,0.35);height:60px;}
 .topbar-logo{display:inline-flex;align-items:center;gap:clamp(4px,1vw,6px);white-space:nowrap;flex-shrink:1;min-width:0;overflow:hidden;text-decoration:none;}
 .topbar-logo-diamond{font-size:clamp(13px,3.5vw,20px);color:#fff;flex-shrink:0;filter:drop-shadow(0 0 6px rgba(168,85,247,0.7));}
 .topbar-logo-name{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
 .topbar-logo-sub{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
-.topbar-dot{display:none;}
-.topbar-nav{display:none;}
-
-/* HAMBURGER */
 .topbar-hamburger{width:42px;height:42px;border-radius:12px;flex-shrink:0;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.22);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:background 0.2s,border-color 0.2s;}
 .topbar-hamburger:hover{background:rgba(168,85,247,0.18);border-color:rgba(168,85,247,0.45);}
 .topbar-hamburger span{width:18px;height:2px;background:rgba(192,132,252,0.8);border-radius:2px;transition:all 0.3s;display:block;}
 .topbar-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .topbar-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .topbar-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-/* NAV DROPDOWN */
 .topbar-dropdown{position:fixed;top:60px;right:0;width:min(340px,92vw);background:rgba(8,4,22,0.97);border-left:1px solid rgba(168,85,247,0.18);border-bottom:1px solid rgba(168,85,247,0.18);border-radius:0 0 0 20px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 0;transform:translateX(100%);transition:transform 0.3s cubic-bezier(0.34,1.2,0.64,1);z-index:99;box-shadow:-8px 8px 32px rgba(0,0,0,0.6);}
 .topbar-dropdown.open{transform:translateX(0);}
 .topbar-nav-item{display:flex;align-items:center;gap:12px;padding:13px 22px;font-size:clamp(13px,3.5vw,14px);font-weight:600;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(168,85,247,0.07);transition:color 0.2s,background 0.2s;cursor:pointer;word-break:break-word;white-space:normal;box-sizing:border-box;max-width:100%;}
@@ -173,239 +330,19 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .topbar-nav-icon{flex-shrink:0;opacity:0.65;}
 .topbar-nav-text{line-height:1.5;word-break:break-word;white-space:normal;}
 
-/* =====================================================================
-   BANNER CAROUSEL — style card ChatGPT Plus, bỏ LED spin
-   Rule 6: aspect-ratio:16/9 + max-height. Rule 1: clamp, word-break.
-   Rule 2: flex+flex-wrap. Rule 4: 3 breakpoint. Rule 7: padding-right.
-===================================================================== */
-.site-banner{position:relative;overflow:hidden;margin-top:60px;contain:layout style;}
-.site-banner-slides{display:flex;transition:transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94);will-change:transform;transform:translateZ(0);}
-.site-banner-slide{
-  flex:0 0 100%;position:relative;
-  aspect-ratio:16/9;
-  max-height:clamp(240px,42vw,440px);
-  min-height:clamp(200px,28vw,260px);
-  display:flex;align-items:center;
-  cursor:pointer;overflow:hidden;
-}
+/* ─────────────────────────────────
+   HERO section (stat cards)
+───────────────────────────────── */
+.btn-primary-wrap{position:relative;display:inline-flex;border-radius:100px;padding:2.5px;background:conic-gradient(from var(--led-angle,0deg),#6b21a8 0%,#a855f7 15%,#ffffff 25%,#ec4899 35%,#a855f7 50%,#6b21a8 60%,#ffffff 70%,#a855f7 85%,#6b21a8 100%);animation:spinLED 3s linear infinite;box-shadow:0 0 18px rgba(168,85,247,0.6),0 0 36px rgba(168,85,247,0.25);will-change:--led-angle;contain:layout style paint;}
+.btn-primary-wrap::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
+.btn-primary-wrap>*{position:relative;z-index:1;}
+.btn-register-shimmer{position:relative;overflow:hidden;z-index:1;}
+.btn-register-shimmer::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmerCTA 2.4s ease-in-out infinite;pointer-events:none;will-change:transform;z-index:2;}
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Inter',sans-serif;}
+.btn-ghost:hover{background:rgba(168,85,247,0.2);border-color:rgba(168,85,247,0.6);}
+.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Inter',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
+.sub-card-btn:hover{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
 
-/* ── BG gradients ── */
-.sbs-1{background:linear-gradient(145deg,#0a0700 0%,#180f02 55%,#0c0800 100%);}
-.sbs-1::before{content:"";position:absolute;inset:0;z-index:0;
-  background:radial-gradient(ellipse 65% 85% at 82% 38%,rgba(234,179,8,0.28) 0%,transparent 60%),
-  radial-gradient(ellipse 35% 45% at 15% 70%,rgba(251,191,36,0.1) 0%,transparent 55%),
-  radial-gradient(ellipse 40% 40% at 50% 0%,rgba(255,255,255,0.03) 0%,transparent 60%);}
-.sbs-2{background:linear-gradient(145deg,#020e18 0%,#061828 55%,#020a14 100%);}
-.sbs-2::before{content:"";position:absolute;inset:0;z-index:0;
-  background:radial-gradient(ellipse 60% 75% at 82% 38%,rgba(52,211,153,0.2) 0%,transparent 60%),
-  radial-gradient(ellipse 35% 45% at 12% 65%,rgba(34,211,238,0.1) 0%,transparent 55%);}
-.sbs-3{background:linear-gradient(145deg,#120320 0%,#1e0535 55%,#0e0218 100%);}
-.sbs-3::before{content:"";position:absolute;inset:0;z-index:0;
-  background:radial-gradient(ellipse 60% 75% at 80% 42%,rgba(236,72,153,0.22) 0%,transparent 60%),
-  radial-gradient(ellipse 35% 45% at 14% 65%,rgba(244,114,182,0.1) 0%,transparent 55%);}
-
-/* ── 3D GRID — isolation:isolate để không che content ── */
-.sbs-grid{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;isolation:isolate;}
-.sbs-grid-floor{
-  position:absolute;left:-60%;right:-60%;bottom:0;height:56%;
-  transform:rotateX(68deg);transform-origin:bottom center;
-  background-size:clamp(32px,5vw,52px) clamp(32px,5vw,52px);
-  -webkit-mask-image:radial-gradient(ellipse 90% 100% at 50% 100%,black 25%,transparent 80%);
-  mask-image:radial-gradient(ellipse 90% 100% at 50% 100%,black 25%,transparent 80%);
-}
-.sbs-grid-wall{
-  position:absolute;left:-40%;right:-40%;top:0;height:50%;
-  background-size:clamp(32px,5vw,52px) clamp(32px,5vw,52px);
-  -webkit-mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 15%,transparent 70%);
-  mask-image:radial-gradient(ellipse 75% 100% at 50% 0%,black 15%,transparent 70%);
-}
-.sbs-grid-horizon{display:none;}
-.sbs-grid-vignette{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse 100% 55% at 50% 100%,rgba(0,0,0,0.92) 0%,transparent 65%),
-  radial-gradient(ellipse 100% 45% at 50% 0%,rgba(0,0,0,0.82) 0%,transparent 60%),
-  radial-gradient(ellipse 50% 60% at 50% 50%,rgba(0,0,0,0.3) 0%,transparent 80%);
-}
-/* Grid màu theo slide */
-.sbs-1 .sbs-grid-floor{background-image:linear-gradient(rgba(234,179,8,0.25) 1px,transparent 1px),linear-gradient(90deg,rgba(234,179,8,0.25) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(234,179,8,0.4));}
-.sbs-1 .sbs-grid-wall{background-image:linear-gradient(rgba(234,179,8,0.2) 1px,transparent 1px),linear-gradient(90deg,rgba(251,191,36,0.15) 1px,transparent 1px);}
-.sbs-2 .sbs-grid-floor{background-image:linear-gradient(rgba(52,211,153,0.26) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.26) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(52,211,153,0.4));}
-.sbs-2 .sbs-grid-wall{background-image:linear-gradient(rgba(34,211,238,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.14) 1px,transparent 1px);}
-.sbs-3 .sbs-grid-floor{background-image:linear-gradient(rgba(236,72,153,0.26) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.26) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(236,72,153,0.4));}
-.sbs-3 .sbs-grid-wall{background-image:linear-gradient(rgba(244,114,182,0.16) 1px,transparent 1px),linear-gradient(90deg,rgba(236,72,153,0.14) 1px,transparent 1px);}
-/* SLIDE 4 — Thanh Toán Quốc Tế · amber-bronze */
-.sbs-4{background:linear-gradient(145deg,#080600 0%,#140900 55%,#0a0500 100%);}
-.sbs-4::before{content:"";position:absolute;inset:0;z-index:0;
-  background:radial-gradient(ellipse 60% 80% at 80% 38%,rgba(217,119,6,0.32) 0%,transparent 60%),
-  radial-gradient(ellipse 38% 48% at 14% 68%,rgba(251,191,36,0.12) 0%,transparent 55%),
-  radial-gradient(ellipse 40% 35% at 50% 0%,rgba(255,255,255,0.025) 0%,transparent 55%);}
-.sbs-4 .sbs-grid-floor{background-image:linear-gradient(rgba(217,119,6,0.28) 1px,transparent 1px),linear-gradient(90deg,rgba(217,119,6,0.28) 1px,transparent 1px);filter:drop-shadow(0 0 5px rgba(234,179,8,0.42));}
-.sbs-4 .sbs-grid-wall{background-image:linear-gradient(rgba(251,191,36,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(234,179,8,0.14) 1px,transparent 1px);}
-.sbs-badge-amber{background:rgba(217,119,6,0.16);border:1px solid rgba(217,119,6,0.42);color:#FDE047;}
-.sbs-badge-amber .sbs-badge-dot{background:#D97706;box-shadow:0 0 5px #D97706;}
-/* Fee preview panel (right of slide 4) */
-.sbs-fee-panel{
-  flex-shrink:0;width:clamp(130px,28%,200px);
-  background:linear-gradient(145deg,rgba(20,12,0,0.88),rgba(10,6,0,0.92));
-  border:1px solid rgba(217,119,6,0.38);border-radius:14px;
-  padding:clamp(8px,1.4vw,12px) clamp(9px,1.5vw,14px);
-  box-sizing:border-box;display:flex;flex-direction:column;gap:clamp(4px,.8vw,6px);
-}
-.sbs-fee-panel::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(217,119,6,0.7),transparent);}
-.sbs-fee-hd{font-size:clamp(7px,1.1vw,9px);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(253,224,71,0.5);margin-bottom:clamp(3px,.6vw,5px);}
-.sbs-fee-row{display:flex;align-items:center;justify-content:space-between;gap:6px;
-  background:rgba(217,119,6,0.08);border:1px solid rgba(217,119,6,0.2);border-radius:8px;
-  padding:clamp(4px,.7vw,6px) clamp(6px,1vw,9px);}
-.sbs-fee-range{font-size:clamp(7px,1.1vw,9px);color:rgba(240,236,248,0.6);font-weight:600;flex:1;}
-.sbs-fee-pct{font-size:clamp(9px,1.5vw,12px);font-weight:900;color:#FDE047;white-space:nowrap;}
-.sbs-fee-note{font-size:clamp(6.5px,1vw,8px);color:rgba(253,224,71,0.32);line-height:1.5;margin-top:2px;}
-
-/* ── SLIDE INNER LAYOUT — 2 cột: content left + card panel right ── */
-.sbs-inner{
-  position:relative;z-index:10;
-  width:100%;height:100%;
-  display:flex;align-items:center;
-  padding:0 clamp(16px,4vw,44px);
-  gap:clamp(12px,3vw,28px);
-  box-sizing:border-box;
-}
-
-/* LEFT — badge + title + sub + pills (gọn) */
-.sbs-left{
-  flex:1;min-width:0;
-  display:flex;flex-direction:column;justify-content:center;
-  gap:clamp(5px,1.2vw,8px);
-  word-break:break-word;
-}
-
-/* Badge — Rule 2: display:flex */
-.sbs-badge{
-  display:flex;flex-wrap:wrap;align-items:center;gap:6px;width:fit-content;max-width:100%;
-  border-radius:100px;padding:4px 12px;box-sizing:border-box;
-  font-size:clamp(8.5px,1.5vw,10px);font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
-}
-.sbs-badge-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;animation:sbsDot 1.8s ease-in-out infinite;}
-@keyframes sbsDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.sbs-badge-purple{background:rgba(168,85,247,0.14);border:1px solid rgba(168,85,247,0.38);color:#C084FC;}
-.sbs-badge-purple .sbs-badge-dot{background:#A855F7;box-shadow:0 0 5px #A855F7;}
-.sbs-badge-teal{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.32);color:#6EE7B7;}
-.sbs-badge-teal .sbs-badge-dot{background:#34d399;box-shadow:0 0 5px #34d399;}
-.sbs-badge-pink{background:rgba(236,72,153,0.12);border:1px solid rgba(236,72,153,0.32);color:#F472B6;}
-.sbs-badge-pink .sbs-badge-dot{background:#EC4899;box-shadow:0 0 5px #EC4899;}
-
-/* Title */
-.sbs-title{font-size:clamp(1.1rem,3.8vw,2rem);font-weight:900;line-height:1.08;letter-spacing:-0.03em;color:#fff;word-break:break-word;white-space:normal;margin:0;}
-.sbs-title em{font-style:normal;background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sbs-title .em-teal{background:linear-gradient(135deg,#6EE7B7,#22D3EE);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.sbs-title .em-pink{background:linear-gradient(135deg,#F472B6,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-
-/* Sub */
-.sbs-sub{font-size:clamp(9.5px,1.6vw,11.5px);color:rgba(240,236,248,0.5);line-height:1.55;word-break:break-word;white-space:normal;margin:0;}
-
-.sbs-pills{display:flex;gap:5px;flex-wrap:wrap;max-width:100%;box-sizing:border-box;}
-.sbs-pill{font-size:clamp(8.5px,1.4vw,10px);font-weight:600;padding:3px 8px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(240,236,248,0.65);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
-.sbs-pill svg{flex-shrink:0;}
-
-/* RIGHT — benchmark panel (slide 1 only) */
-.sbs-right{
-  flex-shrink:0;
-  width:clamp(140px,30%,220px);
-  display:flex;flex-direction:column;
-  box-sizing:border-box;
-}
-
-/* Feature grid 2 cột */
-.sbs-feat-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:clamp(4px,0.8vw,5px);
-}
-.sbs-feat-item{
-  display:flex;align-items:center;gap:7px;
-  background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.15);
-  border-radius:12px;padding:clamp(5px,1vw,8px) clamp(7px,1.2vw,10px);
-  position:relative;overflow:hidden;box-sizing:border-box;
-}
-.sbs-feat-item.highlight-gold{background:linear-gradient(135deg,rgba(234,179,8,0.14),rgba(245,158,11,0.08));border-color:rgba(234,179,8,0.5);}
-.sbs-feat-item.highlight-hot{background:linear-gradient(135deg,rgba(236,72,153,0.14),rgba(168,85,247,0.08));border-color:rgba(236,72,153,0.38);}
-.sbs-feat-item.highlight-teal{background:linear-gradient(135deg,rgba(52,211,153,0.12),rgba(34,211,238,0.06));border-color:rgba(52,211,153,0.35);}
-.sbs-feat-item.highlight-pink{background:linear-gradient(135deg,rgba(236,72,153,0.12),rgba(244,114,182,0.06));border-color:rgba(236,72,153,0.33);}
-.sbs-feat-badge{position:absolute;top:3px;right:4px;font-size:5px;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;}
-.sbs-feat-badge.gold{color:#FCD34D;}.sbs-feat-badge.hot{color:#FB7185;}
-.sbs-feat-ico-wrap{
-  width:clamp(22px,3vw,28px);height:clamp(22px,3vw,28px);
-  border-radius:7px;display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.07);
-}
-.sbs-feat-ico{width:clamp(12px,1.8vw,16px);height:clamp(12px,1.8vw,16px);flex-shrink:0;display:block;}
-.sbs-feat-name{font-size:clamp(7.5px,1.2vw,9.5px);font-weight:700;color:rgba(240,236,248,0.85);line-height:1.2;word-break:break-word;padding-right:8px;}
-
-/* Benchmark block */
-.sbs-bench{
-  background:linear-gradient(135deg,rgba(168,85,247,0.08),rgba(236,72,153,0.04));
-  border:1px solid rgba(168,85,247,0.18);border-radius:12px;
-  padding:clamp(7px,1.2vw,10px) clamp(8px,1.4vw,12px);
-  box-sizing:border-box;
-}
-.sbs-bench-title{font-size:clamp(6.5px,1.1vw,8px);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:6px;}
-.sbs-bench-row{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
-.sbs-bench-row:last-child{margin-bottom:0;}
-.sbs-bench-name{font-size:clamp(7.5px,1.2vw,9px);color:rgba(240,236,248,0.45);width:clamp(65px,10vw,95px);min-width:0;flex-shrink:0;line-height:1.3;word-break:break-word;white-space:normal;}
-.sbs-bench-bar-wrap{flex:1;height:4px;background:rgba(168,85,247,0.1);border-radius:10px;overflow:hidden;}
-.sbs-bench-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,#A855F7,#EC4899);}
-.sbs-bench-bar.dim{background:rgba(168,85,247,0.22);}
-.sbs-bench-pct{font-size:clamp(7.5px,1.2vw,9px);font-weight:800;color:#C084FC;width:clamp(26px,3.5vw,32px);text-align:right;flex-shrink:0;}
-.sbs-bench-pct.dim{color:rgba(240,236,248,0.3);}
-/* teal/pink/gold bench variants */
-.sbs-bench-teal{background:linear-gradient(135deg,rgba(52,211,153,0.07),rgba(34,211,238,0.03));border-color:rgba(52,211,153,0.16);}
-.sbs-bench-teal .sbs-bench-title{color:rgba(110,231,183,0.45);}
-.sbs-bench-teal .sbs-bench-bar{background:linear-gradient(90deg,#34D399,#22D3EE);}
-.sbs-bench-teal .sbs-bench-pct{color:#6EE7B7;}
-.sbs-bench-pink{background:linear-gradient(135deg,rgba(236,72,153,0.07),rgba(244,114,182,0.03));border-color:rgba(236,72,153,0.16);}
-.sbs-bench-pink .sbs-bench-title{color:rgba(244,114,182,0.45);}
-.sbs-bench-pink .sbs-bench-bar{background:linear-gradient(90deg,#EC4899,#F472B6);}
-.sbs-bench-pink .sbs-bench-pct{color:#F472B6;}
-.sbs-bench-gold{background:linear-gradient(135deg,rgba(234,179,8,0.1),rgba(251,191,36,0.04));border-color:rgba(234,179,8,0.22);}
-.sbs-bench-gold .sbs-bench-title{color:rgba(253,211,77,0.55);}
-.sbs-bench-gold .sbs-bench-bar{background:linear-gradient(90deg,#EAB308,#FDE047,#ffffff 120%);}
-.sbs-bench-gold .sbs-bench-bar.dim{background:rgba(234,179,8,0.25);}
-.sbs-bench-gold .sbs-bench-pct{color:#FCD34D;}
-/* gold badge */
-.sbs-badge-gold{background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.4);color:#FDE047;}
-.sbs-badge-gold .sbs-badge-dot{background:#EAB308;box-shadow:0 0 5px #EAB308;}
-
-/* Dots & arrows */
-.sbs-dots{position:absolute;bottom:clamp(8px,1.5vw,12px);left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:20;}
-.sbs-dot{width:22px;height:3.5px;border-radius:4px;background:rgba(255,255,255,0.18);cursor:pointer;transition:all 0.3s;}
-.sbs-dot.active{background:#A855F7;width:34px;box-shadow:0 0 7px rgba(168,85,247,0.6);}
-.sbs-arrow{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:16px;cursor:pointer;z-index:20;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
-.sbs-arrow:hover{background:rgba(168,85,247,0.3);border-color:rgba(168,85,247,0.5);}
-.sbs-arr-l{left:10px;}.sbs-arr-r{right:10px;}
-
-/* ── RESPONSIVE 3 tầng (Rule 4) ── */
-@media(max-width:768px){
-  .sbs-right{width:clamp(130px,28%,195px);}
-}
-@media(max-width:640px){
-  .sbs-right{width:clamp(120px,32%,175px);}
-  .sbs-bench{padding:clamp(7px,1.8vw,11px) clamp(8px,2vw,12px);}
-  .sbs-bench-title{font-size:clamp(6px,1.6vw,7.5px);}
-  .sbs-bench-name{width:clamp(52px,13vw,80px);font-size:clamp(7px,1.9vw,9px);}
-  .sbs-bench-pct{font-size:clamp(7px,1.9vw,9px);}
-  .sbs-title{font-size:clamp(1rem,5vw,1.4rem);}
-  .sbs-sub{font-size:clamp(9px,2vw,11px);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-  .sbs-pills{gap:3px;}
-  .sbs-pill{font-size:8.5px;padding:2px 7px;}
-  .sbs-inner{padding:0 clamp(12px,3.5vw,20px);gap:10px;}
-}
-@media(max-width:480px){
-  .sbs-right{width:clamp(110px,32%,150px);}
-  .sbs-title{font-size:clamp(0.95rem,5.5vw,1.25rem);}
-  .sbs-badge{font-size:8px;}
-  .sbs-bench-bar-wrap{height:3px;}
-}
-
-/* ── 3D GRID BACKGROUND (shared) — duplicate block removed ── */
 .container{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
 .section-wrap{text-align:center;margin-bottom:28px;}
 .section-beams{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:12px;}
@@ -413,33 +350,14 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .section-beam.r{background:linear-gradient(270deg,transparent,#A855F7,#EC4899);}
 .section-label{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(192,132,252,0.7);white-space:nowrap;}
 
-/* === HERO === */
+/* HERO */
 .hero{padding:28px 0 36px;text-align:center;position:relative;}
 .hero-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:min(700px,110vw);height:min(700px,110vw);border-radius:50%;border:1px solid rgba(168,85,247,0.08);pointer-events:none;z-index:0;}
 .hero-ring-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:75%;height:75%;border-radius:50%;border:1px solid rgba(236,72,153,0.07);pointer-events:none;}
 .hero>.container{position:relative;z-index:1;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.25);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:600;color:#C084FC;margin-bottom:28px;animation:fadeUp 0.7s ease both;}
-.hero-eyebrow-dot{width:5px;height:5px;border-radius:50%;background:#A855F7;box-shadow:0 0 8px #A855F7;animation:pulse 1.8s ease-in-out infinite;}
-.hero-h1{font-size:clamp(2.2rem,7.5vw,6rem);font-weight:800;line-height:1.05;letter-spacing:-0.04em;margin-bottom:20px;white-space:normal;animation:fadeUp 0.7s 0.1s ease both;}
-@media(max-width:480px){.hero-h1{font-size:clamp(1.9rem,9vw,2.8rem);line-height:0.97;}}
-.hero-tagline{font-size:clamp(15px,2.2vw,18px);color:var(--muted);max-width:480px;margin:0 auto 38px;line-height:1.8;animation:fadeUp 0.7s 0.2s ease both;}
 .hero-cta{animation:fadeUp 0.7s 0.3s ease both;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
-/* === PRICE === */
-.price-main{font-size:3.8rem;font-weight:800;line-height:1;letter-spacing:-0.04em;}
-.price-main.gradient-text{background:linear-gradient(90deg,#B06EF5 0%,#D44FBF 50%,#F0359A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;}
-
-/* === PLUS CARD override === */
-/* ledGlowPulse: animate opacity on a pseudo-element instead of box-shadow (no repaint) */
-@keyframes ledGlowPulse{0%,100%{opacity:0.55;}50%{opacity:1;}}
-#chatgptPlusCard .glass-card{border-radius:48px;border:2px solid transparent;background:linear-gradient(#110930,#0c0724) padding-box,linear-gradient(135deg,#FFD700 0%,#FFA500 35%,#FFE566 60%,#FFB300 80%,#FFD700 100%) border-box;overflow:hidden;position:relative;contain:layout style paint;transform:translateZ(0);}
-/* animate opacity only — no box-shadow repaint */
-#chatgptPlusCard .glass-card::after{content:'';position:absolute;inset:0;border-radius:46px;background:transparent;box-shadow:0 0 18px rgba(255,210,0,0.5),0 0 32px rgba(255,160,0,0.22);animation:ledGlowPulse 3s ease-in-out infinite;pointer-events:none;z-index:0;will-change:opacity;}
-#plusLedLabel{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:20;display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#B8860B,#FFD700,#FFA500);border-radius:100px;padding:4px 14px;white-space:nowrap;box-shadow:0 0 8px rgba(255,200,0,0.45),0 2px 6px rgba(0,0,0,0.5);}
-#plusLedLabel span{font-size:9.5px;font-weight:900;color:#1a0a00;letter-spacing:0.16em;text-transform:uppercase;}
-
-/* === NEON STAT CARDS — icon left, val+sub RIGHT stacked === */
+/* NEON STAT CARDS */
 .neon-card{flex:1 1 200px;max-width:calc(50% - 8px);min-width:160px;background:rgba(18,12,40,0.85);border-radius:100px;padding:14px 20px;display:flex;flex-direction:column;justify-content:center;border:1px solid transparent;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:default;animation:fadeUp 0.7s 0.4s ease both;text-align:left;contain:layout style paint;}
 .neon-card:hover{transform:translateY(-3px);}
 .neon-card-top{display:flex;align-items:center;gap:12px;width:100%;text-align:left;}
@@ -460,47 +378,115 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .neon-icon-yellow{background:rgba(234,179,8,0.08);border-color:rgba(234,179,8,0.42);box-shadow:0 0 12px rgba(234,179,8,0.38);}
 @media(max-width:560px){.neon-card{flex:1 1 calc(50% - 7px);max-width:calc(50% - 7px);min-width:0;padding:12px 14px;border-radius:100px;}.neon-icon{width:30px;height:30px;}.neon-val{font-size:0.95rem;}.neon-sub{font-size:10px;}}
 
-/* === MISC === */
-.chip{display:inline-flex;align-items:center;gap:5px;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:5px 12px;font-size:10.5px;font-weight:600;color:rgba(192,132,252,0.85);white-space:nowrap;}
-.service-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);color:rgba(192,132,252,0.8);border-radius:100px;padding:8px 14px;font-size:13px;font-weight:600;transition:background 0.2s;}
-.service-tag:hover{background:rgba(168,85,247,0.14);}
+/* MISC */
 .contact-list{display:flex;flex-direction:row;align-items:center;gap:14px;}
-.contact-item{
-  width:48px;height:48px;border-radius:50%;overflow:hidden;
-  border:1.5px solid rgba(168,85,247,0.15);
-  box-shadow:0 2px 10px rgba(0,0,0,0.55);
-  transition:all .22s cubic-bezier(.34,1.56,.64,1);
-  flex-shrink:0;position:relative;text-decoration:none;display:block;
-}
-.contact-item::after{
-  content:'';position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,0.12),transparent 60%);
-  pointer-events:none;
-}
-.contact-item:hover{
-  transform:translateY(-4px);
-  border-color:rgba(168,85,247,0.5);
-  box-shadow:0 8px 24px rgba(168,85,247,0.4),0 2px 8px rgba(0,0,0,0.5);
-}
-.contact-img{width:50px;height:50px;border-radius:14px;object-fit:cover;flex-shrink:0;box-shadow:0 2px 12px rgba(0,0,0,0.45);}
-.contact-name{font-size:18px;font-weight:700;color:#fff;letter-spacing:-0.02em;}
-.contact-arrow{margin-left:auto;color:rgba(192,132,252,0.4);font-size:20px;}
-.ribbon{display:none;}
-.feat-list-item{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid rgba(168,85,247,0.07);}
-.feat-list-item:last-child{border-bottom:none;}
-.feat-list-icon{width:28px;height:28px;border-radius:8px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
-.feat-list-text{font-size:12.5px;color:rgba(240,236,248,0.65);font-weight:500;line-height:1.6;}
+.contact-item{width:48px;height:48px;border-radius:50%;overflow:hidden;border:1.5px solid rgba(168,85,247,0.15);box-shadow:0 2px 10px rgba(0,0,0,0.55);transition:all .22s cubic-bezier(.34,1.56,.64,1);flex-shrink:0;position:relative;text-decoration:none;display:block;}
+.contact-item::after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,0.12),transparent 60%);pointer-events:none;}
+.contact-item:hover{transform:translateY(-4px);border-color:rgba(168,85,247,0.5);box-shadow:0 8px 24px rgba(168,85,247,0.4),0 2px 8px rgba(0,0,0,0.5);}
 footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;color:var(--subtle);font-size:12.5px;position:relative;z-index:1;}
 
-/* === PERF: content-visibility for below-fold sections === */
-#services,#contact{content-visibility:auto;contain-intrinsic-size:0 400px;}
-/* @property removed — use transform-based spin instead */
+/* ─────────────────────────────────
+   PRICE & CARD SHARED
+───────────────────────────────── */
+.price-main{font-size:3.8rem;font-weight:800;line-height:1;letter-spacing:-0.04em;}
+.price-main.gradient-text{background:linear-gradient(90deg,#B06EF5 0%,#D44FBF 50%,#F0359A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;}
 
+/* PLUS CARD GOLD BORDER */
+@keyframes ledGlowPulse{0%,100%{opacity:0.55;}50%{opacity:1;}}
+#chatgptPlusCard .glass-card{border-radius:48px;border:2px solid transparent;background:linear-gradient(#110930,#0c0724) padding-box,linear-gradient(135deg,#FFD700 0%,#FFA500 35%,#FFE566 60%,#FFB300 80%,#FFD700 100%) border-box;overflow:hidden;position:relative;contain:layout style paint;transform:translateZ(0);}
+#chatgptPlusCard .glass-card::after{content:'';position:absolute;inset:0;border-radius:46px;background:transparent;box-shadow:0 0 18px rgba(255,210,0,0.5),0 0 32px rgba(255,160,0,0.22);animation:ledGlowPulse 3s ease-in-out infinite;pointer-events:none;z-index:0;will-change:opacity;}
+#plusLedLabel{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:20;display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#B8860B,#FFD700,#FFA500);border-radius:100px;padding:4px 14px;white-space:nowrap;box-shadow:0 0 8px rgba(255,200,0,0.45),0 2px 6px rgba(0,0,0,0.5);}
+#plusLedLabel span{font-size:9.5px;font-weight:900;color:#1a0a00;letter-spacing:0.16em;text-transform:uppercase;}
+
+/* TTH (Thanh Toán Hộ) */
+@keyframes tthDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@property --tth-la{syntax:'<angle>';initial-value:0deg;inherits:false;}
+@keyframes tthSpin{from{--tth-la:0deg;}to{--tth-la:360deg;}}
+@keyframes tthShim{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
+@keyframes tthScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+.tth-card{
+  background:linear-gradient(145deg,rgba(20,14,4,0.97) 0%,rgba(13,9,2,0.99) 50%,rgba(22,15,3,0.97) 100%);
+  border:1px solid rgba(234,179,8,0.45);
+  border-radius:40px;position:relative;overflow:hidden;
+  contain:layout style paint;transform:translateZ(0);
+  box-shadow:0 1px 0 rgba(255,255,255,0.09) inset,0 -1px 0 rgba(0,0,0,0.45) inset,0 4px 24px rgba(0,0,0,0.65),0 20px 60px rgba(0,0,0,0.45),0 0 60px rgba(234,179,8,0.12),0 0 120px rgba(234,179,8,0.05);
+  transition:border-color .28s,box-shadow .28s,transform .2s;
+  max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;
+}
+.tth-card:hover{border-color:rgba(234,179,8,0.65);transform:translateY(-2px);}
+.tth-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.9),rgba(251,191,36,0.6),transparent);pointer-events:none;}
+.tth-inner{padding:clamp(24px,5vw,36px);}
+.tth-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.tth-ico{width:54px;height:54px;min-width:54px;border-radius:16px;background:linear-gradient(135deg,rgba(234,179,8,0.2),rgba(180,130,0,0.1));border:1.5px solid rgba(234,179,8,0.55);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(234,179,8,0.3);flex-shrink:0;}
+.tth-ttl{font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;line-height:1.25;}
+.tth-sub{font-size:11px;color:rgba(240,236,248,0.42);font-weight:500;line-height:1.55;word-break:break-word;margin-bottom:8px;}
+.tth-badges{display:flex;gap:7px;flex-wrap:wrap;}
+.tth-badge{display:inline-flex;align-items:center;gap:5px;border-radius:9px;padding:5px 11px;font-size:11px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}
+.tth-bv{background:rgba(30,80,200,0.18);border:1.5px solid rgba(60,120,255,0.45);color:#93C5FD;}
+.tth-bm{background:rgba(200,50,30,0.14);border:1.5px solid rgba(234,67,53,0.4);color:#FCA5A5;}
+.tth-dv{height:1px;background:rgba(234,179,8,0.14);margin:0 0 20px;}
+.tth-any{background:linear-gradient(135deg,rgba(234,179,8,0.1) 0%,rgba(180,130,0,0.05) 100%);border:1.5px solid rgba(234,179,8,0.38);border-radius:22px;padding:18px 20px 16px;margin-bottom:18px;position:relative;overflow:hidden;}
+.tth-any::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),transparent);}
+.tth-any-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.4);border-radius:100px;padding:4px 11px;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#FDE047;margin-bottom:8px;}
+.tth-dot{width:5px;height:5px;border-radius:50%;background:#EAB308;box-shadow:0 0 6px #EAB308;animation:tthDot 1.8s ease-in-out infinite;flex-shrink:0;}
+.tth-stmt{font-size:clamp(1.05rem,4vw,1.3rem);font-weight:900;line-height:1.2;letter-spacing:-0.03em;color:#fff;margin-bottom:8px;word-break:break-word;}
+.tth-stmt em{font-style:normal;background:linear-gradient(90deg,#EAB308 0%,#FDE047 40%,#fff 70%,#FDE047 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(234,179,8,0.6));}
+.tth-note{font-size:11.5px;color:rgba(240,236,248,0.5);line-height:1.6;margin-bottom:14px;}
+.tth-note strong{color:rgba(253,224,71,0.85);font-weight:700;}
+.tth-mq-wrap{overflow:hidden;position:relative;border-radius:100px;contain:layout style;border:1px solid rgba(234,179,8,0.18);background:rgba(0,0,0,0.3);}
+.tth-mq-wrap::before,.tth-mq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none;}
+.tth-mq-wrap::before{left:0;background:linear-gradient(90deg,rgba(13,9,2,1),transparent);}
+.tth-mq-wrap::after{right:0;background:linear-gradient(270deg,rgba(13,9,2,1),transparent);}
+.tth-mq-track{display:flex;animation:tthScroll 20s linear infinite;width:max-content;padding:8px 0;will-change:transform;}
+.tth-mq-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 14px;font-size:10px;font-weight:700;white-space:nowrap;color:rgba(253,224,71,0.55);flex-shrink:0;border-right:1px solid rgba(234,179,8,0.12);}
+.tth-mq-chip svg{opacity:0.5;flex-shrink:0;}
+.tth-strip{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.22);border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
+.tth-ir{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(240,236,248,0.6);line-height:1.55;}
+.tth-ii{color:#EAB308;font-weight:700;flex-shrink:0;}
+.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;font-family:'Inter',sans-serif;font-size:13.5px;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
+.tth-btn-fee:hover{background:rgba(234,179,8,0.16);border-color:rgba(234,179,8,0.7);box-shadow:0 0 18px rgba(234,179,8,0.25);}
+.tth-btn-cw{width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;background:conic-gradient(from var(--tth-la,0deg),#78350f 0%,#eab308 15%,#fef08a 25%,#f59e0b 35%,#eab308 50%,#78350f 60%,#fef08a 70%,#eab308 85%,#78350f 100%);animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(234,179,8,0.75),0 0 44px rgba(234,179,8,0.32);contain:layout style paint;}
+.tth-btn-cw::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
+.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
+.tth-btn-c::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.38),transparent);animation:tthShim 2.4s ease-in-out infinite;pointer-events:none;z-index:2;will-change:transform;}
+
+/* FEE MODAL */
+.fee-modal{background:#100a02;border:1px solid rgba(234,179,8,0.35);border-radius:32px;width:100%;max-width:420px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 0 0 1px rgba(234,179,8,0.2),0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),0 0 60px rgba(234,179,8,0.18);position:relative;display:flex;flex-direction:column;margin:auto;}
+.fee-modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),rgba(251,191,36,0.5),transparent);z-index:2;pointer-events:none;}
+.fee-modal-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(234,179,8,0.12);position:sticky;top:0;z-index:10;background:#100a02;border-radius:32px 32px 0 0;flex-shrink:0;}
+.fee-modal-title{font-size:1rem;font-weight:800;color:#FDE047;display:flex;align-items:center;gap:8px;}
+.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3);color:#EAB308;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Inter',sans-serif;}
+.fee-modal-close:hover{background:rgba(234,179,8,0.22);}
+.fee-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:10px;}
+.fm-fixed{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,rgba(234,179,8,0.15),rgba(180,130,0,0.08));border:1.5px solid rgba(234,179,8,0.45);border-radius:18px;padding:14px 18px;}
+.fm-fixed-lbl{font-size:12px;color:rgba(240,236,248,0.75);font-weight:700;display:flex;align-items:center;gap:7px;}
+.fm-fixed-val{font-size:1.4rem;font-weight:900;color:#FDE047;white-space:nowrap;letter-spacing:-0.02em;filter:drop-shadow(0 0 10px rgba(234,179,8,0.5));}
+.fm-tiers{display:flex;flex-direction:column;gap:8px;}
+.fm-tier{background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.18);border-radius:16px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.2s,background 0.2s;}
+.fm-tier:hover{border-color:rgba(234,179,8,0.4);background:rgba(234,179,8,0.09);}
+.fm-tier-range{font-size:13.5px;font-weight:800;color:#fff;letter-spacing:-0.01em;line-height:1.2;flex:1;}
+.fm-tier-right{display:flex;align-items:baseline;gap:4px;min-width:110px;justify-content:flex-end;}
+.fm-tier-pct{font-size:1rem;font-weight:800;color:rgba(253,224,71,0.65);white-space:nowrap;}
+.fm-tier-label{font-size:9px;color:rgba(234,179,8,0.35);font-weight:600;white-space:nowrap;}
+.fm-note{font-size:11px;color:rgba(240,236,248,0.35);line-height:1.65;text-align:center;padding:0 4px;}
+.fm-calc{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.25);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
+.fm-calc-title{font-size:8px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(234,179,8,0.5);}
+.fm-calc-row{display:flex;align-items:center;gap:8px;}
+.fm-calc-input{flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;color:#FDE047;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
+.fm-calc-input:focus{border-color:rgba(234,179,8,0.65);}
+.fm-calc-input::placeholder{color:rgba(253,224,71,0.25);font-weight:500;}
+.fm-calc-unit{font-size:11px;font-weight:700;color:rgba(234,179,8,0.45);white-space:nowrap;flex-shrink:0;}
+.fm-calc-result{background:linear-gradient(135deg,rgba(234,179,8,0.12),rgba(180,130,0,0.07));border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.fm-calc-result-lbl{font-size:11px;color:rgba(240,236,248,0.5);font-weight:600;}
+.fm-calc-result-val{font-size:1.1rem;font-weight:900;color:#FDE047;letter-spacing:-0.02em;filter:drop-shadow(0 0 8px rgba(234,179,8,0.45));}
+
+/* MODAL SHARED */
+@keyframes popIn{from{opacity:0;transform:scale(0.92) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:300;align-items:flex-start;justify-content:center;padding:clamp(12px,3vw,20px);overscroll-behavior:contain;overflow-y:auto;}
 .modal-overlay.open{display:flex;}
 .modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.3);border-radius:32px;padding:clamp(20px,4vw,30px) clamp(16px,4vw,28px);width:100%;max-width:400px;max-height:none;margin:auto;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;overflow:visible;flex-shrink:0;}
 .modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
-@keyframes popIn{from{opacity:0;transform:scale(0.92) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
 .modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--subtle);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;transition:background 0.18s;}
 .modal-close-btn:hover{background:rgba(255,255,255,0.09);color:var(--text);}
 .feat-modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.28);border-radius:32px;width:100%;max-width:500px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;display:flex;flex-direction:column;margin:auto;}
@@ -509,21 +495,82 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .feat-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:8px;}
 .feat-close-btn{width:32px;height:32px;border-radius:50%;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.28);color:#C084FC;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;}
 .feat-close-btn:hover{background:rgba(168,85,247,0.25);}
-.detail-item{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.18);border-radius:16px;margin-bottom:8px;transition:background 0.2s;}
-.detail-item:hover{background:rgba(168,85,247,0.13);border-color:rgba(168,85,247,0.38);}
-.detail-icon{font-size:16px;flex-shrink:0;width:20px;text-align:center;margin-top:1px;}
-.detail-title{font-size:13px;font-weight:700;color:rgba(192,132,252,0.9);margin-bottom:3px;}
-.detail-desc{font-size:11.5px;color:rgba(240,236,248,0.38);line-height:1.65;}
 
-@media(max-width:768px) and (min-width:641px){
-  .topbar{padding:12px 20px;}
+/* FEAT MODAL B */
+.fm-tagline{font-size:12px;color:rgba(240,236,248,0.55);line-height:1.7;padding:14px 22px 0;}
+.fm-tagline strong{color:rgba(192,132,252,0.9);font-weight:700;}
+.fm-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px 22px;}
+.fm-card{background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.17);border-radius:18px;padding:13px 13px 11px;transition:border-color 0.2s;}
+.fm-card:hover{border-color:rgba(168,85,247,0.4);}
+.fm-card-top{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.fm-card-ico{width:30px;height:30px;min-width:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.fm-card-name{font-size:11.5px;font-weight:800;color:rgba(240,236,248,0.9);line-height:1.3;word-break:break-word;}
+.fm-card-desc{font-size:10px;color:rgba(240,236,248,0.45);line-height:1.55;word-break:break-word;}
+.fm-card-badge{display:inline-flex;align-items:center;font-size:9px;font-weight:800;padding:2px 8px;border-radius:100px;margin-top:6px;white-space:nowrap;}
+.fm-bench{margin:0 22px 18px;background:linear-gradient(135deg,rgba(168,85,247,0.09),rgba(236,72,153,0.05));border:1px solid rgba(168,85,247,0.2);border-radius:16px;padding:13px 15px;}
+.fm-bench-title{font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:10px;}
+.fm-bench-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.fm-bench-row:last-child{margin-bottom:0;}
+.fm-bench-name{font-size:10px;color:rgba(240,236,248,0.5);width:120px;min-width:120px;flex-shrink:0;line-height:1.3;}
+.fm-bench-bar-wrap{flex:1;height:6px;background:rgba(168,85,247,0.1);border-radius:10px;overflow:hidden;}
+.fm-bench-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,#A855F7,#EC4899);}
+.fm-bench-bar.dim{background:rgba(168,85,247,0.28);}
+.fm-bench-pct{font-size:10px;font-weight:800;color:#C084FC;width:34px;text-align:right;flex-shrink:0;}
+.fm-bench-pct.dim{color:rgba(240,236,248,0.35);}
+.fm-avail{margin:0 22px 20px;background:rgba(99,220,150,0.05);border:1px solid rgba(99,220,150,0.18);border-radius:12px;padding:9px 13px;display:flex;align-items:center;gap:8px;}
+.fm-avail-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px rgba(52,211,153,0.6);flex-shrink:0;}
+.fm-avail-text{font-size:11px;color:rgba(99,220,150,0.8);font-weight:600;line-height:1.5;word-break:break-word;}
+
+/* KHO CODE PILL BUBBLE */
+.kho-pill-bubble{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(8px) scale(.85);background:rgba(14,8,30,.96);border:1px solid rgba(168,85,247,.55);border-radius:100px;padding:5px 11px;display:flex;align-items:center;gap:5px;white-space:nowrap;pointer-events:none;z-index:300;opacity:0;transition:opacity .4s,transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 16px rgba(168,85,247,.4),0 4px 14px rgba(0,0,0,.6);}
+.kho-pill-bubble.in{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
+.kho-pill-bubble-emoji{font-size:11px;line-height:1;}
+.kho-pill-bubble-text{font-size:9px;font-weight:800;color:#fff;transition:opacity .18s;}
+.kho-pill-bubble-dot{width:4px;height:4px;border-radius:50%;background:#EC4899;flex-shrink:0;animation:khoPillDot 1.4s ease-in-out infinite;}
+@keyframes khoPillDot{0%,100%{opacity:1;}50%{opacity:.15;}}
+
+/* KHO BANNER */
+.kho-banner-link{display:block;text-decoration:none;color:var(--text);background:linear-gradient(145deg,rgba(28,10,58,0.9) 0%,rgba(18,6,40,0.95) 100%);border:1px solid rgba(168,85,247,0.28);border-radius:48px;position:relative;overflow:hidden;transition:border-color 0.28s ease,box-shadow 0.28s ease,transform 0.2s;box-shadow:var(--card-shadow);}
+.kho-banner-link:hover{border-color:rgba(168,85,247,0.6);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-2px);}
+.kho-banner-top-line{height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
+.kho-banner-body{display:flex;align-items:stretch;gap:28px;padding:44px 52px;flex-wrap:wrap;}
+.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Inter',sans-serif;white-space:nowrap;transition:background 0.2s;}
+.kho-banner-link:hover .kho-banner-btn{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
+
+/* ─────────────────────────────────
+   BOTTOM NAV
+───────────────────────────────── */
+.idx-bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:0 14px calc(10px + env(safe-area-inset-bottom));pointer-events:none;}
+.idx-bottom-nav-inner{max-width:480px;margin:0 auto;background:rgba(22,13,48,0.98);border:1px solid rgba(100,55,175,0.25);border-radius:40px;padding:7px;display:flex;align-items:center;justify-content:space-around;pointer-events:all;box-shadow:0 2px 0 rgba(255,255,255,0.13) inset,0 -2px 0 rgba(0,0,0,0.7) inset,0 8px 0 rgba(0,0,0,0.55),0 12px 24px rgba(0,0,0,0.65),0 20px 50px rgba(0,0,0,0.45),0 0 40px rgba(120,55,200,0.22);}
+.idx-bnav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 16px;border-radius:28px;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);flex:1;user-select:none;text-decoration:none;}
+.idx-bnav-item.active{background:linear-gradient(145deg,#7040D0 0%,#8E50E4 55%,#8045DC 100%);box-shadow:0 1px 0 rgba(255,255,255,0.22) inset,0 4px 14px rgba(120,60,210,0.55),0 8px 22px rgba(120,60,210,0.28);}
+.idx-bnav-item:not(.active):hover{background:rgba(120,60,200,0.1);}
+.idx-bnav-item svg{width:20px;height:20px;stroke:rgba(255,255,255,0.3);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .18s;flex-shrink:0;}
+.idx-bnav-item.active svg{stroke:#ffffff;}
+.idx-bnav-item span{font-size:10px;font-weight:700;letter-spacing:.01em;color:rgba(255,255,255,0.3);transition:color .18s;}
+.idx-bnav-item.active span{color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,0.3);}
+body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
+
+/* SUB CARD COMPACT */
+.sub-card-compact{padding:20px 22px 18px!important;}
+.sub-card-compact .sub-price-row{flex-direction:row!important;gap:10px!important;}
+.sub-card-compact .sub-price-divider{display:block!important;}
+@media(min-width:641px){
+  .sub-cards-yt-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.5vw,24px);align-items:stretch;grid-column:1/-1;}
+  .sub-cards-yt-wrap .sub-card{height:100%;}
 }
-/* === RESPONSIVE === */
+@media(max-width:640px){.sub-cards-yt-wrap{display:contents;}}
+
+/* ─────────────────────────────────
+   RESPONSIVE OVERRIDES
+───────────────────────────────── */
+@media(max-width:767px){.topbar-hamburger{display:none;}.topbar-dropdown{display:none!important;}}
+@media(min-width:768px){.idx-bottom-nav-inner{max-width:560px;}.idx-bnav-item{padding:8px 22px;}}
+#services,#contact{content-visibility:auto;contain-intrinsic-size:0 400px;}
+
 @media(max-width:640px){
   .topbar{padding:18px 16px;}
   .hero{padding:48px 0 48px!important;}
-  .hero{padding:100px 0 48px;}.hero-h1{white-space:normal;font-size:clamp(1.6rem,8vw,2.4rem);}
-  .hero-tagline{font-size:12px;}.hero-eyebrow{font-size:10px;}
   .container{padding-left:18px!important;padding-right:18px!important;}
   .section-beams{gap:8px;}.section-beam{max-width:60px;}.section-label{font-size:9px;}
   #accounts{padding:44px 0 36px!important;}
@@ -535,14 +582,10 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
   #heroPrimaryBtn{width:100%!important;justify-content:center!important;font-size:14px!important;padding:13px 20px!important;}
   #heroGhostBtn{width:100%!important;justify-content:center!important;text-align:center!important;font-size:14px!important;padding:13px 20px!important;box-sizing:border-box!important;}
   #chatgptPlusCard{width:100%;box-sizing:border-box;min-width:0;}
-  #plusLedWrap{border-radius:44px!important;}
   #chatgptPlusCard .glass-card{overflow:hidden;width:100%;box-sizing:border-box;min-width:0;border-radius:40px!important;}
   #chatgptPlusCard [style*="padding-right:110px"]{padding-right:80px!important;}
   #plusPriceFlexRow{flex-wrap:nowrap!important;gap:10px!important;align-items:center!important;}
   #plusYearlyBox{flex:1 1 0!important;min-width:0!important;padding:9px 10px!important;}
-  #plusYearlyBox #plusYearlyListFull{font-size:clamp(0.7rem,2.2vw,0.92rem)!important;}
-  #plusYearlyBox #plusYearlyOur{font-size:clamp(0.75rem,2.3vw,1rem)!important;}
-  #plusYearlyBox #plusYearlySaving{font-size:7.5px!important;}
   #plusPriceDivider{min-height:50px!important;margin:2px 0!important;flex-shrink:0;}
   #plusPriceRight .price-main{font-size:2.3rem!important;}
   #plusPriceRight #plusOldPrice{font-size:8px!important;}
@@ -565,250 +608,27 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
   .modal-overlay{padding:12px!important;align-items:flex-start!important;}
   .feat-modal-head{padding:14px 16px 12px;}.feat-modal-body{padding:12px 16px 18px;}
   .sub-card{border-radius:40px!important;}
+  .tth-inner{padding:22px 18px 26px!important;}
+  .fee-modal-body{padding:14px 16px 20px;}
+  .fee-modal-head{padding:14px 16px 12px;}
+  .fm-tagline{padding:12px 16px 0;font-size:11.5px;}
+  .fm-cards{grid-template-columns:1fr 1fr;gap:7px;padding:10px 16px;}
+  .fm-card{padding:10px 10px 9px;border-radius:14px;}
+  .fm-bench{margin:0 16px 14px;padding:11px 12px;}
+  .fm-bench-name{width:100px;min-width:100px;font-size:9.5px;}
+  .fm-avail{margin:0 16px 16px;}
 }
-/* === FLUID BREAKPOINTS === */
-/* tablet 641–768px */
-@media(min-width:641px) and (max-width:768px){
-  #chatgptPlusCard .glass-card{border-radius:40px!important;}
-  #plusLedWrap{border-radius:44px!important;}
-}
-/* small mobile ≤480px */
 @media(max-width:480px){
   .neon-card{padding:10px 12px!important;border-radius:100px;}
   .neon-val{font-size:0.88rem!important;}
   .neon-sub{font-size:9.5px!important;}
   .neon-icon{width:28px!important;height:28px!important;}
-  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"] span{font-size:10px!important;}
   #plusPriceRight .price-main{font-size:2rem!important;}
+  .fm-cards{grid-template-columns:1fr;}
+  .fm-bench-name{width:90px;min-width:90px;}
 }
-
-.sub-card-compact{padding:20px 22px 18px!important;}
-.sub-card-compact .sub-price-row{flex-direction:row!important;gap:10px!important;}
-.sub-card-compact .sub-price-divider{display:block!important;}
-@media(min-width:641px){
-  .sub-cards-yt-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,16px);align-items:stretch;grid-column:1/-1;}
-  .sub-cards-yt-wrap .sub-card{height:100%;}
-}
-@media(max-width:640px){.sub-cards-yt-wrap{display:contents;}}
-
-/* ═══════════════════════════════════════════
-   BOTTOM NAV — Telegram A1 Style (index)
-   ═══════════════════════════════════════════ */
-.idx-bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;z-index:200;
-  padding:0 14px calc(10px + env(safe-area-inset-bottom));
-  pointer-events:none;
-}
-.idx-bottom-nav-inner{
-  max-width:480px;margin:0 auto;
-  background:rgba(22,13,48,0.98);
-  border:1px solid rgba(100,55,175,0.25);
-  border-radius:40px;
-  padding:7px;
-  display:flex;align-items:center;justify-content:space-around;
-  pointer-events:all;
-  box-shadow:
-    0 2px 0 rgba(255,255,255,0.13) inset,
-    0 -2px 0 rgba(0,0,0,0.7) inset,
-    0 1px 0 rgba(255,255,255,0.06) inset,
-    0 8px 0 rgba(0,0,0,0.55),
-    0 12px 24px rgba(0,0,0,0.65),
-    0 20px 50px rgba(0,0,0,0.45),
-    0 0 40px rgba(120,55,200,0.22),
-    0 0 80px rgba(100,40,180,0.1);
-}
-.idx-bnav-item{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-  padding:8px 16px;border-radius:28px;cursor:pointer;
-  transition:all .2s cubic-bezier(.34,1.56,.64,1);
-  flex:1;user-select:none;text-decoration:none;
-}
-.idx-bnav-item.active{
-  background:linear-gradient(145deg,#7040D0 0%,#8E50E4 55%,#8045DC 100%);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,0.22) inset,
-    0 -1px 0 rgba(0,0,0,0.28) inset,
-    0 4px 14px rgba(120,60,210,0.55),
-    0 8px 22px rgba(120,60,210,0.28);
-}
-.idx-bnav-item:not(.active):hover{background:rgba(120,60,200,0.1);}
-.idx-bnav-item:not(.active):active{background:rgba(120,60,200,0.14);transform:scale(0.97);}
-.idx-bnav-item svg{
-  width:20px;height:20px;
-  stroke:rgba(255,255,255,0.3);fill:none;
-  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
-  transition:stroke .18s;flex-shrink:0;
-}
-.idx-bnav-item.active svg{stroke:#ffffff;}
-.idx-bnav-item span{
-  font-size:10px;font-weight:700;letter-spacing:.01em;
-  color:rgba(255,255,255,0.3);transition:color .18s;
-}
-.idx-bnav-item.active span{color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,0.3);}
-/* Always show bottom nav, always add body padding */
-body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
-
-/* ══════════════════════════════════════════
-   THANH TOÁN HỘ CARD — TTH namespace
-══════════════════════════════════════════ */
-.tth-card{
-  background:linear-gradient(145deg,rgba(20,14,4,0.97) 0%,rgba(13,9,2,0.99) 50%,rgba(22,15,3,0.97) 100%);
-  border:1.5px solid rgba(234,179,8,0.45);
-  border-radius:40px;position:relative;overflow:hidden;
-  contain:layout style paint;transform:translateZ(0);
-  box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 0 0 1.5px rgba(234,179,8,0.38),
-    0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),
-    0 0 80px rgba(234,179,8,0.14),0 0 140px rgba(234,179,8,0.06);
-  transition:border-color .28s,box-shadow .28s,transform .2s;
-  max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;
-}
-.tth-card:hover{border-color:rgba(234,179,8,0.65);transform:translateY(-2px);
-  box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 0 0 1.5px rgba(234,179,8,0.5),
-    0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),
-    0 0 90px rgba(234,179,8,0.22),0 0 160px rgba(234,179,8,0.1);}
-.tth-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(234,179,8,0.9),rgba(251,191,36,0.6),transparent);pointer-events:none;}
-.tth-inner{padding:clamp(24px,5vw,36px);}
-.tth-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
-.tth-ico{width:54px;height:54px;min-width:54px;border-radius:16px;
-  background:linear-gradient(135deg,rgba(234,179,8,0.2),rgba(180,130,0,0.1));
-  border:1.5px solid rgba(234,179,8,0.55);display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 20px rgba(234,179,8,0.3);flex-shrink:0;}
-.tth-ttl{font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;line-height:1.25;}
-.tth-sub{font-size:11px;color:rgba(240,236,248,0.42);font-weight:500;line-height:1.55;word-break:break-word;margin-bottom:8px;}
-.tth-badges{display:flex;gap:7px;flex-wrap:wrap;}
-.tth-badge{display:inline-flex;align-items:center;gap:5px;border-radius:9px;padding:5px 11px;
-  font-size:11px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}
-.tth-bv{background:rgba(30,80,200,0.18);border:1.5px solid rgba(60,120,255,0.45);color:#93C5FD;}
-.tth-bm{background:rgba(200,50,30,0.14);border:1.5px solid rgba(234,67,53,0.4);color:#FCA5A5;}
-.tth-dv{height:1px;background:rgba(234,179,8,0.14);margin:0 0 20px;}
-/* Any-service block */
-.tth-any{background:linear-gradient(135deg,rgba(234,179,8,0.1) 0%,rgba(180,130,0,0.05) 100%);
-  border:1.5px solid rgba(234,179,8,0.38);border-radius:22px;padding:18px 20px 16px;margin-bottom:18px;
-  position:relative;overflow:hidden;}
-.tth-any::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),transparent);}
-.tth-any-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.14);
-  border:1px solid rgba(234,179,8,0.4);border-radius:100px;padding:4px 11px;
-  font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#FDE047;margin-bottom:8px;}
-.tth-dot{width:5px;height:5px;border-radius:50%;background:#EAB308;box-shadow:0 0 6px #EAB308;
-  animation:tthDot 1.8s ease-in-out infinite;flex-shrink:0;}
-@keyframes tthDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.tth-stmt{font-size:clamp(1.05rem,4vw,1.3rem);font-weight:900;line-height:1.2;letter-spacing:-0.03em;
-  color:#fff;margin-bottom:8px;word-break:break-word;}
-.tth-stmt em{font-style:normal;background:linear-gradient(90deg,#EAB308 0%,#FDE047 40%,#fff 70%,#FDE047 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 0 12px rgba(234,179,8,0.6));}
-.tth-note{font-size:11.5px;color:rgba(240,236,248,0.5);line-height:1.6;margin-bottom:14px;}
-.tth-note strong{color:rgba(253,224,71,0.85);font-weight:700;}
-/* Marquee */
-.tth-mq-wrap{overflow:hidden;position:relative;border-radius:100px;contain:layout style;
-  border:1px solid rgba(234,179,8,0.18);background:rgba(0,0,0,0.3);}
-.tth-mq-wrap::before,.tth-mq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none;}
-.tth-mq-wrap::before{left:0;background:linear-gradient(90deg,rgba(13,9,2,1),transparent);}
-.tth-mq-wrap::after{right:0;background:linear-gradient(270deg,rgba(13,9,2,1),transparent);}
-.tth-mq-track{display:flex;animation:tthScroll 20s linear infinite;width:max-content;padding:8px 0;will-change:transform;}
-@keyframes tthScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.tth-mq-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 14px;font-size:10px;font-weight:700;
-  white-space:nowrap;color:rgba(253,224,71,0.55);flex-shrink:0;border-right:1px solid rgba(234,179,8,0.12);}
-.tth-mq-chip svg{opacity:0.5;flex-shrink:0;}
-/* Info strip */
-.tth-strip{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.22);border-radius:16px;
-  padding:12px 16px;display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
-.tth-ir{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(240,236,248,0.6);line-height:1.55;}
-.tth-ii{color:#EAB308;font-weight:700;flex-shrink:0;}
-/* Buttons */
-.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
-  background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;
-  font-weight:700;font-family:'Inter',sans-serif;font-size:13.5px;padding:13px 20px;
-  border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
-.tth-btn-fee:hover{background:rgba(234,179,8,0.16);border-color:rgba(234,179,8,0.7);box-shadow:0 0 18px rgba(234,179,8,0.25);}
-@property --tth-la{syntax:'<angle>';initial-value:0deg;inherits:false;}
-@keyframes tthSpin{from{--tth-la:0deg;}to{--tth-la:360deg;}}
-@keyframes tthShim{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
-.tth-btn-cw{width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;
-  background:conic-gradient(from var(--tth-la,0deg),#78350f 0%,#eab308 15%,#fef08a 25%,#f59e0b 35%,#eab308 50%,#78350f 60%,#fef08a 70%,#eab308 85%,#78350f 100%);
-  animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(234,179,8,0.75),0 0 44px rgba(234,179,8,0.32);contain:layout style paint;}
-.tth-btn-cw::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
-.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;
-  justify-content:center;gap:8px;
-  background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);
-  color:#1a0800;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;
-  padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;
-  white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
-.tth-btn-c::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;
-  background:linear-gradient(105deg,transparent,rgba(255,255,255,0.38),transparent);
-  animation:tthShim 2.4s ease-in-out infinite;pointer-events:none;z-index:2;will-change:transform;}
-/* Fee Modal */
-.fee-modal{
-  background:#100a02;border:1px solid rgba(234,179,8,0.35);border-radius:32px;
-  width:100%;max-width:420px;max-height:calc(100vh - clamp(24px,6vw,40px));
-  overflow-y:auto;overscroll-behavior:contain;
-  animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);
-  box-shadow:0 0 0 1px rgba(234,179,8,0.2),0 4px 8px rgba(0,0,0,0.65),
-    0 16px 40px rgba(0,0,0,0.5),0 0 60px rgba(234,179,8,0.18);
-  position:relative;display:flex;flex-direction:column;margin:auto;
-}
-.fee-modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),rgba(251,191,36,0.5),transparent);
-  z-index:2;pointer-events:none;}
-.fee-modal-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid rgba(234,179,8,0.12);position:sticky;top:0;z-index:10;
-  background:#100a02;border-radius:32px 32px 0 0;flex-shrink:0;}
-.fee-modal-title{font-size:1rem;font-weight:800;color:#FDE047;display:flex;align-items:center;gap:8px;}
-.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(234,179,8,0.1);
-  border:1px solid rgba(234,179,8,0.3);color:#EAB308;font-size:14px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Inter',sans-serif;}
-.fee-modal-close:hover{background:rgba(234,179,8,0.22);}
-.fee-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:10px;}
-.fm-fixed{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  background:linear-gradient(135deg,rgba(234,179,8,0.15),rgba(180,130,0,0.08));
-  border:1.5px solid rgba(234,179,8,0.45);border-radius:18px;padding:14px 18px;}
-.fm-fixed-lbl{font-size:12px;color:rgba(240,236,248,0.75);font-weight:700;display:flex;align-items:center;gap:7px;}
-.fm-fixed-val{font-size:1.4rem;font-weight:900;color:#FDE047;white-space:nowrap;letter-spacing:-0.02em;filter:drop-shadow(0 0 10px rgba(234,179,8,0.5));}
-.fm-tiers{display:flex;flex-direction:column;gap:8px;}
-.fm-tier{background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.18);
-  border-radius:16px;padding:12px 10px;text-align:center;transition:border-color 0.2s,background 0.2s;
-  display:flex;align-items:center;justify-content:space-between;padding:12px 18px;}
-.fm-tier:hover{border-color:rgba(234,179,8,0.4);background:rgba(234,179,8,0.09);}
-.fm-tier-range{font-size:13.5px;font-weight:800;color:#fff;letter-spacing:-0.01em;line-height:1.2;flex:1;}
-.fm-tier-right{display:flex;align-items:baseline;gap:4px;min-width:110px;justify-content:flex-end;}
-.fm-tier-pct{font-size:1rem;font-weight:800;color:rgba(253,224,71,0.65);white-space:nowrap;}
-.fm-tier-label{font-size:9px;color:rgba(234,179,8,0.35);font-weight:600;white-space:nowrap;}
-.fm-note{font-size:11px;color:rgba(240,236,248,0.35);line-height:1.65;text-align:center;padding:0 4px;}
-.fm-eg{background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.16);border-radius:16px;padding:14px 16px;}
-.fm-eg-title{font-size:8px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(234,179,8,0.45);margin-bottom:10px;}
-.fm-eg-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid rgba(234,179,8,0.07);}
-.fm-eg-row:last-child{border-bottom:none;}
-.fm-eg-name{font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:600;flex:1;}
-.fm-eg-result{font-size:12px;font-weight:800;color:#FDE047;white-space:nowrap;}
-@media(max-width:480px){
-  .tth-inner{padding:22px 18px 26px!important;}
-  .tth-ttl{font-size:1.05rem;}
-  .tth-ico{width:46px;height:46px;min-width:46px;}
-  .tth-stmt{font-size:1rem;}
-  .fm-tiers{gap:6px;}
-  .fee-modal-body{padding:14px 16px 20px;}
-  .fee-modal-head{padding:14px 16px 12px;}
-}
-/* Fee calculator */
-.fm-calc{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.25);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;}
-.fm-calc-title{font-size:8px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(234,179,8,0.5);}
-.fm-calc-row{display:flex;align-items:center;gap:8px;}
-.fm-calc-input{flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:9px 12px;font-size:13px;font-weight:700;color:#FDE047;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
-.fm-calc-input:focus{border-color:rgba(234,179,8,0.65);}
-.fm-calc-input::placeholder{color:rgba(253,224,71,0.25);font-weight:500;}
-.fm-calc-unit{font-size:11px;font-weight:700;color:rgba(234,179,8,0.45);white-space:nowrap;flex-shrink:0;}
-.fm-calc-result{background:linear-gradient(135deg,rgba(234,179,8,0.12),rgba(180,130,0,0.07));border:1px solid rgba(234,179,8,0.3);border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.fm-calc-result-lbl{font-size:11px;color:rgba(240,236,248,0.5);font-weight:600;}
-.fm-calc-result-val{font-size:1.1rem;font-weight:900;color:#FDE047;letter-spacing:-0.02em;filter:drop-shadow(0 0 8px rgba(234,179,8,0.45));}
-@media(max-width:767px){
-  .topbar-hamburger{display:none;}
-  .topbar-dropdown{display:none!important;}
-}
-@media(min-width:768px){
-  .idx-bottom-nav-inner{max-width:560px;}
-  .idx-bnav-item{padding:8px 22px;}
+@media(min-width:641px) and (max-width:768px){
+  #chatgptPlusCard .glass-card{border-radius:40px!important;}
 }
 </style>
 </head>
@@ -817,6 +637,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <div class="glow-orb glow-orb-2"></div>
 <div class="glow-orb glow-orb-3"></div>
 
+<!-- TOPBAR -->
 <nav class="topbar">
   <div class="topbar-logo">
     <span class="topbar-logo-diamond">✦</span>
@@ -831,7 +652,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <nav class="topbar-dropdown" id="topDrop">
   <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu()">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <span class="topbar-nav-text">ChatGPT &bull; Youtube &bull; CapCut</span>
+    <span class="topbar-nav-text">ChatGPT · Youtube · CapCut</span>
   </a>
   <a class="topbar-nav-item" href="kho.html" onclick="closeTopMenu()">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
@@ -839,7 +660,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   </a>
   <a class="topbar-nav-item" href="#services" onclick="closeTopMenu()">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-    <span class="topbar-nav-text">Dịch Vụ Thiết Kế Web &bull; Bot Telegram</span>
+    <span class="topbar-nav-text">Dịch Vụ Web · Bot Telegram</span>
   </a>
   <a class="topbar-nav-item" href="#contact" onclick="closeTopMenu()">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -847,126 +668,87 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   </a>
 </nav>
 
-<!-- BANNER CAROUSEL — ChatGPT > Web Bot > Kho Code -->
-<div class="site-banner" id="siteBanner">
-  <div class="site-banner-slides" id="sbSlides">
+<!-- ═══════════════════════════════════════
+     HERO BANNER — compact redesign
+═══════════════════════════════════════ -->
+<div class="hero-banner" id="siteBanner">
+  <div class="hero-banner-topline"></div>
+  <div class="hero-banner-inner">
 
-    <!-- ═══ SLIDE 1 — ChatGPT Plus ═══ -->
-    <div class="site-banner-slide sbs-1" onclick="sbSlideClick(0)">
-      <div class="sbs-grid" aria-hidden="true">
-        <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
-        <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
+    <!-- LEFT: tagline + checks + FB link nhỏ -->
+    <div class="hb-left">
+      <div class="hb-eyebrow">
+        <div class="hb-eyebrow-dot"></div>
+        Binpinkgold
       </div>
-      <div class="sbs-inner">
-        <!-- LEFT -->
-        <div class="sbs-left">
-          <div class="sbs-badge sbs-badge-gold"><div class="sbs-badge-dot"></div>ChatGPT Plus · GPT-5.4</div>
-          <div class="sbs-title">Trí Tuệ AI<br><em style="background:linear-gradient(135deg,#EAB308,#FDE047,#ffffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Đỉnh Cao Nhất.</em></div>
-          <div class="sbs-sub">Tài khoản Plus chính hãng — GPT-5.4 Thinking, Sora, Codex. Chỉ 99K/tháng.</div>
-          <div class="sbs-pills">
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FDE047" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 3.9 2.4-7.4L2 9.4h7.6z"/></svg> GPT-5.4</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg> Sora AI</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Codex</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 99K/tháng</span>
-          </div>
+
+      <h1 class="hb-title">
+        Dịch vụ xịn.<br>
+        <em>Giá sinh viên.</em>
+      </h1>
+
+      <div class="hb-fire-badge">🔥 Chỉ từ 3.000đ / ngày</div>
+
+      <div class="hb-checks">
+        <div class="hb-check">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Xử lý nhanh trong 1 phút
         </div>
-        <!-- RIGHT — benchmark only -->
-        <div class="sbs-right">
-          <div class="sbs-bench sbs-bench-gold">
-            <div class="sbs-bench-title">Benchmark GPT-5.4</div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">MMLU</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:91%"></div></div><div class="sbs-bench-pct">91%</div></div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">HumanEval</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:87%"></div></div><div class="sbs-bench-pct">87%</div></div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">GSM8K</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar" style="width:95%"></div></div><div class="sbs-bench-pct">95%</div></div>
-            <div class="sbs-bench-row"><div class="sbs-bench-name">Claude 3.5</div><div class="sbs-bench-bar-wrap"><div class="sbs-bench-bar dim" style="width:72%"></div></div><div class="sbs-bench-pct dim">72%</div></div>
-          </div>
+        <div class="hb-check">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Bảo hành &amp; hoàn tiền nếu lỗi
+        </div>
+        <div class="hb-check">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          200+ khách tin tưởng
         </div>
       </div>
+
+      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Check uy tín Facebook
+        <div class="fb-btn-arrow"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
     </div>
 
-    <!-- ═══ SLIDE 2 — Thanh Toán Quốc Tế ═══ -->
-    <div class="site-banner-slide sbs-4" onclick="sbSlideClick(1)">
-      <div class="sbs-grid" aria-hidden="true">
-        <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
-        <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
-      </div>
-      <div class="sbs-inner">
-        <div class="sbs-left">
-          <div class="sbs-badge sbs-badge-amber"><div class="sbs-badge-dot"></div>Thanh Toán Hộ · Visa / Mastercard</div>
-          <div class="sbs-title">Không thẻ quốc tế?<br><em style="background:linear-gradient(135deg,#D97706,#FDE047,#ffffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Tôi thanh toán hộ.</em></div>
-          <div class="sbs-sub">Netflix, Spotify, Adobe, Steam, AI tools hay bất kỳ dịch vụ nào — chỉ cần chuyển khoản nội địa, xử lý trong 1 phút.</div>
-          <div class="sbs-pills">
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FDE047" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg> Visa/MC</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 1 phút</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Uy tín</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg> Mọi web quốc tế</span>
-          </div>
-        </div>
-        <!-- RIGHT — curiosity teaser -->
-        <div class="sbs-right" style="position:relative;">
-          <div class="sbs-fee-panel" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(6px,1vw,10px);text-align:center;cursor:pointer;" onclick="sbSlideClick(1)">
-            <div style="font-size:clamp(22px,4vw,32px);line-height:1;">💳</div>
-            <div style="font-size:clamp(8px,1.3vw,11px);font-weight:800;color:#FDE047;letter-spacing:0.06em;text-transform:uppercase;line-height:1.4;">Phí rẻ hơn<br>bạn nghĩ</div>
-            <div style="font-size:clamp(7px,1.1vw,9px);color:rgba(253,224,71,0.45);font-weight:600;line-height:1.5;">Xem bảng phí<br>& tính tiền ngay</div>
-            <div style="display:flex;align-items:center;gap:4px;background:rgba(234,179,8,0.15);border:1px solid rgba(234,179,8,0.4);border-radius:100px;padding:4px 10px;">
-              <span style="font-size:clamp(7px,1.1vw,9px);font-weight:800;color:#FDE047;">Xem ngay</span>
-              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#FDE047" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- RIGHT: 2×3 chip grid — icon + tên -->
+    <div class="hb-right">
 
-    <!-- ═══ SLIDE 3 — Web Bot ═══ -->
-    <div class="site-banner-slide sbs-2" onclick="sbSlideClick(2)">
-      <div class="sbs-grid" aria-hidden="true">
-        <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
-        <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
+      <div class="hb-chip">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><circle cx="12" cy="5" r="2"/></svg></div>
+        <span class="hb-chip-name">ChatGPT Plus</span>
       </div>
-      <div class="sbs-inner">
-        <div class="sbs-left">
-          <div class="sbs-badge sbs-badge-teal"><div class="sbs-badge-dot"></div>Dịch Vụ Lập Trình</div>
-          <div class="sbs-title">Website &amp; Bot<br><em class="em-teal">Telegram thông minh</em></div>
-          <div class="sbs-sub">Thiết kế web, bot tự động, hỗ trợ code — báo giá 15 phút, bảo hành miễn phí.</div>
-          <div class="sbs-pills">
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> Website</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Bot Telegram</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Hỗ trợ code</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Nhanh</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ═══ SLIDE 4 — Kho Code ═══ -->
-    <div class="site-banner-slide sbs-3" onclick="sbSlideClick(3)">
-      <div class="sbs-grid" aria-hidden="true">
-        <div class="sbs-grid-wall"></div><div class="sbs-grid-floor"></div>
-        <div class="sbs-grid-horizon"></div><div class="sbs-grid-vignette"></div>
+      <div class="hb-chip">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg></div>
+        <span class="hb-chip-name">YouTube Premium</span>
       </div>
-      <div class="sbs-inner">
-        <div class="sbs-left">
-          <div class="sbs-badge sbs-badge-pink"><div class="sbs-badge-dot"></div>Hiệu Ứng &amp; Tool</div>
-          <div class="sbs-title">Kho Code TikTok<br><em class="em-pink">độc lạ, không đụng hàng</em></div>
-          <div class="sbs-sub">Thiệp động, hiệu ứng nhạc, tool sáng tạo — phù hợp mọi dịp, dùng là thích.</div>
-          <div class="sbs-pills">
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Hiệu ứng đẹp</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#EC4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg> Quà tặng độc</span>
-            <span class="sbs-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Dùng ngay</span>
-          </div>
-        </div>
+
+      <div class="hb-chip">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
+        <span class="hb-chip-name">CapCut Pro</span>
       </div>
-    </div>
 
-  </div>
-  <div class="sbs-dots" id="sbDots">
-    <div class="sbs-dot active" onclick="sbGoTo(0)"></div>
-    <div class="sbs-dot" onclick="sbGoTo(1)"></div>
-    <div class="sbs-dot" onclick="sbGoTo(2)"></div>
-    <div class="sbs-dot" onclick="sbGoTo(3)"></div>
-  </div>
-</div>
+      <div class="hb-chip">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <span class="hb-chip-name">Kho Code TikTok</span>
+      </div>
 
-<!-- HERO -->
+      <div class="hb-chip">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <span class="hb-chip-name">Web &amp; Bot</span>
+      </div>
+
+      <div class="hb-chip">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <span class="hb-chip-name">Thanh Toán Visa</span>
+      </div>
+
+    </div><!-- end hb-right -->
+  </div><!-- end hero-banner-inner -->
+</div><!-- end hero-banner -->
+
+<!-- HERO (stat cards + CTA) -->
 <section class="hero">
   <div class="hero-ring"><div class="hero-ring-inner"></div></div>
   <div class="container" style="text-align:center;">
@@ -974,7 +756,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <div class="btn-primary-wrap" id="heroPrimaryWrap" style="flex:none;">
         <button onclick="var el=document.getElementById('accounts');var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:72;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'})" class="btn-register-shimmer" id="heroPrimaryBtn" style="font-size:13.5px;padding:11px 26px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Inter',sans-serif;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 22px rgba(168,85,247,0.55),0 0 40px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22);white-space:nowrap;">Khám phá ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
       </div>
-      <a href="kho.html" class="btn-ghost" id="heroGhostBtn" style="display:none;font-size:13.5px;padding:11px 26px;border-radius:100px;background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.18);color:rgba(240,236,248,0.8);">Xem Kho Code</a>
+
     </div>
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2vw,16px);max-width:min(680px,100%);margin:0 auto;">
       <div class="neon-card neon-cyan">
@@ -1005,7 +787,11 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   </div>
 </section>
 
-<!-- PREMIUM ACCOUNTS -->
+<!-- ═══════════════════════════════════════
+     ACCOUNTS — ChatGPT Plus + sub cards
+     FIX: thêm padding-bottom cho wrapper để
+     card chính không dính vào sub-cards
+═══════════════════════════════════════ -->
 <section id="accounts" style="padding:clamp(60px,8vw,90px) 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
   <div class="container">
     <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">ChatGPT · Youtube · CapCut</div><div class="section-beam r"></div></div></div>
@@ -1014,13 +800,14 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <span id="promoPillText" style="font-size:13.5px;font-weight:700;color:#E0B4FF;letter-spacing:0.01em;">Gói <strong style="color:#fff;">12 tháng</strong> tặng <strong style="color:#fff;">1 tháng miễn phí</strong></span>
       </div>
     </div>
-    <div id="accountsGrid" style="display:grid;grid-template-columns:1fr;gap:clamp(24px,5vw,60px);">
 
-      <!-- ChatGPT Plus -->
-      <div style="max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;min-width:0;padding-top:16px;padding-bottom:16px;">
-          <div id="chatgptPlusCard" style="width:100%;box-sizing:border-box;min-width:0;position:relative;">
-            <div id="plusLedLabel"><span>✦ Lựa chọn tối ưu</span></div>
-            <div class="tth-card" style="border-radius:40px;max-width:100%;position:relative;">
+    <!-- ── MAIN GRID: ChatGPT card (full width) → sub cards below ── -->
+    <div id="accountsGrid" style="display:flex;flex-direction:column;gap:clamp(32px,5vw,48px);max-width:680px;margin:0 auto;">
+
+      <!-- ── CHATGPT PLUS CARD ── -->
+      <div style="width:100%;box-sizing:border-box;padding-top:18px;position:relative;" id="chatgptPlusCard">
+        <div id="plusLedLabel"><span>✦ Lựa chọn tối ưu</span></div>
+        <div class="tth-card" style="border-radius:40px;max-width:100%;position:relative;">
 
           <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(234,179,8,0.9) 30%,rgba(251,191,36,0.6) 70%,transparent 100%);margin:0 5%;"></div>
 
@@ -1034,10 +821,8 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
           </div>
 
-          <!-- Price row: 12-month LEFT | divider | 199K RIGHT -->
           <div style="padding:18px clamp(18px,4vw,44px) 24px;border-bottom:1px solid rgba(234,179,8,0.15);">
             <div id="plusPriceFlexRow" style="display:flex;align-items:stretch;gap:18px;flex-wrap:wrap;">
-              <!-- LEFT: 99K -->
               <div id="plusPriceRight" style="display:flex;flex-direction:column;justify-content:center;">
                 <div style="font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(253,224,71,0.45);margin-bottom:8px;">Giá / tháng</div>
                 <div class="price-main" style="font-size:3.22rem;line-height:1;background:linear-gradient(90deg,#EAB308 0%,#FDE047 50%,#F59E0B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 22px rgba(234,179,8,0.85)) drop-shadow(0 0 40px rgba(251,191,36,0.55));">99K</div>
@@ -1048,7 +833,6 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
                 <div style="margin-top:6px;font-size:8px;font-weight:700;color:rgba(255,180,50,0.8);">≈ chỉ 3.300đ / ngày</div>
               </div>
               <div id="plusPriceDivider" style="width:1px;background:rgba(234,179,8,0.22);align-self:stretch;margin:4px 0;min-height:70px;flex-shrink:0;"></div>
-              <!-- RIGHT: 12-month box -->
               <div id="plusYearlyBox" style="flex:1;min-width:150px;background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.28);border-radius:20px;padding:11px 13px;">
                 <div style="font-size:7px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:rgba(253,224,71,0.55);margin-bottom:8px;">GÓI 12 THÁNG TẶNG 1 THÁNG MIỄN PHÍ</div>
                 <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:5px;"><span style="font-size:8px;color:rgba(240,236,248,0.3);font-weight:500;white-space:nowrap;">Giá niêm yết:</span><span style="font-size:clamp(0.75rem,2.5vw,1.1rem);font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.85);text-decoration-thickness:3px;line-height:1.15;white-space:nowrap;" id="plusYearlyListFull">—</span></div>
@@ -1061,10 +845,8 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
               <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">✓</span>
               <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu)</span>
             </div>
-
           </div>
 
-          <!-- Info block: badge + description + marquee -->
           <div style="padding:0 clamp(18px,4vw,44px) 20px;">
             <div class="tth-any">
               <div class="tth-any-badge"><div class="tth-dot"></div>GPT-5.4 Flagship · Sora · Agent · ADA</div>
@@ -1079,6 +861,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Ưu tiên truy cập</span>
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mình bạn dùng</span>
+                  <!-- duplicate for seamless loop -->
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyệt web · ADA</span>
@@ -1099,12 +882,100 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
           </div>
         </div>
+      </div>
+      <!-- END ChatGPT Plus card -->
 
-      <!-- ══ THANH TOÁN HỘ CARD ══ -->
-        <div id="tth-anchor" class="tth-card" style="margin-top:clamp(24px,4vw,40px);margin-bottom:clamp(24px,4vw,40px);">
+      <!-- ── SUB CARDS: YouTube + CapCut ── -->
+      <!-- gap được control bởi flex gap của accountsGrid (48px) -->
+      <div class="sub-cards-yt-wrap" style="width:100%;">
+
+        <!-- YouTube Premium -->
+        <div class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <img src="assets/images/YT.jpg" alt="YouTube Premium" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
+            <div>
+              <div style="font-size:1.05rem;font-weight:800;color:#fff;">YouTube Premium</div>
+              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Không quảng cáo · YouTube Music</div>
+            </div>
+          </div>
+          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
+            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
+              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
+              <div style="font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">35K</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">79.000đ</span></div>
+            </div>
+            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
+            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
+              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
+              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
+                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">455.000đ</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.027.000đ</span></span>
+              </div>
+              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 572.000đ</div>
+            </div>
+          </div>
+          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('✦ YouTube Premium · 35K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+
+        <!-- CapCut Pro -->
+        <div class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
+            <div>
+              <div style="font-size:1.05rem;font-weight:800;color:#fff;">CapCut Pro</div>
+              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Mở khóa toàn bộ · Xuất 4K</div>
+            </div>
+          </div>
+          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
+            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
+              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
+              <div style="font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">59K</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">145.000đ</span></div>
+            </div>
+            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
+            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
+              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
+              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
+                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">767.000đ</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.885.000đ</span></span>
+              </div>
+              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 1.118.000đ</div>
+            </div>
+          </div>
+          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('❆ CapCut Pro · 59K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+
+      </div><!-- end sub-cards-yt-wrap -->
+    </div><!-- end accountsGrid -->
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="padding:60px 0 64px;position:relative;z-index:1;">
+  <div class="container">
+    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dịch Vụ Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
+    <div class="glass-card glass-card-glow">
+      <div style="padding:clamp(28px,5vw,48px) clamp(24px,5vw,52px);">
+        <div style="margin-bottom:28px;">
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.7);margin-bottom:12px;">Dịch Vụ Lập Trình</div>
+          <div style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:20px;">Thiết Kế Website&nbsp;•&nbsp;Tạo Bot Telegram&nbsp;•&nbsp;Hỗ Trợ Làm Bài Tập</div>
+          <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:22px;">
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Thiết kế Website theo yêu cầu — từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bot Telegram thông minh — bot bán hàng, box chat, tool, script &amp; phân tích dữ liệu.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Hỗ trợ làm bài tập lập trình — code theo yêu cầu, giải thích chi tiết, giao bài đúng tiến độ.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bảo hành miễn phí sau bàn giao · Báo giá nhanh · Giao hàng đúng hẹn.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THANH TOÁN HỘ -->
+<section style="padding:0 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
+  <div class="container">
+    <div id="tth-anchor" class="tth-card" style="max-width:680px;margin:0 auto;">
       <div class="tth-inner" style="cursor:pointer;" onclick="openTthModal()">
-
-        <!-- Header only — click card to see details -->
         <div class="tth-hd" style="margin-bottom:0;">
           <div class="tth-ico">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -1132,97 +1003,6 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
           </div>
         </div>
-
-      </div>
-      </div>
-      <!-- ══ END THANH TOÁN HỘ CARD ══ -->
-      <!-- Sub cards -->
-      <div class="sub-cards-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:clamp(12px,2vw,16px);isolation:isolate;align-items:stretch;">
-
-        <!-- YouTube Premium + CapCut in equal-height sub-grid -->
-        <div class="sub-cards-yt-wrap" style="grid-column:1/-1;">
-
-        <!-- YouTube Premium: 1-month price LEFT + 12-month box RIGHT -->
-        <div class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-            <img src="assets/images/YT.jpg" alt="YouTube Premium" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
-            <div>
-              <div style="font-size:1.05rem;font-weight:800;color:#fff;">YouTube Premium</div>
-              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Không quảng cáo · YouTube Music</div>
-            </div>
-          </div>
-          <!-- Price: 1-month left | divider | 12-month box right -->
-          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
-            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
-              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
-              <div style="font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">35K</div>
-              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">79.000đ</span></div>
-            </div>
-            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
-            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
-              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
-              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
-                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">455.000đ</span>
-                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.027.000đ</span></span>
-              </div>
-              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 572.000đ</div>
-            </div>
-          </div>
-          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('✦ YouTube Premium · 35K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-        </div>
-
-        <!-- CapCut Pro: 1-month price LEFT + 12-month box RIGHT -->
-        <div class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-            <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
-            <div>
-              <div style="font-size:1.05rem;font-weight:800;color:#fff;">CapCut Pro</div>
-              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Mở khóa toàn bộ · Xuất 4K</div>
-            </div>
-          </div>
-          <!-- Price: 1-month left | divider | 12-month box right -->
-          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
-            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
-              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
-              <div style="font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">59K</div>
-              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">145.000đ</span></div>
-            </div>
-            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
-            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
-              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
-              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
-                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">767.000đ</span>
-                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.885.000đ</span></span>
-              </div>
-              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 1.118.000đ</div>
-            </div>
-          </div>
-          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('❆ CapCut Pro · 59K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-        </div>
-
-        </div><!-- end sub-cards-yt-wrap -->
-    </div>
-  </div>
-</section>
-
-<!-- KHO CODE -->
-<!-- SERVICES -->
-<section id="services" style="padding:60px 0 64px;position:relative;z-index:1;">
-  <div class="container">
-    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dịch Vụ Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
-
-    <div class="glass-card glass-card-glow">
-      <div style="padding:clamp(28px,5vw,48px) clamp(24px,5vw,52px);">
-        <div style="margin-bottom:28px;">
-          <div style="font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.7);margin-bottom:12px;">Dịch Vụ Lập Trình</div>
-          <div style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:20px;">Thiết Kế Website&nbsp;•&nbsp;Tạo Bot Telegram&nbsp;•&nbsp;Hỗ Trợ Làm Bài Tập</div>
-          <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:22px;">
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Thiết kế Website theo yêu cầu — từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bot Telegram thông minh — bot bán hàng, box chat, tool, script &amp; phân tích dữ liệu.</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Hỗ trợ làm bài tập lập trình — code theo yêu cầu, giải thích chi tiết, giao bài đúng tiến độ.</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bảo hành miễn phí sau bàn giao · Báo giá nhanh · Giao hàng đúng hẹn.</span></div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1238,7 +1018,6 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <div style="font-size:11.5px;color:rgba(240,236,248,0.35);margin-top:3px;">Telegram · Zalo · Facebook · TikTok</div>
       </div>
     </div>
-    </div>
     <div class="contact-list">
       <a href="https://zalo.me/0898908101" target="_blank" class="contact-item"><img src="assets/images/zalo.jpg" alt="Zalo" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
       <a href="https://t.me/binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tele.jpg" alt="Telegram" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
@@ -1250,14 +1029,19 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 
 <footer>© 2026 <span style="background:linear-gradient(135deg,#C084FC,#A855F7,#EC4899,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;">Binpinkgold Code Store</span> · 08989 08101</footer>
 
-<!-- BOTTOM NAV — Telegram A1 Style (mobile only, replaces burger) -->
+<!-- BOTTOM NAV -->
 <div class="idx-bottom-nav">
   <div class="idx-bottom-nav-inner">
     <a class="idx-bnav-item active" id="idxNav0" href="#" onclick="idxNavClick(event,0,'#hero')">
       <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
       <span>Trang Chủ</span>
     </a>
-    <a class="idx-bnav-item" id="idxNav1" href="kho.html" onclick="idxNavClick(event,1,'kho.html')">
+    <a class="idx-bnav-item" id="idxNav1" href="kho.html" onclick="idxNavClick(event,1,'kho.html')" style="position:relative;">
+      <div class="kho-pill-bubble" id="khoPill">
+        <span class="kho-pill-bubble-emoji">🔥</span>
+        <span class="kho-pill-bubble-text" id="khoPillText">Kho Code mới!</span>
+        <span class="kho-pill-bubble-dot"></span>
+      </div>
       <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
       <span>Kho Code</span>
     </a>
@@ -1283,48 +1067,32 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <button class="fee-modal-close" onclick="closeTthModal()">✕</button>
     </div>
     <div class="fee-modal-body">
-
-      <!-- Any-service hero -->
       <div class="tth-any">
         <div class="tth-any-badge"><div class="tth-dot"></div>Không giới hạn dịch vụ</div>
         <div class="tth-stmt">Bạn muốn dịch vụ nào,<br>tôi thanh toán <em>dịch vụ đó.</em></div>
         <div class="tth-note">Không cần thẻ quốc tế — tôi dùng <strong>Visa/Mastercard</strong> của mình thanh toán hộ bạn. Netflix, AI tools, game, phần mềm hay bất kỳ website nào trên thế giới.</div>
         <div class="tth-mq-wrap">
-          <div class="tth-mq-track" style="animation-play-state:paused">
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Spotify</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Adobe</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Steam</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Cursor AI</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Claude Pro</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Midjourney</span>
-            <span class="tth-mq-chip">✦ &amp; mọi web quốc tế</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg>Netflix</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Spotify</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Adobe</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Steam</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Cursor AI</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>Claude Pro</span>
-            <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Midjourney</span>
-            <span class="tth-mq-chip">✦ &amp; mọi web quốc tế</span>
+          <div class="tth-mq-track">
+            <span class="tth-mq-chip">Spotify</span><span class="tth-mq-chip">Adobe</span>
+            <span class="tth-mq-chip">Steam</span><span class="tth-mq-chip">Cursor AI</span>
+            <span class="tth-mq-chip">Claude Pro</span><span class="tth-mq-chip">Midjourney</span>
+            <span class="tth-mq-chip">Netflix</span><span class="tth-mq-chip">✦ mọi web quốc tế</span>
+            <span class="tth-mq-chip">Spotify</span><span class="tth-mq-chip">Adobe</span>
+            <span class="tth-mq-chip">Steam</span><span class="tth-mq-chip">Cursor AI</span>
+            <span class="tth-mq-chip">Claude Pro</span><span class="tth-mq-chip">Midjourney</span>
+            <span class="tth-mq-chip">Netflix</span><span class="tth-mq-chip">✦ mọi web quốc tế</span>
           </div>
         </div>
       </div>
-
-      <!-- Info strip -->
       <div class="tth-strip">
         <div class="tth-ir"><span class="tth-ii">✓</span><span>Không cần thẻ Visa/MC — chỉ cần chuyển khoản nội địa.</span></div>
         <div class="tth-ir"><span class="tth-ii">✓</span><span>Xử lý nhanh trong <strong style="color:rgba(253,224,71,0.95);">1 phút</strong> sau khi nhận tiền.</span></div>
         <div class="tth-ir"><span class="tth-ii">✓</span><span>Hỗ trợ tạo tài khoản mới hoặc gia hạn tài khoản có sẵn.</span></div>
       </div>
-
-      <!-- Xem phí -->
       <button class="tth-btn-fee" onclick="closeTthModal();openFeeModal()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
         Xem phí dịch vụ
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       </button>
-
-      <!-- Liên hệ -->
       <div class="tth-btn-cw">
         <button class="tth-btn-c" onclick="closeTthModal();openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
@@ -1332,7 +1100,6 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
       </div>
-
     </div>
   </div>
 </div>
@@ -1347,15 +1114,12 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       </div>
       <button class="fee-modal-close" onclick="closeFeeModal()">✕</button>
     </div>
-    <div class="fee-modal-body" id="feeModalBody">
-      <!-- rendered by renderFeeModal() -->
-    </div>
+    <div class="fee-modal-body" id="feeModalBody"></div>
   </div>
 </div>
 
 <!-- FEAT MODAL -->
 <style>
-/* === FEAT MODAL B — Feature Cards + Benchmark === */
 .fm-tagline{font-size:12px;color:rgba(240,236,248,0.55);line-height:1.7;padding:14px 22px 0;}
 .fm-tagline strong{color:rgba(192,132,252,0.9);font-weight:700;}
 .fm-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px 22px;}
@@ -1383,18 +1147,11 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .fm-tagline{padding:12px 16px 0;font-size:11.5px;}
   .fm-cards{grid-template-columns:1fr 1fr;gap:7px;padding:10px 16px;}
   .fm-card{padding:10px 10px 9px;border-radius:14px;}
-  .fm-card-ico{width:26px;height:26px;min-width:26px;font-size:12px;}
-  .fm-card-name{font-size:10.5px;}
-  .fm-card-desc{font-size:9.5px;}
   .fm-bench{margin:0 16px 14px;padding:11px 12px;}
   .fm-bench-name{width:100px;min-width:100px;font-size:9.5px;}
-  .fm-bench-pct{font-size:9.5px;width:30px;}
   .fm-avail{margin:0 16px 16px;}
 }
-@media(max-width:380px){
-  .fm-cards{grid-template-columns:1fr;}
-  .fm-bench-name{width:90px;min-width:90px;}
-}
+@media(max-width:380px){.fm-cards{grid-template-columns:1fr;}.fm-bench-name{width:90px;min-width:90px;}}
 </style>
 <div class="modal-overlay" id="featModal" onclick="if(event.target===this){document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';}">
   <div class="feat-modal-box">
@@ -1402,70 +1159,38 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <div class="font-syne" style="font-size:1rem;font-weight:800;color:#C084FC;">✨ ChatGPT Plus · GPT-5.4</div>
       <button class="feat-close-btn" onclick="document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';">✕</button>
     </div>
-
     <div class="fm-tagline">
       <strong>GPT-5.4</strong> — model suy luận <strong>hiệu quả nhất về token</strong> của OpenAI. Vượt trội Anthropic và Google, hỗ trợ <strong>1M token context</strong>, tối ưu nghiên cứu web sâu và tạo tài liệu trực quan.
     </div>
-
     <div class="fm-cards">
       <div class="fm-card">
-        <div class="fm-card-top">
-          <div class="fm-card-ico" style="background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);">🧠</div>
-          <div class="fm-card-name">GPT-5.4 Thinking</div>
-        </div>
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);">🧠</div><div class="fm-card-name">GPT-5.4 Thinking</div></div>
         <div class="fm-card-desc">Xem kế hoạch suy nghĩ realtime, điều chỉnh ngay khi model đang xử lý câu trả lời.</div>
         <div class="fm-card-badge" style="background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.22);color:#FCD34D;">Plus · Team · Pro</div>
       </div>
       <div class="fm-card">
-        <div class="fm-card-top">
-          <div class="fm-card-ico" style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.25);">📄</div>
-          <div class="fm-card-name">1M Token Context</div>
-        </div>
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.25);">📄</div><div class="fm-card-name">1M Token Context</div></div>
         <div class="fm-card-desc">Xử lý tài liệu dài, codebase lớn mà không mất ngữ cảnh.</div>
         <div class="fm-card-badge" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.22);color:#C084FC;">Preview</div>
       </div>
       <div class="fm-card">
-        <div class="fm-card-top">
-          <div class="fm-card-ico" style="background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.22);">💻</div>
-          <div class="fm-card-name">Codex /fast Mode</div>
-        </div>
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.22);">💻</div><div class="fm-card-name">Codex /fast Mode</div></div>
         <div class="fm-card-desc">Sinh code nhanh hơn 1.5× không giảm chất lượng.</div>
         <div class="fm-card-badge" style="background:rgba(20,184,166,0.08);border:1px solid rgba(20,184,166,0.2);color:#5eead4;">×1.5 tốc độ</div>
       </div>
       <div class="fm-card">
-        <div class="fm-card-top">
-          <div class="fm-card-ico" style="background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.22);">🎬</div>
-          <div class="fm-card-name">Sora · Agent · ADA</div>
-        </div>
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.22);">🎬</div><div class="fm-card-name">Sora · Agent · ADA</div></div>
         <div class="fm-card-desc">Tạo video AI, tự động hoá quy trình, phân tích dữ liệu ngay trong chat.</div>
         <div class="fm-card-badge" style="background:rgba(236,72,153,0.09);border:1px solid rgba(236,72,153,0.2);color:#F472B6;">Độc quyền Plus</div>
       </div>
     </div>
-
     <div class="fm-bench">
       <div class="fm-bench-title">Benchmark so sánh</div>
-      <div class="fm-bench-row">
-        <div class="fm-bench-name">OSWorld Computer Use</div>
-        <div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:75%"></div></div>
-        <div class="fm-bench-pct">75%</div>
-      </div>
-      <div class="fm-bench-row">
-        <div class="fm-bench-name">MMMU-Pro GPT-5.4</div>
-        <div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:81.2%"></div></div>
-        <div class="fm-bench-pct">81.2%</div>
-      </div>
-      <div class="fm-bench-row">
-        <div class="fm-bench-name">MMMU-Pro Gemini 3.1 Pro</div>
-        <div class="fm-bench-bar-wrap"><div class="fm-bench-bar dim" style="width:80.5%"></div></div>
-        <div class="fm-bench-pct dim">80.5%</div>
-      </div>
-      <div class="fm-bench-row">
-        <div class="fm-bench-name">GDPval</div>
-        <div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:83%"></div></div>
-        <div class="fm-bench-pct">83%</div>
-      </div>
+      <div class="fm-bench-row"><div class="fm-bench-name">OSWorld Computer Use</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:75%"></div></div><div class="fm-bench-pct">75%</div></div>
+      <div class="fm-bench-row"><div class="fm-bench-name">MMMU-Pro GPT-5.4</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:81.2%"></div></div><div class="fm-bench-pct">81.2%</div></div>
+      <div class="fm-bench-row"><div class="fm-bench-name">MMMU-Pro Gemini 3.1</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar dim" style="width:80.5%"></div></div><div class="fm-bench-pct dim">80.5%</div></div>
+      <div class="fm-bench-row"><div class="fm-bench-name">GDPval</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:83%"></div></div><div class="fm-bench-pct">83%</div></div>
     </div>
-
     <div class="fm-avail">
       <div class="fm-avail-dot"></div>
       <div class="fm-avail-text">GPT-5.4 Thinking → Plus, Team &amp; Pro · GPT-5.4 Pro → Pro &amp; Enterprise</div>
@@ -1484,7 +1209,6 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <div style="display:flex;flex-direction:column;gap:7px;">
         <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Nhận tài khoản riêng (có thể đổi mật khẩu) ngay sau khi mua.</div>
         <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu).</div>
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Có thể đăng nhập được nhiều thiết bị, share cho bạn bè dùng chung.</div>
         <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Truy cập đầy đủ Sora (Video AI) &amp; Codex.</div>
       </div>
     </div>
@@ -1504,248 +1228,68 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 </div>
 
 <script>
-const PLUS_LIST_PRICE = 522000;
-const PLUS_OUR_PRICE  = 99000;
-
-function fmtVND(n){ return n.toLocaleString('vi-VN') + 'đ'; }
-
-function initYearlyPricing() {
-  var listFull  = PLUS_LIST_PRICE * 12;
-  var ourYearly = PLUS_OUR_PRICE  * 12;
-  var saving    = listFull - ourYearly;
-  document.getElementById('plusYearlyListFull').textContent = fmtVND(listFull);
-  document.getElementById('plusYearlyOur').textContent      = fmtVND(ourYearly);
-  document.getElementById('plusYearlySaving').textContent   = '💰 Tiết kiệm ' + fmtVND(saving);
+const PLUS_LIST_PRICE=522000,PLUS_OUR_PRICE=99000;
+function fmtVND(n){return n.toLocaleString('vi-VN')+'đ';}
+function initYearlyPricing(){
+  var lf=PLUS_LIST_PRICE*12,oy=PLUS_OUR_PRICE*12,sv=lf-oy;
+  document.getElementById('plusYearlyListFull').textContent=fmtVND(lf);
+  document.getElementById('plusYearlyOur').textContent=fmtVND(oy);
+  document.getElementById('plusYearlySaving').textContent='💰 Tiết kiệm '+fmtVND(sv);
 }
-
-function openTthModal(){
-  var m=document.getElementById('tthModal');
-  m.classList.add('open');
-  document.body.style.overflow='hidden';
-  m.querySelectorAll('.tth-mq-track').forEach(function(el){el.style.animationPlayState='running';});
-}
-function closeTthModal(){
-  var m=document.getElementById('tthModal');
-  m.classList.remove('open');
-  document.body.style.overflow='';
-  m.querySelectorAll('.tth-mq-track').forEach(function(el){el.style.animationPlayState='paused';});
-}
-
+function openTthModal(){var m=document.getElementById('tthModal');m.classList.add('open');document.body.style.overflow='hidden';}
+function closeTthModal(){var m=document.getElementById('tthModal');m.classList.remove('open');document.body.style.overflow='';}
 function openModal(n){
   document.getElementById('modalSelected').textContent=n;
   document.getElementById('plusNotesBox').style.display='none';
   var sub=document.getElementById('modalSubtitle');
   if(sub){
-    if(n.indexOf('Thanh Toán')!==-1||n.indexOf('Dịch Vụ')!==-1||n.indexOf('Bot')!==-1||n.indexOf('Website')!==-1)
-      sub.textContent='Liên hệ để đặt dịch vụ ngay:';
-    else if(n.indexOf('YouTube')!==-1||n.indexOf('CapCut')!==-1||n.indexOf('Plus')!==-1||n.indexOf('ChatGPT')!==-1)
-      sub.textContent='Liên hệ để nhận tài khoản ngay:';
-    else
-      sub.textContent='Liên hệ để mua ngay:';
+    if(n.indexOf('Thanh Toán')!==-1||n.indexOf('Dịch Vụ')!==-1||n.indexOf('Bot')!==-1||n.indexOf('Website')!==-1)sub.textContent='Liên hệ để đặt dịch vụ ngay:';
+    else if(n.indexOf('YouTube')!==-1||n.indexOf('CapCut')!==-1||n.indexOf('Plus')!==-1||n.indexOf('ChatGPT')!==-1)sub.textContent='Liên hệ để nhận tài khoản ngay:';
+    else sub.textContent='Liên hệ để mua ngay:';
   }
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
-
 function openPlusModal(){
   document.getElementById('modalSelected').innerHTML='✨ ChatGPT Plus &bull; 99K/tháng';
   document.getElementById('plusNotesBox').style.display='block';
-  var sub=document.getElementById('modalSubtitle');
-  if(sub) sub.textContent='Liên hệ để nhận tài khoản ngay:';
-  document.getElementById('contactModal').classList.add('open');
-  document.body.style.overflow='hidden';
+  var sub=document.getElementById('modalSubtitle');if(sub)sub.textContent='Liên hệ để nhận tài khoản ngay:';
+  document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';
 }
-
-function openFeeModal(){
-  renderFeeModal();
-  document.getElementById('feeModal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
+function openFeeModal(){renderFeeModal();document.getElementById('feeModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeFeeModal(){document.getElementById('feeModal').classList.remove('open');document.body.style.overflow='';}
-
-// ══════════════════════════════════════════
-//  FEE CONFIG — chỉ sửa đây, mọi thứ tự cập nhật
-// ══════════════════════════════════════════
-const FEE_CONFIG = {
-  fixedUSD: 2,          // phí cố định mỗi giao dịch (USD)
-  usdRate: 25800,       // tỷ giá USD→VNĐ (cập nhật theo Vietcombank)
-  tiers: [
-    { max: 400000,  rate: 0.27, label: 'Dưới 400.000đ' },
-    { max: 1000000, rate: 0.19, label: '400K – 1.000K'  },
-    { max: Infinity, rate: 0.12, label: 'Trên 1.000K'   },
-  ],
-  examples: [
-    // Chọn theo tâm lý: total dưới ngưỡng 500K / 1tr / 2tr
-    // fee hiển thị riêng để khách thấy khoản thêm rẻ
-    { name: 'Spotify Premium', usd: 6.99  },   // ~180K → total ~280K, fee ~100K
-    { name: 'ChatGPT Plus',    usd: 20    },   // ~516K → total ~672K, fee ~156K
-    { name: 'Adobe CC',        usd: 55    },   // ~1.419tr → total ~1.64tr, fee ~222K
-  ],
-};
-
-function vndFmt(n) {
-  return Math.round(n).toLocaleString('vi-VN') + 'đ';
+const FEE_CONFIG={fixedUSD:2,usdRate:25800,tiers:[{max:400000,rate:0.27,label:'Dưới 400.000đ'},{max:1000000,rate:0.19,label:'400K – 1.000K'},{max:Infinity,rate:0.12,label:'Trên 1.000K'}]};
+function vndFmt(n){return Math.round(n).toLocaleString('vi-VN')+'đ';}
+function calcFee(vnd){var cfg=FEE_CONFIG,fixedVND=cfg.fixedUSD*cfg.usdRate,tier=cfg.tiers.find(t=>vnd<=t.max);return Math.round(vnd*tier.rate+(vnd<1000000?fixedVND:0));}
+function renderFeeModal(){
+  var cfg=FEE_CONFIG;
+  var tiersHTML=cfg.tiers.map((t,i)=>`<div class="fm-tier"><div class="fm-tier-range">${t.label}</div><div class="fm-tier-right"><div class="fm-tier-pct">${Math.round(t.rate*100)}%</div>${i<2?'<div class="fm-tier-label">+ phí cố định</div>':''}</div></div>`).join('');
+  document.getElementById('feeModalBody').innerHTML=`<div class="fm-tiers">${tiersHTML}</div><div class="fm-note">Phí % tính trên giá dịch vụ quy đổi VNĐ · Tỷ giá theo Vietcombank<br><span style="color:rgba(253,224,71,0.5);">* Phí cố định ${cfg.fixedUSD} USD chỉ áp dụng cho đơn dưới 1.000.000đ</span></div><div class="fm-calc"><div class="fm-calc-title">🧮 Tính phí nhanh</div><div class="fm-calc-row"><input class="fm-calc-input" id="feeCalcInput" type="number" min="0" placeholder="Nhập giá dịch vụ..." oninput="updateFeeCalc()"><span class="fm-calc-unit">VNĐ</span></div><div class="fm-calc-result" id="feeCalcResult" style="display:none;"><span class="fm-calc-result-lbl">Tổng cần chuyển khoản</span><span class="fm-calc-result-val" id="feeCalcVal">—</span></div></div>`;
 }
-
-function calcFee(vnd) {
-  const fixedVND = FEE_CONFIG.fixedUSD * FEE_CONFIG.usdRate;
-  const tier = FEE_CONFIG.tiers.find(t => vnd <= t.max);
-  return Math.round(vnd * tier.rate + (vnd < 1000000 ? fixedVND : 0));
-}
-
-function renderFeeModal() {
-  const cfg = FEE_CONFIG;
-  const fixedVND = cfg.fixedUSD * cfg.usdRate;
-
-  // Tiers — chỉ hiện "+ phí cố định" cho 2 tier đầu (dưới 1tr)
-  const tiersHTML = cfg.tiers.map((t, i) =>
-    `<div class="fm-tier">
-      <div class="fm-tier-range">${t.label}</div>
-      <div class="fm-tier-right">
-        <div class="fm-tier-pct">${Math.round(t.rate*100)}%</div>
-        ${i < 2 ? '<div class="fm-tier-label">+ phí cố định</div>' : ''}
-      </div>
-    </div>`
-  ).join('');
-
-  document.getElementById('feeModalBody').innerHTML = `
-    <div class="fm-tiers">${tiersHTML}</div>
-    <div class="fm-note">Phí % tính trên giá dịch vụ quy đổi VNĐ · Tỷ giá theo Vietcombank tại thời điểm thanh toán<br><span style="color:rgba(253,224,71,0.5);">* Phí cố định ${cfg.fixedUSD} USD chỉ áp dụng cho đơn dưới 1.000.000đ</span></div>
-    <div class="fm-calc">
-      <div class="fm-calc-title">🧮 Tính phí nhanh</div>
-      <div class="fm-calc-row">
-        <input class="fm-calc-input" id="feeCalcInput" type="number" min="0" placeholder="Nhập giá dịch vụ..." oninput="updateFeeCalc()">
-        <span class="fm-calc-unit">VNĐ</span>
-      </div>
-      <div class="fm-calc-result" id="feeCalcResult" style="display:none;">
-        <span class="fm-calc-result-lbl">Tổng cần chuyển khoản</span>
-        <span class="fm-calc-result-val" id="feeCalcVal">—</span>
-      </div>
-    </div>
-  `;
-}
-
-function updateFeeCalc() {
-  var inp = document.getElementById('feeCalcInput');
-  var res = document.getElementById('feeCalcResult');
-  var val = document.getElementById('feeCalcVal');
-  var n = parseFloat(inp.value);
-  if (!n || n <= 0) { res.style.display='none'; return; }
-  var fee  = calcFee(n);
-  var total = n + fee;
-  val.innerHTML =
-    '<span style="font-size:10px;font-weight:700;color:rgba(99,220,150,0.8);display:block;margin-bottom:2px;">gồm phí dịch vụ ' + vndFmt(fee) + '</span>' +
-    '~' + vndFmt(total);
-  res.style.display = 'flex';
-}
-
+function updateFeeCalc(){var inp=document.getElementById('feeCalcInput'),res=document.getElementById('feeCalcResult'),val=document.getElementById('feeCalcVal'),n=parseFloat(inp.value);if(!n||n<=0){res.style.display='none';return;}var fee=calcFee(n),total=n+fee;val.innerHTML='<span style="font-size:10px;font-weight:700;color:rgba(99,220,150,0.8);display:block;margin-bottom:2px;">gồm phí dịch vụ '+vndFmt(fee)+'</span>~'+vndFmt(total);res.style.display='flex';}
 function openFeatModal(){document.getElementById('featModal').classList.add('open');document.body.style.overflow='hidden';}
-
-function calcDiscounts(){
-  var pb=document.getElementById('plusDiscountBadge');
-  if(pb){
-    var orig=+pb.dataset.orig, sale=+pb.dataset.salePersonal;
-    if(orig&&sale) pb.textContent='-'+Math.round((1-sale/orig)*100)+'%';
-  }
-}
-
-// BANNER
-const SB_INTERVAL=4500;
-let sbCur=0,sbTot=4,sbTimer,sbPaused=false;
-const sbSlides=document.getElementById('sbSlides');
-const sbDots=document.querySelectorAll('.sbs-dot');
-function sbGoTo(i){sbCur=i;sbSlides.style.transform=`translateX(-${sbCur*100}%)`;sbDots.forEach((d,j)=>d.classList.toggle('active',j===sbCur));}
-function sbNext(){sbGoTo((sbCur+1)%sbTot);}
-function sbPrev(){sbGoTo((sbCur-1+sbTot)%sbTot);}
-function sbStartTimer(){clearInterval(sbTimer);if(!sbPaused)sbTimer=setInterval(sbNext,SB_INTERVAL);}
-function sbPause(){sbPaused=true;clearInterval(sbTimer);}
-function sbResume(){sbPaused=false;sbStartTimer();}
-
-// Click banner → scroll tới section tương ứng
-// Slide 0: ChatGPT Plus → #accounts
-// Slide 1: Web Bot → #services  
-// Slide 2: Kho Code → kho.html
-const SB_TARGETS=['#accounts','#tth-anchor','#services','kho.html'];
-function sbSlideClick(idx){
-  var target=SB_TARGETS[idx];
-  if(!target)return;
-  if(target.startsWith('#')){
-    var el=document.querySelector(target);
-    if(el){var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:72;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}
-  } else {
-    window.location.href=target;
-  }
-}
-
-sbStartTimer();
-const sbEl=document.getElementById('siteBanner');
-let sbTx=0,sbDrag=false,sbDx=0,sbVx=0,sbLastX=0,sbLastT=0;
-const sbW=()=>sbEl.offsetWidth;
-function sbSetTransition(on){sbSlides.style.transition=on?'transform 0.38s cubic-bezier(0.25,0.46,0.45,0.94)':'none';}
-function sbDragMove(cx){
-  sbDx=cx-sbTx;
-  const now=Date.now();
-  sbVx=(cx-sbLastX)/(now-sbLastT||1);
-  sbLastX=cx;sbLastT=now;
-  sbSlides.style.transform=`translateX(calc(-${sbCur*100}% + ${sbDx}px))`;
-}
-function sbDragEnd(cx){
-  sbDx=cx-sbTx;
-  const threshold=sbW()*0.2;
-  sbSetTransition(true);
-  if(sbDx<-threshold||sbVx<-0.3){sbNext();}
-  else if(sbDx>threshold||sbVx>0.3){sbPrev();}
-  else{sbGoTo(sbCur);}
-  sbDrag=false;sbDx=0;sbResume();
-}
-sbEl.addEventListener('touchstart',e=>{
-  sbTx=e.touches[0].clientX;sbLastX=sbTx;sbLastT=Date.now();
-  sbDrag=true;sbSetTransition(false);sbPause();
-},{passive:true});
-sbEl.addEventListener('touchmove',e=>{
-  if(!sbDrag)return;
-  sbDragMove(e.touches[0].clientX);
-},{passive:true});
-sbEl.addEventListener('touchend',e=>{if(!sbDrag)return;sbDragEnd(e.changedTouches[0].clientX);});
-sbEl.addEventListener('touchcancel',()=>{if(!sbDrag)return;sbSetTransition(true);sbGoTo(sbCur);sbDrag=false;sbResume();});
-sbEl.addEventListener('mousedown',e=>{sbTx=e.clientX;sbLastX=sbTx;sbLastT=Date.now();sbDrag=true;sbSetTransition(false);sbPause();});
-sbEl.addEventListener('mousemove',e=>{if(!sbDrag)return;sbDragMove(e.clientX);});
-sbEl.addEventListener('mouseup',e=>{if(!sbDrag)return;sbDragEnd(e.clientX);});
-sbEl.addEventListener('mouseleave',()=>{if(!sbDrag)return;sbSetTransition(true);sbGoTo(sbCur);sbDrag=false;sbResume();});
-
-// HAMBURGER MENU
+function calcDiscounts(){var pb=document.getElementById('plusDiscountBadge');if(pb){var orig=+pb.dataset.orig,sale=+pb.dataset.salePersonal;if(orig&&sale)pb.textContent='-'+Math.round((1-sale/orig)*100)+'%';}}
 function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');}
 function toggleTopMenu(){document.getElementById('topHam').classList.toggle('open');document.getElementById('topDrop').classList.toggle('open');}
 document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target.closest('#topDrop')){closeTopMenu();}});
-history.scrollRestoration='manual';window.scrollTo(0,0);
+
+// KHO CODE pill bubble
+(function(){
+  var pill=document.getElementById('khoPill'),ptxt=document.getElementById('khoPillText');
+  var TEXTS=['🔥 Kho Code mới!','✨ +20 template','👉 Xem ngay →','💎 Giá tốt nhất'];
+  var idx=0;
+  function cycle(){if(!ptxt)return;ptxt.style.opacity='0';setTimeout(function(){ptxt.textContent=TEXTS[idx++%TEXTS.length];ptxt.style.opacity='1';},190);setTimeout(cycle,2400);}
+  setTimeout(function(){if(pill)pill.classList.add('in');cycle();},900);
+})();
+
 document.addEventListener('DOMContentLoaded',function(){calcDiscounts();initYearlyPricing();});
 
-// BOTTOM NAV
-function idxNavClick(e, idx, target){
-  [0,1,2,3].forEach(i=>{
-    var el=document.getElementById('idxNav'+i);
-    if(el) el.classList.toggle('active', i===idx);
-  });
-  if(target.startsWith('#')){
-    e.preventDefault();
-    var el=document.querySelector(target);
-    if(el){
-      var topbar=document.querySelector('.topbar');
-      var offset=topbar?topbar.getBoundingClientRect().height:60;
-      window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});
-    } else {
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
-  }
-  // external link (kho.html) — default behaviour
+function idxNavClick(e,idx,target){
+  [0,1,2,3].forEach(i=>{var el=document.getElementById('idxNav'+i);if(el)el.classList.toggle('active',i===idx);});
+  if(target.startsWith('#')){e.preventDefault();var el=document.querySelector(target);if(el){var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:60;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}else{window.scrollTo({top:0,behavior:'smooth'});}}
 }
 </script>
 <script src="protect.js"></script>
 </body>
 </html>
-
-
-
-
-

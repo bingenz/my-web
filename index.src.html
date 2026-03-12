@@ -238,10 +238,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   text-decoration:none;white-space:nowrap;
   border:1px solid rgba(255,255,255,0.18);
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.25) inset,
-    0 -1px 0 rgba(0,0,0,0.25) inset,
-    0 4px 12px rgba(24,119,242,0.5),
-    0 8px 24px rgba(24,119,242,0.2);
+    0 1px 0 rgba(255,255,255,0.2) inset,
+    0 -1px 0 rgba(0,0,0,0.2) inset,
+    0 3px 8px rgba(24,119,242,0.3);
   transition:transform 0.15s,box-shadow 0.15s;
   width:fit-content;
 }
@@ -250,8 +249,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   box-shadow:
     0 1px 0 rgba(255,255,255,0.25) inset,
     0 -1px 0 rgba(0,0,0,0.25) inset,
-    0 6px 18px rgba(24,119,242,0.65),
-    0 12px 32px rgba(24,119,242,0.28);
+    0 4px 12px rgba(24,119,242,0.35),
+    0 8px 20px rgba(24,119,242,0.15);
 }
 .fb-btn:active{transform:translateY(0);}
 .fb-btn svg{flex-shrink:0;}
@@ -311,6 +310,107 @@ a.hb-chip:active{transform:scale(0.97);}
 }
 @media(min-width:641px) and (max-width:900px){
   .hb-right{width:clamp(135px,18vw,170px);}
+}
+
+/* ─────────────────────────────────
+   FACEBOOK GROUP BANNER
+───────────────────────────────── */
+@keyframes freePulse{0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,0.55);}60%{box-shadow:0 0 0 6px rgba(168,85,247,0);}}
+.fb-group-banner{
+  position:relative;z-index:1;
+  background:linear-gradient(135deg,rgba(12,5,32,0.97) 0%,rgba(20,8,48,0.97) 50%,rgba(10,4,28,0.98) 100%);
+  border-bottom:1px solid rgba(168,85,247,0.18);
+  border-top:1px solid rgba(168,85,247,0.1);
+}
+.fb-group-banner-inner{
+  max-width:1100px;margin:0 auto;
+  padding:clamp(14px,2.2vw,22px) clamp(20px,4vw,52px);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:clamp(16px,3vw,32px);flex-wrap:wrap;
+  box-sizing:border-box;
+}
+.fb-group-left{
+  display:flex;align-items:center;gap:clamp(10px,1.5vw,14px);
+  flex:1;min-width:0;
+}
+.fb-group-icon{
+  width:44px;height:44px;border-radius:14px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));
+  border:1px solid rgba(168,85,247,0.3);
+  display:flex;align-items:center;justify-content:center;
+}
+.fb-group-text{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.fb-group-name{
+  font-size:clamp(11px,1.5vw,13.5px);font-weight:800;
+  color:var(--text);word-break:break-word;
+}
+.fb-group-sub{
+  font-size:clamp(9.5px,1.2vw,11px);font-weight:500;
+  color:rgba(240,236,248,0.5);word-break:break-word;
+}
+.fb-group-highlight{
+  font-weight:700;
+  background:linear-gradient(90deg,#C084FC,#EC4899);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.fb-group-right{
+  display:flex;align-items:center;gap:clamp(14px,2vw,24px);flex-wrap:wrap;flex-shrink:0;
+}
+.fb-group-perks{
+  display:flex;flex-wrap:wrap;gap:6px 14px;max-width:320px;
+}
+.fb-group-perk{
+  font-size:clamp(9px,1.1vw,10.5px);font-weight:600;
+  color:rgba(240,236,248,0.5);white-space:nowrap;
+}
+.fb-group-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(180deg,#B76EF8 0%,#A855F7 40%,#9333EA 100%);
+  color:#fff;font-size:clamp(11px,1.4vw,12.5px);font-weight:700;
+  font-family:'Inter',sans-serif;
+  padding:clamp(8px,1.2vw,11px) clamp(14px,2vw,22px);border-radius:100px;
+  text-decoration:none;white-space:nowrap;flex-shrink:0;
+  border:none;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.22) inset,
+    0 -2px 0 rgba(0,0,0,0.35) inset,
+    0 4px 0 rgba(80,20,160,0.75),
+    0 6px 12px rgba(0,0,0,0.35);
+  transition:transform 0.12s,box-shadow 0.12s;
+  position:relative;overflow:hidden;
+}
+.fb-group-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.22) inset,
+    0 -2px 0 rgba(0,0,0,0.35) inset,
+    0 4px 0 rgba(80,20,160,0.75),
+    0 8px 18px rgba(0,0,0,0.4);
+}
+.fb-group-btn:active{
+  transform:translateY(2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.18) inset,
+    0 -1px 0 rgba(0,0,0,0.3) inset,
+    0 1px 0 rgba(80,20,160,0.75),
+    0 2px 6px rgba(0,0,0,0.25);
+}
+.fb-group-free-badge{
+  display:inline-flex;align-items:center;
+  background:rgba(255,255,255,0.22);
+  color:#fff;font-size:clamp(8px,1vw,9.5px);font-weight:900;letter-spacing:0.1em;
+  padding:2px 6px;border-radius:100px;
+  animation:freePulse 2s ease-in-out infinite;
+}
+.fb-group-perks{
+  display:flex;flex-wrap:wrap;gap:6px 14px;max-width:min(320px,40vw);
+}
+@media(max-width:640px){
+  .fb-group-banner-inner{padding:clamp(12px,2vw,14px) clamp(14px,3vw,16px);gap:12px;}
+  .fb-group-icon{width:36px;height:36px;border-radius:10px;}
+  .fb-group-icon svg{width:17px;height:17px;}
+  .fb-group-perks{display:none;}
+  .fb-group-right{width:100%;justify-content:flex-end;}
 }
 
 /* ─────────────────────────────────
@@ -408,7 +508,6 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 @property --tth-la{syntax:'<angle>';initial-value:0deg;inherits:false;}
 @keyframes tthSpin{from{--tth-la:0deg;}to{--tth-la:360deg;}}
 @keyframes tthShim{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
-@keyframes tthScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 .tth-card{
   background:linear-gradient(145deg,rgba(20,14,4,0.97) 0%,rgba(13,9,2,0.99) 50%,rgba(22,15,3,0.97) 100%);
@@ -431,27 +530,12 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .tth-bv{background:rgba(30,80,200,0.18);border:1.5px solid rgba(60,120,255,0.45);color:#93C5FD;}
 .tth-bm{background:rgba(200,50,30,0.14);border:1.5px solid rgba(234,67,53,0.4);color:#FCA5A5;}
 .tth-dv{height:1px;background:rgba(234,179,8,0.14);margin:0 0 20px;}
-.tth-any{background:linear-gradient(135deg,rgba(234,179,8,0.1) 0%,rgba(180,130,0,0.05) 100%);border:1.5px solid rgba(234,179,8,0.38);border-radius:22px;padding:18px 20px 16px;margin-bottom:18px;position:relative;overflow:hidden;}
-.tth-any::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),transparent);}
-.tth-any-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.4);border-radius:100px;padding:4px 11px;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#FDE047;margin-bottom:8px;}
-.tth-dot{width:5px;height:5px;border-radius:50%;background:#EAB308;box-shadow:0 0 6px #EAB308;animation:tthDot 1.8s ease-in-out infinite;flex-shrink:0;}
-.tth-stmt{font-size:clamp(1.05rem,4vw,1.3rem);font-weight:900;line-height:1.2;letter-spacing:-0.03em;color:#fff;margin-bottom:8px;word-break:break-word;}
-.tth-stmt em{font-style:normal;background:linear-gradient(90deg,#EAB308 0%,#FDE047 40%,#fff 70%,#FDE047 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(234,179,8,0.6));}
-.tth-note{font-size:11.5px;color:rgba(240,236,248,0.5);line-height:1.6;margin-bottom:14px;}
-.tth-note strong{color:rgba(253,224,71,0.85);font-weight:700;}
-.tth-mq-wrap{overflow:hidden;position:relative;border-radius:100px;contain:layout style;border:1px solid rgba(234,179,8,0.18);background:rgba(0,0,0,0.3);}
-.tth-mq-wrap::before,.tth-mq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none;}
-.tth-mq-wrap::before{left:0;background:linear-gradient(90deg,rgba(13,9,2,1),transparent);}
-.tth-mq-wrap::after{right:0;background:linear-gradient(270deg,rgba(13,9,2,1),transparent);}
-.tth-mq-track{display:flex;animation:tthScroll 20s linear infinite;width:max-content;padding:8px 0;will-change:transform;}
-.tth-mq-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 14px;font-size:10px;font-weight:700;white-space:nowrap;color:rgba(253,224,71,0.55);flex-shrink:0;border-right:1px solid rgba(234,179,8,0.12);}
-.tth-mq-chip svg{opacity:0.5;flex-shrink:0;}
 .tth-strip{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.22);border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
 .tth-ir{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(240,236,248,0.6);line-height:1.55;}
 .tth-ii{color:#EAB308;font-weight:700;flex-shrink:0;}
 .tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;font-family:'Inter',sans-serif;font-size:13.5px;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
 .tth-btn-fee:hover{background:rgba(234,179,8,0.16);border-color:rgba(234,179,8,0.7);box-shadow:0 0 18px rgba(234,179,8,0.25);}
-.tth-btn-cw{width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;background:conic-gradient(from var(--tth-la,0deg),#78350f 0%,#eab308 15%,#fef08a 25%,#f59e0b 35%,#eab308 50%,#78350f 60%,#fef08a 70%,#eab308 85%,#78350f 100%);animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(234,179,8,0.75),0 0 44px rgba(234,179,8,0.32);contain:layout style paint;}
+.tth-btn-cw{width:100%;border-radius:100px;padding:2px;display:block;position:relative;background:linear-gradient(135deg,#78350f 0%,#eab308 45%,#fef08a 65%,#f59e0b 100%);box-shadow:0 0 10px rgba(234,179,8,0.3);contain:layout style paint;}
 .tth-btn-cw::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
 .tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
 .tth-btn-c::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.38),transparent);animation:tthShim 2.4s ease-in-out infinite;pointer-events:none;z-index:2;will-change:transform;}
@@ -554,7 +638,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
    BOTTOM NAV
 ───────────────────────────────── */
 .idx-bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:0 14px calc(10px + env(safe-area-inset-bottom));pointer-events:none;}
-.idx-bottom-nav-inner{max-width:480px;margin:0 auto;background:rgba(22,13,48,0.98);border:1px solid rgba(100,55,175,0.25);border-radius:40px;padding:7px;display:flex;align-items:center;justify-content:space-around;pointer-events:all;box-shadow:0 2px 0 rgba(255,255,255,0.13) inset,0 -2px 0 rgba(0,0,0,0.7) inset,0 8px 0 rgba(0,0,0,0.55),0 12px 24px rgba(0,0,0,0.65),0 20px 50px rgba(0,0,0,0.45),0 0 40px rgba(120,55,200,0.22);}
+.idx-bottom-nav-inner{max-width:480px;margin:0 auto;background:rgba(22,13,48,0.98);border:1px solid rgba(100,55,175,0.25);border-radius:40px;padding:7px;display:flex;align-items:center;justify-content:space-around;pointer-events:all;box-shadow:0 2px 0 rgba(255,255,255,0.1) inset,0 4px 16px rgba(0,0,0,0.4),0 0 28px rgba(120,55,200,0.15);}
 .idx-bnav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 16px;border-radius:28px;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);flex:1;user-select:none;text-decoration:none;}
 .idx-bnav-item.active{background:linear-gradient(145deg,#7040D0 0%,#8E50E4 55%,#8045DC 100%);box-shadow:0 1px 0 rgba(255,255,255,0.22) inset,0 4px 14px rgba(120,60,210,0.55),0 8px 22px rgba(120,60,210,0.28);}
 .idx-bnav-item:not(.active):hover{background:rgba(120,60,200,0.1);}
@@ -640,12 +724,37 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .fm-cards{grid-template-columns:1fr;}
   .fm-bench-name{width:90px;min-width:90px;}
 }
+@media(max-width:767px){
+  /* CHỈ tắt conic-gradient @property spin trên btn-primary-wrap — gây repaint mỗi frame trên mobile GPU */
+  .btn-primary-wrap{animation:none!important;background:linear-gradient(135deg,#6b21a8 0%,#a855f7 45%,#ec4899 100%)!important;}
+}
+
+/* ── GROUP CTA BOX LED BORDER (mobile-safe: chỉ dùng opacity animation) ── */
+@keyframes ledPurple{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes ledPink{0%,100%{opacity:0;}50%{opacity:1;}}
+.group-cta-box{position:relative;}
+.group-cta-box::before,.group-cta-box::after{
+  content:'';position:absolute;inset:-1px;border-radius:25px;pointer-events:none;
+  /* opacity animation = compositor-only, KHÔNG repaint */
+}
+.group-cta-box::before{
+  border:1.5px solid rgba(168,85,247,0.75);
+  box-shadow:0 0 14px rgba(168,85,247,0.2);
+  animation:ledPurple 2.4s ease-in-out infinite;
+}
+.group-cta-box::after{
+  border:1.5px solid rgba(236,72,153,0.7);
+  box-shadow:0 0 14px rgba(236,72,153,0.18);
+  animation:ledPink 2.4s ease-in-out infinite;
+}
 @media(min-width:641px) and (max-width:768px){
   #chatgptPlusCard .glass-card{border-radius:40px!important;}
 }
 </style>
 </head>
 <body>
+<!-- 3D GRID BACKGROUND -->
+<canvas id="bgGrid3d" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block;"></canvas>
 <div class="glow-orb glow-orb-1"></div>
 <div class="glow-orb glow-orb-2"></div>
 <div class="glow-orb glow-orb-3"></div>
@@ -722,14 +831,11 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         </div>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:5px;width:fit-content;">
-        <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
+      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          Follow FB
+          Check uy tín Facebook
           <div class="fb-btn-arrow"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </a>
-        <div style="font-size:clamp(8.5px,1.2vw,10px);color:rgba(240,236,248,0.72);font-weight:600;text-align:center;letter-spacing:0.01em;">🎁 Follow Facebook để nhận giảm giá đơn đầu tiên</div>
-      </div>
     </div>
 
     <!-- RIGHT: 2×3 chip grid — icon + tên -->
@@ -771,13 +877,27 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 
 <!-- HERO (stat cards + CTA) -->
 <section class="hero">
-  <div class="hero-ring"><div class="hero-ring-inner"></div></div>
   <div class="container" style="text-align:center;">
-    <div class="hero-cta" id="heroCta" style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:36px;">
-      <div class="btn-primary-wrap" id="heroPrimaryWrap" style="flex:none;">
-        <button onclick="var el=document.getElementById('accounts');var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:72;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'})" class="btn-register-shimmer" id="heroPrimaryBtn" style="font-size:13.5px;padding:11px 26px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Inter',sans-serif;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 22px rgba(168,85,247,0.55),0 0 40px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22);white-space:nowrap;">Khám phá ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    <div class="hero-cta" id="heroCta" style="display:flex;align-items:center;justify-content:center;margin-bottom:36px;">
+      <div class="group-cta-box" style="position:relative;background:linear-gradient(145deg,rgba(17,9,48,0.92),rgba(12,7,36,0.96));border:1px solid rgba(168,85,247,0.15);border-radius:24px;padding:clamp(18px,3vw,28px) clamp(22px,4vw,40px);display:flex;flex-direction:column;align-items:center;gap:10px;max-width:min(480px,90vw);box-sizing:border-box;box-shadow:0 8px 40px rgba(168,85,247,0.12),0 24px 60px rgba(0,0,0,0.5);">
+        <!-- top shimmer line -->
+        <div style="position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);border-radius:24px 24px 0 0;pointer-events:none;"></div>
+        <!-- glow badge -->
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.28);border-radius:100px;padding:4px 12px;">
+          <span style="width:5px;height:5px;border-radius:50%;background:#A855F7;box-shadow:0 0 7px #A855F7;animation:sbsDot 2s ease-in-out infinite;flex-shrink:0;display:inline-block;"></span>
+          <span style="font-size:clamp(9px,1.2vw,10.5px);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.8);">Cộng đồng</span>
+        </div>
+        <!-- title -->
+        <div style="font-size:clamp(14px,2.2vw,18px);font-weight:900;color:#F0ECF8;text-align:center;letter-spacing:-0.01em;">GenZ Đam Mê IT · Vibe Code · AI</div>
+        <!-- sub -->
+        <div style="font-size:clamp(11px,1.5vw,13px);color:rgba(240,236,248,0.5);text-align:center;word-break:break-word;line-height:1.55;">Tham gia group → chơi mini game → nhận <span style="font-weight:700;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">ChatGPT Plus miễn phí</span></div>
+        <!-- CTA button -->
+        <a href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noreferrer" style="margin-top:6px;font-size:clamp(12px,1.8vw,14px);padding:clamp(10px,1.5vw,13px) clamp(20px,3vw,30px);display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Inter',sans-serif;border-radius:100px;text-decoration:none;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 26px rgba(168,85,247,0.6),0 0 50px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22);white-space:nowrap;transition:transform 0.15s,box-shadow 0.15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 36px rgba(168,85,247,0.75),0 0 60px rgba(168,85,247,0.3),inset 0 1px 0 rgba(255,255,255,0.22)'" onmouseout="this.style.transform='';this.style.boxShadow='0 0 26px rgba(168,85,247,0.6),0 0 50px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22)'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Tham gia Group ngay
+          <span style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.22);color:#fff;font-size:9px;font-weight:900;letter-spacing:0.1em;padding:3px 8px;border-radius:100px;animation:freePulse 2s ease-in-out infinite;">MIỄN PHÍ</span>
+        </a>
       </div>
-
     </div>
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2vw,16px);max-width:min(680px,100%);margin:0 auto;">
       <div class="neon-card neon-cyan">
@@ -864,34 +984,6 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             <div id="plusShareNote" style="margin-top:14px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
               <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">✓</span>
               <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">Tài khoản cá nhân riêng</span>
-            </div>
-          </div>
-
-          <div style="padding:0 clamp(18px,4vw,44px) 20px;">
-            <div class="tth-any">
-              <div class="tth-any-badge"><div class="tth-dot"></div>GPT-5.4 Flagship · Sora · Agent · ADA</div>
-              <div class="tth-note" style="margin-bottom:12px;"><strong style="color:rgba(253,224,71,0.85);font-weight:700;">GPT-5.4</strong> hiển thị <strong style="color:rgba(240,236,248,0.7);">kế hoạch suy nghĩ realtime</strong> — điều chỉnh ngay khi AI đang xử lý. Hỗ trợ <strong style="color:rgba(240,236,248,0.7);">1 triệu token context</strong> (preview), nghiên cứu web sâu vượt GPT-5.3 và đạt <strong style="color:rgba(240,236,248,0.7);">81.2% MMMU-Pro</strong> — cao hơn Gemini 3.1 Pro.</div>
-              <div class="tth-mq-wrap">
-                <div class="tth-mq-track">
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyệt web · ADA</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent · Codex</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bộ nhớ nâng cao</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Ưu tiên truy cập</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mình bạn dùng</span>
-                  <!-- duplicate for seamless loop -->
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyệt web · ADA</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent · Codex</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bộ nhớ nâng cao</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Ưu tiên truy cập</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mình bạn dùng</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -1372,6 +1464,8 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 
 // ── 3D SPACE BANNER ──────────────────────────────────────
 (function(){
+  // Tắt hoàn toàn trên mobile — ctx.shadowBlur rất nặng
+  if(window.innerWidth < 768) return;
   var cv=document.getElementById('bannerCanvas');
   if(!cv)return;
   var ctx=cv.getContext('2d');
@@ -1474,5 +1568,119 @@ function idxNavClick(e,idx,target){
 }
 </script>
 <script src="protect.js"></script>
+<script>
+/* ── 3D CURVED GRID BACKGROUND ── */
+(function(){
+  const canvas = document.getElementById('bgGrid3d');
+  const ctx = canvas.getContext('2d');
+  let W, H, gridPts=[], segments=[];
+
+  const IS_MOBILE = window.innerWidth < 768;
+  const FOV=650, TILT=Math.PI*0.40, CAM_Y=-520, CAM_Z=30, SPHERE_R=1100,
+        GRID_N = IS_MOBILE ? 20 : 32,   // ít đường hơn trên mobile
+        EXT=600;
+
+  function surfaceY(wx,wz){
+    const d2=wx*wx+wz*wz,R2=SPHERE_R*SPHERE_R;
+    if(d2>=R2)return 30;
+    return -(SPHERE_R-Math.sqrt(R2-d2));
+  }
+  function project(wx,wz){
+    const wy=surfaceY(wx,wz),dy=wy-CAM_Y,dz=wz-CAM_Z;
+    const cosT=Math.cos(TILT),sinT=Math.sin(TILT);
+    const ry=cosT*dy+sinT*dz,rz=-sinT*dy+cosT*dz;
+    if(rz>=-0.1)return null;
+    const scale=FOV/(-rz);
+    return{sx:wx*scale+W/2,sy:ry*scale+H/2,depth:-rz,scale};
+  }
+  function edgeAlpha(wx,wz,depth){
+    const e=Math.max(0,1-Math.sqrt(wx*wx+wz*wz)/(EXT*0.95));
+    const d=Math.min(1,Math.max(0,(depth-60)/700));
+    return e*d;
+  }
+  function buildGrid(){
+    gridPts=[];segments=[];
+    const step=(EXT*2)/GRID_N;
+    for(let i=0;i<=GRID_N;i++){gridPts[i]=[];for(let j=0;j<=GRID_N;j++){const wx=-EXT+i*step,wz=-EXT+j*step;gridPts[i][j]={p:project(wx,wz),wx,wz};}}
+    for(let i=0;i<=GRID_N;i++)for(let j=0;j<GRID_N;j++){const a=gridPts[i][j],b=gridPts[i][j+1];if(!a.p||!b.p)continue;const wx=a.wx,wz=(a.wz+b.wz)/2;segments.push({ax:a.p.sx,ay:a.p.sy,bx:b.p.sx,by:b.p.sy,alpha:edgeAlpha(wx,wz,a.p.depth),wx,wz});}
+    for(let j=0;j<=GRID_N;j++)for(let i=0;i<GRID_N;i++){const a=gridPts[i][j],b=gridPts[i+1][j];if(!a.p||!b.p)continue;const wx=(a.wx+b.wx)/2,wz=a.wz;segments.push({ax:a.p.sx,ay:a.p.sy,bx:b.p.sx,by:b.p.sy,alpha:edgeAlpha(wx,wz,a.p.depth),wx,wz});}
+  }
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;buildGrid();}
+  window.addEventListener('resize',resize);resize();
+
+  const ripples=[];
+  function spawnRipple(){ripples.push({born:performance.now(),life:3200});}
+  setInterval(spawnRipple,1600);spawnRipple();
+
+  const pulses=[];
+  function spawnPulse(){const isX=Math.random()>.5,idx=Math.floor(Math.random()*(GRID_N+1)),hue=Math.random()>.5?278:328,fwd=Math.random()>.5;pulses.push({isX,idx,t:fwd?0:1,speed:(0.010+Math.random()*0.016)*(fwd?1:-1),hue});}
+  setInterval(spawnPulse, IS_MOBILE ? 600 : 320);
+  for(let i=0;i<(IS_MOBILE?5:10);i++){spawnPulse();pulses[pulses.length-1].t=Math.random();}
+
+  const sparks=[];
+  function spawnSpark(){
+    if(IS_MOBILE) return; // shadowBlur nặng trên mobile
+    const i=Math.floor(Math.random()*(GRID_N+1)),j=Math.floor(Math.random()*(GRID_N+1));if(!gridPts[i]?.[j]?.p)return;const{sx,sy,scale}=gridPts[i][j].p;if(Math.sqrt(gridPts[i][j].wx**2+gridPts[i][j].wz**2)>EXT*0.72)return;sparks.push({x:sx,y:sy,born:performance.now(),life:700+Math.random()*700,size:scale*6});}
+  setInterval(spawnSpark,IS_MOBILE?99999:90);
+
+  function drawPulseHead(x,y,scale,hue,fade){
+    const r=Math.max(2,scale*9),g=ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,`hsla(${hue},95%,82%,${(fade*.95).toFixed(3)})`);
+    g.addColorStop(0.4,`hsla(${hue},80%,65%,${(fade*.45).toFixed(3)})`);
+    g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=`hsla(${hue},100%,95%,${(fade*.85).toFixed(3)})`;
+    ctx.beginPath();ctx.arc(x,y,Math.max(0.8,scale*1.6),0,Math.PI*2);ctx.fill();
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);
+    bg.addColorStop(0,'#0c0420');bg.addColorStop(0.6,'#080218');bg.addColorStop(1,'#04010e');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    const now=performance.now();
+    for(let ri=ripples.length-1;ri>=0;ri--){if(now-ripples[ri].born>=ripples[ri].life)ripples.splice(ri,1);}
+    const activeR=ripples.map(r=>({worldR:(now-r.born)/r.life*EXT*2.4,age:(now-r.born)/r.life}));
+    segments.forEach(seg=>{
+      if(seg.alpha<0.01)return;
+      const wd=Math.sqrt(seg.wx*seg.wx+seg.wz*seg.wz);
+      let boost=0;
+      activeR.forEach(r=>{const diff=Math.abs(wd-r.worldR),bw=EXT*.15;if(diff<bw)boost+=(1-diff/bw)*(1-r.age)*.85;});
+      const a=Math.min(0.95,seg.alpha*(0.5+boost)),e=wd/EXT;
+      const rr=Math.floor(148+e*88+boost*35),gg=Math.floor(85-e*13),bb=Math.floor(247-e*100);
+      ctx.strokeStyle=`rgba(${rr},${gg},${bb},${a.toFixed(3)})`;
+      ctx.lineWidth=0.75+boost*2;
+      ctx.beginPath();ctx.moveTo(seg.ax,seg.ay);ctx.lineTo(seg.bx,seg.by);ctx.stroke();
+    });
+    for(let pi=pulses.length-1;pi>=0;pi--){
+      const p=pulses[pi];p.t+=p.speed;
+      if(p.t<0||p.t>1){pulses.splice(pi,1);continue;}
+      const pos=p.t*GRID_N,j0=Math.floor(pos),frac=pos-j0;
+      if(j0>=GRID_N)continue;
+      for(let di=-1;di<=1;di++){
+        const fade=(1-Math.abs(di)*.5)*(0.5+(1-Math.abs(p.t-.5)*2)*.5);
+        if(p.isX){const ii=p.idx+di;if(ii<0||ii>GRID_N)continue;const a2=gridPts[ii]?.[j0],b2=gridPts[ii]?.[j0+1];if(!a2?.p||!b2?.p)continue;drawPulseHead(a2.p.sx+(b2.p.sx-a2.p.sx)*frac,a2.p.sy+(b2.p.sy-a2.p.sy)*frac,a2.p.scale,p.hue,fade);}
+        else{const jj=p.idx+di;if(jj<0||jj>GRID_N)continue;const a2=gridPts[j0]?.[jj],b2=gridPts[j0+1]?.[jj];if(!a2?.p||!b2?.p)continue;drawPulseHead(a2.p.sx+(b2.p.sx-a2.p.sx)*frac,a2.p.sy+(b2.p.sy-a2.p.sy)*frac,a2.p.scale,p.hue,fade);}
+      }
+    }
+    for(let si=sparks.length-1;si>=0;si--){
+      const sp=sparks[si],age=(now-sp.born)/sp.life;
+      if(age>=1){sparks.splice(si,1);continue;}
+      const alpha=age<.25?age/.25:1-(age-.25)/.75,r2=sp.size*(.6+alpha*1.4);
+      const g2=ctx.createRadialGradient(sp.x,sp.y,0,sp.x,sp.y,r2);
+      g2.addColorStop(0,`rgba(255,225,255,${(alpha*.9).toFixed(3)})`);
+      g2.addColorStop(0.4,`rgba(192,132,252,${(alpha*.45).toFixed(3)})`);
+      g2.addColorStop(1,'rgba(168,85,247,0)');
+      ctx.fillStyle=g2;ctx.beginPath();ctx.arc(sp.x,sp.y,r2,0,Math.PI*2);ctx.fill();
+    }
+    const vig=ctx.createRadialGradient(W/2,H*.5,H*.12,W/2,H*.5,Math.max(W,H)*.82);
+    vig.addColorStop(0,'transparent');vig.addColorStop(1,'rgba(4,1,12,0.88)');
+    ctx.fillStyle=vig;ctx.fillRect(0,0,W,H);
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
 </body>
 </html>
+

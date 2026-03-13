@@ -726,6 +726,57 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .btn-primary-wrap{animation:none!important;background:linear-gradient(135deg,#6b21a8 0%,#a855f7 45%,#ec4899 100%)!important;}
 }
 
+/* ══ WELCOME POPUP ══ */
+#welcomeOverlay{position:fixed;inset:0;background:rgba(2,1,10,0.6);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);z-index:500;opacity:0;pointer-events:none;transition:opacity .28s ease;display:flex;align-items:center;justify-content:center;padding:16px;}
+#welcomeOverlay.show{opacity:1;pointer-events:all;}
+#welcomePopup{width:100%;max-width:340px;background:rgba(10,5,22,0.98);border:1px solid rgba(168,85,247,0.32);border-radius:26px;padding:20px;box-shadow:0 0 0 1px rgba(168,85,247,0.08),0 24px 80px rgba(0,0,0,.9),0 0 60px rgba(168,85,247,.18);position:relative;transform:scale(0.88) translateY(12px);opacity:0;transition:transform .38s cubic-bezier(.34,1.5,.64,1),opacity .28s ease;}
+#welcomeOverlay.show #welcomePopup{transform:scale(1) translateY(0);opacity:1;}
+#welcomePopup::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.8),rgba(236,72,153,.5),transparent);border-radius:2px;}
+.wp-logo{display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+.wp-logo-star{font-size:14px;filter:drop-shadow(0 0 6px rgba(168,85,247,.8));}
+.wp-logo-text{font-size:13px;font-weight:800;background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wp-live{display:inline-flex;align-items:center;gap:5px;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.28);border-radius:100px;padding:3px 10px;margin-left:auto;}
+.wp-live-dot{width:5px;height:5px;border-radius:50%;background:#A855F7;box-shadow:0 0 6px #A855F7;animation:wpDot 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes wpDot{0%,100%{opacity:1;}50%{opacity:.2;}}
+.wp-live-text{font-size:9px;font-weight:800;letter-spacing:.1em;color:rgba(192,132,252,.8);text-transform:uppercase;}
+.wp-title{font-size:1.1rem;font-weight:900;color:#fff;letter-spacing:-.025em;line-height:1.2;margin-bottom:4px;}
+.wp-title em{font-style:normal;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wp-sub{font-size:11px;color:rgba(240,236,248,.38);margin-bottom:14px;line-height:1.5;}
+.wp-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.wp-row{display:flex;align-items:center;gap:10px;}
+.wp-ico{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.wp-row-name{font-size:12px;font-weight:700;color:rgba(240,236,248,.85);line-height:1.3;}
+.wp-div{height:1px;background:rgba(168,85,247,.12);margin:12px 0;}
+.wp-free-row{display:flex;align-items:center;gap:8px;background:rgba(251,100,20,.07);border:1px solid rgba(251,100,20,.22);border-radius:12px;padding:8px 11px;}
+.wp-free-text{font-size:11.5px;font-weight:700;color:rgba(240,236,248,.75);line-height:1.4;}
+.wp-free-text strong{color:#FB923C;}
+.wp-cta{width:100%;margin-top:12px;padding:12px;background:linear-gradient(135deg,#A855F7,#EC4899);border:none;border-radius:100px;color:#fff;font-size:13px;font-weight:800;font-family:'Inter',sans-serif;cursor:pointer;letter-spacing:.02em;position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 3px 14px rgba(168,85,247,.4);transition:opacity .18s;text-decoration:none;display:flex;align-items:center;justify-content:center;}
+.wp-cta::after{content:'';position:absolute;top:-50%;left:-60%;width:35%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.26),transparent);animation:wpShim 2.6s ease-in-out infinite;pointer-events:none;}
+@keyframes wpShim{0%{transform:translateX(-100%);}100%{transform:translateX(520%);}}
+.wp-cta:hover{opacity:.88;}
+.wp-skip{width:100%;margin-top:7px;padding:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:100px;color:rgba(240,236,248,.55);font-size:12px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:border-color .18s,color .18s,background .18s;}
+.wp-skip:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.35);color:rgba(240,236,248,.8);}
+.wp-skip:disabled{opacity:.3;cursor:not-allowed;}
+/* ══ MINI TOAST — 12 tháng ══ */
+#freeMonthToast{
+  position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-12px);
+  background:rgba(8,4,20,0.97);
+  border:1px solid rgba(52,211,153,0.5);
+  border-radius:100px;
+  padding:9px 18px;
+  display:inline-flex;align-items:center;gap:8px;
+  white-space:nowrap;
+  box-shadow:0 0 0 1px rgba(52,211,153,0.1),0 8px 32px rgba(0,0,0,.7),0 0 24px rgba(52,211,153,.2);
+  z-index:600;
+  opacity:0;pointer-events:none;
+  transition:opacity .22s ease,transform .28s cubic-bezier(.34,1.5,.64,1);
+}
+#freeMonthToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#freeMonthToast .fmt-ico{width:22px;height:22px;border-radius:7px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#freeMonthToast .fmt-text{font-size:12px;font-weight:700;color:#fff;}
+#freeMonthToast .fmt-text em{font-style:normal;color:#34d399;}
+/* ══ END WELCOME POPUP ══ */
+
 /* ── GROUP CTA BOX LED BORDER (mobile-safe: chỉ dùng opacity animation) ── */
 @keyframes ledPurple{0%,100%{opacity:1;}50%{opacity:0;}}
 @keyframes ledPink{0%,100%{opacity:0;}50%{opacity:1;}}
@@ -934,11 +985,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <section id="accounts" style="padding:clamp(60px,8vw,90px) 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
   <div class="container">
     <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">ChatGPT · Youtube · CapCut</div><div class="section-beam r"></div></div></div>
-    <div style="text-align:center;margin:-4px 0 32px;">
-      <div id="promoPill" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.35);border-radius:100px;padding:10px 24px;">
-        <span id="promoPillText" style="font-size:13.5px;font-weight:700;color:#E0B4FF;letter-spacing:0.01em;">Gói <strong style="color:#fff;">12 tháng</strong> tặng <strong style="color:#fff;">1 tháng miễn phí</strong></span>
-      </div>
-    </div>
+
 
     <!-- ── MAIN GRID: ChatGPT card (full width) → sub cards below ── -->
     <div id="accountsGrid" style="display:flex;flex-direction:column;gap:clamp(32px,5vw,48px);max-width:680px;margin:0 auto;">
@@ -966,7 +1013,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div style="padding:14px clamp(20px,4vw,40px) 0;">
             <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(234,179,8,0.2);border-radius:100px;padding:3px;">
               <button id="plusTab1" onclick="plusTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;padding:6px 18px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#92400e,#D97706,#EAB308);color:#1a0800;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
-              <button id="plusTab12" onclick="plusTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;padding:6px 18px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(253,224,71,0.45);box-shadow:none;">12 tháng <span style="font-size:9px;color:rgba(52,211,153,0.7);font-weight:800;">+1 miễn phí</span></button>
+              <button id="plusTab12" onclick="plusTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;padding:6px 18px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(253,224,71,0.45);box-shadow:none;">12 tháng</button>
             </div>
           </div>
 
@@ -978,8 +1025,8 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
                 <div style="padding-bottom:5px;font-size:10px;color:rgba(240,236,248,0.38);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);">522.000đ</span> <span style="font-size:10px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 8px;" class="discount-badge" data-orig="522000" data-sale-personal="99000" id="plusDiscountBadge">-81%</span></div>
               </div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>chỉ 3.300đ / ngày</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="gptPerDay1">chỉ 3.300đ / ngày</span>
               </div>
             </div>
             <div id="plusPane12" style="display:none;">
@@ -989,8 +1036,8 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
               </div>
               <div style="font-size:8px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:10px;" id="plusYearlySaving">—</div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>chỉ 2.750đ / ngày</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="gptPerDay12">chỉ 3.046đ / ngày</span>
               </div>
             </div>
           </div>
@@ -1035,19 +1082,19 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
                 <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
               </div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>chỉ 1.200đ / ngày</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="ytPerDay1">chỉ 1.167đ / ngày</span>
               </div>
             </div>
             <div id="ytPane12" style="display:none;">
               <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:4px;">
-                <div style="font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">455K</div>
-                <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">1.027.000đ</span></div>
+                <div style="font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ytYearlyOur">—</div>
+                <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ytYearlyList">—</span></div>
               </div>
-              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:7px;">💰 Tiết kiệm 572.000đ</div>
+              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:7px;" id="ytYearlySaving">💰 Tiết kiệm —</div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>chỉ 1.250đ / ngày</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="ytPerDay12">chỉ 1.077đ / ngày</span>
               </div>
             </div>
           </div>
@@ -1085,19 +1132,19 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
                 <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">145.000đ</span></div>
               </div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>chỉ 2.000đ / ngày</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="ccPerDay1">chỉ 2.000đ / ngày</span>
               </div>
             </div>
             <div id="ccPane12" style="display:none;">
               <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:4px;">
-                <div style="font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">767K</div>
-                <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">1.885.000đ</span></div>
+                <div style="font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ccYearlyOur">—</div>
+                <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ccYearlyList">—</span></div>
               </div>
-              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:7px;">💰 Tiết kiệm 1.118.000đ</div>
+              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:7px;" id="ccYearlySaving">💰 Tiết kiệm —</div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>chỉ 2.100đ / ngày</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="ccPerDay12">chỉ 1.815đ / ngày</span>
               </div>
             </div>
           </div>
@@ -1431,15 +1478,51 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 </div>
 
 <script>
-const PLUS_LIST_PRICE=522000,PLUS_OUR_PRICE=99000;
-function fmtVND(n){return n.toLocaleString('vi-VN')+'đ';}
-function initYearlyPricing(){
-  var lf=PLUS_LIST_PRICE*12,oy=PLUS_OUR_PRICE*12,sv=lf-oy;
-  var e;
-  e=document.getElementById('plusYearlyListFull');if(e)e.textContent=fmtVND(lf);
-  e=document.getElementById('plusYearlyOur');if(e)e.textContent=fmtVND(oy);
-  e=document.getElementById('plusYearlySaving');if(e)e.textContent='💰 Tiết kiệm '+fmtVND(sv);
+// ═══════════════════════════════════════════════════
+// PRICING CONFIG — chỉ cần sửa giá ở đây, mọi thứ tự tính
+// monthly   = giá bán / tháng (VNĐ)
+// listMonth = giá niêm yết chính thức / tháng (VNĐ)
+// ═══════════════════════════════════════════════════
+const PRICING = {
+  gpt:    { monthly: 99000,  listMonth: 522000  },
+  yt:     { monthly: 35000,  listMonth: 79000   },
+  capcut: { monthly: 59000,  listMonth: 145000  }
+};
+
+function fmtVND(n){return Math.round(n).toLocaleString('vi-VN')+'đ';}
+function fmtK(n){return Math.round(n/1000)+'K';}
+function perDay(total,months){return Math.round(total/(months*30));}
+function setText(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+
+function initAllPricing(){
+  var g=PRICING.gpt, y=PRICING.yt, c=PRICING.capcut;
+
+  // GPT
+  setText('gptPerDay1',       'chỉ '+perDay(g.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
+  setText('plusYearlyOur',    fmtK(g.monthly*12));
+  setText('plusYearlyListFull',fmtVND(g.listMonth*12));
+  setText('plusYearlySaving', '💰 Tiết kiệm '+fmtVND(g.listMonth*12-g.monthly*12));
+  setText('gptPerDay12',      'chỉ '+perDay(g.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
+  var pb=document.getElementById('plusDiscountBadge');
+  if(pb)pb.textContent='-'+Math.round((1-g.monthly/g.listMonth)*100)+'%';
+
+  // YouTube
+  setText('ytPerDay1',    'chỉ '+perDay(y.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
+  setText('ytYearlyOur',  fmtK(y.monthly*12));
+  setText('ytYearlyList', fmtVND(y.listMonth*12));
+  setText('ytYearlySaving','💰 Tiết kiệm '+fmtVND(y.listMonth*12-y.monthly*12));
+  setText('ytPerDay12',   'chỉ '+perDay(y.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
+
+  // CapCut
+  setText('ccPerDay1',    'chỉ '+perDay(c.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
+  setText('ccYearlyOur',  fmtK(c.monthly*12));
+  setText('ccYearlyList', fmtVND(c.listMonth*12));
+  setText('ccYearlySaving','💰 Tiết kiệm '+fmtVND(c.listMonth*12-c.monthly*12));
+  setText('ccPerDay12',   'chỉ '+perDay(c.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
 }
+
+function initYearlyPricing(){initAllPricing();}
+function calcDiscounts(){initAllPricing();}
 function _tabSwitch(tab,id1,id12,p1,p12,actBg,actColor){
   var t1=document.getElementById(id1),t12=document.getElementById(id12);
   var pn1=document.getElementById(p1),pn12=document.getElementById(p12);
@@ -1454,9 +1537,16 @@ function _tabSwitch(tab,id1,id12,p1,p12,actBg,actColor){
     pn1.style.display='none';pn12.style.display='block';
   }
 }
-function plusTabSwitch(t){_tabSwitch(t,'plusTab1','plusTab12','plusPane1','plusPane12','linear-gradient(135deg,#92400e,#D97706,#EAB308)','#1a0800');}
-function ytTabSwitch(t){_tabSwitch(t,'ytTab1','ytTab12','ytPane1','ytPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');}
-function ccTabSwitch(t){_tabSwitch(t,'ccTab1','ccTab12','ccPane1','ccPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');}
+function plusTabSwitch(t){_tabSwitch(t,'plusTab1','plusTab12','plusPane1','plusPane12','linear-gradient(135deg,#92400e,#D97706,#EAB308)','#1a0800');if(t===12)showFreeMonthToast();}
+function ytTabSwitch(t){_tabSwitch(t,'ytTab1','ytTab12','ytPane1','ytPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');if(t===12)showFreeMonthToast();}
+function ccTabSwitch(t){_tabSwitch(t,'ccTab1','ccTab12','ccPane1','ccPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');if(t===12)showFreeMonthToast();}
+var _fmtTimer=null;
+function showFreeMonthToast(){
+  var el=document.getElementById('freeMonthToast');if(!el)return;
+  if(_fmtTimer){clearTimeout(_fmtTimer);}
+  el.classList.add('show');
+  _fmtTimer=setTimeout(function(){el.classList.remove('show');_fmtTimer=null;},2800);
+}
 function openTthModal(){var m=document.getElementById('tthModal');m.classList.add('open');document.body.style.overflow='hidden';}
 function closeTthModal(){var m=document.getElementById('tthModal');m.classList.remove('open');document.body.style.overflow='';}
 function openModal(n){
@@ -1637,7 +1727,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 })();
 // ─────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded',function(){calcDiscounts();initYearlyPricing();});
+document.addEventListener('DOMContentLoaded',function(){initAllPricing();});
 
 function idxNavClick(e,idx,target){
   [0,1,2,3].forEach(i=>{var el=document.getElementById('idxNav'+i);if(el)el.classList.toggle('active',i===idx);});
@@ -1757,6 +1847,89 @@ function idxNavClick(e,idx,target){
   }
   requestAnimationFrame(draw);
 })();
+</script><!-- FREE MONTH TOAST -->
+<div id="freeMonthToast">
+  <div class="fmt-ico">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-5"/></svg>
+  </div>
+  <span class="fmt-text">🎁 Mua <em>12 tháng</em> tặng <em>1 tháng miễn phí</em></span>
+</div>
+
+<!-- WELCOME POPUP -->
+<div id="welcomeOverlay">
+  <div id="welcomePopup">
+    <div class="wp-logo">
+      <span class="wp-logo-star">✦</span>
+      <span class="wp-logo-text">Binpinkgold Store</span>
+      <div class="wp-live">
+        <div class="wp-live-dot"></div>
+        <span class="wp-live-text">Online</span>
+      </div>
+    </div>
+    <div class="wp-title">Dịch vụ xịn. <em>Giá sinh viên.</em></div>
+    <div class="wp-sub">Xem nhanh các dịch vụ đang có tại store 👇</div>
+    <div class="wp-list">
+      <div class="wp-row">
+        <div class="wp-ico" style="background:rgba(234,179,8,.13);border:1px solid rgba(234,179,8,.28);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><circle cx="12" cy="5" r="2"/></svg>
+        </div>
+        <div class="wp-row-name">ChatGPT Plus · YouTube · CapCut Pro</div>
+      </div>
+      <div class="wp-row">
+        <div class="wp-ico" style="background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.25);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><rect x="5" y="13.5" width="4" height="2" rx="1" fill="rgba(96,165,250,.3)" stroke="none"/></svg>
+        </div>
+        <div class="wp-row-name">Thanh toán hộ Visa · Mastercard</div>
+      </div>
+      <div class="wp-row">
+        <div class="wp-ico" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.25);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="wp-row-name">Bot Telegram · Website</div>
+      </div>
+      <div class="wp-row">
+        <div class="wp-ico" style="background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.28);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <div class="wp-row-name" style="color:#34d399;">12 tháng tặng 1 tháng miễn phí</div>
+      </div>
+    </div>
+    <div class="wp-div"></div>
+    <div class="wp-free-row">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FB923C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="wp-free-text">Tham gia nhóm → mini game → nhận <strong>ChatGPT Plus miễn phí</strong></div>
+    </div>
+    <a href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noreferrer" class="wp-cta" onclick="closeWelcome()">Vào nhóm ngay 🎉</a>
+    <button id="wpSkipBtn" class="wp-skip" onclick="closeWelcome()">Bỏ qua</button>
+  </div>
+</div>
+<script>
+(function(){
+  function closeWelcome(){
+    document.getElementById('welcomeOverlay').classList.remove('show');
+    document.body.style.overflow='';
+  }
+  window.closeWelcome=closeWelcome;
+  function showWelcome(){
+    var ov=document.getElementById('welcomeOverlay');
+    ov.classList.add('show');
+    document.body.style.overflow='hidden';
+    var skip=document.getElementById('wpSkipBtn');
+    skip.disabled=true;
+    skip.textContent='Bỏ qua (2s)';
+    var t=2;
+    var iv=setInterval(function(){
+      t--;
+      if(t>0){skip.textContent='Bỏ qua ('+t+'s)';}
+      else{clearInterval(iv);skip.disabled=false;skip.textContent='Bỏ qua';}
+    },1000);
+  }
+  // đóng khi click overlay ngoài
+  document.getElementById('welcomeOverlay').addEventListener('click',function(e){if(e.target===this)closeWelcome();});
+  setTimeout(showWelcome,800);
+})();
 </script>
+
 </body>
   </html>
+

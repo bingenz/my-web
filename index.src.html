@@ -598,31 +598,6 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .feat-close-btn{width:32px;height:32px;border-radius:50%;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.28);color:#C084FC;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;}
 .feat-close-btn:hover{background:rgba(168,85,247,0.25);}
 
-/* FEAT MODAL B */
-.fm-tagline{font-size:12px;color:rgba(240,236,248,0.55);line-height:1.7;padding:14px 22px 0;}
-.fm-tagline strong{color:rgba(192,132,252,0.9);font-weight:700;}
-.fm-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px 22px;}
-.fm-card{background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.17);border-radius:18px;padding:13px 13px 11px;transition:border-color 0.2s;}
-.fm-card:hover{border-color:rgba(168,85,247,0.4);}
-.fm-card-top{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
-.fm-card-ico{width:30px;height:30px;min-width:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
-.fm-card-name{font-size:11.5px;font-weight:800;color:rgba(240,236,248,0.9);line-height:1.3;word-break:break-word;}
-.fm-card-desc{font-size:10px;color:rgba(240,236,248,0.45);line-height:1.55;word-break:break-word;}
-.fm-card-badge{display:inline-flex;align-items:center;font-size:9px;font-weight:800;padding:2px 8px;border-radius:100px;margin-top:6px;white-space:nowrap;}
-.fm-bench{margin:0 22px 18px;background:linear-gradient(135deg,rgba(168,85,247,0.09),rgba(236,72,153,0.05));border:1px solid rgba(168,85,247,0.2);border-radius:16px;padding:13px 15px;}
-.fm-bench-title{font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:10px;}
-.fm-bench-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
-.fm-bench-row:last-child{margin-bottom:0;}
-.fm-bench-name{font-size:10px;color:rgba(240,236,248,0.5);width:120px;min-width:120px;flex-shrink:0;line-height:1.3;}
-.fm-bench-bar-wrap{flex:1;height:6px;background:rgba(168,85,247,0.1);border-radius:10px;overflow:hidden;}
-.fm-bench-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,#A855F7,#EC4899);}
-.fm-bench-bar.dim{background:rgba(168,85,247,0.28);}
-.fm-bench-pct{font-size:10px;font-weight:800;color:#C084FC;width:34px;text-align:right;flex-shrink:0;}
-.fm-bench-pct.dim{color:rgba(240,236,248,0.35);}
-.fm-avail{margin:0 22px 20px;background:rgba(99,220,150,0.05);border:1px solid rgba(99,220,150,0.18);border-radius:12px;padding:9px 13px;display:flex;align-items:center;gap:8px;}
-.fm-avail-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px rgba(52,211,153,0.6);flex-shrink:0;}
-.fm-avail-text{font-size:11px;color:rgba(99,220,150,0.8);font-weight:600;line-height:1.5;word-break:break-word;}
-
 /* KHO CODE PILL BUBBLE */
 .kho-pill-bubble{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(8px) scale(.85);background:rgba(14,8,30,.96);border:1px solid rgba(168,85,247,.55);border-radius:100px;padding:5px 11px;display:flex;align-items:center;gap:5px;white-space:nowrap;pointer-events:none;z-index:300;opacity:0;transition:opacity .4s,transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 16px rgba(168,85,247,.4),0 4px 14px rgba(0,0,0,.6);}
 .kho-pill-bubble.in{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
@@ -778,6 +753,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 /* ══ END WELCOME POPUP ══ */
 
 /* ── GROUP CTA BOX LED BORDER (mobile-safe: chỉ dùng opacity animation) ── */
+@keyframes freePulse{0%,100%{opacity:1;box-shadow:0 0 6px rgba(255,255,255,0.2);}50%{opacity:0.7;box-shadow:0 0 12px rgba(255,255,255,0.35);}}
 @keyframes ledPurple{0%,100%{opacity:1;}50%{opacity:0;}}
 @keyframes ledPink{0%,100%{opacity:0;}50%{opacity:1;}}
 .group-cta-box{position:relative;}
@@ -824,7 +800,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     <span class="topbar-nav-text">ChatGPT · Youtube · CapCut</span>
   </a>
-  <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu();setTimeout(()=>{var el=document.querySelector('#chatgptPlusCard+.sub-cards-yt-wrap+.sub-card,#accountsGrid>.sub-card:last-child');if(el){var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:60;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}},100);">
+  <a class="topbar-nav-item" href="#tth-anchor" onclick="closeTopMenu();setTimeout(()=>scrollToId('tth-anchor'),100);">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
     <span class="topbar-nav-text">Visa / Mastercard</span>
   </a>
@@ -924,7 +900,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 </div><!-- end hero-banner -->
 
 <!-- HERO (stat cards + CTA) -->
-<section class="hero">
+<section class="hero" id="hero">
   <div class="container" style="text-align:center;">
     <div class="hero-cta" id="heroCta" style="display:flex;align-items:center;justify-content:center;margin-bottom:36px;">
       <div class="group-cta-box" style="position:relative;background:linear-gradient(145deg,rgba(17,9,48,0.12),rgba(12,7,36,0.14));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(168,85,247,0.22);border-radius:24px;padding:clamp(18px,3vw,28px) clamp(22px,4vw,40px);display:flex;flex-direction:column;align-items:center;gap:10px;max-width:min(480px,90vw);box-sizing:border-box;box-shadow:0 2px 12px rgba(168,85,247,0.06),0 8px 32px rgba(0,0,0,0.15);">
@@ -1062,7 +1038,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
               <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Gia đình</span>
             </div>
             <div style="display:flex;align-items:center;gap:10px;padding-right:75px;">
-              <img src="assets/images/YT.jpg" alt="YouTube Premium" style="width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
+              <img src="assets/images/YT.jpg" alt="YouTube Premium" loading="lazy" style="width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
               <div>
                 <div style="font-size:0.95rem;font-weight:800;color:#fff;margin-bottom:2px;">YouTube Premium</div>
                 <div style="font-size:9px;color:rgba(192,132,252,0.55);font-weight:600;">Không quảng cáo · YT Music</div>
@@ -1112,7 +1088,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
               <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Cá nhân</span>
             </div>
             <div style="display:flex;align-items:center;gap:10px;padding-right:75px;">
-              <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" style="width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
+              <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" loading="lazy" style="width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
               <div>
                 <div style="font-size:0.95rem;font-weight:800;color:#fff;margin-bottom:2px;">CapCut Pro</div>
                 <div style="font-size:9px;color:rgba(192,132,252,0.55);font-weight:600;">Mở khóa toàn bộ · Xuất 4K</div>
@@ -1262,10 +1238,10 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       </div>
     </div>
     <div class="contact-list">
-      <a href="https://zalo.me/0898908101" target="_blank" class="contact-item"><img src="assets/images/zalo.jpg" alt="Zalo" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-      <a href="https://t.me/binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tele.jpg" alt="Telegram" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" class="contact-item"><img src="assets/images/fb.jpg" alt="Facebook" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-      <a href="https://www.tiktok.com/@binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tiktok.jpg" alt="TikTok" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://zalo.me/0898908101" target="_blank" class="contact-item"><img src="assets/images/zalo.jpg" alt="Zalo" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://t.me/binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tele.jpg" alt="Telegram" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" class="contact-item"><img src="assets/images/fb.jpg" alt="Facebook" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://www.tiktok.com/@binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tiktok.jpg" alt="TikTok" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
     </div>
   </div>
 </section>
@@ -1846,6 +1822,7 @@ function idxNavClick(e,idx,target){
     requestAnimationFrame(draw);
   }
   requestAnimationFrame(draw);
+  document.addEventListener('visibilitychange',function(){if(document.hidden){cancelAnimationFrame(draw._raf);}else{draw._raf=requestAnimationFrame(draw);}});
 })();
 </script><!-- FREE MONTH TOAST -->
 <div id="freeMonthToast">
@@ -1900,11 +1877,12 @@ function idxNavClick(e,idx,target){
       <div class="wp-free-text">Tham gia nhóm → mini game → nhận <strong>ChatGPT Plus miễn phí</strong></div>
     </div>
     <a href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noreferrer" class="wp-cta" onclick="closeWelcome()">Vào nhóm ngay 🎉</a>
-    <button id="wpSkipBtn" class="wp-skip" onclick="closeWelcome()">Bỏ qua</button>
+    <button id="wpSkipBtn" class="wp-skip" onclick="closeWelcome()">Bỏ qua, xem Store</button>
   </div>
 </div>
 <script>
 (function(){
+  var backdropCanClose=false;
   function closeWelcome(){
     document.getElementById('welcomeOverlay').classList.remove('show');
     document.body.style.overflow='';
@@ -1916,19 +1894,20 @@ function idxNavClick(e,idx,target){
     document.body.style.overflow='hidden';
     var skip=document.getElementById('wpSkipBtn');
     skip.disabled=true;
-    skip.textContent='Bỏ qua (2s)';
-    var t=2;
+    skip.textContent='Bỏ qua, xem Store (3s)';
+    var t=3;
     var iv=setInterval(function(){
       t--;
-      if(t>0){skip.textContent='Bỏ qua ('+t+'s)';}
-      else{clearInterval(iv);skip.disabled=false;skip.textContent='Bỏ qua';}
+      if(t>0){skip.textContent='Bỏ qua, xem Store ('+t+'s)';}
+      else{clearInterval(iv);skip.disabled=false;skip.textContent='Bỏ qua, xem Store';backdropCanClose=true;}
     },1000);
   }
-  // đóng khi click overlay ngoài
-  document.getElementById('welcomeOverlay').addEventListener('click',function(e){if(e.target===this)closeWelcome();});
+  // đóng khi click overlay ngoài — chỉ cho phép sau khi countdown xong
+  document.getElementById('welcomeOverlay').addEventListener('click',function(e){if(e.target===this&&backdropCanClose)closeWelcome();});
   setTimeout(showWelcome,800);
 })();
 </script>
 
 </body>
   </html>
+

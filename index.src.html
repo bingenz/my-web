@@ -971,7 +971,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <div class="tth-card" style="max-width:100%;">
 
           <!-- HEADER -->
-          <div style="padding:clamp(20px,3.5vw,32px) clamp(20px,4vw,40px) 0;position:relative;">
+          <div style="padding:clamp(16px,3vw,24px) clamp(16px,4vw,32px) 0;position:relative;">
             <div style="position:absolute;top:clamp(16px,2.5vw,24px);right:clamp(16px,4vw,36px);display:inline-flex;align-items:center;gap:5px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);border-radius:100px;padding:4px 11px;z-index:2;">
               <span style="width:5px;height:5px;border-radius:50%;background:#34d399;box-shadow:0 0 6px rgba(52,211,153,0.8);flex-shrink:0;display:inline-block;"></span>
               <span style="font-size:8.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Cá nhân</span>
@@ -986,7 +986,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           </div>
 
           <!-- TAB -->
-          <div style="padding:14px clamp(20px,4vw,40px) 0;">
+          <div style="padding:12px clamp(16px,4vw,32px) 0;">
             <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(234,179,8,0.2);border-radius:100px;padding:3px;">
               <button id="plusTab1" onclick="plusTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;padding:6px 18px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#92400e,#D97706,#EAB308);color:#1a0800;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
               <button id="plusTab12" onclick="plusTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;padding:6px 18px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(253,224,71,0.45);box-shadow:none;">12 tháng</button>
@@ -994,7 +994,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           </div>
 
           <!-- PRICE -->
-          <div style="padding:14px clamp(20px,4vw,40px) 20px;border-bottom:1px solid rgba(234,179,8,0.12);">
+          <div style="padding:12px clamp(16px,4vw,32px) 16px;border-bottom:1px solid rgba(234,179,8,0.12);">
             <div id="plusPane1">
               <div style="display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
                 <div style="font-size:3.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
@@ -1019,7 +1019,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           </div>
 
           <!-- FOOTER -->
-          <div style="padding:clamp(14px,2.5vw,20px) clamp(20px,4vw,40px) clamp(18px,3vw,28px);display:flex;flex-direction:column;gap:10px;">
+          <div style="padding:clamp(12px,2vw,16px) clamp(16px,4vw,32px) clamp(14px,2.5vw,22px);display:flex;flex-direction:column;gap:10px;">
             <button onclick="openFeatModal()" style="background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:5px;color:rgba(253,224,71,0.5);font-size:12px;font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(234,179,8,0.3);padding:0;" onmouseover="this.style.color='rgba(253,224,71,0.85)'" onmouseout="this.style.color='rgba(253,224,71,0.5)'">Xem chi tiết tính năng <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="tth-btn-cw"><button onclick="openPlusModal()" class="tth-btn-c">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
           </div>
@@ -1032,30 +1032,33 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 
         <!-- YouTube Premium -->
         <div id="ytCard" class="sub-card" style="display:flex;flex-direction:column;">
-          <div style="padding:20px 20px 0;position:relative;">
-            <div style="position:absolute;top:16px;right:16px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.38);border-radius:100px;padding:3px 9px;z-index:2;">
+          <!-- YT: Header — icon + tên + badge Gia đình -->
+          <div style="padding:14px 16px 0;position:relative;">
+            <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
               <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
               <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Gia đình</span>
             </div>
-            <div style="display:flex;align-items:center;gap:10px;padding-right:75px;">
-              <img src="assets/images/YT.jpg" alt="YouTube Premium" loading="lazy" style="width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
+            <div style="display:flex;align-items:center;gap:10px;padding-right:72px;">
+              <img src="assets/images/YT.jpg" alt="YouTube Premium" loading="lazy" style="width:40px;height:40px;border-radius:11px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
               <div>
-                <div style="font-size:0.95rem;font-weight:800;color:#fff;margin-bottom:2px;">YouTube Premium</div>
+                <div style="font-size:0.93rem;font-weight:800;color:#fff;margin-bottom:2px;line-height:1.2;">YouTube Premium</div>
                 <div style="font-size:9px;color:rgba(192,132,252,0.55);font-weight:600;">Không quảng cáo · YT Music</div>
               </div>
             </div>
           </div>
-          <div style="padding:11px 20px 0;">
+          <!-- YT: Tab 1 / 12 tháng -->
+          <div style="padding:9px 16px 0;">
             <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
-              <button id="ytTab1" onclick="ytTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;padding:5px 13px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
-              <button id="ytTab12" onclick="ytTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;padding:5px 13px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
+              <button id="ytTab1" onclick="ytTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
+              <button id="ytTab12" onclick="ytTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
             </div>
           </div>
-          <div style="padding:11px 20px 16px;border-bottom:1px solid rgba(168,85,247,0.1);">
+          <!-- YT: Giá -->
+          <div style="padding:8px 16px 12px;border-bottom:1px solid rgba(168,85,247,0.1);">
             <div id="ytPane1">
-              <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
-                <div style="font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
-                <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
               </div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -1063,49 +1066,53 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
               </div>
             </div>
             <div id="ytPane12" style="display:none;">
-              <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:4px;">
-                <div style="font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ytYearlyOur">—</div>
-                <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ytYearlyList">—</span></div>
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ytYearlyOur">—</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ytYearlyList">—</span></div>
               </div>
-              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:7px;" id="ytYearlySaving">💰 Tiết kiệm —</div>
+              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="ytYearlySaving">💰 Tiết kiệm —</div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 <span id="ytPerDay12">chỉ 1.077đ / ngày</span>
               </div>
             </div>
           </div>
-          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:8px;margin-top:auto;">
-            <div style="font-size:11px;color:rgba(240,236,248,0.38);line-height:1.5;">Thêm Gmail vào nhóm gia đình · ổn định, lâu dài</div>
-            <button onclick="openModal('✦ YouTube Premium · 35K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Inter',sans-serif;padding:10px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          <!-- YT: Footer — mô tả + nút -->
+          <div style="padding:10px 16px 14px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
+            <div style="font-size:10.5px;color:rgba(240,236,248,0.38);line-height:1.5;">Thêm Gmail vào nhóm gia đình · ổn định, lâu dài</div>
+            <button onclick="openModal('✦ YouTube Premium · 35K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Inter',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
           </div>
         </div>
 
         <!-- CapCut Pro -->
         <div id="capcutCard" class="sub-card" style="display:flex;flex-direction:column;">
-          <div style="padding:20px 20px 0;position:relative;">
-            <div style="position:absolute;top:16px;right:16px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.38);border-radius:100px;padding:3px 9px;z-index:2;">
+          <!-- CapCut: Header -->
+          <div style="padding:14px 16px 0;position:relative;">
+            <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
               <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
               <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Cá nhân</span>
             </div>
-            <div style="display:flex;align-items:center;gap:10px;padding-right:75px;">
-              <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" loading="lazy" style="width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
+            <div style="display:flex;align-items:center;gap:10px;padding-right:72px;">
+              <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" loading="lazy" style="width:40px;height:40px;border-radius:11px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
               <div>
-                <div style="font-size:0.95rem;font-weight:800;color:#fff;margin-bottom:2px;">CapCut Pro</div>
+                <div style="font-size:0.93rem;font-weight:800;color:#fff;margin-bottom:2px;line-height:1.2;">CapCut Pro</div>
                 <div style="font-size:9px;color:rgba(192,132,252,0.55);font-weight:600;">Mở khóa toàn bộ · Xuất 4K</div>
               </div>
             </div>
           </div>
-          <div style="padding:11px 20px 0;">
+          <!-- CapCut: Tab -->
+          <div style="padding:9px 16px 0;">
             <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
-              <button id="ccTab1" onclick="ccTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;padding:5px 13px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
-              <button id="ccTab12" onclick="ccTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:11px;font-weight:700;padding:5px 13px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
+              <button id="ccTab1" onclick="ccTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
+              <button id="ccTab12" onclick="ccTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
             </div>
           </div>
-          <div style="padding:11px 20px 16px;border-bottom:1px solid rgba(168,85,247,0.1);">
+          <!-- CapCut: Giá -->
+          <div style="padding:8px 16px 12px;border-bottom:1px solid rgba(168,85,247,0.1);">
             <div id="ccPane1">
-              <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
-                <div style="font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">59K</div>
-                <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">145.000đ</span></div>
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">59K</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">145.000đ</span></div>
               </div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -1113,20 +1120,21 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
               </div>
             </div>
             <div id="ccPane12" style="display:none;">
-              <div style="display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:4px;">
-                <div style="font-size:2.6rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ccYearlyOur">—</div>
-                <div style="padding-bottom:4px;font-size:9.5px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ccYearlyList">—</span></div>
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ccYearlyOur">—</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ccYearlyList">—</span></div>
               </div>
-              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:7px;" id="ccYearlySaving">💰 Tiết kiệm —</div>
+              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="ccYearlySaving">💰 Tiết kiệm —</div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 <span id="ccPerDay12">chỉ 1.815đ / ngày</span>
               </div>
             </div>
           </div>
-          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:8px;margin-top:auto;">
-            <div style="font-size:11px;color:rgba(240,236,248,0.38);line-height:1.5;">Mở khóa toàn bộ tính năng, template · xuất 4K không logo</div>
-            <button onclick="openModal('❆ CapCut Pro · 59K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Inter',sans-serif;padding:10px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          <!-- CapCut: Footer -->
+          <div style="padding:10px 16px 14px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
+            <div style="font-size:10.5px;color:rgba(240,236,248,0.38);line-height:1.5;">Mở khóa toàn bộ tính năng, template · xuất 4K không logo</div>
+            <button onclick="openModal('❆ CapCut Pro · 59K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Inter',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
           </div>
         </div>
 
@@ -1424,32 +1432,52 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   </div>
 </div>
 
-<!-- CONTACT MODAL -->
+<!-- CONTACT MODAL — V1: Tách biệt rõ ràng -->
 <div class="modal-overlay" id="contactModal" onclick="if(event.target===this){closeModal();}">
-  <div class="modal-box">
-    <div id="modalHeader" style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:14px 18px;margin-bottom:16px;text-align:center;">
-      <div id="modalSelected" style="font-size:14px;font-weight:800;color:#E0B4FF;line-height:1.5;"></div>
-    </div>
-    <div id="plusNotesBox" style="display:none;background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:14px 16px;margin-bottom:16px;">
-      <div style="font-size:9.5px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(192,132,252,0.55);margin-bottom:10px;">📌 Lưu ý quan trọng</div>
-      <div style="display:flex;flex-direction:column;gap:7px;">
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Nhận tài khoản riêng (có thể đổi mật khẩu) ngay sau khi mua.</div>
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu).</div>
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Truy cập đầy đủ Sora (Video AI) &amp; Codex.</div>
+  <div class="modal-box" style="padding:0;overflow:hidden;max-width:390px;">
+
+    <!-- Close button -->
+    <button onclick="closeModal()" style="position:absolute;top:13px;right:14px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(240,236,248,0.45);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;font-family:'Inter',sans-serif;transition:background .18s;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">✕</button>
+
+    <!-- V1 Block 1: Product header -->
+    <div id="v1Header" style="padding:16px 48px 14px 18px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(236,72,153,0.06));border-bottom:1px solid rgba(168,85,247,0.14);">
+      <img id="v1Ico" src="" alt="" style="width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1.5px solid rgba(168,85,247,0.3);box-shadow:0 2px 12px rgba(0,0,0,0.4);">
+      <div style="min-width:0;">
+        <div id="v1Name" style="font-size:1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.2;"></div>
+        <div id="v1Tag" style="font-size:9.5px;color:rgba(192,132,252,0.65);font-weight:500;margin-top:3px;line-height:1.4;word-break:break-word;"></div>
       </div>
     </div>
-    <div id="modalSubtitle" style="font-size:14px;font-weight:800;margin-bottom:20px;color:var(--text);">Liên hệ để mua ngay:</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
-      <a href="https://t.me/binpinkgold" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
-        <img src="assets/images/tele.jpg" alt="Telegram" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
-        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Telegram</span>
+
+    <!-- V1 Block 2: Price banner -->
+    <div id="v1PriceBanner" style="margin:14px 16px 0;background:linear-gradient(135deg,#5B21B6,#7C3AED,#A855F7,#C026D3);border-radius:14px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <div id="v1Price" style="font-size:1.55rem;font-weight:900;color:#fff;letter-spacing:-0.04em;line-height:1;"></div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-top:5px;font-weight:500;">Giá tốt trong thời gian ngắn, liên hệ sớm.</div>
+      </div>
+      <div id="v1Badge" style="background:rgba(255,255,255,0.22);border-radius:100px;padding:4px 13px;font-size:11px;font-weight:900;color:#fff;white-space:nowrap;flex-shrink:0;"></div>
+    </div>
+
+    <!-- V1 Block 3: Mô tả dịch vụ -->
+    <div id="v1Desc" style="margin:10px 16px 0;background:rgba(255,255,255,0.025);border:1px solid rgba(168,85,247,0.16);border-radius:13px;padding:12px 14px;">
+      <div style="font-size:8px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.6);margin-bottom:9px;">Mô tả dịch vụ</div>
+      <div id="v1Bullets" style="display:flex;flex-direction:column;gap:7px;"></div>
+    </div>
+
+    <!-- V1 Note -->
+    <div style="margin:9px 16px 0;text-align:center;font-size:10px;color:rgba(240,236,248,0.28);line-height:1.5;">Hỗ trợ mua qua Telegram / Zalo ngay sau khi nhắn tin.</div>
+
+    <!-- V1 Block 4: Kênh liên hệ -->
+    <div style="padding:10px 16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <a href="https://t.me/binpinkgold" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;padding:14px 10px;background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.18);border-radius:18px;transition:border-color .2s,background .2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.42)'" onmouseout="this.style.background='rgba(255,255,255,0.035)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/tele.jpg" alt="Telegram" style="width:54px;height:54px;border-radius:14px;object-fit:cover;box-shadow:0 4px 14px rgba(0,0,0,0.45);">
+        <span style="font-size:12px;font-weight:700;color:rgba(240,236,248,0.75);">Telegram</span>
       </a>
-      <a href="https://zalo.me/0898908101" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
-        <img src="assets/images/zalo.jpg" alt="Zalo" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
-        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
+      <a href="https://zalo.me/0898908101" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;padding:14px 10px;background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.18);border-radius:18px;transition:border-color .2s,background .2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.42)'" onmouseout="this.style.background='rgba(255,255,255,0.035)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/zalo.jpg" alt="Zalo" style="width:54px;height:54px;border-radius:14px;object-fit:cover;box-shadow:0 4px 14px rgba(0,0,0,0.45);">
+        <span style="font-size:12px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
       </a>
     </div>
-    <button class="modal-close-btn" onclick="closeModal()">✕ Đóng</button>
+
   </div>
 </div>
 
@@ -1525,24 +1553,72 @@ function showFreeMonthToast(){
 }
 function openTthModal(){var m=document.getElementById('tthModal');m.classList.add('open');document.body.style.overflow='hidden';}
 function closeTthModal(){var m=document.getElementById('tthModal');m.classList.remove('open');document.body.style.overflow='';}
-function openModal(n){
-  document.getElementById('modalSelected').textContent=n;
-  document.getElementById('plusNotesBox').style.display='none';
-  var sub=document.getElementById('modalSubtitle');
-  if(sub){
-    if(n.indexOf('Thanh Toán')!==-1||n.indexOf('Dịch Vụ')!==-1||n.indexOf('Bot')!==-1||n.indexOf('Website')!==-1)sub.textContent='Liên hệ để đặt dịch vụ ngay:';
-    else if(n.indexOf('YouTube')!==-1||n.indexOf('CapCut')!==-1||n.indexOf('Plus')!==-1||n.indexOf('ChatGPT')!==-1)sub.textContent='Liên hệ để nhận tài khoản ngay:';
-    else sub.textContent='Liên hệ để mua ngay:';
+// ── V1 MODAL DATA ──
+var V1_DATA={
+  gpt:{
+    ico:'assets/images/GPT.jpg',
+    name:'ChatGPT Plus',
+    tag:'GPT-5.4 · Codex · Sora AI · Agent · ADA',
+    price:'99K / tháng',
+    badge:'-81% 🔥',
+    bullets:[
+      '- Tài khoản sử dụng <span style="color:#60a5fa;font-weight:600;">1 mình</span>',
+      '- <span style="color:#60a5fa;font-weight:600;">Bảo hành</span> toàn bộ thời gian sử dụng',
+      '- Truy cập mọi <span style="color:#60a5fa;font-weight:600;">tính năng cao cấp Plus</span> của ChatGPT'
+    ]
+  },
+  yt:{
+    ico:'assets/images/YT.jpg',
+    name:'YouTube Premium',
+    tag:'Gia đình · YouTube Music · Không quảng cáo',
+    price:'35K / tháng',
+    badge:'-56% 🎬',
+    bullets:[
+      '- Tặng kèm <span style="color:#f87171;font-weight:600;">Youtube Music Premium</span>',
+      '- Bảo hành <span style="color:#60a5fa;font-weight:600;">toàn bộ thời gian sử dụng</span>',
+      '- Xem Youtube <span style="color:#60a5fa;font-weight:600;">không quảng cáo</span> + sử dụng mọi <span style="color:#60a5fa;font-weight:600;">tính năng cao cấp</span> của Youtube Premium'
+    ]
+  },
+  capcut:{
+    ico:'assets/images/CAPCUT.jpg',
+    name:'CapCut Pro',
+    tag:'Cá nhân · Xuất 4K · Không watermark',
+    price:'59K / tháng',
+    badge:'-59% ✂️',
+    bullets:[
+      '- Tài khoản sử dụng <span style="color:#60a5fa;font-weight:600;">1 mình</span>',
+      '- <span style="color:#60a5fa;font-weight:600;">Bảo hành</span> toàn bộ thời gian sử dụng',
+      '- Truy cập mọi <span style="color:#60a5fa;font-weight:600;">tính năng cao cấp Pro</span> của Capcut'
+    ]
   }
+};
+function _fillV1Modal(key){
+  var d=V1_DATA[key]||V1_DATA.gpt;
+  var ico=document.getElementById('v1Ico'),name=document.getElementById('v1Name'),
+      tag=document.getElementById('v1Tag'),price=document.getElementById('v1Price'),
+      badge=document.getElementById('v1Badge'),bullets=document.getElementById('v1Bullets');
+  if(ico)ico.src=d.ico;
+  if(name)name.textContent=d.name;
+  if(tag)tag.textContent=d.tag;
+  if(price)price.textContent=d.price;
+  if(badge)badge.textContent=d.badge;
+  if(bullets)bullets.innerHTML=d.bullets.map(function(b){
+    return '<div style="font-size:12px;color:rgba(240,236,248,0.75);line-height:1.65;word-break:break-word;">'+b+'</div>';
+  }).join('');
+}
+function openModal(n){
+  var key='gpt';
+  if(n.indexOf('YouTube')!==-1)key='yt';
+  else if(n.indexOf('CapCut')!==-1)key='capcut';
+  _fillV1Modal(key);
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
 function openPlusModal(){
-  document.getElementById('modalSelected').innerHTML='✨ ChatGPT Plus &bull; 99K/tháng';
-  document.getElementById('plusNotesBox').style.display='block';
-  var sub=document.getElementById('modalSubtitle');if(sub)sub.textContent='Liên hệ để nhận tài khoản ngay:';
-  document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';
+  _fillV1Modal('gpt');
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow='hidden';
 }
 function openFeeModal(){renderFeeModal();document.getElementById('feeModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeFeeModal(){document.getElementById('feeModal').classList.remove('open');document.body.style.overflow='';}

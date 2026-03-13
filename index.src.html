@@ -1883,31 +1883,47 @@ function idxNavClick(e,idx,target){
 <script>
 (function(){
   var backdropCanClose=false;
+
+  function lockScroll(e){e.preventDefault();}
+  function enableLock(){
+    document.body.style.overflow='hidden';
+    document.addEventListener('touchmove',lockScroll,{passive:false});
+    document.addEventListener('wheel',lockScroll,{passive:false});
+  }
+  function disableLock(){
+    document.body.style.overflow='';
+    document.removeEventListener('touchmove',lockScroll);
+    document.removeEventListener('wheel',lockScroll);
+  }
+
   function closeWelcome(){
     document.getElementById('welcomeOverlay').classList.remove('show');
-    document.body.style.overflow='';
+    disableLock();
   }
   window.closeWelcome=closeWelcome;
+
   function showWelcome(){
     var ov=document.getElementById('welcomeOverlay');
     ov.classList.add('show');
-    document.body.style.overflow='hidden';
     var skip=document.getElementById('wpSkipBtn');
     skip.disabled=true;
-    skip.textContent='Bỏ qua, xem Store (3s)';
-    var t=3;
+    skip.textContent='Bỏ qua, xem Store (2s)';
+    var t=2;
     var iv=setInterval(function(){
       t--;
       if(t>0){skip.textContent='Bỏ qua, xem Store ('+t+'s)';}
       else{clearInterval(iv);skip.disabled=false;skip.textContent='Bỏ qua, xem Store';backdropCanClose=true;}
     },1000);
   }
+
   // đóng khi click overlay ngoài — chỉ cho phép sau khi countdown xong
   document.getElementById('welcomeOverlay').addEventListener('click',function(e){if(e.target===this&&backdropCanClose)closeWelcome();});
+
+  // khoá scroll ngay lập tức từ khi load
+  enableLock();
   setTimeout(showWelcome,800);
 })();
 </script>
 
 </body>
   </html>
-

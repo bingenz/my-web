@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+  KHO CODE — DEV GUIDELINES (ĐỌC TRƯỚC KHI SỬA)
+=============================================================
+  1. BORDER RADIUS — ĐỒNG BỘ VỚI INDEX:
+     - .product-card và .free-card dùng border-radius:48px (giống glass-card trên index).
+     - Mobile (<600px): border-radius:40px.
+     - KHÔNG dùng border-radius nhỏ hơn 40px cho card sản phẩm.
+
+  2. FIXED HEADER (QUAN TRỌNG):
+     - .topbar:       position:fixed; top:0;         height:~65px
+     - .price-banner: position:fixed; top:65px;      height:~42px (mobile: top:53px)
+     - body padding-top = topbar + price-banner = ~107px (mobile: ~95px)
+     - Khi tab chuyển sang FREE: price-banner ẩn → body padding giảm về 65px.
+     - KHÔNG thay đổi z-index hay top của 2 thành phần trên mà không cập nhật cả hai.
+
+  3. RESPONSIVE BẮT BUỘC:
+     - KHÔNG dùng white-space:nowrap cho text có thể dài.
+     - Luôn dùng word-break:break-word cho tên sản phẩm, mô tả.
+     - Dùng max-width:100% + box-sizing:border-box cho mọi block mới.
+
+  4. KHI THÊM CARD MỚI:
+     - Paid:  duplicate <div class="product-card"> trong #section-paid
+     - Free:  duplicate <div class="free-card"> trong #section-free
+     - Tham khảo comment template trong HTML bên dưới.
+=============================================================
+-->
+<html lang="vi" style="scroll-padding-top:80px;">
+<head>
+<meta charset="UTF-8">
+<base target="_top">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kho Code — Binpinkgold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#A855F7;--magenta:#EC4899;--pink:#F472B6;
+  --bg:#04030A;--text:#F0ECF8;
+  --muted:rgba(240,236,248,.45);--subtle:rgba(240,236,248,.25);
+  --border:rgba(168,85,247,.2);
+  --card-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 0 0 1px rgba(168,85,247,0.15),
+    0 4px 8px rgba(0,0,0,0.5),
+    0 12px 28px rgba(0,0,0,0.38),
+    0 28px 56px rgba(0,0,0,0.22),
+    0 0 40px rgba(168,85,247,0.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;min-height:100vh;padding-top:107px;}
+body.free-mode{padding-top:65px;}
+body::after{content:'';position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(0,0,0,0.82) 0%,transparent 70%),
+             radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.65) 0%,transparent 60%);
+  pointer-events:none;}
+body::before{content:'';position:fixed;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(168,85,247,0.13) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(168,85,247,0.13) 1px,transparent 1px),
+    linear-gradient(rgba(168,85,247,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(168,85,247,0.06) 1px,transparent 1px);
+  background-size:96px 96px,96px 96px,24px 24px,24px 24px;
+  -webkit-mask-image:radial-gradient(ellipse 100% 100% at 50% 40%,black 0%,black 40%,transparent 80%);
+  mask-image:radial-gradient(ellipse 100% 100% at 50% 40%,black 0%,black 40%,transparent 80%);
+  pointer-events:none;}
+.glow-orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.glow-orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(168,85,247,0.28) 0%,transparent 70%);top:-300px;left:-280px}
+.glow-orb-2{width:700px;height:700px;background:radial-gradient(circle,rgba(236,72,153,0.22) 0%,transparent 70%);bottom:-120px;right:-120px}
+.gradient-text{background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gradient-text-white{background:linear-gradient(160deg,#fff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sticky-header{display:none;}
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(180deg,rgba(18,8,38,0.99) 0%,rgba(10,5,22,0.98) 100%);border-bottom:1px solid rgba(80,40,120,0.35);padding:20px 28px;display:flex;align-items:center;gap:14px;box-shadow:0 1px 0 rgba(220,170,255,0.15) inset,0 8px 24px rgba(0,0,0,0.35),0 0 40px rgba(168,85,247,0.05) inset;will-change:transform;}
+.price-banner{background:linear-gradient(90deg,rgba(168,85,247,0.12) 0%,rgba(236,72,153,0.15) 50%,rgba(168,85,247,0.12) 100%);border-bottom:1px solid rgba(168,85,247,0.2);padding:9px 20px;text-align:center;position:fixed;top:65px;left:0;right:0;z-index:99;overflow:hidden;transition:opacity 0.3s ease,visibility 0.3s ease;opacity:1;visibility:visible;}
+.price-banner.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.price-banner::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);animation:bannerShine 3.5s linear infinite;}
+@media(max-width:599px){.price-banner{top:53px;}body{padding-top:95px;}body.free-mode{padding-top:65px;}}
+@keyframes bannerShine{to{left:200%;}}
+.price-banner-text{font-size:12.5px;font-weight:700;color:rgba(240,236,248,0.85);letter-spacing:0.08em;display:inline-flex;align-items:center;gap:8px;}
+.price-banner-text .highlight{color:#fff;font-weight:800;}
+.price-banner-text .highlight-white{background:linear-gradient(90deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800;}
+.price-banner-dot{width:5px;height:5px;border-radius:50%;background:#A855F7;box-shadow:0 0 8px #A855F7;animation:pulse 1.8s ease-in-out infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.back-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.22);color:rgba(192,132,252,.7);font-weight:600;padding:8px 18px;border-radius:100px;font-size:13px;text-decoration:none;transition:all .2s;font-family:'Be Vietnam Pro',sans-serif}
+.back-btn:hover{background:rgba(168,85,247,.18);border-color:rgba(168,85,247,.5);color:#C084FC;box-shadow:0 0 16px rgba(168,85,247,.2)}
+.topbar-title{font-family:'Be Vietnam Pro',sans-serif;font-size:17px;font-weight:800;letter-spacing:-.02em}
+/* PAGE HEADER */
+.container{max-width:1200px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+.page-header{padding:32px 0 36px;text-align:center;position:relative;z-index:1}
+.page-header h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:800;line-height:1.15;letter-spacing:-.03em;margin-bottom:12px}
+.page-header p{color:var(--muted);font-size:14.5px;line-height:1.65}
+.header-sep{width:50px;height:2px;background:linear-gradient(90deg,transparent,#A855F7,#EC4899,transparent);margin:18px auto 0;border-radius:2px;box-shadow:0 0 12px rgba(168,85,247,.6);animation:linePulse 3s ease-in-out infinite}
+@keyframes linePulse{0%,100%{opacity:1;width:50px}50%{opacity:.7;width:80px}}
+/* TOGGLE — Pill Slider */
+.tab-toggle-wrap{display:flex;justify-content:center;margin-bottom:40px}
+.tab-toggle{display:inline-flex;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.2);border-radius:100px;padding:5px;position:relative;gap:2px;}
+.pill-slider{position:absolute;top:5px;left:5px;height:calc(100% - 10px);background:linear-gradient(135deg,#7C3AED 0%,#A855F7 45%,#EC4899 100%);border-radius:100px;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 0 20px rgba(168,85,247,0.5),0 0 40px rgba(168,85,247,0.2);z-index:0;pointer-events:none;}
+.tab-toggle-btn{padding:11px 26px;border:none;background:transparent;cursor:pointer;font-size:13.5px;font-weight:700;color:rgba(240,236,248,0.45);transition:color 0.25s;font-family:'Be Vietnam Pro',sans-serif;border-radius:100px;position:relative;z-index:1;display:flex;align-items:center;gap:8px;white-space:nowrap;}
+.tab-toggle-btn.active{color:#fff;text-shadow:0 0 16px rgba(255,255,255,0.4);}
+@media(max-width:599px){.tab-toggle-btn{padding:9px 16px;font-size:12px;}}
+/* PRODUCT GRID */
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(14px,3vw,36px)}
+@media(min-width:900px){.product-grid{grid-template-columns:repeat(3,1fr);gap:clamp(28px,3vw,44px)}}
+/* PRODUCT CARD */
+.product-card{background:linear-gradient(145deg,rgba(17,9,48,0.72) 0%,rgba(12,7,36,0.68) 40%,rgba(19,8,48,0.72) 70%,rgba(9,5,30,0.65) 100%);border:1px solid rgba(168,85,247,.18);border-radius:48px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--card-shadow);animation:fadeUp .45s ease both;will-change:transform;}
+.product-card::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.6),rgba(236,72,153,.4),transparent)}
+.product-card:hover{transform:translateY(-10px) scale(1.015) rotateX(1.5deg);border-color:rgba(168,85,247,.55);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,.18),0 0 80px rgba(168,85,247,.08);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.product-image-wrap{width:100%;aspect-ratio:4/3;background:rgba(12,9,25,.95);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(168,85,247,.08);border-radius:20px 20px 0 0;}
+.product-tag-hot{position:absolute;top:18px;right:-28px;z-index:2;background:linear-gradient(135deg,rgba(168,85,247,0.9),rgba(236,72,153,0.9));color:#fff;font-size:10px;font-weight:800;padding:5px 40px;transform:rotate(45deg);letter-spacing:0.08em;box-shadow:0 0 14px rgba(168,85,247,0.7),0 0 28px rgba(168,85,247,0.3);text-shadow:0 0 8px rgba(255,255,255,0.5);}
+.product-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.product-card:hover .product-thumb{transform:scale(1.04)}
+.product-thumb-placeholder{font-size:3.5rem;opacity:.25}
+.product-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.product-name{font-size:.84rem;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.4;word-break:break-word;}
+.product-desc{font-size:11.5px;color:var(--muted);line-height:1.7;margin-bottom:14px;flex:1;word-break:break-word;}
+.product-footer{display:flex;flex-direction:column;gap:10px;margin-top:auto}
+.product-footer-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.product-price{font-size:1.7rem;font-weight:900;background:linear-gradient(90deg,#FFD700 0%,#FFA500 55%,#FF8C00 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.02em;line-height:1;}
+.product-micro{font-size:10px;font-weight:600;color:rgba(255,180,50,0.65);margin-top:3px;letter-spacing:0.01em;}
+.btn-primary{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;padding:8px 16px;border-radius:100px;border:none;cursor:pointer;font-size:12px;letter-spacing:.02em;box-shadow:0 0 20px rgba(168,85,247,.4);transition:all .25s;position:relative;overflow:hidden;text-decoration:none}
+.btn-primary::before{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.22),transparent);animation:shimmer 1.4s linear infinite;pointer-events:none}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(500%)}}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 36px rgba(168,85,247,.6)}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+@keyframes spinLED{to{--angle:360deg;}}
+.btn-led-wrap{position:relative;display:flex;width:100%;border-radius:100px;padding:3px;background:var(--bg);overflow:hidden;box-shadow:0 0 12px rgba(192,100,255,0.35),0 0 22px rgba(236,72,153,0.18);}
+.btn-led-wrap::before{content:'';position:absolute;inset:-50%;width:200%;height:200%;background:conic-gradient(from var(--angle,0deg),transparent 50%,rgba(192,132,252,0.6) 60%,#D07EFF 67%,#BF5FFF 72%,#ffffff 78%,#FF6FD0 84%,#FF3FAA 88%,transparent 95%);animation:spinLED 3s linear infinite;transform:translateZ(0);z-index:0;filter:brightness(1.35) saturate(1.3);}
+.btn-mua{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;padding:11px 24px;border-radius:100px;border:none;cursor:pointer;font-size:13px;letter-spacing:.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 22px rgba(168,85,247,0.55),0 0 40px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22);white-space:nowrap;width:100%;}
+.btn-mua::before{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.28),transparent);animation:shimmer 1.4s linear infinite;pointer-events:none;}
+.btn-mua:hover{box-shadow:0 0 40px rgba(168,85,247,0.65),0 0 60px rgba(168,85,247,0.3),inset 0 1px 0 rgba(255,255,255,0.28);}
+/* FREE CODE GRID */
+.free-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(12px,2.5vw,20px)}
+@media(min-width:800px){.free-grid{grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.5vw,26px)}}
+@media(min-width:1100px){.free-grid{grid-template-columns:repeat(4,1fr);gap:26px}}
+.free-card{background:linear-gradient(145deg,rgba(17,9,48,0.72) 0%,rgba(12,7,36,0.68) 40%,rgba(19,8,48,0.72) 70%,rgba(9,5,30,0.65) 100%);border:1px solid rgba(168,85,247,.18);border-radius:48px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;display:flex;flex-direction:column;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--card-shadow);animation:fadeUp .45s ease both;will-change:transform;}
+.free-card::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.6),rgba(236,72,153,.4),transparent)}
+.free-card:hover{transform:translateY(-10px) scale(1.015) rotateX(1.5deg);border-color:rgba(168,85,247,.55);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,.18),0 0 80px rgba(168,85,247,.08);}
+.free-img-wrap{width:100%;aspect-ratio:4/3;background:rgba(12,9,25,.95);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(168,85,247,.08);border-radius:20px 20px 0 0;}
+.free-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.free-card:hover .free-img{transform:scale(1.04)}
+.free-img-placeholder{font-size:3.5rem;opacity:.25}
+.free-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.3);opacity:0;transition:opacity .2s}
+.free-card:hover .free-play-overlay{opacity:1}
+.free-play-btn{width:44px;height:44px;border-radius:50%;background:rgba(168,85,247,0.7);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.free-tag{position:absolute;top:12px;left:12px;z-index:2;background:linear-gradient(135deg,rgba(99,102,241,0.9),rgba(168,85,247,0.85));color:#fff;font-size:9.5px;font-weight:800;padding:3px 10px;border-radius:100px;backdrop-filter:blur(4px);letter-spacing:0.06em;box-shadow:0 0 10px rgba(99,102,241,0.5);}
+.free-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+.free-title{font-size:.84rem;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.4}
+.free-desc{font-size:11.5px;color:var(--muted);line-height:1.7;margin-bottom:14px;flex:1}
+.free-footer{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.btn-video{display:inline-flex;align-items:center;gap:5px;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.28);color:#F472B6;font-weight:600;padding:6px 12px;border-radius:100px;cursor:pointer;font-size:10.5px;white-space:nowrap;transition:all .2s;text-decoration:none;}
+.btn-video:hover{background:rgba(236,72,153,.2);border-color:rgba(236,72,153,.5);}
+.btn-github{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:rgba(180,30,30,0.7);border:1px solid rgba(220,50,50,0.4);color:rgba(255,200,200,0.85);font-weight:600;padding:10px 20px;border-radius:100px;font-size:12.5px;text-decoration:none;font-family:'Be Vietnam Pro',sans-serif;width:100%;transition:background 0.2s;}
+.btn-github:hover{background:rgba(200,40,40,0.8);}
+.btn-github svg{flex-shrink:0}
+.free-empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--subtle);display:flex;flex-direction:column;align-items:center;gap:12px}
+.free-empty-icon{font-size:3rem;opacity:0.4}
+.free-empty-text{font-size:14px;line-height:1.7}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(16px);z-index:300;align-items:flex-start;justify-content:center;padding:clamp(12px,3vw,20px);overflow-y:auto;}
+.modal-overlay.open{display:flex}
+.modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,.3);border-radius:24px;padding:clamp(20px,4vw,28px) clamp(16px,4vw,30px);width:100%;max-width:380px;margin:auto;animation:popIn .28s cubic-bezier(.34,1.56,.64,1);box-shadow:var(--card-shadow);position:relative;overflow:visible;flex-shrink:0;}
+.modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.7),rgba(236,72,153,.5),transparent)}
+@keyframes popIn{from{opacity:0;transform:scale(.92) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.modal-app-item{display:flex;flex-direction:column;align-items:center;gap:7px;text-decoration:none;color:var(--text);transition:transform .2s cubic-bezier(.34,1.56,.64,1)}
+.modal-app-item:hover{transform:scale(1.1) translateY(-2px)}
+.modal-app-icon{width:52px;height:52px;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;font-size:1.7rem}
+.modal-app-label{font-size:10px;font-weight:600;color:var(--subtle)}
+.modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:100px;color:var(--subtle);font-size:13px;cursor:pointer;transition:background .18s,color .18s;font-family:'Be Vietnam Pro',sans-serif;font-weight:600}
+.modal-close-btn:hover{background:rgba(255,255,255,.09);color:var(--text)}
+/* ANIMATION DELAYS */
+.product-card:nth-child(1){animation-delay:.05s}.product-card:nth-child(2){animation-delay:.1s}.product-card:nth-child(3){animation-delay:.15s}.product-card:nth-child(4){animation-delay:.2s}.product-card:nth-child(5){animation-delay:.25s}.product-card:nth-child(6){animation-delay:.3s}
+.free-card:nth-child(1){animation-delay:.05s}.free-card:nth-child(2){animation-delay:.1s}.free-card:nth-child(3){animation-delay:.15s}.free-card:nth-child(4){animation-delay:.2s}
+@media(max-width:599px){
+  .container{padding:0 12px}
+  .page-header{padding:20px 0 20px}
+  .product-body{padding:clamp(10px,3vw,14px)}
+  .free-body{padding:clamp(10px,3vw,14px)}
+  .tab-toggle-btn{padding:9px 16px;font-size:11.5px}
+  .product-card{border-radius:clamp(22px,5vw,36px)}
+  .free-card{border-radius:clamp(22px,5vw,36px)}
+  .product-name{font-size:clamp(.72rem,3vw,.82rem)}
+  .free-title{font-size:clamp(.72rem,3vw,.82rem)}
+  .product-desc{font-size:clamp(10px,2.5vw,11px);margin-bottom:10px}
+  .free-desc{font-size:clamp(10px,2.5vw,11px);margin-bottom:10px}
+  .product-price{font-size:clamp(1.15rem,5vw,1.5rem)}
+  .btn-mua{font-size:clamp(11px,3vw,13px);padding:9px 14px}
+  .btn-video{font-size:clamp(9px,2.5vw,10.5px);padding:5px 8px}
+  .btn-github{font-size:clamp(10px,2.5vw,12px);padding:8px 12px}
+  .product-grid{gap:clamp(10px,2.5vw,16px)}
+  .free-grid{gap:clamp(10px,2.5vw,14px)}
+  .topbar{padding:14px 14px}
+  .back-btn{padding:6px 12px;font-size:12px}
+  .topbar-title{font-size:14px}
+  .modal-box{border-radius:20px!important;}
+  .modal-overlay{padding:12px!important;align-items:flex-start!important;}
+  .product-footer-top{flex-wrap:wrap;gap:6px}
+}
+.pb-sep{margin:0 12px;opacity:0.2;font-weight:300;font-size:14px;}
+.pb-trasua{display:inline-flex;align-items:center;gap:5px;}
+
+/* ═══════════════════════════════════════
+   BOTTOM NAV — Telegram A1 Style (kho)
+   ═══════════════════════════════════════ */
+body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
+.kho-bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  padding:0 14px calc(10px + env(safe-area-inset-bottom));
+  pointer-events:none;
+}
+.kho-bottom-nav-inner{
+  max-width:480px;margin:0 auto;
+  background:rgba(22,13,48,0.97);
+  border:1px solid rgba(140,75,220,0.55);
+  border-radius:24px;
+  padding:7px;
+  display:flex;align-items:center;justify-content:space-around;
+  pointer-events:all;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.12) inset,
+    0 -1px 0 rgba(0,0,0,0.55) inset,
+    0 -6px 24px rgba(0,0,0,0.55),
+    0 -14px 44px rgba(0,0,0,0.4),
+    0 0 36px rgba(140,70,220,0.35),
+    0 0 60px rgba(140,70,220,0.15);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+}
+.kho-bnav-item{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:9px 28px;border-radius:18px;cursor:pointer;
+  transition:all .2s cubic-bezier(.34,1.56,.64,1);
+  flex:1;user-select:none;
+}
+.kho-bnav-item.active{
+  background:linear-gradient(145deg,#7040D0 0%,#8E50E4 55%,#8045DC 100%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.22) inset,
+    0 -1px 0 rgba(0,0,0,0.28) inset,
+    0 4px 14px rgba(120,60,210,0.55),
+    0 8px 22px rgba(120,60,210,0.28);
+}
+.kho-bnav-item:not(.active):hover{background:rgba(120,60,200,0.1);}
+.kho-bnav-item:not(.active):active{
+  background:rgba(120,60,200,0.12);
+  transform:scale(0.97);
+}
+.kho-bnav-item span{
+  font-size:12.5px;font-weight:700;letter-spacing:-.01em;
+  color:rgba(255,255,255,0.3);
+  transition:color .18s;
+}
+.kho-bnav-item.active span{
+  color:#ffffff;
+  text-shadow:0 1px 4px rgba(0,0,0,0.3);
+}
+@media(min-width:768px){
+  .kho-bottom-nav-inner{max-width:560px;}
+  .kho-bnav-item{padding:9px 40px;}
+}
+/* hide tab toggle on all sizes — bottom nav handles switching */
+.tab-toggle-wrap{display:none!important;}
+
+</style>
+<script src="protect.js"></script>
+</head>
+<body>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+<nav class="topbar">
+  <a href="index.html" class="back-btn">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Quay lại
+  </a>
+  <div class="topbar-title"><span class="gradient-text-white">✦ Binpinkgold</span> <span class="gradient-text">Code Store</span></div>
+</nav>
+<div class="price-banner" id="priceBanner">
+  <span class="price-banner-text">
+    <span class="price-banner-dot"></span>
+    <span class="highlight">CODE</span> <span class="highlight-white">vĩnh viễn</span> · THAY TEXT TÙY Ý
+    <span class="price-banner-dot"></span>
+  </span>
+</div>
+<div class="page-header">
+  <div class="container">
+    <h1><span class="gradient-text-white">Kho Code</span> <span class="gradient-text">Giao Diện Đẹp</span></h1>
+    <p>Code hiệu ứng đẹp, animation mượt · Mỗi sản phẩm kèm video demo chi tiết</p>
+    <div class="header-sep"></div>
+  </div>
+</div>
+<div class="container" style="padding-bottom:80px">
+  <div class="tab-toggle-wrap">
+    <div class="tab-toggle" id="pillWrap">
+      <div class="pill-slider" id="pillSlider"></div>
+      <button class="tab-toggle-btn active" onclick="switchTab('paid',this)">✨ Code Animation Đẹp</button>
+      <button class="tab-toggle-btn" onclick="switchTab('free',this)">🎁 Code Miễn Phí</button>
+    </div>
+  </div>
+  <!-- PAID SECTION -->
+  <div id="section-paid">
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image-wrap" style="background:rgba(20,8,40,.95)">
+          <div class="product-tag-hot">🔥 HOT</div>
+          <img class="product-thumb" src="assets/images/thiepMung83coLixi.jpg" alt="Thiệp Mừng 8/3" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="product-thumb-placeholder" style="display:none">💌</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">💌 Thiệp Mừng 8/3 Random Bao Lì Xì 200K–2TR🧧</div>
+          <div class="product-desc">Hiệu ứng mở phong bao, bao lì xì random 200K - 2TR animation đẹp</div>
+          <div class="product-footer">
+            <div class="product-footer-top">
+              <div class="product-price">39K</div>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7612513240043523348?lang=en" target="_blank" class="btn-video">▶ Xem Video</a>
+            </div>
+            <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('💌 Thiệp Mừng 8/3 · 39K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap" style="background:rgba(20,8,40,.95)">
+          <div class="product-tag-hot">🔥 HOT</div>
+          <img class="product-thumb" src="assets/images/hieuUngCauVong.jpg" alt="Code Lyrics Rainbow" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="product-thumb-placeholder" style="display:none">🌈</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Code Lyrics Hiệu Ứng Rainbow · Loang Màu</div>
+          <div class="product-desc">Hiệu ứng chữ chạy cầu vồng, loang màu siêu đẹp</div>
+          <div class="product-footer">
+            <div class="product-footer-top">
+              <div class="product-price">49K</div>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7594325546524232967" target="_blank" class="btn-video">▶ Xem Video</a>
+            </div>
+            <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('🌈 Lyrics Rainbow · 49K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap" style="background:rgba(20,8,40,.95)">
+          <div class="product-tag-hot">🔥 HOT</div>
+          <img class="product-thumb" src="assets/images/toolCanhNhac.jpg" alt="Tool Canh Nhạc" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="product-thumb-placeholder" style="display:none">🎵</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Tool Canh Nhạc Tự Động</div>
+          <div class="product-desc">Chỉ cần nhấn enter, thời gian khớp theo nhạc 100%</div>
+          <div class="product-footer">
+            <div class="product-footer-top">
+              <div class="product-price">55K</div>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7601372387925445896" target="_blank" class="btn-video">▶ Xem Video</a>
+            </div>
+            <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('🎵 Tool Canh Nhạc · 55K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap" style="background:rgba(20,8,40,.95)">
+          <img class="product-thumb" src="assets/images/nutBamTraiTim.jpg" alt="Nút Bấm Trái Tim" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="product-thumb-placeholder" style="display:none">💫</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Nút Bấm Trái Tim ❤️</div>
+          <div class="product-desc">Button bubble text bay lên rơi xuống animation đẹp (có thể thay tên và nội dung)</div>
+          <div class="product-footer">
+            <div class="product-footer-top">
+              <div class="product-price">30K</div>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7606404380841135368" target="_blank" class="btn-video">▶ Xem Video</a>
+            </div>
+            <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('💫 Nút Bấm Trái Tim · 30K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image-wrap" style="background:rgba(20,8,40,.95)">
+          <img class="product-thumb" src="assets/images/cayTraiTimLaMini.jpg" alt="Cây Trái Tim" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="product-thumb-placeholder" style="display:none">🌿</span>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Cây Trái Tim 🌿</div>
+          <div class="product-desc">Lá cây trái tim mini, hiệu ứng đẹp (có thể thay tên và nội dung bạn muốn)</div>
+          <div class="product-footer">
+            <div class="product-footer-top">
+              <div class="product-price">40K</div>
+              <a href="https://www.tiktok.com/@binpinkgold/video/7606539539678612757" target="_blank" class="btn-video">▶ Xem Video</a>
+            </div>
+            <div class="btn-led-wrap"><button class="btn-mua" onclick="openModal('🌿 Cây Trái Tim · 40K')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Mua ngay</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FREE SECTION -->
+  <div id="section-free" style="display:none">
+    <div class="free-grid">
+      <!-- 1. Giao Diện Login -->
+      <div class="free-card">
+        <div class="free-img-wrap" style="background:rgba(20,8,40,.95)">
+          <div class="free-tag">🎁 FREE</div>
+          <img class="free-img" src="assets/images/giaoDienLoginTest.jpg" alt="Giao Diện Login" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="free-img-placeholder" style="display:none">🔐</span>
+          <a href="https://www.tiktok.com/@binpinkgold/video/7613988711948274965?lang=en" target="_blank" class="free-play-overlay">
+            <div class="free-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          </a>
+        </div>
+        <div class="free-body">
+          <div class="free-title">Giao Diện Login - DEMO · HTML</div>
+          <div class="free-desc"></div>
+          <div class="free-footer">
+            <a href="https://www.tiktok.com/@binpinkgold/video/7613988711948274965?lang=en" target="_blank" class="btn-video">▶ Xem Video</a>
+            <a href="https://github.com/lengocthuan09-ship-it/giaoDienLoginTEST/tree/main" target="_blank" class="btn-github">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              Lấy Code
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- 2. Giao Diện Web Màu Mè (FE) -->
+      <div class="free-card">
+        <div class="free-img-wrap" style="background:rgba(20,8,40,.95)">
+          <div class="free-tag">🎁 FREE</div>
+          <img class="free-img" src="assets/images/webFEfunny.jpg" alt="Giao Diện Web Màu Mè - TEST" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="free-img-placeholder" style="display:none">🌈</span>
+          <a href="https://www.tiktok.com/@binpinkgold/video/7613229316679257365?lang=en" target="_blank" class="free-play-overlay">
+            <div class="free-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          </a>
+        </div>
+        <div class="free-body">
+          <div class="free-title">Giao Diện Web Màu Mè - TEST · HTML</div>
+          <div class="free-desc"></div>
+          <div class="free-footer">
+            <a href="https://www.tiktok.com/@binpinkgold/video/7613229316679257365?lang=en" target="_blank" class="btn-video">▶ Xem Video</a>
+            <a href="https://github.com/lengocthuan09-ship-it/tiktokfree_webTESTfunny" target="_blank" class="btn-github">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              Lấy Code
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- 3. Vẽ Trái Tim -->
+      <div class="free-card">
+        <div class="free-img-wrap" style="background:rgba(20,8,40,.95)">
+          <div class="free-tag">🎁 FREE</div>
+          <img class="free-img" src="assets/images/veTraiTim.jpg" alt="Vẽ Trái Tim" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="free-img-placeholder" style="display:none">❤️</span>
+          <a href="https://vt.tiktok.com/ZSmf9kQSs/" target="_blank" class="free-play-overlay">
+            <div class="free-play-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          </a>
+        </div>
+        <div class="free-body">
+          <div class="free-title">Vẽ Trái Tim ❤️ · Python Animation</div>
+          <div class="free-desc">Hiệu ứng vẽ trái tim bằng Python, animation mượt mà siêu đẹp</div>
+          <div class="free-footer">
+            <a href="https://vt.tiktok.com/ZSmf9kQSs/" target="_blank" class="btn-video">▶ Xem Video</a>
+            <a href="https://github.com/lengocthuan09-ship-it/tiktokfree_VeTraiTimPY" target="_blank" class="btn-github">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              Lấy Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <div id="modalHeader" style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:14px 18px;margin-bottom:16px;text-align:center;">
+      <div id="modalSelected" style="font-size:14px;font-weight:800;color:#E0B4FF;line-height:1.5;"></div>
+    </div>
+    <div style="font-size:1rem;font-weight:800;margin-bottom:20px">Liên hệ để nhận code ngay:</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:18px;max-width:200px;margin-left:auto;margin-right:auto;">
+      <a href="https://t.me/binpinkgold" target="_blank" class="modal-app-item" onclick="closeModal()">
+        <div class="modal-app-icon" style="background:#fff;overflow:hidden;width:64px;height:64px;border-radius:18px;"><img src="assets/images/tele.jpg" alt="Telegram" style="width:100%;height:100%;object-fit:cover"></div>
+        <span class="modal-app-label" style="font-size:12px;font-weight:700;color:rgba(240,236,248,0.75)">Telegram</span>
+      </a>
+      <a href="https://zalo.me/0898908101" target="_blank" class="modal-app-item" onclick="closeModal()">
+        <div class="modal-app-icon" style="background:#fff;overflow:hidden;width:64px;height:64px;border-radius:18px;"><img src="assets/images/zalo.jpg" alt="Zalo" style="width:100%;height:100%;object-fit:cover"></div>
+        <span class="modal-app-label" style="font-size:12px;font-weight:700;color:rgba(240,236,248,0.75)">Zalo</span>
+      </a>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal()">✕ Đóng</button>
+  </div>
+</div>
+<!-- BOTTOM NAV — Telegram A1 Style -->
+<div class="kho-bottom-nav" id="khoBottomNav">
+  <div class="kho-bottom-nav-inner">
+    <div class="kho-bnav-item active" id="kbNav0" onclick="khoNavSwitch(0)">
+      <span>Code Hiệu Ứng</span>
+    </div>
+    <div class="kho-bnav-item" id="kbNav1" onclick="khoNavSwitch(1)">
+      <span>Code Miễn Phí</span>
+    </div>
+  </div>
+</div>
+
+<script>
+history.scrollRestoration='manual';window.scrollTo(0,0);
+function calcDiscounts(){document.querySelectorAll('.discount-badge').forEach(function(el){var o=+el.dataset.orig,s=+el.dataset.sale;if(o&&s)el.textContent='-'+Math.round((1-s/o)*100)+'%';});}
+document.addEventListener('DOMContentLoaded',calcDiscounts);
+function khoNavSwitch(idx){
+  document.getElementById('kbNav0').classList.toggle('active', idx===0);
+  document.getElementById('kbNav1').classList.toggle('active', idx===1);
+  // sync with existing tab logic
+  var paidBtn=document.querySelectorAll('.tab-toggle-btn')[0];
+  var freeBtn=document.querySelectorAll('.tab-toggle-btn')[1];
+  if(idx===0 && paidBtn) switchTab('paid', paidBtn);
+  if(idx===1 && freeBtn) switchTab('free', freeBtn);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function updateSlider(activeBtn){
+  const slider=document.getElementById('pillSlider');
+  const wrap=document.getElementById('pillWrap');
+  const wRect=wrap.getBoundingClientRect();
+  const bRect=activeBtn.getBoundingClientRect();
+  slider.style.left=(bRect.left-wRect.left-5+wrap.scrollLeft)+'px';
+  slider.style.width=bRect.width+'px';
+}
+function switchTab(tab,btn){
+  document.querySelectorAll('.tab-toggle-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updateSlider(btn);
+  document.getElementById('section-paid').style.display=tab==='paid'?'block':'none';
+  document.getElementById('section-free').style.display=tab==='free'?'block':'none';
+  const banner=document.getElementById('priceBanner');
+  if(tab==='free'){banner.classList.add('hidden');document.body.classList.add('free-mode');}
+  else{banner.classList.remove('hidden');document.body.classList.remove('free-mode');}
+}
+window.addEventListener('load',()=>{
+  const active=document.querySelector('.tab-toggle-btn.active');
+  if(active){const s=document.getElementById('pillSlider');s.style.transition='none';updateSlider(active);setTimeout(()=>{s.style.transition='';},50);}
+});
+function openModal(n){document.getElementById('modalSelected').textContent='🛒 '+n;document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
+function closeModalOutside(e){if(e.target===document.getElementById('contactModal'))closeModal();}
+</script>
+</body>
+</html>

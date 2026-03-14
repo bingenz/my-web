@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<!--
+=============================================================
+  INDEX PAGE - DEV NOTES (DOC TRUOC KHI SUA)
+=============================================================
+  1. FILE NGUON:
+     - Sua noi dung chinh tai index.src.html
+     - Sau khi sua xong, chay encode-html.js de sinh lai index.html
+
+  2. FONT:
+     - Toan bo trang dang dung Be Vietnam Pro
+     - Neu doi font, doi dong bo ca import va font-family
+
+  3. CAU TRUC:
+     - Topbar -> Hero -> Goi -> Diem manh -> Bang gia -> FAQ -> Lien he
+     - Cac nav link dang dung anchor den id tung section
+
+  4. RESPONSIVE:
+     - Breakpoint chinh: 960px, 640px, 480px
+     - Uu tien giu text de doc tren mobile, han che them khoi qua rong
+=============================================================
+-->
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<base target="_top">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Binpinkgold Code Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* BASE */
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:88px;
+}
+:root{
+  --bg:#060816;
+  --bg-soft:#0c1124;
+  --surface:rgba(12,17,36,0.78);
+  --surface-strong:rgba(16,24,48,0.92);
+  --line:rgba(255,255,255,0.09);
+  --text:#f5f7ff;
+  --muted:rgba(245,247,255,0.7);
+  --soft:rgba(245,247,255,0.48);
+  --primary:#ff4fa3;
+  --primary-2:#7c5cff;
+  --accent:#2ee6d6;
+  --warm:#ffba66;
+  --shadow:0 30px 80px rgba(0,0,0,0.35);
+  --radius-xl:32px;
+  --radius-lg:24px;
+  --radius-md:18px;
+  --container:min(1180px,calc(100vw - 32px));
+}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+body{
+  font-family:"Be Vietnam Pro",sans-serif;
+  background:
+    radial-gradient(circle at top left,rgba(124,92,255,0.22),transparent 30%),
+    radial-gradient(circle at 85% 15%,rgba(255,79,163,0.18),transparent 25%),
+    radial-gradient(circle at 50% 100%,rgba(46,230,214,0.12),transparent 28%),
+    linear-gradient(180deg,#060816 0%,#070b18 45%,#09101d 100%);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.045) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(circle at center,black 28%,transparent 85%);
+  opacity:.35;
+}
+a{
+  color:inherit;
+  text-decoration:none;
+}
+img{
+  display:block;
+  max-width:100%;
+}
+button{
+  font:inherit;
+}
+.wrap{
+  width:var(--container);
+  margin:0 auto;
+}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(18px);
+  background:rgba(6,8,22,0.72);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.topbar-inner{
+  width:var(--container);
+  margin:0 auto;
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+}
+.brand-mark{
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-2) 55%,var(--accent) 100%);
+  box-shadow:0 14px 34px rgba(124,92,255,0.35);
+  display:grid;
+  place-items:center;
+  font-family:"Be Vietnam Pro",sans-serif;
+  font-size:18px;
+  font-weight:700;
+  color:#fff;
+}
+.brand-copy{
+  min-width:0;
+}
+.brand-copy strong{
+  display:block;
+  font-family:"Be Vietnam Pro",sans-serif;
+  font-size:17px;
+  font-weight:700;
+  letter-spacing:-0.03em;
+}
+.brand-copy span{
+  display:block;
+  margin-top:2px;
+  color:var(--soft);
+  font-size:12px;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.nav a{
+  color:var(--muted);
+  font-size:14px;
+  font-weight:600;
+  padding:10px 14px;
+  border-radius:999px;
+  transition:.2s ease;
+}
+.nav a:hover{
+  color:#fff;
+  background:rgba(255,255,255,0.06);
+}
+.nav .cta-link{
+  color:#08111d;
+  background:linear-gradient(135deg,#fff 0%,#cffff8 100%);
+}
+
+/* HERO */
+.hero{
+  padding:56px 0 28px;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
+  gap:28px;
+  align-items:stretch;
+}
+.hero-copy,
+.hero-panel,
+.glass{
+  background:linear-gradient(180deg,rgba(17,24,49,0.82) 0%,rgba(10,15,31,0.78) 100%);
+  border:1px solid var(--line);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow);
+}
+.hero-copy{
+  padding:clamp(28px,4vw,52px);
+  position:relative;
+  overflow:hidden;
+}
+.hero-copy::after{
+  content:"";
+  position:absolute;
+  inset:auto -10% -30% auto;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,79,163,0.24),transparent 70%);
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.eyebrow-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 16px rgba(46,230,214,0.9);
+}
+.hero-copy h1{
+  margin-top:22px;
+  font-family:"Be Vietnam Pro",sans-serif;
+  font-size:clamp(2.4rem,5.5vw,5rem);
+  line-height:.98;
+  letter-spacing:-0.05em;
+  max-width:11ch;
+}
+.hero-copy h1 span{
+  background:linear-gradient(135deg,#ffffff 0%,#ffa8d0 35%,#8f92ff 70%,#75fff4 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-copy p{
+  margin-top:18px;
+  color:var(--muted);
+  font-size:clamp(15px,1.9vw,18px);
+  line-height:1.75;
+  max-width:60ch;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:28px;
+}
+.button{
+  min-height:54px;
+  padding:0 22px;
+  border:none;
+  border-radius:18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-weight:700;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+  cursor:pointer;
+}
+.button:hover{
+  transform:translateY(-2px);
+}
+.button-primary{
+  color:#07111d;
+  background:linear-gradient(135deg,#ffffff 0%,#9effef 100%);
+  box-shadow:0 18px 36px rgba(46,230,214,0.18);
+}
+.button-secondary{
+  color:#fff;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.hero-stats{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.stat{
+  padding:16px 18px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.045);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.stat strong{
+  display:block;
+  font-family:"Be Vietnam Pro",sans-serif;
+  font-size:clamp(1.2rem,2vw,1.6rem);
+}
+.stat span{
+  display:block;
+  margin-top:6px;
+  color:var(--soft);
+  font-size:13px;
+  line-height:1.5;
+}
+.hero-panel{
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.hero-card-top{
+  padding:20px;
+  border-radius:24px;
+  background:
+    linear-gradient(135deg,rgba(255,79,163,0.16),transparent 38%),
+    linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.08);
+}
+.hero-card-top strong{
+  display:block;
+  font-size:14px;
+  color:var(--soft);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.hero-card-top h2{
+  margin-top:12px;
+  font-size:28px;
+  line-height:1.15;
+  letter-spacing:-0.04em;
+}
+.hero-card-top p{
+  margin-top:12px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+.price-box{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:18px;
+}
+.price-box strong{
+  color:#fff;
+  font-size:34px;
+  font-family:"Be Vietnam Pro",sans-serif;
+}
+.price-box span{
+  display:block;
+  color:var(--soft);
+  font-size:13px;
+}
+.feature-list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.feature{
+  min-width:0;
+  padding:16px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.feature strong{
+  display:block;
+  font-size:14px;
+  line-height:1.5;
+}
+.feature span{
+  display:block;
+  margin-top:6px;
+  color:var(--soft);
+  font-size:12px;
+  line-height:1.6;
+}
+
+/* CONTENT SECTIONS */
+.section{
+  padding:28px 0;
+}
+.section-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:20px;
+}
+.section-head h2{
+  font-family:"Be Vietnam Pro",sans-serif;
+  font-size:clamp(1.9rem,3.2vw,3rem);
+  letter-spacing:-0.05em;
+}
+.section-head p{
+  max-width:58ch;
+  color:var(--muted);
+  line-height:1.75;
+}
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.glass{
+  padding:24px;
+}
+.glass h3{
+  font-size:22px;
+  letter-spacing:-0.03em;
+}
+.glass p{
+  margin-top:12px;
+  color:var(--muted);
+  line-height:1.75;
+  font-size:14px;
+}
+.pill-row{
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.pill{
+  max-width:100%;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);
+  color:#fff;
+  font-size:12px;
+  line-height:1.4;
+}
+.showcase{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:18px;
+}
+.showcase-card{
+  padding:28px;
+  border-radius:var(--radius-xl);
+  border:1px solid var(--line);
+  background:
+    linear-gradient(180deg,rgba(14,20,40,0.85),rgba(10,15,29,0.9)),
+    linear-gradient(135deg,rgba(124,92,255,0.1),transparent 50%);
+  box-shadow:var(--shadow);
+}
+.showcase-card h3{
+  font-size:26px;
+  letter-spacing:-0.04em;
+}
+.showcase-card ul{
+  margin-top:18px;
+  display:grid;
+  gap:12px;
+  list-style:none;
+}
+.showcase-card li{
+  padding:14px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* PRICING */
+.pricing{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.price-card{
+  padding:28px;
+  border-radius:var(--radius-xl);
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(14,20,40,0.86),rgba(10,15,29,0.88));
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.price-card.highlight{
+  background:
+    linear-gradient(180deg,rgba(33,21,58,0.95),rgba(15,16,34,0.95)),
+    linear-gradient(135deg,rgba(255,79,163,0.16),transparent 55%);
+  border-color:rgba(255,255,255,0.12);
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:0 12px;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.price-card h3{
+  margin-top:16px;
+  font-size:24px;
+}
+.price{
+  margin-top:14px;
+  display:flex;
+  align-items:flex-end;
+  gap:10px;
+}
+.price strong{
+  font-family:"Be Vietnam Pro",sans-serif;
+  font-size:42px;
+  line-height:1;
+}
+.price span{
+  color:var(--soft);
+  font-size:14px;
+}
+.price-card ul{
+  margin-top:18px;
+  list-style:none;
+  display:grid;
+  gap:12px;
+}
+.price-card li{
+  color:var(--muted);
+  line-height:1.7;
+  padding-left:18px;
+  position:relative;
+}
+.price-card li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:11px;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 12px rgba(46,230,214,0.7);
+}
+
+/* FAQ */
+.faq{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+.faq-item{
+  padding:22px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.faq-item h3{
+  font-size:18px;
+  line-height:1.45;
+}
+.faq-item p{
+  margin-top:12px;
+  color:var(--muted);
+  line-height:1.75;
+}
+
+/* CTA + FOOTER */
+.cta-panel{
+  padding:32px;
+  border-radius:var(--radius-xl);
+  border:1px solid var(--line);
+  background:
+    radial-gradient(circle at top right,rgba(255,186,102,0.16),transparent 22%),
+    radial-gradient(circle at left bottom,rgba(46,230,214,0.14),transparent 26%),
+    linear-gradient(180deg,rgba(18,23,43,0.92),rgba(10,14,28,0.94));
+  box-shadow:var(--shadow);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.cta-panel h2{
+  font-family:"Be Vietnam Pro",sans-serif;
+  font-size:clamp(2rem,3vw,2.8rem);
+  letter-spacing:-0.05em;
+}
+.cta-panel p{
+  margin-top:12px;
+  color:var(--muted);
+  line-height:1.75;
+  max-width:56ch;
+}
+.footer{
+  padding:26px 0 48px;
+}
+.footer-inner{
+  width:var(--container);
+  margin:0 auto;
+  color:var(--soft);
+  font-size:13px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+/* RESPONSIVE */
+@media (max-width:960px){
+  .hero-grid,
+  .showcase,
+  .pricing,
+  .grid-3,
+  .faq{
+    grid-template-columns:1fr;
+  }
+  .cta-panel{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+@media (max-width:640px){
+  .topbar-inner{
+    min-height:72px;
+    align-items:flex-start;
+    justify-content:flex-start;
+    flex-direction:column;
+    padding:12px 0;
+  }
+  .nav{
+    width:100%;
+    justify-content:flex-start;
+  }
+  .hero{
+    padding-top:28px;
+  }
+  .hero-copy,
+  .hero-panel,
+  .glass,
+  .showcase-card,
+  .price-card,
+  .cta-panel{
+    border-radius:24px;
+  }
+  .hero-copy{
+    padding:22px;
+  }
+  .hero-panel{
+    padding:16px;
+  }
+  .hero-stats,
+  .feature-list{
+    grid-template-columns:1fr 1fr;
+  }
+  .feature,
+  .stat,
+  .faq-item{
+    min-width:0;
+  }
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+  .button{
+    width:100%;
+  }
+}
+@media (max-width:480px){
+  .wrap{
+    width:min(100vw - 20px,1180px);
+  }
+  .hero-copy h1{
+    max-width:none;
+  }
+  .hero-stats,
+  .feature-list{
+    grid-template-columns:1fr;
+  }
+  .nav a{
+    font-size:13px;
+    padding:9px 12px;
+  }
+  .showcase-card,
+  .price-card,
+  .glass,
+  .cta-panel,
+  .faq-item{
+    padding:20px;
+  }
+}
+</style>
+</head>
+<body>
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">
+      <div class="brand-mark">BP</div>
+      <div class="brand-copy">
+        <strong>Binpinkgold</strong>
+        <span>Code store cho creator, seller va team van hanh</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#goi">Goi</a>
+      <a href="#diemmanh">Diem manh</a>
+      <a href="#banggia">Bang gia</a>
+      <a href="#faq">FAQ</a>
+      <a class="cta-link" href="#lienhe">Nhan tu van</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Ban giao nhanh va setup gon
+        </div>
+        <h1>Website ban code <span>dep, nhanh, de chot don</span></h1>
+        <p>Trang duoc viet lai tu dau theo huong gon sach, responsive va tap trung vao chuyen doi. Phu hop de gioi thieu goi code, kho san pham, link lien he va quy trinh ban hang tren di dong lan desktop.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#banggia">Xem bang gia</a>
+          <a class="button button-secondary" href="#goi">Xem cau truc trang</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>24h</strong>
+            <span>Thoi gian cap nhat noi dung va ban giao nhanh</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Tuong thich mobile, khong can zoom de doc</span>
+          </div>
+          <div class="stat">
+            <strong>1 file</strong>
+            <span>De quan ly, de encode lai sang trang xuat ban</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <div class="hero-card-top">
+          <strong>Goi noi bat</strong>
+          <h2>Landing page cho shop code va AI tools</h2>
+          <p>Bo cuc moi uu tien thong tin ro rang, CTA lon, bang gia gon va cac khoi noi dung co the doi ten san pham cuc nhanh.</p>
+          <div class="price-box">
+            <div>
+              <strong>Tu 299k</strong>
+              <span>Tu van va tinh chinh theo nhu cau</span>
+            </div>
+            <a class="button button-primary" href="#lienhe">Bat dau</a>
+          </div>
+        </div>
+        <div class="feature-list">
+          <div class="feature">
+            <strong>Hero ro loi ich</strong>
+            <span>Tieu de lon, subtitle gon, CTA de thay doi</span>
+          </div>
+          <div class="feature">
+            <strong>Bang gia de chot</strong>
+            <span>Bo cuc 3 goi, co goi noi bat o trung tam</span>
+          </div>
+          <div class="feature">
+            <strong>FAQ san su dung</strong>
+            <span>Giai dap cac cau hoi truoc khi khach inbox</span>
+          </div>
+          <div class="feature">
+            <strong>Co the encode</strong>
+            <span>Hop voi luong `index.src.html` sang `index.html`</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- GOI / SERVICE OVERVIEW -->
+  <section class="section" id="goi">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Cau truc moi de de ban hang</h2>
+        </div>
+        <p>Trang duoc chia thanh nhung khoi de scan nhanh. Nguoi xem vao la thay ngay san pham, diem khac biet, bang gia va cach lien he ma khong bi roi.</p>
+      </div>
+      <div class="grid-3">
+        <article class="glass">
+          <h3>Trang mo dau hut mat</h3>
+          <p>Hero layout moi dung typography manh, nen co chieu sau va CTA ro rang de day nguoi xem xuong bang gia hoac lien he ngay.</p>
+          <div class="pill-row">
+            <span class="pill">Tieu de lon</span>
+            <span class="pill">Nut hanh dong noi bat</span>
+            <span class="pill">Thong so ngan gon</span>
+          </div>
+        </article>
+        <article class="glass">
+          <h3>Khoi gioi thieu dich vu</h3>
+          <p>Cac card noi dung co khoang cach de doc, de thay text va co the nhan ban thanh nhieu goi khac nhau ma khong vo layout.</p>
+          <div class="pill-row">
+            <span class="pill">Responsive mem</span>
+            <span class="pill">Khoang cach ro</span>
+            <span class="pill">De doi noi dung</span>
+          </div>
+        </article>
+        <article class="glass">
+          <h3>Ket trang de chuyen doi</h3>
+          <p>Phan cuoi co CTA lon va thong diep ngan de hut inbox. Phu hop de gan link Telegram, Zalo, Facebook hoac form dat hang.</p>
+          <div class="pill-row">
+            <span class="pill">CTA cuoi trang</span>
+            <span class="pill">Gan link nhanh</span>
+            <span class="pill">Hop mobile</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIEM MANH / SHOWCASE -->
+  <section class="section" id="diemmanh">
+    <div class="wrap showcase">
+      <article class="showcase-card">
+        <h3>Ly do ban nay phu hop de viet lai tu dau</h3>
+        <ul>
+          <li>Loai bo toan bo note va comment cu de file sach hon, de sua va de ban giao.</li>
+          <li>Bo cuc moi uu tien su gon gang thay vi qua nhieu lop trang tri kho theo doi.</li>
+          <li>He thong mau, radius, spacing va typography duoc dat lai de dong bo hon.</li>
+          <li>Khong phu thuoc vao framework, de dua vao script encode hien tai.</li>
+        </ul>
+      </article>
+      <article class="showcase-card">
+        <h3>Nhung gi trang moi da san san cho ban</h3>
+        <ul>
+          <li>Section hero, service, bang gia, FAQ va CTA cuoi trang da co san.</li>
+          <li>Responsive theo 3 muc lon, vua, nho de khong bi tran chu tren mobile.</li>
+          <li>Danh sach nav link anchor de dieu huong nhanh trong 1 trang.</li>
+          <li>Noi dung co the thay ten san pham, gia, quyen loi va kenh lien he trong vai phut.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- BANG GIA -->
+  <section class="section" id="banggia">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Bang gia de thay doi nhanh</h2>
+        </div>
+        <p>Duoi day la bo khung mau. Ban co the sua ten goi, muc gia va quyen loi de khop voi san pham that cua minh ma khong can dung vao cau truc lon.</p>
+      </div>
+      <div class="pricing">
+        <article class="price-card">
+          <span class="badge">Starter</span>
+          <h3>Goi co ban</h3>
+          <div class="price">
+            <strong>299k</strong>
+            <span>1 lan thanh toan</span>
+          </div>
+          <ul>
+            <li>1 landing page don de gioi thieu san pham</li>
+            <li>Chinh text, mau sac va CTA theo yeu cau</li>
+            <li>Ban giao file de ban tu quan ly</li>
+          </ul>
+        </article>
+        <article class="price-card highlight">
+          <span class="badge">Popular</span>
+          <h3>Goi ban chay</h3>
+          <div class="price">
+            <strong>599k</strong>
+            <span>bo giao dien day du</span>
+          </div>
+          <ul>
+            <li>Hero, service, bang gia, FAQ va CTA cuoi trang</li>
+            <li>Toi uu mobile va bo cuc de chot don hon</li>
+            <li>Ho tro sua nhanh 1 dot sau khi ban giao</li>
+          </ul>
+        </article>
+        <article class="price-card">
+          <span class="badge">Custom</span>
+          <h3>Goi theo yeu cau</h3>
+          <div class="price">
+            <strong>Inbox</strong>
+            <span>bao gia theo pham vi</span>
+          </div>
+          <ul>
+            <li>Them trang kho san pham, section review hoac modal</li>
+            <li>Gan analytics, form, script rieng neu can</li>
+            <li>Phu hop shop dang co nhieu goi va nhieu kenh ban</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>Cau hoi thuong gap</h2>
+        </div>
+        <p>Phan nay giup giam so lan khach hoi lap lai va giu nguoi xem o lai trang lau hon truoc khi bam lien he.</p>
+      </div>
+      <div class="faq">
+        <article class="faq-item">
+          <h3>Toi co the doi toan bo noi dung sau nay khong?</h3>
+          <p>Co. File duoc viet theo huong de sua text truc tiep. Ban co the thay tieu de, gia, mo ta, nut bam va cac section bang cach sua HTML thong thuong.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Trang nay co phu hop de encode sang file xuat ban khong?</h3>
+          <p>Co. Cau truc van la mot file HTML day du, tuong thich voi luong `encode-html.js` dang co trong project.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Neu toi muon chen link Zalo, Telegram hay form dat hang?</h3>
+          <p>Rat de. Chi can thay `href` cua cac nut CTA hoac them mot khoi form o cuoi trang la duoc.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Co comment an hay ghi chu nao con sot lai khong?</h3>
+          <p>Khong. Ban rewrite nay duoc viet lai sach, khong chen note comments kieu `*`, `#` hay comment HTML/CSS/JS.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIEN HE / CTA -->
+  <section class="section" id="lienhe">
+    <div class="wrap">
+      <div class="cta-panel">
+        <div>
+          <h2>San sang dua noi dung that vao trang moi</h2>
+          <p>Neu ban muon, buoc tiep theo minh co the thay toan bo text mau nay bang noi dung shop cua ban, gan link lien he that va encode lai sang `index.html`.</p>
+        </div>
+        <a class="button button-primary" href="https://t.me/" target="_blank" rel="noreferrer">Mo kenh lien he</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Binpinkgold Code Store</span>
+    <span>Landing page moi da duoc viet lai toan bo tu dau</span>
+  </div>
+</footer>
+
+<!-- PROTECT SCRIPT -->
+<script src="protect.js"></script>
+</body>
+</html>

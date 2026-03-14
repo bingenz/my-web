@@ -89,18 +89,30 @@ body::after{content:'';position:fixed;inset:0;z-index:0;
              radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.38) 0%,transparent 60%);
   pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
 body::before{content:'';position:fixed;inset:0;z-index:0;
-  /* mobile: chỉ lưới thô (96px) — bỏ sub-grid 24px để giảm tải paint */
-  background-image:linear-gradient(rgba(168,85,247,0.13) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.13) 1px,transparent 1px);
-  background-size:96px 96px,96px 96px;
-  -webkit-mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
-  mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
+  /* mobile default: coarse 72px + sub-grid 18px — nhẹ, nhiều ô, có chiều sâu */
+  background-image:
+    linear-gradient(rgba(168,85,247,0.16) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(168,85,247,0.16) 1px,transparent 1px),
+    linear-gradient(rgba(168,85,247,0.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(168,85,247,0.055) 1px,transparent 1px);
+  background-size:72px 72px,72px 72px,18px 18px,18px 18px;
+  /* mask hẹp hơn ở trên → tạo ảo giác horizon xa */
+  -webkit-mask-image:radial-gradient(ellipse 160% 130% at 50% 35%,black 0%,black 45%,transparent 88%);
+  mask-image:radial-gradient(ellipse 160% 130% at 50% 35%,black 0%,black 45%,transparent 88%);
   pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
 @media(min-width:768px){
   body::before{
-    background-image:linear-gradient(rgba(168,85,247,0.14) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.14) 1px,transparent 1px),linear-gradient(rgba(168,85,247,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.06) 1px,transparent 1px);
+    background-image:
+      linear-gradient(rgba(168,85,247,0.14) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(168,85,247,0.14) 1px,transparent 1px),
+      linear-gradient(rgba(168,85,247,0.06) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(168,85,247,0.06) 1px,transparent 1px);
     background-size:96px 96px,96px 96px,24px 24px,24px 24px;
+    -webkit-mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
+    mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
   }
 }
+
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 /* glow-orb: ẩn hoàn toàn trên mobile — filter:blur() rất nặng */
 .glow-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;will-change:transform;transform:translateZ(0);}
@@ -1814,10 +1826,11 @@ function idxNavClick(e,idx,target){
   let W, H, gridPts=[], segments=[];
 
   const IS_MOBILE = window.innerWidth < 768;
-  const FOV=650, TILT=IS_MOBILE ? Math.PI*0.32 : Math.PI*0.40,
-        CAM_Y=IS_MOBILE ? -340 : -520, CAM_Z=30, SPHERE_R=1100,
-        GRID_N = IS_MOBILE ? 22 : 32,
-        EXT=IS_MOBILE ? 520 : 600;
+  const FOV=IS_MOBILE ? 550 : 650,
+        TILT=IS_MOBILE ? Math.PI*0.39 : Math.PI*0.40,
+        CAM_Y=IS_MOBILE ? -500 : -520, CAM_Z=30, SPHERE_R=1100,
+        GRID_N = IS_MOBILE ? 30 : 32,
+        EXT=IS_MOBILE ? 580 : 600;
 
   function surfaceY(wx,wz){
     const d2=wx*wx+wz*wz,R2=SPHERE_R*SPHERE_R;
@@ -1830,7 +1843,7 @@ function idxNavClick(e,idx,target){
     const ry=cosT*dy+sinT*dz,rz=-sinT*dy+cosT*dz;
     if(rz>=-0.1)return null;
     const scale=FOV/(-rz);
-    const vOff=IS_MOBILE ? H*0.32 : H/2;
+    const vOff=IS_MOBILE ? H*0.46 : H/2;
     return{sx:wx*scale+W/2,sy:ry*scale+vOff,depth:-rz,scale};
   }
   function edgeAlpha(wx,wz,depth){
@@ -2024,3 +2037,4 @@ function idxNavClick(e,idx,target){
 
 </body>
   </html>
+

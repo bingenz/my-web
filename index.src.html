@@ -56,7 +56,6 @@ LƯU Ý: KHÔNG ĐƯỢC SỬ DỤNG HIỆU ỨNG GÂY LAG KHI LƯỚT WEB, CH�
 =============================================================
 -->
 
-
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -65,7 +64,7 @@ LƯU Ý: KHÔNG ĐƯỢC SỬ DỤNG HIỆU ỨNG GÂY LAG KHI LƯỚT WEB, CH�
 <title>Binpinkgold Code Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 html{scroll-padding-top:72px;}
 :root{
@@ -82,7 +81,7 @@ html{scroll-padding-top:72px;}
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;}
+body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;min-height:100vh;}
 /* body::after & ::before — will-change:transform đẩy lên GPU compositor layer riêng,
    tránh repaint toàn trang khi scroll */
 body::after{content:'';position:fixed;inset:0;z-index:0;
@@ -111,32 +110,35 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 @media(max-width:767px){.glow-orb{display:none;}}
 .gradient-text{background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .gradient-text-white{background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.font-syne{font-family:'Inter',sans-serif;}
+.font-syne{font-family:'Be Vietnam Pro',sans-serif;}
 
 .glass-card{
-  background:linear-gradient(145deg,rgba(17,9,48,0.92) 0%,rgba(12,7,36,0.95) 40%,rgba(19,8,48,0.92) 70%,rgba(9,5,30,0.95) 100%);
-  border:1px solid rgba(168,85,247,0.32);
-  border-radius:48px;
+  background:rgba(12,6,30,0.08);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(168,85,247,0.3);
+  border-radius:28px;
   position:relative;overflow:hidden;
-  transition:border-color 0.28s,box-shadow 0.28s,transform 0.2s;
+  transition:border-color 0.25s,box-shadow 0.25s,transform 0.2s;
+  box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 2px 16px rgba(0,0,0,0.15);
 }
-.glass-card:hover{border-color:rgba(168,85,247,0.6);transform:translateY(-2px);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);}
-.glass-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.65),rgba(236,72,153,0.45),transparent);border-radius:48px 48px 0 0;pointer-events:none;}
-.glass-card-glow{box-shadow:var(--card-shadow);}
+.glass-card:hover{border-color:rgba(168,85,247,0.55);transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 6px 32px rgba(0,0,0,0.45),0 0 24px rgba(168,85,247,0.1);}
+.glass-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.6),rgba(236,72,153,0.4),transparent);pointer-events:none;z-index:1;}
+.glass-card-glow{box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 4px 28px rgba(0,0,0,0.4);}
 
 .sub-card{
-  background:linear-gradient(145deg,rgba(20,10,44,0.88),rgba(12,7,32,0.92));
+  background:rgba(12,6,30,0.08);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border:1px solid rgba(168,85,247,0.28);
-  border-radius:48px;
-  padding:26px 26px 22px;
+  border-radius:28px;
+  padding:0;
   display:flex;flex-direction:column;gap:0;
   position:relative;overflow:hidden;
-  transition:border-color 0.28s,box-shadow 0.28s,transform 0.22s;
-  box-shadow:var(--card-shadow);
-  contain:layout style paint;
+  transition:border-color 0.25s,box-shadow 0.25s,transform 0.2s;
+  box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 2px 16px rgba(0,0,0,0.15);
+  contain:layout style;
 }
-.sub-card:hover{border-color:rgba(168,85,247,0.62);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-3px);}
-.sub-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.55),rgba(236,72,153,0.35),transparent);}
+.sub-card:hover{border-color:rgba(168,85,247,0.55);transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 6px 32px rgba(0,0,0,0.45),0 0 24px rgba(168,85,247,0.1);}
+.sub-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.6),rgba(236,72,153,0.4),transparent);pointer-events:none;z-index:1;}
 
 /* ===================================================
    HERO BANNER — compact, icon-right layout
@@ -153,7 +155,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .hero-banner{
   margin-top:60px;
   position:relative;overflow:hidden;
-  background:linear-gradient(160deg,rgba(10,4,28,0.98) 0%,rgba(16,8,40,0.97) 50%,rgba(8,4,22,0.99) 100%);
+  background:linear-gradient(160deg,rgba(10,4,28,0.25) 0%,rgba(16,8,40,0.22) 50%,rgba(8,4,22,0.28) 100%);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
   border-bottom:1px solid rgba(168,85,247,0.14);
   contain:layout style;
 }
@@ -233,15 +236,14 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   background:linear-gradient(180deg,#2d8ef5 0%,#1877F2 45%,#1464d4 100%);
   color:#fff;
   font-size:clamp(10.5px,1.4vw,12.5px);font-weight:700;
-  font-family:'Inter',sans-serif;
+  font-family:'Be Vietnam Pro',sans-serif;
   padding:9px 18px;border-radius:100px;
   text-decoration:none;white-space:nowrap;
   border:1px solid rgba(255,255,255,0.18);
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.25) inset,
-    0 -1px 0 rgba(0,0,0,0.25) inset,
-    0 4px 12px rgba(24,119,242,0.5),
-    0 8px 24px rgba(24,119,242,0.2);
+    0 1px 0 rgba(255,255,255,0.2) inset,
+    0 -1px 0 rgba(0,0,0,0.2) inset,
+    0 3px 8px rgba(24,119,242,0.3);
   transition:transform 0.15s,box-shadow 0.15s;
   width:fit-content;
 }
@@ -250,8 +252,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   box-shadow:
     0 1px 0 rgba(255,255,255,0.25) inset,
     0 -1px 0 rgba(0,0,0,0.25) inset,
-    0 6px 18px rgba(24,119,242,0.65),
-    0 12px 32px rgba(24,119,242,0.28);
+    0 4px 12px rgba(24,119,242,0.35),
+    0 8px 20px rgba(24,119,242,0.15);
 }
 .fb-btn:active{transform:translateY(0);}
 .fb-btn svg{flex-shrink:0;}
@@ -314,6 +316,108 @@ a.hb-chip:active{transform:scale(0.97);}
 }
 
 /* ─────────────────────────────────
+   FACEBOOK GROUP BANNER
+───────────────────────────────── */
+@keyframes freePulse{0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,0.55);}60%{box-shadow:0 0 0 6px rgba(168,85,247,0);}}
+.fb-group-banner{
+  position:relative;z-index:1;
+  background:linear-gradient(135deg,rgba(12,5,32,0.25) 0%,rgba(20,8,48,0.22) 50%,rgba(10,4,28,0.28) 100%);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(168,85,247,0.18);
+  border-top:1px solid rgba(168,85,247,0.1);
+}
+.fb-group-banner-inner{
+  max-width:1100px;margin:0 auto;
+  padding:clamp(14px,2.2vw,22px) clamp(20px,4vw,52px);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:clamp(16px,3vw,32px);flex-wrap:wrap;
+  box-sizing:border-box;
+}
+.fb-group-left{
+  display:flex;align-items:center;gap:clamp(10px,1.5vw,14px);
+  flex:1;min-width:0;
+}
+.fb-group-icon{
+  width:44px;height:44px;border-radius:14px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));
+  border:1px solid rgba(168,85,247,0.3);
+  display:flex;align-items:center;justify-content:center;
+}
+.fb-group-text{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.fb-group-name{
+  font-size:clamp(11px,1.5vw,13.5px);font-weight:800;
+  color:var(--text);word-break:break-word;
+}
+.fb-group-sub{
+  font-size:clamp(9.5px,1.2vw,11px);font-weight:500;
+  color:rgba(240,236,248,0.5);word-break:break-word;
+}
+.fb-group-highlight{
+  font-weight:700;
+  background:linear-gradient(90deg,#C084FC,#EC4899);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.fb-group-right{
+  display:flex;align-items:center;gap:clamp(14px,2vw,24px);flex-wrap:wrap;flex-shrink:0;
+}
+.fb-group-perks{
+  display:flex;flex-wrap:wrap;gap:6px 14px;max-width:320px;
+}
+.fb-group-perk{
+  font-size:clamp(9px,1.1vw,10.5px);font-weight:600;
+  color:rgba(240,236,248,0.5);white-space:nowrap;
+}
+.fb-group-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(180deg,#B76EF8 0%,#A855F7 40%,#9333EA 100%);
+  color:#fff;font-size:clamp(11px,1.4vw,12.5px);font-weight:700;
+  font-family:'Be Vietnam Pro',sans-serif;
+  padding:clamp(8px,1.2vw,11px) clamp(14px,2vw,22px);border-radius:100px;
+  text-decoration:none;white-space:nowrap;flex-shrink:0;
+  border:none;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.22) inset,
+    0 -2px 0 rgba(0,0,0,0.35) inset,
+    0 4px 0 rgba(80,20,160,0.75),
+    0 6px 12px rgba(0,0,0,0.35);
+  transition:transform 0.12s,box-shadow 0.12s;
+  position:relative;overflow:hidden;
+}
+.fb-group-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.22) inset,
+    0 -2px 0 rgba(0,0,0,0.35) inset,
+    0 4px 0 rgba(80,20,160,0.75),
+    0 8px 18px rgba(0,0,0,0.4);
+}
+.fb-group-btn:active{
+  transform:translateY(2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.18) inset,
+    0 -1px 0 rgba(0,0,0,0.3) inset,
+    0 1px 0 rgba(80,20,160,0.75),
+    0 2px 6px rgba(0,0,0,0.25);
+}
+.fb-group-free-badge{
+  display:inline-flex;align-items:center;
+  background:rgba(255,255,255,0.22);
+  color:#fff;font-size:clamp(8px,1vw,9.5px);font-weight:900;letter-spacing:0.1em;
+  padding:2px 6px;border-radius:100px;
+  animation:freePulse 2s ease-in-out infinite;
+}
+.fb-group-perks{
+  display:flex;flex-wrap:wrap;gap:6px 14px;max-width:min(320px,40vw);
+}
+@media(max-width:640px){
+  .fb-group-banner-inner{padding:clamp(12px,2vw,14px) clamp(14px,3vw,16px);gap:12px;}
+  .fb-group-icon{width:36px;height:36px;border-radius:10px;}
+  .fb-group-icon svg{width:17px;height:17px;}
+  .fb-group-perks{display:none;}
+  .fb-group-right{width:100%;justify-content:flex-end;}
+}
+
+/* ─────────────────────────────────
    TOPBAR
 ───────────────────────────────── */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(180deg,rgba(18,8,38,0.99) 0%,rgba(10,5,22,0.98) 100%);border-bottom:1px solid rgba(80,40,120,0.35);padding:clamp(10px,2vw,14px) clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 rgba(220,170,255,0.15) inset,0 8px 24px rgba(0,0,0,0.35);height:60px;}
@@ -343,9 +447,9 @@ a.hb-chip:active{transform:scale(0.97);}
 .btn-primary-wrap>*{position:relative;z-index:1;}
 .btn-register-shimmer{position:relative;overflow:hidden;z-index:1;}
 .btn-register-shimmer::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmerCTA 2.4s ease-in-out infinite;pointer-events:none;will-change:transform;z-index:2;}
-.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Inter',sans-serif;}
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Be Vietnam Pro',sans-serif;}
 .btn-ghost:hover{background:rgba(168,85,247,0.2);border-color:rgba(168,85,247,0.6);}
-.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Inter',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
+.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Be Vietnam Pro',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
 .sub-card-btn:hover{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
 
 .container{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
@@ -363,7 +467,7 @@ a.hb-chip:active{transform:scale(0.97);}
 .hero-cta{animation:fadeUp 0.7s 0.3s ease both;}
 
 /* NEON STAT CARDS */
-.neon-card{flex:1 1 200px;max-width:calc(50% - 8px);min-width:160px;background:rgba(18,12,40,0.85);border-radius:100px;padding:14px 20px;display:flex;flex-direction:column;justify-content:center;border:1px solid transparent;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:default;animation:fadeUp 0.7s 0.4s ease both;text-align:left;contain:layout style paint;}
+.neon-card{flex:1 1 200px;max-width:calc(50% - 8px);min-width:160px;background:rgba(14,8,32,0.08);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:100px;padding:14px 20px;display:flex;flex-direction:column;justify-content:center;border:1px solid transparent;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:default;animation:fadeUp 0.7s 0.4s ease both;text-align:left;}
 .neon-card:hover{transform:translateY(-3px);}
 .neon-card-top{display:flex;align-items:center;gap:12px;width:100%;text-align:left;}
 .neon-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid;flex-shrink:0;}
@@ -398,8 +502,8 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 
 /* PLUS CARD GOLD BORDER */
 @keyframes ledGlowPulse{0%,100%{opacity:0.55;}50%{opacity:1;}}
-#chatgptPlusCard .glass-card{border-radius:48px;border:2px solid transparent;background:linear-gradient(#110930,#0c0724) padding-box,linear-gradient(135deg,#FFD700 0%,#FFA500 35%,#FFE566 60%,#FFB300 80%,#FFD700 100%) border-box;overflow:hidden;position:relative;contain:layout style paint;transform:translateZ(0);}
-#chatgptPlusCard .glass-card::after{content:'';position:absolute;inset:0;border-radius:46px;background:transparent;box-shadow:0 0 18px rgba(255,210,0,0.5),0 0 32px rgba(255,160,0,0.22);animation:ledGlowPulse 3s ease-in-out infinite;pointer-events:none;z-index:0;will-change:opacity;}
+#chatgptPlusCard .tth-card{border-radius:28px!important;border:1.5px solid rgba(234,179,8,0.5)!important;}
+
 #plusLedLabel{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:20;display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#B8860B,#FFD700,#FFA500);border-radius:100px;padding:4px 14px;white-space:nowrap;box-shadow:0 0 8px rgba(255,200,0,0.45),0 2px 6px rgba(0,0,0,0.5);}
 #plusLedLabel span{font-size:9.5px;font-weight:900;color:#1a0a00;letter-spacing:0.16em;text-transform:uppercase;}
 
@@ -408,18 +512,18 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 @property --tth-la{syntax:'<angle>';initial-value:0deg;inherits:false;}
 @keyframes tthSpin{from{--tth-la:0deg;}to{--tth-la:360deg;}}
 @keyframes tthShim{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
-@keyframes tthScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 .tth-card{
-  background:linear-gradient(145deg,rgba(20,14,4,0.97) 0%,rgba(13,9,2,0.99) 50%,rgba(22,15,3,0.97) 100%);
-  border:1px solid rgba(234,179,8,0.45);
-  border-radius:40px;position:relative;overflow:hidden;
-  contain:layout style paint;transform:translateZ(0);
-  box-shadow:0 1px 0 rgba(255,255,255,0.09) inset,0 -1px 0 rgba(0,0,0,0.45) inset,0 4px 24px rgba(0,0,0,0.65),0 20px 60px rgba(0,0,0,0.45),0 0 60px rgba(234,179,8,0.12),0 0 120px rgba(234,179,8,0.05);
-  transition:border-color .28s,box-shadow .28s,transform .2s;
+  background:rgba(8,5,1,0.08);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(234,179,8,0.38);
+  border-radius:28px;position:relative;overflow:hidden;
+  contain:layout style;
+  box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 4px 28px rgba(0,0,0,0.4),0 0 40px rgba(234,179,8,0.06);
+  transition:border-color .25s,box-shadow .25s,transform .2s;
   max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;
 }
-.tth-card:hover{border-color:rgba(234,179,8,0.65);transform:translateY(-2px);}
+.tth-card:hover{border-color:rgba(234,179,8,0.62);transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 6px 32px rgba(0,0,0,0.45),0 0 28px rgba(234,179,8,0.1);}
 .tth-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.9),rgba(251,191,36,0.6),transparent);pointer-events:none;}
 .tth-inner{padding:clamp(24px,5vw,36px);}
 .tth-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
@@ -431,29 +535,14 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .tth-bv{background:rgba(30,80,200,0.18);border:1.5px solid rgba(60,120,255,0.45);color:#93C5FD;}
 .tth-bm{background:rgba(200,50,30,0.14);border:1.5px solid rgba(234,67,53,0.4);color:#FCA5A5;}
 .tth-dv{height:1px;background:rgba(234,179,8,0.14);margin:0 0 20px;}
-.tth-any{background:linear-gradient(135deg,rgba(234,179,8,0.1) 0%,rgba(180,130,0,0.05) 100%);border:1.5px solid rgba(234,179,8,0.38);border-radius:22px;padding:18px 20px 16px;margin-bottom:18px;position:relative;overflow:hidden;}
-.tth-any::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),transparent);}
-.tth-any-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.4);border-radius:100px;padding:4px 11px;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#FDE047;margin-bottom:8px;}
-.tth-dot{width:5px;height:5px;border-radius:50%;background:#EAB308;box-shadow:0 0 6px #EAB308;animation:tthDot 1.8s ease-in-out infinite;flex-shrink:0;}
-.tth-stmt{font-size:clamp(1.05rem,4vw,1.3rem);font-weight:900;line-height:1.2;letter-spacing:-0.03em;color:#fff;margin-bottom:8px;word-break:break-word;}
-.tth-stmt em{font-style:normal;background:linear-gradient(90deg,#EAB308 0%,#FDE047 40%,#fff 70%,#FDE047 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(234,179,8,0.6));}
-.tth-note{font-size:11.5px;color:rgba(240,236,248,0.5);line-height:1.6;margin-bottom:14px;}
-.tth-note strong{color:rgba(253,224,71,0.85);font-weight:700;}
-.tth-mq-wrap{overflow:hidden;position:relative;border-radius:100px;contain:layout style;border:1px solid rgba(234,179,8,0.18);background:rgba(0,0,0,0.3);}
-.tth-mq-wrap::before,.tth-mq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none;}
-.tth-mq-wrap::before{left:0;background:linear-gradient(90deg,rgba(13,9,2,1),transparent);}
-.tth-mq-wrap::after{right:0;background:linear-gradient(270deg,rgba(13,9,2,1),transparent);}
-.tth-mq-track{display:flex;animation:tthScroll 20s linear infinite;width:max-content;padding:8px 0;will-change:transform;}
-.tth-mq-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 14px;font-size:10px;font-weight:700;white-space:nowrap;color:rgba(253,224,71,0.55);flex-shrink:0;border-right:1px solid rgba(234,179,8,0.12);}
-.tth-mq-chip svg{opacity:0.5;flex-shrink:0;}
 .tth-strip{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.22);border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
 .tth-ir{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(240,236,248,0.6);line-height:1.55;}
 .tth-ii{color:#EAB308;font-weight:700;flex-shrink:0;}
-.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;font-family:'Inter',sans-serif;font-size:13.5px;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
+.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;font-size:13.5px;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
 .tth-btn-fee:hover{background:rgba(234,179,8,0.16);border-color:rgba(234,179,8,0.7);box-shadow:0 0 18px rgba(234,179,8,0.25);}
-.tth-btn-cw{width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;background:conic-gradient(from var(--tth-la,0deg),#78350f 0%,#eab308 15%,#fef08a 25%,#f59e0b 35%,#eab308 50%,#78350f 60%,#fef08a 70%,#eab308 85%,#78350f 100%);animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(234,179,8,0.75),0 0 44px rgba(234,179,8,0.32);contain:layout style paint;}
+.tth-btn-cw{width:100%;border-radius:100px;padding:2px;display:block;position:relative;background:linear-gradient(135deg,#78350f 0%,#eab308 45%,#fef08a 65%,#f59e0b 100%);box-shadow:0 0 10px rgba(234,179,8,0.3);contain:layout style paint;}
 .tth-btn-cw::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
-.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
+.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
 .tth-btn-c::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.38),transparent);animation:tthShim 2.4s ease-in-out infinite;pointer-events:none;z-index:2;will-change:transform;}
 
 /* FEE MODAL — green theme */
@@ -461,7 +550,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .fee-modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.85),rgba(16,185,129,0.55),transparent);z-index:2;pointer-events:none;}
 .fee-modal-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(34,197,94,0.12);position:sticky;top:0;z-index:10;background:rgba(4,14,8,0.99);border-radius:32px 32px 0 0;flex-shrink:0;}
 .fee-modal-title{font-size:1rem;font-weight:800;color:#4ade80;display:flex;align-items:center;gap:8px;}
-.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Inter',sans-serif;}
+.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Be Vietnam Pro',sans-serif;}
 .fee-modal-close:hover{background:rgba(34,197,94,0.22);}
 .fee-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:10px;}
 /* tiers */
@@ -482,7 +571,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .fm-calc{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.22);border-radius:18px;padding:15px 16px;display:flex;flex-direction:column;gap:10px;}
 .fm-calc-title{font-size:8px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:rgba(74,222,128,0.5);}
 .fm-calc-row{display:flex;align-items:center;gap:8px;}
-.fm-calc-input{flex:1;background:rgba(0,0,0,0.45);border:1px solid rgba(34,197,94,0.28);border-radius:10px;padding:10px 13px;font-size:13px;font-weight:700;color:#4ade80;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
+.fm-calc-input{flex:1;background:rgba(0,0,0,0.45);border:1px solid rgba(34,197,94,0.28);border-radius:10px;padding:10px 13px;font-size:13px;font-weight:700;color:#4ade80;font-family:'Be Vietnam Pro',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
 .fm-calc-input:focus{border-color:rgba(34,197,94,0.65);box-shadow:0 0 0 3px rgba(34,197,94,0.08);}
 .fm-calc-input::placeholder{color:rgba(74,222,128,0.22);font-weight:500;}
 .fm-calc-unit{font-size:11px;font-weight:700;color:rgba(74,222,128,0.45);white-space:nowrap;flex-shrink:0;}
@@ -500,7 +589,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .modal-overlay.open{display:flex;}
 .modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.3);border-radius:32px;padding:clamp(20px,4vw,30px) clamp(16px,4vw,28px);width:100%;max-width:400px;max-height:none;margin:auto;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;overflow:visible;flex-shrink:0;}
 .modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
-.modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--subtle);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;transition:background 0.18s;}
+.modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--subtle);font-size:13px;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:600;transition:background 0.18s;}
 .modal-close-btn:hover{background:rgba(255,255,255,0.09);color:var(--text);}
 .feat-modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.28);border-radius:32px;width:100%;max-width:500px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;display:flex;flex-direction:column;margin:auto;}
 .feat-modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);z-index:2;pointer-events:none;}
@@ -508,31 +597,6 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .feat-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:8px;}
 .feat-close-btn{width:32px;height:32px;border-radius:50%;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.28);color:#C084FC;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;}
 .feat-close-btn:hover{background:rgba(168,85,247,0.25);}
-
-/* FEAT MODAL B */
-.fm-tagline{font-size:12px;color:rgba(240,236,248,0.55);line-height:1.7;padding:14px 22px 0;}
-.fm-tagline strong{color:rgba(192,132,252,0.9);font-weight:700;}
-.fm-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px 22px;}
-.fm-card{background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.17);border-radius:18px;padding:13px 13px 11px;transition:border-color 0.2s;}
-.fm-card:hover{border-color:rgba(168,85,247,0.4);}
-.fm-card-top{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
-.fm-card-ico{width:30px;height:30px;min-width:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
-.fm-card-name{font-size:11.5px;font-weight:800;color:rgba(240,236,248,0.9);line-height:1.3;word-break:break-word;}
-.fm-card-desc{font-size:10px;color:rgba(240,236,248,0.45);line-height:1.55;word-break:break-word;}
-.fm-card-badge{display:inline-flex;align-items:center;font-size:9px;font-weight:800;padding:2px 8px;border-radius:100px;margin-top:6px;white-space:nowrap;}
-.fm-bench{margin:0 22px 18px;background:linear-gradient(135deg,rgba(168,85,247,0.09),rgba(236,72,153,0.05));border:1px solid rgba(168,85,247,0.2);border-radius:16px;padding:13px 15px;}
-.fm-bench-title{font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:10px;}
-.fm-bench-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
-.fm-bench-row:last-child{margin-bottom:0;}
-.fm-bench-name{font-size:10px;color:rgba(240,236,248,0.5);width:120px;min-width:120px;flex-shrink:0;line-height:1.3;}
-.fm-bench-bar-wrap{flex:1;height:6px;background:rgba(168,85,247,0.1);border-radius:10px;overflow:hidden;}
-.fm-bench-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,#A855F7,#EC4899);}
-.fm-bench-bar.dim{background:rgba(168,85,247,0.28);}
-.fm-bench-pct{font-size:10px;font-weight:800;color:#C084FC;width:34px;text-align:right;flex-shrink:0;}
-.fm-bench-pct.dim{color:rgba(240,236,248,0.35);}
-.fm-avail{margin:0 22px 20px;background:rgba(99,220,150,0.05);border:1px solid rgba(99,220,150,0.18);border-radius:12px;padding:9px 13px;display:flex;align-items:center;gap:8px;}
-.fm-avail-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px rgba(52,211,153,0.6);flex-shrink:0;}
-.fm-avail-text{font-size:11px;color:rgba(99,220,150,0.8);font-weight:600;line-height:1.5;word-break:break-word;}
 
 /* KHO CODE PILL BUBBLE */
 .kho-pill-bubble{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(8px) scale(.85);background:rgba(14,8,30,.96);border:1px solid rgba(168,85,247,.55);border-radius:100px;padding:5px 11px;display:flex;align-items:center;gap:5px;white-space:nowrap;pointer-events:none;z-index:300;opacity:0;transition:opacity .4s,transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 16px rgba(168,85,247,.4),0 4px 14px rgba(0,0,0,.6);}
@@ -547,14 +611,14 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .kho-banner-link:hover{border-color:rgba(168,85,247,0.6);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-2px);}
 .kho-banner-top-line{height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
 .kho-banner-body{display:flex;align-items:stretch;gap:28px;padding:44px 52px;flex-wrap:wrap;}
-.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Inter',sans-serif;white-space:nowrap;transition:background 0.2s;}
+.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Be Vietnam Pro',sans-serif;white-space:nowrap;transition:background 0.2s;}
 .kho-banner-link:hover .kho-banner-btn{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
 
 /* ─────────────────────────────────
    BOTTOM NAV
 ───────────────────────────────── */
 .idx-bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:0 14px calc(10px + env(safe-area-inset-bottom));pointer-events:none;}
-.idx-bottom-nav-inner{max-width:480px;margin:0 auto;background:rgba(22,13,48,0.98);border:1px solid rgba(100,55,175,0.25);border-radius:40px;padding:7px;display:flex;align-items:center;justify-content:space-around;pointer-events:all;box-shadow:0 2px 0 rgba(255,255,255,0.13) inset,0 -2px 0 rgba(0,0,0,0.7) inset,0 8px 0 rgba(0,0,0,0.55),0 12px 24px rgba(0,0,0,0.65),0 20px 50px rgba(0,0,0,0.45),0 0 40px rgba(120,55,200,0.22);}
+.idx-bottom-nav-inner{max-width:480px;margin:0 auto;background:rgba(22,13,48,0.98);border:1px solid rgba(100,55,175,0.25);border-radius:40px;padding:7px;display:flex;align-items:center;justify-content:space-around;pointer-events:all;box-shadow:0 2px 0 rgba(255,255,255,0.1) inset,0 4px 16px rgba(0,0,0,0.4),0 0 28px rgba(120,55,200,0.15);}
 .idx-bnav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 16px;border-radius:28px;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);flex:1;user-select:none;text-decoration:none;}
 .idx-bnav-item.active{background:linear-gradient(145deg,#7040D0 0%,#8E50E4 55%,#8045DC 100%);box-shadow:0 1px 0 rgba(255,255,255,0.22) inset,0 4px 14px rgba(120,60,210,0.55),0 8px 22px rgba(120,60,210,0.28);}
 .idx-bnav-item:not(.active):hover{background:rgba(120,60,200,0.1);}
@@ -596,13 +660,6 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   #heroGhostBtn{width:100%!important;justify-content:center!important;text-align:center!important;font-size:14px!important;padding:13px 20px!important;box-sizing:border-box!important;}
   #chatgptPlusCard{width:100%;box-sizing:border-box;min-width:0;}
   #chatgptPlusCard .glass-card{overflow:hidden;width:100%;box-sizing:border-box;min-width:0;border-radius:40px!important;}
-  #chatgptPlusCard [style*="padding-right:110px"]{padding-right:80px!important;}
-  #plusPriceFlexRow{flex-wrap:nowrap!important;gap:10px!important;align-items:center!important;}
-  #plusYearlyBox{flex:1 1 0!important;min-width:0!important;padding:9px 10px!important;}
-  #plusPriceDivider{min-height:50px!important;margin:2px 0!important;flex-shrink:0;}
-  #plusPriceRight .price-main{font-size:2.3rem!important;}
-  #plusPriceRight #plusOldPrice{font-size:8px!important;}
-  #plusShareNote{display:flex!important;width:100%!important;box-sizing:border-box!important;white-space:normal!important;border-radius:12px!important;padding:7px 12px!important;gap:6px!important;align-items:flex-start!important;}
   #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"]{gap:8px!important;}
   #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"]>div{min-width:0;overflow:hidden;padding:9px 10px!important;}
   #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"] span{font-size:10.5px!important;word-break:break-word;white-space:normal!important;line-height:1.35!important;}
@@ -621,7 +678,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .modal-overlay{padding:12px!important;align-items:flex-start!important;}
   .feat-modal-head{padding:14px 16px 12px;}.feat-modal-body{padding:12px 16px 18px;}
   .sub-card{border-radius:40px!important;}
-  .tth-inner{padding:22px 18px 26px!important;}
+  .tth-inner{padding:22px 22px 26px!important;}
   .fee-modal-body{padding:14px 16px 20px;}
   .fee-modal-head{padding:14px 16px 12px;}
   .fm-tagline{padding:12px 16px 0;font-size:11.5px;}
@@ -636,9 +693,105 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .neon-val{font-size:0.88rem!important;}
   .neon-sub{font-size:9.5px!important;}
   .neon-icon{width:28px!important;height:28px!important;}
-  #plusPriceRight .price-main{font-size:2rem!important;}
   .fm-cards{grid-template-columns:1fr;}
   .fm-bench-name{width:90px;min-width:90px;}
+}
+@media(max-width:767px){
+  /* 1. Tắt conic-gradient spin — gây repaint mỗi frame */
+  .btn-primary-wrap{animation:none!important;background:linear-gradient(135deg,#6b21a8 0%,#a855f7 45%,#ec4899 100%)!important;}
+
+  /* 2. Xóa backdrop-filter trên tất cả element scroll — đây là nguyên nhân lag chính
+     Browser phải composite+blur toàn bộ layer phía sau mỗi frame scroll */
+  .hero-banner,
+  .fb-group-banner,
+  .glass-card,
+  .sub-card,
+  .neon-card{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  /* glass-card và sub-card: bù lại bằng background đặc hơn một chút */
+  .glass-card{background:rgba(12,6,30,0.72)!important;}
+  .sub-card{background:rgba(12,6,30,0.70)!important;}
+  .neon-card{background:rgba(14,8,32,0.72)!important;}
+  .hero-banner{background:rgba(8,4,22,0.82)!important;}
+  .fb-group-banner{background:rgba(10,5,24,0.85)!important;}
+
+  /* 3. freePulse: đổi từ box-shadow animation → opacity only (paint-free) */
+  .fb-group-free-badge,
+  [style*="freePulse"]{animation:freePulseMob 2s ease-in-out infinite!important;}
+}
+@keyframes freePulseMob{0%,100%{opacity:1;}50%{opacity:0.55;}}
+
+/* ══ WELCOME POPUP ══ */
+#welcomeOverlay{position:fixed;inset:0;background:rgba(2,1,10,0.6);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);z-index:500;opacity:0;pointer-events:none;transition:opacity .28s ease;display:flex;align-items:center;justify-content:center;padding:16px;}
+#welcomeOverlay.show{opacity:1;pointer-events:all;}
+#welcomePopup{width:100%;max-width:340px;background:rgba(10,5,22,0.98);border:1px solid rgba(168,85,247,0.32);border-radius:26px;padding:20px;box-shadow:0 0 0 1px rgba(168,85,247,0.08),0 24px 80px rgba(0,0,0,.9),0 0 60px rgba(168,85,247,.18);position:relative;transform:scale(0.88) translateY(12px);opacity:0;transition:transform .38s cubic-bezier(.34,1.5,.64,1),opacity .28s ease;}
+#welcomeOverlay.show #welcomePopup{transform:scale(1) translateY(0);opacity:1;}
+#welcomePopup::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,.8),rgba(236,72,153,.5),transparent);border-radius:2px;}
+.wp-logo{display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+.wp-logo-star{font-size:14px;filter:drop-shadow(0 0 6px rgba(168,85,247,.8));}
+.wp-logo-text{font-size:13px;font-weight:800;background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wp-live{display:inline-flex;align-items:center;gap:5px;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.28);border-radius:100px;padding:3px 10px;margin-left:auto;}
+.wp-live-dot{width:5px;height:5px;border-radius:50%;background:#A855F7;box-shadow:0 0 6px #A855F7;animation:wpDot 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes wpDot{0%,100%{opacity:1;}50%{opacity:.2;}}
+.wp-live-text{font-size:9px;font-weight:800;letter-spacing:.1em;color:rgba(192,132,252,.8);text-transform:uppercase;}
+.wp-title{font-size:1.1rem;font-weight:900;color:#fff;letter-spacing:-.025em;line-height:1.2;margin-bottom:4px;}
+.wp-title em{font-style:normal;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wp-sub{font-size:11px;color:rgba(240,236,248,.38);margin-bottom:14px;line-height:1.5;}
+.wp-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.wp-row{display:flex;align-items:center;gap:10px;}
+.wp-ico{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.wp-row-name{font-size:12px;font-weight:700;color:rgba(240,236,248,.85);line-height:1.3;}
+.wp-div{height:1px;background:rgba(168,85,247,.12);margin:12px 0;}
+.wp-free-row{display:flex;align-items:center;gap:8px;background:rgba(251,100,20,.07);border:1px solid rgba(251,100,20,.22);border-radius:12px;padding:8px 11px;}
+.wp-free-text{font-size:11.5px;font-weight:700;color:rgba(240,236,248,.75);line-height:1.4;}
+.wp-free-text strong{color:#FB923C;}
+.wp-cta{width:100%;margin-top:12px;padding:12px;background:linear-gradient(135deg,#A855F7,#EC4899);border:none;border-radius:100px;color:#fff;font-size:13px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;letter-spacing:.02em;position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 3px 14px rgba(168,85,247,.4);transition:opacity .18s;text-decoration:none;display:flex;align-items:center;justify-content:center;}
+.wp-cta::after{content:'';position:absolute;top:-50%;left:-60%;width:35%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.26),transparent);animation:wpShim 2.6s ease-in-out infinite;pointer-events:none;}
+@keyframes wpShim{0%{transform:translateX(-100%);}100%{transform:translateX(520%);}}
+.wp-cta:hover{opacity:.88;}
+.wp-skip{width:100%;margin-top:7px;padding:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:100px;color:rgba(240,236,248,.55);font-size:12px;font-weight:600;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;transition:border-color .18s,color .18s,background .18s;}
+.wp-skip:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.35);color:rgba(240,236,248,.8);}
+.wp-skip:disabled{opacity:.3;cursor:not-allowed;}
+/* ══ MINI TOAST — 12 tháng ══ */
+#freeMonthToast{
+  position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-12px);
+  background:rgba(8,4,20,0.97);
+  border:1px solid rgba(52,211,153,0.5);
+  border-radius:100px;
+  padding:9px 18px;
+  display:inline-flex;align-items:center;gap:8px;
+  white-space:nowrap;
+  box-shadow:0 0 0 1px rgba(52,211,153,0.1),0 8px 32px rgba(0,0,0,.7),0 0 24px rgba(52,211,153,.2);
+  z-index:600;
+  opacity:0;pointer-events:none;
+  transition:opacity .22s ease,transform .28s cubic-bezier(.34,1.5,.64,1);
+}
+#freeMonthToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#freeMonthToast .fmt-ico{width:22px;height:22px;border-radius:7px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#freeMonthToast .fmt-text{font-size:12px;font-weight:700;color:#fff;}
+#freeMonthToast .fmt-text em{font-style:normal;color:#34d399;}
+/* ══ END WELCOME POPUP ══ */
+
+/* ── GROUP CTA BOX LED BORDER (mobile-safe: chỉ dùng opacity animation) ── */
+@keyframes freePulse{0%,100%{opacity:1;box-shadow:0 0 6px rgba(255,255,255,0.2);}50%{opacity:0.7;box-shadow:0 0 12px rgba(255,255,255,0.35);}}
+@keyframes ledPurple{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes ledPink{0%,100%{opacity:0;}50%{opacity:1;}}
+.group-cta-box{position:relative;}
+.group-cta-box::before,.group-cta-box::after{
+  content:'';position:absolute;inset:-1px;border-radius:25px;pointer-events:none;
+  /* opacity animation = compositor-only, KHÔNG repaint */
+}
+.group-cta-box::before{
+  border:1.5px solid rgba(168,85,247,0.75);
+  box-shadow:0 0 14px rgba(168,85,247,0.2);
+  animation:ledPurple 2.4s ease-in-out infinite;
+}
+.group-cta-box::after{
+  border:1.5px solid rgba(236,72,153,0.7);
+  box-shadow:0 0 14px rgba(236,72,153,0.18);
+  animation:ledPink 2.4s ease-in-out infinite;
 }
 @media(min-width:641px) and (max-width:768px){
   #chatgptPlusCard .glass-card{border-radius:40px!important;}
@@ -646,6 +799,8 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 </style>
 </head>
 <body>
+<!-- 3D GRID BACKGROUND -->
+<canvas id="bgGrid3d" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block;"></canvas>
 <div class="glow-orb glow-orb-1"></div>
 <div class="glow-orb glow-orb-2"></div>
 <div class="glow-orb glow-orb-3"></div>
@@ -667,7 +822,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     <span class="topbar-nav-text">ChatGPT · Youtube · CapCut</span>
   </a>
-  <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu();setTimeout(()=>{var el=document.querySelector('#chatgptPlusCard+.sub-cards-yt-wrap+.sub-card,#accountsGrid>.sub-card:last-child');if(el){var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:60;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}},100);">
+  <a class="topbar-nav-item" href="#tth-anchor" onclick="closeTopMenu();setTimeout(()=>scrollToId('tth-anchor'),100);">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
     <span class="topbar-nav-text">Visa / Mastercard</span>
   </a>
@@ -722,14 +877,11 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         </div>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:5px;width:fit-content;">
-        <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
+      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          Follow FB
+          Check uy tín Facebook
           <div class="fb-btn-arrow"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </a>
-        <div style="font-size:clamp(8.5px,1.2vw,10px);color:rgba(240,236,248,0.72);font-weight:600;text-align:center;letter-spacing:0.01em;">🎁 Follow Facebook để nhận giảm giá đơn đầu tiên</div>
-      </div>
     </div>
 
     <!-- RIGHT: 2×3 chip grid — icon + tên -->
@@ -770,14 +922,29 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 </div><!-- end hero-banner -->
 
 <!-- HERO (stat cards + CTA) -->
-<section class="hero">
-  <div class="hero-ring"><div class="hero-ring-inner"></div></div>
+<section class="hero" id="hero">
   <div class="container" style="text-align:center;">
-    <div class="hero-cta" id="heroCta" style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:36px;">
-      <div class="btn-primary-wrap" id="heroPrimaryWrap" style="flex:none;">
-        <button onclick="var el=document.getElementById('accounts');var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:72;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'})" class="btn-register-shimmer" id="heroPrimaryBtn" style="font-size:13.5px;padding:11px 26px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Inter',sans-serif;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 22px rgba(168,85,247,0.55),0 0 40px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22);white-space:nowrap;">Khám phá ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    <div class="hero-cta" id="heroCta" style="display:flex;align-items:center;justify-content:center;margin-bottom:36px;">
+      <div class="group-cta-box" style="position:relative;background:linear-gradient(145deg,rgba(17,9,48,0.75),rgba(12,7,36,0.78));border:1px solid rgba(168,85,247,0.22);border-radius:24px;padding:clamp(18px,3vw,28px) clamp(22px,4vw,40px);display:flex;flex-direction:column;align-items:center;gap:10px;max-width:min(480px,90vw);box-sizing:border-box;box-shadow:0 2px 12px rgba(168,85,247,0.06),0 8px 32px rgba(0,0,0,0.15);contain:layout style paint;">
+        <!-- top shimmer line -->
+        <div style="position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);border-radius:24px 24px 0 0;pointer-events:none;"></div>
+        <!-- glow badge -->
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.28);border-radius:100px;padding:4px 12px;">
+          <span style="width:5px;height:5px;border-radius:50%;background:#A855F7;box-shadow:0 0 7px #A855F7;animation:sbsDot 2s ease-in-out infinite;flex-shrink:0;display:inline-block;"></span>
+          <span style="font-size:clamp(9px,1.2vw,10.5px);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.8);">Cộng đồng</span>
+        </div>
+        <!-- title -->
+        <div style="font-size:clamp(14px,2.2vw,18px);font-weight:900;color:#F0ECF8;text-align:center;letter-spacing:-0.01em;">GenZ Đam Mê IT · Vibe Code · AI</div>
+        <!-- sub -->
+        <div style="font-size:clamp(11px,1.5vw,13px);color:rgba(240,236,248,0.5);text-align:center;word-break:break-word;line-height:1.55;">Tham gia group → chơi mini game → nhận <span style="font-weight:700;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">ChatGPT Plus miễn phí</span></div>
+        <!-- CTA button -->
+        <a href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noreferrer" style="margin-top:6px;font-size:clamp(12px,1.8vw,14px);padding:clamp(10px,1.5vw,13px) clamp(20px,3vw,30px);display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;border-radius:100px;text-decoration:none;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;white-space:nowrap;border:1px solid rgba(255,255,255,0.18);box-shadow:0 1px 0 rgba(255,255,255,0.22) inset,0 -1px 0 rgba(0,0,0,0.2) inset,0 2px 0 rgba(100,20,160,0.7),0 4px 14px rgba(168,85,247,0.45);transition:transform 0.12s,box-shadow 0.12s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 1px 0 rgba(255,255,255,0.25) inset,0 -1px 0 rgba(0,0,0,0.22) inset,0 2px 0 rgba(100,20,160,0.7),0 6px 20px rgba(168,85,247,0.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 0 rgba(255,255,255,0.22) inset,0 -1px 0 rgba(0,0,0,0.2) inset,0 2px 0 rgba(100,20,160,0.7),0 4px 14px rgba(168,85,247,0.45)'" onmousedown="this.style.transform='translateY(1px)'" onmouseup="this.style.transform='translateY(-2px)'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Tham gia Group ngay
+          <span style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.22);color:#fff;font-size:9px;font-weight:900;letter-spacing:0.1em;padding:3px 8px;border-radius:100px;animation:freePulse 2s ease-in-out infinite;">MIỄN PHÍ</span>
+          <div style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </a>
       </div>
-
     </div>
     <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2vw,16px);max-width:min(680px,100%);margin:0 auto;">
       <div class="neon-card neon-cyan">
@@ -816,157 +983,180 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <section id="accounts" style="padding:clamp(60px,8vw,90px) 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
   <div class="container">
     <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">ChatGPT · Youtube · CapCut</div><div class="section-beam r"></div></div></div>
-    <div style="text-align:center;margin:-4px 0 32px;">
-      <div id="promoPill" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.35);border-radius:100px;padding:10px 24px;">
-        <span id="promoPillText" style="font-size:13.5px;font-weight:700;color:#E0B4FF;letter-spacing:0.01em;">Gói <strong style="color:#fff;">12 tháng</strong> tặng <strong style="color:#fff;">1 tháng miễn phí</strong></span>
-      </div>
-    </div>
 
     <!-- ── MAIN GRID: ChatGPT card (full width) → sub cards below ── -->
     <div id="accountsGrid" style="display:flex;flex-direction:column;gap:clamp(32px,5vw,48px);max-width:680px;margin:0 auto;">
 
       <!-- ── CHATGPT PLUS CARD ── -->
-      <div style="width:100%;box-sizing:border-box;position:relative;" id="chatgptPlusCard">
-        <div class="tth-card" style="border-radius:40px;max-width:100%;position:relative;">
+      <div style="width:100%;box-sizing:border-box;" id="chatgptPlusCard">
+        <div class="tth-card" style="max-width:100%;">
 
-          <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(234,179,8,0.9) 30%,rgba(251,191,36,0.6) 70%,transparent 100%);margin:0 5%;"></div>
-
-          <div style="padding:clamp(32px,5vw,56px) clamp(20px,4vw,44px) 0;">
-            <div style="display:flex;align-items:center;gap:16px;padding-right:110px;">
-              <img src="assets/images/GPT.jpg" alt="ChatGPT Plus" style="width:56px;height:56px;min-width:56px;max-width:56px;border-radius:16px;object-fit:cover;flex-shrink:0;border:1px solid rgba(234,179,8,0.4);box-shadow:0 0 24px rgba(234,179,8,0.25);display:block;">
+          <!-- HEADER -->
+          <div style="padding:16px 20px 0;position:relative;">
+            <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
+              <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
+              <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Cá nhân</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding-right:72px;">
+              <img src="assets/images/GPT.jpg" alt="ChatGPT Plus" style="width:40px;height:40px;border-radius:11px;object-fit:cover;flex-shrink:0;border:1px solid rgba(234,179,8,0.3);display:block;">
               <div>
-                <div style="font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;word-break:break-word;">ChatGPT PLUS</div>
-                <div style="font-size:11px;color:rgba(253,224,71,0.5);font-weight:500;">GPT-5.4 · Codex · Sora AI · Agent · ADA</div>
+                <div style="font-size:0.93rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:2px;line-height:1.2;">ChatGPT PLUS</div>
+                <div style="font-size:9px;color:rgba(253,224,71,0.5);font-weight:600;">GPT-5.4 · Codex · Sora AI · Agent · ADA</div>
               </div>
             </div>
           </div>
 
-          <div style="padding:18px clamp(18px,4vw,44px) 24px;border-bottom:1px solid rgba(234,179,8,0.15);">
-            <div id="plusPriceFlexRow" style="display:flex;align-items:stretch;gap:18px;flex-wrap:wrap;">
-              <div id="plusPriceRight" style="display:flex;flex-direction:column;justify-content:center;">
-                <div style="font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(253,224,71,0.45);margin-bottom:8px;">Giá / tháng</div>
-                <div class="price-main" style="font-size:3.22rem;line-height:1;background:linear-gradient(90deg,#EAB308 0%,#FDE047 50%,#F59E0B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 22px rgba(234,179,8,0.85)) drop-shadow(0 0 40px rgba(251,191,36,0.55));">99K</div>
-                <div style="display:flex;align-items:center;gap:7px;margin-top:6px;">
-                  <span style="font-size:8px;color:rgba(240,236,248,0.45);text-decoration:line-through;text-decoration-color:rgba(255,80,80,0.6);text-decoration-thickness:1.5px;font-weight:600;" id="plusOldPrice">522.000đ</span>
-                  <span style="font-size:10px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 9px;box-shadow:0 0 10px rgba(220,38,38,0.5);" class="discount-badge" data-orig="522000" data-sale-personal="99000" id="plusDiscountBadge">-81%</span>
-                </div>
-                <div style="margin-top:6px;font-size:8px;font-weight:700;color:rgba(255,180,50,0.8);">≈ chỉ 3.300đ / ngày</div>
-              </div>
-              <div id="plusPriceDivider" style="width:1px;background:rgba(234,179,8,0.22);align-self:stretch;margin:4px 0;min-height:70px;flex-shrink:0;"></div>
-              <div id="plusYearlyBox" style="flex:1;min-width:150px;background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.28);border-radius:20px;padding:11px 13px;">
-                <div style="font-size:7px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:rgba(253,224,71,0.55);margin-bottom:8px;">GÓI 12 THÁNG TẶNG 1 THÁNG MIỄN PHÍ</div>
-                <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:5px;"><span style="font-size:8px;color:rgba(240,236,248,0.3);font-weight:500;white-space:nowrap;">Giá niêm yết:</span><span style="font-size:clamp(0.75rem,2.5vw,1.1rem);font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.85);text-decoration-thickness:3px;line-height:1.15;white-space:nowrap;" id="plusYearlyListFull">—</span></div>
-                <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:2px;"><span style="font-size:7.5px;color:rgba(253,224,71,0.65);font-weight:600;white-space:nowrap;">còn lại</span><span style="font-size:clamp(0.8rem,2.5vw,1.15rem);font-weight:800;background:linear-gradient(90deg,#EAB308,#FDE047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;" id="plusYearlyOur">—</span></div>
-                <div style="height:1px;background:rgba(234,179,8,0.18);margin:7px 0;"></div>
-                <div style="font-size:8px;font-weight:800;color:rgba(99,220,150,0.9);" id="plusYearlySaving">—</div>
-              </div>
-            </div>
-            <div id="plusShareNote" style="margin-top:14px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
-              <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">✓</span>
-              <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">Tài khoản cá nhân riêng</span>
+          <!-- TAB -->
+          <div style="padding:10px 20px 0;">
+            <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(234,179,8,0.2);border-radius:100px;padding:3px;">
+              <button id="plusTab1" onclick="plusTabSwitch(1)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#92400e,#D97706,#EAB308);color:#1a0800;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
+              <button id="plusTab12" onclick="plusTabSwitch(12)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(253,224,71,0.45);box-shadow:none;">12 tháng</button>
             </div>
           </div>
 
-          <div style="padding:0 clamp(18px,4vw,44px) 20px;">
-            <div class="tth-any">
-              <div class="tth-any-badge"><div class="tth-dot"></div>GPT-5.4 Flagship · Sora · Agent · ADA</div>
-              <div class="tth-note" style="margin-bottom:12px;"><strong style="color:rgba(253,224,71,0.85);font-weight:700;">GPT-5.4</strong> hiển thị <strong style="color:rgba(240,236,248,0.7);">kế hoạch suy nghĩ realtime</strong> — điều chỉnh ngay khi AI đang xử lý. Hỗ trợ <strong style="color:rgba(240,236,248,0.7);">1 triệu token context</strong> (preview), nghiên cứu web sâu vượt GPT-5.3 và đạt <strong style="color:rgba(240,236,248,0.7);">81.2% MMMU-Pro</strong> — cao hơn Gemini 3.1 Pro.</div>
-              <div class="tth-mq-wrap">
-                <div class="tth-mq-track">
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyệt web · ADA</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent · Codex</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bộ nhớ nâng cao</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Ưu tiên truy cập</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mình bạn dùng</span>
-                  <!-- duplicate for seamless loop -->
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyệt web · ADA</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent · Codex</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bộ nhớ nâng cao</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Ưu tiên truy cập</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mình bạn dùng</span>
-                </div>
+          <!-- PRICE -->
+          <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(234,179,8,0.12);">
+            <div id="plusPane1">
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);">522.000đ</span> <span style="font-size:9px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 7px;" class="discount-badge" data-orig="522000" data-sale-personal="99000" id="plusDiscountBadge">-81%</span></div>
+              </div>
+              <div class="chip-per-day"><span class="chip-per-day-b"></span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="gptPerDay1">chỉ 3.300đ / ngày</span>
+              </div>
+            </div>
+            <div id="plusPane12" style="display:none;">
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="plusYearlyOur">—</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);" id="plusYearlyListFull">—</span></div>
+              </div>
+              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="plusYearlySaving">—</div>
+              <div class="chip-per-day"><span class="chip-per-day-b"></span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="gptPerDay12">chỉ 3.046đ / ngày</span>
               </div>
             </div>
           </div>
 
-          <div style="padding:0 clamp(18px,4vw,44px) clamp(24px,4vw,44px);display:flex;gap:clamp(8px,2vw,12px);align-items:center;flex-wrap:nowrap;min-width:0;">
-            <button onclick="openFeatModal()" style="font-family:'Inter',sans-serif;font-size:clamp(11px,2.5vw,12.5px);white-space:nowrap;flex-shrink:0;padding:10px clamp(12px,3vw,20px);display:inline-flex;align-items:center;gap:7px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;border-radius:100px;cursor:pointer;transition:background .2s;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Xem chi tiết</button>
-            <div class="tth-btn-cw" style="flex:1;">
-              <button onclick="openPlusModal()" class="tth-btn-c">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-            </div>
+          <!-- FOOTER -->
+          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
+            <button onclick="openFeatModal()" style="background:none;border:none;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;display:inline-flex;align-items:center;gap:5px;color:rgba(253,224,71,0.5);font-size:12px;font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(234,179,8,0.3);padding:0;" onmouseover="this.style.color='rgba(253,224,71,0.85)'" onmouseout="this.style.color='rgba(253,224,71,0.5)'">Xem chi tiết tính năng <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="tth-btn-cw"><button onclick="openPlusModal()" class="tth-btn-c">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
           </div>
         </div>
       </div>
       <!-- END ChatGPT Plus card -->
 
-      <!-- ── SUB CARDS: YouTube + CapCut ── -->
-      <!-- gap được control bởi flex gap của accountsGrid (48px) -->
+      <!-- ── SUB CARDS ── -->
       <div class="sub-cards-yt-wrap" style="width:100%;">
 
         <!-- YouTube Premium -->
-        <div id="ytCard" class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-            <img src="assets/images/YT.jpg" alt="YouTube Premium" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
-            <div>
-              <div style="font-size:1.05rem;font-weight:800;color:#fff;">YouTube Premium</div>
-              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Không quảng cáo · YouTube Music</div>
+        <div id="ytCard" class="sub-card" style="display:flex;flex-direction:column;">
+          <!-- YT: Header — icon + tên + badge Gia đình -->
+          <div style="padding:16px 20px 0;position:relative;">
+            <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
+              <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
+              <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Gia đình</span>
             </div>
-          </div>
-          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
-            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
-              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
-              <div style="font-size:clamp(2rem,6vw,3.22rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">35K</div>
-              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">79.000đ</span></div>
-            </div>
-            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
-            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
-              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
-              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
-                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">455.000đ</span>
-                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.027.000đ</span></span>
+            <div style="display:flex;align-items:center;gap:10px;padding-right:72px;">
+              <img src="assets/images/YT.jpg" alt="YouTube Premium" loading="lazy" style="width:40px;height:40px;border-radius:11px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
+              <div>
+                <div style="font-size:0.93rem;font-weight:800;color:#fff;margin-bottom:2px;line-height:1.2;">YouTube Premium</div>
+                <div style="font-size:9px;color:rgba(192,132,252,0.55);font-weight:600;">Không quảng cáo · YT Music</div>
               </div>
-              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 572.000đ</div>
             </div>
           </div>
-          <div style="margin-bottom:10px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
-            <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">✓</span>
-            <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">Thêm gmail vào nhóm gia đình, ổn định, lâu dài</span>
+          <!-- YT: Tab 1 / 12 tháng -->
+          <div style="padding:10px 20px 0;">
+            <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
+              <button id="ytTab1" onclick="ytTabSwitch(1)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
+              <button id="ytTab12" onclick="ytTabSwitch(12)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
+            </div>
           </div>
-          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('✦ YouTube Premium · 35K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          <!-- YT: Giá -->
+          <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(168,85,247,0.1);">
+            <div id="ytPane1">
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
+              </div>
+              <div class="chip-per-day"><span class="chip-per-day-b"></span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="ytPerDay1">chỉ 1.167đ / ngày</span>
+              </div>
+            </div>
+            <div id="ytPane12" style="display:none;">
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ytYearlyOur">—</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ytYearlyList">—</span></div>
+              </div>
+              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="ytYearlySaving">💰 Tiết kiệm —</div>
+              <div class="chip-per-day"><span class="chip-per-day-b"></span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="ytPerDay12">chỉ 1.077đ / ngày</span>
+              </div>
+            </div>
+          </div>
+          <!-- YT: Footer — mô tả + nút -->
+          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
+            <div style="font-size:10.5px;color:rgba(240,236,248,0.38);line-height:1.5;">Thêm Gmail vào nhóm gia đình · ổn định, lâu dài</div>
+            <button onclick="openModal('✦ YouTube Premium · 35K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          </div>
         </div>
 
         <!-- CapCut Pro -->
-        <div id="capcutCard" class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-            <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
-            <div>
-              <div style="font-size:1.05rem;font-weight:800;color:#fff;">CapCut Pro</div>
-              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Mở khóa toàn bộ · Xuất 4K</div>
+        <div id="capcutCard" class="sub-card" style="display:flex;flex-direction:column;">
+          <!-- CapCut: Header -->
+          <div style="padding:16px 20px 0;position:relative;">
+            <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
+              <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
+              <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Cá nhân</span>
             </div>
-          </div>
-          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
-            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
-              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
-              <div style="font-size:clamp(2rem,6vw,3.22rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">59K</div>
-              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">145.000đ</span></div>
-            </div>
-            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
-            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
-              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
-              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
-                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">767.000đ</span>
-                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.885.000đ</span></span>
+            <div style="display:flex;align-items:center;gap:10px;padding-right:72px;">
+              <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" loading="lazy" style="width:40px;height:40px;border-radius:11px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
+              <div>
+                <div style="font-size:0.93rem;font-weight:800;color:#fff;margin-bottom:2px;line-height:1.2;">CapCut Pro</div>
+                <div style="font-size:9px;color:rgba(192,132,252,0.55);font-weight:600;">Mở khóa toàn bộ · Xuất 4K</div>
               </div>
-              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 1.118.000đ</div>
             </div>
           </div>
-          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('❆ CapCut Pro · 59K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          <!-- CapCut: Tab -->
+          <div style="padding:10px 20px 0;">
+            <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
+              <button id="ccTab1" onclick="ccTabSwitch(1)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
+              <button id="ccTab12" onclick="ccTabSwitch(12)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
+            </div>
+          </div>
+          <!-- CapCut: Giá -->
+          <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(168,85,247,0.1);">
+            <div id="ccPane1">
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">59K</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">145.000đ</span></div>
+              </div>
+              <div class="chip-per-day"><span class="chip-per-day-b"></span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="ccPerDay1">chỉ 2.000đ / ngày</span>
+              </div>
+            </div>
+            <div id="ccPane12" style="display:none;">
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ccYearlyOur">—</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ccYearlyList">—</span></div>
+              </div>
+              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="ccYearlySaving">💰 Tiết kiệm —</div>
+              <div class="chip-per-day"><span class="chip-per-day-b"></span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="ccPerDay12">chỉ 1.815đ / ngày</span>
+              </div>
+            </div>
+          </div>
+          <!-- CapCut: Footer -->
+          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
+            <div style="font-size:10.5px;color:rgba(240,236,248,0.38);line-height:1.5;">Mở khóa toàn bộ tính năng, template · xuất 4K không logo</div>
+            <button onclick="openModal('❆ CapCut Pro · 59K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          </div>
         </div>
 
       </div><!-- end sub-cards-yt-wrap -->
@@ -990,7 +1180,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Hỗ trợ làm bài tập lập trình — code theo yêu cầu, giải thích chi tiết, giao bài đúng tiến độ.</span></div>
             <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bảo hành miễn phí sau bàn giao · Báo giá nhanh · Giao hàng đúng hẹn.</span></div>
           </div>
-          <button onclick="openServiceModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.45);border-radius:100px;color:#C084FC;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;letter-spacing:0.02em;" onmouseover="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.25),rgba(236,72,153,0.18))';this.style.borderColor='rgba(168,85,247,0.7)';this.style.boxShadow='0 0 22px rgba(168,85,247,0.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1))';this.style.borderColor='rgba(168,85,247,0.45)';this.style.boxShadow='none'">
+          <button onclick="openServiceModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.45);border-radius:100px;color:#C084FC;font-size:14px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;letter-spacing:0.02em;" onmouseover="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.25),rgba(236,72,153,0.18))';this.style.borderColor='rgba(168,85,247,0.7)';this.style.boxShadow='0 0 22px rgba(168,85,247,0.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1))';this.style.borderColor='rgba(168,85,247,0.45)';this.style.boxShadow='none'">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
             Liên hệ nhận tư vấn miễn phí
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1004,7 +1194,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <!-- THANH TOÁN HỘ -->
 <section style="padding:0 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
   <div class="container">
-    <div id="tth-anchor" class="tth-card" style="max-width:680px;margin:0 auto;border-color:rgba(34,197,94,0.45);background:linear-gradient(145deg,rgba(6,20,12,0.97) 0%,rgba(4,14,8,0.99) 50%,rgba(7,22,13,0.97) 100%);box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 4px 24px rgba(0,0,0,0.6),0 20px 60px rgba(0,0,0,0.4),0 0 60px rgba(34,197,94,0.1);">
+    <div id="tth-anchor" class="tth-card" style="max-width:680px;margin:0 auto;border-color:rgba(34,197,94,0.45);background:linear-gradient(145deg,rgba(2,10,4,0.08) 0%,rgba(2,8,3,0.10) 50%,rgba(3,12,5,0.08) 100%);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 2px 10px rgba(0,0,0,0.15),0 0 20px rgba(34,197,94,0.05);">
       <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(34,197,94,0.85) 30%,rgba(16,185,129,0.55) 70%,transparent 100%);margin:0 5%;"></div>
       <div class="tth-inner" style="cursor:pointer;" onclick="openTthModal()">
         <div style="display:flex;align-items:center;gap:14px;">
@@ -1077,10 +1267,10 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       </div>
     </div>
     <div class="contact-list">
-      <a href="https://zalo.me/0898908101" target="_blank" class="contact-item"><img src="assets/images/zalo.jpg" alt="Zalo" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-      <a href="https://t.me/binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tele.jpg" alt="Telegram" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" class="contact-item"><img src="assets/images/fb.jpg" alt="Facebook" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-      <a href="https://www.tiktok.com/@binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tiktok.jpg" alt="TikTok" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://zalo.me/0898908101" target="_blank" class="contact-item"><img src="assets/images/zalo.jpg" alt="Zalo" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://t.me/binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tele.jpg" alt="Telegram" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" class="contact-item"><img src="assets/images/fb.jpg" alt="Facebook" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://www.tiktok.com/@binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tiktok.jpg" alt="TikTok" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
     </div>
   </div>
 </section>
@@ -1146,7 +1336,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <!-- CTA button — green spin border -->
       <div style="width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;background:conic-gradient(from var(--tth-la,0deg),#14532d 0%,#22c55e 15%,#86efac 25%,#16a34a 35%,#22c55e 50%,#14532d 60%,#86efac 70%,#22c55e 85%,#14532d 100%);animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(34,197,94,0.65),0 0 44px rgba(34,197,94,0.25);contain:layout style paint;">
         <div style="position:absolute;inset:2.5px;border-radius:100px;background:rgba(4,14,8,0.99);z-index:0;pointer-events:none;"></div>
-        <button style="width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#14532d 0%,#16a34a 40%,#22c55e 70%,#4ade80 100%);color:#031a0a;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25);" onclick="closeTthModal();openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
+        <button style="width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#14532d 0%,#16a34a 40%,#22c55e 70%,#4ade80 100%);color:#031a0a;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25);" onclick="closeTthModal();openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           Liên hệ ngay
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1204,6 +1394,19 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .fm-avail{margin:0 16px 16px;}
 }
 @media(max-width:380px){.fm-cards{grid-template-columns:1fr;}.fm-bench-name{width:90px;min-width:90px;}}
+
+/* ══ ORANGE LED CHIP ══ */
+@keyframes orangeGlow{0%,100%{box-shadow:0 0 10px rgba(251,100,20,0.55),0 0 22px rgba(251,100,20,0.25);}50%{box-shadow:0 0 18px rgba(251,100,20,0.9),0 0 36px rgba(251,100,20,0.4);}}
+@keyframes orangeLedA{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes orangeLedB{0%,100%{opacity:0;}50%{opacity:1;}}
+@keyframes orangeShim{0%{transform:translateX(-100%);}100%{transform:translateX(400%);}}
+.chip-per-day{position:relative;display:inline-flex;align-items:center;gap:6px;background:rgba(234,60,10,0.10);border-radius:100px;padding:6px 15px;animation:orangeGlow 2.2s ease-in-out infinite;overflow:hidden;}
+.chip-per-day::before{content:'';position:absolute;inset:0;border-radius:100px;pointer-events:none;border:1.5px solid rgba(251,100,20,0.9);animation:orangeLedA 2.2s ease-in-out infinite;}
+.chip-per-day::after{content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,200,100,0.28),transparent);animation:orangeShim 2.8s ease-in-out infinite;pointer-events:none;will-change:transform;}
+.chip-per-day-b{position:absolute;inset:0;border-radius:100px;pointer-events:none;border:1.5px solid rgba(255,160,50,0.75);animation:orangeLedB 2.2s ease-in-out infinite;}
+.chip-per-day span{font-size:11.5px;font-weight:900;color:#FF8040;text-shadow:0 0 10px rgba(255,120,40,0.7),0 0 20px rgba(255,100,20,0.4);letter-spacing:0.02em;}
+.chip-per-day svg{flex-shrink:0;filter:drop-shadow(0 0 4px rgba(255,140,40,0.7));}
+@media(max-width:640px){.chip-per-day::after{display:none;}.chip-per-day{padding:5px 13px;}.chip-per-day span{font-size:11px;}}
 </style>
 <div class="modal-overlay" id="featModal" onclick="if(event.target===this){document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';}">
   <div class="feat-modal-box">
@@ -1250,64 +1453,184 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   </div>
 </div>
 
-<!-- CONTACT MODAL -->
+<!-- CONTACT MODAL — V1: Tách biệt rõ ràng -->
 <div class="modal-overlay" id="contactModal" onclick="if(event.target===this){closeModal();}">
-  <div class="modal-box">
-    <div id="modalHeader" style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:14px 18px;margin-bottom:16px;text-align:center;">
-      <div id="modalSelected" style="font-size:14px;font-weight:800;color:#E0B4FF;line-height:1.5;"></div>
-    </div>
-    <div id="plusNotesBox" style="display:none;background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:14px 16px;margin-bottom:16px;">
-      <div style="font-size:9.5px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(192,132,252,0.55);margin-bottom:10px;">📌 Lưu ý quan trọng</div>
-      <div style="display:flex;flex-direction:column;gap:7px;">
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Nhận tài khoản riêng (có thể đổi mật khẩu) ngay sau khi mua.</div>
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu).</div>
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Truy cập đầy đủ Sora (Video AI) &amp; Codex.</div>
+  <div class="modal-box" style="padding:0;overflow:hidden;max-width:390px;">
+
+    <!-- Close button -->
+    <button onclick="closeModal()" style="position:absolute;top:13px;right:14px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(240,236,248,0.45);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;font-family:'Be Vietnam Pro',sans-serif;transition:background .18s;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">✕</button>
+
+    <!-- V1 Block 1: Product header -->
+    <div id="v1Header" style="padding:16px 48px 14px 18px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(236,72,153,0.06));border-bottom:1px solid rgba(168,85,247,0.14);">
+      <img id="v1Ico" src="" alt="" style="width:44px;height:44px;border-radius:12px;object-fit:cover;flex-shrink:0;border:1.5px solid rgba(168,85,247,0.3);box-shadow:0 2px 12px rgba(0,0,0,0.4);">
+      <div style="min-width:0;">
+        <div id="v1Name" style="font-size:1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.2;"></div>
+        <div id="v1Tag" style="font-size:9.5px;color:rgba(192,132,252,0.65);font-weight:500;margin-top:3px;line-height:1.4;word-break:break-word;"></div>
       </div>
     </div>
-    <div id="modalSubtitle" style="font-size:14px;font-weight:800;margin-bottom:20px;color:var(--text);">Liên hệ để mua ngay:</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
-      <a href="https://t.me/binpinkgold" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
-        <img src="assets/images/tele.jpg" alt="Telegram" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
-        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Telegram</span>
+
+    <!-- V1 Block 3: Mô tả dịch vụ -->
+    <div id="v1Desc" style="margin:10px 16px 0;background:rgba(255,255,255,0.025);border:1px solid rgba(168,85,247,0.16);border-radius:13px;padding:12px 14px;">
+      <div style="font-size:8px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.6);margin-bottom:9px;">Mô tả dịch vụ</div>
+      <div id="v1Bullets" style="display:flex;flex-direction:column;gap:7px;"></div>
+    </div>
+
+    <!-- V1 Note -->
+    <div style="margin:9px 16px 0;text-align:center;font-size:10px;color:rgba(240,236,248,0.28);line-height:1.5;">Hỗ trợ mua qua Telegram / Zalo ngay sau khi nhắn tin.</div>
+
+    <!-- V1 Block 4: Kênh liên hệ -->
+    <div style="padding:10px 16px 18px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <a href="https://t.me/binpinkgold" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;padding:14px 10px;background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.18);border-radius:18px;transition:border-color .2s,background .2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.42)'" onmouseout="this.style.background='rgba(255,255,255,0.035)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/tele.jpg" alt="Telegram" style="width:54px;height:54px;border-radius:14px;object-fit:cover;box-shadow:0 4px 14px rgba(0,0,0,0.45);">
+        <span style="font-size:12px;font-weight:700;color:rgba(240,236,248,0.75);">Telegram</span>
       </a>
-      <a href="https://zalo.me/0898908101" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
-        <img src="assets/images/zalo.jpg" alt="Zalo" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
-        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
+      <a href="https://zalo.me/0898908101" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;padding:14px 10px;background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.18);border-radius:18px;transition:border-color .2s,background .2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.42)'" onmouseout="this.style.background='rgba(255,255,255,0.035)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/zalo.jpg" alt="Zalo" style="width:54px;height:54px;border-radius:14px;object-fit:cover;box-shadow:0 4px 14px rgba(0,0,0,0.45);">
+        <span style="font-size:12px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
       </a>
     </div>
-    <button class="modal-close-btn" onclick="closeModal()">✕ Đóng</button>
+
   </div>
 </div>
 
 <script>
-const PLUS_LIST_PRICE=522000,PLUS_OUR_PRICE=99000;
-function fmtVND(n){return n.toLocaleString('vi-VN')+'đ';}
-function initYearlyPricing(){
-  var lf=PLUS_LIST_PRICE*12,oy=PLUS_OUR_PRICE*12,sv=lf-oy;
-  document.getElementById('plusYearlyListFull').textContent=fmtVND(lf);
-  document.getElementById('plusYearlyOur').textContent=fmtVND(oy);
-  document.getElementById('plusYearlySaving').textContent='💰 Tiết kiệm '+fmtVND(sv);
+// ═══════════════════════════════════════════════════
+// PRICING CONFIG — chỉ cần sửa giá ở đây, mọi thứ tự tính
+// monthly   = giá bán / tháng (VNĐ)
+// listMonth = giá niêm yết chính thức / tháng (VNĐ)
+// ═══════════════════════════════════════════════════
+const PRICING = {
+  gpt:    { monthly: 99000,  listMonth: 522000  },
+  yt:     { monthly: 35000,  listMonth: 79000   },
+  capcut: { monthly: 59000,  listMonth: 145000  }
+};
+
+function fmtVND(n){return Math.round(n).toLocaleString('vi-VN')+'đ';}
+function fmtK(n){return Math.round(n/1000)+'K';}
+function perDay(total,months){return Math.round(total/(months*30));}
+function setText(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+
+function initAllPricing(){
+  var g=PRICING.gpt, y=PRICING.yt, c=PRICING.capcut;
+
+  // GPT
+  setText('gptPerDay1',       'chỉ '+perDay(g.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
+  setText('plusYearlyOur',    fmtK(g.monthly*12));
+  setText('plusYearlyListFull',fmtVND(g.listMonth*12));
+  setText('plusYearlySaving', '💰 Tiết kiệm '+fmtVND(g.listMonth*12-g.monthly*12));
+  setText('gptPerDay12',      'chỉ '+perDay(g.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
+  var pb=document.getElementById('plusDiscountBadge');
+  if(pb)pb.textContent='-'+Math.round((1-g.monthly/g.listMonth)*100)+'%';
+
+  // YouTube
+  setText('ytPerDay1',    'chỉ '+perDay(y.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
+  setText('ytYearlyOur',  fmtK(y.monthly*12));
+  setText('ytYearlyList', fmtVND(y.listMonth*12));
+  setText('ytYearlySaving','💰 Tiết kiệm '+fmtVND(y.listMonth*12-y.monthly*12));
+  setText('ytPerDay12',   'chỉ '+perDay(y.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
+
+  // CapCut
+  setText('ccPerDay1',    'chỉ '+perDay(c.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
+  setText('ccYearlyOur',  fmtK(c.monthly*12));
+  setText('ccYearlyList', fmtVND(c.listMonth*12));
+  setText('ccYearlySaving','💰 Tiết kiệm '+fmtVND(c.listMonth*12-c.monthly*12));
+  setText('ccPerDay12',   'chỉ '+perDay(c.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
+}
+
+function initYearlyPricing(){initAllPricing();}
+function calcDiscounts(){initAllPricing();}
+function _tabSwitch(tab,id1,id12,p1,p12,actBg,actColor){
+  var t1=document.getElementById(id1),t12=document.getElementById(id12);
+  var pn1=document.getElementById(p1),pn12=document.getElementById(p12);
+  if(!t1||!t12||!pn1||!pn12)return;
+  if(tab===1){
+    t1.style.background=actBg;t1.style.color=actColor;t1.style.boxShadow='0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3)';
+    t12.style.background='transparent';t12.style.color='rgba(192,132,252,0.45)';t12.style.boxShadow='none';
+    pn1.style.display='block';pn12.style.display='none';
+  }else{
+    t12.style.background=actBg;t12.style.color=actColor;t12.style.boxShadow='0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3)';
+    t1.style.background='transparent';t1.style.color='rgba(192,132,252,0.45)';t1.style.boxShadow='none';
+    pn1.style.display='none';pn12.style.display='block';
+  }
+}
+function plusTabSwitch(t){_tabSwitch(t,'plusTab1','plusTab12','plusPane1','plusPane12','linear-gradient(135deg,#92400e,#D97706,#EAB308)','#1a0800');if(t===12)showFreeMonthToast();}
+function ytTabSwitch(t){_tabSwitch(t,'ytTab1','ytTab12','ytPane1','ytPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');if(t===12)showFreeMonthToast();}
+function ccTabSwitch(t){_tabSwitch(t,'ccTab1','ccTab12','ccPane1','ccPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');if(t===12)showFreeMonthToast();}
+var _fmtTimer=null;
+function showFreeMonthToast(){
+  var el=document.getElementById('freeMonthToast');if(!el)return;
+  if(_fmtTimer){clearTimeout(_fmtTimer);}
+  el.classList.add('show');
+  _fmtTimer=setTimeout(function(){el.classList.remove('show');_fmtTimer=null;},2800);
 }
 function openTthModal(){var m=document.getElementById('tthModal');m.classList.add('open');document.body.style.overflow='hidden';}
 function closeTthModal(){var m=document.getElementById('tthModal');m.classList.remove('open');document.body.style.overflow='';}
-function openModal(n){
-  document.getElementById('modalSelected').textContent=n;
-  document.getElementById('plusNotesBox').style.display='none';
-  var sub=document.getElementById('modalSubtitle');
-  if(sub){
-    if(n.indexOf('Thanh Toán')!==-1||n.indexOf('Dịch Vụ')!==-1||n.indexOf('Bot')!==-1||n.indexOf('Website')!==-1)sub.textContent='Liên hệ để đặt dịch vụ ngay:';
-    else if(n.indexOf('YouTube')!==-1||n.indexOf('CapCut')!==-1||n.indexOf('Plus')!==-1||n.indexOf('ChatGPT')!==-1)sub.textContent='Liên hệ để nhận tài khoản ngay:';
-    else sub.textContent='Liên hệ để mua ngay:';
+// ── V1 MODAL DATA ──
+var V1_DATA={
+  gpt:{
+    ico:'assets/images/GPT.jpg',
+    name:'ChatGPT Plus',
+    tag:'GPT-5.4 · Codex · Sora AI · Agent · ADA',
+    price:'99K / tháng',
+    badge:'-81% 🔥',
+    bullets:[
+      '- Tài khoản sử dụng <span style="color:#60a5fa;font-weight:600;">1 mình</span>',
+      '- <span style="color:#60a5fa;font-weight:600;">Bảo hành</span> toàn bộ thời gian sử dụng',
+      '- Truy cập mọi <span style="color:#60a5fa;font-weight:600;">tính năng cao cấp Plus</span> của ChatGPT'
+    ]
+  },
+  yt:{
+    ico:'assets/images/YT.jpg',
+    name:'YouTube Premium',
+    tag:'Gia đình · YouTube Music · Không quảng cáo',
+    price:'35K / tháng',
+    badge:'-56% 🎬',
+    bullets:[
+      '- Tặng kèm <span style="color:#f87171;font-weight:600;">Youtube Music Premium</span>',
+      '- Bảo hành <span style="color:#60a5fa;font-weight:600;">toàn bộ thời gian sử dụng</span>',
+      '- Xem Youtube <span style="color:#60a5fa;font-weight:600;">không quảng cáo</span> + sử dụng mọi <span style="color:#60a5fa;font-weight:600;">tính năng cao cấp</span> của Youtube Premium'
+    ]
+  },
+  capcut:{
+    ico:'assets/images/CAPCUT.jpg',
+    name:'CapCut Pro',
+    tag:'Cá nhân · Xuất 4K · Không watermark',
+    price:'59K / tháng',
+    badge:'-59% ✂️',
+    bullets:[
+      '- Tài khoản sử dụng <span style="color:#60a5fa;font-weight:600;">1 mình</span>',
+      '- <span style="color:#60a5fa;font-weight:600;">Bảo hành</span> toàn bộ thời gian sử dụng',
+      '- Truy cập mọi <span style="color:#60a5fa;font-weight:600;">tính năng cao cấp Pro</span> của Capcut'
+    ]
   }
+};
+function _fillV1Modal(key){
+  var d=V1_DATA[key]||V1_DATA.gpt;
+  var ico=document.getElementById('v1Ico'),name=document.getElementById('v1Name'),
+      tag=document.getElementById('v1Tag'),price=document.getElementById('v1Price'),
+      badge=document.getElementById('v1Badge'),bullets=document.getElementById('v1Bullets');
+  if(ico)ico.src=d.ico;
+  if(name)name.textContent=d.name;
+  if(tag)tag.textContent=d.tag;
+  if(price)price.textContent=d.price;
+  if(badge)badge.textContent=d.badge;
+  if(bullets)bullets.innerHTML=d.bullets.map(function(b){
+    return '<div style="font-size:12px;color:rgba(240,236,248,0.75);line-height:1.65;word-break:break-word;">'+b+'</div>';
+  }).join('');
+}
+function openModal(n){
+  var key='gpt';
+  if(n.indexOf('YouTube')!==-1)key='yt';
+  else if(n.indexOf('CapCut')!==-1)key='capcut';
+  _fillV1Modal(key);
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
 function openPlusModal(){
-  document.getElementById('modalSelected').innerHTML='✨ ChatGPT Plus &bull; 99K/tháng';
-  document.getElementById('plusNotesBox').style.display='block';
-  var sub=document.getElementById('modalSubtitle');if(sub)sub.textContent='Liên hệ để nhận tài khoản ngay:';
-  document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';
+  _fillV1Modal('gpt');
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow='hidden';
 }
 function openFeeModal(){renderFeeModal();document.getElementById('feeModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeFeeModal(){document.getElementById('feeModal').classList.remove('open');document.body.style.overflow='';}
@@ -1372,6 +1695,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 
 // ── 3D SPACE BANNER ──────────────────────────────────────
 (function(){
+  var IS_MOB = window.innerWidth < 768;
   var cv=document.getElementById('bannerCanvas');
   if(!cv)return;
   var ctx=cv.getContext('2d');
@@ -1392,7 +1716,8 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 
   function initParticles(){
     particles=[];
-    var count=Math.min(55,Math.floor(W*H/5500));
+    var maxCount = IS_MOB ? 28 : 55;
+    var count=Math.min(maxCount,Math.floor(W*H/5500));
     for(var i=0;i<count;i++){
       spawnParticle(true);
     }
@@ -1414,9 +1739,14 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
     });
   }
 
+  var lastFrame=0;
+  var FRAME_INTERVAL = IS_MOB ? 1000/30 : 0; // 30fps on mobile, uncapped desktop
   function draw(ts){
+    if(IS_MOB && ts - lastFrame < FRAME_INTERVAL){RAF=requestAnimationFrame(draw);return;}
+    lastFrame=ts;
     ctx.clearRect(0,0,W,H);
     var alive=[];
+    var maxCount = IS_MOB ? 28 : 55;
     for(var i=0;i<particles.length;i++){
       var p=particles[i];
       p.z-=p.vz;
@@ -1435,15 +1765,17 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
       ctx.globalAlpha=alpha;
       ctx.font='600 '+fs.toFixed(1)+'px "SF Mono","Fira Code",monospace';
       ctx.fillStyle='hsl('+p.hue+',80%,72%)';
-      ctx.shadowColor='hsl('+p.hue+',90%,65%)';
-      ctx.shadowBlur=fs*0.9;
+      if(!IS_MOB){
+        ctx.shadowColor='hsl('+p.hue+',90%,65%)';
+        ctx.shadowBlur=fs*0.9;
+      }
       ctx.fillText(p.token,sx,sy);
       ctx.restore();
       alive.push(p);
     }
     particles=alive;
     // keep population stable
-    while(particles.length<Math.min(55,Math.floor(W*H/5500))){spawnParticle(false);}
+    while(particles.length<Math.min(maxCount,Math.floor(W*H/5500))){spawnParticle(false);}
     RAF=requestAnimationFrame(draw);
   }
 
@@ -1466,7 +1798,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 })();
 // ─────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded',function(){calcDiscounts();initYearlyPricing();});
+document.addEventListener('DOMContentLoaded',function(){initAllPricing();});
 
 function idxNavClick(e,idx,target){
   [0,1,2,3].forEach(i=>{var el=document.getElementById('idxNav'+i);if(el)el.classList.toggle('active',i===idx);});
@@ -1474,5 +1806,221 @@ function idxNavClick(e,idx,target){
 }
 </script>
 <script src="protect.js"></script>
+<script>
+/* ── 3D CURVED GRID BACKGROUND ── */
+(function(){
+  const canvas = document.getElementById('bgGrid3d');
+  const ctx = canvas.getContext('2d');
+  let W, H, gridPts=[], segments=[];
+
+  const IS_MOBILE = window.innerWidth < 768;
+  const FOV=650, TILT=IS_MOBILE ? Math.PI*0.32 : Math.PI*0.40,
+        CAM_Y=IS_MOBILE ? -340 : -520, CAM_Z=30, SPHERE_R=1100,
+        GRID_N = IS_MOBILE ? 22 : 32,
+        EXT=IS_MOBILE ? 520 : 600;
+
+  function surfaceY(wx,wz){
+    const d2=wx*wx+wz*wz,R2=SPHERE_R*SPHERE_R;
+    if(d2>=R2)return 30;
+    return -(SPHERE_R-Math.sqrt(R2-d2));
+  }
+  function project(wx,wz){
+    const wy=surfaceY(wx,wz),dy=wy-CAM_Y,dz=wz-CAM_Z;
+    const cosT=Math.cos(TILT),sinT=Math.sin(TILT);
+    const ry=cosT*dy+sinT*dz,rz=-sinT*dy+cosT*dz;
+    if(rz>=-0.1)return null;
+    const scale=FOV/(-rz);
+    const vOff=IS_MOBILE ? H*0.32 : H/2;
+    return{sx:wx*scale+W/2,sy:ry*scale+vOff,depth:-rz,scale};
+  }
+  function edgeAlpha(wx,wz,depth){
+    const e=Math.max(0,1-Math.sqrt(wx*wx+wz*wz)/(EXT*0.95));
+    const d=Math.min(1,Math.max(0,(depth-60)/700));
+    return e*d;
+  }
+  function buildGrid(){
+    gridPts=[];segments=[];
+    const step=(EXT*2)/GRID_N;
+    for(let i=0;i<=GRID_N;i++){gridPts[i]=[];for(let j=0;j<=GRID_N;j++){const wx=-EXT+i*step,wz=-EXT+j*step;gridPts[i][j]={p:project(wx,wz),wx,wz};}}
+    for(let i=0;i<=GRID_N;i++)for(let j=0;j<GRID_N;j++){const a=gridPts[i][j],b=gridPts[i][j+1];if(!a.p||!b.p)continue;const wx=a.wx,wz=(a.wz+b.wz)/2;segments.push({ax:a.p.sx,ay:a.p.sy,bx:b.p.sx,by:b.p.sy,alpha:edgeAlpha(wx,wz,a.p.depth),wx,wz});}
+    for(let j=0;j<=GRID_N;j++)for(let i=0;i<GRID_N;i++){const a=gridPts[i][j],b=gridPts[i+1][j];if(!a.p||!b.p)continue;const wx=(a.wx+b.wx)/2,wz=a.wz;segments.push({ax:a.p.sx,ay:a.p.sy,bx:b.p.sx,by:b.p.sy,alpha:edgeAlpha(wx,wz,a.p.depth),wx,wz});}
+  }
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;buildGrid();}
+  window.addEventListener('resize',resize);resize();
+
+  const ripples=[];
+  function spawnRipple(){ripples.push({born:performance.now(),life:3200});}
+  setInterval(spawnRipple,1600);spawnRipple();
+
+  const pulses=[];
+  function spawnPulse(){const isX=Math.random()>.5,idx=Math.floor(Math.random()*(GRID_N+1)),hue=Math.random()>.5?278:328,fwd=Math.random()>.5;pulses.push({isX,idx,t:fwd?0:1,speed:(0.010+Math.random()*0.016)*(fwd?1:-1),hue});}
+  setInterval(spawnPulse, IS_MOBILE ? 600 : 320);
+  for(let i=0;i<(IS_MOBILE?5:10);i++){spawnPulse();pulses[pulses.length-1].t=Math.random();}
+
+  const sparks=[];
+  function spawnSpark(){
+    if(IS_MOBILE) return; // shadowBlur nặng trên mobile
+    const i=Math.floor(Math.random()*(GRID_N+1)),j=Math.floor(Math.random()*(GRID_N+1));if(!gridPts[i]?.[j]?.p)return;const{sx,sy,scale}=gridPts[i][j].p;if(Math.sqrt(gridPts[i][j].wx**2+gridPts[i][j].wz**2)>EXT*0.72)return;sparks.push({x:sx,y:sy,born:performance.now(),life:700+Math.random()*700,size:scale*6});}
+  setInterval(spawnSpark,IS_MOBILE?99999:90);
+
+  function drawPulseHead(x,y,scale,hue,fade){
+    const r=Math.max(2,scale*9),g=ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,`hsla(${hue},95%,82%,${(fade*.95).toFixed(3)})`);
+    g.addColorStop(0.4,`hsla(${hue},80%,65%,${(fade*.45).toFixed(3)})`);
+    g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=`hsla(${hue},100%,95%,${(fade*.85).toFixed(3)})`;
+    ctx.beginPath();ctx.arc(x,y,Math.max(0.8,scale*1.6),0,Math.PI*2);ctx.fill();
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);
+    bg.addColorStop(0,'#0c0420');bg.addColorStop(0.6,'#080218');bg.addColorStop(1,'#04010e');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    const now=performance.now();
+    for(let ri=ripples.length-1;ri>=0;ri--){if(now-ripples[ri].born>=ripples[ri].life)ripples.splice(ri,1);}
+    const activeR=ripples.map(r=>({worldR:(now-r.born)/r.life*EXT*2.4,age:(now-r.born)/r.life}));
+    segments.forEach(seg=>{
+      if(seg.alpha<0.01)return;
+      const wd=Math.sqrt(seg.wx*seg.wx+seg.wz*seg.wz);
+      let boost=0;
+      activeR.forEach(r=>{const diff=Math.abs(wd-r.worldR),bw=EXT*.15;if(diff<bw)boost+=(1-diff/bw)*(1-r.age)*.85;});
+      const a=Math.min(0.95,seg.alpha*(IS_MOBILE ? 0.75+boost : 0.5+boost)),e=wd/EXT;
+      const rr=Math.floor(148+e*88+boost*35),gg=Math.floor(85-e*13),bb=Math.floor(247-e*100);
+      ctx.strokeStyle=`rgba(${rr},${gg},${bb},${a.toFixed(3)})`;
+      ctx.lineWidth=0.75+boost*2;
+      ctx.beginPath();ctx.moveTo(seg.ax,seg.ay);ctx.lineTo(seg.bx,seg.by);ctx.stroke();
+    });
+    for(let pi=pulses.length-1;pi>=0;pi--){
+      const p=pulses[pi];p.t+=p.speed;
+      if(p.t<0||p.t>1){pulses.splice(pi,1);continue;}
+      const pos=p.t*GRID_N,j0=Math.floor(pos),frac=pos-j0;
+      if(j0>=GRID_N)continue;
+      for(let di=-1;di<=1;di++){
+        const fade=(1-Math.abs(di)*.5)*(0.5+(1-Math.abs(p.t-.5)*2)*.5);
+        if(p.isX){const ii=p.idx+di;if(ii<0||ii>GRID_N)continue;const a2=gridPts[ii]?.[j0],b2=gridPts[ii]?.[j0+1];if(!a2?.p||!b2?.p)continue;drawPulseHead(a2.p.sx+(b2.p.sx-a2.p.sx)*frac,a2.p.sy+(b2.p.sy-a2.p.sy)*frac,a2.p.scale,p.hue,fade);}
+        else{const jj=p.idx+di;if(jj<0||jj>GRID_N)continue;const a2=gridPts[j0]?.[jj],b2=gridPts[j0+1]?.[jj];if(!a2?.p||!b2?.p)continue;drawPulseHead(a2.p.sx+(b2.p.sx-a2.p.sx)*frac,a2.p.sy+(b2.p.sy-a2.p.sy)*frac,a2.p.scale,p.hue,fade);}
+      }
+    }
+    for(let si=sparks.length-1;si>=0;si--){
+      const sp=sparks[si],age=(now-sp.born)/sp.life;
+      if(age>=1){sparks.splice(si,1);continue;}
+      const alpha=age<.25?age/.25:1-(age-.25)/.75,r2=sp.size*(.6+alpha*1.4);
+      const g2=ctx.createRadialGradient(sp.x,sp.y,0,sp.x,sp.y,r2);
+      g2.addColorStop(0,`rgba(255,225,255,${(alpha*.9).toFixed(3)})`);
+      g2.addColorStop(0.4,`rgba(192,132,252,${(alpha*.45).toFixed(3)})`);
+      g2.addColorStop(1,'rgba(168,85,247,0)');
+      ctx.fillStyle=g2;ctx.beginPath();ctx.arc(sp.x,sp.y,r2,0,Math.PI*2);ctx.fill();
+    }
+    const vig=ctx.createRadialGradient(W/2,H*.5,H*.12,W/2,H*.5,Math.max(W,H)*.82);
+    vig.addColorStop(0,'transparent');vig.addColorStop(1,'rgba(4,1,12,0.88)');
+    ctx.fillStyle=vig;ctx.fillRect(0,0,W,H);
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+  document.addEventListener('visibilitychange',function(){if(document.hidden){cancelAnimationFrame(draw._raf);}else{draw._raf=requestAnimationFrame(draw);}});
+})();
+</script><!-- FREE MONTH TOAST -->
+<div id="freeMonthToast">
+  <div class="fmt-ico">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-5"/></svg>
+  </div>
+  <span class="fmt-text">🎁 Mua <em>12 tháng</em> tặng <em>1 tháng miễn phí</em></span>
+</div>
+
+<!-- WELCOME POPUP -->
+<div id="welcomeOverlay">
+  <div id="welcomePopup">
+    <div class="wp-logo">
+      <span class="wp-logo-star">✦</span>
+      <span class="wp-logo-text">Binpinkgold Store</span>
+      <div class="wp-live">
+        <div class="wp-live-dot"></div>
+        <span class="wp-live-text">Online</span>
+      </div>
+    </div>
+    <div class="wp-title">Dịch vụ xịn. <em>Giá sinh viên.</em></div>
+    <div class="wp-sub">Xem nhanh các dịch vụ đang có tại store 👇</div>
+    <div class="wp-list">
+      <div class="wp-row">
+        <div class="wp-ico" style="background:rgba(234,179,8,.13);border:1px solid rgba(234,179,8,.28);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><circle cx="12" cy="5" r="2"/></svg>
+        </div>
+        <div class="wp-row-name">ChatGPT Plus · YouTube · CapCut Pro</div>
+      </div>
+      <div class="wp-row">
+        <div class="wp-ico" style="background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.25);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><rect x="5" y="13.5" width="4" height="2" rx="1" fill="rgba(96,165,250,.3)" stroke="none"/></svg>
+        </div>
+        <div class="wp-row-name">Thanh toán hộ Visa · Mastercard</div>
+      </div>
+      <div class="wp-row">
+        <div class="wp-ico" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.25);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="wp-row-name">Bot Telegram · Website</div>
+      </div>
+      <div class="wp-row">
+        <div class="wp-ico" style="background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.28);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-5"/></svg>
+        </div>
+        <div class="wp-row-name" style="color:#34d399;">12 tháng tặng 1 tháng miễn phí</div>
+      </div>
+    </div>
+    <div class="wp-div"></div>
+    <div class="wp-free-row">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FB923C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div class="wp-free-text">Tham gia nhóm → mini game → nhận <strong>ChatGPT Plus miễn phí</strong></div>
+    </div>
+    <a href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noreferrer" class="wp-cta" onclick="closeWelcome()">Vào nhóm ngay 🎉</a>
+    <button id="wpSkipBtn" class="wp-skip" onclick="closeWelcome()">Bỏ qua, xem Store</button>
+  </div>
+</div>
+<script>
+(function(){
+  var backdropCanClose=false;
+
+  function lockScroll(e){e.preventDefault();}
+  function enableLock(){
+    document.body.style.overflow='hidden';
+    document.addEventListener('touchmove',lockScroll,{passive:false});
+    document.addEventListener('wheel',lockScroll,{passive:false});
+  }
+  function disableLock(){
+    document.body.style.overflow='';
+    document.removeEventListener('touchmove',lockScroll);
+    document.removeEventListener('wheel',lockScroll);
+  }
+
+  function closeWelcome(){
+    document.getElementById('welcomeOverlay').classList.remove('show');
+    disableLock();
+  }
+  window.closeWelcome=closeWelcome;
+
+  function showWelcome(){
+    var ov=document.getElementById('welcomeOverlay');
+    ov.classList.add('show');
+    var skip=document.getElementById('wpSkipBtn');
+    skip.disabled=true;
+    skip.textContent='Bỏ qua, xem Store (2s)';
+    var t=2;
+    var iv=setInterval(function(){
+      t--;
+      if(t>0){skip.textContent='Bỏ qua, xem Store ('+t+'s)';}
+      else{clearInterval(iv);skip.disabled=false;skip.textContent='Bỏ qua, xem Store';backdropCanClose=true;}
+    },1000);
+  }
+
+  // đóng khi click overlay ngoài — chỉ cho phép sau khi countdown xong
+  document.getElementById('welcomeOverlay').addEventListener('click',function(e){if(e.target===this&&backdropCanClose)closeWelcome();});
+
+  // khoá scroll ngay lập tức từ khi load
+  enableLock();
+  setTimeout(showWelcome,800);
+})();
+</script>
+
 </body>
-</html>
+  </html>

@@ -900,7 +900,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <div class="hb-right">
 
       <a class="hb-chip" href="#chatgptPlusCard" onclick="event.preventDefault();scrollToId('chatgptPlusCard');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><circle cx="12" cy="5" r="2"/></svg></div>
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="rgba(192,132,252,0.85)" xmlns="http://www.w3.org/2000/svg"><path d="M21.66 10.18a5.95 5.95 0 00-.44-4.81 5.99 5.99 0 00-6.43-2.87 5.95 5.95 0 00-4.49-2.02 5.99 5.99 0 00-5.71 4.15 5.95 5.95 0 00-3.97 2.88 5.99 5.99 0 00.74 7.04 5.95 5.95 0 00.44 4.81 5.99 5.99 0 006.43 2.87A5.95 5.95 0 0012.76 24a5.99 5.99 0 005.72-4.15 5.95 5.95 0 003.97-2.88 5.99 5.99 0 00-.79-6.79zM12.76 22.5a4.48 4.48 0 01-2.88-1.04l.14-.08 4.78-2.76a.78.78 0 00.39-.68v-6.74l2.02 1.17a.07.07 0 01.04.05v5.58a4.5 4.5 0 01-4.49 4.5zm-9.63-4.13a4.48 4.48 0 01-.54-3.01l.14.09 4.78 2.76a.77.77 0 00.78 0l5.84-3.37v2.33a.07.07 0 01-.03.06l-4.84 2.8a4.5 4.5 0 01-6.13-1.66zm-1.25-10.6a4.47 4.47 0 012.33-1.96v5.7a.77.77 0 00.39.67l5.82 3.36-2.02 1.17a.07.07 0 01-.07 0L3.5 13.98a4.5 4.5 0 01-.62-6.21zm16.6 3.86L13.65 8.27l2.02-1.16a.07.07 0 01.07 0l4.84 2.79a4.5 4.5 0 01-.68 8.11v-5.7a.78.78 0 00-.42-.68zm2.01-3.02l-.14-.09-4.77-2.76a.77.77 0 00-.78 0L9.97 9.13V6.8a.07.07 0 01.03-.06l4.84-2.79a4.5 4.5 0 016.65 4.66zm-12.62 4.14L5.85 11.58a.07.07 0 01-.04-.06V5.95a4.5 4.5 0 017.38-3.45l-.14.08-4.78 2.76a.78.78 0 00-.39.68v6.73zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/></svg></div>
         <span class="hb-chip-name">ChatGPT Plus</span>
       </a>
 
@@ -1065,55 +1065,60 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 
         <!-- YouTube Premium -->
         <div id="ytCard" class="sub-card" style="display:flex;flex-direction:column;">
-          <!-- YT: Header — icon + tên + badge Gia đình -->
-          <div style="padding:16px 20px 0;position:relative;">
-            <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
-              <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
-              <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Gia đình</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;padding-right:72px;">
-              <img src="assets/images/YT.jpg" alt="YouTube Premium" loading="lazy" style="width:40px;height:40px;border-radius:11px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
-              <div>
-                <div style="font-size:0.93rem;font-weight:800;color:#fff;margin-bottom:2px;line-height:1.2;">YouTube Premium</div>
-                <div style="font-size:9px;color:rgba(192,132,252,0.55);font-weight:600;">Không quảng cáo · YT Music</div>
+          <!-- YT: Header -->
+          <div style="padding:16px 20px 0;display:flex;align-items:flex-start;gap:10px;">
+            <img src="assets/images/YT.jpg" alt="YouTube Premium" loading="lazy" style="width:40px;height:40px;border-radius:11px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.22);display:block;">
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:0.93rem;font-weight:800;color:#fff;margin-bottom:3px;line-height:1.2;">YouTube Premium</div>
+              <!-- subtitle: music note + text -->
+              <div style="display:inline-flex;align-items:center;gap:4px;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                <span style="font-size:9px;color:rgba(192,132,252,0.55);font-weight:600;">Tặng kèm YT Music</span>
               </div>
             </div>
-          </div>
-          <!-- YT: Tab 1 / 12 tháng -->
-          <div style="padding:10px 20px 0;">
-            <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
-              <button id="ytTab1" onclick="ytTabSwitch(1)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
-              <button id="ytTab12" onclick="ytTabSwitch(12)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
+            <!-- badge plan -->
+            <div id="ytBadge" style="display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.32);border-radius:100px;padding:3px 9px;flex-shrink:0;">
+              <span style="width:4px;height:4px;border-radius:50%;background:#34d399;display:inline-block;"></span>
+              <span id="ytBadgeTxt" style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">CÁ NHÂN</span>
             </div>
           </div>
+
+          <!-- YT: Plan tabs (Layout 02 — hàng riêng) -->
+          <div style="padding:12px 20px 0;">
+            <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
+              <button id="ytPlanCanhan" onclick="ytPlanSwitch('canhan')" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 13px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);display:inline-flex;align-items:center;gap:5px;">
+                <!-- person icon -->
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                Cá nhân
+              </button>
+              <button id="ytPlanChinhchu" onclick="ytPlanSwitch('chinhchu')" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 13px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;display:inline-flex;align-items:center;gap:5px;">
+                <!-- home icon -->
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                Chính chủ
+              </button>
+            </div>
+          </div>
+
           <!-- YT: Giá -->
           <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(168,85,247,0.1);">
-            <div id="ytPane1">
-              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
-              </div>
-              <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span id="ytPerDay1">chỉ 1.167đ / ngày</span>
-              </div>
+            <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+              <div id="ytPriceVal" style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
+              <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span id="ytOrigVal" style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
             </div>
-            <div id="ytPane12" style="display:none;">
-              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
-                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ytYearlyOur">—</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ytYearlyList">—</span></div>
-              </div>
-              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="ytYearlySaving">💰 Tiết kiệm —</div>
-              <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span id="ytPerDay12">chỉ 1.077đ / ngày</span>
-              </div>
+            <div class="chip-per-day"><span class="chip-per-day-b"></span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span id="ytPerDay1">chỉ 1.167đ / ngày</span>
             </div>
           </div>
-          <!-- YT: Footer — mô tả + nút -->
-          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
-            <div style="font-size:10.5px;color:rgba(240,236,248,0.38);line-height:1.5;">Thêm Gmail vào nhóm gia đình · ổn định, lâu dài</div>
-            <button onclick="openModal('✦ YouTube Premium · 35K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+
+          <!-- YT: Feature list popup (tick xanh) -->
+          <div id="ytFeatures" style="padding:10px 20px 0;">
+            <div id="ytFeatureList" style="display:flex;flex-direction:column;gap:5px;"></div>
+          </div>
+
+          <!-- YT: CTA -->
+          <div style="padding:12px 20px 18px;margin-top:auto;">
+            <button id="ytCtaBtn" onclick="openModal('✦ YouTube Premium · 35K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
           </div>
         </div>
 
@@ -1512,9 +1517,10 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 // listMonth = giá niêm yết chính thức / tháng (VNĐ)
 // ═══════════════════════════════════════════════════
 const PRICING = {
-  gpt:    { monthly: 99000,  listMonth: 522000  },
-  yt:     { monthly: 35000,  listMonth: 79000   },
-  capcut: { monthly: 59000,  listMonth: 145000  }
+  gpt:        { monthly: 99000,  listMonth: 522000  },
+  yt:         { monthly: 35000,  listMonth: 79000   },
+  yt_giadinh: { monthly: 45000,  listMonth: 99000   },
+  capcut:     { monthly: 59000,  listMonth: 145000  }
 };
 
 function fmtVND(n){return Math.round(n).toLocaleString('vi-VN')+'đ';}
@@ -1567,6 +1573,46 @@ function _tabSwitch(tab,id1,id12,p1,p12,actBg,actColor){
 }
 function plusTabSwitch(t){_tabSwitch(t,'plusTab1','plusTab12','plusPane1','plusPane12','linear-gradient(135deg,#92400e,#D97706,#EAB308)','#1a0800');if(t===12)showFreeMonthToast();}
 function ytTabSwitch(t){_tabSwitch(t,'ytTab1','ytTab12','ytPane1','ytPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');if(t===12)showFreeMonthToast();}
+
+var _ytPlan='canhan';
+const YT_PLANS={
+  canhan:{
+    price:'35K', orig:'79.000đ', perday:'1.167đ', badge:'CÁ NHÂN',
+    modal:'✦ YouTube Premium · 35K/tháng',
+    features:['Nhận tài khoản riêng','1 mình bạn dùng 1 tài khoản','Bảo hành toàn bộ thời gian sử dụng']
+  },
+  chinhchu:{
+    price:'45K', orig:'99.000đ', perday:'1.500đ', badge:'CHÍNH CHỦ',
+    modal:'✦ YouTube Premium · 45K/tháng',
+    features:['Nâng cấp gmail chính chủ','Nhóm gia đình ổn định, lâu dài','Bảo hành toàn bộ thời gian sử dụng']
+  }
+};
+function ytRenderFeatures(plan){
+  var list=document.getElementById('ytFeatureList');if(!list)return;
+  list.innerHTML=YT_PLANS[plan].features.map(function(f){
+    return '<div style="display:flex;align-items:center;gap:6px;">'
+      +'<span style="width:15px;height:15px;border-radius:50%;background:rgba(52,211,153,0.18);border:1px solid rgba(52,211,153,0.4);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">'
+      +'<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+      +'</span>'
+      +'<span style="font-size:10px;color:rgba(240,236,248,0.55);font-weight:500;">'+f+'</span>'
+      +'</div>';
+  }).join('');
+}
+function ytPlanSwitch(plan){
+  _ytPlan=plan;
+  var d=YT_PLANS[plan];
+  var actBg='linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)',actSh='0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3)';
+  var b1=document.getElementById('ytPlanCanhan'),b2=document.getElementById('ytPlanChinhchu');
+  var isCC=(plan==='chinhchu');
+  if(b1){b1.style.background=isCC?'transparent':actBg;b1.style.color=isCC?'rgba(192,132,252,0.45)':'#fff';b1.style.boxShadow=isCC?'none':actSh;}
+  if(b2){b2.style.background=isCC?actBg:'transparent';b2.style.color=isCC?'#fff':'rgba(192,132,252,0.45)';b2.style.boxShadow=isCC?actSh:'none';}
+  setText('ytBadgeTxt',d.badge);
+  setText('ytPriceVal',d.price);
+  setText('ytOrigVal',d.orig);
+  setText('ytPerDay1','chỉ '+d.perday+' / ngày');
+  var cta=document.getElementById('ytCtaBtn');if(cta)cta.setAttribute('onclick',"openModal('"+d.modal+"')");
+  ytRenderFeatures(plan);
+}
 function ccTabSwitch(t){_tabSwitch(t,'ccTab1','ccTab12','ccPane1','ccPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');if(t===12)showFreeMonthToast();}
 var _fmtTimer=null;
 function showFreeMonthToast(){
@@ -1594,13 +1640,25 @@ var V1_DATA={
   yt:{
     ico:'assets/images/YT.jpg',
     name:'YouTube Premium',
-    tag:'Gia đình · YouTube Music · Không quảng cáo',
+    tag:'Tặng kèm YT Music · Không quảng cáo',
     price:'35K / tháng',
     badge:'-56% 🎬',
     bullets:[
       '- Tặng kèm <span style="color:#f87171;font-weight:600;">Youtube Music Premium</span>',
       '- Bảo hành <span style="color:#60a5fa;font-weight:600;">toàn bộ thời gian sử dụng</span>',
       '- Xem Youtube <span style="color:#60a5fa;font-weight:600;">không quảng cáo</span> + sử dụng mọi <span style="color:#60a5fa;font-weight:600;">tính năng cao cấp</span> của Youtube Premium'
+    ]
+  },
+  visa:{
+    ico:'assets/images/VISA.jpg',
+    name:'Thanh Toán Hộ Quốc Tế',
+    tag:'Visa · Mastercard · PayPal',
+    price:'Phí 15–22%',
+    badge:'💳 Quốc tế',
+    bullets:[
+      '- Thanh toán mọi dịch vụ <span style="color:#4ade80;font-weight:600;">quốc tế</span>',
+      '- Hỗ trợ <span style="color:#60a5fa;font-weight:600;">Visa / Mastercard / PayPal</span>',
+      '- Giao dịch nhanh, <span style="color:#4ade80;font-weight:600;">bảo hành</span> nếu lỗi'
     ]
   },
   capcut:{
@@ -1634,6 +1692,7 @@ function openModal(n){
   var key='gpt';
   if(n.indexOf('YouTube')!==-1)key='yt';
   else if(n.indexOf('CapCut')!==-1)key='capcut';
+  else if(n.indexOf('Visa')!==-1||n.indexOf('Thanh Toán')!==-1)key='visa';
   _fillV1Modal(key);
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow='hidden';
@@ -1699,7 +1758,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 // KHO CODE pill bubble
 (function(){
   var pill=document.getElementById('khoPill'),ptxt=document.getElementById('khoPillText');
-  var TEXTS=['🔥 Kho Code mới!','✨ +20 template','👉 Xem ngay →','💎 Giá tốt nhất'];
+  var TEXTS=['Kho Code mới!','✨ +20 template','👉 Xem ngay →','💎 Giá tốt nhất'];
   var idx=0;
   function cycle(){if(!ptxt)return;ptxt.style.opacity='0';setTimeout(function(){ptxt.textContent=TEXTS[idx++%TEXTS.length];ptxt.style.opacity='1';},190);setTimeout(cycle,2400);}
   setTimeout(function(){if(pill)pill.classList.add('in');cycle();},900);
@@ -1810,7 +1869,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 })();
 // ─────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded',function(){initAllPricing();});
+document.addEventListener('DOMContentLoaded',function(){initAllPricing();ytRenderFeatures('canhan');});
 
 function idxNavClick(e,idx,target){
   [0,1,2,3].forEach(i=>{var el=document.getElementById('idxNav'+i);if(el)el.classList.toggle('active',i===idx);});

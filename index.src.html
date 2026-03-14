@@ -678,7 +678,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .modal-overlay{padding:12px!important;align-items:flex-start!important;}
   .feat-modal-head{padding:14px 16px 12px;}.feat-modal-body{padding:12px 16px 18px;}
   .sub-card{border-radius:40px!important;}
-  .tth-inner{padding:22px 18px 26px!important;}
+  .tth-inner{padding:22px 22px 26px!important;}
   .fee-modal-body{padding:14px 16px 20px;}
   .fee-modal-head{padding:14px 16px 12px;}
   .fm-tagline{padding:12px 16px 0;font-size:11.5px;}
@@ -697,9 +697,31 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   .fm-bench-name{width:90px;min-width:90px;}
 }
 @media(max-width:767px){
-  /* CHỈ tắt conic-gradient @property spin trên btn-primary-wrap — gây repaint mỗi frame trên mobile GPU */
+  /* 1. Tắt conic-gradient spin — gây repaint mỗi frame */
   .btn-primary-wrap{animation:none!important;background:linear-gradient(135deg,#6b21a8 0%,#a855f7 45%,#ec4899 100%)!important;}
+
+  /* 2. Xóa backdrop-filter trên tất cả element scroll — đây là nguyên nhân lag chính
+     Browser phải composite+blur toàn bộ layer phía sau mỗi frame scroll */
+  .hero-banner,
+  .fb-group-banner,
+  .glass-card,
+  .sub-card,
+  .neon-card{
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  /* glass-card và sub-card: bù lại bằng background đặc hơn một chút */
+  .glass-card{background:rgba(12,6,30,0.72)!important;}
+  .sub-card{background:rgba(12,6,30,0.70)!important;}
+  .neon-card{background:rgba(14,8,32,0.72)!important;}
+  .hero-banner{background:rgba(8,4,22,0.82)!important;}
+  .fb-group-banner{background:rgba(10,5,24,0.85)!important;}
+
+  /* 3. freePulse: đổi từ box-shadow animation → opacity only (paint-free) */
+  .fb-group-free-badge,
+  [style*="freePulse"]{animation:freePulseMob 2s ease-in-out infinite!important;}
 }
+@keyframes freePulseMob{0%,100%{opacity:1;}50%{opacity:0.55;}}
 
 /* ══ WELCOME POPUP ══ */
 #welcomeOverlay{position:fixed;inset:0;background:rgba(2,1,10,0.6);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);z-index:500;opacity:0;pointer-events:none;transition:opacity .28s ease;display:flex;align-items:center;justify-content:center;padding:16px;}
@@ -903,7 +925,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <section class="hero" id="hero">
   <div class="container" style="text-align:center;">
     <div class="hero-cta" id="heroCta" style="display:flex;align-items:center;justify-content:center;margin-bottom:36px;">
-      <div class="group-cta-box" style="position:relative;background:linear-gradient(145deg,rgba(17,9,48,0.12),rgba(12,7,36,0.14));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(168,85,247,0.22);border-radius:24px;padding:clamp(18px,3vw,28px) clamp(22px,4vw,40px);display:flex;flex-direction:column;align-items:center;gap:10px;max-width:min(480px,90vw);box-sizing:border-box;box-shadow:0 2px 12px rgba(168,85,247,0.06),0 8px 32px rgba(0,0,0,0.15);">
+      <div class="group-cta-box" style="position:relative;background:linear-gradient(145deg,rgba(17,9,48,0.75),rgba(12,7,36,0.78));border:1px solid rgba(168,85,247,0.22);border-radius:24px;padding:clamp(18px,3vw,28px) clamp(22px,4vw,40px);display:flex;flex-direction:column;align-items:center;gap:10px;max-width:min(480px,90vw);box-sizing:border-box;box-shadow:0 2px 12px rgba(168,85,247,0.06),0 8px 32px rgba(0,0,0,0.15);contain:layout style paint;">
         <!-- top shimmer line -->
         <div style="position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);border-radius:24px 24px 0 0;pointer-events:none;"></div>
         <!-- glow badge -->
@@ -971,55 +993,55 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <div class="tth-card" style="max-width:100%;">
 
           <!-- HEADER -->
-          <div style="padding:clamp(16px,3vw,24px) clamp(16px,4vw,32px) 0;position:relative;">
-            <div style="position:absolute;top:clamp(16px,2.5vw,24px);right:clamp(16px,4vw,36px);display:inline-flex;align-items:center;gap:5px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);border-radius:100px;padding:4px 11px;z-index:2;">
-              <span style="width:5px;height:5px;border-radius:50%;background:#34d399;box-shadow:0 0 6px rgba(52,211,153,0.8);flex-shrink:0;display:inline-block;"></span>
-              <span style="font-size:8.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Cá nhân</span>
+          <div style="padding:16px 20px 0;position:relative;">
+            <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
+              <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
+              <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Cá nhân</span>
             </div>
-            <div style="display:flex;align-items:center;gap:14px;padding-right:110px;">
-              <img src="assets/images/GPT.jpg" alt="ChatGPT Plus" style="width:52px;height:52px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(234,179,8,0.3);display:block;">
+            <div style="display:flex;align-items:center;gap:10px;padding-right:72px;">
+              <img src="assets/images/GPT.jpg" alt="ChatGPT Plus" style="width:40px;height:40px;border-radius:11px;object-fit:cover;flex-shrink:0;border:1px solid rgba(234,179,8,0.3);display:block;">
               <div>
-                <div style="font-size:1.2rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px;">ChatGPT PLUS</div>
-                <div style="font-size:10.5px;color:rgba(253,224,71,0.5);font-weight:500;">GPT-5.4 · Codex · Sora AI · Agent · ADA</div>
+                <div style="font-size:0.93rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:2px;line-height:1.2;">ChatGPT PLUS</div>
+                <div style="font-size:9px;color:rgba(253,224,71,0.5);font-weight:600;">GPT-5.4 · Codex · Sora AI · Agent · ADA</div>
               </div>
             </div>
           </div>
 
           <!-- TAB -->
-          <div style="padding:12px clamp(16px,4vw,32px) 0;">
+          <div style="padding:10px 20px 0;">
             <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(234,179,8,0.2);border-radius:100px;padding:3px;">
-              <button id="plusTab1" onclick="plusTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;padding:6px 18px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#92400e,#D97706,#EAB308);color:#1a0800;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
-              <button id="plusTab12" onclick="plusTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;padding:6px 18px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(253,224,71,0.45);box-shadow:none;">12 tháng</button>
+              <button id="plusTab1" onclick="plusTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#92400e,#D97706,#EAB308);color:#1a0800;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
+              <button id="plusTab12" onclick="plusTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(253,224,71,0.45);box-shadow:none;">12 tháng</button>
             </div>
           </div>
 
           <!-- PRICE -->
-          <div style="padding:12px clamp(16px,4vw,32px) 16px;border-bottom:1px solid rgba(234,179,8,0.12);">
+          <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(234,179,8,0.12);">
             <div id="plusPane1">
-              <div style="display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
-                <div style="font-size:3.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
-                <div style="padding-bottom:5px;font-size:10px;color:rgba(240,236,248,0.38);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);">522.000đ</span> <span style="font-size:10px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 8px;" class="discount-badge" data-orig="522000" data-sale-personal="99000" id="plusDiscountBadge">-81%</span></div>
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);">522.000đ</span> <span style="font-size:9px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 7px;" class="discount-badge" data-orig="522000" data-sale-personal="99000" id="plusDiscountBadge">-81%</span></div>
               </div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 <span id="gptPerDay1">chỉ 3.300đ / ngày</span>
               </div>
             </div>
             <div id="plusPane12" style="display:none;">
-              <div style="display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:4px;">
-                <div style="font-size:3.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="plusYearlyOur">—</div>
-                <div style="padding-bottom:5px;font-size:10px;color:rgba(240,236,248,0.38);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);" id="plusYearlyListFull">—</span></div>
+              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
+                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="plusYearlyOur">—</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);" id="plusYearlyListFull">—</span></div>
               </div>
-              <div style="font-size:8px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:10px;" id="plusYearlySaving">—</div>
+              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="plusYearlySaving">—</div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 <span id="gptPerDay12">chỉ 3.046đ / ngày</span>
               </div>
             </div>
           </div>
 
           <!-- FOOTER -->
-          <div style="padding:clamp(12px,2vw,16px) clamp(16px,4vw,32px) clamp(14px,2.5vw,22px);display:flex;flex-direction:column;gap:10px;">
+          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
             <button onclick="openFeatModal()" style="background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:5px;color:rgba(253,224,71,0.5);font-size:12px;font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(234,179,8,0.3);padding:0;" onmouseover="this.style.color='rgba(253,224,71,0.85)'" onmouseout="this.style.color='rgba(253,224,71,0.5)'">Xem chi tiết tính năng <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="tth-btn-cw"><button onclick="openPlusModal()" class="tth-btn-c">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
           </div>
@@ -1033,7 +1055,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <!-- YouTube Premium -->
         <div id="ytCard" class="sub-card" style="display:flex;flex-direction:column;">
           <!-- YT: Header — icon + tên + badge Gia đình -->
-          <div style="padding:14px 16px 0;position:relative;">
+          <div style="padding:16px 20px 0;position:relative;">
             <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
               <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
               <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Gia đình</span>
@@ -1047,18 +1069,18 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
           </div>
           <!-- YT: Tab 1 / 12 tháng -->
-          <div style="padding:9px 16px 0;">
+          <div style="padding:10px 20px 0;">
             <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
               <button id="ytTab1" onclick="ytTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
               <button id="ytTab12" onclick="ytTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
             </div>
           </div>
           <!-- YT: Giá -->
-          <div style="padding:8px 16px 12px;border-bottom:1px solid rgba(168,85,247,0.1);">
+          <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(168,85,247,0.1);">
             <div id="ytPane1">
               <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
                 <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
               </div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -1068,7 +1090,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             <div id="ytPane12" style="display:none;">
               <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
                 <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ytYearlyOur">—</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ytYearlyList">—</span></div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ytYearlyList">—</span></div>
               </div>
               <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="ytYearlySaving">💰 Tiết kiệm —</div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
@@ -1078,7 +1100,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
           </div>
           <!-- YT: Footer — mô tả + nút -->
-          <div style="padding:10px 16px 14px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
+          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
             <div style="font-size:10.5px;color:rgba(240,236,248,0.38);line-height:1.5;">Thêm Gmail vào nhóm gia đình · ổn định, lâu dài</div>
             <button onclick="openModal('✦ YouTube Premium · 35K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Inter',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
           </div>
@@ -1087,7 +1109,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <!-- CapCut Pro -->
         <div id="capcutCard" class="sub-card" style="display:flex;flex-direction:column;">
           <!-- CapCut: Header -->
-          <div style="padding:14px 16px 0;position:relative;">
+          <div style="padding:16px 20px 0;position:relative;">
             <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
               <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
               <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Cá nhân</span>
@@ -1101,18 +1123,18 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
           </div>
           <!-- CapCut: Tab -->
-          <div style="padding:9px 16px 0;">
+          <div style="padding:10px 20px 0;">
             <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
               <button id="ccTab1" onclick="ccTabSwitch(1)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
               <button id="ccTab12" onclick="ccTabSwitch(12)" style="font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
             </div>
           </div>
           <!-- CapCut: Giá -->
-          <div style="padding:8px 16px 12px;border-bottom:1px solid rgba(168,85,247,0.1);">
+          <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(168,85,247,0.1);">
             <div id="ccPane1">
               <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
                 <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">59K</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">145.000đ</span></div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">145.000đ</span></div>
               </div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -1122,7 +1144,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             <div id="ccPane12" style="display:none;">
               <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
                 <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ccYearlyOur">—</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ccYearlyList">—</span></div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ccYearlyList">—</span></div>
               </div>
               <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="ccYearlySaving">💰 Tiết kiệm —</div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
@@ -1132,7 +1154,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </div>
           </div>
           <!-- CapCut: Footer -->
-          <div style="padding:10px 16px 14px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
+          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
             <div style="font-size:10.5px;color:rgba(240,236,248,0.38);line-height:1.5;">Mở khóa toàn bộ tính năng, template · xuất 4K không logo</div>
             <button onclick="openModal('❆ CapCut Pro · 59K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Inter',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
           </div>
@@ -1674,8 +1696,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 
 // ── 3D SPACE BANNER ──────────────────────────────────────
 (function(){
-  // Tắt hoàn toàn trên mobile — ctx.shadowBlur rất nặng
-  if(window.innerWidth < 768) return;
+  var IS_MOB = window.innerWidth < 768;
   var cv=document.getElementById('bannerCanvas');
   if(!cv)return;
   var ctx=cv.getContext('2d');
@@ -1696,7 +1717,8 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 
   function initParticles(){
     particles=[];
-    var count=Math.min(55,Math.floor(W*H/5500));
+    var maxCount = IS_MOB ? 28 : 55;
+    var count=Math.min(maxCount,Math.floor(W*H/5500));
     for(var i=0;i<count;i++){
       spawnParticle(true);
     }
@@ -1718,9 +1740,14 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
     });
   }
 
+  var lastFrame=0;
+  var FRAME_INTERVAL = IS_MOB ? 1000/30 : 0; // 30fps on mobile, uncapped desktop
   function draw(ts){
+    if(IS_MOB && ts - lastFrame < FRAME_INTERVAL){RAF=requestAnimationFrame(draw);return;}
+    lastFrame=ts;
     ctx.clearRect(0,0,W,H);
     var alive=[];
+    var maxCount = IS_MOB ? 28 : 55;
     for(var i=0;i<particles.length;i++){
       var p=particles[i];
       p.z-=p.vz;
@@ -1739,15 +1766,17 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
       ctx.globalAlpha=alpha;
       ctx.font='600 '+fs.toFixed(1)+'px "SF Mono","Fira Code",monospace';
       ctx.fillStyle='hsl('+p.hue+',80%,72%)';
-      ctx.shadowColor='hsl('+p.hue+',90%,65%)';
-      ctx.shadowBlur=fs*0.9;
+      if(!IS_MOB){
+        ctx.shadowColor='hsl('+p.hue+',90%,65%)';
+        ctx.shadowBlur=fs*0.9;
+      }
       ctx.fillText(p.token,sx,sy);
       ctx.restore();
       alive.push(p);
     }
     particles=alive;
     // keep population stable
-    while(particles.length<Math.min(55,Math.floor(W*H/5500))){spawnParticle(false);}
+    while(particles.length<Math.min(maxCount,Math.floor(W*H/5500))){spawnParticle(false);}
     RAF=requestAnimationFrame(draw);
   }
 
@@ -1786,9 +1815,10 @@ function idxNavClick(e,idx,target){
   let W, H, gridPts=[], segments=[];
 
   const IS_MOBILE = window.innerWidth < 768;
-  const FOV=650, TILT=Math.PI*0.40, CAM_Y=-520, CAM_Z=30, SPHERE_R=1100,
-        GRID_N = IS_MOBILE ? 20 : 32,   // ít đường hơn trên mobile
-        EXT=600;
+  const FOV=650, TILT=IS_MOBILE ? Math.PI*0.32 : Math.PI*0.40,
+        CAM_Y=IS_MOBILE ? -340 : -520, CAM_Z=30, SPHERE_R=1100,
+        GRID_N = IS_MOBILE ? 22 : 32,
+        EXT=IS_MOBILE ? 520 : 600;
 
   function surfaceY(wx,wz){
     const d2=wx*wx+wz*wz,R2=SPHERE_R*SPHERE_R;
@@ -1801,7 +1831,8 @@ function idxNavClick(e,idx,target){
     const ry=cosT*dy+sinT*dz,rz=-sinT*dy+cosT*dz;
     if(rz>=-0.1)return null;
     const scale=FOV/(-rz);
-    return{sx:wx*scale+W/2,sy:ry*scale+H/2,depth:-rz,scale};
+    const vOff=IS_MOBILE ? H*0.32 : H/2;
+    return{sx:wx*scale+W/2,sy:ry*scale+vOff,depth:-rz,scale};
   }
   function edgeAlpha(wx,wz,depth){
     const e=Math.max(0,1-Math.sqrt(wx*wx+wz*wz)/(EXT*0.95));
@@ -1856,7 +1887,7 @@ function idxNavClick(e,idx,target){
       const wd=Math.sqrt(seg.wx*seg.wx+seg.wz*seg.wz);
       let boost=0;
       activeR.forEach(r=>{const diff=Math.abs(wd-r.worldR),bw=EXT*.15;if(diff<bw)boost+=(1-diff/bw)*(1-r.age)*.85;});
-      const a=Math.min(0.95,seg.alpha*(0.5+boost)),e=wd/EXT;
+      const a=Math.min(0.95,seg.alpha*(IS_MOBILE ? 0.75+boost : 0.5+boost)),e=wd/EXT;
       const rr=Math.floor(148+e*88+boost*35),gg=Math.floor(85-e*13),bb=Math.floor(247-e*100);
       ctx.strokeStyle=`rgba(${rr},${gg},${bb},${a.toFixed(3)})`;
       ctx.lineWidth=0.75+boost*2;
@@ -1994,3 +2025,4 @@ function idxNavClick(e,idx,target){
 
 </body>
   </html>
+

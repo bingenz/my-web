@@ -1,58 +1,58 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <!--
 =============================================================
-  BINPINKGOLD CODE STORE â€” DEV GUIDELINES (Äá»ŒC TRÆ¯á»šC KHI Sá»¬A)
+  BINPINKGOLD CODE STORE — DEV GUIDELINES (ĐỌC TRƯỚC KHI SỬA)
 =============================================================
-  1. RESPONSIVE Báº®T BUá»˜C:
-     - KHÃ”NG dÃ¹ng white-space:nowrap cho text/tiÃªu Ä‘á» cÃ³ thá»ƒ dÃ i.
-     - LuÃ´n dÃ¹ng word-break:break-word hoáº·c white-space:normal cho text.
-     - DÃ¹ng max-width:100% + box-sizing:border-box cho má»i block má»›i.
-     - DÃ¹ng clamp() cho font-size thay vÃ¬ px cá»‘ Ä‘á»‹nh khi cÃ³ thá»ƒ.
-     - white-space:nowrap CHá»ˆ Ä‘Æ°á»£c dÃ¹ng cho button CTA hoáº·c chip ngáº¯n cá»‘ Ä‘á»‹nh.
+  1. RESPONSIVE BẮT BUỘC:
+     - KHÔNG dùng white-space:nowrap cho text/tiêu đề có thể dài.
+     - Luôn dùng word-break:break-word hoặc white-space:normal cho text.
+     - Dùng max-width:100% + box-sizing:border-box cho mọi block mới.
+     - Dùng clamp() cho font-size thay vì px cố định khi có thể.
+     - white-space:nowrap CHỈ được dùng cho button CTA hoặc chip ngắn cố định.
 
-  2. KHI THÃŠM CHIP / BADGE / NOTE Má»šI:
-     - DÃ¹ng display:flex (KHÃ”NG dÃ¹ng inline-flex) + flex-wrap:wrap.
-     - ThÃªm max-width:100% vÃ  box-sizing:border-box.
-     - Tham kháº£o chip "1 mÃ¬nh báº¡n dÃ¹ng 1 tÃ i khoáº£n" lÃ m máº«u.
+  2. KHI THÊM CHIP / BADGE / NOTE MỚI:
+     - Dùng display:flex (KHÔNG dùng inline-flex) + flex-wrap:wrap.
+     - Thêm max-width:100% và box-sizing:border-box.
+     - Tham khảo chip "1 mình bạn dùng 1 tài khoản" làm mẫu.
 
-  3. Cáº¬P NHáº¬T Ná»˜I DUNG:
-     - Model hiá»‡n táº¡i: GPT-5.3 Instant (ra máº¯t 3/3/2026).
-     - Cáº­p nháº­t cáº£: subtitle card, feature grid chip, modal tÃ­nh nÄƒng, má»i nÆ¡i nháº¯c tÃªn model.
+  3. CẬP NHẬT NỘI DUNG:
+     - Model hiện tại: GPT-5.3 Instant (ra mắt 3/3/2026).
+     - Cập nhật cả: subtitle card, feature grid chip, modal tính năng, mọi nơi nhắc tên model.
 
-  4. Äá»’NG Bá»˜ MOBILE / DESKTOP (QUAN TRá»ŒNG):
-     - Feature grid (6 chips) luÃ´n dÃ¹ng grid-template-columns:1fr 1fr trÃªn cáº£ 2 ná»n táº£ng.
+  4. ĐỒNG BỘ MOBILE / DESKTOP (QUAN TRỌNG):
+     - Feature grid (6 chips) luôn dùng grid-template-columns:1fr 1fr trên cả 2 nền tảng.
      - Mobile (<640px): chip padding 9px 10px, font-size 10.5px, word-break:break-word.
-     - SVG icon trong chip: 15px trÃªn mobile, 18px trÃªn desktop.
-     - Má»i thÃ nh pháº§n má»›i thÃªm vÃ o desktop PHáº¢I cÃ³ media query trong @media(max-width:640px).
+     - SVG icon trong chip: 15px trên mobile, 18px trên desktop.
+     - Mọi thành phần mới thêm vào desktop PHẢI có media query trong @media(max-width:640px).
 
-  5. Cáº¤U TRÃšC FIXED HEADER:
+  5. CẤU TRÚC FIXED HEADER:
      - .topbar: position:fixed; top:0; z-index:100
-     - scroll-padding-top hiá»‡n táº¡i: 72px
-     - KHÃ”NG thÃªm thanh fixed nÃ o khÃ¡c mÃ  khÃ´ng cáº­p nháº­t scroll-padding-top vÃ  hero padding.
+     - scroll-padding-top hiện tại: 72px
+     - KHÔNG thêm thanh fixed nào khác mà không cập nhật scroll-padding-top và hero padding.
 
-  6. FLUID RESPONSIVE â€” KHÃ”NG DÃ™NG BREAKPOINT Cá»¨NG DUY NHáº¤T:
-     âš ï¸  QUY Táº®C VÃ€NG â€” ÃP Dá»¤NG CHO Má»ŒI ELEMENT TRÃŠN TRANG:
-     - KHÃ”NG dÃ¹ng height cá»‘ Ä‘á»‹nh (px) cho báº¥t ká»³ block nÃ o â€” luÃ´n Ä‘á»ƒ ná»™i dung tá»± Ä‘á»‹nh chiá»u cao qua padding.
-     - Náº¿u element báº¯t buá»™c cÃ³ height (vd: banner áº£nh): dÃ¹ng aspect-ratio (vd: 16/9) + max-height, KHÃ”NG dÃ¹ng height:Xpx.
-     - Slide/banner ná»™i dung text: KHÃ”NG dÃ¹ng height â€” dÃ¹ng padding:clamp(...) Ä‘á»ƒ tá»± co giÃ£n theo content.
-     - Má»i font-size, padding, gap, border-radius cÃ³ thá»ƒ thay Ä‘á»•i theo viewport: PHáº¢I dÃ¹ng clamp().
-     - Má»¥c tiÃªu: má»i thá»© trÃªn trang tá»± co giÃ£n mÆ°á»£t theo kÃ­ch thÆ°á»›c trÃ¬nh duyá»‡t, khÃ´ng bao giá» bá»‹ cáº¯t ná»™i dung.
-     - DÃ¹ng clamp() cho font-size, padding, gap thay vÃ¬ px cá»‘ Ä‘á»‹nh (vd: clamp(10px,2.5vw,13.5px)).
-     - Grid dÃ¹ng auto-fit/minmax thay vÃ¬ columns cá»‘ Ä‘á»‹nh khi cÃ³ thá»ƒ.
-     - NÃºt trong cÃ¹ng 1 row: flex:1 + min-width:0 + white-space:nowrap â€” tá»± chia Ä‘á»u, khÃ´ng wrap.
-     - Breakpoint 3 táº§ng: 480px / 640px / 768px â€” khÃ´ng chá»‰ 640px.
+  6. FLUID RESPONSIVE — KHÔNG DÙNG BREAKPOINT CỨNG DUY NHẤT:
+     ⚠️  QUY TẮC VÀNG — ÁP DỤNG CHO MỌI ELEMENT TRÊN TRANG:
+     - KHÔNG dùng height cố định (px) cho bất kỳ block nào — luôn để nội dung tự định chiều cao qua padding.
+     - Nếu element bắt buộc có height (vd: banner ảnh): dùng aspect-ratio (vd: 16/9) + max-height, KHÔNG dùng height:Xpx.
+     - Slide/banner nội dung text: KHÔNG dùng height — dùng padding:clamp(...) để tự co giãn theo content.
+     - Mọi font-size, padding, gap, border-radius có thể thay đổi theo viewport: PHẢI dùng clamp().
+     - Mục tiêu: mọi thứ trên trang tự co giãn mượt theo kích thước trình duyệt, không bao giờ bị cắt nội dung.
+     - Dùng clamp() cho font-size, padding, gap thay vì px cố định (vd: clamp(10px,2.5vw,13.5px)).
+     - Grid dùng auto-fit/minmax thay vì columns cố định khi có thể.
+     - Nút trong cùng 1 row: flex:1 + min-width:0 + white-space:nowrap — tự chia đều, không wrap.
+     - Breakpoint 3 tầng: 480px / 640px / 768px — không chỉ 640px.
      - Stat cards (4 neon cards): grid repeat(4,1fr) desktop, repeat(2,1fr) tablet/mobile.
 
-  7. CHIP / CARD CÃ“ ELEMENT ABSOLUTE (tag NEW / HOT / badge):
-     - Text label bÃªn trong PHáº¢I cÃ³ padding-right Ä‘á»§ lá»›n (tá»‘i thiá»ƒu 30px) Ä‘á»ƒ tá»± wrap
-       xuá»‘ng dÃ²ng TRÆ¯á»šC KHI cháº¡m vÃ o vÃ¹ng element absolute.
-     - KHÃ”NG Ä‘á»ƒ text vÃ  element absolute cÃ¹ng lá»›p mÃ  thiáº¿u padding â€” sáº½ bá»‹ Ä‘Ã¨ chá»¯
-       trÃªn mÃ n hÃ¬nh nhá» (â‰¤ 6.2 inch / ~390px).
-     - KÃ­ch thÆ°á»›c text (font-size) vÃ  chip/card luÃ´n dÃ¹ng size auto (word-break:break-word,
-       white-space:normal), KHÃ”NG cá»‘ Ä‘á»‹nh width â€” Ä‘á»ƒ layout tá»± co giÃ£n theo mÃ n hÃ¬nh.
+  7. CHIP / CARD CÓ ELEMENT ABSOLUTE (tag NEW / HOT / badge):
+     - Text label bên trong PHẢI có padding-right đủ lớn (tối thiểu 30px) để tự wrap
+       xuống dòng TRƯỚC KHI chạm vào vùng element absolute.
+     - KHÔNG để text và element absolute cùng lớp mà thiếu padding — sẽ bị đè chữ
+       trên màn hình nhỏ (≤ 6.2 inch / ~390px).
+     - Kích thước text (font-size) và chip/card luôn dùng size auto (word-break:break-word,
+       white-space:normal), KHÔNG cố định width — để layout tự co giãn theo màn hình.
 
-LÆ¯U Ã: KHÃ”NG ÄÆ¯á»¢C Sá»¬ Dá»¤NG HIá»†U á»¨NG GÃ‚Y LAG KHI LÆ¯á»šT WEB, CHáº¤T LÆ¯á»¢NG VÃ€ HIá»†U á»¨NG PHáº¢I NHÆ¯ YÃŠU Cáº¦U MIá»„N LÃ€ KHI LÆ¯á»šT KHÃ”NG GÃ‚Y LAG
+LƯU Ý: KHÔNG ĐƯỢC SỬ DỤNG HIỆU ỨNG GÂY LAG KHI LƯỚT WEB, CHẤT LƯỢNG VÀ HIỆU ỨNG PHẢI NHƯ YÊU CẦU MIỄN LÀ KHI LƯỚT KHÔNG GÂY LAG
 =============================================================
 -->
 
@@ -65,7 +65,7 @@ LÆ¯U Ã: KHÃ”NG ÄÆ¯á»¢C Sá»¬ Dá»¤NG HIá»†U á»¨NG GÃ
 <title>Binpinkgold Code Store</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 html{scroll-padding-top:72px;}
 :root{
@@ -82,15 +82,15 @@ html{scroll-padding-top:72px;}
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;min-height:100vh;}
-/* body::after & ::before â€” will-change:transform Ä‘áº©y lÃªn GPU compositor layer riÃªng,
-   trÃ¡nh repaint toÃ n trang khi scroll */
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;}
+/* body::after & ::before — will-change:transform đẩy lên GPU compositor layer riêng,
+   tránh repaint toàn trang khi scroll */
 body::after{content:'';position:fixed;inset:0;z-index:0;
   background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(0,0,0,0.55) 0%,transparent 70%),
              radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.38) 0%,transparent 60%);
   pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
 body::before{content:'';position:fixed;inset:0;z-index:0;
-  /* mobile: chá»‰ lÆ°á»›i thÃ´ (96px) â€” bá» sub-grid 24px Ä‘á»ƒ giáº£m táº£i paint */
+  /* mobile: chỉ lưới thô (96px) — bỏ sub-grid 24px để giảm tải paint */
   background-image:linear-gradient(rgba(168,85,247,0.13) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.13) 1px,transparent 1px);
   background-size:96px 96px,96px 96px;
   -webkit-mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
@@ -103,7 +103,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   }
 }
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-/* glow-orb: áº©n hoÃ n toÃ n trÃªn mobile â€” filter:blur() ráº¥t náº·ng */
+/* glow-orb: ẩn hoàn toàn trên mobile — filter:blur() rất nặng */
 .glow-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;will-change:transform;transform:translateZ(0);}
 .glow-orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(168,85,247,0.22) 0%,transparent 70%);top:-280px;left:-240px;filter:blur(70px);}
 .glow-orb-2{width:700px;height:700px;background:radial-gradient(circle,rgba(236,72,153,0.18) 0%,transparent 70%);bottom:-100px;right:-100px;filter:blur(70px);}
@@ -111,7 +111,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 @media(max-width:767px){.glow-orb{display:none;}}
 .gradient-text{background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .gradient-text-white{background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.font-syne{font-family:'Be Vietnam Pro',sans-serif;}
+.font-syne{font-family:'Inter',sans-serif;}
 
 .glass-card{
   background:linear-gradient(145deg,rgba(17,9,48,0.92) 0%,rgba(12,7,36,0.95) 40%,rgba(19,8,48,0.92) 70%,rgba(9,5,30,0.95) 100%);
@@ -139,9 +139,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .sub-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.55),rgba(236,72,153,0.35),transparent);}
 
 /* ===================================================
-   HERO BANNER â€” compact, icon-right layout
-   KHÃ”NG dÃ¹ng hiá»‡u á»©ng lag (conic-gradient animation,
-   will-change, shimmer Ä‘Ã£ xÃ³a khá»i banner)
+   HERO BANNER — compact, icon-right layout
+   KHÔNG dùng hiệu ứng lag (conic-gradient animation,
+   will-change, shimmer đã xóa khỏi banner)
 =================================================== */
 @property --led-angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
 @keyframes spinLED{from{--led-angle:0deg;}to{--led-angle:360deg;}}
@@ -149,7 +149,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 @keyframes shimmerCTA{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
 
-/* â”€â”€ HERO BANNER â”€â”€ */
+/* ── HERO BANNER ── */
 .hero-banner{
   margin-top:60px;
   position:relative;overflow:hidden;
@@ -227,13 +227,13 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   text-shadow:0 0 10px rgba(255,120,40,0.6);
 }
 
-/* FB button â€” xanh dÆ°Æ¡ng style FB, bo gÃ³c máº¡nh, hiá»‡u á»©ng ná»•i 3D */
+/* FB button — xanh dương style FB, bo góc mạnh, hiệu ứng nổi 3D */
 .fb-btn{
   display:inline-flex;align-items:center;gap:8px;
   background:linear-gradient(180deg,#2d8ef5 0%,#1877F2 45%,#1464d4 100%);
   color:#fff;
   font-size:clamp(10.5px,1.4vw,12.5px);font-weight:700;
-  font-family:'Be Vietnam Pro',sans-serif;
+  font-family:'Inter',sans-serif;
   padding:9px 18px;border-radius:100px;
   text-decoration:none;white-space:nowrap;
   border:1px solid rgba(255,255,255,0.18);
@@ -261,7 +261,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 
-/* RIGHT: 1 cá»™t chip â€” Ä‘á»u nhau, hiá»ƒn thá»‹ Ä‘á»§ */
+/* RIGHT: 1 cột chip — đều nhau, hiển thị đủ */
 .hb-right{
   display:flex;flex-direction:column;gap:4px;
   width:clamp(150px,20vw,195px);flex-shrink:0;
@@ -281,7 +281,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 a.hb-chip:hover{background:rgba(168,85,247,0.14);border-color:rgba(168,85,247,0.38);}
 a.hb-chip:active{transform:scale(0.97);}
 
-/* â”€â”€ 3D SPACE CANVAS â”€â”€ */
+/* ── 3D SPACE CANVAS ── */
 #bannerCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;}
 .hero-banner-inner{position:relative;z-index:1;}
 .hb-chip-ico{
@@ -313,9 +313,9 @@ a.hb-chip:active{transform:scale(0.97);}
   .hb-right{width:clamp(135px,18vw,170px);}
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ─────────────────────────────────
    TOPBAR
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+───────────────────────────────── */
 .topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(180deg,rgba(18,8,38,0.99) 0%,rgba(10,5,22,0.98) 100%);border-bottom:1px solid rgba(80,40,120,0.35);padding:clamp(10px,2vw,14px) clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 rgba(220,170,255,0.15) inset,0 8px 24px rgba(0,0,0,0.35);height:60px;}
 .topbar-logo{display:inline-flex;align-items:center;gap:clamp(4px,1vw,6px);white-space:nowrap;flex-shrink:1;min-width:0;overflow:hidden;text-decoration:none;}
 .topbar-logo-diamond{font-size:clamp(13px,3.5vw,20px);color:#fff;flex-shrink:0;filter:drop-shadow(0 0 6px rgba(168,85,247,0.7));}
@@ -335,17 +335,17 @@ a.hb-chip:active{transform:scale(0.97);}
 .topbar-nav-icon{flex-shrink:0;opacity:0.65;}
 .topbar-nav-text{line-height:1.5;word-break:break-word;white-space:normal;}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ─────────────────────────────────
    HERO section (stat cards)
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+───────────────────────────────── */
 .btn-primary-wrap{position:relative;display:inline-flex;border-radius:100px;padding:2.5px;background:conic-gradient(from var(--led-angle,0deg),#6b21a8 0%,#a855f7 15%,#ffffff 25%,#ec4899 35%,#a855f7 50%,#6b21a8 60%,#ffffff 70%,#a855f7 85%,#6b21a8 100%);animation:spinLED 3s linear infinite;box-shadow:0 0 18px rgba(168,85,247,0.6),0 0 36px rgba(168,85,247,0.25);will-change:--led-angle;contain:layout style paint;}
 .btn-primary-wrap::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
 .btn-primary-wrap>*{position:relative;z-index:1;}
 .btn-register-shimmer{position:relative;overflow:hidden;z-index:1;}
 .btn-register-shimmer::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmerCTA 2.4s ease-in-out infinite;pointer-events:none;will-change:transform;z-index:2;}
-.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Be Vietnam Pro',sans-serif;}
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Inter',sans-serif;}
 .btn-ghost:hover{background:rgba(168,85,247,0.2);border-color:rgba(168,85,247,0.6);}
-.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Be Vietnam Pro',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
+.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Inter',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
 .sub-card-btn:hover{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
 
 .container{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
@@ -390,9 +390,9 @@ a.hb-chip:active{transform:scale(0.97);}
 .contact-item:hover{transform:translateY(-4px);border-color:rgba(168,85,247,0.5);box-shadow:0 8px 24px rgba(168,85,247,0.4),0 2px 8px rgba(0,0,0,0.5);}
 footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;color:var(--subtle);font-size:12.5px;position:relative;z-index:1;}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ─────────────────────────────────
    PRICE & CARD SHARED
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+───────────────────────────────── */
 .price-main{font-size:3.8rem;font-weight:800;line-height:1;letter-spacing:-0.04em;}
 .price-main.gradient-text{background:linear-gradient(90deg,#B06EF5 0%,#D44FBF 50%,#F0359A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;}
 
@@ -403,7 +403,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 #plusLedLabel{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:20;display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#B8860B,#FFD700,#FFA500);border-radius:100px;padding:4px 14px;white-space:nowrap;box-shadow:0 0 8px rgba(255,200,0,0.45),0 2px 6px rgba(0,0,0,0.5);}
 #plusLedLabel span{font-size:9.5px;font-weight:900;color:#1a0a00;letter-spacing:0.16em;text-transform:uppercase;}
 
-/* TTH (Thanh ToÃ¡n Há»™) */
+/* TTH (Thanh Toán Hộ) */
 @keyframes tthDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
 @property --tth-la{syntax:'<angle>';initial-value:0deg;inherits:false;}
 @keyframes tthSpin{from{--tth-la:0deg;}to{--tth-la:360deg;}}
@@ -449,19 +449,19 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .tth-strip{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.22);border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
 .tth-ir{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(240,236,248,0.6);line-height:1.55;}
 .tth-ii{color:#EAB308;font-weight:700;flex-shrink:0;}
-.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;font-size:13.5px;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
+.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;font-family:'Inter',sans-serif;font-size:13.5px;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
 .tth-btn-fee:hover{background:rgba(234,179,8,0.16);border-color:rgba(234,179,8,0.7);box-shadow:0 0 18px rgba(234,179,8,0.25);}
 .tth-btn-cw{width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;background:conic-gradient(from var(--tth-la,0deg),#78350f 0%,#eab308 15%,#fef08a 25%,#f59e0b 35%,#eab308 50%,#78350f 60%,#fef08a 70%,#eab308 85%,#78350f 100%);animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(234,179,8,0.75),0 0 44px rgba(234,179,8,0.32);contain:layout style paint;}
 .tth-btn-cw::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
-.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
+.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
 .tth-btn-c::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.38),transparent);animation:tthShim 2.4s ease-in-out infinite;pointer-events:none;z-index:2;will-change:transform;}
 
-/* FEE MODAL â€” green theme */
+/* FEE MODAL — green theme */
 .fee-modal{background:rgba(4,14,8,0.99);border:1px solid rgba(34,197,94,0.4);border-radius:32px;width:100%;max-width:420px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 0 0 1px rgba(34,197,94,0.15),0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),0 0 60px rgba(34,197,94,0.14);position:relative;display:flex;flex-direction:column;margin:auto;}
 .fee-modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.85),rgba(16,185,129,0.55),transparent);z-index:2;pointer-events:none;}
 .fee-modal-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(34,197,94,0.12);position:sticky;top:0;z-index:10;background:rgba(4,14,8,0.99);border-radius:32px 32px 0 0;flex-shrink:0;}
 .fee-modal-title{font-size:1rem;font-weight:800;color:#4ade80;display:flex;align-items:center;gap:8px;}
-.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Be Vietnam Pro',sans-serif;}
+.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Inter',sans-serif;}
 .fee-modal-close:hover{background:rgba(34,197,94,0.22);}
 .fee-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:10px;}
 /* tiers */
@@ -482,7 +482,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .fm-calc{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.22);border-radius:18px;padding:15px 16px;display:flex;flex-direction:column;gap:10px;}
 .fm-calc-title{font-size:8px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:rgba(74,222,128,0.5);}
 .fm-calc-row{display:flex;align-items:center;gap:8px;}
-.fm-calc-input{flex:1;background:rgba(0,0,0,0.45);border:1px solid rgba(34,197,94,0.28);border-radius:10px;padding:10px 13px;font-size:13px;font-weight:700;color:#4ade80;font-family:'Be Vietnam Pro',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
+.fm-calc-input{flex:1;background:rgba(0,0,0,0.45);border:1px solid rgba(34,197,94,0.28);border-radius:10px;padding:10px 13px;font-size:13px;font-weight:700;color:#4ade80;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
 .fm-calc-input:focus{border-color:rgba(34,197,94,0.65);box-shadow:0 0 0 3px rgba(34,197,94,0.08);}
 .fm-calc-input::placeholder{color:rgba(74,222,128,0.22);font-weight:500;}
 .fm-calc-unit{font-size:11px;font-weight:700;color:rgba(74,222,128,0.45);white-space:nowrap;flex-shrink:0;}
@@ -500,7 +500,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .modal-overlay.open{display:flex;}
 .modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.3);border-radius:32px;padding:clamp(20px,4vw,30px) clamp(16px,4vw,28px);width:100%;max-width:400px;max-height:none;margin:auto;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;overflow:visible;flex-shrink:0;}
 .modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
-.modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--subtle);font-size:13px;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:600;transition:background 0.18s;}
+.modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--subtle);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:600;transition:background 0.18s;}
 .modal-close-btn:hover{background:rgba(255,255,255,0.09);color:var(--text);}
 .feat-modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.28);border-radius:32px;width:100%;max-width:500px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;display:flex;flex-direction:column;margin:auto;}
 .feat-modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);z-index:2;pointer-events:none;}
@@ -547,12 +547,12 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .kho-banner-link:hover{border-color:rgba(168,85,247,0.6);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-2px);}
 .kho-banner-top-line{height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
 .kho-banner-body{display:flex;align-items:stretch;gap:28px;padding:44px 52px;flex-wrap:wrap;}
-.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Be Vietnam Pro',sans-serif;white-space:nowrap;transition:background 0.2s;}
+.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Inter',sans-serif;white-space:nowrap;transition:background 0.2s;}
 .kho-banner-link:hover .kho-banner-btn{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ─────────────────────────────────
    BOTTOM NAV
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+───────────────────────────────── */
 .idx-bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:0 14px calc(10px + env(safe-area-inset-bottom));pointer-events:none;}
 .idx-bottom-nav-inner{max-width:480px;margin:0 auto;background:rgba(22,13,48,0.98);border:1px solid rgba(100,55,175,0.25);border-radius:40px;padding:7px;display:flex;align-items:center;justify-content:space-around;pointer-events:all;box-shadow:0 2px 0 rgba(255,255,255,0.13) inset,0 -2px 0 rgba(0,0,0,0.7) inset,0 8px 0 rgba(0,0,0,0.55),0 12px 24px rgba(0,0,0,0.65),0 20px 50px rgba(0,0,0,0.45),0 0 40px rgba(120,55,200,0.22);}
 .idx-bnav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 16px;border-radius:28px;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);flex:1;user-select:none;text-decoration:none;}
@@ -574,10 +574,10 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 }
 @media(max-width:640px){.sub-cards-yt-wrap{display:contents;}}
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* ─────────────────────────────────
    RESPONSIVE OVERRIDES
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-/* hamburger hiá»ƒn thá»‹ á»Ÿ má»i breakpoint */.topbar-hamburger{display:flex!important;}
+───────────────────────────────── */
+/* hamburger hiển thị ở mọi breakpoint */.topbar-hamburger{display:flex!important;}
 @media(min-width:768px){.idx-bottom-nav-inner{max-width:560px;}.idx-bnav-item{padding:8px 22px;}}
 #services,#contact{content-visibility:auto;contain-intrinsic-size:0 400px;}
 
@@ -653,7 +653,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <!-- TOPBAR -->
 <nav class="topbar">
   <div class="topbar-logo">
-    <span class="topbar-logo-diamond">âœ¦</span>
+    <span class="topbar-logo-diamond">✦</span>
     <span class="topbar-logo-name">Binpinkgold</span>
     <span class="topbar-logo-sub">Code Store</span>
   </div>
@@ -665,7 +665,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <nav class="topbar-dropdown" id="topDrop">
   <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu()">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <span class="topbar-nav-text">ChatGPT Â· Youtube Â· CapCut</span>
+    <span class="topbar-nav-text">ChatGPT · Youtube · CapCut</span>
   </a>
   <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu();setTimeout(()=>{var el=document.querySelector('#chatgptPlusCard+.sub-cards-yt-wrap+.sub-card,#accountsGrid>.sub-card:last-child');if(el){var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:60;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}},100);">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
@@ -677,23 +677,23 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   </a>
   <a class="topbar-nav-item" href="#services" onclick="closeTopMenu()">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-    <span class="topbar-nav-text">Dá»‹ch Vá»¥ Web Â· Bot Telegram</span>
+    <span class="topbar-nav-text">Dịch Vụ Web · Bot Telegram</span>
   </a>
   <a class="topbar-nav-item" href="#contact" onclick="closeTopMenu()">
     <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    <span class="topbar-nav-text">LiÃªn Há»‡</span>
+    <span class="topbar-nav-text">Liên Hệ</span>
   </a>
 </nav>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     HERO BANNER â€” compact redesign
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ═══════════════════════════════════════
+     HERO BANNER — compact redesign
+═══════════════════════════════════════ -->
 <div class="hero-banner" id="siteBanner">
   <canvas id="bannerCanvas"></canvas>
   <div class="hero-banner-topline"></div>
   <div class="hero-banner-inner">
 
-    <!-- LEFT: tagline + checks + FB link nhá» -->
+    <!-- LEFT: tagline + checks + FB link nhỏ -->
     <div class="hb-left">
       <div class="hb-eyebrow">
         <div class="hb-eyebrow-dot"></div>
@@ -701,24 +701,24 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       </div>
 
       <h1 class="hb-title">
-        Dá»‹ch vá»¥ xá»‹n.<br>
-        <em>GiÃ¡ sinh viÃªn.</em>
+        Dịch vụ xịn.<br>
+        <em>Giá sinh viên.</em>
       </h1>
 
-      <div class="hb-fire-badge">ðŸ”¥ Chá»‰ tá»« 3.000Ä‘ / ngÃ y</div>
+      <div class="hb-fire-badge">🔥 Chỉ từ 3.000đ / ngày</div>
 
       <div class="hb-checks">
         <div class="hb-check">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Xá»­ lÃ½ nhanh trong 1 phÃºt
+          Xử lý nhanh trong 1 phút
         </div>
         <div class="hb-check">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Báº£o hÃ nh &amp; hoÃ n tiá»n náº¿u lá»—i
+          Bảo hành &amp; hoàn tiền nếu lỗi
         </div>
         <div class="hb-check">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          200+ khÃ¡ch tin tÆ°á»Ÿng
+          200+ khách tin tưởng
         </div>
       </div>
 
@@ -728,11 +728,11 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           Follow FB
           <div class="fb-btn-arrow"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </a>
-        <div style="font-size:clamp(8.5px,1.2vw,10px);color:rgba(240,236,248,0.72);font-weight:600;text-align:center;letter-spacing:0.01em;">ðŸŽ Follow Facebook Ä‘á»ƒ nháº­n giáº£m giÃ¡ Ä‘Æ¡n Ä‘áº§u tiÃªn</div>
+        <div style="font-size:clamp(8.5px,1.2vw,10px);color:rgba(240,236,248,0.72);font-weight:600;text-align:center;letter-spacing:0.01em;">🎁 Follow Facebook để nhận giảm giá đơn đầu tiên</div>
       </div>
     </div>
 
-    <!-- RIGHT: 2Ã—3 chip grid â€” icon + tÃªn -->
+    <!-- RIGHT: 2×3 chip grid — icon + tên -->
     <div class="hb-right">
 
       <a class="hb-chip" href="#chatgptPlusCard" onclick="event.preventDefault();scrollToId('chatgptPlusCard');" style="text-decoration:none;cursor:pointer;">
@@ -762,7 +762,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 
       <a class="hb-chip" href="#tth-anchor" onclick="event.preventDefault();scrollToId('tth-anchor');" style="text-decoration:none;cursor:pointer;">
         <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
-        <span class="hb-chip-name">Thanh ToÃ¡n Visa</span>
+        <span class="hb-chip-name">Thanh Toán Visa</span>
       </a>
 
     </div><!-- end hb-right -->
@@ -775,7 +775,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   <div class="container" style="text-align:center;">
     <div class="hero-cta" id="heroCta" style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:36px;">
       <div class="btn-primary-wrap" id="heroPrimaryWrap" style="flex:none;">
-        <button onclick="var el=document.getElementById('accounts');var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:72;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'})" class="btn-register-shimmer" id="heroPrimaryBtn" style="font-size:13.5px;padding:11px 26px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 22px rgba(168,85,247,0.55),0 0 40px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22);white-space:nowrap;">KhÃ¡m phÃ¡ ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        <button onclick="var el=document.getElementById('accounts');var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:72;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'})" class="btn-register-shimmer" id="heroPrimaryBtn" style="font-size:13.5px;padding:11px 26px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Inter',sans-serif;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 22px rgba(168,85,247,0.55),0 0 40px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22);white-space:nowrap;">Khám phá ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
       </div>
 
     </div>
@@ -783,13 +783,13 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <div class="neon-card neon-cyan">
         <div class="neon-card-top">
           <div class="neon-icon neon-icon-cyan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <div><div class="neon-val" style="color:#67e8f9;">200+</div><div class="neon-sub">KhÃ¡ch hÃ ng</div></div>
+          <div><div class="neon-val" style="color:#67e8f9;">200+</div><div class="neon-sub">Khách hàng</div></div>
         </div>
       </div>
       <div class="neon-card neon-purple">
         <div class="neon-card-top">
           <div class="neon-icon neon-icon-purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <div><div class="neon-val" style="color:#c084fc;">24/7</div><div class="neon-sub">Há»— trá»£</div></div>
+          <div><div class="neon-val" style="color:#c084fc;">24/7</div><div class="neon-sub">Hỗ trợ</div></div>
         </div>
       </div>
       <div class="neon-card neon-pink">
@@ -801,31 +801,31 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <div class="neon-card neon-yellow">
         <div class="neon-card-top">
           <div class="neon-icon neon-icon-yellow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/><polyline points="9 8 11 10 15 6"/></svg></div>
-          <div><div class="neon-val" style="color:#fde047;">Uy tÃ­n</div><div class="neon-sub">HoÃ n tiá»n náº¿u lá»—i</div></div>
+          <div><div class="neon-val" style="color:#fde047;">Uy tín</div><div class="neon-sub">Hoàn tiền nếu lỗi</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     ACCOUNTS â€” ChatGPT Plus + sub cards
-     FIX: thÃªm padding-bottom cho wrapper Ä‘á»ƒ
-     card chÃ­nh khÃ´ng dÃ­nh vÃ o sub-cards
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ═══════════════════════════════════════
+     ACCOUNTS — ChatGPT Plus + sub cards
+     FIX: thêm padding-bottom cho wrapper để
+     card chính không dính vào sub-cards
+═══════════════════════════════════════ -->
 <section id="accounts" style="padding:clamp(60px,8vw,90px) 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
   <div class="container">
-    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">ChatGPT Â· Youtube Â· CapCut</div><div class="section-beam r"></div></div></div>
+    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">ChatGPT · Youtube · CapCut</div><div class="section-beam r"></div></div></div>
     <div style="text-align:center;margin:-4px 0 32px;">
       <div id="promoPill" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.35);border-radius:100px;padding:10px 24px;">
-        <span id="promoPillText" style="font-size:13.5px;font-weight:700;color:#E0B4FF;letter-spacing:0.01em;">GÃ³i <strong style="color:#fff;">12 thÃ¡ng</strong> táº·ng <strong style="color:#fff;">1 thÃ¡ng miá»…n phÃ­</strong></span>
+        <span id="promoPillText" style="font-size:13.5px;font-weight:700;color:#E0B4FF;letter-spacing:0.01em;">Gói <strong style="color:#fff;">12 tháng</strong> tặng <strong style="color:#fff;">1 tháng miễn phí</strong></span>
       </div>
     </div>
 
-    <!-- â”€â”€ MAIN GRID: ChatGPT card (full width) â†’ sub cards below â”€â”€ -->
+    <!-- ── MAIN GRID: ChatGPT card (full width) → sub cards below ── -->
     <div id="accountsGrid" style="display:flex;flex-direction:column;gap:clamp(32px,5vw,48px);max-width:680px;margin:0 auto;">
 
-      <!-- â”€â”€ CHATGPT PLUS CARD â”€â”€ -->
+      <!-- ── CHATGPT PLUS CARD ── -->
       <div style="width:100%;box-sizing:border-box;position:relative;" id="chatgptPlusCard">
         <div class="tth-card" style="border-radius:40px;max-width:100%;position:relative;">
 
@@ -836,7 +836,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
               <img src="assets/images/GPT.jpg" alt="ChatGPT Plus" style="width:56px;height:56px;min-width:56px;max-width:56px;border-radius:16px;object-fit:cover;flex-shrink:0;border:1px solid rgba(234,179,8,0.4);box-shadow:0 0 24px rgba(234,179,8,0.25);display:block;">
               <div>
                 <div style="font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;word-break:break-word;">ChatGPT PLUS</div>
-                <div style="font-size:11px;color:rgba(253,224,71,0.5);font-weight:500;">GPT-5.4 Â· Codex Â· Sora AI Â· Agent Â· ADA</div>
+                <div style="font-size:11px;color:rgba(253,224,71,0.5);font-weight:500;">GPT-5.4 · Codex · Sora AI · Agent · ADA</div>
               </div>
             </div>
           </div>
@@ -844,69 +844,69 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
           <div style="padding:18px clamp(18px,4vw,44px) 24px;border-bottom:1px solid rgba(234,179,8,0.15);">
             <div id="plusPriceFlexRow" style="display:flex;align-items:stretch;gap:18px;flex-wrap:wrap;">
               <div id="plusPriceRight" style="display:flex;flex-direction:column;justify-content:center;">
-                <div style="font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(253,224,71,0.45);margin-bottom:8px;">GiÃ¡ / thÃ¡ng</div>
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(253,224,71,0.45);margin-bottom:8px;">Giá / tháng</div>
                 <div class="price-main" style="font-size:3.22rem;line-height:1;background:linear-gradient(90deg,#EAB308 0%,#FDE047 50%,#F59E0B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 22px rgba(234,179,8,0.85)) drop-shadow(0 0 40px rgba(251,191,36,0.55));">99K</div>
                 <div style="display:flex;align-items:center;gap:7px;margin-top:6px;">
-                  <span style="font-size:8px;color:rgba(240,236,248,0.45);text-decoration:line-through;text-decoration-color:rgba(255,80,80,0.6);text-decoration-thickness:1.5px;font-weight:600;" id="plusOldPrice">522.000Ä‘</span>
+                  <span style="font-size:8px;color:rgba(240,236,248,0.45);text-decoration:line-through;text-decoration-color:rgba(255,80,80,0.6);text-decoration-thickness:1.5px;font-weight:600;" id="plusOldPrice">522.000đ</span>
                   <span style="font-size:10px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 9px;box-shadow:0 0 10px rgba(220,38,38,0.5);" class="discount-badge" data-orig="522000" data-sale-personal="99000" id="plusDiscountBadge">-81%</span>
                 </div>
-                <div style="margin-top:6px;font-size:8px;font-weight:700;color:rgba(255,180,50,0.8);">â‰ˆ chá»‰ 3.300Ä‘ / ngÃ y</div>
+                <div style="margin-top:6px;font-size:8px;font-weight:700;color:rgba(255,180,50,0.8);">≈ chỉ 3.300đ / ngày</div>
               </div>
               <div id="plusPriceDivider" style="width:1px;background:rgba(234,179,8,0.22);align-self:stretch;margin:4px 0;min-height:70px;flex-shrink:0;"></div>
               <div id="plusYearlyBox" style="flex:1;min-width:150px;background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.28);border-radius:20px;padding:11px 13px;">
-                <div style="font-size:7px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:rgba(253,224,71,0.55);margin-bottom:8px;">GÃ“I 12 THÃNG Táº¶NG 1 THÃNG MIá»„N PHÃ</div>
-                <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:5px;"><span style="font-size:8px;color:rgba(240,236,248,0.3);font-weight:500;white-space:nowrap;">GiÃ¡ niÃªm yáº¿t:</span><span style="font-size:clamp(0.75rem,2.5vw,1.1rem);font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.85);text-decoration-thickness:3px;line-height:1.15;white-space:nowrap;" id="plusYearlyListFull">â€”</span></div>
-                <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:2px;"><span style="font-size:7.5px;color:rgba(253,224,71,0.65);font-weight:600;white-space:nowrap;">cÃ²n láº¡i</span><span style="font-size:clamp(0.8rem,2.5vw,1.15rem);font-weight:800;background:linear-gradient(90deg,#EAB308,#FDE047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;" id="plusYearlyOur">â€”</span></div>
+                <div style="font-size:7px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:rgba(253,224,71,0.55);margin-bottom:8px;">GÓI 12 THÁNG TẶNG 1 THÁNG MIỄN PHÍ</div>
+                <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:5px;"><span style="font-size:8px;color:rgba(240,236,248,0.3);font-weight:500;white-space:nowrap;">Giá niêm yết:</span><span style="font-size:clamp(0.75rem,2.5vw,1.1rem);font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.85);text-decoration-thickness:3px;line-height:1.15;white-space:nowrap;" id="plusYearlyListFull">—</span></div>
+                <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:2px;"><span style="font-size:7.5px;color:rgba(253,224,71,0.65);font-weight:600;white-space:nowrap;">còn lại</span><span style="font-size:clamp(0.8rem,2.5vw,1.15rem);font-weight:800;background:linear-gradient(90deg,#EAB308,#FDE047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;" id="plusYearlyOur">—</span></div>
                 <div style="height:1px;background:rgba(234,179,8,0.18);margin:7px 0;"></div>
-                <div style="font-size:8px;font-weight:800;color:rgba(99,220,150,0.9);" id="plusYearlySaving">â€”</div>
+                <div style="font-size:8px;font-weight:800;color:rgba(99,220,150,0.9);" id="plusYearlySaving">—</div>
               </div>
             </div>
             <div id="plusShareNote" style="margin-top:14px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
-              <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">âœ“</span>
-              <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">TÃ i khoáº£n cÃ¡ nhÃ¢n riÃªng</span>
+              <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">✓</span>
+              <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">Tài khoản cá nhân riêng</span>
             </div>
           </div>
 
           <div style="padding:0 clamp(18px,4vw,44px) 20px;">
             <div class="tth-any">
-              <div class="tth-any-badge"><div class="tth-dot"></div>GPT-5.4 Flagship Â· Sora Â· Agent Â· ADA</div>
-              <div class="tth-note" style="margin-bottom:12px;"><strong style="color:rgba(253,224,71,0.85);font-weight:700;">GPT-5.4</strong> hiá»ƒn thá»‹ <strong style="color:rgba(240,236,248,0.7);">káº¿ hoáº¡ch suy nghÄ© realtime</strong> â€” Ä‘iá»u chá»‰nh ngay khi AI Ä‘ang xá»­ lÃ½. Há»— trá»£ <strong style="color:rgba(240,236,248,0.7);">1 triá»‡u token context</strong> (preview), nghiÃªn cá»©u web sÃ¢u vÆ°á»£t GPT-5.3 vÃ  Ä‘áº¡t <strong style="color:rgba(240,236,248,0.7);">81.2% MMMU-Pro</strong> â€” cao hÆ¡n Gemini 3.1 Pro.</div>
+              <div class="tth-any-badge"><div class="tth-dot"></div>GPT-5.4 Flagship · Sora · Agent · ADA</div>
+              <div class="tth-note" style="margin-bottom:12px;"><strong style="color:rgba(253,224,71,0.85);font-weight:700;">GPT-5.4</strong> hiển thị <strong style="color:rgba(240,236,248,0.7);">kế hoạch suy nghĩ realtime</strong> — điều chỉnh ngay khi AI đang xử lý. Hỗ trợ <strong style="color:rgba(240,236,248,0.7);">1 triệu token context</strong> (preview), nghiên cứu web sâu vượt GPT-5.3 và đạt <strong style="color:rgba(240,236,248,0.7);">81.2% MMMU-Pro</strong> — cao hơn Gemini 3.1 Pro.</div>
               <div class="tth-mq-wrap">
                 <div class="tth-mq-track">
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyá»‡t web Â· ADA</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent Â· Codex</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bá»™ nhá»› nÃ¢ng cao</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Æ¯u tiÃªn truy cáº­p</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyệt web · ADA</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent · Codex</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bộ nhớ nâng cao</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Ưu tiên truy cập</span>
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mÃ¬nh báº¡n dÃ¹ng</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mình bạn dùng</span>
                   <!-- duplicate for seamless loop -->
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyá»‡t web Â· ADA</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent Â· Codex</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bá»™ nhá»› nÃ¢ng cao</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Æ¯u tiÃªn truy cáº­p</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyệt web · ADA</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent · Codex</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bộ nhớ nâng cao</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Ưu tiên truy cập</span>
                   <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
-                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mÃ¬nh báº¡n dÃ¹ng</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mình bạn dùng</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div style="padding:0 clamp(18px,4vw,44px) clamp(24px,4vw,44px);display:flex;gap:clamp(8px,2vw,12px);align-items:center;flex-wrap:nowrap;min-width:0;">
-            <button onclick="openFeatModal()" style="font-family:'Be Vietnam Pro',sans-serif;font-size:clamp(11px,2.5vw,12.5px);white-space:nowrap;flex-shrink:0;padding:10px clamp(12px,3vw,20px);display:inline-flex;align-items:center;gap:7px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;border-radius:100px;cursor:pointer;transition:background .2s;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Xem chi tiáº¿t</button>
+            <button onclick="openFeatModal()" style="font-family:'Inter',sans-serif;font-size:clamp(11px,2.5vw,12.5px);white-space:nowrap;flex-shrink:0;padding:10px clamp(12px,3vw,20px);display:inline-flex;align-items:center;gap:7px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;border-radius:100px;cursor:pointer;transition:background .2s;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Xem chi tiết</button>
             <div class="tth-btn-cw" style="flex:1;">
-              <button onclick="openPlusModal()" class="tth-btn-c">ÄÄƒng kÃ½ ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+              <button onclick="openPlusModal()" class="tth-btn-c">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
             </div>
           </div>
         </div>
       </div>
       <!-- END ChatGPT Plus card -->
 
-      <!-- â”€â”€ SUB CARDS: YouTube + CapCut â”€â”€ -->
-      <!-- gap Ä‘Æ°á»£c control bá»Ÿi flex gap cá»§a accountsGrid (48px) -->
+      <!-- ── SUB CARDS: YouTube + CapCut ── -->
+      <!-- gap được control bởi flex gap của accountsGrid (48px) -->
       <div class="sub-cards-yt-wrap" style="width:100%;">
 
         <!-- YouTube Premium -->
@@ -915,30 +915,30 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             <img src="assets/images/YT.jpg" alt="YouTube Premium" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
             <div>
               <div style="font-size:1.05rem;font-weight:800;color:#fff;">YouTube Premium</div>
-              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">KhÃ´ng quáº£ng cÃ¡o Â· YouTube Music</div>
+              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Không quảng cáo · YouTube Music</div>
             </div>
           </div>
           <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
             <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
-              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">GiÃ¡ / thÃ¡ng</div>
+              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
               <div style="font-size:clamp(2rem,6vw,3.22rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">35K</div>
-              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">GiÃ¡ niÃªm yáº¿t: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">79.000Ä‘</span></div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">79.000đ</span></div>
             </div>
             <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
             <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
-              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">GÃ³i 12 thÃ¡ng</div>
+              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
               <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
-                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">455.000Ä‘</span>
-                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">GiÃ¡ niÃªm yáº¿t: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.027.000Ä‘</span></span>
+                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">455.000đ</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.027.000đ</span></span>
               </div>
-              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">ðŸ’° Tiáº¿t kiá»‡m 572.000Ä‘</div>
+              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 572.000đ</div>
             </div>
           </div>
           <div style="margin-bottom:10px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
-            <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">âœ“</span>
-            <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">ThÃªm gmail vÃ o nhÃ³m gia Ä‘Ã¬nh, á»•n Ä‘á»‹nh, lÃ¢u dÃ i</span>
+            <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">✓</span>
+            <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">Thêm gmail vào nhóm gia đình, ổn định, lâu dài</span>
           </div>
-          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('âœ¦ YouTube Premium Â· 35K/thÃ¡ng')">ÄÄƒng kÃ½ ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('✦ YouTube Premium · 35K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         </div>
 
         <!-- CapCut Pro -->
@@ -947,26 +947,26 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
             <div>
               <div style="font-size:1.05rem;font-weight:800;color:#fff;">CapCut Pro</div>
-              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Má»Ÿ khÃ³a toÃ n bá»™ Â· Xuáº¥t 4K</div>
+              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Mở khóa toàn bộ · Xuất 4K</div>
             </div>
           </div>
           <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
             <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
-              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">GiÃ¡ / thÃ¡ng</div>
+              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">Giá / tháng</div>
               <div style="font-size:clamp(2rem,6vw,3.22rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">59K</div>
-              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">GiÃ¡ niÃªm yáº¿t: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">145.000Ä‘</span></div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">145.000đ</span></div>
             </div>
             <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
             <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
-              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">GÃ³i 12 thÃ¡ng</div>
+              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">Gói 12 tháng</div>
               <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
-                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">767.000Ä‘</span>
-                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">GiÃ¡ niÃªm yáº¿t: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.885.000Ä‘</span></span>
+                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">767.000đ</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">Giá niêm yết: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.885.000đ</span></span>
               </div>
-              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">ðŸ’° Tiáº¿t kiá»‡m 1.118.000Ä‘</div>
+              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">💰 Tiết kiệm 1.118.000đ</div>
             </div>
           </div>
-          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('â† CapCut Pro Â· 59K/thÃ¡ng')">ÄÄƒng kÃ½ ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('❆ CapCut Pro · 59K/tháng')">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         </div>
 
       </div><!-- end sub-cards-yt-wrap -->
@@ -978,21 +978,21 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <!-- SERVICES -->
 <section id="services" style="padding:60px 0 64px;position:relative;z-index:1;">
   <div class="container">
-    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dá»‹ch Vá»¥ Thiáº¿t Káº¿ Web Â· Bot Telegram</div><div class="section-beam r"></div></div></div>
+    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dịch Vụ Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
     <div class="glass-card glass-card-glow">
       <div style="padding:clamp(28px,5vw,48px) clamp(24px,5vw,52px);">
         <div style="margin-bottom:28px;">
-          <div style="font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.7);margin-bottom:12px;">Dá»‹ch Vá»¥ Láº­p TrÃ¬nh</div>
-          <div style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:20px;">Thiáº¿t Káº¿ Website&nbsp;â€¢&nbsp;Táº¡o Bot Telegram&nbsp;â€¢&nbsp;Há»— Trá»£ LÃ m BÃ i Táº­p</div>
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.7);margin-bottom:12px;">Dịch Vụ Lập Trình</div>
+          <div style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:20px;">Thiết Kế Website&nbsp;•&nbsp;Tạo Bot Telegram&nbsp;•&nbsp;Hỗ Trợ Làm Bài Tập</div>
           <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px;">
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">âœ“</span><span>Thiáº¿t káº¿ Website theo yÃªu cáº§u â€” tá»« landing page, portfolio Ä‘áº¿n web bÃ¡n hÃ ng Ä‘áº§y Ä‘á»§ tÃ­nh nÄƒng.</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">âœ“</span><span>Bot Telegram thÃ´ng minh â€” bot bÃ¡n hÃ ng, box chat, tool, script &amp; phÃ¢n tÃ­ch dá»¯ liá»‡u.</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">âœ“</span><span>Há»— trá»£ lÃ m bÃ i táº­p láº­p trÃ¬nh â€” code theo yÃªu cáº§u, giáº£i thÃ­ch chi tiáº¿t, giao bÃ i Ä‘Ãºng tiáº¿n Ä‘á»™.</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">âœ“</span><span>Báº£o hÃ nh miá»…n phÃ­ sau bÃ n giao Â· BÃ¡o giÃ¡ nhanh Â· Giao hÃ ng Ä‘Ãºng háº¹n.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Thiết kế Website theo yêu cầu — từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bot Telegram thông minh — bot bán hàng, box chat, tool, script &amp; phân tích dữ liệu.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Hỗ trợ làm bài tập lập trình — code theo yêu cầu, giải thích chi tiết, giao bài đúng tiến độ.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bảo hành miễn phí sau bàn giao · Báo giá nhanh · Giao hàng đúng hẹn.</span></div>
           </div>
-          <button onclick="openServiceModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.45);border-radius:100px;color:#C084FC;font-size:14px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;letter-spacing:0.02em;" onmouseover="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.25),rgba(236,72,153,0.18))';this.style.borderColor='rgba(168,85,247,0.7)';this.style.boxShadow='0 0 22px rgba(168,85,247,0.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1))';this.style.borderColor='rgba(168,85,247,0.45)';this.style.boxShadow='none'">
+          <button onclick="openServiceModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.45);border-radius:100px;color:#C084FC;font-size:14px;font-weight:800;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;letter-spacing:0.02em;" onmouseover="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.25),rgba(236,72,153,0.18))';this.style.borderColor='rgba(168,85,247,0.7)';this.style.boxShadow='0 0 22px rgba(168,85,247,0.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1))';this.style.borderColor='rgba(168,85,247,0.45)';this.style.boxShadow='none'">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            LiÃªn há»‡ nháº­n tÆ° váº¥n miá»…n phÃ­
+            Liên hệ nhận tư vấn miễn phí
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </button>
         </div>
@@ -1001,7 +1001,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   </div>
 </section>
 
-<!-- THANH TOÃN Há»˜ -->
+<!-- THANH TOÁN HỘ -->
 <section style="padding:0 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
   <div class="container">
     <div id="tth-anchor" class="tth-card" style="max-width:680px;margin:0 auto;border-color:rgba(34,197,94,0.45);background:linear-gradient(145deg,rgba(6,20,12,0.97) 0%,rgba(4,14,8,0.99) 50%,rgba(7,22,13,0.97) 100%);box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 4px 24px rgba(0,0,0,0.6),0 20px 60px rgba(0,0,0,0.4),0 0 60px rgba(34,197,94,0.1);">
@@ -1019,8 +1019,8 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
             </svg>
           </div>
           <div style="flex:1;min-width:0;">
-            <div style="font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px;">Thanh ToÃ¡n Há»™ Quá»‘c Táº¿</div>
-            <div style="font-size:11px;color:rgba(52,211,153,0.55);font-weight:500;line-height:1.5;">KhÃ´ng cáº§n tháº» quá»‘c táº¿ Â· Nhanh Â· Uy tÃ­n</div>
+            <div style="font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px;">Thanh Toán Hộ Quốc Tế</div>
+            <div style="font-size:11px;color:rgba(52,211,153,0.55);font-weight:500;line-height:1.5;">Không cần thẻ quốc tế · Nhanh · Uy tín</div>
           </div>
           <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;">
             <div class="tth-badge tth-bv">VISA</div>
@@ -1035,10 +1035,10 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         </div>
         <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
           <div style="display:flex;gap:16px;">
-            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">âœ“</span> Xá»­ lÃ½ nhanh</div>
-            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">âœ“</span> HoÃ n tiá»n náº¿u lá»—i</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">✓</span> Xử lý nhanh</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">✓</span> Hoàn tiền nếu lỗi</div>
           </div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:rgba(34,197,94,0.75);">Xem chi tiáº¿t <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,0.75)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:rgba(34,197,94,0.75);">Xem chi tiết <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,0.75)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </div>
       </div>
     </div>
@@ -1049,9 +1049,9 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <div class="modal-overlay" id="serviceModal" onclick="if(event.target===this)closeServiceModal()">
   <div class="modal-box" style="max-width:380px;">
     <div id="serviceModalHeader" style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:14px 18px;margin-bottom:16px;text-align:center;">
-      <div style="font-size:13px;font-weight:800;color:#E0B4FF;line-height:1.5;">ðŸ’» Dá»‹ch Vá»¥ Láº­p TrÃ¬nh Â· TÆ° Váº¥n Miá»…n PhÃ­</div>
+      <div style="font-size:13px;font-weight:800;color:#E0B4FF;line-height:1.5;">💻 Dịch Vụ Lập Trình · Tư Vấn Miễn Phí</div>
     </div>
-    <div style="font-size:13.5px;font-weight:800;margin-bottom:18px;color:var(--text);">Chá»n kÃªnh liÃªn há»‡:</div>
+    <div style="font-size:13.5px;font-weight:800;margin-bottom:18px;color:var(--text);">Chọn kênh liên hệ:</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
       <a href="https://t.me/binpinkgold" target="_blank" onclick="closeServiceModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
         <img src="assets/images/tele.jpg" alt="Telegram" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
@@ -1062,7 +1062,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
       </a>
     </div>
-    <button class="modal-close-btn" onclick="closeServiceModal()">âœ• ÄÃ³ng</button>
+    <button class="modal-close-btn" onclick="closeServiceModal()">✕ Đóng</button>
   </div>
 </div>
 
@@ -1072,8 +1072,8 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <div style="margin-bottom:24px;display:flex;align-items:center;gap:12px;">
       <div style="width:3px;height:28px;border-radius:2px;background:linear-gradient(180deg,#A855F7,#EC4899);box-shadow:0 0 10px rgba(168,85,247,0.55);flex-shrink:0;"></div>
       <div>
-        <div style="font-size:1.15rem;font-weight:800;letter-spacing:-0.02em;color:#fff;line-height:1;">LiÃªn Há»‡</div>
-        <div style="font-size:11.5px;color:rgba(240,236,248,0.35);margin-top:3px;">Telegram Â· Zalo Â· Facebook Â· TikTok</div>
+        <div style="font-size:1.15rem;font-weight:800;letter-spacing:-0.02em;color:#fff;line-height:1;">Liên Hệ</div>
+        <div style="font-size:11.5px;color:rgba(240,236,248,0.35);margin-top:3px;">Telegram · Zalo · Facebook · TikTok</div>
       </div>
     </div>
     <div class="contact-list">
@@ -1085,19 +1085,19 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   </div>
 </section>
 
-<footer>Â© 2026 <span style="background:linear-gradient(135deg,#C084FC,#A855F7,#EC4899,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;">Binpinkgold Code Store</span> Â· 08989 08101</footer>
+<footer>© 2026 <span style="background:linear-gradient(135deg,#C084FC,#A855F7,#EC4899,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;">Binpinkgold Code Store</span> · 08989 08101</footer>
 
 <!-- BOTTOM NAV -->
 <div class="idx-bottom-nav">
   <div class="idx-bottom-nav-inner">
     <a class="idx-bnav-item active" id="idxNav0" href="#" onclick="idxNavClick(event,0,'#hero')">
       <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
-      <span>Trang Chá»§</span>
+      <span>Trang Chủ</span>
     </a>
     <a class="idx-bnav-item" id="idxNav1" href="kho.html" onclick="idxNavClick(event,1,'kho.html')" style="position:relative;">
       <div class="kho-pill-bubble" id="khoPill">
-        <span class="kho-pill-bubble-emoji">ðŸ”¥</span>
-        <span class="kho-pill-bubble-text" id="khoPillText">Kho Code má»›i!</span>
+        <span class="kho-pill-bubble-emoji">🔥</span>
+        <span class="kho-pill-bubble-text" id="khoPillText">Kho Code mới!</span>
         <span class="kho-pill-bubble-dot"></span>
       </div>
       <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
@@ -1105,11 +1105,11 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     </a>
     <a class="idx-bnav-item" id="idxNav3" href="#services" onclick="idxNavClick(event,3,'#services')">
       <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-      <span>Dá»‹ch Vá»¥</span>
+      <span>Dịch Vụ</span>
     </a>
     <a class="idx-bnav-item" id="idxNav2" href="#contact" onclick="idxNavClick(event,2,'#contact')">
       <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      <span>LiÃªn Há»‡</span>
+      <span>Liên Hệ</span>
     </a>
   </div>
 </div>
@@ -1121,34 +1121,34 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <div class="fee-modal-head" style="background:rgba(4,14,8,0.99);border-bottom-color:rgba(34,197,94,0.15);border-radius:32px 32px 0 0;">
       <div class="fee-modal-title" style="color:#4ade80;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>
-        Thanh ToÃ¡n Há»™ Quá»‘c Táº¿
+        Thanh Toán Hộ Quốc Tế
       </div>
-      <button class="fee-modal-close" onclick="closeTthModal()" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#4ade80;">âœ•</button>
+      <button class="fee-modal-close" onclick="closeTthModal()" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#4ade80;">✕</button>
     </div>
     <div class="fee-modal-body">
       <!-- badges -->
       <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px;">
         <div class="tth-badge tth-bv">VISA</div>
         <div class="tth-badge tth-bm"><svg width="18" height="12" viewBox="0 0 36 24" fill="none"><circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/><circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/><path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/></svg>MC</div>
-        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,0.1);border:1.5px solid rgba(34,197,94,0.35);border-radius:9px;padding:4px 11px;font-size:10px;font-weight:800;color:rgba(74,222,128,0.9);white-space:nowrap;">Má»i dá»‹ch vá»¥ quá»‘c táº¿</div>
+        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,0.1);border:1.5px solid rgba(34,197,94,0.35);border-radius:9px;padding:4px 11px;font-size:10px;font-weight:800;color:rgba(74,222,128,0.9);white-space:nowrap;">Mọi dịch vụ quốc tế</div>
       </div>
       <!-- bullets -->
       <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:16px;padding:13px 15px;display:flex;flex-direction:column;gap:8px;">
-        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">âœ“</span><span>KhÃ´ng cáº§n tháº» Visa/MC â€” chá»‰ cáº§n chuyá»ƒn khoáº£n ná»™i Ä‘á»‹a.</span></div>
-        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">âœ“</span><span>Xá»­ lÃ½ nhanh trong <strong style="color:#4ade80;">1 phÃºt</strong> sau khi nháº­n tiá»n.</span></div>
-        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">âœ“</span><span>Há»— trá»£ thanh toÃ¡n má»i dá»‹ch vá»¥ nÆ°á»›c ngoÃ i.</span></div>
+        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span><span>Không cần thẻ Visa/MC — chỉ cần chuyển khoản nội địa.</span></div>
+        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span><span>Xử lý nhanh trong <strong style="color:#4ade80;">1 phút</strong> sau khi nhận tiền.</span></div>
+        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">✓</span><span>Hỗ trợ thanh toán mọi dịch vụ nước ngoài.</span></div>
       </div>
       <!-- fee button -->
       <button class="tth-btn-fee" onclick="closeTthModal();openFeeModal()" style="background:rgba(34,197,94,0.09);border-color:rgba(34,197,94,0.4);color:#4ade80;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        Xem phÃ­ dá»‹ch vá»¥
+        Xem phí dịch vụ
       </button>
-      <!-- CTA button â€” green spin border -->
+      <!-- CTA button — green spin border -->
       <div style="width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;background:conic-gradient(from var(--tth-la,0deg),#14532d 0%,#22c55e 15%,#86efac 25%,#16a34a 35%,#22c55e 50%,#14532d 60%,#86efac 70%,#22c55e 85%,#14532d 100%);animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(34,197,94,0.65),0 0 44px rgba(34,197,94,0.25);contain:layout style paint;">
         <div style="position:absolute;inset:2.5px;border-radius:100px;background:rgba(4,14,8,0.99);z-index:0;pointer-events:none;"></div>
-        <button style="width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#14532d 0%,#16a34a 40%,#22c55e 70%,#4ade80 100%);color:#031a0a;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25);" onclick="closeTthModal();openModal('ðŸ’³ Thanh ToÃ¡n Há»™ Quá»‘c Táº¿ Â· Visa/Mastercard')">
+        <button style="width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#14532d 0%,#16a34a 40%,#22c55e 70%,#4ade80 100%);color:#031a0a;font-weight:900;font-family:'Inter',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25);" onclick="closeTthModal();openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          LiÃªn há»‡ ngay
+          Liên hệ ngay
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
       </div>
@@ -1162,9 +1162,9 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <div class="fee-modal-head">
       <div class="fee-modal-title">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        Báº£ng PhÃ­ Dá»‹ch Vá»¥
+        Bảng Phí Dịch Vụ
       </div>
-      <button class="fee-modal-close" onclick="closeFeeModal()">âœ•</button>
+      <button class="fee-modal-close" onclick="closeFeeModal()">✕</button>
     </div>
     <div class="fee-modal-body" id="feeModalBody"></div>
   </div>
@@ -1208,36 +1208,36 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <div class="modal-overlay" id="featModal" onclick="if(event.target===this){document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';}">
   <div class="feat-modal-box">
     <div class="feat-modal-head">
-      <div class="font-syne" style="font-size:1rem;font-weight:800;color:#C084FC;">âœ¨ ChatGPT Plus Â· GPT-5.4</div>
-      <button class="feat-close-btn" onclick="document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';">âœ•</button>
+      <div class="font-syne" style="font-size:1rem;font-weight:800;color:#C084FC;">✨ ChatGPT Plus · GPT-5.4</div>
+      <button class="feat-close-btn" onclick="document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';">✕</button>
     </div>
     <div class="fm-tagline">
-      <strong>GPT-5.4</strong> â€” model suy luáº­n <strong>hiá»‡u quáº£ nháº¥t vá» token</strong> cá»§a OpenAI. VÆ°á»£t trá»™i Anthropic vÃ  Google, há»— trá»£ <strong>1M token context</strong>, tá»‘i Æ°u nghiÃªn cá»©u web sÃ¢u vÃ  táº¡o tÃ i liá»‡u trá»±c quan.
+      <strong>GPT-5.4</strong> — model suy luận <strong>hiệu quả nhất về token</strong> của OpenAI. Vượt trội Anthropic và Google, hỗ trợ <strong>1M token context</strong>, tối ưu nghiên cứu web sâu và tạo tài liệu trực quan.
     </div>
     <div class="fm-cards">
       <div class="fm-card">
-        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);">ðŸ§ </div><div class="fm-card-name">GPT-5.4 Thinking</div></div>
-        <div class="fm-card-desc">Xem káº¿ hoáº¡ch suy nghÄ© realtime, Ä‘iá»u chá»‰nh ngay khi model Ä‘ang xá»­ lÃ½ cÃ¢u tráº£ lá»i.</div>
-        <div class="fm-card-badge" style="background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.22);color:#FCD34D;">Plus Â· Team Â· Pro</div>
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);">🧠</div><div class="fm-card-name">GPT-5.4 Thinking</div></div>
+        <div class="fm-card-desc">Xem kế hoạch suy nghĩ realtime, điều chỉnh ngay khi model đang xử lý câu trả lời.</div>
+        <div class="fm-card-badge" style="background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.22);color:#FCD34D;">Plus · Team · Pro</div>
       </div>
       <div class="fm-card">
-        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.25);">ðŸ“„</div><div class="fm-card-name">1M Token Context</div></div>
-        <div class="fm-card-desc">Xá»­ lÃ½ tÃ i liá»‡u dÃ i, codebase lá»›n mÃ  khÃ´ng máº¥t ngá»¯ cáº£nh.</div>
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.25);">📄</div><div class="fm-card-name">1M Token Context</div></div>
+        <div class="fm-card-desc">Xử lý tài liệu dài, codebase lớn mà không mất ngữ cảnh.</div>
         <div class="fm-card-badge" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.22);color:#C084FC;">Preview</div>
       </div>
       <div class="fm-card">
-        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.22);">ðŸ’»</div><div class="fm-card-name">Codex /fast Mode</div></div>
-        <div class="fm-card-desc">Sinh code nhanh hÆ¡n 1.5Ã— khÃ´ng giáº£m cháº¥t lÆ°á»£ng.</div>
-        <div class="fm-card-badge" style="background:rgba(20,184,166,0.08);border:1px solid rgba(20,184,166,0.2);color:#5eead4;">Ã—1.5 tá»‘c Ä‘á»™</div>
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.22);">💻</div><div class="fm-card-name">Codex /fast Mode</div></div>
+        <div class="fm-card-desc">Sinh code nhanh hơn 1.5× không giảm chất lượng.</div>
+        <div class="fm-card-badge" style="background:rgba(20,184,166,0.08);border:1px solid rgba(20,184,166,0.2);color:#5eead4;">×1.5 tốc độ</div>
       </div>
       <div class="fm-card">
-        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.22);">ðŸŽ¬</div><div class="fm-card-name">Sora Â· Agent Â· ADA</div></div>
-        <div class="fm-card-desc">Táº¡o video AI, tá»± Ä‘á»™ng hoÃ¡ quy trÃ¬nh, phÃ¢n tÃ­ch dá»¯ liá»‡u ngay trong chat.</div>
-        <div class="fm-card-badge" style="background:rgba(236,72,153,0.09);border:1px solid rgba(236,72,153,0.2);color:#F472B6;">Äá»™c quyá»n Plus</div>
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.22);">🎬</div><div class="fm-card-name">Sora · Agent · ADA</div></div>
+        <div class="fm-card-desc">Tạo video AI, tự động hoá quy trình, phân tích dữ liệu ngay trong chat.</div>
+        <div class="fm-card-badge" style="background:rgba(236,72,153,0.09);border:1px solid rgba(236,72,153,0.2);color:#F472B6;">Độc quyền Plus</div>
       </div>
     </div>
     <div class="fm-bench">
-      <div class="fm-bench-title">Benchmark so sÃ¡nh</div>
+      <div class="fm-bench-title">Benchmark so sánh</div>
       <div class="fm-bench-row"><div class="fm-bench-name">OSWorld Computer Use</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:75%"></div></div><div class="fm-bench-pct">75%</div></div>
       <div class="fm-bench-row"><div class="fm-bench-name">MMMU-Pro GPT-5.4</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:81.2%"></div></div><div class="fm-bench-pct">81.2%</div></div>
       <div class="fm-bench-row"><div class="fm-bench-name">MMMU-Pro Gemini 3.1</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar dim" style="width:80.5%"></div></div><div class="fm-bench-pct dim">80.5%</div></div>
@@ -1245,7 +1245,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     </div>
     <div class="fm-avail">
       <div class="fm-avail-dot"></div>
-      <div class="fm-avail-text">GPT-5.4 Thinking â†’ Plus, Team &amp; Pro Â· GPT-5.4 Pro â†’ Pro &amp; Enterprise</div>
+      <div class="fm-avail-text">GPT-5.4 Thinking → Plus, Team &amp; Pro · GPT-5.4 Pro → Pro &amp; Enterprise</div>
     </div>
   </div>
 </div>
@@ -1257,14 +1257,14 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
       <div id="modalSelected" style="font-size:14px;font-weight:800;color:#E0B4FF;line-height:1.5;"></div>
     </div>
     <div id="plusNotesBox" style="display:none;background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:14px 16px;margin-bottom:16px;">
-      <div style="font-size:9.5px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(192,132,252,0.55);margin-bottom:10px;">ðŸ“Œ LÆ°u Ã½ quan trá»ng</div>
+      <div style="font-size:9.5px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(192,132,252,0.55);margin-bottom:10px;">📌 Lưu ý quan trọng</div>
       <div style="display:flex;flex-direction:column;gap:7px;">
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">ðŸ”¹ Nháº­n tÃ i khoáº£n riÃªng (cÃ³ thá»ƒ Ä‘á»•i máº­t kháº©u) ngay sau khi mua.</div>
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">ðŸ”¹ 1 mÃ¬nh báº¡n dÃ¹ng 1 tÃ i khoáº£n (cÃ³ thá»ƒ Ä‘á»•i máº­t kháº©u).</div>
-        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">ðŸ”¹ Truy cáº­p Ä‘áº§y Ä‘á»§ Sora (Video AI) &amp; Codex.</div>
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Nhận tài khoản riêng (có thể đổi mật khẩu) ngay sau khi mua.</div>
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 1 mình bạn dùng 1 tài khoản (có thể đổi mật khẩu).</div>
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">🔹 Truy cập đầy đủ Sora (Video AI) &amp; Codex.</div>
       </div>
     </div>
-    <div id="modalSubtitle" style="font-size:14px;font-weight:800;margin-bottom:20px;color:var(--text);">LiÃªn há»‡ Ä‘á»ƒ mua ngay:</div>
+    <div id="modalSubtitle" style="font-size:14px;font-weight:800;margin-bottom:20px;color:var(--text);">Liên hệ để mua ngay:</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
       <a href="https://t.me/binpinkgold" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
         <img src="assets/images/tele.jpg" alt="Telegram" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
@@ -1275,18 +1275,18 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
         <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
       </a>
     </div>
-    <button class="modal-close-btn" onclick="closeModal()">âœ• ÄÃ³ng</button>
+    <button class="modal-close-btn" onclick="closeModal()">✕ Đóng</button>
   </div>
 </div>
 
 <script>
 const PLUS_LIST_PRICE=522000,PLUS_OUR_PRICE=99000;
-function fmtVND(n){return n.toLocaleString('vi-VN')+'Ä‘';}
+function fmtVND(n){return n.toLocaleString('vi-VN')+'đ';}
 function initYearlyPricing(){
   var lf=PLUS_LIST_PRICE*12,oy=PLUS_OUR_PRICE*12,sv=lf-oy;
   document.getElementById('plusYearlyListFull').textContent=fmtVND(lf);
   document.getElementById('plusYearlyOur').textContent=fmtVND(oy);
-  document.getElementById('plusYearlySaving').textContent='ðŸ’° Tiáº¿t kiá»‡m '+fmtVND(sv);
+  document.getElementById('plusYearlySaving').textContent='💰 Tiết kiệm '+fmtVND(sv);
 }
 function openTthModal(){var m=document.getElementById('tthModal');m.classList.add('open');document.body.style.overflow='hidden';}
 function closeTthModal(){var m=document.getElementById('tthModal');m.classList.remove('open');document.body.style.overflow='';}
@@ -1295,24 +1295,24 @@ function openModal(n){
   document.getElementById('plusNotesBox').style.display='none';
   var sub=document.getElementById('modalSubtitle');
   if(sub){
-    if(n.indexOf('Thanh ToÃ¡n')!==-1||n.indexOf('Dá»‹ch Vá»¥')!==-1||n.indexOf('Bot')!==-1||n.indexOf('Website')!==-1)sub.textContent='LiÃªn há»‡ Ä‘á»ƒ Ä‘áº·t dá»‹ch vá»¥ ngay:';
-    else if(n.indexOf('YouTube')!==-1||n.indexOf('CapCut')!==-1||n.indexOf('Plus')!==-1||n.indexOf('ChatGPT')!==-1)sub.textContent='LiÃªn há»‡ Ä‘á»ƒ nháº­n tÃ i khoáº£n ngay:';
-    else sub.textContent='LiÃªn há»‡ Ä‘á»ƒ mua ngay:';
+    if(n.indexOf('Thanh Toán')!==-1||n.indexOf('Dịch Vụ')!==-1||n.indexOf('Bot')!==-1||n.indexOf('Website')!==-1)sub.textContent='Liên hệ để đặt dịch vụ ngay:';
+    else if(n.indexOf('YouTube')!==-1||n.indexOf('CapCut')!==-1||n.indexOf('Plus')!==-1||n.indexOf('ChatGPT')!==-1)sub.textContent='Liên hệ để nhận tài khoản ngay:';
+    else sub.textContent='Liên hệ để mua ngay:';
   }
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
 function openPlusModal(){
-  document.getElementById('modalSelected').innerHTML='âœ¨ ChatGPT Plus &bull; 99K/thÃ¡ng';
+  document.getElementById('modalSelected').innerHTML='✨ ChatGPT Plus &bull; 99K/tháng';
   document.getElementById('plusNotesBox').style.display='block';
-  var sub=document.getElementById('modalSubtitle');if(sub)sub.textContent='LiÃªn há»‡ Ä‘á»ƒ nháº­n tÃ i khoáº£n ngay:';
+  var sub=document.getElementById('modalSubtitle');if(sub)sub.textContent='Liên hệ để nhận tài khoản ngay:';
   document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';
 }
 function openFeeModal(){renderFeeModal();document.getElementById('feeModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeFeeModal(){document.getElementById('feeModal').classList.remove('open');document.body.style.overflow='';}
-const FEE_CONFIG={tiers:[{max:1000000,rate:0.22,label:'DÆ°á»›i 1.000.000Ä‘'},{max:Infinity,rate:0.15,label:'Tá»« 1.000.000Ä‘ trá»Ÿ lÃªn'}]};
-function vndFmt(n){return Math.round(n).toLocaleString('vi-VN')+'Ä‘';}
+const FEE_CONFIG={tiers:[{max:1000000,rate:0.22,label:'Dưới 1.000.000đ'},{max:Infinity,rate:0.15,label:'Từ 1.000.000đ trở lên'}]};
+function vndFmt(n){return Math.round(n).toLocaleString('vi-VN')+'đ';}
 function calcFee(vnd){var tier=FEE_CONFIG.tiers.find(t=>vnd<=t.max);return Math.round(vnd*tier.rate);}
 function renderFeeModal(){
   var cfg=FEE_CONFIG;
@@ -1322,7 +1322,7 @@ function renderFeeModal(){
       <div class="fm-tier-range">${t.label}</div>
       <div class="fm-tier-right">
         <div class="fm-tier-pct">${Math.round(t.rate*100)}%</div>
-        ${isCheap?'<div class="fm-tier-tag best">ÄÆ¡n lá»›n</div>':''}
+        ${isCheap?'<div class="fm-tier-tag best">Đơn lớn</div>':''}
       </div>
     </div>`;
   }).join('');
@@ -1330,16 +1330,16 @@ function renderFeeModal(){
     <div class="fm-tiers">${tiersHTML}</div>
 
     <div class="fm-calc">
-      <div class="fm-calc-title">ðŸ§® TÃ­nh phÃ­ nhanh</div>
+      <div class="fm-calc-title">🧮 Tính phí nhanh</div>
       <div class="fm-calc-row">
-        <input class="fm-calc-input" id="feeCalcInput" type="number" min="0" placeholder="Nháº­p giÃ¡ dá»‹ch vá»¥..." oninput="updateFeeCalc()">
-        <span class="fm-calc-unit">VNÄ</span>
+        <input class="fm-calc-input" id="feeCalcInput" type="number" min="0" placeholder="Nhập giá dịch vụ..." oninput="updateFeeCalc()">
+        <span class="fm-calc-unit">VNĐ</span>
       </div>
       <div class="fm-calc-breakdown" id="feeCalcResult" style="display:none;">
-        <div class="fm-calc-row-item"><span class="lbl">GiÃ¡ dá»‹ch vá»¥</span><span class="val" id="fcBaseVal">â€”</span></div>
-        <div class="fm-calc-row-item"><span class="lbl">PhÃ­ dá»‹ch vá»¥</span><span class="val" id="fcFeeVal">â€”</span></div>
+        <div class="fm-calc-row-item"><span class="lbl">Giá dịch vụ</span><span class="val" id="fcBaseVal">—</span></div>
+        <div class="fm-calc-row-item"><span class="lbl">Phí dịch vụ</span><span class="val" id="fcFeeVal">—</span></div>
         <div class="fm-calc-row-item divider"></div>
-        <div class="fm-calc-row-item total"><span class="lbl">Tá»•ng chuyá»ƒn khoáº£n</span><span class="val" id="fcTotalVal">â€”</span></div>
+        <div class="fm-calc-row-item total"><span class="lbl">Tổng chuyển khoản</span><span class="val" id="fcTotalVal">—</span></div>
       </div>
     </div>`;
 }
@@ -1364,20 +1364,20 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 // KHO CODE pill bubble
 (function(){
   var pill=document.getElementById('khoPill'),ptxt=document.getElementById('khoPillText');
-  var TEXTS=['ðŸ”¥ Kho Code má»›i!','âœ¨ +20 template','ðŸ‘‰ Xem ngay â†’','ðŸ’Ž GiÃ¡ tá»‘t nháº¥t'];
+  var TEXTS=['🔥 Kho Code mới!','✨ +20 template','👉 Xem ngay →','💎 Giá tốt nhất'];
   var idx=0;
   function cycle(){if(!ptxt)return;ptxt.style.opacity='0';setTimeout(function(){ptxt.textContent=TEXTS[idx++%TEXTS.length];ptxt.style.opacity='1';},190);setTimeout(cycle,2400);}
   setTimeout(function(){if(pill)pill.classList.add('in');cycle();},900);
 })();
 
-// â”€â”€ 3D SPACE BANNER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── 3D SPACE BANNER ──────────────────────────────────────
 (function(){
   var cv=document.getElementById('bannerCanvas');
   if(!cv)return;
   var ctx=cv.getContext('2d');
   var W,H,RAF;
-  // Code tokens â€” láº­p trÃ¬nh, hÃ m, toÃ¡n há»c
-  var TOKENS=['function()','const x=','</>','{}','[]','01','if()','async','return','Ï€','âˆ‘','Î»','âŸ¨âŸ©','git','npm','API','JSON','true','null','fetch()','class','export','import','void','type','var','for()','[]=>','!0','âˆž','AI','âš¡','â‰ˆ','0x','++','&&','||','//','::','>>','<<','===','!==','px','rem','vw','vh','rgb()','let','new','this','try{}','catch','map()','[â€¦]','~$ ','sudo','ping','ssh','curl','async/await','Promise','useState'];
+  // Code tokens — lập trình, hàm, toán học
+  var TOKENS=['function()','const x=','</>','{}','[]','01','if()','async','return','π','∑','λ','⟨⟩','git','npm','API','JSON','true','null','fetch()','class','export','import','void','type','var','for()','[]=>','!0','∞','AI','⚡','≈','0x','++','&&','||','//','::','>>','<<','===','!==','px','rem','vw','vh','rgb()','let','new','this','try{}','catch','map()','[…]','~$ ','sudo','ping','ssh','curl','async/await','Promise','useState'];
   var particles=[];
   var DEPTH=900;
 
@@ -1464,7 +1464,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
   window.addEventListener('resize',function(){resize();initParticles();});
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─────────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded',function(){calcDiscounts();initYearlyPricing();});
 

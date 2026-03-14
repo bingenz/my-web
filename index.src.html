@@ -1,25 +1,62 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+
 <!--
 =============================================================
-  INDEX PAGE - DEV NOTES (DOC TRUOC KHI SUA)
+  BINPINKGOLD CODE STORE â€” DEV GUIDELINES (Äá»ŒC TRÆ¯á»šC KHI Sá»¬A)
 =============================================================
-  1. FILE NGUON:
-     - Sua noi dung chinh tai index.src.html
-     - Sau khi sua xong, chay encode-html.js de sinh lai index.html
+  1. RESPONSIVE Báº®T BUá»˜C:
+     - KHÃ”NG dÃ¹ng white-space:nowrap cho text/tiÃªu Ä‘á» cÃ³ thá»ƒ dÃ i.
+     - LuÃ´n dÃ¹ng word-break:break-word hoáº·c white-space:normal cho text.
+     - DÃ¹ng max-width:100% + box-sizing:border-box cho má»i block má»›i.
+     - DÃ¹ng clamp() cho font-size thay vÃ¬ px cá»‘ Ä‘á»‹nh khi cÃ³ thá»ƒ.
+     - white-space:nowrap CHá»ˆ Ä‘Æ°á»£c dÃ¹ng cho button CTA hoáº·c chip ngáº¯n cá»‘ Ä‘á»‹nh.
 
-  2. FONT:
-     - Toan bo trang dang dung Be Vietnam Pro
-     - Neu doi font, doi dong bo ca import va font-family
+  2. KHI THÃŠM CHIP / BADGE / NOTE Má»šI:
+     - DÃ¹ng display:flex (KHÃ”NG dÃ¹ng inline-flex) + flex-wrap:wrap.
+     - ThÃªm max-width:100% vÃ  box-sizing:border-box.
+     - Tham kháº£o chip "1 mÃ¬nh báº¡n dÃ¹ng 1 tÃ i khoáº£n" lÃ m máº«u.
 
-  3. CAU TRUC:
-     - Topbar -> Hero -> Goi -> Diem manh -> Bang gia -> FAQ -> Lien he
-     - Cac nav link dang dung anchor den id tung section
+  3. Cáº¬P NHáº¬T Ná»˜I DUNG:
+     - Model hiá»‡n táº¡i: GPT-5.3 Instant (ra máº¯t 3/3/2026).
+     - Cáº­p nháº­t cáº£: subtitle card, feature grid chip, modal tÃ­nh nÄƒng, má»i nÆ¡i nháº¯c tÃªn model.
 
-  4. RESPONSIVE:
-     - Breakpoint chinh: 960px, 640px, 480px
-     - Uu tien giu text de doc tren mobile, han che them khoi qua rong
+  4. Äá»’NG Bá»˜ MOBILE / DESKTOP (QUAN TRá»ŒNG):
+     - Feature grid (6 chips) luÃ´n dÃ¹ng grid-template-columns:1fr 1fr trÃªn cáº£ 2 ná»n táº£ng.
+     - Mobile (<640px): chip padding 9px 10px, font-size 10.5px, word-break:break-word.
+     - SVG icon trong chip: 15px trÃªn mobile, 18px trÃªn desktop.
+     - Má»i thÃ nh pháº§n má»›i thÃªm vÃ o desktop PHáº¢I cÃ³ media query trong @media(max-width:640px).
+
+  5. Cáº¤U TRÃšC FIXED HEADER:
+     - .topbar: position:fixed; top:0; z-index:100
+     - scroll-padding-top hiá»‡n táº¡i: 72px
+     - KHÃ”NG thÃªm thanh fixed nÃ o khÃ¡c mÃ  khÃ´ng cáº­p nháº­t scroll-padding-top vÃ  hero padding.
+
+  6. FLUID RESPONSIVE â€” KHÃ”NG DÃ™NG BREAKPOINT Cá»¨NG DUY NHáº¤T:
+     âš ï¸  QUY Táº®C VÃ€NG â€” ÃP Dá»¤NG CHO Má»ŒI ELEMENT TRÃŠN TRANG:
+     - KHÃ”NG dÃ¹ng height cá»‘ Ä‘á»‹nh (px) cho báº¥t ká»³ block nÃ o â€” luÃ´n Ä‘á»ƒ ná»™i dung tá»± Ä‘á»‹nh chiá»u cao qua padding.
+     - Náº¿u element báº¯t buá»™c cÃ³ height (vd: banner áº£nh): dÃ¹ng aspect-ratio (vd: 16/9) + max-height, KHÃ”NG dÃ¹ng height:Xpx.
+     - Slide/banner ná»™i dung text: KHÃ”NG dÃ¹ng height â€” dÃ¹ng padding:clamp(...) Ä‘á»ƒ tá»± co giÃ£n theo content.
+     - Má»i font-size, padding, gap, border-radius cÃ³ thá»ƒ thay Ä‘á»•i theo viewport: PHáº¢I dÃ¹ng clamp().
+     - Má»¥c tiÃªu: má»i thá»© trÃªn trang tá»± co giÃ£n mÆ°á»£t theo kÃ­ch thÆ°á»›c trÃ¬nh duyá»‡t, khÃ´ng bao giá» bá»‹ cáº¯t ná»™i dung.
+     - DÃ¹ng clamp() cho font-size, padding, gap thay vÃ¬ px cá»‘ Ä‘á»‹nh (vd: clamp(10px,2.5vw,13.5px)).
+     - Grid dÃ¹ng auto-fit/minmax thay vÃ¬ columns cá»‘ Ä‘á»‹nh khi cÃ³ thá»ƒ.
+     - NÃºt trong cÃ¹ng 1 row: flex:1 + min-width:0 + white-space:nowrap â€” tá»± chia Ä‘á»u, khÃ´ng wrap.
+     - Breakpoint 3 táº§ng: 480px / 640px / 768px â€” khÃ´ng chá»‰ 640px.
+     - Stat cards (4 neon cards): grid repeat(4,1fr) desktop, repeat(2,1fr) tablet/mobile.
+
+  7. CHIP / CARD CÃ“ ELEMENT ABSOLUTE (tag NEW / HOT / badge):
+     - Text label bÃªn trong PHáº¢I cÃ³ padding-right Ä‘á»§ lá»›n (tá»‘i thiá»ƒu 30px) Ä‘á»ƒ tá»± wrap
+       xuá»‘ng dÃ²ng TRÆ¯á»šC KHI cháº¡m vÃ o vÃ¹ng element absolute.
+     - KHÃ”NG Ä‘á»ƒ text vÃ  element absolute cÃ¹ng lá»›p mÃ  thiáº¿u padding â€” sáº½ bá»‹ Ä‘Ã¨ chá»¯
+       trÃªn mÃ n hÃ¬nh nhá» (â‰¤ 6.2 inch / ~390px).
+     - KÃ­ch thÆ°á»›c text (font-size) vÃ  chip/card luÃ´n dÃ¹ng size auto (word-break:break-word,
+       white-space:normal), KHÃ”NG cá»‘ Ä‘á»‹nh width â€” Ä‘á»ƒ layout tá»± co giÃ£n theo mÃ n hÃ¬nh.
+
+LÆ¯U Ã: KHÃ”NG ÄÆ¯á»¢C Sá»¬ Dá»¤NG HIá»†U á»¨NG GÃ‚Y LAG KHI LÆ¯á»šT WEB, CHáº¤T LÆ¯á»¢NG VÃ€ HIá»†U á»¨NG PHáº¢I NHÆ¯ YÃŠU Cáº¦U MIá»„N LÃ€ KHI LÆ¯á»šT KHÃ”NG GÃ‚Y LAG
 =============================================================
 -->
+
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -30,926 +67,1412 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* BASE */
-html{
-  scroll-behavior:smooth;
-  scroll-padding-top:88px;
-}
+html{scroll-padding-top:72px;}
 :root{
-  --bg:#060816;
-  --bg-soft:#0c1124;
-  --surface:rgba(12,17,36,0.78);
-  --surface-strong:rgba(16,24,48,0.92);
-  --line:rgba(255,255,255,0.09);
-  --text:#f5f7ff;
-  --muted:rgba(245,247,255,0.7);
-  --soft:rgba(245,247,255,0.48);
-  --primary:#ff4fa3;
-  --primary-2:#7c5cff;
-  --accent:#2ee6d6;
-  --warm:#ffba66;
-  --shadow:0 30px 80px rgba(0,0,0,0.35);
-  --radius-xl:32px;
-  --radius-lg:24px;
-  --radius-md:18px;
-  --container:min(1180px,calc(100vw - 32px));
+  --purple:#A855F7;--magenta:#EC4899;--pink:#F472B6;--indigo:#6366F1;
+  --bg:#06020f;--bg2:#080418;--surface:rgba(255,255,255,0.04);
+  --surface2:rgba(168,85,247,0.08);--border:rgba(168,85,247,0.2);
+  --border-glow:rgba(168,85,247,0.45);--text:#F0ECF8;
+  --muted:rgba(240,236,248,0.45);--subtle:rgba(240,236,248,0.25);
+  --card-shadow:
+    0 1px 0 rgba(255,255,255,0.07) inset,
+    0 4px 24px rgba(0,0,0,0.6),
+    0 20px 60px rgba(0,0,0,0.35),
+    0 0 40px rgba(168,85,247,0.1);
 }
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;min-height:100vh;}
+/* body::after & ::before â€” will-change:transform Ä‘áº©y lÃªn GPU compositor layer riÃªng,
+   trÃ¡nh repaint toÃ n trang khi scroll */
+body::after{content:'';position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse 100% 60% at 50% 100%,rgba(0,0,0,0.55) 0%,transparent 70%),
+             radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.38) 0%,transparent 60%);
+  pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
+body::before{content:'';position:fixed;inset:0;z-index:0;
+  /* mobile: chá»‰ lÆ°á»›i thÃ´ (96px) â€” bá» sub-grid 24px Ä‘á»ƒ giáº£m táº£i paint */
+  background-image:linear-gradient(rgba(168,85,247,0.13) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.13) 1px,transparent 1px);
+  background-size:96px 96px,96px 96px;
+  -webkit-mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
+  mask-image:radial-gradient(ellipse 110% 110% at 50% 40%,black 0%,black 55%,transparent 95%);
+  pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
+@media(min-width:768px){
+  body::before{
+    background-image:linear-gradient(rgba(168,85,247,0.14) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.14) 1px,transparent 1px),linear-gradient(rgba(168,85,247,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.06) 1px,transparent 1px);
+    background-size:96px 96px,96px 96px,24px 24px,24px 24px;
+  }
 }
-body{
-  font-family:"Be Vietnam Pro",sans-serif;
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+/* glow-orb: áº©n hoÃ n toÃ n trÃªn mobile â€” filter:blur() ráº¥t náº·ng */
+.glow-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;will-change:transform;transform:translateZ(0);}
+.glow-orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(168,85,247,0.22) 0%,transparent 70%);top:-280px;left:-240px;filter:blur(70px);}
+.glow-orb-2{width:700px;height:700px;background:radial-gradient(circle,rgba(236,72,153,0.18) 0%,transparent 70%);bottom:-100px;right:-100px;filter:blur(70px);}
+.glow-orb-3{width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.16) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%) translateZ(0);filter:blur(60px);}
+@media(max-width:767px){.glow-orb{display:none;}}
+.gradient-text{background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.gradient-text-white{background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.font-syne{font-family:'Be Vietnam Pro',sans-serif;}
+
+.glass-card{
+  background:linear-gradient(145deg,rgba(17,9,48,0.92) 0%,rgba(12,7,36,0.95) 40%,rgba(19,8,48,0.92) 70%,rgba(9,5,30,0.95) 100%);
+  border:1px solid rgba(168,85,247,0.32);
+  border-radius:48px;
+  position:relative;overflow:hidden;
+  transition:border-color 0.28s,box-shadow 0.28s,transform 0.2s;
+}
+.glass-card:hover{border-color:rgba(168,85,247,0.6);transform:translateY(-2px);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);}
+.glass-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.65),rgba(236,72,153,0.45),transparent);border-radius:48px 48px 0 0;pointer-events:none;}
+.glass-card-glow{box-shadow:var(--card-shadow);}
+
+.sub-card{
+  background:linear-gradient(145deg,rgba(20,10,44,0.88),rgba(12,7,32,0.92));
+  border:1px solid rgba(168,85,247,0.28);
+  border-radius:48px;
+  padding:26px 26px 22px;
+  display:flex;flex-direction:column;gap:0;
+  position:relative;overflow:hidden;
+  transition:border-color 0.28s,box-shadow 0.28s,transform 0.22s;
+  box-shadow:var(--card-shadow);
+  contain:layout style paint;
+}
+.sub-card:hover{border-color:rgba(168,85,247,0.62);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-3px);}
+.sub-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.55),rgba(236,72,153,0.35),transparent);}
+
+/* ===================================================
+   HERO BANNER â€” compact, icon-right layout
+   KHÃ”NG dÃ¹ng hiá»‡u á»©ng lag (conic-gradient animation,
+   will-change, shimmer Ä‘Ã£ xÃ³a khá»i banner)
+=================================================== */
+@property --led-angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+@keyframes spinLED{from{--led-angle:0deg;}to{--led-angle:360deg;}}
+@keyframes sbsDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes shimmerCTA{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
+
+/* â”€â”€ HERO BANNER â”€â”€ */
+.hero-banner{
+  margin-top:60px;
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,rgba(10,4,28,0.98) 0%,rgba(16,8,40,0.97) 50%,rgba(8,4,22,0.99) 100%);
+  border-bottom:1px solid rgba(168,85,247,0.14);
+  contain:layout style;
+}
+.hero-banner::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background:
-    radial-gradient(circle at top left,rgba(124,92,255,0.22),transparent 30%),
-    radial-gradient(circle at 85% 15%,rgba(255,79,163,0.18),transparent 25%),
-    radial-gradient(circle at 50% 100%,rgba(46,230,214,0.12),transparent 28%),
-    linear-gradient(180deg,#060816 0%,#070b18 45%,#09101d 100%);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
+    radial-gradient(ellipse 70% 100% at 0% 50%,rgba(168,85,247,0.11) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 80% at 100% 20%,rgba(236,72,153,0.07) 0%,transparent 55%);
 }
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,0.045) 1px,transparent 1px);
-  background-size:72px 72px;
-  mask-image:radial-gradient(circle at center,black 28%,transparent 85%);
-  opacity:.35;
+.hero-banner-topline{
+  height:2px;
+  background:linear-gradient(90deg,transparent 0%,rgba(168,85,247,0.75) 35%,rgba(236,72,153,0.55) 65%,transparent 100%);
+  position:relative;z-index:1;
 }
-a{
-  color:inherit;
-  text-decoration:none;
-}
-img{
-  display:block;
-  max-width:100%;
-}
-button{
-  font:inherit;
-}
-.wrap{
-  width:var(--container);
-  margin:0 auto;
-}
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:100;
-  backdrop-filter:blur(18px);
-  background:rgba(6,8,22,0.72);
-  border-bottom:1px solid rgba(255,255,255,0.06);
-}
-.topbar-inner{
-  width:var(--container);
-  margin:0 auto;
-  min-height:76px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  min-width:0;
-}
-.brand-mark{
-  width:48px;
-  height:48px;
-  border-radius:16px;
-  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-2) 55%,var(--accent) 100%);
-  box-shadow:0 14px 34px rgba(124,92,255,0.35);
+.hero-banner-inner{
+  position:relative;z-index:1;
   display:grid;
-  place-items:center;
-  font-family:"Be Vietnam Pro",sans-serif;
-  font-size:18px;
-  font-weight:700;
-  color:#fff;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:clamp(20px,4vw,52px);
+  padding:clamp(22px,3.5vw,38px) clamp(20px,4vw,52px);
+  max-width:1100px;margin:0 auto;
+  box-sizing:border-box;
 }
-.brand-copy{
+
+/* LEFT: tagline block */
+.hb-left{
+  display:flex;flex-direction:column;
+  gap:clamp(10px,1.8vw,14px);
   min-width:0;
 }
-.brand-copy strong{
-  display:block;
-  font-family:"Be Vietnam Pro",sans-serif;
-  font-size:17px;
-  font-weight:700;
-  letter-spacing:-0.03em;
+.hb-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:clamp(8.5px,1.2vw,10px);font-weight:800;letter-spacing:0.18em;
+  text-transform:uppercase;color:rgba(168,85,247,0.65);
+  width:fit-content;
 }
-.brand-copy span{
-  display:block;
-  margin-top:2px;
-  color:var(--soft);
-  font-size:12px;
+.hb-eyebrow-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:#A855F7;box-shadow:0 0 6px #A855F7;
+  animation:sbsDot 2s ease-in-out infinite;flex-shrink:0;
 }
-.nav{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
+.hb-title{
+  font-size:clamp(1.15rem,4.5vw,2.2rem);font-weight:900;
+  line-height:1.07;letter-spacing:-0.035em;
+  color:#fff;word-break:break-word;margin:0;
 }
-.nav a{
-  color:var(--muted);
-  font-size:14px;
-  font-weight:600;
-  padding:10px 14px;
-  border-radius:999px;
-  transition:.2s ease;
+.hb-title em{
+  font-style:normal;
+  background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 70%,#F472B6 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.nav a:hover{
+.hb-checks{display:flex;flex-direction:column;gap:5px;}
+.hb-check{
+  display:flex;align-items:center;gap:7px;
+  font-size:clamp(10px,1.4vw,12px);
+  color:rgba(240,236,248,0.48);font-weight:500;
+}
+.hb-check svg{flex-shrink:0;}
+
+/* FIRE PRICE BADGE */
+.hb-fire-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,rgba(234,60,10,0.28),rgba(251,100,20,0.18));
+  border:1px solid rgba(251,100,20,0.6);
+  border-radius:9px;padding:5px 13px;
+  font-size:11px;font-weight:800;
+  color:#FF8040;
+  white-space:nowrap;width:fit-content;
+  box-shadow:0 0 14px rgba(251,100,20,0.28),0 2px 8px rgba(0,0,0,0.3);
+  text-shadow:0 0 10px rgba(255,120,40,0.6);
+}
+
+/* FB button â€” xanh dÆ°Æ¡ng style FB, bo gÃ³c máº¡nh, hiá»‡u á»©ng ná»•i 3D */
+.fb-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(180deg,#2d8ef5 0%,#1877F2 45%,#1464d4 100%);
   color:#fff;
-  background:rgba(255,255,255,0.06);
+  font-size:clamp(10.5px,1.4vw,12.5px);font-weight:700;
+  font-family:'Be Vietnam Pro',sans-serif;
+  padding:9px 18px;border-radius:100px;
+  text-decoration:none;white-space:nowrap;
+  border:1px solid rgba(255,255,255,0.18);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.25) inset,
+    0 -1px 0 rgba(0,0,0,0.25) inset,
+    0 4px 12px rgba(24,119,242,0.5),
+    0 8px 24px rgba(24,119,242,0.2);
+  transition:transform 0.15s,box-shadow 0.15s;
+  width:fit-content;
 }
-.nav .cta-link{
-  color:#08111d;
-  background:linear-gradient(135deg,#fff 0%,#cffff8 100%);
+.fb-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.25) inset,
+    0 -1px 0 rgba(0,0,0,0.25) inset,
+    0 6px 18px rgba(24,119,242,0.65),
+    0 12px 32px rgba(24,119,242,0.28);
 }
+.fb-btn:active{transform:translateY(0);}
+.fb-btn svg{flex-shrink:0;}
+.fb-btn-arrow{
+  width:16px;height:16px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+
+/* RIGHT: 1 cá»™t chip â€” Ä‘á»u nhau, hiá»ƒn thá»‹ Ä‘á»§ */
+.hb-right{
+  display:flex;flex-direction:column;gap:4px;
+  width:clamp(150px,20vw,195px);flex-shrink:0;
+  align-self:stretch;justify-content:center;
+}
+.hb-chip{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(168,85,247,0.13);
+  border-radius:8px;
+  padding:0 10px;
+  flex:1;
+  min-height:30px;max-height:40px;
+  transition:background 0.18s,border-color 0.18s;
+  cursor:default;
+}
+a.hb-chip:hover{background:rgba(168,85,247,0.14);border-color:rgba(168,85,247,0.38);}
+a.hb-chip:active{transform:scale(0.97);}
+
+/* â”€â”€ 3D SPACE CANVAS â”€â”€ */
+#bannerCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;}
+.hero-banner-inner{position:relative;z-index:1;}
+.hb-chip-ico{
+  width:18px;height:18px;min-width:18px;border-radius:5px;
+  background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.18);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.hb-chip-name{
+  font-size:clamp(8.5px,1.05vw,10px);font-weight:700;
+  color:rgba(240,236,248,0.75);
+  white-space:nowrap;
+}
+
+/* Responsive */
+@media(max-width:640px){
+  .hero-banner-inner{
+    grid-template-columns:1fr auto;
+    align-items:flex-start;
+    gap:10px;
+    padding:18px 14px 22px;
+  }
+  .hb-right{width:clamp(118px,36vw,148px);gap:3px;}
+  .hb-chip{padding:0 7px;min-height:26px;max-height:34px;gap:5px;}
+  .hb-chip-ico{width:14px;height:14px;min-width:14px;border-radius:4px;}
+  .hb-chip-ico svg{width:8px;height:8px;}
+  .hb-chip-name{font-size:clamp(7px,2.3vw,8.5px);}
+}
+@media(min-width:641px) and (max-width:900px){
+  .hb-right{width:clamp(135px,18vw,170px);}
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   TOPBAR
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(180deg,rgba(18,8,38,0.99) 0%,rgba(10,5,22,0.98) 100%);border-bottom:1px solid rgba(80,40,120,0.35);padding:clamp(10px,2vw,14px) clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 rgba(220,170,255,0.15) inset,0 8px 24px rgba(0,0,0,0.35);height:60px;}
+.topbar-logo{display:inline-flex;align-items:center;gap:clamp(4px,1vw,6px);white-space:nowrap;flex-shrink:1;min-width:0;overflow:hidden;text-decoration:none;}
+.topbar-logo-diamond{font-size:clamp(13px,3.5vw,20px);color:#fff;flex-shrink:0;filter:drop-shadow(0 0 6px rgba(168,85,247,0.7));}
+.topbar-logo-name{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
+.topbar-logo-sub{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
+.topbar-hamburger{width:42px;height:42px;border-radius:12px;flex-shrink:0;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.22);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:background 0.2s,border-color 0.2s;}
+.topbar-hamburger:hover{background:rgba(168,85,247,0.18);border-color:rgba(168,85,247,0.45);}
+.topbar-hamburger span{width:18px;height:2px;background:rgba(192,132,252,0.8);border-radius:2px;transition:all 0.3s;display:block;}
+.topbar-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.topbar-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.topbar-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.topbar-dropdown{position:fixed;top:60px;left:0;right:0;width:100%;background:rgba(8,4,22,0.98);border-bottom:1px solid rgba(168,85,247,0.22);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:6px 0 10px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform 0.25s cubic-bezier(0.34,1.2,0.64,1),opacity 0.2s ease;z-index:99;box-shadow:0 8px 32px rgba(0,0,0,0.55);}
+.topbar-dropdown.open{transform:translateY(0);opacity:1;pointer-events:all;}
+.topbar-nav-item{display:flex;align-items:center;gap:12px;padding:12px clamp(18px,5vw,40px);font-size:clamp(13px,3.5vw,14px);font-weight:600;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(168,85,247,0.07);transition:color 0.2s,background 0.2s;cursor:pointer;word-break:break-word;white-space:normal;box-sizing:border-box;max-width:100%;}
+.topbar-nav-item:last-child{border-bottom:none;}
+.topbar-nav-item:hover{color:#C084FC;background:rgba(168,85,247,0.07);}
+.topbar-nav-icon{flex-shrink:0;opacity:0.65;}
+.topbar-nav-text{line-height:1.5;word-break:break-word;white-space:normal;}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   HERO section (stat cards)
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.btn-primary-wrap{position:relative;display:inline-flex;border-radius:100px;padding:2.5px;background:conic-gradient(from var(--led-angle,0deg),#6b21a8 0%,#a855f7 15%,#ffffff 25%,#ec4899 35%,#a855f7 50%,#6b21a8 60%,#ffffff 70%,#a855f7 85%,#6b21a8 100%);animation:spinLED 3s linear infinite;box-shadow:0 0 18px rgba(168,85,247,0.6),0 0 36px rgba(168,85,247,0.25);will-change:--led-angle;contain:layout style paint;}
+.btn-primary-wrap::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
+.btn-primary-wrap>*{position:relative;z-index:1;}
+.btn-register-shimmer{position:relative;overflow:hidden;z-index:1;}
+.btn-register-shimmer::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmerCTA 2.4s ease-in-out infinite;pointer-events:none;will-change:transform;z-index:2;}
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Be Vietnam Pro',sans-serif;}
+.btn-ghost:hover{background:rgba(168,85,247,0.2);border-color:rgba(168,85,247,0.6);}
+.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Be Vietnam Pro',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
+.sub-card-btn:hover{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
+
+.container{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
+.section-wrap{text-align:center;margin-bottom:28px;}
+.section-beams{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:12px;}
+.section-beam{flex:1;max-width:200px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#A855F7,#EC4899);box-shadow:0 0 12px rgba(168,85,247,0.7);}
+.section-beam.r{background:linear-gradient(270deg,transparent,#A855F7,#EC4899);}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(192,132,252,0.7);white-space:nowrap;}
 
 /* HERO */
-.hero{
-  padding:56px 0 28px;
-}
-.hero-grid{
-  display:grid;
-  grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
-  gap:28px;
-  align-items:stretch;
-}
-.hero-copy,
-.hero-panel,
-.glass{
-  background:linear-gradient(180deg,rgba(17,24,49,0.82) 0%,rgba(10,15,31,0.78) 100%);
-  border:1px solid var(--line);
-  border-radius:var(--radius-xl);
-  box-shadow:var(--shadow);
-}
-.hero-copy{
-  padding:clamp(28px,4vw,52px);
-  position:relative;
-  overflow:hidden;
-}
-.hero-copy::after{
-  content:"";
-  position:absolute;
-  inset:auto -10% -30% auto;
-  width:240px;
-  height:240px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,79,163,0.24),transparent 70%);
-}
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  border:1px solid rgba(255,255,255,0.08);
-  background:rgba(255,255,255,0.04);
-  color:#fff;
-  padding:10px 14px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.eyebrow-dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--accent);
-  box-shadow:0 0 16px rgba(46,230,214,0.9);
-}
-.hero-copy h1{
-  margin-top:22px;
-  font-family:"Be Vietnam Pro",sans-serif;
-  font-size:clamp(2.4rem,5.5vw,5rem);
-  line-height:.98;
-  letter-spacing:-0.05em;
-  max-width:11ch;
-}
-.hero-copy h1 span{
-  background:linear-gradient(135deg,#ffffff 0%,#ffa8d0 35%,#8f92ff 70%,#75fff4 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.hero-copy p{
-  margin-top:18px;
-  color:var(--muted);
-  font-size:clamp(15px,1.9vw,18px);
-  line-height:1.75;
-  max-width:60ch;
-}
-.hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-top:28px;
-}
-.button{
-  min-height:54px;
-  padding:0 22px;
-  border:none;
-  border-radius:18px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  font-weight:700;
-  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
-  cursor:pointer;
-}
-.button:hover{
-  transform:translateY(-2px);
-}
-.button-primary{
-  color:#07111d;
-  background:linear-gradient(135deg,#ffffff 0%,#9effef 100%);
-  box-shadow:0 18px 36px rgba(46,230,214,0.18);
-}
-.button-secondary{
-  color:#fff;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-}
-.hero-stats{
-  margin-top:28px;
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:14px;
-}
-.stat{
-  padding:16px 18px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.045);
-  border:1px solid rgba(255,255,255,0.08);
-}
-.stat strong{
-  display:block;
-  font-family:"Be Vietnam Pro",sans-serif;
-  font-size:clamp(1.2rem,2vw,1.6rem);
-}
-.stat span{
-  display:block;
-  margin-top:6px;
-  color:var(--soft);
-  font-size:13px;
-  line-height:1.5;
-}
-.hero-panel{
-  padding:22px;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
-.hero-card-top{
-  padding:20px;
-  border-radius:24px;
-  background:
-    linear-gradient(135deg,rgba(255,79,163,0.16),transparent 38%),
-    linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03));
-  border:1px solid rgba(255,255,255,0.08);
-}
-.hero-card-top strong{
-  display:block;
-  font-size:14px;
-  color:var(--soft);
-  letter-spacing:.06em;
-  text-transform:uppercase;
-}
-.hero-card-top h2{
-  margin-top:12px;
-  font-size:28px;
-  line-height:1.15;
-  letter-spacing:-0.04em;
-}
-.hero-card-top p{
-  margin-top:12px;
-  color:var(--muted);
-  line-height:1.7;
-  font-size:14px;
-}
-.price-box{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:16px;
-  margin-top:18px;
-}
-.price-box strong{
-  color:#fff;
-  font-size:34px;
-  font-family:"Be Vietnam Pro",sans-serif;
-}
-.price-box span{
-  display:block;
-  color:var(--soft);
-  font-size:13px;
-}
-.feature-list{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-.feature{
-  min-width:0;
-  padding:16px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-}
-.feature strong{
-  display:block;
-  font-size:14px;
-  line-height:1.5;
-}
-.feature span{
-  display:block;
-  margin-top:6px;
-  color:var(--soft);
-  font-size:12px;
-  line-height:1.6;
-}
+.hero{padding:28px 0 36px;text-align:center;position:relative;}
+.hero-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:min(700px,110vw);height:min(700px,110vw);border-radius:50%;border:1px solid rgba(168,85,247,0.08);pointer-events:none;z-index:0;}
+.hero-ring-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:75%;height:75%;border-radius:50%;border:1px solid rgba(236,72,153,0.07);pointer-events:none;}
+.hero>.container{position:relative;z-index:1;}
+.hero-cta{animation:fadeUp 0.7s 0.3s ease both;}
 
-/* CONTENT SECTIONS */
-.section{
-  padding:28px 0;
-}
-.section-head{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:18px;
-  margin-bottom:20px;
-}
-.section-head h2{
-  font-family:"Be Vietnam Pro",sans-serif;
-  font-size:clamp(1.9rem,3.2vw,3rem);
-  letter-spacing:-0.05em;
-}
-.section-head p{
-  max-width:58ch;
-  color:var(--muted);
-  line-height:1.75;
-}
-.grid-3{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px;
-}
-.glass{
-  padding:24px;
-}
-.glass h3{
-  font-size:22px;
-  letter-spacing:-0.03em;
-}
-.glass p{
-  margin-top:12px;
-  color:var(--muted);
-  line-height:1.75;
-  font-size:14px;
-}
-.pill-row{
-  margin-top:18px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.pill{
-  max-width:100%;
-  padding:10px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.08);
-  background:rgba(255,255,255,0.04);
-  color:#fff;
-  font-size:12px;
-  line-height:1.4;
-}
-.showcase{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:18px;
-}
-.showcase-card{
-  padding:28px;
-  border-radius:var(--radius-xl);
-  border:1px solid var(--line);
-  background:
-    linear-gradient(180deg,rgba(14,20,40,0.85),rgba(10,15,29,0.9)),
-    linear-gradient(135deg,rgba(124,92,255,0.1),transparent 50%);
-  box-shadow:var(--shadow);
-}
-.showcase-card h3{
-  font-size:26px;
-  letter-spacing:-0.04em;
-}
-.showcase-card ul{
-  margin-top:18px;
-  display:grid;
-  gap:12px;
-  list-style:none;
-}
-.showcase-card li{
-  padding:14px 16px;
-  border-radius:18px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  color:var(--muted);
-  line-height:1.7;
-}
+/* NEON STAT CARDS */
+.neon-card{flex:1 1 200px;max-width:calc(50% - 8px);min-width:160px;background:rgba(18,12,40,0.85);border-radius:100px;padding:14px 20px;display:flex;flex-direction:column;justify-content:center;border:1px solid transparent;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:default;animation:fadeUp 0.7s 0.4s ease both;text-align:left;contain:layout style paint;}
+.neon-card:hover{transform:translateY(-3px);}
+.neon-card-top{display:flex;align-items:center;gap:12px;width:100%;text-align:left;}
+.neon-icon{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid;flex-shrink:0;}
+.neon-val{font-size:1.15rem;font-weight:900;line-height:1.1;letter-spacing:-0.02em;}
+.neon-sub{font-size:11px;color:rgba(240,236,248,0.42);font-weight:500;text-align:left;line-height:1.3;margin-top:2px;}
+.neon-cyan{border-color:rgba(34,211,238,0.22);box-shadow:0 0 18px rgba(34,211,238,0.1),0 0 40px rgba(34,211,238,0.06),inset 0 1px 0 rgba(34,211,238,0.07);}
+.neon-cyan:hover{box-shadow:0 0 28px rgba(34,211,238,0.22),inset 0 1px 0 rgba(34,211,238,0.1);}
+.neon-icon-cyan{background:rgba(34,211,238,0.1);border-color:rgba(34,211,238,0.4);box-shadow:0 0 12px rgba(34,211,238,0.35);}
+.neon-purple{border-color:rgba(168,85,247,0.22);box-shadow:0 0 18px rgba(168,85,247,0.1),0 0 40px rgba(168,85,247,0.06),inset 0 1px 0 rgba(168,85,247,0.07);}
+.neon-purple:hover{box-shadow:0 0 28px rgba(168,85,247,0.22),inset 0 1px 0 rgba(168,85,247,0.1);}
+.neon-icon-purple{background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.42);box-shadow:0 0 12px rgba(168,85,247,0.38);}
+.neon-pink{border-color:rgba(236,72,153,0.22);box-shadow:0 0 18px rgba(236,72,153,0.1),0 0 40px rgba(236,72,153,0.06),inset 0 1px 0 rgba(236,72,153,0.07);}
+.neon-pink:hover{box-shadow:0 0 28px rgba(236,72,153,0.22),inset 0 1px 0 rgba(236,72,153,0.1);}
+.neon-icon-pink{background:rgba(236,72,153,0.1);border-color:rgba(236,72,153,0.42);box-shadow:0 0 12px rgba(236,72,153,0.38);}
+.neon-yellow{border-color:rgba(234,179,8,0.22);box-shadow:0 0 18px rgba(234,179,8,0.1),0 0 40px rgba(234,179,8,0.06),inset 0 1px 0 rgba(234,179,8,0.07);}
+.neon-yellow:hover{box-shadow:0 0 28px rgba(234,179,8,0.22),inset 0 1px 0 rgba(234,179,8,0.08);}
+.neon-icon-yellow{background:rgba(234,179,8,0.08);border-color:rgba(234,179,8,0.42);box-shadow:0 0 12px rgba(234,179,8,0.38);}
+@media(max-width:560px){.neon-card{flex:1 1 calc(50% - 7px);max-width:calc(50% - 7px);min-width:0;padding:12px 14px;border-radius:100px;}.neon-icon{width:30px;height:30px;}.neon-val{font-size:0.95rem;}.neon-sub{font-size:10px;}}
 
-/* PRICING */
-.pricing{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px;
-}
-.price-card{
-  padding:28px;
-  border-radius:var(--radius-xl);
-  border:1px solid var(--line);
-  background:linear-gradient(180deg,rgba(14,20,40,0.86),rgba(10,15,29,0.88));
-  box-shadow:var(--shadow);
-  position:relative;
-  overflow:hidden;
-}
-.price-card.highlight{
-  background:
-    linear-gradient(180deg,rgba(33,21,58,0.95),rgba(15,16,34,0.95)),
-    linear-gradient(135deg,rgba(255,79,163,0.16),transparent 55%);
-  border-color:rgba(255,255,255,0.12);
-}
-.badge{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:30px;
-  padding:0 12px;
-  border-radius:999px;
-  background:linear-gradient(135deg,var(--primary),var(--primary-2));
-  color:#fff;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.price-card h3{
-  margin-top:16px;
-  font-size:24px;
-}
-.price{
-  margin-top:14px;
-  display:flex;
-  align-items:flex-end;
-  gap:10px;
-}
-.price strong{
-  font-family:"Be Vietnam Pro",sans-serif;
-  font-size:42px;
-  line-height:1;
-}
-.price span{
-  color:var(--soft);
-  font-size:14px;
-}
-.price-card ul{
-  margin-top:18px;
-  list-style:none;
-  display:grid;
-  gap:12px;
-}
-.price-card li{
-  color:var(--muted);
-  line-height:1.7;
-  padding-left:18px;
-  position:relative;
-}
-.price-card li::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:11px;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--accent);
-  box-shadow:0 0 12px rgba(46,230,214,0.7);
-}
+/* MISC */
+.contact-list{display:flex;flex-direction:row;align-items:center;gap:14px;}
+.contact-item{width:48px;height:48px;border-radius:50%;overflow:hidden;border:1.5px solid rgba(168,85,247,0.15);box-shadow:0 2px 10px rgba(0,0,0,0.55);transition:all .22s cubic-bezier(.34,1.56,.64,1);flex-shrink:0;position:relative;text-decoration:none;display:block;}
+.contact-item::after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,0.12),transparent 60%);pointer-events:none;}
+.contact-item:hover{transform:translateY(-4px);border-color:rgba(168,85,247,0.5);box-shadow:0 8px 24px rgba(168,85,247,0.4),0 2px 8px rgba(0,0,0,0.5);}
+footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;color:var(--subtle);font-size:12.5px;position:relative;z-index:1;}
 
-/* FAQ */
-.faq{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:18px;
-}
-.faq-item{
-  padding:22px;
-  border-radius:24px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-}
-.faq-item h3{
-  font-size:18px;
-  line-height:1.45;
-}
-.faq-item p{
-  margin-top:12px;
-  color:var(--muted);
-  line-height:1.75;
-}
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   PRICE & CARD SHARED
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.price-main{font-size:3.8rem;font-weight:800;line-height:1;letter-spacing:-0.04em;}
+.price-main.gradient-text{background:linear-gradient(90deg,#B06EF5 0%,#D44FBF 50%,#F0359A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;}
 
-/* CTA + FOOTER */
-.cta-panel{
-  padding:32px;
-  border-radius:var(--radius-xl);
-  border:1px solid var(--line);
-  background:
-    radial-gradient(circle at top right,rgba(255,186,102,0.16),transparent 22%),
-    radial-gradient(circle at left bottom,rgba(46,230,214,0.14),transparent 26%),
-    linear-gradient(180deg,rgba(18,23,43,0.92),rgba(10,14,28,0.94));
-  box-shadow:var(--shadow);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-.cta-panel h2{
-  font-family:"Be Vietnam Pro",sans-serif;
-  font-size:clamp(2rem,3vw,2.8rem);
-  letter-spacing:-0.05em;
-}
-.cta-panel p{
-  margin-top:12px;
-  color:var(--muted);
-  line-height:1.75;
-  max-width:56ch;
-}
-.footer{
-  padding:26px 0 48px;
-}
-.footer-inner{
-  width:var(--container);
-  margin:0 auto;
-  color:var(--soft);
-  font-size:13px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-}
+/* PLUS CARD GOLD BORDER */
+@keyframes ledGlowPulse{0%,100%{opacity:0.55;}50%{opacity:1;}}
+#chatgptPlusCard .glass-card{border-radius:48px;border:2px solid transparent;background:linear-gradient(#110930,#0c0724) padding-box,linear-gradient(135deg,#FFD700 0%,#FFA500 35%,#FFE566 60%,#FFB300 80%,#FFD700 100%) border-box;overflow:hidden;position:relative;contain:layout style paint;transform:translateZ(0);}
+#chatgptPlusCard .glass-card::after{content:'';position:absolute;inset:0;border-radius:46px;background:transparent;box-shadow:0 0 18px rgba(255,210,0,0.5),0 0 32px rgba(255,160,0,0.22);animation:ledGlowPulse 3s ease-in-out infinite;pointer-events:none;z-index:0;will-change:opacity;}
+#plusLedLabel{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:20;display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#B8860B,#FFD700,#FFA500);border-radius:100px;padding:4px 14px;white-space:nowrap;box-shadow:0 0 8px rgba(255,200,0,0.45),0 2px 6px rgba(0,0,0,0.5);}
+#plusLedLabel span{font-size:9.5px;font-weight:900;color:#1a0a00;letter-spacing:0.16em;text-transform:uppercase;}
 
-/* RESPONSIVE */
-@media (max-width:960px){
-  .hero-grid,
-  .showcase,
-  .pricing,
-  .grid-3,
-  .faq{
-    grid-template-columns:1fr;
-  }
-  .cta-panel{
-    flex-direction:column;
-    align-items:flex-start;
-  }
+/* TTH (Thanh ToÃ¡n Há»™) */
+@keyframes tthDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@property --tth-la{syntax:'<angle>';initial-value:0deg;inherits:false;}
+@keyframes tthSpin{from{--tth-la:0deg;}to{--tth-la:360deg;}}
+@keyframes tthShim{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
+@keyframes tthScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+.tth-card{
+  background:linear-gradient(145deg,rgba(20,14,4,0.97) 0%,rgba(13,9,2,0.99) 50%,rgba(22,15,3,0.97) 100%);
+  border:1px solid rgba(234,179,8,0.45);
+  border-radius:40px;position:relative;overflow:hidden;
+  contain:layout style paint;transform:translateZ(0);
+  box-shadow:0 1px 0 rgba(255,255,255,0.09) inset,0 -1px 0 rgba(0,0,0,0.45) inset,0 4px 24px rgba(0,0,0,0.65),0 20px 60px rgba(0,0,0,0.45),0 0 60px rgba(234,179,8,0.12),0 0 120px rgba(234,179,8,0.05);
+  transition:border-color .28s,box-shadow .28s,transform .2s;
+  max-width:680px;margin:0 auto;width:100%;box-sizing:border-box;
 }
-@media (max-width:640px){
-  .topbar-inner{
-    min-height:72px;
-    align-items:flex-start;
-    justify-content:flex-start;
-    flex-direction:column;
-    padding:12px 0;
-  }
-  .nav{
-    width:100%;
-    justify-content:flex-start;
-  }
-  .hero{
-    padding-top:28px;
-  }
-  .hero-copy,
-  .hero-panel,
-  .glass,
-  .showcase-card,
-  .price-card,
-  .cta-panel{
-    border-radius:24px;
-  }
-  .hero-copy{
-    padding:22px;
-  }
-  .hero-panel{
-    padding:16px;
-  }
-  .hero-stats,
-  .feature-list{
-    grid-template-columns:1fr 1fr;
-  }
-  .feature,
-  .stat,
-  .faq-item{
-    min-width:0;
-  }
-  .section-head{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-  .button{
-    width:100%;
-  }
+.tth-card:hover{border-color:rgba(234,179,8,0.65);transform:translateY(-2px);}
+.tth-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.9),rgba(251,191,36,0.6),transparent);pointer-events:none;}
+.tth-inner{padding:clamp(24px,5vw,36px);}
+.tth-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.tth-ico{width:54px;height:54px;min-width:54px;border-radius:16px;background:linear-gradient(135deg,rgba(234,179,8,0.2),rgba(180,130,0,0.1));border:1.5px solid rgba(234,179,8,0.55);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(234,179,8,0.3);flex-shrink:0;}
+.tth-ttl{font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;line-height:1.25;}
+.tth-sub{font-size:11px;color:rgba(240,236,248,0.42);font-weight:500;line-height:1.55;word-break:break-word;margin-bottom:8px;}
+.tth-badges{display:flex;gap:7px;flex-wrap:wrap;}
+.tth-badge{display:inline-flex;align-items:center;gap:5px;border-radius:9px;padding:5px 11px;font-size:11px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}
+.tth-bv{background:rgba(30,80,200,0.18);border:1.5px solid rgba(60,120,255,0.45);color:#93C5FD;}
+.tth-bm{background:rgba(200,50,30,0.14);border:1.5px solid rgba(234,67,53,0.4);color:#FCA5A5;}
+.tth-dv{height:1px;background:rgba(234,179,8,0.14);margin:0 0 20px;}
+.tth-any{background:linear-gradient(135deg,rgba(234,179,8,0.1) 0%,rgba(180,130,0,0.05) 100%);border:1.5px solid rgba(234,179,8,0.38);border-radius:22px;padding:18px 20px 16px;margin-bottom:18px;position:relative;overflow:hidden;}
+.tth-any::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.8),transparent);}
+.tth-any-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(234,179,8,0.14);border:1px solid rgba(234,179,8,0.4);border-radius:100px;padding:4px 11px;font-size:9px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#FDE047;margin-bottom:8px;}
+.tth-dot{width:5px;height:5px;border-radius:50%;background:#EAB308;box-shadow:0 0 6px #EAB308;animation:tthDot 1.8s ease-in-out infinite;flex-shrink:0;}
+.tth-stmt{font-size:clamp(1.05rem,4vw,1.3rem);font-weight:900;line-height:1.2;letter-spacing:-0.03em;color:#fff;margin-bottom:8px;word-break:break-word;}
+.tth-stmt em{font-style:normal;background:linear-gradient(90deg,#EAB308 0%,#FDE047 40%,#fff 70%,#FDE047 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(234,179,8,0.6));}
+.tth-note{font-size:11.5px;color:rgba(240,236,248,0.5);line-height:1.6;margin-bottom:14px;}
+.tth-note strong{color:rgba(253,224,71,0.85);font-weight:700;}
+.tth-mq-wrap{overflow:hidden;position:relative;border-radius:100px;contain:layout style;border:1px solid rgba(234,179,8,0.18);background:rgba(0,0,0,0.3);}
+.tth-mq-wrap::before,.tth-mq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:48px;z-index:2;pointer-events:none;}
+.tth-mq-wrap::before{left:0;background:linear-gradient(90deg,rgba(13,9,2,1),transparent);}
+.tth-mq-wrap::after{right:0;background:linear-gradient(270deg,rgba(13,9,2,1),transparent);}
+.tth-mq-track{display:flex;animation:tthScroll 20s linear infinite;width:max-content;padding:8px 0;will-change:transform;}
+.tth-mq-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 14px;font-size:10px;font-weight:700;white-space:nowrap;color:rgba(253,224,71,0.55);flex-shrink:0;border-right:1px solid rgba(234,179,8,0.12);}
+.tth-mq-chip svg{opacity:0.5;flex-shrink:0;}
+.tth-strip{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.22);border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
+.tth-ir{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(240,236,248,0.6);line-height:1.55;}
+.tth-ii{color:#EAB308;font-weight:700;flex-shrink:0;}
+.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;font-size:13.5px;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
+.tth-btn-fee:hover{background:rgba(234,179,8,0.16);border-color:rgba(234,179,8,0.7);box-shadow:0 0 18px rgba(234,179,8,0.25);}
+.tth-btn-cw{width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;background:conic-gradient(from var(--tth-la,0deg),#78350f 0%,#eab308 15%,#fef08a 25%,#f59e0b 35%,#eab308 50%,#78350f 60%,#fef08a 70%,#eab308 85%,#78350f 100%);animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(234,179,8,0.75),0 0 44px rgba(234,179,8,0.32);contain:layout style paint;}
+.tth-btn-cw::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
+.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
+.tth-btn-c::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.38),transparent);animation:tthShim 2.4s ease-in-out infinite;pointer-events:none;z-index:2;will-change:transform;}
+
+/* FEE MODAL â€” green theme */
+.fee-modal{background:rgba(4,14,8,0.99);border:1px solid rgba(34,197,94,0.4);border-radius:32px;width:100%;max-width:420px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 0 0 1px rgba(34,197,94,0.15),0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),0 0 60px rgba(34,197,94,0.14);position:relative;display:flex;flex-direction:column;margin:auto;}
+.fee-modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.85),rgba(16,185,129,0.55),transparent);z-index:2;pointer-events:none;}
+.fee-modal-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(34,197,94,0.12);position:sticky;top:0;z-index:10;background:rgba(4,14,8,0.99);border-radius:32px 32px 0 0;flex-shrink:0;}
+.fee-modal-title{font-size:1rem;font-weight:800;color:#4ade80;display:flex;align-items:center;gap:8px;}
+.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Be Vietnam Pro',sans-serif;}
+.fee-modal-close:hover{background:rgba(34,197,94,0.22);}
+.fee-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:10px;}
+/* tiers */
+.fm-tiers{display:flex;flex-direction:column;gap:7px;}
+.fm-tier{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.18);border-radius:16px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;transition:border-color 0.2s,background 0.2s;}
+.fm-tier:hover{border-color:rgba(34,197,94,0.4);background:rgba(34,197,94,0.09);}
+.fm-tier.cheapest{border-color:rgba(34,197,94,0.42);background:linear-gradient(135deg,rgba(34,197,94,0.1),rgba(16,185,129,0.06));}
+.fm-tier-range{font-size:13px;font-weight:800;color:#fff;letter-spacing:-0.01em;line-height:1.2;flex:1;}
+.fm-tier-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.fm-tier-pct{font-size:1.1rem;font-weight:900;color:#4ade80;white-space:nowrap;letter-spacing:-0.02em;}
+.fm-tier-tag{font-size:8.5px;font-weight:700;padding:2px 7px;border-radius:100px;white-space:nowrap;}
+.fm-tier-tag.fixed{background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:rgba(74,222,128,0.7);}
+.fm-tier-tag.best{background:rgba(34,197,94,0.2);border:1px solid rgba(34,197,94,0.5);color:#4ade80;}
+/* note */
+.fm-note{font-size:10.5px;color:rgba(240,236,248,0.3);line-height:1.65;text-align:center;padding:0 4px;}
+.fm-note em{color:rgba(74,222,128,0.5);font-style:normal;}
+/* calculator */
+.fm-calc{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.22);border-radius:18px;padding:15px 16px;display:flex;flex-direction:column;gap:10px;}
+.fm-calc-title{font-size:8px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:rgba(74,222,128,0.5);}
+.fm-calc-row{display:flex;align-items:center;gap:8px;}
+.fm-calc-input{flex:1;background:rgba(0,0,0,0.45);border:1px solid rgba(34,197,94,0.28);border-radius:10px;padding:10px 13px;font-size:13px;font-weight:700;color:#4ade80;font-family:'Be Vietnam Pro',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
+.fm-calc-input:focus{border-color:rgba(34,197,94,0.65);box-shadow:0 0 0 3px rgba(34,197,94,0.08);}
+.fm-calc-input::placeholder{color:rgba(74,222,128,0.22);font-weight:500;}
+.fm-calc-unit{font-size:11px;font-weight:700;color:rgba(74,222,128,0.45);white-space:nowrap;flex-shrink:0;}
+.fm-calc-breakdown{background:rgba(0,0,0,0.3);border:1px solid rgba(34,197,94,0.2);border-radius:13px;padding:11px 14px;display:flex;flex-direction:column;gap:6px;}
+.fm-calc-row-item{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;}
+.fm-calc-row-item.divider{height:1px;background:rgba(34,197,94,0.15);margin:2px 0;}
+.fm-calc-row-item .lbl{color:rgba(240,236,248,0.4);font-weight:500;}
+.fm-calc-row-item .val{color:rgba(240,236,248,0.6);font-weight:700;}
+.fm-calc-row-item.total .lbl{color:rgba(240,236,248,0.6);font-weight:700;font-size:12px;}
+.fm-calc-row-item.total .val{font-size:1.1rem;font-weight:900;color:#4ade80;letter-spacing:-0.02em;filter:drop-shadow(0 0 8px rgba(34,197,94,0.4));}
+
+/* MODAL SHARED */
+@keyframes popIn{from{opacity:0;transform:scale(0.92) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:300;align-items:flex-start;justify-content:center;padding:clamp(12px,3vw,20px);overscroll-behavior:contain;overflow-y:auto;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.3);border-radius:32px;padding:clamp(20px,4vw,30px) clamp(16px,4vw,28px);width:100%;max-width:400px;max-height:none;margin:auto;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;overflow:visible;flex-shrink:0;}
+.modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
+.modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--subtle);font-size:13px;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:600;transition:background 0.18s;}
+.modal-close-btn:hover{background:rgba(255,255,255,0.09);color:var(--text);}
+.feat-modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.28);border-radius:32px;width:100%;max-width:500px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;display:flex;flex-direction:column;margin:auto;}
+.feat-modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);z-index:2;pointer-events:none;}
+.feat-modal-head{padding:20px 22px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(168,85,247,0.15);position:sticky;top:0;z-index:10;background:#0e0b1a;border-radius:32px 32px 0 0;flex-shrink:0;}
+.feat-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:8px;}
+.feat-close-btn{width:32px;height:32px;border-radius:50%;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.28);color:#C084FC;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;}
+.feat-close-btn:hover{background:rgba(168,85,247,0.25);}
+
+/* FEAT MODAL B */
+.fm-tagline{font-size:12px;color:rgba(240,236,248,0.55);line-height:1.7;padding:14px 22px 0;}
+.fm-tagline strong{color:rgba(192,132,252,0.9);font-weight:700;}
+.fm-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px 22px;}
+.fm-card{background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.17);border-radius:18px;padding:13px 13px 11px;transition:border-color 0.2s;}
+.fm-card:hover{border-color:rgba(168,85,247,0.4);}
+.fm-card-top{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.fm-card-ico{width:30px;height:30px;min-width:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.fm-card-name{font-size:11.5px;font-weight:800;color:rgba(240,236,248,0.9);line-height:1.3;word-break:break-word;}
+.fm-card-desc{font-size:10px;color:rgba(240,236,248,0.45);line-height:1.55;word-break:break-word;}
+.fm-card-badge{display:inline-flex;align-items:center;font-size:9px;font-weight:800;padding:2px 8px;border-radius:100px;margin-top:6px;white-space:nowrap;}
+.fm-bench{margin:0 22px 18px;background:linear-gradient(135deg,rgba(168,85,247,0.09),rgba(236,72,153,0.05));border:1px solid rgba(168,85,247,0.2);border-radius:16px;padding:13px 15px;}
+.fm-bench-title{font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:10px;}
+.fm-bench-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.fm-bench-row:last-child{margin-bottom:0;}
+.fm-bench-name{font-size:10px;color:rgba(240,236,248,0.5);width:120px;min-width:120px;flex-shrink:0;line-height:1.3;}
+.fm-bench-bar-wrap{flex:1;height:6px;background:rgba(168,85,247,0.1);border-radius:10px;overflow:hidden;}
+.fm-bench-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,#A855F7,#EC4899);}
+.fm-bench-bar.dim{background:rgba(168,85,247,0.28);}
+.fm-bench-pct{font-size:10px;font-weight:800;color:#C084FC;width:34px;text-align:right;flex-shrink:0;}
+.fm-bench-pct.dim{color:rgba(240,236,248,0.35);}
+.fm-avail{margin:0 22px 20px;background:rgba(99,220,150,0.05);border:1px solid rgba(99,220,150,0.18);border-radius:12px;padding:9px 13px;display:flex;align-items:center;gap:8px;}
+.fm-avail-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px rgba(52,211,153,0.6);flex-shrink:0;}
+.fm-avail-text{font-size:11px;color:rgba(99,220,150,0.8);font-weight:600;line-height:1.5;word-break:break-word;}
+
+/* KHO CODE PILL BUBBLE */
+.kho-pill-bubble{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(8px) scale(.85);background:rgba(14,8,30,.96);border:1px solid rgba(168,85,247,.55);border-radius:100px;padding:5px 11px;display:flex;align-items:center;gap:5px;white-space:nowrap;pointer-events:none;z-index:300;opacity:0;transition:opacity .4s,transform .45s cubic-bezier(.34,1.56,.64,1);box-shadow:0 0 16px rgba(168,85,247,.4),0 4px 14px rgba(0,0,0,.6);}
+.kho-pill-bubble.in{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
+.kho-pill-bubble-emoji{font-size:11px;line-height:1;}
+.kho-pill-bubble-text{font-size:9px;font-weight:800;color:#fff;transition:opacity .18s;}
+.kho-pill-bubble-dot{width:4px;height:4px;border-radius:50%;background:#EC4899;flex-shrink:0;animation:khoPillDot 1.4s ease-in-out infinite;}
+@keyframes khoPillDot{0%,100%{opacity:1;}50%{opacity:.15;}}
+
+/* KHO BANNER */
+.kho-banner-link{display:block;text-decoration:none;color:var(--text);background:linear-gradient(145deg,rgba(28,10,58,0.9) 0%,rgba(18,6,40,0.95) 100%);border:1px solid rgba(168,85,247,0.28);border-radius:48px;position:relative;overflow:hidden;transition:border-color 0.28s ease,box-shadow 0.28s ease,transform 0.2s;box-shadow:var(--card-shadow);}
+.kho-banner-link:hover{border-color:rgba(168,85,247,0.6);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-2px);}
+.kho-banner-top-line{height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
+.kho-banner-body{display:flex;align-items:stretch;gap:28px;padding:44px 52px;flex-wrap:wrap;}
+.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Be Vietnam Pro',sans-serif;white-space:nowrap;transition:background 0.2s;}
+.kho-banner-link:hover .kho-banner-btn{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   BOTTOM NAV
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.idx-bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:0 14px calc(10px + env(safe-area-inset-bottom));pointer-events:none;}
+.idx-bottom-nav-inner{max-width:480px;margin:0 auto;background:rgba(22,13,48,0.98);border:1px solid rgba(100,55,175,0.25);border-radius:40px;padding:7px;display:flex;align-items:center;justify-content:space-around;pointer-events:all;box-shadow:0 2px 0 rgba(255,255,255,0.13) inset,0 -2px 0 rgba(0,0,0,0.7) inset,0 8px 0 rgba(0,0,0,0.55),0 12px 24px rgba(0,0,0,0.65),0 20px 50px rgba(0,0,0,0.45),0 0 40px rgba(120,55,200,0.22);}
+.idx-bnav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 16px;border-radius:28px;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);flex:1;user-select:none;text-decoration:none;}
+.idx-bnav-item.active{background:linear-gradient(145deg,#7040D0 0%,#8E50E4 55%,#8045DC 100%);box-shadow:0 1px 0 rgba(255,255,255,0.22) inset,0 4px 14px rgba(120,60,210,0.55),0 8px 22px rgba(120,60,210,0.28);}
+.idx-bnav-item:not(.active):hover{background:rgba(120,60,200,0.1);}
+.idx-bnav-item svg{width:20px;height:20px;stroke:rgba(255,255,255,0.3);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .18s;flex-shrink:0;}
+.idx-bnav-item.active svg{stroke:#ffffff;}
+.idx-bnav-item span{font-size:10px;font-weight:700;letter-spacing:.01em;color:rgba(255,255,255,0.3);transition:color .18s;}
+.idx-bnav-item.active span{color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,0.3);}
+body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
+
+/* SUB CARD COMPACT */
+.sub-card-compact{padding:20px 22px 18px!important;}
+.sub-card-compact .sub-price-row{flex-direction:row!important;gap:10px!important;}
+.sub-card-compact .sub-price-divider{display:block!important;}
+@media(min-width:641px){
+  .sub-cards-yt-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.5vw,24px);align-items:stretch;grid-column:1/-1;}
+  .sub-cards-yt-wrap .sub-card{height:100%;}
 }
-@media (max-width:480px){
-  .wrap{
-    width:min(100vw - 20px,1180px);
-  }
-  .hero-copy h1{
-    max-width:none;
-  }
-  .hero-stats,
-  .feature-list{
-    grid-template-columns:1fr;
-  }
-  .nav a{
-    font-size:13px;
-    padding:9px 12px;
-  }
-  .showcase-card,
-  .price-card,
-  .glass,
-  .cta-panel,
-  .faq-item{
-    padding:20px;
-  }
+@media(max-width:640px){.sub-cards-yt-wrap{display:contents;}}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   RESPONSIVE OVERRIDES
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* hamburger hiá»ƒn thá»‹ á»Ÿ má»i breakpoint */.topbar-hamburger{display:flex!important;}
+@media(min-width:768px){.idx-bottom-nav-inner{max-width:560px;}.idx-bnav-item{padding:8px 22px;}}
+#services,#contact{content-visibility:auto;contain-intrinsic-size:0 400px;}
+
+@media(max-width:640px){
+  .topbar{padding:18px 16px;}
+  .hero{padding:48px 0 48px!important;}
+  .container{padding-left:18px!important;padding-right:18px!important;}
+  .section-beams{gap:8px;}.section-beam{max-width:60px;}.section-label{font-size:9px;}
+  #accounts{padding:44px 0 36px!important;}
+  #services{padding:36px 0 36px!important;}#contact{padding:36px 0 52px!important;}
+  .price-main{font-size:2.6rem;}
+  .sub-cards-grid{grid-template-columns:1fr!important;gap:20px!important;}
+  #heroCta{flex-direction:column!important;align-items:stretch!important;gap:10px!important;padding:0 4px!important;}
+  #heroPrimaryWrap{width:100%!important;display:flex!important;justify-content:center!important;}
+  #heroPrimaryBtn{width:100%!important;justify-content:center!important;font-size:14px!important;padding:13px 20px!important;}
+  #heroGhostBtn{width:100%!important;justify-content:center!important;text-align:center!important;font-size:14px!important;padding:13px 20px!important;box-sizing:border-box!important;}
+  #chatgptPlusCard{width:100%;box-sizing:border-box;min-width:0;}
+  #chatgptPlusCard .glass-card{overflow:hidden;width:100%;box-sizing:border-box;min-width:0;border-radius:40px!important;}
+  #chatgptPlusCard [style*="padding-right:110px"]{padding-right:80px!important;}
+  #plusPriceFlexRow{flex-wrap:nowrap!important;gap:10px!important;align-items:center!important;}
+  #plusYearlyBox{flex:1 1 0!important;min-width:0!important;padding:9px 10px!important;}
+  #plusPriceDivider{min-height:50px!important;margin:2px 0!important;flex-shrink:0;}
+  #plusPriceRight .price-main{font-size:2.3rem!important;}
+  #plusPriceRight #plusOldPrice{font-size:8px!important;}
+  #plusShareNote{display:flex!important;width:100%!important;box-sizing:border-box!important;white-space:normal!important;border-radius:12px!important;padding:7px 12px!important;gap:6px!important;align-items:flex-start!important;}
+  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"]{gap:8px!important;}
+  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"]>div{min-width:0;overflow:hidden;padding:9px 10px!important;}
+  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"] span{font-size:10.5px!important;word-break:break-word;white-space:normal!important;line-height:1.35!important;}
+  #chatgptPlusCard [style*="grid-template-columns:1fr 1fr"] svg{width:15px!important;height:15px!important;flex-shrink:0;}
+  #accountsGrid{gap:28px!important;}
+  #promoPill{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;text-align:center!important;padding:9px 16px!important;gap:4px!important;border-radius:16px!important;}
+  #promoPillText{font-size:12px!important;line-height:1.6!important;white-space:normal!important;}
+  .sub-price-row{flex-direction:column!important;gap:10px!important;}
+  .sub-price-divider{display:none!important;}
+  .kho-banner-body{padding:24px 22px;gap:14px;flex-direction:column;}
+  .kho-banner-btn{align-self:flex-end;font-size:12px;}
+  #services .glass-card>div{padding:36px 28px!important;}
+  .contact-list{gap:12px!important;}
+  .modal-box{border-radius:24px!important;padding:20px 18px!important;}
+  .feat-modal-box{border-radius:24px!important;max-height:calc(100vh - 24px)!important;}
+  .modal-overlay{padding:12px!important;align-items:flex-start!important;}
+  .feat-modal-head{padding:14px 16px 12px;}.feat-modal-body{padding:12px 16px 18px;}
+  .sub-card{border-radius:40px!important;}
+  .tth-inner{padding:22px 18px 26px!important;}
+  .fee-modal-body{padding:14px 16px 20px;}
+  .fee-modal-head{padding:14px 16px 12px;}
+  .fm-tagline{padding:12px 16px 0;font-size:11.5px;}
+  .fm-cards{grid-template-columns:1fr 1fr;gap:7px;padding:10px 16px;}
+  .fm-card{padding:10px 10px 9px;border-radius:14px;}
+  .fm-bench{margin:0 16px 14px;padding:11px 12px;}
+  .fm-bench-name{width:100px;min-width:100px;font-size:9.5px;}
+  .fm-avail{margin:0 16px 16px;}
+}
+@media(max-width:480px){
+  .neon-card{padding:10px 12px!important;border-radius:100px;}
+  .neon-val{font-size:0.88rem!important;}
+  .neon-sub{font-size:9.5px!important;}
+  .neon-icon{width:28px!important;height:28px!important;}
+  #plusPriceRight .price-main{font-size:2rem!important;}
+  .fm-cards{grid-template-columns:1fr;}
+  .fm-bench-name{width:90px;min-width:90px;}
+}
+@media(min-width:641px) and (max-width:768px){
+  #chatgptPlusCard .glass-card{border-radius:40px!important;}
 }
 </style>
 </head>
 <body>
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+<div class="glow-orb glow-orb-3"></div>
+
 <!-- TOPBAR -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="#top">
-      <div class="brand-mark">BP</div>
-      <div class="brand-copy">
-        <strong>Binpinkgold</strong>
-        <span>Code store cho creator, seller va team van hanh</span>
-      </div>
-    </a>
-    <nav class="nav">
-      <a href="#goi">Goi</a>
-      <a href="#diemmanh">Diem manh</a>
-      <a href="#banggia">Bang gia</a>
-      <a href="#faq">FAQ</a>
-      <a class="cta-link" href="#lienhe">Nhan tu van</a>
-    </nav>
+<nav class="topbar">
+  <div class="topbar-logo">
+    <span class="topbar-logo-diamond">âœ¦</span>
+    <span class="topbar-logo-name">Binpinkgold</span>
+    <span class="topbar-logo-sub">Code Store</span>
   </div>
-</header>
+  <div class="topbar-hamburger" id="topHam" onclick="toggleTopMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-<main id="top">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Ban giao nhanh va setup gon
+<nav class="topbar-dropdown" id="topDrop">
+  <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu()">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="topbar-nav-text">ChatGPT Â· Youtube Â· CapCut</span>
+  </a>
+  <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu();setTimeout(()=>{var el=document.querySelector('#chatgptPlusCard+.sub-cards-yt-wrap+.sub-card,#accountsGrid>.sub-card:last-child');if(el){var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:60;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}},100);">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+    <span class="topbar-nav-text">Visa / Mastercard</span>
+  </a>
+  <a class="topbar-nav-item" href="kho.html" onclick="closeTopMenu()">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+    <span class="topbar-nav-text">Kho Code</span>
+  </a>
+  <a class="topbar-nav-item" href="#services" onclick="closeTopMenu()">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    <span class="topbar-nav-text">Dá»‹ch Vá»¥ Web Â· Bot Telegram</span>
+  </a>
+  <a class="topbar-nav-item" href="#contact" onclick="closeTopMenu()">
+    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span class="topbar-nav-text">LiÃªn Há»‡</span>
+  </a>
+</nav>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     HERO BANNER â€” compact redesign
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div class="hero-banner" id="siteBanner">
+  <canvas id="bannerCanvas"></canvas>
+  <div class="hero-banner-topline"></div>
+  <div class="hero-banner-inner">
+
+    <!-- LEFT: tagline + checks + FB link nhá» -->
+    <div class="hb-left">
+      <div class="hb-eyebrow">
+        <div class="hb-eyebrow-dot"></div>
+        Binpinkgold
+      </div>
+
+      <h1 class="hb-title">
+        Dá»‹ch vá»¥ xá»‹n.<br>
+        <em>GiÃ¡ sinh viÃªn.</em>
+      </h1>
+
+      <div class="hb-fire-badge">ðŸ”¥ Chá»‰ tá»« 3.000Ä‘ / ngÃ y</div>
+
+      <div class="hb-checks">
+        <div class="hb-check">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Xá»­ lÃ½ nhanh trong 1 phÃºt
         </div>
-        <h1>Website ban code <span>dep, nhanh, de chot don</span></h1>
-        <p>Trang duoc viet lai tu dau theo huong gon sach, responsive va tap trung vao chuyen doi. Phu hop de gioi thieu goi code, kho san pham, link lien he va quy trinh ban hang tren di dong lan desktop.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#banggia">Xem bang gia</a>
-          <a class="button button-secondary" href="#goi">Xem cau truc trang</a>
+        <div class="hb-check">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Báº£o hÃ nh &amp; hoÃ n tiá»n náº¿u lá»—i
         </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <strong>24h</strong>
-            <span>Thoi gian cap nhat noi dung va ban giao nhanh</span>
-          </div>
-          <div class="stat">
-            <strong>100%</strong>
-            <span>Tuong thich mobile, khong can zoom de doc</span>
-          </div>
-          <div class="stat">
-            <strong>1 file</strong>
-            <span>De quan ly, de encode lai sang trang xuat ban</span>
-          </div>
+        <div class="hb-check">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          200+ khÃ¡ch tin tÆ°á»Ÿng
         </div>
       </div>
 
-      <aside class="hero-panel">
-        <div class="hero-card-top">
-          <strong>Goi noi bat</strong>
-          <h2>Landing page cho shop code va AI tools</h2>
-          <p>Bo cuc moi uu tien thong tin ro rang, CTA lon, bang gia gon va cac khoi noi dung co the doi ten san pham cuc nhanh.</p>
-          <div class="price-box">
-            <div>
-              <strong>Tu 299k</strong>
-              <span>Tu van va tinh chinh theo nhu cau</span>
+      <div style="display:flex;flex-direction:column;gap:5px;width:fit-content;">
+        <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Follow FB
+          <div class="fb-btn-arrow"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </a>
+        <div style="font-size:clamp(8.5px,1.2vw,10px);color:rgba(240,236,248,0.72);font-weight:600;text-align:center;letter-spacing:0.01em;">ðŸŽ Follow Facebook Ä‘á»ƒ nháº­n giáº£m giÃ¡ Ä‘Æ¡n Ä‘áº§u tiÃªn</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: 2Ã—3 chip grid â€” icon + tÃªn -->
+    <div class="hb-right">
+
+      <a class="hb-chip" href="#chatgptPlusCard" onclick="event.preventDefault();scrollToId('chatgptPlusCard');" style="text-decoration:none;cursor:pointer;">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><circle cx="12" cy="5" r="2"/></svg></div>
+        <span class="hb-chip-name">ChatGPT Plus</span>
+      </a>
+
+      <a class="hb-chip" href="#ytCard" onclick="event.preventDefault();scrollToId('ytCard');" style="text-decoration:none;cursor:pointer;">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg></div>
+        <span class="hb-chip-name">YouTube Premium</span>
+      </a>
+
+      <a class="hb-chip" href="#capcutCard" onclick="event.preventDefault();scrollToId('capcutCard');" style="text-decoration:none;cursor:pointer;">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
+        <span class="hb-chip-name">CapCut Pro</span>
+      </a>
+
+      <a class="hb-chip" href="kho.html" style="text-decoration:none;cursor:pointer;">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <span class="hb-chip-name">Kho Code TikTok</span>
+      </a>
+
+      <a class="hb-chip" href="#services" onclick="event.preventDefault();scrollToId('services');" style="text-decoration:none;cursor:pointer;">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <span class="hb-chip-name">Web &amp; Bot</span>
+      </a>
+
+      <a class="hb-chip" href="#tth-anchor" onclick="event.preventDefault();scrollToId('tth-anchor');" style="text-decoration:none;cursor:pointer;">
+        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <span class="hb-chip-name">Thanh ToÃ¡n Visa</span>
+      </a>
+
+    </div><!-- end hb-right -->
+  </div><!-- end hero-banner-inner -->
+</div><!-- end hero-banner -->
+
+<!-- HERO (stat cards + CTA) -->
+<section class="hero">
+  <div class="hero-ring"><div class="hero-ring-inner"></div></div>
+  <div class="container" style="text-align:center;">
+    <div class="hero-cta" id="heroCta" style="display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:36px;">
+      <div class="btn-primary-wrap" id="heroPrimaryWrap" style="flex:none;">
+        <button onclick="var el=document.getElementById('accounts');var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:72;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'})" class="btn-register-shimmer" id="heroPrimaryBtn" style="font-size:13.5px;padding:11px 26px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;box-shadow:0 0 22px rgba(168,85,247,0.55),0 0 40px rgba(168,85,247,0.25),inset 0 1px 0 rgba(255,255,255,0.22);white-space:nowrap;">KhÃ¡m phÃ¡ ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+      </div>
+
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2vw,16px);max-width:min(680px,100%);margin:0 auto;">
+      <div class="neon-card neon-cyan">
+        <div class="neon-card-top">
+          <div class="neon-icon neon-icon-cyan"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="neon-val" style="color:#67e8f9;">200+</div><div class="neon-sub">KhÃ¡ch hÃ ng</div></div>
+        </div>
+      </div>
+      <div class="neon-card neon-purple">
+        <div class="neon-card-top">
+          <div class="neon-icon neon-icon-purple"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="neon-val" style="color:#c084fc;">24/7</div><div class="neon-sub">Há»— trá»£</div></div>
+        </div>
+      </div>
+      <div class="neon-card neon-pink">
+        <div class="neon-card-top">
+          <div class="neon-icon neon-icon-pink"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <div><div class="neon-val" style="color:#f472b6;">Giao ngay</div><div class="neon-sub">Sau khi mua</div></div>
+        </div>
+      </div>
+      <div class="neon-card neon-yellow">
+        <div class="neon-card-top">
+          <div class="neon-icon neon-icon-yellow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/><polyline points="9 8 11 10 15 6"/></svg></div>
+          <div><div class="neon-val" style="color:#fde047;">Uy tÃ­n</div><div class="neon-sub">HoÃ n tiá»n náº¿u lá»—i</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     ACCOUNTS â€” ChatGPT Plus + sub cards
+     FIX: thÃªm padding-bottom cho wrapper Ä‘á»ƒ
+     card chÃ­nh khÃ´ng dÃ­nh vÃ o sub-cards
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="accounts" style="padding:clamp(60px,8vw,90px) 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
+  <div class="container">
+    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">ChatGPT Â· Youtube Â· CapCut</div><div class="section-beam r"></div></div></div>
+    <div style="text-align:center;margin:-4px 0 32px;">
+      <div id="promoPill" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.35);border-radius:100px;padding:10px 24px;">
+        <span id="promoPillText" style="font-size:13.5px;font-weight:700;color:#E0B4FF;letter-spacing:0.01em;">GÃ³i <strong style="color:#fff;">12 thÃ¡ng</strong> táº·ng <strong style="color:#fff;">1 thÃ¡ng miá»…n phÃ­</strong></span>
+      </div>
+    </div>
+
+    <!-- â”€â”€ MAIN GRID: ChatGPT card (full width) â†’ sub cards below â”€â”€ -->
+    <div id="accountsGrid" style="display:flex;flex-direction:column;gap:clamp(32px,5vw,48px);max-width:680px;margin:0 auto;">
+
+      <!-- â”€â”€ CHATGPT PLUS CARD â”€â”€ -->
+      <div style="width:100%;box-sizing:border-box;position:relative;" id="chatgptPlusCard">
+        <div class="tth-card" style="border-radius:40px;max-width:100%;position:relative;">
+
+          <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(234,179,8,0.9) 30%,rgba(251,191,36,0.6) 70%,transparent 100%);margin:0 5%;"></div>
+
+          <div style="padding:clamp(32px,5vw,56px) clamp(20px,4vw,44px) 0;">
+            <div style="display:flex;align-items:center;gap:16px;padding-right:110px;">
+              <img src="assets/images/GPT.jpg" alt="ChatGPT Plus" style="width:56px;height:56px;min-width:56px;max-width:56px;border-radius:16px;object-fit:cover;flex-shrink:0;border:1px solid rgba(234,179,8,0.4);box-shadow:0 0 24px rgba(234,179,8,0.25);display:block;">
+              <div>
+                <div style="font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;word-break:break-word;">ChatGPT PLUS</div>
+                <div style="font-size:11px;color:rgba(253,224,71,0.5);font-weight:500;">GPT-5.4 Â· Codex Â· Sora AI Â· Agent Â· ADA</div>
+              </div>
             </div>
-            <a class="button button-primary" href="#lienhe">Bat dau</a>
+          </div>
+
+          <div style="padding:18px clamp(18px,4vw,44px) 24px;border-bottom:1px solid rgba(234,179,8,0.15);">
+            <div id="plusPriceFlexRow" style="display:flex;align-items:stretch;gap:18px;flex-wrap:wrap;">
+              <div id="plusPriceRight" style="display:flex;flex-direction:column;justify-content:center;">
+                <div style="font-size:9.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(253,224,71,0.45);margin-bottom:8px;">GiÃ¡ / thÃ¡ng</div>
+                <div class="price-main" style="font-size:3.22rem;line-height:1;background:linear-gradient(90deg,#EAB308 0%,#FDE047 50%,#F59E0B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 22px rgba(234,179,8,0.85)) drop-shadow(0 0 40px rgba(251,191,36,0.55));">99K</div>
+                <div style="display:flex;align-items:center;gap:7px;margin-top:6px;">
+                  <span style="font-size:8px;color:rgba(240,236,248,0.45);text-decoration:line-through;text-decoration-color:rgba(255,80,80,0.6);text-decoration-thickness:1.5px;font-weight:600;" id="plusOldPrice">522.000Ä‘</span>
+                  <span style="font-size:10px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 9px;box-shadow:0 0 10px rgba(220,38,38,0.5);" class="discount-badge" data-orig="522000" data-sale-personal="99000" id="plusDiscountBadge">-81%</span>
+                </div>
+                <div style="margin-top:6px;font-size:8px;font-weight:700;color:rgba(255,180,50,0.8);">â‰ˆ chá»‰ 3.300Ä‘ / ngÃ y</div>
+              </div>
+              <div id="plusPriceDivider" style="width:1px;background:rgba(234,179,8,0.22);align-self:stretch;margin:4px 0;min-height:70px;flex-shrink:0;"></div>
+              <div id="plusYearlyBox" style="flex:1;min-width:150px;background:rgba(234,179,8,0.05);border:1px solid rgba(234,179,8,0.28);border-radius:20px;padding:11px 13px;">
+                <div style="font-size:7px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;color:rgba(253,224,71,0.55);margin-bottom:8px;">GÃ“I 12 THÃNG Táº¶NG 1 THÃNG MIá»„N PHÃ</div>
+                <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:5px;"><span style="font-size:8px;color:rgba(240,236,248,0.3);font-weight:500;white-space:nowrap;">GiÃ¡ niÃªm yáº¿t:</span><span style="font-size:clamp(0.75rem,2.5vw,1.1rem);font-weight:800;color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.85);text-decoration-thickness:3px;line-height:1.15;white-space:nowrap;" id="plusYearlyListFull">â€”</span></div>
+                <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:2px;"><span style="font-size:7.5px;color:rgba(253,224,71,0.65);font-weight:600;white-space:nowrap;">cÃ²n láº¡i</span><span style="font-size:clamp(0.8rem,2.5vw,1.15rem);font-weight:800;background:linear-gradient(90deg,#EAB308,#FDE047);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;" id="plusYearlyOur">â€”</span></div>
+                <div style="height:1px;background:rgba(234,179,8,0.18);margin:7px 0;"></div>
+                <div style="font-size:8px;font-weight:800;color:rgba(99,220,150,0.9);" id="plusYearlySaving">â€”</div>
+              </div>
+            </div>
+            <div id="plusShareNote" style="margin-top:14px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
+              <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">âœ“</span>
+              <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">TÃ i khoáº£n cÃ¡ nhÃ¢n riÃªng</span>
+            </div>
+          </div>
+
+          <div style="padding:0 clamp(18px,4vw,44px) 20px;">
+            <div class="tth-any">
+              <div class="tth-any-badge"><div class="tth-dot"></div>GPT-5.4 Flagship Â· Sora Â· Agent Â· ADA</div>
+              <div class="tth-note" style="margin-bottom:12px;"><strong style="color:rgba(253,224,71,0.85);font-weight:700;">GPT-5.4</strong> hiá»ƒn thá»‹ <strong style="color:rgba(240,236,248,0.7);">káº¿ hoáº¡ch suy nghÄ© realtime</strong> â€” Ä‘iá»u chá»‰nh ngay khi AI Ä‘ang xá»­ lÃ½. Há»— trá»£ <strong style="color:rgba(240,236,248,0.7);">1 triá»‡u token context</strong> (preview), nghiÃªn cá»©u web sÃ¢u vÆ°á»£t GPT-5.3 vÃ  Ä‘áº¡t <strong style="color:rgba(240,236,248,0.7);">81.2% MMMU-Pro</strong> â€” cao hÆ¡n Gemini 3.1 Pro.</div>
+              <div class="tth-mq-wrap">
+                <div class="tth-mq-track">
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyá»‡t web Â· ADA</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent Â· Codex</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bá»™ nhá»› nÃ¢ng cao</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Æ¯u tiÃªn truy cáº­p</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mÃ¬nh báº¡n dÃ¹ng</span>
+                  <!-- duplicate for seamless loop -->
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>GPT-5.4 Flagship</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sora Video AI</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4M18 12h4M12 2v4M12 18v4"/></svg>Duyá»‡t web Â· ADA</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Agent Â· Codex</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>Bá»™ nhá»› nÃ¢ng cao</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>Æ¯u tiÃªn truy cáº­p</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>1M token context</span>
+                  <span class="tth-mq-chip"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M16 8V6a4 4 0 0 0-8 0v2"/></svg>1 mÃ¬nh báº¡n dÃ¹ng</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding:0 clamp(18px,4vw,44px) clamp(24px,4vw,44px);display:flex;gap:clamp(8px,2vw,12px);align-items:center;flex-wrap:nowrap;min-width:0;">
+            <button onclick="openFeatModal()" style="font-family:'Be Vietnam Pro',sans-serif;font-size:clamp(11px,2.5vw,12.5px);white-space:nowrap;flex-shrink:0;padding:10px clamp(12px,3vw,20px);display:inline-flex;align-items:center;gap:7px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;border-radius:100px;cursor:pointer;transition:background .2s;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Xem chi tiáº¿t</button>
+            <div class="tth-btn-cw" style="flex:1;">
+              <button onclick="openPlusModal()" class="tth-btn-c">ÄÄƒng kÃ½ ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            </div>
           </div>
         </div>
-        <div class="feature-list">
-          <div class="feature">
-            <strong>Hero ro loi ich</strong>
-            <span>Tieu de lon, subtitle gon, CTA de thay doi</span>
+      </div>
+      <!-- END ChatGPT Plus card -->
+
+      <!-- â”€â”€ SUB CARDS: YouTube + CapCut â”€â”€ -->
+      <!-- gap Ä‘Æ°á»£c control bá»Ÿi flex gap cá»§a accountsGrid (48px) -->
+      <div class="sub-cards-yt-wrap" style="width:100%;">
+
+        <!-- YouTube Premium -->
+        <div id="ytCard" class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <img src="assets/images/YT.jpg" alt="YouTube Premium" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
+            <div>
+              <div style="font-size:1.05rem;font-weight:800;color:#fff;">YouTube Premium</div>
+              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">KhÃ´ng quáº£ng cÃ¡o Â· YouTube Music</div>
+            </div>
           </div>
-          <div class="feature">
-            <strong>Bang gia de chot</strong>
-            <span>Bo cuc 3 goi, co goi noi bat o trung tam</span>
+          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
+            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
+              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">GiÃ¡ / thÃ¡ng</div>
+              <div style="font-size:clamp(2rem,6vw,3.22rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">35K</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">GiÃ¡ niÃªm yáº¿t: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">79.000Ä‘</span></div>
+            </div>
+            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
+            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
+              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">GÃ³i 12 thÃ¡ng</div>
+              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
+                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">455.000Ä‘</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">GiÃ¡ niÃªm yáº¿t: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.027.000Ä‘</span></span>
+              </div>
+              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">ðŸ’° Tiáº¿t kiá»‡m 572.000Ä‘</div>
+            </div>
           </div>
-          <div class="feature">
-            <strong>FAQ san su dung</strong>
-            <span>Giai dap cac cau hoi truoc khi khach inbox</span>
+          <div style="margin-bottom:10px;display:flex;align-items:flex-start;gap:7px;background:rgba(99,220,150,0.07);border:1px solid rgba(99,220,150,0.2);border-radius:14px;padding:7px 14px;max-width:100%;box-sizing:border-box;">
+            <span style="font-size:11px;color:rgba(99,220,150,0.6);flex-shrink:0;line-height:1.7;">âœ“</span>
+            <span style="font-size:11.5px;color:rgba(240,236,248,0.55);font-weight:500;word-break:break-word;white-space:normal;line-height:1.7;">ThÃªm gmail vÃ o nhÃ³m gia Ä‘Ã¬nh, á»•n Ä‘á»‹nh, lÃ¢u dÃ i</span>
           </div>
-          <div class="feature">
-            <strong>Co the encode</strong>
-            <span>Hop voi luong `index.src.html` sang `index.html`</span>
-          </div>
+          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('âœ¦ YouTube Premium Â· 35K/thÃ¡ng')">ÄÄƒng kÃ½ ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         </div>
-      </aside>
-    </div>
-  </section>
 
-  <!-- GOI / SERVICE OVERVIEW -->
-  <section class="section" id="goi">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <h2>Cau truc moi de de ban hang</h2>
+        <!-- CapCut Pro -->
+        <div id="capcutCard" class="sub-card sub-card-compact" style="display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <img src="assets/images/CAPCUT.jpg" alt="CapCut Pro" style="width:48px;height:48px;border-radius:14px;object-fit:cover;flex-shrink:0;border:1px solid rgba(168,85,247,0.2);">
+            <div>
+              <div style="font-size:1.05rem;font-weight:800;color:#fff;">CapCut Pro</div>
+              <div style="font-size:9.5px;color:rgba(192,132,252,0.55);font-weight:600;margin-top:2px;">Má»Ÿ khÃ³a toÃ n bá»™ Â· Xuáº¥t 4K</div>
+            </div>
+          </div>
+          <div class="sub-price-row" style="display:flex;align-items:stretch;gap:10px;margin-bottom:12px;margin-top:4px;">
+            <div style="display:flex;flex-direction:column;justify-content:center;min-width:72px;">
+              <div style="font-size:7.5px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:3px;">GiÃ¡ / thÃ¡ng</div>
+              <div style="font-size:clamp(2rem,6vw,3.22rem);font-weight:900;line-height:1;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">59K</div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);font-weight:500;margin-top:2px;">GiÃ¡ niÃªm yáº¿t: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">145.000Ä‘</span></div>
+            </div>
+            <div class="sub-price-divider" style="width:1px;background:rgba(168,85,247,0.2);align-self:stretch;margin:2px 0;flex-shrink:0;"></div>
+            <div style="flex:1;background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:9px 11px;">
+              <div style="font-size:7px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.5);margin-bottom:5px;">GÃ³i 12 thÃ¡ng</div>
+              <div style="display:flex;align-items:baseline;gap:5px;flex-wrap:wrap;margin-bottom:3px;">
+                <span style="font-size:clamp(0.85rem,2.8vw,1.1rem);font-weight:900;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">767.000Ä‘</span>
+                <span style="font-size:8px;color:rgba(255,255,255,0.35);font-weight:500;">GiÃ¡ niÃªm yáº¿t: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1px;font-weight:600;">1.885.000Ä‘</span></span>
+              </div>
+              <div style="font-size:8px;font-weight:700;color:rgba(99,220,150,0.9);">ðŸ’° Tiáº¿t kiá»‡m 1.118.000Ä‘</div>
+            </div>
+          </div>
+          <button class="sub-card-btn" style="width:100%;justify-content:center;margin-top:auto;" onclick="openModal('â† CapCut Pro Â· 59K/thÃ¡ng')">ÄÄƒng kÃ½ ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         </div>
-        <p>Trang duoc chia thanh nhung khoi de scan nhanh. Nguoi xem vao la thay ngay san pham, diem khac biet, bang gia va cach lien he ma khong bi roi.</p>
-      </div>
-      <div class="grid-3">
-        <article class="glass">
-          <h3>Trang mo dau hut mat</h3>
-          <p>Hero layout moi dung typography manh, nen co chieu sau va CTA ro rang de day nguoi xem xuong bang gia hoac lien he ngay.</p>
-          <div class="pill-row">
-            <span class="pill">Tieu de lon</span>
-            <span class="pill">Nut hanh dong noi bat</span>
-            <span class="pill">Thong so ngan gon</span>
-          </div>
-        </article>
-        <article class="glass">
-          <h3>Khoi gioi thieu dich vu</h3>
-          <p>Cac card noi dung co khoang cach de doc, de thay text va co the nhan ban thanh nhieu goi khac nhau ma khong vo layout.</p>
-          <div class="pill-row">
-            <span class="pill">Responsive mem</span>
-            <span class="pill">Khoang cach ro</span>
-            <span class="pill">De doi noi dung</span>
-          </div>
-        </article>
-        <article class="glass">
-          <h3>Ket trang de chuyen doi</h3>
-          <p>Phan cuoi co CTA lon va thong diep ngan de hut inbox. Phu hop de gan link Telegram, Zalo, Facebook hoac form dat hang.</p>
-          <div class="pill-row">
-            <span class="pill">CTA cuoi trang</span>
-            <span class="pill">Gan link nhanh</span>
-            <span class="pill">Hop mobile</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- DIEM MANH / SHOWCASE -->
-  <section class="section" id="diemmanh">
-    <div class="wrap showcase">
-      <article class="showcase-card">
-        <h3>Ly do ban nay phu hop de viet lai tu dau</h3>
-        <ul>
-          <li>Loai bo toan bo note va comment cu de file sach hon, de sua va de ban giao.</li>
-          <li>Bo cuc moi uu tien su gon gang thay vi qua nhieu lop trang tri kho theo doi.</li>
-          <li>He thong mau, radius, spacing va typography duoc dat lai de dong bo hon.</li>
-          <li>Khong phu thuoc vao framework, de dua vao script encode hien tai.</li>
-        </ul>
-      </article>
-      <article class="showcase-card">
-        <h3>Nhung gi trang moi da san san cho ban</h3>
-        <ul>
-          <li>Section hero, service, bang gia, FAQ va CTA cuoi trang da co san.</li>
-          <li>Responsive theo 3 muc lon, vua, nho de khong bi tran chu tren mobile.</li>
-          <li>Danh sach nav link anchor de dieu huong nhanh trong 1 trang.</li>
-          <li>Noi dung co the thay ten san pham, gia, quyen loi va kenh lien he trong vai phut.</li>
-        </ul>
-      </article>
-    </div>
-  </section>
+      </div><!-- end sub-cards-yt-wrap -->
 
-  <!-- BANG GIA -->
-  <section class="section" id="banggia">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <h2>Bang gia de thay doi nhanh</h2>
-        </div>
-        <p>Duoi day la bo khung mau. Ban co the sua ten goi, muc gia va quyen loi de khop voi san pham that cua minh ma khong can dung vao cau truc lon.</p>
-      </div>
-      <div class="pricing">
-        <article class="price-card">
-          <span class="badge">Starter</span>
-          <h3>Goi co ban</h3>
-          <div class="price">
-            <strong>299k</strong>
-            <span>1 lan thanh toan</span>
-          </div>
-          <ul>
-            <li>1 landing page don de gioi thieu san pham</li>
-            <li>Chinh text, mau sac va CTA theo yeu cau</li>
-            <li>Ban giao file de ban tu quan ly</li>
-          </ul>
-        </article>
-        <article class="price-card highlight">
-          <span class="badge">Popular</span>
-          <h3>Goi ban chay</h3>
-          <div class="price">
-            <strong>599k</strong>
-            <span>bo giao dien day du</span>
-          </div>
-          <ul>
-            <li>Hero, service, bang gia, FAQ va CTA cuoi trang</li>
-            <li>Toi uu mobile va bo cuc de chot don hon</li>
-            <li>Ho tro sua nhanh 1 dot sau khi ban giao</li>
-          </ul>
-        </article>
-        <article class="price-card">
-          <span class="badge">Custom</span>
-          <h3>Goi theo yeu cau</h3>
-          <div class="price">
-            <strong>Inbox</strong>
-            <span>bao gia theo pham vi</span>
-          </div>
-          <ul>
-            <li>Them trang kho san pham, section review hoac modal</li>
-            <li>Gan analytics, form, script rieng neu can</li>
-            <li>Phu hop shop dang co nhieu goi va nhieu kenh ban</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section" id="faq">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <h2>Cau hoi thuong gap</h2>
-        </div>
-        <p>Phan nay giup giam so lan khach hoi lap lai va giu nguoi xem o lai trang lau hon truoc khi bam lien he.</p>
-      </div>
-      <div class="faq">
-        <article class="faq-item">
-          <h3>Toi co the doi toan bo noi dung sau nay khong?</h3>
-          <p>Co. File duoc viet theo huong de sua text truc tiep. Ban co the thay tieu de, gia, mo ta, nut bam va cac section bang cach sua HTML thong thuong.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Trang nay co phu hop de encode sang file xuat ban khong?</h3>
-          <p>Co. Cau truc van la mot file HTML day du, tuong thich voi luong `encode-html.js` dang co trong project.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Neu toi muon chen link Zalo, Telegram hay form dat hang?</h3>
-          <p>Rat de. Chi can thay `href` cua cac nut CTA hoac them mot khoi form o cuoi trang la duoc.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Co comment an hay ghi chu nao con sot lai khong?</h3>
-          <p>Khong. Ban rewrite nay duoc viet lai sach, khong chen note comments kieu `*`, `#` hay comment HTML/CSS/JS.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- LIEN HE / CTA -->
-  <section class="section" id="lienhe">
-    <div class="wrap">
-      <div class="cta-panel">
-        <div>
-          <h2>San sang dua noi dung that vao trang moi</h2>
-          <p>Neu ban muon, buoc tiep theo minh co the thay toan bo text mau nay bang noi dung shop cua ban, gan link lien he that va encode lai sang `index.html`.</p>
-        </div>
-        <a class="button button-primary" href="https://t.me/" target="_blank" rel="noreferrer">Mo kenh lien he</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <span>Binpinkgold Code Store</span>
-    <span>Landing page moi da duoc viet lai toan bo tu dau</span>
+    </div><!-- end accountsGrid -->
   </div>
-</footer>
+</section>
 
-<!-- PROTECT SCRIPT -->
+<!-- SERVICES -->
+<section id="services" style="padding:60px 0 64px;position:relative;z-index:1;">
+  <div class="container">
+    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dá»‹ch Vá»¥ Thiáº¿t Káº¿ Web Â· Bot Telegram</div><div class="section-beam r"></div></div></div>
+    <div class="glass-card glass-card-glow">
+      <div style="padding:clamp(28px,5vw,48px) clamp(24px,5vw,52px);">
+        <div style="margin-bottom:28px;">
+          <div style="font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.7);margin-bottom:12px;">Dá»‹ch Vá»¥ Láº­p TrÃ¬nh</div>
+          <div style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:20px;">Thiáº¿t Káº¿ Website&nbsp;â€¢&nbsp;Táº¡o Bot Telegram&nbsp;â€¢&nbsp;Há»— Trá»£ LÃ m BÃ i Táº­p</div>
+          <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px;">
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">âœ“</span><span>Thiáº¿t káº¿ Website theo yÃªu cáº§u â€” tá»« landing page, portfolio Ä‘áº¿n web bÃ¡n hÃ ng Ä‘áº§y Ä‘á»§ tÃ­nh nÄƒng.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">âœ“</span><span>Bot Telegram thÃ´ng minh â€” bot bÃ¡n hÃ ng, box chat, tool, script &amp; phÃ¢n tÃ­ch dá»¯ liá»‡u.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">âœ“</span><span>Há»— trá»£ lÃ m bÃ i táº­p láº­p trÃ¬nh â€” code theo yÃªu cáº§u, giáº£i thÃ­ch chi tiáº¿t, giao bÃ i Ä‘Ãºng tiáº¿n Ä‘á»™.</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">âœ“</span><span>Báº£o hÃ nh miá»…n phÃ­ sau bÃ n giao Â· BÃ¡o giÃ¡ nhanh Â· Giao hÃ ng Ä‘Ãºng háº¹n.</span></div>
+          </div>
+          <button onclick="openServiceModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.45);border-radius:100px;color:#C084FC;font-size:14px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;letter-spacing:0.02em;" onmouseover="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.25),rgba(236,72,153,0.18))';this.style.borderColor='rgba(168,85,247,0.7)';this.style.boxShadow='0 0 22px rgba(168,85,247,0.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1))';this.style.borderColor='rgba(168,85,247,0.45)';this.style.boxShadow='none'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            LiÃªn há»‡ nháº­n tÆ° váº¥n miá»…n phÃ­
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THANH TOÃN Há»˜ -->
+<section style="padding:0 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
+  <div class="container">
+    <div id="tth-anchor" class="tth-card" style="max-width:680px;margin:0 auto;border-color:rgba(34,197,94,0.45);background:linear-gradient(145deg,rgba(6,20,12,0.97) 0%,rgba(4,14,8,0.99) 50%,rgba(7,22,13,0.97) 100%);box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 4px 24px rgba(0,0,0,0.6),0 20px 60px rgba(0,0,0,0.4),0 0 60px rgba(34,197,94,0.1);">
+      <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(34,197,94,0.85) 30%,rgba(16,185,129,0.55) 70%,transparent 100%);margin:0 5%;"></div>
+      <div class="tth-inner" style="cursor:pointer;" onclick="openTthModal()">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:52px;height:52px;min-width:52px;border-radius:16px;background:linear-gradient(135deg,rgba(34,197,94,0.2),rgba(16,185,129,0.1));border:1.5px solid rgba(34,197,94,0.55);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(34,197,94,0.3);flex-shrink:0;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <defs><linearGradient id="tth-gi2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#10b981"/></linearGradient></defs>
+              <rect x="2" y="5" width="20" height="14" rx="3" stroke="url(#tth-gi2)" stroke-width="1.8"/>
+              <path d="M2 9h20" stroke="url(#tth-gi2)" stroke-width="1.8"/>
+              <rect x="5" y="13" width="5" height="2.5" rx="1" fill="url(#tth-gi2)"/>
+              <circle cx="17" cy="14.5" r="2" fill="rgba(34,197,94,0.4)" stroke="url(#tth-gi2)" stroke-width="1.2"/>
+              <circle cx="15" cy="14.5" r="2" fill="rgba(251,146,60,0.4)"/>
+            </svg>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px;">Thanh ToÃ¡n Há»™ Quá»‘c Táº¿</div>
+            <div style="font-size:11px;color:rgba(52,211,153,0.55);font-weight:500;line-height:1.5;">KhÃ´ng cáº§n tháº» quá»‘c táº¿ Â· Nhanh Â· Uy tÃ­n</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;">
+            <div class="tth-badge tth-bv">VISA</div>
+            <div class="tth-badge tth-bm">
+              <svg width="18" height="12" viewBox="0 0 36 24" fill="none">
+                <circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/>
+                <circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/>
+                <path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/>
+              </svg>MC
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <div style="display:flex;gap:16px;">
+            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">âœ“</span> Xá»­ lÃ½ nhanh</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">âœ“</span> HoÃ n tiá»n náº¿u lá»—i</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:rgba(34,197,94,0.75);">Xem chi tiáº¿t <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,0.75)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE CONTACT MODAL -->
+<div class="modal-overlay" id="serviceModal" onclick="if(event.target===this)closeServiceModal()">
+  <div class="modal-box" style="max-width:380px;">
+    <div id="serviceModalHeader" style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:14px 18px;margin-bottom:16px;text-align:center;">
+      <div style="font-size:13px;font-weight:800;color:#E0B4FF;line-height:1.5;">ðŸ’» Dá»‹ch Vá»¥ Láº­p TrÃ¬nh Â· TÆ° Váº¥n Miá»…n PhÃ­</div>
+    </div>
+    <div style="font-size:13.5px;font-weight:800;margin-bottom:18px;color:var(--text);">Chá»n kÃªnh liÃªn há»‡:</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+      <a href="https://t.me/binpinkgold" target="_blank" onclick="closeServiceModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/tele.jpg" alt="Telegram" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Telegram</span>
+      </a>
+      <a href="https://zalo.me/0898908101" target="_blank" onclick="closeServiceModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/zalo.jpg" alt="Zalo" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
+      </a>
+    </div>
+    <button class="modal-close-btn" onclick="closeServiceModal()">âœ• ÄÃ³ng</button>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:48px 0 96px;position:relative;z-index:1;">
+  <div class="container">
+    <div style="margin-bottom:24px;display:flex;align-items:center;gap:12px;">
+      <div style="width:3px;height:28px;border-radius:2px;background:linear-gradient(180deg,#A855F7,#EC4899);box-shadow:0 0 10px rgba(168,85,247,0.55);flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:1.15rem;font-weight:800;letter-spacing:-0.02em;color:#fff;line-height:1;">LiÃªn Há»‡</div>
+        <div style="font-size:11.5px;color:rgba(240,236,248,0.35);margin-top:3px;">Telegram Â· Zalo Â· Facebook Â· TikTok</div>
+      </div>
+    </div>
+    <div class="contact-list">
+      <a href="https://zalo.me/0898908101" target="_blank" class="contact-item"><img src="assets/images/zalo.jpg" alt="Zalo" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://t.me/binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tele.jpg" alt="Telegram" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" class="contact-item"><img src="assets/images/fb.jpg" alt="Facebook" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+      <a href="https://www.tiktok.com/@binpinkgold" target="_blank" class="contact-item"><img src="assets/images/tiktok.jpg" alt="TikTok" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+    </div>
+  </div>
+</section>
+
+<footer>Â© 2026 <span style="background:linear-gradient(135deg,#C084FC,#A855F7,#EC4899,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;">Binpinkgold Code Store</span> Â· 08989 08101</footer>
+
+<!-- BOTTOM NAV -->
+<div class="idx-bottom-nav">
+  <div class="idx-bottom-nav-inner">
+    <a class="idx-bnav-item active" id="idxNav0" href="#" onclick="idxNavClick(event,0,'#hero')">
+      <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+      <span>Trang Chá»§</span>
+    </a>
+    <a class="idx-bnav-item" id="idxNav1" href="kho.html" onclick="idxNavClick(event,1,'kho.html')" style="position:relative;">
+      <div class="kho-pill-bubble" id="khoPill">
+        <span class="kho-pill-bubble-emoji">ðŸ”¥</span>
+        <span class="kho-pill-bubble-text" id="khoPillText">Kho Code má»›i!</span>
+        <span class="kho-pill-bubble-dot"></span>
+      </div>
+      <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+      <span>Kho Code</span>
+    </a>
+    <a class="idx-bnav-item" id="idxNav3" href="#services" onclick="idxNavClick(event,3,'#services')">
+      <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      <span>Dá»‹ch Vá»¥</span>
+    </a>
+    <a class="idx-bnav-item" id="idxNav2" href="#contact" onclick="idxNavClick(event,2,'#contact')">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <span>LiÃªn Há»‡</span>
+    </a>
+  </div>
+</div>
+
+<!-- TTH DETAIL MODAL -->
+<div class="modal-overlay" id="tthModal" onclick="if(event.target===this)closeTthModal()">
+  <div class="fee-modal" style="background:rgba(4,14,8,0.99);border-color:rgba(34,197,94,0.45);box-shadow:0 0 0 1px rgba(34,197,94,0.18),0 4px 8px rgba(0,0,0,0.65),0 16px 40px rgba(0,0,0,0.5),0 0 60px rgba(34,197,94,0.15);max-width:420px;">
+    <div style="position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.85),rgba(16,185,129,0.55),transparent);z-index:2;pointer-events:none;border-radius:32px 32px 0 0;"></div>
+    <div class="fee-modal-head" style="background:rgba(4,14,8,0.99);border-bottom-color:rgba(34,197,94,0.15);border-radius:32px 32px 0 0;">
+      <div class="fee-modal-title" style="color:#4ade80;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>
+        Thanh ToÃ¡n Há»™ Quá»‘c Táº¿
+      </div>
+      <button class="fee-modal-close" onclick="closeTthModal()" style="background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:#4ade80;">âœ•</button>
+    </div>
+    <div class="fee-modal-body">
+      <!-- badges -->
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:4px;">
+        <div class="tth-badge tth-bv">VISA</div>
+        <div class="tth-badge tth-bm"><svg width="18" height="12" viewBox="0 0 36 24" fill="none"><circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/><circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/><path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/></svg>MC</div>
+        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,0.1);border:1.5px solid rgba(34,197,94,0.35);border-radius:9px;padding:4px 11px;font-size:10px;font-weight:800;color:rgba(74,222,128,0.9);white-space:nowrap;">Má»i dá»‹ch vá»¥ quá»‘c táº¿</div>
+      </div>
+      <!-- bullets -->
+      <div style="background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:16px;padding:13px 15px;display:flex;flex-direction:column;gap:8px;">
+        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">âœ“</span><span>KhÃ´ng cáº§n tháº» Visa/MC â€” chá»‰ cáº§n chuyá»ƒn khoáº£n ná»™i Ä‘á»‹a.</span></div>
+        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">âœ“</span><span>Xá»­ lÃ½ nhanh trong <strong style="color:#4ade80;">1 phÃºt</strong> sau khi nháº­n tiá»n.</span></div>
+        <div class="tth-ir" style="color:rgba(240,236,248,0.65);"><span style="color:#4ade80;font-weight:700;flex-shrink:0;">âœ“</span><span>Há»— trá»£ thanh toÃ¡n má»i dá»‹ch vá»¥ nÆ°á»›c ngoÃ i.</span></div>
+      </div>
+      <!-- fee button -->
+      <button class="tth-btn-fee" onclick="closeTthModal();openFeeModal()" style="background:rgba(34,197,94,0.09);border-color:rgba(34,197,94,0.4);color:#4ade80;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        Xem phÃ­ dá»‹ch vá»¥
+      </button>
+      <!-- CTA button â€” green spin border -->
+      <div style="width:100%;border-radius:100px;padding:2.5px;display:block;position:relative;background:conic-gradient(from var(--tth-la,0deg),#14532d 0%,#22c55e 15%,#86efac 25%,#16a34a 35%,#22c55e 50%,#14532d 60%,#86efac 70%,#22c55e 85%,#14532d 100%);animation:tthSpin 3s linear infinite;box-shadow:0 0 22px rgba(34,197,94,0.65),0 0 44px rgba(34,197,94,0.25);contain:layout style paint;">
+        <div style="position:absolute;inset:2.5px;border-radius:100px;background:rgba(4,14,8,0.99);z-index:0;pointer-events:none;"></div>
+        <button style="width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#14532d 0%,#16a34a 40%,#22c55e 70%,#4ade80 100%);color:#031a0a;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25);" onclick="closeTthModal();openModal('ðŸ’³ Thanh ToÃ¡n Há»™ Quá»‘c Táº¿ Â· Visa/Mastercard')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          LiÃªn há»‡ ngay
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEE MODAL -->
+<div class="modal-overlay" id="feeModal" onclick="if(event.target===this)closeFeeModal()">
+  <div class="fee-modal">
+    <div class="fee-modal-head">
+      <div class="fee-modal-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        Báº£ng PhÃ­ Dá»‹ch Vá»¥
+      </div>
+      <button class="fee-modal-close" onclick="closeFeeModal()">âœ•</button>
+    </div>
+    <div class="fee-modal-body" id="feeModalBody"></div>
+  </div>
+</div>
+
+<!-- FEAT MODAL -->
+<style>
+.fm-tagline{font-size:12px;color:rgba(240,236,248,0.55);line-height:1.7;padding:14px 22px 0;}
+.fm-tagline strong{color:rgba(192,132,252,0.9);font-weight:700;}
+.fm-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px 22px;}
+.fm-card{background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.17);border-radius:18px;padding:13px 13px 11px;transition:border-color 0.2s;}
+.fm-card:hover{border-color:rgba(168,85,247,0.4);}
+.fm-card-top{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.fm-card-ico{width:30px;height:30px;min-width:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.fm-card-name{font-size:11.5px;font-weight:800;color:rgba(240,236,248,0.9);line-height:1.3;word-break:break-word;}
+.fm-card-desc{font-size:10px;color:rgba(240,236,248,0.45);line-height:1.55;word-break:break-word;}
+.fm-card-badge{display:inline-flex;align-items:center;font-size:9px;font-weight:800;padding:2px 8px;border-radius:100px;margin-top:6px;white-space:nowrap;}
+.fm-bench{margin:0 22px 18px;background:linear-gradient(135deg,rgba(168,85,247,0.09),rgba(236,72,153,0.05));border:1px solid rgba(168,85,247,0.2);border-radius:16px;padding:13px 15px;}
+.fm-bench-title{font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.45);margin-bottom:10px;}
+.fm-bench-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.fm-bench-row:last-child{margin-bottom:0;}
+.fm-bench-name{font-size:10px;color:rgba(240,236,248,0.5);width:120px;min-width:120px;flex-shrink:0;line-height:1.3;}
+.fm-bench-bar-wrap{flex:1;height:6px;background:rgba(168,85,247,0.1);border-radius:10px;overflow:hidden;}
+.fm-bench-bar{height:100%;border-radius:10px;background:linear-gradient(90deg,#A855F7,#EC4899);}
+.fm-bench-bar.dim{background:rgba(168,85,247,0.28);}
+.fm-bench-pct{font-size:10px;font-weight:800;color:#C084FC;width:34px;text-align:right;flex-shrink:0;}
+.fm-bench-pct.dim{color:rgba(240,236,248,0.35);}
+.fm-avail{margin:0 22px 20px;background:rgba(99,220,150,0.05);border:1px solid rgba(99,220,150,0.18);border-radius:12px;padding:9px 13px;display:flex;align-items:center;gap:8px;}
+.fm-avail-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px rgba(52,211,153,0.6);flex-shrink:0;}
+.fm-avail-text{font-size:11px;color:rgba(99,220,150,0.8);font-weight:600;line-height:1.5;word-break:break-word;}
+@media(max-width:640px){
+  .fm-tagline{padding:12px 16px 0;font-size:11.5px;}
+  .fm-cards{grid-template-columns:1fr 1fr;gap:7px;padding:10px 16px;}
+  .fm-card{padding:10px 10px 9px;border-radius:14px;}
+  .fm-bench{margin:0 16px 14px;padding:11px 12px;}
+  .fm-bench-name{width:100px;min-width:100px;font-size:9.5px;}
+  .fm-avail{margin:0 16px 16px;}
+}
+@media(max-width:380px){.fm-cards{grid-template-columns:1fr;}.fm-bench-name{width:90px;min-width:90px;}}
+</style>
+<div class="modal-overlay" id="featModal" onclick="if(event.target===this){document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';}">
+  <div class="feat-modal-box">
+    <div class="feat-modal-head">
+      <div class="font-syne" style="font-size:1rem;font-weight:800;color:#C084FC;">âœ¨ ChatGPT Plus Â· GPT-5.4</div>
+      <button class="feat-close-btn" onclick="document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';">âœ•</button>
+    </div>
+    <div class="fm-tagline">
+      <strong>GPT-5.4</strong> â€” model suy luáº­n <strong>hiá»‡u quáº£ nháº¥t vá» token</strong> cá»§a OpenAI. VÆ°á»£t trá»™i Anthropic vÃ  Google, há»— trá»£ <strong>1M token context</strong>, tá»‘i Æ°u nghiÃªn cá»©u web sÃ¢u vÃ  táº¡o tÃ i liá»‡u trá»±c quan.
+    </div>
+    <div class="fm-cards">
+      <div class="fm-card">
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(234,179,8,0.12);border:1px solid rgba(234,179,8,0.25);">ðŸ§ </div><div class="fm-card-name">GPT-5.4 Thinking</div></div>
+        <div class="fm-card-desc">Xem káº¿ hoáº¡ch suy nghÄ© realtime, Ä‘iá»u chá»‰nh ngay khi model Ä‘ang xá»­ lÃ½ cÃ¢u tráº£ lá»i.</div>
+        <div class="fm-card-badge" style="background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.22);color:#FCD34D;">Plus Â· Team Â· Pro</div>
+      </div>
+      <div class="fm-card">
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.25);">ðŸ“„</div><div class="fm-card-name">1M Token Context</div></div>
+        <div class="fm-card-desc">Xá»­ lÃ½ tÃ i liá»‡u dÃ i, codebase lá»›n mÃ  khÃ´ng máº¥t ngá»¯ cáº£nh.</div>
+        <div class="fm-card-badge" style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.22);color:#C084FC;">Preview</div>
+      </div>
+      <div class="fm-card">
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.22);">ðŸ’»</div><div class="fm-card-name">Codex /fast Mode</div></div>
+        <div class="fm-card-desc">Sinh code nhanh hÆ¡n 1.5Ã— khÃ´ng giáº£m cháº¥t lÆ°á»£ng.</div>
+        <div class="fm-card-badge" style="background:rgba(20,184,166,0.08);border:1px solid rgba(20,184,166,0.2);color:#5eead4;">Ã—1.5 tá»‘c Ä‘á»™</div>
+      </div>
+      <div class="fm-card">
+        <div class="fm-card-top"><div class="fm-card-ico" style="background:rgba(236,72,153,0.1);border:1px solid rgba(236,72,153,0.22);">ðŸŽ¬</div><div class="fm-card-name">Sora Â· Agent Â· ADA</div></div>
+        <div class="fm-card-desc">Táº¡o video AI, tá»± Ä‘á»™ng hoÃ¡ quy trÃ¬nh, phÃ¢n tÃ­ch dá»¯ liá»‡u ngay trong chat.</div>
+        <div class="fm-card-badge" style="background:rgba(236,72,153,0.09);border:1px solid rgba(236,72,153,0.2);color:#F472B6;">Äá»™c quyá»n Plus</div>
+      </div>
+    </div>
+    <div class="fm-bench">
+      <div class="fm-bench-title">Benchmark so sÃ¡nh</div>
+      <div class="fm-bench-row"><div class="fm-bench-name">OSWorld Computer Use</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:75%"></div></div><div class="fm-bench-pct">75%</div></div>
+      <div class="fm-bench-row"><div class="fm-bench-name">MMMU-Pro GPT-5.4</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:81.2%"></div></div><div class="fm-bench-pct">81.2%</div></div>
+      <div class="fm-bench-row"><div class="fm-bench-name">MMMU-Pro Gemini 3.1</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar dim" style="width:80.5%"></div></div><div class="fm-bench-pct dim">80.5%</div></div>
+      <div class="fm-bench-row"><div class="fm-bench-name">GDPval</div><div class="fm-bench-bar-wrap"><div class="fm-bench-bar" style="width:83%"></div></div><div class="fm-bench-pct">83%</div></div>
+    </div>
+    <div class="fm-avail">
+      <div class="fm-avail-dot"></div>
+      <div class="fm-avail-text">GPT-5.4 Thinking â†’ Plus, Team &amp; Pro Â· GPT-5.4 Pro â†’ Pro &amp; Enterprise</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal" onclick="if(event.target===this){closeModal();}">
+  <div class="modal-box">
+    <div id="modalHeader" style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:14px 18px;margin-bottom:16px;text-align:center;">
+      <div id="modalSelected" style="font-size:14px;font-weight:800;color:#E0B4FF;line-height:1.5;"></div>
+    </div>
+    <div id="plusNotesBox" style="display:none;background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:14px 16px;margin-bottom:16px;">
+      <div style="font-size:9.5px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(192,132,252,0.55);margin-bottom:10px;">ðŸ“Œ LÆ°u Ã½ quan trá»ng</div>
+      <div style="display:flex;flex-direction:column;gap:7px;">
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">ðŸ”¹ Nháº­n tÃ i khoáº£n riÃªng (cÃ³ thá»ƒ Ä‘á»•i máº­t kháº©u) ngay sau khi mua.</div>
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">ðŸ”¹ 1 mÃ¬nh báº¡n dÃ¹ng 1 tÃ i khoáº£n (cÃ³ thá»ƒ Ä‘á»•i máº­t kháº©u).</div>
+        <div style="font-size:12px;color:rgba(240,236,248,0.72);line-height:1.6;">ðŸ”¹ Truy cáº­p Ä‘áº§y Ä‘á»§ Sora (Video AI) &amp; Codex.</div>
+      </div>
+    </div>
+    <div id="modalSubtitle" style="font-size:14px;font-weight:800;margin-bottom:20px;color:var(--text);">LiÃªn há»‡ Ä‘á»ƒ mua ngay:</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+      <a href="https://t.me/binpinkgold" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/tele.jpg" alt="Telegram" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Telegram</span>
+      </a>
+      <a href="https://zalo.me/0898908101" target="_blank" onclick="closeModal()" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;padding:18px 12px;background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:24px;transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(168,85,247,0.1)';this.style.borderColor='rgba(168,85,247,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.04)';this.style.borderColor='rgba(168,85,247,0.18)'">
+        <img src="assets/images/zalo.jpg" alt="Zalo" style="width:64px;height:64px;border-radius:16px;object-fit:cover;box-shadow:0 4px 16px rgba(0,0,0,0.5);">
+        <span style="font-size:13px;font-weight:700;color:rgba(240,236,248,0.75);">Zalo</span>
+      </a>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal()">âœ• ÄÃ³ng</button>
+  </div>
+</div>
+
+<script>
+const PLUS_LIST_PRICE=522000,PLUS_OUR_PRICE=99000;
+function fmtVND(n){return n.toLocaleString('vi-VN')+'Ä‘';}
+function initYearlyPricing(){
+  var lf=PLUS_LIST_PRICE*12,oy=PLUS_OUR_PRICE*12,sv=lf-oy;
+  document.getElementById('plusYearlyListFull').textContent=fmtVND(lf);
+  document.getElementById('plusYearlyOur').textContent=fmtVND(oy);
+  document.getElementById('plusYearlySaving').textContent='ðŸ’° Tiáº¿t kiá»‡m '+fmtVND(sv);
+}
+function openTthModal(){var m=document.getElementById('tthModal');m.classList.add('open');document.body.style.overflow='hidden';}
+function closeTthModal(){var m=document.getElementById('tthModal');m.classList.remove('open');document.body.style.overflow='';}
+function openModal(n){
+  document.getElementById('modalSelected').textContent=n;
+  document.getElementById('plusNotesBox').style.display='none';
+  var sub=document.getElementById('modalSubtitle');
+  if(sub){
+    if(n.indexOf('Thanh ToÃ¡n')!==-1||n.indexOf('Dá»‹ch Vá»¥')!==-1||n.indexOf('Bot')!==-1||n.indexOf('Website')!==-1)sub.textContent='LiÃªn há»‡ Ä‘á»ƒ Ä‘áº·t dá»‹ch vá»¥ ngay:';
+    else if(n.indexOf('YouTube')!==-1||n.indexOf('CapCut')!==-1||n.indexOf('Plus')!==-1||n.indexOf('ChatGPT')!==-1)sub.textContent='LiÃªn há»‡ Ä‘á»ƒ nháº­n tÃ i khoáº£n ngay:';
+    else sub.textContent='LiÃªn há»‡ Ä‘á»ƒ mua ngay:';
+  }
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
+function openPlusModal(){
+  document.getElementById('modalSelected').innerHTML='âœ¨ ChatGPT Plus &bull; 99K/thÃ¡ng';
+  document.getElementById('plusNotesBox').style.display='block';
+  var sub=document.getElementById('modalSubtitle');if(sub)sub.textContent='LiÃªn há»‡ Ä‘á»ƒ nháº­n tÃ i khoáº£n ngay:';
+  document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';
+}
+function openFeeModal(){renderFeeModal();document.getElementById('feeModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeFeeModal(){document.getElementById('feeModal').classList.remove('open');document.body.style.overflow='';}
+const FEE_CONFIG={tiers:[{max:1000000,rate:0.22,label:'DÆ°á»›i 1.000.000Ä‘'},{max:Infinity,rate:0.15,label:'Tá»« 1.000.000Ä‘ trá»Ÿ lÃªn'}]};
+function vndFmt(n){return Math.round(n).toLocaleString('vi-VN')+'Ä‘';}
+function calcFee(vnd){var tier=FEE_CONFIG.tiers.find(t=>vnd<=t.max);return Math.round(vnd*tier.rate);}
+function renderFeeModal(){
+  var cfg=FEE_CONFIG;
+  var tiersHTML=cfg.tiers.map((t,i)=>{
+    var isCheap=i===1;
+    return `<div class="fm-tier${isCheap?' cheapest':''}">
+      <div class="fm-tier-range">${t.label}</div>
+      <div class="fm-tier-right">
+        <div class="fm-tier-pct">${Math.round(t.rate*100)}%</div>
+        ${isCheap?'<div class="fm-tier-tag best">ÄÆ¡n lá»›n</div>':''}
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('feeModalBody').innerHTML=`
+    <div class="fm-tiers">${tiersHTML}</div>
+
+    <div class="fm-calc">
+      <div class="fm-calc-title">ðŸ§® TÃ­nh phÃ­ nhanh</div>
+      <div class="fm-calc-row">
+        <input class="fm-calc-input" id="feeCalcInput" type="number" min="0" placeholder="Nháº­p giÃ¡ dá»‹ch vá»¥..." oninput="updateFeeCalc()">
+        <span class="fm-calc-unit">VNÄ</span>
+      </div>
+      <div class="fm-calc-breakdown" id="feeCalcResult" style="display:none;">
+        <div class="fm-calc-row-item"><span class="lbl">GiÃ¡ dá»‹ch vá»¥</span><span class="val" id="fcBaseVal">â€”</span></div>
+        <div class="fm-calc-row-item"><span class="lbl">PhÃ­ dá»‹ch vá»¥</span><span class="val" id="fcFeeVal">â€”</span></div>
+        <div class="fm-calc-row-item divider"></div>
+        <div class="fm-calc-row-item total"><span class="lbl">Tá»•ng chuyá»ƒn khoáº£n</span><span class="val" id="fcTotalVal">â€”</span></div>
+      </div>
+    </div>`;
+}
+function updateFeeCalc(){
+  var inp=document.getElementById('feeCalcInput'),res=document.getElementById('feeCalcResult'),n=parseFloat(inp.value);
+  if(!n||n<=0){res.style.display='none';return;}
+  var tier=FEE_CONFIG.tiers.find(t=>n<=t.max),fee=Math.round(n*tier.rate),total=n+fee;
+  document.getElementById('fcBaseVal').textContent=vndFmt(n);
+  document.getElementById('fcFeeVal').textContent=vndFmt(fee)+' ('+Math.round(tier.rate*100)+'%)';
+  document.getElementById('fcTotalVal').textContent='~'+vndFmt(total);
+  res.style.display='flex';res.style.flexDirection='column';
+}
+function openFeatModal(){document.getElementById('featModal').classList.add('open');document.body.style.overflow='hidden';}
+function calcDiscounts(){var pb=document.getElementById('plusDiscountBadge');if(pb){var orig=+pb.dataset.orig,sale=+pb.dataset.salePersonal;if(orig&&sale)pb.textContent='-'+Math.round((1-sale/orig)*100)+'%';}}
+function openServiceModal(){document.getElementById('serviceModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeServiceModal(){document.getElementById('serviceModal').classList.remove('open');document.body.style.overflow='';}
+function scrollToId(id){var el=document.getElementById(id);if(!el)return;var tb=document.querySelector('.topbar');var offset=tb?tb.offsetHeight+10:70;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}
+function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');}
+function toggleTopMenu(){document.getElementById('topHam').classList.toggle('open');document.getElementById('topDrop').classList.toggle('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target.closest('#topDrop')){closeTopMenu();}});
+
+// KHO CODE pill bubble
+(function(){
+  var pill=document.getElementById('khoPill'),ptxt=document.getElementById('khoPillText');
+  var TEXTS=['ðŸ”¥ Kho Code má»›i!','âœ¨ +20 template','ðŸ‘‰ Xem ngay â†’','ðŸ’Ž GiÃ¡ tá»‘t nháº¥t'];
+  var idx=0;
+  function cycle(){if(!ptxt)return;ptxt.style.opacity='0';setTimeout(function(){ptxt.textContent=TEXTS[idx++%TEXTS.length];ptxt.style.opacity='1';},190);setTimeout(cycle,2400);}
+  setTimeout(function(){if(pill)pill.classList.add('in');cycle();},900);
+})();
+
+// â”€â”€ 3D SPACE BANNER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+(function(){
+  var cv=document.getElementById('bannerCanvas');
+  if(!cv)return;
+  var ctx=cv.getContext('2d');
+  var W,H,RAF;
+  // Code tokens â€” láº­p trÃ¬nh, hÃ m, toÃ¡n há»c
+  var TOKENS=['function()','const x=','</>','{}','[]','01','if()','async','return','Ï€','âˆ‘','Î»','âŸ¨âŸ©','git','npm','API','JSON','true','null','fetch()','class','export','import','void','type','var','for()','[]=>','!0','âˆž','AI','âš¡','â‰ˆ','0x','++','&&','||','//','::','>>','<<','===','!==','px','rem','vw','vh','rgb()','let','new','this','try{}','catch','map()','[â€¦]','~$ ','sudo','ping','ssh','curl','async/await','Promise','useState'];
+  var particles=[];
+  var DEPTH=900;
+
+  function resize(){
+    var banner=document.getElementById('siteBanner');
+    if(!banner)return;
+    W=cv.width=banner.offsetWidth;
+    H=cv.height=banner.offsetHeight;
+  }
+
+  function rand(a,b){return a+Math.random()*(b-a);}
+
+  function initParticles(){
+    particles=[];
+    var count=Math.min(55,Math.floor(W*H/5500));
+    for(var i=0;i<count;i++){
+      spawnParticle(true);
+    }
+  }
+
+  function spawnParticle(randomZ){
+    var t=TOKENS[Math.floor(Math.random()*TOKENS.length)];
+    particles.push({
+      x:rand(-W*0.6,W*1.6),
+      y:rand(-H*0.3,H*1.3),
+      z:randomZ?rand(80,DEPTH):DEPTH,
+      vz:rand(0.55,1.8),
+      vx:rand(-0.06,0.06),
+      vy:rand(-0.04,0.04),
+      token:t,
+      opacity:rand(0.3,0.85),
+      hue:Math.random()<0.55?270+rand(-30,30):rand(300,340),
+      size:rand(9,15)
+    });
+  }
+
+  function draw(ts){
+    ctx.clearRect(0,0,W,H);
+    var alive=[];
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i];
+      p.z-=p.vz;
+      p.x+=p.vx;
+      p.y+=p.vy;
+      if(p.z<10){spawnParticle(false);continue;}
+      // perspective projection
+      var scale=DEPTH/p.z;
+      var sx=(p.x-W/2)*scale+W/2;
+      var sy=(p.y-H/2)*scale+H/2;
+      if(sx<-80||sx>W+80||sy<-40||sy>H+40){spawnParticle(false);continue;}
+      var alpha=p.opacity*(1-p.z/DEPTH)*1.4;
+      alpha=Math.min(alpha,0.78);
+      var fs=Math.max(6,p.size*scale*0.6);
+      ctx.save();
+      ctx.globalAlpha=alpha;
+      ctx.font='600 '+fs.toFixed(1)+'px "SF Mono","Fira Code",monospace';
+      ctx.fillStyle='hsl('+p.hue+',80%,72%)';
+      ctx.shadowColor='hsl('+p.hue+',90%,65%)';
+      ctx.shadowBlur=fs*0.9;
+      ctx.fillText(p.token,sx,sy);
+      ctx.restore();
+      alive.push(p);
+    }
+    particles=alive;
+    // keep population stable
+    while(particles.length<Math.min(55,Math.floor(W*H/5500))){spawnParticle(false);}
+    RAF=requestAnimationFrame(draw);
+  }
+
+  function init(){
+    resize();
+    initParticles();
+    cancelAnimationFrame(RAF);
+    RAF=requestAnimationFrame(draw);
+  }
+
+  // pause when banner not in viewport (perf)
+  var obs=new IntersectionObserver(function(e){
+    if(e[0].isIntersecting){if(!RAF)RAF=requestAnimationFrame(draw);}
+    else{cancelAnimationFrame(RAF);RAF=null;}
+  },{threshold:0});
+  obs.observe(cv);
+
+  window.addEventListener('resize',function(){resize();initParticles();});
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+// â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+document.addEventListener('DOMContentLoaded',function(){calcDiscounts();initYearlyPricing();});
+
+function idxNavClick(e,idx,target){
+  [0,1,2,3].forEach(i=>{var el=document.getElementById('idxNav'+i);if(el)el.classList.toggle('active',i===idx);});
+  if(target.startsWith('#')){e.preventDefault();var el=document.querySelector(target);if(el){var topbar=document.querySelector('.topbar');var offset=topbar?topbar.getBoundingClientRect().height:60;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}else{window.scrollTo({top:0,behavior:'smooth'});}}
+}
+</script>
 <script src="protect.js"></script>
 </body>
 </html>

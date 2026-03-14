@@ -125,32 +125,51 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .font-syne{font-family:'Be Vietnam Pro',sans-serif;}
 
 .glass-card{
-  background:rgba(12,6,30,0.08);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  background:rgba(12,6,30,0.42);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   border:1px solid rgba(168,85,247,0.3);
   border-radius:28px;
   position:relative;overflow:hidden;
-  transition:border-color 0.25s,box-shadow 0.25s,transform 0.2s;
-  box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 2px 16px rgba(0,0,0,0.15);
+  transition:border-color 0.25s,box-shadow 0.3s,transform 0.18s;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.07) inset,
+    0 -1px 0 rgba(0,0,0,0.25) inset,
+    0 4px 6px rgba(0,0,0,0.25),
+    0 8px 24px rgba(0,0,0,0.35),
+    0 20px 48px rgba(0,0,0,0.22),
+    0 0 0 0.5px rgba(168,85,247,0.12);
+  transform-style:preserve-3d;
+  will-change:transform;
 }
-.glass-card:hover{border-color:rgba(168,85,247,0.55);transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 6px 32px rgba(0,0,0,0.45),0 0 24px rgba(168,85,247,0.1);}
+.glass-card:hover{border-color:rgba(168,85,247,0.55);box-shadow:0 1px 0 rgba(255,255,255,0.1) inset,0 -1px 0 rgba(0,0,0,0.3) inset,0 6px 12px rgba(0,0,0,0.3),0 16px 40px rgba(0,0,0,0.45),0 32px 64px rgba(0,0,0,0.25),0 0 32px rgba(168,85,247,0.15);}
 .glass-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.6),rgba(236,72,153,0.4),transparent);pointer-events:none;z-index:1;}
-.glass-card-glow{box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 4px 28px rgba(0,0,0,0.4);}
+/* bottom shadow edge for depth illusion */
+.glass-card::after{content:'';position:absolute;bottom:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,0.5),transparent);pointer-events:none;z-index:1;}
+.glass-card-glow{box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 4px 28px rgba(0,0,0,0.4);}
 
 .sub-card{
-  background:rgba(12,6,30,0.08);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  background:rgba(12,6,30,0.42);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   border:1px solid rgba(168,85,247,0.28);
   border-radius:28px;
   padding:0;
   display:flex;flex-direction:column;gap:0;
   position:relative;overflow:hidden;
-  transition:border-color 0.25s,box-shadow 0.25s,transform 0.2s;
-  box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 2px 16px rgba(0,0,0,0.15);
+  transition:border-color 0.25s,box-shadow 0.3s,transform 0.18s;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.07) inset,
+    0 -1px 0 rgba(0,0,0,0.25) inset,
+    0 4px 6px rgba(0,0,0,0.25),
+    0 8px 24px rgba(0,0,0,0.35),
+    0 20px 48px rgba(0,0,0,0.22),
+    0 0 0 0.5px rgba(168,85,247,0.1);
   contain:layout style;
+  transform-style:preserve-3d;
+  will-change:transform;
 }
-.sub-card:hover{border-color:rgba(168,85,247,0.55);transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 6px 32px rgba(0,0,0,0.45),0 0 24px rgba(168,85,247,0.1);}
+.sub-card:hover{border-color:rgba(168,85,247,0.55);box-shadow:0 1px 0 rgba(255,255,255,0.1) inset,0 -1px 0 rgba(0,0,0,0.3) inset,0 6px 12px rgba(0,0,0,0.3),0 16px 40px rgba(0,0,0,0.45),0 32px 64px rgba(0,0,0,0.25),0 0 32px rgba(168,85,247,0.15);}
 .sub-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.6),rgba(236,72,153,0.4),transparent);pointer-events:none;z-index:1;}
+.sub-card::after{content:'';position:absolute;bottom:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,0.5),transparent);pointer-events:none;z-index:1;}
 
 /* ===================================================
    HERO BANNER — compact, icon-right layout
@@ -712,26 +731,44 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
   /* 1. Tắt conic-gradient spin — gây repaint mỗi frame */
   .btn-primary-wrap{animation:none!important;background:linear-gradient(135deg,#6b21a8 0%,#a855f7 45%,#ec4899 100%)!important;}
 
-  /* 2. Xóa backdrop-filter trên tất cả element scroll — đây là nguyên nhân lag chính
-     Browser phải composite+blur toàn bộ layer phía sau mỗi frame scroll */
+  /* 2. Xóa backdrop-filter trên tất cả element scroll */
   .hero-banner,
   .fb-group-banner,
   .glass-card,
   .sub-card,
-  .neon-card{
+  .neon-card,
+  .tth-card{
     backdrop-filter:none!important;
     -webkit-backdrop-filter:none!important;
   }
-  /* glass-card và sub-card: bù lại bằng background đặc hơn một chút */
-  .glass-card{background:rgba(12,6,30,0.72)!important;}
-  .sub-card{background:rgba(12,6,30,0.70)!important;}
+  .glass-card{background:rgba(12,6,30,0.75)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important;}
+  .sub-card{background:rgba(12,6,30,0.72)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important;}
   .neon-card{background:rgba(14,8,32,0.72)!important;}
   .hero-banner{background:rgba(8,4,22,0.82)!important;}
   .fb-group-banner{background:rgba(10,5,24,0.85)!important;}
+  .tth-card{background:rgba(2,10,4,0.82)!important;}
 
-  /* 3. freePulse: đổi từ box-shadow animation → opacity only (paint-free) */
+  /* 3. freePulse box-shadow → opacity only */
   .fb-group-free-badge,
   [style*="freePulse"]{animation:freePulseMob 2s ease-in-out infinite!important;}
+
+  /* 4. shimmerCTA — tắt vì transform trên pseudo-element gây layer mới liên tục */
+  .btn-register-shimmer::after{animation:none!important;display:none!important;}
+
+  /* 5. orangeGlow / orangeLed — box-shadow animate → opacity only */
+  .chip-per-day{animation:none!important;}
+
+  /* 6. shimmer wpShim — tắt */
+  .wp-cta::after{animation:none!important;display:none!important;}
+
+  /* 7. tthSpin conic-gradient — tắt, đổi thành gradient tĩnh */
+  [style*="tthSpin"],[style*="tth-la"]{animation:none!important;background:linear-gradient(135deg,#14532d 0%,#22c55e 45%,#4ade80 100%)!important;}
+
+  /* 8. ledPurple/ledPink border LEDs — tắt, giữ opacity tĩnh */
+  .idx-bnav-led-purple,.idx-bnav-led-pink{animation:none!important;opacity:0.6!important;}
+
+  /* 9. wpDot box-shadow → remove glow trên mobile */
+  .wp-live-dot{box-shadow:none!important;animation:khoPillDot 2s ease-in-out infinite!important;}
 }
 @keyframes freePulseMob{0%,100%{opacity:1;}50%{opacity:0.55;}}
 
@@ -1417,12 +1454,12 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 @keyframes orangeLedA{0%,100%{opacity:1;}50%{opacity:0;}}
 @keyframes orangeLedB{0%,100%{opacity:0;}50%{opacity:1;}}
 @keyframes orangeShim{0%{transform:translateX(-100%);}100%{transform:translateX(400%);}}
-.chip-per-day{position:relative;display:inline-flex;align-items:center;gap:6px;background:rgba(234,60,10,0.10);border-radius:100px;padding:6px 15px;animation:orangeGlow 2.2s ease-in-out infinite;overflow:hidden;}
-.chip-per-day::before{content:'';position:absolute;inset:0;border-radius:100px;pointer-events:none;border:1.5px solid rgba(251,100,20,0.9);animation:orangeLedA 2.2s ease-in-out infinite;}
-.chip-per-day::after{content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,200,100,0.28),transparent);animation:orangeShim 2.8s ease-in-out infinite;pointer-events:none;will-change:transform;}
-.chip-per-day-b{position:absolute;inset:0;border-radius:100px;pointer-events:none;border:1.5px solid rgba(255,160,50,0.75);animation:orangeLedB 2.2s ease-in-out infinite;}
-.chip-per-day span{font-size:11.5px;font-weight:900;color:#FF8040;text-shadow:0 0 10px rgba(255,120,40,0.7),0 0 20px rgba(255,100,20,0.4);letter-spacing:0.02em;}
-.chip-per-day svg{flex-shrink:0;filter:drop-shadow(0 0 4px rgba(255,140,40,0.7));}
+.chip-per-day{position:relative;display:inline-flex;align-items:center;gap:6px;background:rgba(234,60,10,0.10);border-radius:100px;padding:6px 15px;border:1.5px solid rgba(251,100,20,0.75);overflow:hidden;}
+.chip-per-day::before{display:none;}
+.chip-per-day::after{content:'';position:absolute;top:-50%;left:-60%;width:40%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,200,100,0.22),transparent);animation:orangeShim 2.8s ease-in-out infinite;pointer-events:none;will-change:transform;}
+.chip-per-day-b{display:none;}
+.chip-per-day span{font-size:11.5px;font-weight:900;color:#FF8040;letter-spacing:0.02em;}
+.chip-per-day svg{flex-shrink:0;}
 @media(max-width:640px){.chip-per-day::after{display:none;}.chip-per-day{padding:5px 13px;}.chip-per-day span{font-size:11px;}}
 </style>
 <div class="modal-overlay" id="featModal" onclick="if(event.target===this){document.getElementById('featModal').classList.remove('open');document.body.style.overflow='';}">
@@ -1519,7 +1556,6 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 const PRICING = {
   gpt:        { monthly: 99000,  listMonth: 522000  },
   yt:         { monthly: 35000,  listMonth: 79000   },
-  yt_giadinh: { monthly: 45000,  listMonth: 99000   },
   capcut:     { monthly: 59000,  listMonth: 145000  }
 };
 
@@ -1540,12 +1576,8 @@ function initAllPricing(){
   var pb=document.getElementById('plusDiscountBadge');
   if(pb)pb.textContent='-'+Math.round((1-g.monthly/g.listMonth)*100)+'%';
 
-  // YouTube
-  setText('ytPerDay1',    'chỉ '+perDay(y.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
-  setText('ytYearlyOur',  fmtK(y.monthly*12));
-  setText('ytYearlyList', fmtVND(y.listMonth*12));
-  setText('ytYearlySaving','💰 Tiết kiệm '+fmtVND(y.listMonth*12-y.monthly*12));
-  setText('ytPerDay12',   'chỉ '+perDay(y.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
+  // YouTube — chỉ cập nhật perDay1, giá 12 tháng do ytPlanSwitch handle
+  setText('ytPerDay1', 'chỉ '+perDay(y.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
 
   // CapCut
   setText('ccPerDay1',    'chỉ '+perDay(c.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
@@ -1555,8 +1587,6 @@ function initAllPricing(){
   setText('ccPerDay12',   'chỉ '+perDay(c.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
 }
 
-function initYearlyPricing(){initAllPricing();}
-function calcDiscounts(){initAllPricing();}
 function _tabSwitch(tab,id1,id12,p1,p12,actBg,actColor){
   var t1=document.getElementById(id1),t12=document.getElementById(id12);
   var pn1=document.getElementById(p1),pn12=document.getElementById(p12);
@@ -1572,7 +1602,6 @@ function _tabSwitch(tab,id1,id12,p1,p12,actBg,actColor){
   }
 }
 function plusTabSwitch(t){_tabSwitch(t,'plusTab1','plusTab12','plusPane1','plusPane12','linear-gradient(135deg,#92400e,#D97706,#EAB308)','#1a0800');if(t===12)showFreeMonthToast();}
-function ytTabSwitch(t){_tabSwitch(t,'ytTab1','ytTab12','ytPane1','ytPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');if(t===12)showFreeMonthToast();}
 
 var _ytPlan='canhan';
 const YT_PLANS={
@@ -1885,11 +1914,11 @@ function idxNavClick(e,idx,target){
   let W, H, gridPts=[], segments=[];
 
   const IS_MOBILE = window.innerWidth < 768;
-  const FOV=IS_MOBILE ? 550 : 650,
-        TILT=IS_MOBILE ? Math.PI*0.39 : Math.PI*0.40,
-        CAM_Y=IS_MOBILE ? -500 : -520, CAM_Z=30, SPHERE_R=1100,
-        GRID_N = IS_MOBILE ? 30 : 32,
-        EXT=IS_MOBILE ? 580 : 600;
+  const FOV=IS_MOBILE ? 480 : 650,
+        TILT=IS_MOBILE ? Math.PI*0.42 : Math.PI*0.40,
+        CAM_Y=IS_MOBILE ? -680 : -520, CAM_Z=30, SPHERE_R=1200,
+        GRID_N = IS_MOBILE ? 38 : 32,
+        EXT=IS_MOBILE ? 700 : 600;
 
   function surfaceY(wx,wz){
     const d2=wx*wx+wz*wz,R2=SPHERE_R*SPHERE_R;
@@ -1926,14 +1955,17 @@ function idxNavClick(e,idx,target){
 
   const pulses=[];
   function spawnPulse(){const isX=Math.random()>.5,idx=Math.floor(Math.random()*(GRID_N+1)),hue=Math.random()>.5?278:328,fwd=Math.random()>.5;pulses.push({isX,idx,t:fwd?0:1,speed:(0.010+Math.random()*0.016)*(fwd?1:-1),hue});}
-  setInterval(spawnPulse, IS_MOBILE ? 600 : 320);
-  for(let i=0;i<(IS_MOBILE?5:10);i++){spawnPulse();pulses[pulses.length-1].t=Math.random();}
+  setInterval(spawnPulse, IS_MOBILE ? 280 : 320);
+  for(let i=0;i<(IS_MOBILE?18:10);i++){spawnPulse();pulses[pulses.length-1].t=Math.random();}
 
   const sparks=[];
   function spawnSpark(){
-    if(IS_MOBILE) return; // shadowBlur nặng trên mobile
+    if(IS_MOBILE){
+      // mobile: hạt nhẹ không blur
+      const i=Math.floor(Math.random()*(GRID_N+1)),j=Math.floor(Math.random()*(GRID_N+1));if(!gridPts[i]?.[j]?.p)return;const{sx,sy,scale}=gridPts[i][j].p;if(Math.sqrt(gridPts[i][j].wx**2+gridPts[i][j].wz**2)>EXT*0.68)return;sparks.push({x:sx,y:sy,born:performance.now(),life:500+Math.random()*500,size:scale*4,mobile:true});return;
+    }
     const i=Math.floor(Math.random()*(GRID_N+1)),j=Math.floor(Math.random()*(GRID_N+1));if(!gridPts[i]?.[j]?.p)return;const{sx,sy,scale}=gridPts[i][j].p;if(Math.sqrt(gridPts[i][j].wx**2+gridPts[i][j].wz**2)>EXT*0.72)return;sparks.push({x:sx,y:sy,born:performance.now(),life:700+Math.random()*700,size:scale*6});}
-  setInterval(spawnSpark,IS_MOBILE?99999:90);
+  setInterval(spawnSpark,IS_MOBILE?150:90);
 
   function drawPulseHead(x,y,scale,hue,fade){
     const r=Math.max(2,scale*9),g=ctx.createRadialGradient(x,y,0,x,y,r);
@@ -1979,6 +2011,13 @@ function idxNavClick(e,idx,target){
       const sp=sparks[si],age=(now-sp.born)/sp.life;
       if(age>=1){sparks.splice(si,1);continue;}
       const alpha=age<.25?age/.25:1-(age-.25)/.75,r2=sp.size*(.6+alpha*1.4);
+      if(sp.mobile){
+        // mobile: chấm sáng đơn giản, không gradient nặng
+        ctx.save();ctx.globalAlpha=alpha*0.7;
+        ctx.fillStyle=`hsl(${278+Math.random()*60},90%,75%)`;
+        ctx.beginPath();ctx.arc(sp.x,sp.y,Math.max(1,r2*0.5),0,Math.PI*2);ctx.fill();
+        ctx.restore();continue;
+      }
       const g2=ctx.createRadialGradient(sp.x,sp.y,0,sp.x,sp.y,r2);
       g2.addColorStop(0,`rgba(255,225,255,${(alpha*.9).toFixed(3)})`);
       g2.addColorStop(0.4,`rgba(192,132,252,${(alpha*.45).toFixed(3)})`);

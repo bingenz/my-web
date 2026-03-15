@@ -456,19 +456,43 @@ a.hb-chip:active{transform:scale(0.97);}
 .topbar-logo-diamond{font-size:clamp(13px,3.5vw,20px);color:#fff;flex-shrink:0;filter:drop-shadow(0 0 6px rgba(168,85,247,0.7));}
 .topbar-logo-name{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
 .topbar-logo-sub{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
-.topbar-hamburger{width:42px;height:42px;border-radius:12px;flex-shrink:0;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.22);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:background 0.2s,border-color 0.2s;}
-.topbar-hamburger:hover{background:rgba(168,85,247,0.18);border-color:rgba(168,85,247,0.45);}
-.topbar-hamburger span{width:18px;height:2px;background:rgba(192,132,252,0.8);border-radius:2px;transition:all 0.3s;display:block;}
-.topbar-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.topbar-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
-.topbar-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-.topbar-dropdown{position:fixed;top:60px;left:0;right:0;width:100%;background:rgba(8,4,22,0.98);border-bottom:1px solid rgba(168,85,247,0.22);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:6px 0 10px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform 0.25s cubic-bezier(0.34,1.2,0.64,1),opacity 0.2s ease;z-index:99;box-shadow:0 8px 32px rgba(0,0,0,0.55);}
-.topbar-dropdown.open{transform:translateY(0);opacity:1;pointer-events:all;}
-.topbar-nav-item{display:flex;align-items:center;gap:12px;padding:12px clamp(18px,5vw,40px);font-size:clamp(13px,3.5vw,14px);font-weight:600;color:var(--muted);text-decoration:none;border-bottom:1px solid rgba(168,85,247,0.07);transition:color 0.2s,background 0.2s;cursor:pointer;word-break:break-word;white-space:normal;box-sizing:border-box;max-width:100%;}
-.topbar-nav-item:last-child{border-bottom:none;}
-.topbar-nav-item:hover{color:#C084FC;background:rgba(168,85,247,0.07);}
-.topbar-nav-icon{flex-shrink:0;opacity:0.65;}
-.topbar-nav-text{line-height:1.5;word-break:break-word;white-space:normal;}
+.topbar-hamburger{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.32);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:box-shadow .25s,transform .15s,border-color .25s;position:relative;}
+.topbar-hamburger:hover{border-color:rgba(168,85,247,0.75);box-shadow:0 0 0 1px rgba(168,85,247,0.4),0 0 18px rgba(168,85,247,0.4);}
+.topbar-hamburger:active{transform:scale(.88);}
+.topbar-hamburger-lines{display:flex;flex-direction:column;gap:5px;position:relative;z-index:1;pointer-events:none;}
+.topbar-hamburger span{width:18px;height:2px;background:rgba(220,180,255,0.9);border-radius:2px;display:block;transition:transform .28s cubic-bezier(.34,1.56,.64,1),opacity .2s;}
+.topbar-hamburger.open .topbar-hamburger-lines span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.topbar-hamburger.open .topbar-hamburger-lines span:nth-child(2){opacity:0;transform:scaleX(0);}
+.topbar-hamburger.open .topbar-hamburger-lines span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.topbar-backdrop{position:fixed;inset:0;z-index:98;background:rgba(0,0,0,0);backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px);pointer-events:none;transition:background .3s,backdrop-filter .3s,-webkit-backdrop-filter .3s;}
+.topbar-backdrop.open{background:rgba(0,0,0,0.52);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);pointer-events:all;}
+.topbar-dropdown{position:fixed;top:0;left:-100%;bottom:0;z-index:99;width:min(65vw,240px);background:rgba(12,6,28,0.99);border-right:1px solid rgba(168,85,247,0.2);display:flex;flex-direction:column;transition:left .32s cubic-bezier(.34,1.05,.64,1);box-shadow:4px 0 32px rgba(0,0,0,0.6);pointer-events:none;overflow:hidden;}
+.topbar-dropdown.open{left:0;pointer-events:all;}
+.topbar-sidebar-head{display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid rgba(168,85,247,0.12);height:52px;flex-shrink:0;}
+.topbar-sidebar-logo{font-size:11px;font-weight:800;letter-spacing:0.04em;background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.topbar-sidebar-close{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .18s,border-color .18s;color:rgba(255,255,255,0.45);flex-shrink:0;}
+.topbar-sidebar-close:hover{background:rgba(168,85,247,0.15);border-color:rgba(168,85,247,0.4);color:#fff;}
+.topbar-sidebar-body{flex:1;overflow-y:auto;padding:5px 7px;-webkit-overflow-scrolling:touch;}
+.topbar-nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;font-size:10.5px;font-weight:600;color:rgba(255,255,255,0.6);text-decoration:none;border-radius:10px;transition:color .18s,background .18s;cursor:pointer;word-break:break-word;}
+.topbar-nav-item:hover{color:#fff;background:rgba(168,85,247,0.13);}
+.topbar-nav-item:active{background:rgba(168,85,247,0.2);}
+.topbar-nav-icon-wrap{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .18s;}
+.topbar-nav-item:hover .topbar-nav-icon-wrap{transform:scale(1.06);}
+.topbar-nav-icon{flex-shrink:0;}
+.topbar-nav-text{line-height:1.4;word-break:break-word;white-space:normal;flex:1;}
+.topbar-nav-arrow{opacity:0;transition:opacity .18s,transform .18s;flex-shrink:0;}
+.topbar-nav-item:hover .topbar-nav-arrow{opacity:0.4;transform:translateX(3px);}
+.topbar-nav-divider{height:1px;background:rgba(255,255,255,0.06);margin:4px 3px;}
+.topbar-sidebar-foot{padding:10px 14px;border-top:1px solid rgba(168,85,247,0.1);flex-shrink:0;}
+.topbar-sidebar-foot-note{font-size:9px;color:rgba(255,255,255,0.18);font-weight:500;letter-spacing:0.04em;}
+.topbar-dropdown.open .topbar-nav-item{animation:sidebarFadeIn .3s both;}
+.topbar-dropdown.open .topbar-nav-item:nth-child(1){animation-delay:.08s;}
+.topbar-dropdown.open .topbar-nav-item:nth-child(2){animation-delay:.12s;}
+.topbar-dropdown.open .topbar-nav-item:nth-child(3){animation-delay:.16s;}
+.topbar-dropdown.open .topbar-nav-item:nth-child(4){animation-delay:.20s;}
+.topbar-dropdown.open .topbar-nav-item:nth-child(5){animation-delay:.24s;}
+@keyframes sidebarFadeIn{from{opacity:0;transform:translateX(-10px);}to{opacity:1;transform:none;}}
+@media(min-width:768px){.topbar-dropdown{width:min(28vw,240px);}.topbar-nav-icon-wrap{width:28px;height:28px;}}
 
 /* ─────────────────────────────────
    HERO section (stat cards)
@@ -646,18 +670,27 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .kho-banner-link:hover .kho-banner-btn{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
 
 /* ─────────────────────────────────
-   BOTTOM NAV
+   BOTTOM NAV — Samsung One UI
 ───────────────────────────────── */
-.idx-bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:0 14px calc(10px + env(safe-area-inset-bottom));pointer-events:none;}
-.idx-bottom-nav-inner{max-width:480px;margin:0 auto;background:rgba(22,13,48,0.98);border:1px solid rgba(100,55,175,0.25);border-radius:40px;padding:7px;display:flex;align-items:center;justify-content:space-around;pointer-events:all;box-shadow:0 2px 0 rgba(255,255,255,0.1) inset,0 4px 16px rgba(0,0,0,0.4),0 0 28px rgba(120,55,200,0.15);}
-.idx-bnav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 16px;border-radius:28px;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);flex:1;user-select:none;text-decoration:none;}
-.idx-bnav-item.active{background:linear-gradient(145deg,#7040D0 0%,#8E50E4 55%,#8045DC 100%);box-shadow:0 1px 0 rgba(255,255,255,0.22) inset,0 4px 14px rgba(120,60,210,0.55),0 8px 22px rgba(120,60,210,0.28);}
-.idx-bnav-item:not(.active):hover{background:rgba(120,60,200,0.1);}
-.idx-bnav-item svg{width:20px;height:20px;stroke:rgba(255,255,255,0.3);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .18s;flex-shrink:0;}
-.idx-bnav-item.active svg{stroke:#ffffff;}
-.idx-bnav-item span{font-size:10px;font-weight:700;letter-spacing:.01em;color:rgba(255,255,255,0.3);transition:color .18s;}
-.idx-bnav-item.active span{color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,0.3);}
-body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
+.idx-bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:0 32px calc(10px + env(safe-area-inset-bottom));pointer-events:none;}
+.idx-bottom-nav::before{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(10,5,22,0.88) 0%,rgba(10,5,22,0.45) 50%,transparent 100%);pointer-events:none;z-index:-1;}
+/* Outer pill — compact, bo tròn, nổi */
+.idx-bottom-nav-inner{max-width:360px;margin:0 auto;background:rgba(20,11,42,0.97);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);border:1px solid rgba(255,255,255,0.07);border-radius:50px;padding:5px 8px 7px;display:flex;align-items:center;justify-content:space-around;pointer-events:all;box-shadow:0 8px 30px rgba(0,0,0,0.55),0 1px 0 rgba(255,255,255,0.07) inset;}
+/* Mỗi tab */
+.idx-bnav-wrap{flex:1;display:flex;justify-content:center;position:relative;}
+.idx-bnav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;user-select:none;text-decoration:none;-webkit-tap-highlight-color:transparent;min-width:0;}
+/* Icon pill — compact, chỉ chứa icon */
+.idx-bnav-icon-pill{width:52px;height:26px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:transparent;transition:background .2s ease,transform .15s ease;}
+.idx-bnav-item.active .idx-bnav-icon-pill{background:rgba(160,90,255,0.2);}
+.idx-bnav-item:not(.active):active .idx-bnav-icon-pill{transform:scale(.88);}
+.idx-bnav-icon-pill svg{width:19px;height:19px;stroke:rgba(255,255,255,0.3);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s;}
+.idx-bnav-item.active .idx-bnav-icon-pill svg{stroke:#c084fc;}
+/* Label */
+.bnav-label{font-size:9.5px;font-weight:500;color:rgba(255,255,255,0.28);transition:color .2s,font-weight .18s;white-space:nowrap;}
+.idx-bnav-item.active .bnav-label{color:#c084fc;font-weight:700;}
+/* Badge dot */
+.idx-bnav-badge{position:absolute;top:2px;right:calc(50% - 20px);width:6px;height:6px;border-radius:50%;background:#f97316;border:2px solid rgba(20,11,42,0.97);z-index:2;}
+body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
 
 /* SUB CARD COMPACT */
 .sub-card-compact{padding:20px 22px 18px!important;}
@@ -673,7 +706,7 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
    RESPONSIVE OVERRIDES
 ───────────────────────────────── */
 /* hamburger hiển thị ở mọi breakpoint */.topbar-hamburger{display:flex!important;}
-@media(min-width:768px){.idx-bottom-nav-inner{max-width:560px;}.idx-bnav-item{padding:8px 22px;}}
+@media(min-width:768px){.idx-bottom-nav-inner{max-width:640px;margin:0 auto;}.idx-bnav-icon-pill{width:72px;height:38px;border-radius:19px;}}
 #services,#contact{content-visibility:auto;contain-intrinsic-size:0 400px;}
 
 @media(max-width:640px){
@@ -862,31 +895,67 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
     <span class="topbar-logo-sub">Code Store</span>
   </div>
   <div class="topbar-hamburger" id="topHam" onclick="toggleTopMenu()">
-    <span></span><span></span><span></span>
+    <div class="topbar-hamburger-lines">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
+<!-- SIDEBAR BACKDROP -->
+<div class="topbar-backdrop" id="topBackdrop" onclick="closeTopMenu()"></div>
+
 <nav class="topbar-dropdown" id="topDrop">
-  <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu()">
-    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <span class="topbar-nav-text">ChatGPT · Youtube · CapCut</span>
-  </a>
-  <a class="topbar-nav-item" href="#tth-anchor" onclick="closeTopMenu();setTimeout(()=>scrollToId('tth-anchor'),100);">
-    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-    <span class="topbar-nav-text">Visa / Mastercard</span>
-  </a>
-  <a class="topbar-nav-item" href="kho.html" onclick="closeTopMenu()">
-    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-    <span class="topbar-nav-text">Kho Code</span>
-  </a>
-  <a class="topbar-nav-item" href="#services" onclick="closeTopMenu()">
-    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-    <span class="topbar-nav-text">Dịch Vụ Web · Bot Telegram</span>
-  </a>
-  <a class="topbar-nav-item" href="#contact" onclick="closeTopMenu()">
-    <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    <span class="topbar-nav-text">Liên Hệ</span>
-  </a>
+  <!-- Header -->
+  <div class="topbar-sidebar-head">
+    <span class="topbar-sidebar-logo">✦ Binpinkgold</span>
+    <div class="topbar-sidebar-close" onclick="closeTopMenu()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+  <!-- Nav items -->
+  <div class="topbar-sidebar-body">
+    <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu()">
+      <div class="topbar-nav-icon-wrap" style="background:rgba(99,102,241,0.18);">
+        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <span class="topbar-nav-text">ChatGPT · Youtube · CapCut</span>
+      <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a class="topbar-nav-item" href="#tth-anchor" onclick="closeTopMenu();setTimeout(()=>scrollToId('tth-anchor'),100);">
+      <div class="topbar-nav-icon-wrap" style="background:rgba(34,197,94,0.15);">
+        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      </div>
+      <span class="topbar-nav-text">Visa / Mastercard</span>
+      <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <div class="topbar-nav-divider"></div>
+    <a class="topbar-nav-item" href="kho.html" onclick="closeTopMenu()">
+      <div class="topbar-nav-icon-wrap" style="background:rgba(249,115,22,0.15);">
+        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      </div>
+      <span class="topbar-nav-text">Kho Code</span>
+      <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a class="topbar-nav-item" href="#services" onclick="closeTopMenu()">
+      <div class="topbar-nav-icon-wrap" style="background:rgba(168,85,247,0.18);">
+        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <span class="topbar-nav-text">Dịch Vụ Web · Bot Telegram</span>
+      <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <div class="topbar-nav-divider"></div>
+    <a class="topbar-nav-item" href="#contact" onclick="closeTopMenu()">
+      <div class="topbar-nav-icon-wrap" style="background:rgba(236,72,153,0.15);">
+        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <span class="topbar-nav-text">Liên Hệ</span>
+      <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+  </div>
+  <!-- Footer -->
+  <div class="topbar-sidebar-foot">
+    <div class="topbar-sidebar-foot-note">© 2026 Binpinkgold Code Store</div>
+  </div>
 </nav>
 
 <!-- ═══════════════════════════════════════
@@ -1325,27 +1394,43 @@ body{padding-bottom:calc(82px + env(safe-area-inset-bottom));}
 <!-- BOTTOM NAV -->
 <div class="idx-bottom-nav">
   <div class="idx-bottom-nav-inner">
-    <a class="idx-bnav-item active" id="idxNav0" href="#" onclick="idxNavClick(event,0,'#hero')">
-      <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
-      <span>Trang Chủ</span>
-    </a>
-    <a class="idx-bnav-item" id="idxNav1" href="kho.html" onclick="idxNavClick(event,1,'kho.html')" style="position:relative;">
-      <div class="kho-pill-bubble" id="khoPill">
-        <span class="kho-pill-bubble-emoji">🔥</span>
-        <span class="kho-pill-bubble-text" id="khoPillText">Kho Code mới!</span>
-        <span class="kho-pill-bubble-dot"></span>
-      </div>
-      <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
-      <span>Kho Code</span>
-    </a>
-    <a class="idx-bnav-item" id="idxNav3" href="#services" onclick="idxNavClick(event,3,'#services')">
-      <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-      <span>Dịch Vụ</span>
-    </a>
-    <a class="idx-bnav-item" id="idxNav2" href="#contact" onclick="idxNavClick(event,2,'#contact')">
-      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      <span>Liên Hệ</span>
-    </a>
+    <div class="idx-bnav-wrap">
+      <a class="idx-bnav-item active" id="idxNav0" href="#" onclick="idxNavClick(event,0,'#hero')">
+        <div class="idx-bnav-icon-pill">
+          <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H5a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+        </div>
+        <span class="bnav-label">Trang Chủ</span>
+      </a>
+    </div>
+    <div class="idx-bnav-wrap">
+      <a class="idx-bnav-item" id="idxNav1" href="kho.html" onclick="idxNavClick(event,1,'kho.html')" style="position:relative;">
+        <div class="kho-pill-bubble" id="khoPill">
+          <span class="kho-pill-bubble-emoji">🔥</span>
+          <span class="kho-pill-bubble-text" id="khoPillText">Kho Code mới!</span>
+          <span class="kho-pill-bubble-dot"></span>
+        </div>
+        <div class="idx-bnav-icon-pill">
+          <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+        </div>
+        <span class="bnav-label">Kho Code</span>
+      </a>
+    </div>
+    <div class="idx-bnav-wrap">
+      <a class="idx-bnav-item" id="idxNav3" href="#services" onclick="idxNavClick(event,3,'#services')">
+        <div class="idx-bnav-icon-pill">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <span class="bnav-label">Dịch Vụ</span>
+      </a>
+    </div>
+    <div class="idx-bnav-wrap">
+      <a class="idx-bnav-item" id="idxNav2" href="#contact" onclick="idxNavClick(event,2,'#contact')">
+        <div class="idx-bnav-icon-pill">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <span class="bnav-label">Liên Hệ</span>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -1768,8 +1853,8 @@ function calcDiscounts(){var pb=document.getElementById('plusDiscountBadge');if(
 function openServiceModal(){document.getElementById('serviceModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeServiceModal(){document.getElementById('serviceModal').classList.remove('open');document.body.style.overflow='';}
 function scrollToId(id){var el=document.getElementById(id);if(!el)return;var tb=document.querySelector('.topbar');var offset=tb?tb.offsetHeight+10:70;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}
-function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');}
-function toggleTopMenu(){document.getElementById('topHam').classList.toggle('open');document.getElementById('topDrop').classList.toggle('open');}
+function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');document.getElementById('topBackdrop').classList.remove('open');document.body.style.overflow='';}
+function toggleTopMenu(){var isOpen=document.getElementById('topDrop').classList.toggle('open');document.getElementById('topHam').classList.toggle('open',isOpen);document.getElementById('topBackdrop').classList.toggle('open',isOpen);document.body.style.overflow=isOpen?'hidden':'';}
 document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target.closest('#topDrop')){closeTopMenu();}});
 
 // KHO CODE pill bubble
@@ -2123,5 +2208,6 @@ function idxNavClick(e,idx,target){
 
 </body>
   </html>
+
 
 

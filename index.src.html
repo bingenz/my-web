@@ -62,9 +62,15 @@ LƯU Ý: KHÔNG ĐƯỢC SỬ DỤNG HIỆU ỨNG GÂY LAG KHI LƯỚT WEB, CH�
 <base target="_top">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bingenz.com</title>
+<meta name="description" content="Cung cấp tài khoản Premium giá rẻ. ChatGPT Plus, YouTube Premium, CapCut Pro - CHỈ TỪ 1K, xử lý nhanh, dùng ổn định, bảo hành toàn bộ thời gian sử dụng. Hỗ trợ thanh toán Visa/Mastercard dịch vụ quốc tế. Nhận thiết kế web, bot Telegram.">
+<meta property="og:title" content="Bingenz.com — Tài Khoản Premium Giá Rẻ">
+<meta property="og:description" content="Cung cấp tài khoản Premium giá rẻ. ChatGPT Plus, YouTube Premium, CapCut Pro - CHỈ TỪ 1K, xử lý nhanh, dùng ổn định, bảo hành toàn bộ thời gian sử dụng. Hỗ trợ thanh toán Visa/Mastercard dịch vụ quốc tế. Nhận thiết kế web, bot Telegram.">
+<meta property="og:url" content="https://bingenz.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bingenz.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Space+Grotesk:wght@700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
 html{scroll-padding-top:72px;}
 :root{
@@ -176,8 +182,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
    KHÔNG dùng hiệu ứng lag (conic-gradient animation,
    will-change, shimmer đã xóa khỏi banner)
 =================================================== */
-@property --led-angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
-@keyframes spinLED{from{--led-angle:0deg;}to{--led-angle:360deg;}}
 @keyframes sbsDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 @keyframes shimmerCTA{0%{transform:translateX(-100%);}100%{transform:translateX(500%);}}
@@ -231,29 +235,52 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   animation:sbsDot 2s ease-in-out infinite;flex-shrink:0;
 }
 .hb-title{
-  font-size:clamp(1.15rem,4.5vw,2.2rem);font-weight:900;
-  line-height:1.07;letter-spacing:-0.035em;
-  color:#fff;word-break:break-word;margin:0;
+  font-size:clamp(1.45rem,5.5vw,2.7rem);font-weight:800;
+  font-family:'Syne','Space Grotesk',sans-serif;
+  line-height:1.08;letter-spacing:-0.03em;
+  color:#f0e8ff;word-break:break-word;margin:0;
 }
 .hb-title em{
-  font-style:normal;
-  background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 70%,#F472B6 100%);
+  font-style:normal;font-weight:800;
+  background:linear-gradient(120deg,#e879f9 0%,#a855f7 35%,#818cf8 65%,#ec4899 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .hb-checks{display:flex;flex-direction:column;gap:5px;}
 .hb-check{
   display:flex;align-items:center;gap:7px;
   font-size:clamp(10px,1.4vw,12px);
-  color:rgba(240,236,248,0.48);font-weight:500;
+  color:rgba(240,236,248,0.55);font-weight:500;
 }
 .hb-check svg{flex-shrink:0;}
+/* SOCIAL PROOF */
+.hb-social-proof{display:flex;align-items:center;gap:8px;}
+.hb-avatars{display:flex;align-items:center;}
+.hb-avatar{width:30px;height:30px;border-radius:50%;border:2px solid rgba(20,8,45,0.95);margin-left:-10px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.5),0 0 0 1px rgba(168,85,247,0.2);overflow:hidden;background:#1a0a35;}
+.hb-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+/* Chip shimmer sweep */
+@keyframes chipShimmer{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
+.hb-chip::after{content:'';position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.07),transparent);transform:translateX(-120%);pointer-events:none;}
+a.hb-chip:hover::after{animation:chipShimmer 0.55s ease forwards;}
+.hb-avatars .hb-avatar:first-child{margin-left:0;}
+.hb-av1{background:linear-gradient(135deg,#7C3AED,#A855F7);}
+.hb-av2{background:linear-gradient(135deg,#EC4899,#F472B6);}
+.hb-av3{background:linear-gradient(135deg,#3B82F6,#6366F1);}
+.hb-av4{background:linear-gradient(135deg,#10B981,#059669);}
+.hb-proof-text{font-size:10.5px;font-weight:600;color:rgba(240,236,248,0.5);}
+.hb-proof-count{background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:900;}
+/* FIRE BADGE gradient number */
+.hb-fire-badge .fire-num{
+  background:linear-gradient(135deg,#FFD700,#FF8C00);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  font-size:12.5px;letter-spacing:-0.02em;
+}
 
 /* FIRE PRICE BADGE */
 .hb-fire-badge{
   display:inline-flex;align-items:center;gap:6px;
   background:linear-gradient(135deg,rgba(234,60,10,0.28),rgba(251,100,20,0.18));
   border:1px solid rgba(251,100,20,0.6);
-  border-radius:9px;padding:5px 13px;
+  border-radius:100px;padding:7px 16px;
   font-size:11px;font-weight:800;
   color:#FF8040;
   white-space:nowrap;width:fit-content;
@@ -294,38 +321,46 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 
-/* RIGHT: 1 cột chip — đều nhau, hiển thị đủ */
+/* RIGHT: card chips */
 .hb-right{
-  display:flex;flex-direction:column;gap:4px;
-  width:clamp(150px,20vw,195px);flex-shrink:0;
+  display:flex;flex-direction:column;gap:5px;
+  width:clamp(155px,21vw,200px);flex-shrink:0;
   align-self:stretch;justify-content:center;
 }
 .hb-chip{
-  display:flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,0.025);
-  border:1px solid rgba(168,85,247,0.13);
-  border-radius:8px;
-  padding:0 10px;
-  flex:1;
-  min-height:30px;max-height:40px;
-  transition:background 0.18s,border-color 0.18s;
+  display:flex;align-items:center;gap:9px;
+  background:rgba(255,255,255,0.035);
+  border:1px solid rgba(168,85,247,0.18);
+  border-radius:12px;
+  padding:7px 11px;
+  flex:1;min-height:32px;max-height:44px;
+  transition:background 0.18s,border-color 0.18s,transform 0.15s,box-shadow 0.18s;
   cursor:default;
+  box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 2px 8px rgba(0,0,0,0.2);
+  position:relative;overflow:hidden;
 }
-a.hb-chip:hover{background:rgba(168,85,247,0.14);border-color:rgba(168,85,247,0.38);}
+a.hb-chip:hover{background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.4);transform:translateX(-2px);box-shadow:0 0 0 1px rgba(168,85,247,0.25),0 4px 16px rgba(168,85,247,0.12);}
 a.hb-chip:active{transform:scale(0.97);}
 
 /* ── 3D SPACE CANVAS ── */
 #bannerCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;}
 .hero-banner-inner{position:relative;z-index:1;}
 .hb-chip-ico{
-  width:18px;height:18px;min-width:18px;border-radius:5px;
-  background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.18);
+  width:22px;height:22px;min-width:22px;border-radius:7px;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  position:relative;
 }
+.hb-chip-ico::after{content:'';position:absolute;inset:0;border-radius:7px;box-shadow:0 0 8px currentColor;opacity:0.3;}
+.hb-chip-ico.ico-gpt{background:linear-gradient(135deg,rgba(16,163,127,0.25),rgba(16,163,127,0.1));border:1px solid rgba(16,163,127,0.3);color:rgba(16,163,127,0.8);}
+.hb-chip-ico.ico-yt{background:linear-gradient(135deg,rgba(255,0,0,0.22),rgba(255,0,0,0.08));border:1px solid rgba(255,60,60,0.3);color:rgba(255,80,80,0.9);}
+.hb-chip-ico.ico-cc{background:linear-gradient(135deg,rgba(59,130,246,0.22),rgba(99,102,241,0.1));border:1px solid rgba(99,102,241,0.3);color:rgba(129,140,248,0.9);}
+.hb-chip-ico.ico-code{background:linear-gradient(135deg,rgba(249,115,22,0.22),rgba(251,146,60,0.1));border:1px solid rgba(251,115,22,0.3);color:rgba(251,146,60,0.9);}
+.hb-chip-ico.ico-web{background:linear-gradient(135deg,rgba(168,85,247,0.22),rgba(192,132,252,0.1));border:1px solid rgba(168,85,247,0.3);color:rgba(192,132,252,0.9);}
+.hb-chip-ico.ico-visa{background:linear-gradient(135deg,rgba(234,179,8,0.22),rgba(253,224,71,0.1));border:1px solid rgba(234,179,8,0.3);color:rgba(250,204,21,0.9);}
 .hb-chip-name{
-  font-size:clamp(8.5px,1.05vw,10px);font-weight:700;
-  color:rgba(240,236,248,0.75);
-  white-space:nowrap;
+  font-size:clamp(9px,1.1vw,10.5px);font-weight:700;
+  color:rgba(240,236,248,0.8);
+  white-space:nowrap;letter-spacing:0.005em;
 }
 
 /* Responsive */
@@ -451,10 +486,14 @@ a.hb-chip:active{transform:scale(0.97);}
 /* ─────────────────────────────────
    TOPBAR
 ───────────────────────────────── */
-.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(180deg,rgba(18,8,38,0.99) 0%,rgba(10,5,22,0.98) 100%);border-bottom:1px solid rgba(80,40,120,0.35);padding:clamp(10px,2vw,14px) clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 rgba(220,170,255,0.15) inset,0 8px 24px rgba(0,0,0,0.35);height:60px;}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,4,28,0.18);backdrop-filter:blur(32px) saturate(2.2);-webkit-backdrop-filter:blur(32px) saturate(2.2);border-bottom:1px solid rgba(168,85,247,0.10);padding:clamp(10px,2vw,14px) clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 rgba(220,170,255,0.06) inset,0 8px 40px rgba(0,0,0,0.12);height:60px;transition:background 0.4s,backdrop-filter 0.4s,box-shadow 0.4s;}
+@keyframes neonFlicker{0%,100%{text-shadow:0 0 8px rgba(168,85,247,0.7),0 0 18px rgba(168,85,247,0.35);}48%{text-shadow:0 0 3px rgba(168,85,247,0.4);}50%{text-shadow:0 0 14px rgba(168,85,247,1),0 0 30px rgba(168,85,247,0.55),0 0 50px rgba(236,72,153,0.3);}72%{text-shadow:0 0 5px rgba(168,85,247,0.5);}74%{text-shadow:0 0 10px rgba(168,85,247,0.85),0 0 22px rgba(236,72,153,0.35);}}
+.topbar.scrolled{background:rgba(8,3,22,0.82);box-shadow:0 1px 0 rgba(220,170,255,0.15) inset,0 8px 32px rgba(0,0,0,0.5);}
+/* NEON LOGO */
+@keyframes neonGlow{0%,100%{text-shadow:0 0 6px rgba(192,132,252,0.5),0 0 18px rgba(168,85,247,0.3);}50%{text-shadow:0 0 10px rgba(192,132,252,0.9),0 0 28px rgba(168,85,247,0.55),0 0 44px rgba(236,72,153,0.25);}}
 .topbar-logo{display:inline-flex;align-items:center;gap:clamp(4px,1vw,6px);white-space:nowrap;flex-shrink:1;min-width:0;overflow:hidden;text-decoration:none;}
 .topbar-logo-diamond{font-size:clamp(13px,3.5vw,20px);color:#fff;flex-shrink:0;filter:drop-shadow(0 0 6px rgba(168,85,247,0.7));}
-.topbar-logo-name{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
+.topbar-logo-name{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;animation:neonGlow 3s ease-in-out infinite;}
 .topbar-logo-sub{font-size:clamp(13px,3.8vw,20px);font-weight:800;letter-spacing:-0.02em;background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;}
 .topbar-hamburger{width:42px;height:42px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.32);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:box-shadow .25s,transform .15s,border-color .25s;position:relative;}
 .topbar-hamburger:hover{border-color:rgba(168,85,247,0.75);box-shadow:0 0 0 1px rgba(168,85,247,0.4),0 0 18px rgba(168,85,247,0.4);}
@@ -497,9 +536,6 @@ a.hb-chip:active{transform:scale(0.97);}
 /* ─────────────────────────────────
    HERO section (stat cards)
 ───────────────────────────────── */
-.btn-primary-wrap{position:relative;display:inline-flex;border-radius:100px;padding:2.5px;background:conic-gradient(from var(--led-angle,0deg),#6b21a8 0%,#a855f7 15%,#ffffff 25%,#ec4899 35%,#a855f7 50%,#6b21a8 60%,#ffffff 70%,#a855f7 85%,#6b21a8 100%);animation:spinLED 3s linear infinite;box-shadow:0 0 18px rgba(168,85,247,0.6),0 0 36px rgba(168,85,247,0.25);will-change:--led-angle;contain:layout style paint;}
-.btn-primary-wrap::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
-.btn-primary-wrap>*{position:relative;z-index:1;}
 .btn-register-shimmer{position:relative;overflow:hidden;z-index:1;}
 .btn-register-shimmer::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmerCTA 2.4s ease-in-out infinite;pointer-events:none;will-change:transform;z-index:2;}
 .btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Be Vietnam Pro',sans-serif;}
@@ -762,7 +798,6 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
 }
 @media(max-width:767px){
   /* 1. Tắt conic-gradient spin — gây repaint mỗi frame */
-  .btn-primary-wrap{animation:none!important;background:linear-gradient(135deg,#6b21a8 0%,#a855f7 45%,#ec4899 100%)!important;}
 
   /* 2. Xóa backdrop-filter trên tất cả element scroll */
   .hero-banner,
@@ -892,7 +927,6 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
   <div class="topbar-logo">
     <span class="topbar-logo-diamond">✦</span>
     <span class="topbar-logo-name">Bingenz.com</span>
-    <span class="topbar-logo-sub">Code Store</span>
   </div>
   <div class="topbar-hamburger" id="topHam" onclick="toggleTopMenu()">
     <div class="topbar-hamburger-lines">
@@ -978,7 +1012,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
         <em>Giá sinh viên.</em>
       </h1>
 
-      <div class="hb-fire-badge">🔥 Chỉ từ 3.000đ / ngày</div>
+      <div class="hb-fire-badge">🔥 Chỉ từ <span class="fire-num">3.000đ</span> / ngày</div>
 
       <div class="hb-checks">
         <div class="hb-check">
@@ -991,47 +1025,59 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
         </div>
         <div class="hb-check">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          200+ khách tin tưởng
+          Facebook chính chủ
         </div>
       </div>
 
-      <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noreferrer" class="fb-btn">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           Check uy tín Facebook
           <div class="fb-btn-arrow"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
         </a>
+      </div>
+
+      <div class="hb-social-proof">
+        <div class="hb-avatars">
+          <div class="hb-avatar"><img src="assets/images/avt1.jpg" alt="" loading="lazy"></div>
+          <div class="hb-avatar"><img src="assets/images/avt2.jpg" alt="" loading="lazy"></div>
+          <div class="hb-avatar"><img src="assets/images/avt3.jpg" alt="" loading="lazy"></div>
+          <div class="hb-avatar"><img src="assets/images/avt4.jpg" alt="" loading="lazy"></div>
+        </div>
+        <span class="hb-proof-text"><span class="hb-proof-count">200+</span> khách tin tưởng</span>
+      </div>
     </div>
 
     <!-- RIGHT: 2×3 chip grid — icon + tên -->
     <div class="hb-right">
 
       <a class="hb-chip" href="#chatgptPlusCard" onclick="event.preventDefault();scrollToId('chatgptPlusCard');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="rgba(192,132,252,0.85)" xmlns="http://www.w3.org/2000/svg"><path d="M21.66 10.18a5.95 5.95 0 00-.44-4.81 5.99 5.99 0 00-6.43-2.87 5.95 5.95 0 00-4.49-2.02 5.99 5.99 0 00-5.71 4.15 5.95 5.95 0 00-3.97 2.88 5.99 5.99 0 00.74 7.04 5.95 5.95 0 00.44 4.81 5.99 5.99 0 006.43 2.87A5.95 5.95 0 0012.76 24a5.99 5.99 0 005.72-4.15 5.95 5.95 0 003.97-2.88 5.99 5.99 0 00-.79-6.79zM12.76 22.5a4.48 4.48 0 01-2.88-1.04l.14-.08 4.78-2.76a.78.78 0 00.39-.68v-6.74l2.02 1.17a.07.07 0 01.04.05v5.58a4.5 4.5 0 01-4.49 4.5zm-9.63-4.13a4.48 4.48 0 01-.54-3.01l.14.09 4.78 2.76a.77.77 0 00.78 0l5.84-3.37v2.33a.07.07 0 01-.03.06l-4.84 2.8a4.5 4.5 0 01-6.13-1.66zm-1.25-10.6a4.47 4.47 0 012.33-1.96v5.7a.77.77 0 00.39.67l5.82 3.36-2.02 1.17a.07.07 0 01-.07 0L3.5 13.98a4.5 4.5 0 01-.62-6.21zm16.6 3.86L13.65 8.27l2.02-1.16a.07.07 0 01.07 0l4.84 2.79a4.5 4.5 0 01-.68 8.11v-5.7a.78.78 0 00-.42-.68zm2.01-3.02l-.14-.09-4.77-2.76a.77.77 0 00-.78 0L9.97 9.13V6.8a.07.07 0 01.03-.06l4.84-2.79a4.5 4.5 0 016.65 4.66zm-12.62 4.14L5.85 11.58a.07.07 0 01-.04-.06V5.95a4.5 4.5 0 017.38-3.45l-.14.08-4.78 2.76a.78.78 0 00-.39.68v6.73zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/></svg></div>
+        <div class="hb-chip-ico ico-gpt"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(16,163,127,0.9)" xmlns="http://www.w3.org/2000/svg"><path d="M21.66 10.18a5.95 5.95 0 00-.44-4.81 5.99 5.99 0 00-6.43-2.87 5.95 5.95 0 00-4.49-2.02 5.99 5.99 0 00-5.71 4.15 5.95 5.95 0 00-3.97 2.88 5.99 5.99 0 00.74 7.04 5.95 5.95 0 00.44 4.81 5.99 5.99 0 006.43 2.87A5.95 5.95 0 0012.76 24a5.99 5.99 0 005.72-4.15 5.95 5.95 0 003.97-2.88 5.99 5.99 0 00-.79-6.79zM12.76 22.5a4.48 4.48 0 01-2.88-1.04l.14-.08 4.78-2.76a.78.78 0 00.39-.68v-6.74l2.02 1.17a.07.07 0 01.04.05v5.58a4.5 4.5 0 01-4.49 4.5zm-9.63-4.13a4.48 4.48 0 01-.54-3.01l.14.09 4.78 2.76a.77.77 0 00.78 0l5.84-3.37v2.33a.07.07 0 01-.03.06l-4.84 2.8a4.5 4.5 0 01-6.13-1.66zm-1.25-10.6a4.47 4.47 0 012.33-1.96v5.7a.77.77 0 00.39.67l5.82 3.36-2.02 1.17a.07.07 0 01-.07 0L3.5 13.98a4.5 4.5 0 01-.62-6.21zm16.6 3.86L13.65 8.27l2.02-1.16a.07.07 0 01.07 0l4.84 2.79a4.5 4.5 0 01-.68 8.11v-5.7a.78.78 0 00-.42-.68zm2.01-3.02l-.14-.09-4.77-2.76a.77.77 0 00-.78 0L9.97 9.13V6.8a.07.07 0 01.03-.06l4.84-2.79a4.5 4.5 0 016.65 4.66zm-12.62 4.14L5.85 11.58a.07.07 0 01-.04-.06V5.95a4.5 4.5 0 017.38-3.45l-.14.08-4.78 2.76a.78.78 0 00-.39.68v6.73zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/></svg></div>
         <span class="hb-chip-name">ChatGPT Plus</span>
       </a>
 
       <a class="hb-chip" href="#ytCard" onclick="event.preventDefault();scrollToId('ytCard');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16"/></svg></div>
+        <div class="hb-chip-ico ico-yt"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,80,80,0.9)"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.13-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.37.55A3.02 3.02 0 0 0 .5 6.19C0 8.03 0 12 0 12s0 3.97.5 5.81a3.02 3.02 0 0 0 2.13 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.37-.55a3.02 3.02 0 0 0 2.13-2.14C24 15.97 24 12 24 12s0-3.97-.5-5.81zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg></div>
         <span class="hb-chip-name">YouTube Premium</span>
       </a>
 
       <a class="hb-chip" href="#capcutCard" onclick="event.preventDefault();scrollToId('capcutCard');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
+        <div class="hb-chip-ico ico-cc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(129,140,248,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
         <span class="hb-chip-name">CapCut Pro</span>
       </a>
 
       <a class="hb-chip" href="kho.html" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="hb-chip-ico ico-code"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(251,146,60,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
         <span class="hb-chip-name">Kho Code TikTok</span>
       </a>
 
       <a class="hb-chip" href="#services" onclick="event.preventDefault();scrollToId('services');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="hb-chip-ico ico-web"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <span class="hb-chip-name">Web &amp; Bot</span>
       </a>
 
       <a class="hb-chip" href="#tth-anchor" onclick="event.preventDefault();scrollToId('tth-anchor');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div class="hb-chip-ico ico-visa"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(250,204,21,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
         <span class="hb-chip-name">Thanh Toán Visa</span>
       </a>
 
@@ -1779,13 +1825,10 @@ var V1_DATA={
 function _fillV1Modal(key){
   var d=V1_DATA[key]||V1_DATA.gpt;
   var ico=document.getElementById('v1Ico'),name=document.getElementById('v1Name'),
-      tag=document.getElementById('v1Tag'),price=document.getElementById('v1Price'),
-      badge=document.getElementById('v1Badge'),bullets=document.getElementById('v1Bullets');
+      tag=document.getElementById('v1Tag'),bullets=document.getElementById('v1Bullets');
   if(ico)ico.src=d.ico;
   if(name)name.textContent=d.name;
   if(tag)tag.textContent=d.tag;
-  if(price)price.textContent=d.price;
-  if(badge)badge.textContent=d.badge;
   if(bullets)bullets.innerHTML=d.bullets.map(function(b){
     return '<div style="font-size:12px;color:rgba(240,236,248,0.75);line-height:1.65;word-break:break-word;">'+b+'</div>';
   }).join('');
@@ -1855,6 +1898,7 @@ function closeServiceModal(){document.getElementById('serviceModal').classList.r
 function scrollToId(id){var el=document.getElementById(id);if(!el)return;var tb=document.querySelector('.topbar');var offset=tb?tb.offsetHeight+10:70;window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-offset,behavior:'smooth'});}
 function closeTopMenu(){document.getElementById('topHam').classList.remove('open');document.getElementById('topDrop').classList.remove('open');document.getElementById('topBackdrop').classList.remove('open');document.body.style.overflow='';}
 function toggleTopMenu(){var isOpen=document.getElementById('topDrop').classList.toggle('open');document.getElementById('topHam').classList.toggle('open',isOpen);document.getElementById('topBackdrop').classList.toggle('open',isOpen);document.body.style.overflow=isOpen?'hidden':'';}
+(function(){var tb=document.querySelector('.topbar');function onScroll(){tb.classList.toggle('scrolled',window.scrollY>40);}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
 document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target.closest('#topDrop')){closeTopMenu();}});
 
 // KHO CODE pill bubble

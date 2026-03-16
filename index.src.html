@@ -70,7 +70,7 @@ LƯU Ý: KHÔNG ĐƯỢC SỬ DỤNG HIỆU ỨNG GÂY LAG KHI LƯỚT WEB, CH�
 <meta property="og:site_name" content="Bingenz.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 html{scroll-padding-top:72px;}
 :root{
@@ -87,7 +87,9 @@ html{scroll-padding-top:72px;}
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;overflow-x:hidden;scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;min-height:100vh;}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;min-height:100vh;}
+/* Large headings use Space Grotesk (geometric, tight tracking) — matches original design */
+h1,h2,h3,.hb-title,.grp-title,.neon-val,.wp-title,.tth-ttl,.fm-tier-pct,.price-main{font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;}
 /* body::after & ::before — will-change:transform đẩy lên GPU compositor layer riêng,
    tránh repaint toàn trang khi scroll */
 body::after{content:'';position:fixed;inset:0;z-index:0;
@@ -128,7 +130,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 @media(max-width:767px){.glow-orb{display:none;}}
 .gradient-text{background:linear-gradient(135deg,#C084FC 0%,#A855F7 30%,#EC4899 65%,#F472B6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .gradient-text-white{background:linear-gradient(160deg,#ffffff 0%,#f0e8ff 40%,#ddd0ff 70%,#c4a7f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.font-syne{font-family:'Be Vietnam Pro',sans-serif;}
+.font-syne{font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;}
 
 .glass-card{
   background:rgba(12,6,30,0.42);
@@ -233,7 +235,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 }
 .hb-title{
   font-size:clamp(1.45rem,5.5vw,2.7rem);font-weight:800;
-  font-family:'Be Vietnam Pro',sans-serif;
+  font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;
   line-height:1.08;letter-spacing:-0.03em;
   color:#f0e8ff;word-break:break-word;margin:0;
 }
@@ -291,7 +293,7 @@ a.hb-chip:hover::after{animation:chipShimmer 0.55s ease forwards;}
   background:linear-gradient(180deg,#2d8ef5 0%,#1877F2 45%,#1464d4 100%);
   color:#fff;
   font-size:clamp(10.5px,1.4vw,12.5px);font-weight:700;
-  font-family:'Be Vietnam Pro',sans-serif;
+  font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;
   padding:9px 18px;border-radius:100px;
   text-decoration:none;white-space:nowrap;
   border:1px solid rgba(255,255,255,0.18);
@@ -444,7 +446,7 @@ a.hb-chip:hover::after{animation:chipShimmer 0.55s ease forwards;}
   display:inline-flex;align-items:center;gap:8px;
   background:linear-gradient(180deg,#B76EF8 0%,#A855F7 40%,#9333EA 100%);
   color:#fff;font-size:clamp(11px,1.4vw,12.5px);font-weight:700;
-  font-family:'Be Vietnam Pro',sans-serif;
+  font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;
   padding:clamp(8px,1.2vw,11px) clamp(14px,2vw,22px);border-radius:100px;
   text-decoration:none;white-space:nowrap;flex-shrink:0;
   border:none;
@@ -528,7 +530,7 @@ a.hb-chip:hover::after{animation:chipShimmer 0.55s ease forwards;}
 .sb-bar-ai {background:linear-gradient(180deg,#60A5FA,#34D399);box-shadow:0 0 8px rgba(96,165,250,0.8);}
 .sb-bar-vid{background:linear-gradient(180deg,#C084FC,#F472B6);box-shadow:0 0 8px rgba(192,132,252,0.8);}
 .sb-bar-svc{background:linear-gradient(180deg,#C084FC,#EC4899);box-shadow:0 0 8px rgba(168,85,247,0.8);}
-.sb-cat-title{font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:900;letter-spacing:-0.01em;line-height:1;}
+.sb-cat-title{font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:900;letter-spacing:-0.01em;line-height:1;}
 .sb-cat-title-ai {background:linear-gradient(110deg,#93c5fd,#6ee7b7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .sb-cat-title-vid{background:linear-gradient(110deg,#d8b4fe,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .sb-cat-title-svc{background:linear-gradient(110deg,#d8b4fe,#f9a8d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -573,9 +575,9 @@ a.hb-chip:hover::after{animation:chipShimmer 0.55s ease forwards;}
 ───────────────────────────────── */
 .btn-register-shimmer{position:relative;overflow:hidden;z-index:1;}
 .btn-register-shimmer::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.3),transparent);animation:shimmerCTA 2.4s ease-in-out infinite;pointer-events:none;will-change:transform;z-index:2;}
-.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Be Vietnam Pro',sans-serif;}
+.btn-ghost{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:600;padding:10px 20px;border-radius:100px;cursor:pointer;font-size:13px;transition:background 0.2s,border-color 0.2s;text-decoration:none;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;}
 .btn-ghost:hover{background:rgba(168,85,247,0.2);border-color:rgba(168,85,247,0.6);}
-.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Be Vietnam Pro',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
+.sub-card-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.35);color:#C084FC;font-weight:700;padding:10px 18px;border-radius:100px;cursor:pointer;font-size:12.5px;white-space:nowrap;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;transition:background 0.2s,border-color 0.2s;flex-shrink:0;}
 .sub-card-btn:hover{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
 
 .container{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1;}
@@ -664,11 +666,11 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .tth-strip{background:rgba(234,179,8,0.06);border:1px solid rgba(234,179,8,0.22);border-radius:16px;padding:12px 16px;display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
 .tth-ir{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:rgba(240,236,248,0.6);line-height:1.55;}
 .tth-ii{color:#EAB308;font-weight:700;flex-shrink:0;}
-.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;font-size:13.5px;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
+.tth-btn-fee{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(234,179,8,0.09);border:1.5px solid rgba(234,179,8,0.4);color:#FDE047;font-weight:700;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:13.5px;padding:13px 20px;border-radius:100px;cursor:pointer;transition:background 0.2s,border-color 0.2s,box-shadow 0.2s;margin-bottom:10px;}
 .tth-btn-fee:hover{background:rgba(234,179,8,0.16);border-color:rgba(234,179,8,0.7);box-shadow:0 0 18px rgba(234,179,8,0.25);}
 .tth-btn-cw{width:100%;border-radius:100px;padding:2px;display:block;position:relative;background:linear-gradient(135deg,#78350f 0%,#eab308 45%,#fef08a 65%,#f59e0b 100%);box-shadow:0 0 10px rgba(234,179,8,0.3);contain:layout style paint;}
 .tth-btn-cw::after{content:'';position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;}
-.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
+.tth-btn-c{width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#92400e 0%,#D97706 40%,#EAB308 70%,#FDE047 100%);color:#1a0800;font-weight:900;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.3);}
 .tth-btn-c::after{content:'';position:absolute;top:-50%;left:-60%;width:50%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,0.38),transparent);animation:tthShim 2.4s ease-in-out infinite;pointer-events:none;z-index:2;will-change:transform;}
 
 /* FEE MODAL — green theme */
@@ -676,7 +678,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .fee-modal::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.85),rgba(16,185,129,0.55),transparent);z-index:2;pointer-events:none;}
 .fee-modal-head{padding:18px 22px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(34,197,94,0.12);position:sticky;top:0;z-index:10;background:rgba(4,14,8,0.99);border-radius:32px 32px 0 0;flex-shrink:0;}
 .fee-modal-title{font-size:1rem;font-weight:800;color:#4ade80;display:flex;align-items:center;gap:8px;}
-.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Be Vietnam Pro',sans-serif;}
+.fee-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#4ade80;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.18s;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;}
 .fee-modal-close:hover{background:rgba(34,197,94,0.22);}
 .fee-modal-body{padding:18px 22px 24px;display:flex;flex-direction:column;gap:10px;}
 /* tiers */
@@ -697,7 +699,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .fm-calc{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.22);border-radius:18px;padding:15px 16px;display:flex;flex-direction:column;gap:10px;}
 .fm-calc-title{font-size:8px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:rgba(74,222,128,0.5);}
 .fm-calc-row{display:flex;align-items:center;gap:8px;}
-.fm-calc-input{flex:1;background:rgba(0,0,0,0.45);border:1px solid rgba(34,197,94,0.28);border-radius:10px;padding:10px 13px;font-size:13px;font-weight:700;color:#4ade80;font-family:'Be Vietnam Pro',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
+.fm-calc-input{flex:1;background:rgba(0,0,0,0.45);border:1px solid rgba(34,197,94,0.28);border-radius:10px;padding:10px 13px;font-size:13px;font-weight:700;color:#4ade80;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;outline:none;transition:border-color 0.2s;min-width:0;}
 .fm-calc-input:focus{border-color:rgba(34,197,94,0.65);box-shadow:0 0 0 3px rgba(34,197,94,0.08);}
 .fm-calc-input::placeholder{color:rgba(74,222,128,0.22);font-weight:500;}
 .fm-calc-unit{font-size:11px;font-weight:700;color:rgba(74,222,128,0.45);white-space:nowrap;flex-shrink:0;}
@@ -715,7 +717,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .modal-overlay.open{display:flex;}
 .modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.3);border-radius:32px;padding:clamp(20px,4vw,30px) clamp(16px,4vw,28px);width:100%;max-width:400px;max-height:none;margin:auto;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;overflow:visible;flex-shrink:0;}
 .modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
-.modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--subtle);font-size:13px;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:600;transition:background 0.18s;}
+.modal-close-btn{width:100%;padding:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;color:var(--subtle);font-size:13px;cursor:pointer;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-weight:600;transition:background 0.18s;}
 .modal-close-btn:hover{background:rgba(255,255,255,0.09);color:var(--text);}
 .feat-modal-box{background:#0e0b1a;border:1px solid rgba(168,85,247,0.28);border-radius:32px;width:100%;max-width:500px;max-height:calc(100vh - clamp(24px,6vw,40px));overflow-y:auto;overscroll-behavior:contain;animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1);box-shadow:var(--card-shadow);position:relative;display:flex;flex-direction:column;margin:auto;}
 .feat-modal-box::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);z-index:2;pointer-events:none;}
@@ -737,7 +739,7 @@ footer{border-top:1px solid rgba(168,85,247,0.1);padding:24px;text-align:center;
 .kho-banner-link:hover{border-color:rgba(168,85,247,0.6);box-shadow:var(--card-shadow),0 0 50px rgba(168,85,247,0.2);transform:translateY(-2px);}
 .kho-banner-top-line{height:2px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.5),transparent);}
 .kho-banner-body{display:flex;align-items:stretch;gap:28px;padding:44px 52px;flex-wrap:wrap;}
-.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Be Vietnam Pro',sans-serif;white-space:nowrap;transition:background 0.2s;}
+.kho-banner-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.13);border:1px solid rgba(168,85,247,0.38);color:#C084FC;font-weight:700;padding:10px 20px;border-radius:100px;font-size:13px;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;white-space:nowrap;transition:background 0.2s;}
 .kho-banner-link:hover .kho-banner-btn{background:rgba(168,85,247,0.22);border-color:rgba(168,85,247,0.6);}
 
 /* ─────────────────────────────────
@@ -899,11 +901,11 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
 .wp-free-row{display:flex;align-items:center;gap:8px;background:rgba(251,100,20,.07);border:1px solid rgba(251,100,20,.22);border-radius:12px;padding:8px 11px;}
 .wp-free-text{font-size:11.5px;font-weight:700;color:rgba(240,236,248,.75);line-height:1.4;}
 .wp-free-text strong{color:#FB923C;}
-.wp-cta{width:100%;margin-top:12px;padding:12px;background:linear-gradient(135deg,#A855F7,#EC4899);border:none;border-radius:100px;color:#fff;font-size:13px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;letter-spacing:.02em;position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 3px 14px rgba(168,85,247,.4);transition:opacity .18s;text-decoration:none;display:flex;align-items:center;justify-content:center;}
+.wp-cta{width:100%;margin-top:12px;padding:12px;background:linear-gradient(135deg,#A855F7,#EC4899);border:none;border-radius:100px;color:#fff;font-size:13px;font-weight:800;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;cursor:pointer;letter-spacing:.02em;position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 3px 14px rgba(168,85,247,.4);transition:opacity .18s;text-decoration:none;display:flex;align-items:center;justify-content:center;}
 .wp-cta::after{content:'';position:absolute;top:-50%;left:-60%;width:35%;height:200%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.26),transparent);animation:wpShim 2.6s ease-in-out infinite;pointer-events:none;}
 @keyframes wpShim{0%{transform:translateX(-100%);}100%{transform:translateX(520%);}}
 .wp-cta:hover{opacity:.88;}
-.wp-skip{width:100%;margin-top:7px;padding:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:100px;color:rgba(240,236,248,.55);font-size:12px;font-weight:600;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;transition:border-color .18s,color .18s,background .18s;}
+.wp-skip{width:100%;margin-top:7px;padding:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:100px;color:rgba(240,236,248,.55);font-size:12px;font-weight:600;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;cursor:pointer;transition:border-color .18s,color .18s,background .18s;}
 .wp-skip:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.35);color:rgba(240,236,248,.8);}
 .wp-skip:disabled{opacity:.3;cursor:not-allowed;}
 /* ══ END WELCOME POPUP ══ */
@@ -1236,7 +1238,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
           </div>
         </div>
         <!-- CTA button -->
-        <a href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noreferrer" style="margin-top:6px;font-size:clamp(12px,1.8vw,14px);padding:clamp(10px,1.5vw,13px) clamp(20px,3vw,30px);display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;border-radius:100px;text-decoration:none;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;white-space:nowrap;border:1px solid rgba(255,255,255,0.18);box-shadow:0 1px 0 rgba(255,255,255,0.22) inset,0 -1px 0 rgba(0,0,0,0.2) inset,0 2px 0 rgba(100,20,160,0.7),0 4px 14px rgba(168,85,247,0.45);transition:transform 0.12s,box-shadow 0.12s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 1px 0 rgba(255,255,255,0.25) inset,0 -1px 0 rgba(0,0,0,0.22) inset,0 2px 0 rgba(100,20,160,0.7),0 6px 20px rgba(168,85,247,0.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 0 rgba(255,255,255,0.22) inset,0 -1px 0 rgba(0,0,0,0.2) inset,0 2px 0 rgba(100,20,160,0.7),0 4px 14px rgba(168,85,247,0.45)'" onmousedown="this.style.transform='translateY(1px)'" onmouseup="this.style.transform='translateY(-2px)'">
+        <a href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noreferrer" style="margin-top:6px;font-size:clamp(12px,1.8vw,14px);padding:clamp(10px,1.5vw,13px) clamp(20px,3vw,30px);display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;border-radius:100px;text-decoration:none;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;white-space:nowrap;border:1px solid rgba(255,255,255,0.18);box-shadow:0 1px 0 rgba(255,255,255,0.22) inset,0 -1px 0 rgba(0,0,0,0.2) inset,0 2px 0 rgba(100,20,160,0.7),0 4px 14px rgba(168,85,247,0.45);transition:transform 0.12s,box-shadow 0.12s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 1px 0 rgba(255,255,255,0.25) inset,0 -1px 0 rgba(0,0,0,0.22) inset,0 2px 0 rgba(100,20,160,0.7),0 6px 20px rgba(168,85,247,0.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 0 rgba(255,255,255,0.22) inset,0 -1px 0 rgba(0,0,0,0.2) inset,0 2px 0 rgba(100,20,160,0.7),0 4px 14px rgba(168,85,247,0.45)'" onmousedown="this.style.transform='translateY(1px)'" onmouseup="this.style.transform='translateY(-2px)'">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           Tham gia Group ngay
           <span style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.22);color:#fff;font-size:9px;font-weight:900;letter-spacing:0.1em;padding:3px 8px;border-radius:100px;animation:freePulse 2s ease-in-out infinite;">MIỄN PHÍ</span>
@@ -1319,7 +1321,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
           <span style="width:6px;height:6px;border-radius:50%;background:#A855F7;box-shadow:0 0 6px rgba(168,85,247,0.9);flex-shrink:0;display:inline-block;"></span>
           <span style="font-size:8.5px;font-weight:900;letter-spacing:0.16em;text-transform:uppercase;color:rgba(192,132,252,0.75);">Tài Khoản Cá Nhân</span>
         </div>
-        <div style="font-family:'Be Vietnam Pro',sans-serif;font-size:clamp(1rem,3vw,1.18rem);font-weight:900;line-height:1.18;letter-spacing:-0.02em;color:#fff;margin-bottom:8px;">
+        <div style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:clamp(1rem,3vw,1.18rem);font-weight:900;line-height:1.18;letter-spacing:-0.02em;color:#fff;margin-bottom:8px;">
           Chỉ <em style="font-style:normal;background:linear-gradient(110deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">mình bạn</em> dùng
         </div>
         <!-- ticks compact -->
@@ -1369,7 +1371,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
     .grp-bar-ai{background:linear-gradient(180deg,#60A5FA 0%,#34D399 100%);box-shadow:0 0 14px rgba(96,165,250,0.6);}
     .grp-bar-vid{background:linear-gradient(180deg,#C084FC 0%,#F472B6 100%);box-shadow:0 0 14px rgba(192,132,252,0.6);}
     .grp-body{display:flex;flex-direction:column;gap:8px;justify-content:center;min-width:0;}
-    .grp-title{font-family:'Be Vietnam Pro',sans-serif;font-size:clamp(14px,2vw,16px);font-weight:900;letter-spacing:-0.02em;line-height:1;}
+    .grp-title{font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:clamp(14px,2vw,16px);font-weight:900;letter-spacing:-0.02em;line-height:1;}
     .grp-title-ai{background:linear-gradient(110deg,#60A5FA,#34D399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .grp-title-vid{background:linear-gradient(110deg,#C084FC,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .grp-chips{display:flex;gap:7px;flex-wrap:wrap;}
@@ -1423,7 +1425,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
           <!-- PRICE -->
           <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(66,133,244,0.1);">
             <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-              <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#4285F4,#818CF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
+              <div style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#4285F4,#818CF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
               <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">489.000đ</span> <span style="font-size:9px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 7px;">-80%</span></div>
             </div>
             <div class="chip-per-day">
@@ -1437,7 +1439,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
           <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
             <div style="width:100%;border-radius:100px;padding:2px;display:block;position:relative;background:linear-gradient(135deg,#1a56c4 0%,#4285F4 40%,#6d28d9 100%);box-shadow:0 0 10px rgba(66,133,244,0.3);contain:layout style paint;">
               <div style="position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;"></div>
-              <button onclick="openGeminiModal()" style="width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1a56c4 0%,#4285F4 45%,#6d28d9 100%);color:#fff;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25);" onmousedown="this.style.transform='translateY(1px)'" onmouseup="this.style.transform=''" onmouseout="this.style.transform=''">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+              <button onclick="openGeminiModal()" style="width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1a56c4 0%,#4285F4 45%,#6d28d9 100%);color:#fff;font-weight:900;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25);" onmousedown="this.style.transform='translateY(1px)'" onmouseup="this.style.transform=''" onmouseout="this.style.transform=''">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
             </div>
           </div>
         </div>
@@ -1466,7 +1468,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
           <!-- PRICE -->
           <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(234,179,8,0.12);">
             <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-              <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
+              <div style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
               <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);">522.000đ</span> <span style="font-size:9px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 7px;">-81%</span></div>
             </div>
             <div class="chip-per-day"><span class="chip-per-day-b"></span>
@@ -1523,11 +1525,11 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
               <!-- Tab -->
               <div style="margin-bottom:10px;">
                 <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
-                  <button id="ytPlanCanhan" onclick="ytPlanSwitch('canhan')" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 11px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);display:inline-flex;align-items:center;gap:4px;">
+                  <button id="ytPlanCanhan" onclick="ytPlanSwitch('canhan')" style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 11px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);display:inline-flex;align-items:center;gap:4px;">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     Cá nhân
                   </button>
-                  <button id="ytPlanChinhchu" onclick="ytPlanSwitch('chinhchu')" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 11px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;display:inline-flex;align-items:center;gap:4px;">
+                  <button id="ytPlanChinhchu" onclick="ytPlanSwitch('chinhchu')" style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 11px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;display:inline-flex;align-items:center;gap:4px;">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
                     Chính chủ
                   </button>
@@ -1535,7 +1537,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
               </div>
               <!-- Giá -->
               <div style="display:flex;align-items:flex-end;gap:7px;flex-wrap:wrap;margin-bottom:6px;">
-                <div id="ytPriceVal" style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
+                <div id="ytPriceVal" style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
                 <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span id="ytOrigVal" style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
               </div>
               <div class="chip-per-day"><span class="chip-per-day-b"></span>
@@ -1546,7 +1548,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
 
           <!-- YT: CTA -->
           <div style="padding:12px 20px 18px;margin-top:auto;">
-            <button id="ytCtaBtn" onclick="openModal('✦ YouTube Premium · 35K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            <button id="ytCtaBtn" onclick="openModal('✦ YouTube Premium · 35K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
           </div>
         </div>
 
@@ -1569,7 +1571,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
           <!-- CapCut: Giá -->
           <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(168,85,247,0.1);">
             <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-              <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">59K</div>
+              <div style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">59K</div>
               <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">145.000đ</span></div>
             </div>
             <div class="chip-per-day"><span class="chip-per-day-b"></span>
@@ -1580,7 +1582,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
           <!-- CapCut: Footer -->
           <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
 
-            <button onclick="openModal('❆ CapCut Pro · 59K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            <button onclick="openModal('❆ CapCut Pro · 59K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
           </div>
         </div>
 
@@ -1609,7 +1611,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
 
       <div class="glass-card glass-card-glow">
         <div style="padding:clamp(22px,4vw,40px) clamp(20px,4vw,44px);">
-          <div style="font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:18px;">Thiết Kế Website&nbsp;•&nbsp;Tạo Bot Telegram&nbsp;•&nbsp;Hỗ Trợ Làm Bài Tập</div>
+          <div style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:18px;">Thiết Kế Website&nbsp;•&nbsp;Tạo Bot Telegram&nbsp;•&nbsp;Hỗ Trợ Làm Bài Tập</div>
           <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px;">
             <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;">
               <span style="width:16px;height:16px;min-width:16px;border-radius:50%;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.35);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
@@ -1628,7 +1630,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
               <span>Bảo hành miễn phí sau bàn giao · Báo giá nhanh · Giao hàng đúng hẹn.</span>
             </div>
           </div>
-          <button onclick="openServiceModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.45);border-radius:100px;color:#C084FC;font-size:14px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;letter-spacing:0.02em;" onmouseover="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.25),rgba(236,72,153,0.18))';this.style.borderColor='rgba(168,85,247,0.7)';this.style.boxShadow='0 0 22px rgba(168,85,247,0.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1))';this.style.borderColor='rgba(168,85,247,0.45)';this.style.boxShadow='none'">
+          <button onclick="openServiceModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.45);border-radius:100px;color:#C084FC;font-size:14px;font-weight:800;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;letter-spacing:0.02em;" onmouseover="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.25),rgba(236,72,153,0.18))';this.style.borderColor='rgba(168,85,247,0.7)';this.style.boxShadow='0 0 22px rgba(168,85,247,0.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1))';this.style.borderColor='rgba(168,85,247,0.45)';this.style.boxShadow='none'">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
             Liên hệ nhận tư vấn miễn phí
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1656,7 +1658,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
             <div style="display:flex;align-items:center;gap:14px;">
               <img src="assets/images/VISA.jpg" alt="VISA" style="width:52px;height:52px;min-width:52px;border-radius:16px;object-fit:cover;flex-shrink:0;box-shadow:0 0 16px rgba(34,197,94,0.25);border:1.5px solid rgba(34,197,94,0.4);">
               <div style="flex:1;min-width:0;">
-                <div style="font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px;">Thanh Toán Hộ Quốc Tế</div>
+                <div style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px;">Thanh Toán Hộ Quốc Tế</div>
                 <div style="font-size:11px;color:rgba(52,211,153,0.55);font-weight:500;line-height:1.5;">Không cần thẻ quốc tế · Nhanh · Uy tín</div>
               </div>
               <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;">
@@ -1806,7 +1808,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
         Xem phí dịch vụ
       </button>
       <!-- CTA button -->
-      <button style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#14532d 0%,#16a34a 40%,#22c55e 70%,#4ade80 100%);color:#031a0a;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:0 4px 16px rgba(34,197,94,0.35),0 0 24px rgba(34,197,94,0.18),inset 0 1px 0 rgba(255,255,255,0.25);transition:transform 0.15s,box-shadow 0.15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(34,197,94,0.42),0 0 28px rgba(34,197,94,0.22),inset 0 1px 0 rgba(255,255,255,0.25)';" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(34,197,94,0.35),0 0 24px rgba(34,197,94,0.18),inset 0 1px 0 rgba(255,255,255,0.25)';" onclick="closeTthModal();openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
+      <button style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#14532d 0%,#16a34a 40%,#22c55e 70%,#4ade80 100%);color:#031a0a;font-weight:900;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:0 4px 16px rgba(34,197,94,0.35),0 0 24px rgba(34,197,94,0.18),inset 0 1px 0 rgba(255,255,255,0.25);transition:transform 0.15s,box-shadow 0.15s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(34,197,94,0.42),0 0 28px rgba(34,197,94,0.22),inset 0 1px 0 rgba(255,255,255,0.25)';" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(34,197,94,0.35),0 0 24px rgba(34,197,94,0.18),inset 0 1px 0 rgba(255,255,255,0.25)';" onclick="closeTthModal();openModal('💳 Thanh Toán Hộ Quốc Tế · Visa/Mastercard')">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         Liên hệ ngay
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1927,7 +1929,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
   <div class="modal-box" style="padding:0;overflow:hidden;max-width:390px;">
 
     <!-- Close button -->
-    <button onclick="closeModal()" style="position:absolute;top:13px;right:14px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(240,236,248,0.45);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;font-family:'Be Vietnam Pro',sans-serif;transition:background .18s;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">✕</button>
+    <button onclick="closeModal()" style="position:absolute;top:13px;right:14px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(240,236,248,0.45);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;transition:background .18s;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">✕</button>
 
     <!-- V1 Block 1: Product header -->
     <div id="v1Header" style="padding:16px 48px 14px 18px;display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(236,72,153,0.06));border-bottom:1px solid rgba(168,85,247,0.14);">
@@ -2516,4 +2518,4 @@ function idxNavClick(e,idx,target){
 </script>
 
 </body>
-      </html>
+              </html>

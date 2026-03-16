@@ -37,29 +37,7 @@ const SHELL_HTML = `<!DOCTYPE html>
 <body><p>Vui lòng mở trên trình duyệt để xem nội dung.</p></body>
 </html>`;
 
-const COMMENT_HTML = `<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BinGenZ.com</title>
-  <meta name="description" content="Mua tài khoản ChatGPT Plus, YouTube Premium, CapCut Pro | Code web, Bot Telegram, Thanh toán VISA - Giá rẻ, uy tín, giao ngay 🔥">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="BinGenZ.com">
-  <meta property="og:title" content="BinGenZ.com">
-  <meta property="og:description" content="Mua tài khoản ChatGPT Plus, YouTube Premium, CapCut Pro | Code web, Bot Telegram, Thanh toán VISA - Giá rẻ, uy tín, giao ngay 🔥">
-  <meta property="og:url" content="https://bingenz.com">
-  <meta property="og:image" content="PLACEHOLDER_IMAGE_URL">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:locale" content="vi_VN">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="BinGenZ.com">
-  <meta name="twitter:description" content="Mua tài khoản ChatGPT Plus, YouTube Premium, CapCut Pro | Code web, Bot Telegram, Thanh toán VISA - Giá rẻ, uy tín, giao ngay 🔥">
-  <meta name="twitter:image" content="PLACEHOLDER_IMAGE_URL">
-</head>
-<body><p>Vui lòng mở trên trình duyệt để xem nội dung.</p></body>
-</html>`;
+
 
 function getDeviceType(ua) {
   if (/Mobile|Android|iPhone|iPad|iPod/i.test(ua)) {
@@ -151,8 +129,7 @@ export async function onRequest(context) {
 
   // Chặn bot/crawler
   if (!ua || ua.length < 10 || BOT_UA_PATTERNS.some(p => p.test(ua))) {
-    const isCommentPage = url.pathname === "/COMMENT.html";
-    return new Response(isCommentPage ? COMMENT_HTML : SHELL_HTML, {
+    return new Response(SHELL_HTML, {
       status: 200,
       headers: {
         "Content-Type": "text/html; charset=utf-8",
@@ -178,3 +155,4 @@ export async function onRequest(context) {
     headers: newHeaders,
   });
 }
+

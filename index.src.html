@@ -154,8 +154,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .glass-card-glow{box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 4px 28px rgba(0,0,0,0.4);}
 
 .sub-card{
-  background:rgba(12,6,30,0.42);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  background:rgba(8,4,18,0.08);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border:1px solid rgba(168,85,247,0.28);
   border-radius:28px;
   padding:0;
@@ -164,11 +164,8 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   transition:border-color 0.25s,box-shadow 0.3s,transform 0.18s;
   box-shadow:
     0 1px 0 rgba(255,255,255,0.07) inset,
-    0 -1px 0 rgba(0,0,0,0.25) inset,
-    0 4px 6px rgba(0,0,0,0.25),
-    0 8px 24px rgba(0,0,0,0.35),
-    0 20px 48px rgba(0,0,0,0.22),
-    0 0 0 0.5px rgba(168,85,247,0.1);
+    0 4px 28px rgba(0,0,0,0.4),
+    0 0 40px rgba(168,85,247,0.04);
   contain:layout style;
   transform-style:preserve-3d;
   will-change:transform;
@@ -209,7 +206,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .hero-banner-inner{
   position:relative;z-index:1;
   display:grid;
-  grid-template-columns:1fr auto;
+  grid-template-columns:1fr clamp(200px,30vw,280px);
   align-items:center;
   gap:clamp(20px,4vw,52px);
   padding:clamp(22px,3.5vw,38px) clamp(20px,4vw,52px);
@@ -321,65 +318,88 @@ a.hb-chip:hover::after{animation:chipShimmer 0.55s ease forwards;}
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 
-/* RIGHT: card chips */
+/* RIGHT: clean nav list in single glass box */
 .hb-right{
-  display:flex;flex-direction:column;gap:5px;
-  width:clamp(155px,21vw,200px);flex-shrink:0;
-  align-self:stretch;justify-content:center;
-}
-.hb-chip{
-  display:flex;align-items:center;gap:9px;
-  background:rgba(255,255,255,0.035);
-  border:1px solid rgba(168,85,247,0.18);
-  border-radius:12px;
-  padding:7px 11px;
-  flex:1;min-height:32px;max-height:44px;
-  transition:background 0.18s,border-color 0.18s,transform 0.15s,box-shadow 0.18s;
-  cursor:default;
-  box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 2px 8px rgba(0,0,0,0.2);
-  position:relative;overflow:hidden;
-}
-a.hb-chip:hover{background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.4);transform:translateX(-2px);box-shadow:0 0 0 1px rgba(168,85,247,0.25),0 4px 16px rgba(168,85,247,0.12);}
-a.hb-chip:active{transform:scale(0.97);}
-
-/* ── 3D SPACE CANVAS ── */
-#bannerCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;}
-.hero-banner-inner{position:relative;z-index:1;}
-.hb-chip-ico{
-  width:22px;height:22px;min-width:22px;border-radius:7px;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  display:flex;flex-shrink:0;
+  width:100%;
+  align-self:stretch;justify-content:center;align-items:stretch;
+  overflow:hidden;
   position:relative;
 }
-.hb-chip-ico::after{content:'';position:absolute;inset:0;border-radius:7px;box-shadow:0 0 8px currentColor;opacity:0.3;}
-.hb-chip-ico.ico-gpt{background:linear-gradient(135deg,rgba(16,163,127,0.25),rgba(16,163,127,0.1));border:1px solid rgba(16,163,127,0.3);color:rgba(16,163,127,0.8);}
-.hb-chip-ico.ico-yt{background:linear-gradient(135deg,rgba(255,0,0,0.22),rgba(255,0,0,0.08));border:1px solid rgba(255,60,60,0.3);color:rgba(255,80,80,0.9);}
-.hb-chip-ico.ico-cc{background:linear-gradient(135deg,rgba(59,130,246,0.22),rgba(99,102,241,0.1));border:1px solid rgba(99,102,241,0.3);color:rgba(129,140,248,0.9);}
-.hb-chip-ico.ico-code{background:linear-gradient(135deg,rgba(249,115,22,0.22),rgba(251,146,60,0.1));border:1px solid rgba(251,115,22,0.3);color:rgba(251,146,60,0.9);}
-.hb-chip-ico.ico-web{background:linear-gradient(135deg,rgba(168,85,247,0.22),rgba(192,132,252,0.1));border:1px solid rgba(168,85,247,0.3);color:rgba(192,132,252,0.9);}
-.hb-chip-ico.ico-visa{background:linear-gradient(135deg,rgba(234,179,8,0.22),rgba(253,224,71,0.1));border:1px solid rgba(234,179,8,0.3);color:rgba(250,204,21,0.9);}
-.hb-chip-name{
-  font-size:clamp(9px,1.1vw,10.5px);font-weight:700;
-  color:rgba(240,236,248,0.8);
-  white-space:nowrap;letter-spacing:0.005em;
+.hb-right-box{
+  flex:1;
+  background:rgba(255,255,255,0.035);
+  border:1px solid rgba(168,85,247,0.18);
+  border-radius:12px;overflow:hidden;
+  display:flex;flex-direction:column;gap:0;
+  padding:4px 3px;
+  position:relative;
 }
+.hb-right-box::before{
+  content:'';position:absolute;top:0;left:8%;right:8%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(168,85,247,0.5),rgba(236,72,153,0.3),transparent);
+  pointer-events:none;
+}
+.hb-cat-label{
+  font-size:clamp(6px,0.7vw,7px);font-weight:900;
+  letter-spacing:0.13em;text-transform:uppercase;
+  color:rgba(240,236,248,0.28);
+  padding:4px 4px 2px;line-height:1;
+}
+.hb-cat-label:first-child{padding-top:2px;}
+.hb-divider{height:1px;background:rgba(168,85,247,0.1);margin:2px 2px;}
+.hb-nav-item{
+  display:flex;align-items:center;gap:6px;
+  text-decoration:none;
+  padding:3px 5px 3px 4px;
+  border-radius:7px;
+  border:1px solid transparent;
+  background:transparent;
+  transition:background .15s,border-color .15s,transform .12s;
+  cursor:pointer;width:100%;box-sizing:border-box;
+}
+.hb-nav-item:hover{background:rgba(255,255,255,0.05);border-color:rgba(168,85,247,0.2);transform:translateX(-2px);}
+.hb-nav-item:active{transform:scale(0.97);}
+.hb-nav-gem:hover{background:rgba(66,133,244,0.07);border-color:rgba(66,133,244,0.28);}
+.hb-nav-gpt:hover{background:rgba(16,163,127,0.07);border-color:rgba(16,163,127,0.28);}
+.hb-nav-yt:hover{background:rgba(255,60,60,0.07);border-color:rgba(255,60,60,0.26);}
+.hb-nav-cc:hover{background:rgba(168,85,247,0.07);border-color:rgba(168,85,247,0.26);}
+.hb-nav-visa:hover{background:rgba(34,197,94,0.07);border-color:rgba(34,197,94,0.24);}
+.hb-nav-web:hover{background:rgba(168,85,247,0.07);border-color:rgba(168,85,247,0.26);}
+.hb-nav-ico{
+  width:22px;height:22px;min-width:22px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.hb-nav-lbl{font-size:clamp(9px,0.95vw,10.5px);font-weight:700;color:rgba(240,236,248,0.78);white-space:nowrap;}
+.hb-nav-ico-gem{background:linear-gradient(135deg,rgba(66,133,244,0.22),rgba(52,168,83,0.12));border:1px solid rgba(66,133,244,0.3);}
+.hb-nav-ico-gpt{background:linear-gradient(135deg,rgba(16,163,127,0.2),rgba(16,163,127,0.07));border:1px solid rgba(16,163,127,0.3);}
+.hb-nav-ico-yt{background:linear-gradient(135deg,rgba(255,0,0,0.18),rgba(255,0,0,0.06));border:1px solid rgba(255,60,60,0.28);}
+.hb-nav-ico-cc{background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(99,102,241,0.06));border:1px solid rgba(168,85,247,0.28);}
+.hb-nav-ico-web{background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.06));border:1px solid rgba(168,85,247,0.26);}
+.hb-nav-ico-visa{background:linear-gradient(135deg,rgba(34,197,94,0.16),rgba(16,185,129,0.06));border:1px solid rgba(34,197,94,0.26);}
+.hb-nav-ico svg{width:11px;height:11px;}
 
-/* Responsive */
 @media(max-width:640px){
   .hero-banner-inner{
-    grid-template-columns:1fr auto;
+    grid-template-columns:1fr clamp(120px,38vw,165px);
     align-items:flex-start;
     gap:10px;
     padding:18px 14px 22px;
   }
-  .hb-right{width:clamp(118px,36vw,148px);gap:3px;}
-  .hb-chip{padding:0 7px;min-height:26px;max-height:34px;gap:5px;}
-  .hb-chip-ico{width:14px;height:14px;min-width:14px;border-radius:4px;}
-  .hb-chip-ico svg{width:8px;height:8px;}
-  .hb-chip-name{font-size:clamp(7px,2.3vw,8.5px);}
+  .hb-right{width:clamp(110px,30vw,145px);}
+  .hb-right-box{padding:3px 3px;border-radius:9px;}
+  .hb-nav-item{padding:3px 4px;gap:5px;border-radius:6px;}
+  .hb-nav-ico{width:20px;height:20px;min-width:20px;border-radius:5px;}
+  .hb-nav-ico svg{width:10px;height:10px;}
+  .hb-nav-lbl{font-size:clamp(8px,2.2vw,10px);}
+  .hb-cat-label{font-size:6px;padding:3px 3px 1px;}
+  .hb-divider{margin:2px 2px;}
 }
 @media(min-width:641px) and (max-width:900px){
-  .hb-right{width:clamp(135px,18vw,170px);}
+  .hb-right{width:clamp(130px,16vw,160px);}
 }
+/* ── 3D SPACE CANVAS ── */#bannerCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;}
+.hero-banner-inner{position:relative;z-index:1;}
 
 /* ─────────────────────────────────
    FACEBOOK GROUP BANNER
@@ -505,8 +525,8 @@ a.hb-chip:active{transform:scale(0.97);}
 .topbar-hamburger.open .topbar-hamburger-lines span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 .topbar-backdrop{position:fixed;inset:0;z-index:98;background:rgba(0,0,0,0);backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px);pointer-events:none;transition:background .3s,backdrop-filter .3s,-webkit-backdrop-filter .3s;}
 .topbar-backdrop.open{background:rgba(0,0,0,0.52);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);pointer-events:all;}
-.topbar-dropdown{position:fixed;top:0;left:-100%;bottom:0;z-index:99;width:min(65vw,240px);background:rgba(12,6,28,0.99);border-right:1px solid rgba(168,85,247,0.2);display:flex;flex-direction:column;transition:left .32s cubic-bezier(.34,1.05,.64,1);box-shadow:4px 0 32px rgba(0,0,0,0.6);pointer-events:none;overflow:hidden;}
-.topbar-dropdown.open{left:0;pointer-events:all;}
+.topbar-dropdown{position:fixed;top:0;left:0;bottom:0;z-index:99;width:min(65vw,240px);background:rgba(12,6,28,0.99);border-right:1px solid rgba(168,85,247,0.2);display:flex;flex-direction:column;box-shadow:4px 0 32px rgba(0,0,0,0.6);pointer-events:none;overflow:hidden;transform:translateX(-100%);transition:transform .22s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
+.topbar-dropdown.open{transform:translateX(0);pointer-events:all;}
 .topbar-sidebar-head{display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid rgba(168,85,247,0.12);height:52px;flex-shrink:0;}
 .topbar-sidebar-logo{font-size:11px;font-weight:800;letter-spacing:0.04em;background:linear-gradient(135deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .topbar-sidebar-close{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .18s,border-color .18s;color:rgba(255,255,255,0.45);flex-shrink:0;}
@@ -524,13 +544,8 @@ a.hb-chip:active{transform:scale(0.97);}
 .topbar-nav-divider{height:1px;background:rgba(255,255,255,0.06);margin:4px 3px;}
 .topbar-sidebar-foot{padding:10px 14px;border-top:1px solid rgba(168,85,247,0.1);flex-shrink:0;}
 .topbar-sidebar-foot-note{font-size:9px;color:rgba(255,255,255,0.18);font-weight:500;letter-spacing:0.04em;}
-.topbar-dropdown.open .topbar-nav-item{animation:sidebarFadeIn .3s both;}
-.topbar-dropdown.open .topbar-nav-item:nth-child(1){animation-delay:.08s;}
-.topbar-dropdown.open .topbar-nav-item:nth-child(2){animation-delay:.12s;}
-.topbar-dropdown.open .topbar-nav-item:nth-child(3){animation-delay:.16s;}
-.topbar-dropdown.open .topbar-nav-item:nth-child(4){animation-delay:.20s;}
-.topbar-dropdown.open .topbar-nav-item:nth-child(5){animation-delay:.24s;}
-@keyframes sidebarFadeIn{from{opacity:0;transform:translateX(-10px);}to{opacity:1;transform:none;}}
+.topbar-dropdown.open .topbar-nav-item{animation:sidebarFadeIn .18s both;}
+@keyframes sidebarFadeIn{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:none;}}
 @media(min-width:768px){.topbar-dropdown{width:min(28vw,240px);}.topbar-nav-icon-wrap{width:28px;height:28px;}}
 
 /* ─────────────────────────────────
@@ -810,7 +825,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
     -webkit-backdrop-filter:none!important;
   }
   .glass-card{background:rgba(12,6,30,0.75)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important;}
-  .sub-card{background:rgba(12,6,30,0.72)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important;}
+  .sub-card{background:rgba(8,4,18,0.12)!important;backdrop-filter:blur(8px)!important;-webkit-backdrop-filter:blur(8px)!important;}
   .neon-card{background:rgba(14,8,32,0.72)!important;}
   .hero-banner{background:rgba(8,4,22,0.82)!important;}
   .fb-group-banner{background:rgba(10,5,24,0.85)!important;}
@@ -871,24 +886,6 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
 .wp-skip{width:100%;margin-top:7px;padding:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:100px;color:rgba(240,236,248,.55);font-size:12px;font-weight:600;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;transition:border-color .18s,color .18s,background .18s;}
 .wp-skip:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.35);color:rgba(240,236,248,.8);}
 .wp-skip:disabled{opacity:.3;cursor:not-allowed;}
-/* ══ MINI TOAST — 12 tháng ══ */
-#freeMonthToast{
-  position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-12px);
-  background:rgba(8,4,20,0.97);
-  border:1px solid rgba(52,211,153,0.5);
-  border-radius:100px;
-  padding:9px 18px;
-  display:inline-flex;align-items:center;gap:8px;
-  white-space:nowrap;
-  box-shadow:0 0 0 1px rgba(52,211,153,0.1),0 8px 32px rgba(0,0,0,.7),0 0 24px rgba(52,211,153,.2);
-  z-index:600;
-  opacity:0;pointer-events:none;
-  transition:opacity .22s ease,transform .28s cubic-bezier(.34,1.5,.64,1);
-}
-#freeMonthToast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-#freeMonthToast .fmt-ico{width:22px;height:22px;border-radius:7px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-#freeMonthToast .fmt-text{font-size:12px;font-weight:700;color:#fff;}
-#freeMonthToast .fmt-text em{font-style:normal;color:#34d399;}
 /* ══ END WELCOME POPUP ══ */
 
 /* ── GROUP CTA BOX LED BORDER (mobile-safe: chỉ dùng opacity animation) ── */
@@ -948,39 +945,67 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
   </div>
   <!-- Nav items -->
   <div class="topbar-sidebar-body">
-    <a class="topbar-nav-item" href="#accounts" onclick="closeTopMenu()">
-      <div class="topbar-nav-icon-wrap" style="background:rgba(99,102,241,0.18);">
-        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+
+    <!-- AI · Trợ Lý -->
+    <div style="font-size:7.5px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,236,248,0.25);padding:8px 10px 4px;">Trợ Lý AI</div>
+    <a class="topbar-nav-item" href="#geminiProCard" onclick="closeTopMenu();setTimeout(()=>scrollToId('geminiProCard'),100);">
+      <div class="topbar-nav-icon-wrap" style="background:linear-gradient(135deg,rgba(66,133,244,0.2),rgba(52,168,83,0.1));border:1px solid rgba(66,133,244,0.28);">
+        <svg class="topbar-nav-icon" width="14" height="14" viewBox="0 0 32 32" fill="none"><path d="M16 2C16 11 21 16 30 16C21 16 16 21 16 30C16 21 11 16 2 16C11 16 16 11 16 2Z" fill="url(#sbGem)"/><defs><linearGradient id="sbGem" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4285F4"/><stop offset="50%" stop-color="#34A853"/><stop offset="100%" stop-color="#EA4335"/></linearGradient></defs></svg>
       </div>
-      <span class="topbar-nav-text">ChatGPT · Youtube · CapCut</span>
+      <span class="topbar-nav-text">Gemini Pro</span>
       <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </a>
+    <a class="topbar-nav-item" href="#chatgptPlusCard" onclick="closeTopMenu();setTimeout(()=>scrollToId('chatgptPlusCard'),100);">
+      <div class="topbar-nav-icon-wrap" style="background:rgba(16,163,127,0.15);border:1px solid rgba(16,163,127,0.25);">
+        <svg class="topbar-nav-icon" width="14" height="14" viewBox="0 0 24 24" fill="rgba(16,163,127,0.9)"><path d="M21.66 10.18a5.95 5.95 0 00-.44-4.81 5.99 5.99 0 00-6.43-2.87 5.95 5.95 0 00-4.49-2.02 5.99 5.99 0 00-5.71 4.15 5.95 5.95 0 00-3.97 2.88 5.99 5.99 0 00.74 7.04 5.95 5.95 0 00.44 4.81 5.99 5.99 0 006.43 2.87A5.95 5.95 0 0012.76 24a5.99 5.99 0 005.72-4.15 5.95 5.95 0 003.97-2.88 5.99 5.99 0 00-.79-6.79zM12.76 22.5a4.48 4.48 0 01-2.88-1.04l.14-.08 4.78-2.76a.78.78 0 00.39-.68v-6.74l2.02 1.17a.07.07 0 01.04.05v5.58a4.5 4.5 0 01-4.49 4.5zm-9.63-4.13a4.48 4.48 0 01-.54-3.01l.14.09 4.78 2.76a.77.77 0 00.78 0l5.84-3.37v2.33a.07.07 0 01-.03.06l-4.84 2.8a4.5 4.5 0 01-6.13-1.66zm-1.25-10.6a4.47 4.47 0 012.33-1.96v5.7a.77.77 0 00.39.67l5.82 3.36-2.02 1.17a.07.07 0 01-.07 0L3.5 13.98a4.5 4.5 0 01-.62-6.21zm16.6 3.86L13.65 8.27l2.02-1.16a.07.07 0 01.07 0l4.84 2.79a4.5 4.5 0 01-.68 8.11v-5.7a.78.78 0 00-.42-.68zm2.01-3.02l-.14-.09-4.77-2.76a.77.77 0 00-.78 0L9.97 9.13V6.8a.07.07 0 01.03-.06l4.84-2.79a4.5 4.5 0 016.65 4.66zm-12.62 4.14L5.85 11.58a.07.07 0 01-.04-.06V5.95a4.5 4.5 0 017.38-3.45l-.14.08-4.78 2.76a.78.78 0 00-.39.68v6.73zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/></svg>
+      </div>
+      <span class="topbar-nav-text">ChatGPT Plus</span>
+      <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <div class="topbar-nav-divider"></div>
+
+    <!-- Premium Pro -->
+    <div style="font-size:7.5px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,236,248,0.25);padding:8px 10px 4px;">Premium Pro</div>
+    <a class="topbar-nav-item" href="#ytCard" onclick="closeTopMenu();setTimeout(()=>scrollToId('ytCard'),100);">
+      <div class="topbar-nav-icon-wrap" style="background:rgba(255,0,0,0.15);border:1px solid rgba(255,60,60,0.25);">
+        <svg class="topbar-nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="rgba(255,80,80,0.9)"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.13-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.37.55A3.02 3.02 0 0 0 .5 6.19C0 8.03 0 12 0 12s0 3.97.5 5.81a3.02 3.02 0 0 0 2.13 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.37-.55a3.02 3.02 0 0 0 2.13-2.14C24 15.97 24 12 24 12s0-3.97-.5-5.81zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+      </div>
+      <span class="topbar-nav-text">YouTube Premium</span>
+      <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a class="topbar-nav-item" href="#capcutCard" onclick="closeTopMenu();setTimeout(()=>scrollToId('capcutCard'),100);">
+      <div class="topbar-nav-icon-wrap" style="background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.25);">
+        <svg class="topbar-nav-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+      </div>
+      <span class="topbar-nav-text">CapCut Pro</span>
+      <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <div class="topbar-nav-divider"></div>
+
+    <!-- Dịch Vụ -->
+    <div style="font-size:7.5px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,236,248,0.25);padding:8px 10px 4px;">Dịch Vụ</div>
     <a class="topbar-nav-item" href="#tth-anchor" onclick="closeTopMenu();setTimeout(()=>scrollToId('tth-anchor'),100);">
-      <div class="topbar-nav-icon-wrap" style="background:rgba(34,197,94,0.15);">
-        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      <div class="topbar-nav-icon-wrap" style="background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.25);">
+        <svg class="topbar-nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
       </div>
       <span class="topbar-nav-text">Visa / Mastercard</span>
       <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </a>
-    <div class="topbar-nav-divider"></div>
-    <a class="topbar-nav-item" href="kho.html" onclick="closeTopMenu()">
-      <div class="topbar-nav-icon-wrap" style="background:rgba(249,115,22,0.15);">
-        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
-      <span class="topbar-nav-text">Kho Code</span>
-      <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-    </a>
     <a class="topbar-nav-item" href="#services" onclick="closeTopMenu()">
-      <div class="topbar-nav-icon-wrap" style="background:rgba(168,85,247,0.18);">
-        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      <div class="topbar-nav-icon-wrap" style="background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.25);">
+        <svg class="topbar-nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       </div>
-      <span class="topbar-nav-text">Dịch Vụ Web · Bot Telegram</span>
+      <span class="topbar-nav-text">Web · Bot Telegram</span>
       <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </a>
+
     <div class="topbar-nav-divider"></div>
+
     <a class="topbar-nav-item" href="#contact" onclick="closeTopMenu()">
-      <div class="topbar-nav-icon-wrap" style="background:rgba(236,72,153,0.15);">
-        <svg class="topbar-nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <div class="topbar-nav-icon-wrap" style="background:rgba(236,72,153,0.15);border:1px solid rgba(236,72,153,0.22);">
+        <svg class="topbar-nav-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.61 5.61l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </div>
       <span class="topbar-nav-text">Liên Hệ</span>
       <svg class="topbar-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1048,39 +1073,57 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
       </div>
     </div>
 
-    <!-- RIGHT: 2×3 chip grid — icon + tên -->
+    <!-- RIGHT: clean nav list in single glass box -->
     <div class="hb-right">
+      <div class="hb-right-box">
 
-      <a class="hb-chip" href="#chatgptPlusCard" onclick="event.preventDefault();scrollToId('chatgptPlusCard');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico ico-gpt"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(16,163,127,0.9)" xmlns="http://www.w3.org/2000/svg"><path d="M21.66 10.18a5.95 5.95 0 00-.44-4.81 5.99 5.99 0 00-6.43-2.87 5.95 5.95 0 00-4.49-2.02 5.99 5.99 0 00-5.71 4.15 5.95 5.95 0 00-3.97 2.88 5.99 5.99 0 00.74 7.04 5.95 5.95 0 00.44 4.81 5.99 5.99 0 006.43 2.87A5.95 5.95 0 0012.76 24a5.99 5.99 0 005.72-4.15 5.95 5.95 0 003.97-2.88 5.99 5.99 0 00-.79-6.79zM12.76 22.5a4.48 4.48 0 01-2.88-1.04l.14-.08 4.78-2.76a.78.78 0 00.39-.68v-6.74l2.02 1.17a.07.07 0 01.04.05v5.58a4.5 4.5 0 01-4.49 4.5zm-9.63-4.13a4.48 4.48 0 01-.54-3.01l.14.09 4.78 2.76a.77.77 0 00.78 0l5.84-3.37v2.33a.07.07 0 01-.03.06l-4.84 2.8a4.5 4.5 0 01-6.13-1.66zm-1.25-10.6a4.47 4.47 0 012.33-1.96v5.7a.77.77 0 00.39.67l5.82 3.36-2.02 1.17a.07.07 0 01-.07 0L3.5 13.98a4.5 4.5 0 01-.62-6.21zm16.6 3.86L13.65 8.27l2.02-1.16a.07.07 0 01.07 0l4.84 2.79a4.5 4.5 0 01-.68 8.11v-5.7a.78.78 0 00-.42-.68zm2.01-3.02l-.14-.09-4.77-2.76a.77.77 0 00-.78 0L9.97 9.13V6.8a.07.07 0 01.03-.06l4.84-2.79a4.5 4.5 0 016.65 4.66zm-12.62 4.14L5.85 11.58a.07.07 0 01-.04-.06V5.95a4.5 4.5 0 017.38-3.45l-.14.08-4.78 2.76a.78.78 0 00-.39.68v6.73zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/></svg></div>
-        <span class="hb-chip-name">ChatGPT Plus</span>
+      <div class="hb-cat-label">Trợ Lý AI</div>
+      <a class="hb-nav-item hb-nav-gem" href="#geminiProCard" onclick="event.preventDefault();scrollToId('geminiProCard');">
+        <div class="hb-nav-ico hb-nav-ico-gem">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><path d="M16 2C16 11 21 16 30 16C21 16 16 21 16 30C16 21 11 16 2 16C11 16 16 11 16 2Z" fill="url(#nb1)"/><defs><linearGradient id="nb1" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#4285F4"/><stop offset="50%" stop-color="#34A853"/><stop offset="100%" stop-color="#EA4335"/></linearGradient></defs></svg>
+        </div>
+        <span class="hb-nav-lbl">Gemini Pro</span>
+      </a>
+      <a class="hb-nav-item hb-nav-gpt" href="#chatgptPlusCard" onclick="event.preventDefault();scrollToId('chatgptPlusCard');">
+        <div class="hb-nav-ico hb-nav-ico-gpt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(16,163,127,0.95)"><path d="M21.66 10.18a5.95 5.95 0 00-.44-4.81 5.99 5.99 0 00-6.43-2.87 5.95 5.95 0 00-4.49-2.02 5.99 5.99 0 00-5.71 4.15 5.95 5.95 0 00-3.97 2.88 5.99 5.99 0 00.74 7.04 5.95 5.95 0 00.44 4.81 5.99 5.99 0 006.43 2.87A5.95 5.95 0 0012.76 24a5.99 5.99 0 005.72-4.15 5.95 5.95 0 003.97-2.88 5.99 5.99 0 00-.79-6.79zM12.76 22.5a4.48 4.48 0 01-2.88-1.04l.14-.08 4.78-2.76a.78.78 0 00.39-.68v-6.74l2.02 1.17a.07.07 0 01.04.05v5.58a4.5 4.5 0 01-4.49 4.5zm-9.63-4.13a4.48 4.48 0 01-.54-3.01l.14.09 4.78 2.76a.77.77 0 00.78 0l5.84-3.37v2.33a.07.07 0 01-.03.06l-4.84 2.8a4.5 4.5 0 01-6.13-1.66zm-1.25-10.6a4.47 4.47 0 012.33-1.96v5.7a.77.77 0 00.39.67l5.82 3.36-2.02 1.17a.07.07 0 01-.07 0L3.5 13.98a4.5 4.5 0 01-.62-6.21zm16.6 3.86L13.65 8.27l2.02-1.16a.07.07 0 01.07 0l4.84 2.79a4.5 4.5 0 01-.68 8.11v-5.7a.78.78 0 00-.42-.68zm2.01-3.02l-.14-.09-4.77-2.76a.77.77 0 00-.78 0L9.97 9.13V6.8a.07.07 0 01.03-.06l4.84-2.79a4.5 4.5 0 016.65 4.66zm-12.62 4.14L5.85 11.58a.07.07 0 01-.04-.06V5.95a4.5 4.5 0 017.38-3.45l-.14.08-4.78 2.76a.78.78 0 00-.39.68v6.73zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/></svg>
+        </div>
+        <span class="hb-nav-lbl">ChatGPT Plus</span>
       </a>
 
-      <a class="hb-chip" href="#ytCard" onclick="event.preventDefault();scrollToId('ytCard');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico ico-yt"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,80,80,0.9)"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.13-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.37.55A3.02 3.02 0 0 0 .5 6.19C0 8.03 0 12 0 12s0 3.97.5 5.81a3.02 3.02 0 0 0 2.13 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.37-.55a3.02 3.02 0 0 0 2.13-2.14C24 15.97 24 12 24 12s0-3.97-.5-5.81zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg></div>
-        <span class="hb-chip-name">YouTube Premium</span>
+      <div class="hb-divider"></div>
+
+      <div class="hb-cat-label">Premium Pro</div>
+      <a class="hb-nav-item hb-nav-yt" href="#ytCard" onclick="event.preventDefault();scrollToId('ytCard');">
+        <div class="hb-nav-ico hb-nav-ico-yt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,80,80,0.95)"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.13-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.37.55A3.02 3.02 0 0 0 .5 6.19C0 8.03 0 12 0 12s0 3.97.5 5.81a3.02 3.02 0 0 0 2.13 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.37-.55a3.02 3.02 0 0 0 2.13-2.14C24 15.97 24 12 24 12s0-3.97-.5-5.81zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+        </div>
+        <span class="hb-nav-lbl">YouTube</span>
+      </a>
+      <a class="hb-nav-item hb-nav-cc" href="#capcutCard" onclick="event.preventDefault();scrollToId('capcutCard');">
+        <div class="hb-nav-ico hb-nav-ico-cc">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+        </div>
+        <span class="hb-nav-lbl">CapCut Pro</span>
       </a>
 
-      <a class="hb-chip" href="#capcutCard" onclick="event.preventDefault();scrollToId('capcutCard');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico ico-cc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(129,140,248,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
-        <span class="hb-chip-name">CapCut Pro</span>
+      <div class="hb-divider"></div>
+
+      <div class="hb-cat-label">Dịch Vụ</div>
+      <a class="hb-nav-item hb-nav-web" href="#services" onclick="event.preventDefault();scrollToId('services');">
+        <div class="hb-nav-ico hb-nav-ico-web">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <span class="hb-nav-lbl">Web &amp; Bot</span>
+      </a>
+      <a class="hb-nav-item hb-nav-visa" href="#tth-anchor" onclick="event.preventDefault();scrollToId('tth-anchor');">
+        <div class="hb-nav-ico hb-nav-ico-visa">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(74,222,128,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </div>
+        <span class="hb-nav-lbl">Visa/MC</span>
       </a>
 
-      <a class="hb-chip" href="kho.html" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico ico-code"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(251,146,60,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-        <span class="hb-chip-name">Kho Code TikTok</span>
-      </a>
-
-      <a class="hb-chip" href="#services" onclick="event.preventDefault();scrollToId('services');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico ico-web"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(192,132,252,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <span class="hb-chip-name">Web &amp; Bot</span>
-      </a>
-
-      <a class="hb-chip" href="#tth-anchor" onclick="event.preventDefault();scrollToId('tth-anchor');" style="text-decoration:none;cursor:pointer;">
-        <div class="hb-chip-ico ico-visa"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(250,204,21,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
-        <span class="hb-chip-name">Thanh Toán Visa</span>
-      </a>
-
+      </div><!-- end hb-right-box -->
     </div><!-- end hb-right -->
   </div><!-- end hero-banner-inner -->
 </div><!-- end hero-banner -->
@@ -1098,9 +1141,19 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
           <span style="font-size:clamp(9px,1.2vw,10.5px);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:rgba(192,132,252,0.8);">Cộng đồng</span>
         </div>
         <!-- title -->
-        <div style="font-size:clamp(14px,2.2vw,18px);font-weight:900;color:#F0ECF8;text-align:center;letter-spacing:-0.01em;">GenZ Đam Mê IT · Vibe Code · AI</div>
+        <div style="font-size:clamp(17px,2.8vw,22px);font-weight:900;color:#F0ECF8;text-align:center;letter-spacing:-0.01em;">GenZ Đam Mê IT · Vibe Code · AI</div>
         <!-- sub -->
-        <div style="font-size:clamp(11px,1.5vw,13px);color:rgba(240,236,248,0.5);text-align:center;word-break:break-word;line-height:1.55;">Tham gia group → chơi mini game → nhận <span style="font-weight:700;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">ChatGPT Plus miễn phí</span></div>
+        <div style="font-size:clamp(11px,1.5vw,13px);color:rgba(240,236,248,0.5);text-align:center;word-break:break-word;line-height:1.55;">Tham gia group → chơi mini game → nhận <span style="font-weight:700;background:linear-gradient(90deg,#C084FC,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;">ChatGPT Plus · YouTube · CapCut</span> miễn phí</div>
+        <!-- gift box -->
+        <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(168,85,247,0.12),rgba(236,72,153,0.07));border:1px solid rgba(168,85,247,0.3);border-radius:14px;padding:8px 14px;margin:2px 0;">
+          <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C084FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="14" rx="2"/><path d="M12 8V22"/><path d="M3 13h18"/><path d="M8 8a4 4 0 0 1 4-4 4 4 0 0 1 4 4"/><path d="M8 8H3M16 8h5"/></svg>
+          </div>
+          <div style="text-align:left;">
+            <div style="font-size:10px;font-weight:800;color:rgba(240,236,248,0.9);line-height:1.3;">Quà tặng miễn phí</div>
+            <div style="font-size:9px;color:rgba(192,132,252,0.65);font-weight:600;">ở bài viết ghim trong group</div>
+          </div>
+        </div>
         <!-- CTA button -->
         <a href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noreferrer" style="margin-top:6px;font-size:clamp(12px,1.8vw,14px);padding:clamp(10px,1.5vw,13px) clamp(20px,3vw,30px);display:inline-flex;align-items:center;gap:9px;background:linear-gradient(135deg,#A855F7 0%,#EC4899 100%);color:#fff;font-weight:700;font-family:'Be Vietnam Pro',sans-serif;border-radius:100px;text-decoration:none;letter-spacing:0.03em;position:relative;z-index:1;overflow:hidden;white-space:nowrap;border:1px solid rgba(255,255,255,0.18);box-shadow:0 1px 0 rgba(255,255,255,0.22) inset,0 -1px 0 rgba(0,0,0,0.2) inset,0 2px 0 rgba(100,20,160,0.7),0 4px 14px rgba(168,85,247,0.45);transition:transform 0.12s,box-shadow 0.12s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 1px 0 rgba(255,255,255,0.25) inset,0 -1px 0 rgba(0,0,0,0.22) inset,0 2px 0 rgba(100,20,160,0.7),0 6px 20px rgba(168,85,247,0.55)'" onmouseout="this.style.transform='';this.style.boxShadow='0 1px 0 rgba(255,255,255,0.22) inset,0 -1px 0 rgba(0,0,0,0.2) inset,0 2px 0 rgba(100,20,160,0.7),0 4px 14px rgba(168,85,247,0.45)'" onmousedown="this.style.transform='translateY(1px)'" onmouseup="this.style.transform='translateY(-2px)'">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -1132,7 +1185,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
       <div class="neon-card neon-yellow">
         <div class="neon-card-top">
           <div class="neon-icon neon-icon-yellow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/><polyline points="9 8 11 10 15 6"/></svg></div>
-          <div><div class="neon-val" style="color:#fde047;">Uy tín</div><div class="neon-sub">Hoàn tiền nếu lỗi</div></div>
+          <div><div class="neon-val" style="color:#fde047;">Uy tín</div><div class="neon-sub">Sử dụng ổn định</div></div>
         </div>
       </div>
     </div>
@@ -1146,10 +1199,131 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
 ═══════════════════════════════════════ -->
 <section id="accounts" style="padding:clamp(60px,8vw,90px) 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
   <div class="container">
-    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">ChatGPT · Youtube · CapCut</div><div class="section-beam r"></div></div></div>
+    <!-- ── SECTION HEADING BOX ── -->
+    <div style="max-width:680px;margin:0 auto 28px;position:relative;overflow:hidden;
+                background:rgba(12,6,30,0.55);
+                backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+                border:1px solid rgba(168,85,247,0.28);border-radius:24px;
+                padding:clamp(22px,4vw,36px) clamp(20px,4vw,36px);
+                box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 8px 32px rgba(0,0,0,0.35),0 0 40px rgba(168,85,247,0.07);">
+      <!-- top shimmer line -->
+      <div style="position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.7),rgba(236,72,153,0.45),transparent);pointer-events:none;"></div>
+      <!-- badge -->
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.28);border-radius:100px;padding:5px 14px;margin-bottom:14px;">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span style="font-size:9px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(192,132,252,0.75);">Tài Khoản Cá Nhân</span>
+      </div>
+      <!-- headline -->
+      <div style="font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:clamp(1.5rem,5.5vw,2.2rem);font-weight:900;line-height:1.08;letter-spacing:-0.03em;color:#fff;margin-bottom:18px;">
+        Chỉ <span style="color:#fff;">mình bạn</span> dùng
+      </div>
+      <!-- tick list -->
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="width:18px;height:18px;min-width:18px;border-radius:50%;background:rgba(52,211,153,0.15);border:1.5px solid rgba(52,211,153,0.45);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-size:clamp(12px,1.8vw,14px);font-weight:600;color:rgba(240,236,248,0.85);">1 mình bạn dùng 1 tài khoản</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="width:18px;height:18px;min-width:18px;border-radius:50%;background:rgba(52,211,153,0.15);border:1.5px solid rgba(52,211,153,0.45);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-size:clamp(12px,1.8vw,14px);font-weight:600;color:rgba(240,236,248,0.85);">Bảo hành toàn bộ thời gian sử dụng</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="width:18px;height:18px;min-width:18px;border-radius:50%;background:rgba(52,211,153,0.15);border:1.5px solid rgba(52,211,153,0.45);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span style="font-size:clamp(12px,1.8vw,14px);font-weight:600;color:rgba(240,236,248,0.85);">Truy cập mọi tính năng cao cấp</span>
+        </div>
+      </div>
+    </div>
 
-    <!-- ── MAIN GRID: ChatGPT card (full width) → sub cards below ── -->
-    <div id="accountsGrid" style="display:flex;flex-direction:column;gap:clamp(32px,5vw,48px);max-width:680px;margin:0 auto;">
+    <style>
+    /* ── LEFT BAR GROUP LABELS ── */
+    .grp-label{display:flex;align-items:stretch;gap:12px;padding:10px 16px 10px 12px;margin-bottom:-6px;border-radius:12px;position:relative;overflow:hidden;}
+    .grp-label-ai{background:linear-gradient(90deg,rgba(60,165,250,0.32) 0%,rgba(52,211,153,0.14) 45%,transparent 100%);}
+    .grp-label-vid{background:linear-gradient(90deg,rgba(192,132,252,0.32) 0%,rgba(244,114,182,0.14) 45%,transparent 100%);}
+    .grp-label-grn{background:linear-gradient(90deg,rgba(34,197,94,0.28) 0%,rgba(16,185,129,0.12) 45%,transparent 100%);}
+    .grp-bar{width:4px;border-radius:2px;flex-shrink:0;align-self:stretch;}
+    .grp-bar-ai{background:linear-gradient(180deg,#60A5FA 0%,#34D399 100%);box-shadow:0 0 14px rgba(96,165,250,0.6);}
+    .grp-bar-vid{background:linear-gradient(180deg,#C084FC 0%,#F472B6 100%);box-shadow:0 0 14px rgba(192,132,252,0.6);}
+    .grp-body{display:flex;flex-direction:column;gap:8px;justify-content:center;min-width:0;}
+    .grp-title{font-family:'Space Grotesk','Be Vietnam Pro',sans-serif;font-size:clamp(14px,2vw,16px);font-weight:900;letter-spacing:-0.02em;line-height:1;}
+    .grp-title-ai{background:linear-gradient(110deg,#60A5FA,#34D399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .grp-title-vid{background:linear-gradient(110deg,#C084FC,#F472B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .grp-chips{display:flex;gap:7px;flex-wrap:wrap;}
+    .grp-chip{font-size:10px;font-weight:800;padding:5px 13px;border-radius:100px;letter-spacing:0.02em;display:inline-flex;align-items:center;}
+    .grp-chip-ai{background:linear-gradient(110deg,rgba(60,165,250,0.22),rgba(52,211,153,0.08));border:1px solid rgba(96,165,250,0.42);color:#BAD6FF;}
+    .grp-chip-vid{background:linear-gradient(110deg,rgba(192,132,252,0.22),rgba(244,114,182,0.08));border:1px solid rgba(192,132,252,0.42);color:#EAD5FF;}
+    @media(max-width:640px){
+      .grp-label{padding:8px 12px 8px 10px;}
+      .grp-title{font-size:14px;}
+      .grp-chip{font-size:9.5px;padding:4px 11px;}
+    }
+    </style>
+
+    <div id="accountsGrid" style="display:flex;flex-direction:column;gap:clamp(24px,4vw,36px);max-width:680px;margin:0 auto;">
+
+      <!-- ── GROUP 1: AI · TRỢ LÝ ── -->
+      <div class="grp-label grp-label-ai">
+        <div class="grp-bar grp-bar-ai"></div>
+        <div class="grp-body">
+          <div class="grp-title grp-title-ai">AI · Trợ Lý</div>
+          <div class="grp-chips">
+            <span class="grp-chip grp-chip-ai">
+              <svg width="7" height="7" viewBox="0 0 32 32" fill="none" style="display:inline;vertical-align:middle;margin-right:3px;"><path d="M16 2C16 11 21 16 30 16C21 16 16 21 16 30C16 21 11 16 2 16C11 16 16 11 16 2Z" fill="rgba(138,180,248,0.7)"/></svg>Gemini Pro
+            </span>
+            <span class="grp-chip grp-chip-ai"><svg width="8" height="8" viewBox="0 0 24 24" fill="rgba(16,163,127,0.8)" style="display:inline;vertical-align:middle;margin-right:3px;"><path d="M21.66 10.18a5.95 5.95 0 00-.44-4.81 5.99 5.99 0 00-6.43-2.87 5.95 5.95 0 00-4.49-2.02 5.99 5.99 0 00-5.71 4.15 5.95 5.95 0 00-3.97 2.88 5.99 5.99 0 00.74 7.04 5.95 5.95 0 00.44 4.81 5.99 5.99 0 006.43 2.87A5.95 5.95 0 0012.76 24a5.99 5.99 0 005.72-4.15 5.95 5.95 0 003.97-2.88 5.99 5.99 0 00-.79-6.79zM12.76 22.5a4.48 4.48 0 01-2.88-1.04l.14-.08 4.78-2.76a.78.78 0 00.39-.68v-6.74l2.02 1.17a.07.07 0 01.04.05v5.58a4.5 4.5 0 01-4.49 4.5zm-9.63-4.13a4.48 4.48 0 01-.54-3.01l.14.09 4.78 2.76a.77.77 0 00.78 0l5.84-3.37v2.33a.07.07 0 01-.03.06l-4.84 2.8a4.5 4.5 0 01-6.13-1.66zm-1.25-10.6a4.47 4.47 0 012.33-1.96v5.7a.77.77 0 00.39.67l5.82 3.36-2.02 1.17a.07.07 0 01-.07 0L3.5 13.98a4.5 4.5 0 01-.62-6.21zm16.6 3.86L13.65 8.27l2.02-1.16a.07.07 0 01.07 0l4.84 2.79a4.5 4.5 0 01-.68 8.11v-5.7a.78.78 0 00-.42-.68zm2.01-3.02l-.14-.09-4.77-2.76a.77.77 0 00-.78 0L9.97 9.13V6.8a.07.07 0 01.03-.06l4.84-2.79a4.5 4.5 0 016.65 4.66zm-12.62 4.14L5.85 11.58a.07.07 0 01-.04-.06V5.95a4.5 4.5 0 017.38-3.45l-.14.08-4.78 2.76a.78.78 0 00-.39.68v6.73zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/></svg>ChatGPT Plus</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ GEMINI PRO CARD ══ -->
+      <div id="geminiProCard" style="width:100%;box-sizing:border-box;">
+        <div class="tth-card" style="max-width:100%;border-color:rgba(66,133,244,0.42);background:linear-gradient(145deg,rgba(3,6,20,0.08) 0%,rgba(4,8,28,0.10) 50%,rgba(3,5,18,0.08) 100%);box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 4px 28px rgba(0,0,0,0.4),0 0 40px rgba(66,133,244,0.06);">
+          <!-- topline blue Google -->
+          <div style="position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(66,133,244,0.75) 25%,rgba(52,168,83,0.5) 50%,rgba(251,188,5,0.45) 70%,rgba(234,67,53,0.45) 85%,transparent);pointer-events:none;z-index:1;border-radius:0;"></div>
+
+          <!-- HEADER -->
+          <div style="padding:16px 20px 0;position:relative;">
+            <div style="position:absolute;top:12px;right:13px;display:inline-flex;align-items:center;gap:4px;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.35);border-radius:100px;padding:3px 9px;z-index:2;">
+              <span style="width:4px;height:4px;border-radius:50%;background:#34d399;flex-shrink:0;display:inline-block;"></span>
+              <span style="font-size:7.5px;font-weight:800;letter-spacing:0.1em;color:rgba(52,211,153,0.9);text-transform:uppercase;white-space:nowrap;">Cá nhân</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding-right:72px;">
+              <img src="assets/images/gemini.jpg" alt="Gemini Pro" style="width:40px;height:40px;border-radius:11px;object-fit:cover;flex-shrink:0;border:1px solid rgba(66,133,244,0.35);display:block;box-shadow:0 0 12px rgba(66,133,244,0.18);">
+              <div>
+                <div style="font-size:0.93rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:2px;line-height:1.2;">Gemini Pro</div>
+                <div style="font-size:9px;font-weight:700;"><span style="background:linear-gradient(90deg,#4285F4,#34A853,#FBBC05,#EA4335);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Google AI Pro · Nổi bật</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRICE -->
+          <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(66,133,244,0.1);">
+            <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+              <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#4285F4,#818CF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
+              <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">489.000đ</span> <span style="font-size:9px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 7px;">-80%</span></div>
+            </div>
+            <div class="chip-per-day">
+              <span class="chip-per-day-b"></span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span id="geminiPerDay">chỉ 3.300đ / ngày</span>
+            </div>
+          </div>
+
+          <!-- FOOTER -->
+          <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
+            <div style="width:100%;border-radius:100px;padding:2px;display:block;position:relative;background:linear-gradient(135deg,#1a56c4 0%,#4285F4 40%,#6d28d9 100%);box-shadow:0 0 10px rgba(66,133,244,0.3);contain:layout style paint;">
+              <div style="position:absolute;inset:2.5px;border-radius:100px;background:var(--bg);z-index:0;pointer-events:none;"></div>
+              <button onclick="openGeminiModal()" style="width:100%;position:relative;overflow:hidden;z-index:1;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1a56c4 0%,#4285F4 45%,#6d28d9 100%);color:#fff;font-weight:900;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;padding:13px 20px;border-radius:100px;border:none;cursor:pointer;letter-spacing:0.03em;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,0.25);" onmousedown="this.style.transform='translateY(1px)'" onmouseup="this.style.transform=''" onmouseout="this.style.transform=''">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END GEMINI PRO CARD -->
 
       <!-- ── CHATGPT PLUS CARD ── -->
       <div style="width:100%;box-sizing:border-box;" id="chatgptPlusCard">
@@ -1170,47 +1344,37 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
             </div>
           </div>
 
-          <!-- TAB -->
-          <div style="padding:10px 20px 0;">
-            <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(234,179,8,0.2);border-radius:100px;padding:3px;">
-              <button id="plusTab1" onclick="plusTabSwitch(1)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#92400e,#D97706,#EAB308);color:#1a0800;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
-              <button id="plusTab12" onclick="plusTabSwitch(12)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(253,224,71,0.45);box-shadow:none;">12 tháng</button>
-            </div>
-          </div>
-
           <!-- PRICE -->
           <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(234,179,8,0.12);">
-            <div id="plusPane1">
-              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);">522.000đ</span> <span style="font-size:9px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 7px;" class="discount-badge" data-orig="522000" data-sale-personal="99000" id="plusDiscountBadge">-81%</span></div>
-              </div>
-              <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span id="gptPerDay1">chỉ 3.300đ / ngày</span>
-              </div>
+            <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+              <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">99K</div>
+              <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);">522.000đ</span> <span style="font-size:9px;font-weight:800;color:#fff;background:linear-gradient(135deg,#dc2626,#ea580c);border-radius:100px;padding:2px 7px;">-81%</span></div>
             </div>
-            <div id="plusPane12" style="display:none;">
-              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
-                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#EAB308,#FDE047,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="plusYearlyOur">—</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.7);text-decoration-thickness:1.5px;font-weight:700;color:rgba(240,236,248,0.42);" id="plusYearlyListFull">—</span></div>
-              </div>
-              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="plusYearlySaving">—</div>
-              <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span id="gptPerDay12">chỉ 3.046đ / ngày</span>
-              </div>
+            <div class="chip-per-day"><span class="chip-per-day-b"></span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span id="gptPerDay1">chỉ 3.300đ / ngày</span>
             </div>
           </div>
 
           <!-- FOOTER -->
           <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
-            <button onclick="openFeatModal()" style="background:none;border:none;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;display:inline-flex;align-items:center;gap:5px;color:rgba(253,224,71,0.5);font-size:12px;font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(234,179,8,0.3);padding:0;" onmouseover="this.style.color='rgba(253,224,71,0.85)'" onmouseout="this.style.color='rgba(253,224,71,0.5)'">Xem chi tiết tính năng <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
             <div class="tth-btn-cw"><button onclick="openPlusModal()" class="tth-btn-c">Đăng ký ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
           </div>
         </div>
       </div>
       <!-- END ChatGPT Plus card -->
+
+      <!-- ── GROUP 2: VIDEO · SÁNG TẠO ── -->
+      <div class="grp-label grp-label-vid" style="margin-top:8px;">
+        <div class="grp-bar grp-bar-vid"></div>
+        <div class="grp-body">
+          <div class="grp-title grp-title-vid">Premium Pro</div>
+          <div class="grp-chips">
+            <span class="grp-chip grp-chip-vid">▶ YouTube Premium</span>
+            <span class="grp-chip grp-chip-vid">✂ CapCut Pro</span>
+          </div>
+        </div>
+      </div>
 
       <!-- ── SUB CARDS ── -->
       <div class="sub-cards-yt-wrap" style="width:100%;">
@@ -1235,37 +1399,30 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
             </div>
           </div>
 
-          <!-- YT: Plan tabs (Layout 02 — hàng riêng) -->
-          <div style="padding:12px 20px 0;">
-            <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
-              <button id="ytPlanCanhan" onclick="ytPlanSwitch('canhan')" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 13px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);display:inline-flex;align-items:center;gap:5px;">
-                <!-- person icon -->
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-                Cá nhân
-              </button>
-              <button id="ytPlanChinhchu" onclick="ytPlanSwitch('chinhchu')" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 13px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;display:inline-flex;align-items:center;gap:5px;">
-                <!-- home icon -->
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
-                Chính chủ
-              </button>
-            </div>
-          </div>
-
-          <!-- YT: Giá -->
-          <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(168,85,247,0.1);">
-            <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-              <div id="ytPriceVal" style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
-              <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span id="ytOrigVal" style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
-            </div>
-            <div class="chip-per-day"><span class="chip-per-day-b"></span>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              <span id="ytPerDay1">chỉ 1.167đ / ngày</span>
-            </div>
-          </div>
-
-          <!-- YT: Feature list popup (tick xanh) -->
-          <div id="ytFeatures" style="padding:10px 20px 0;">
-            <div id="ytFeatureList" style="display:flex;flex-direction:column;gap:5px;"></div>
+          <!-- YT: body -->
+          <div style="padding:12px 20px 14px;border-bottom:1px solid rgba(168,85,247,0.1);">
+              <!-- Tab -->
+              <div style="margin-bottom:10px;">
+                <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
+                  <button id="ytPlanCanhan" onclick="ytPlanSwitch('canhan')" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 11px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);display:inline-flex;align-items:center;gap:4px;">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    Cá nhân
+                  </button>
+                  <button id="ytPlanChinhchu" onclick="ytPlanSwitch('chinhchu')" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:5px 11px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;display:inline-flex;align-items:center;gap:4px;">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                    Chính chủ
+                  </button>
+                </div>
+              </div>
+              <!-- Giá -->
+              <div style="display:flex;align-items:flex-end;gap:7px;flex-wrap:wrap;margin-bottom:6px;">
+                <div id="ytPriceVal" style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">35K</div>
+                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span id="ytOrigVal" style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">79.000đ</span></div>
+              </div>
+              <div class="chip-per-day"><span class="chip-per-day-b"></span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span id="ytPerDay1">chỉ 1.167đ / ngày</span>
+              </div>
           </div>
 
           <!-- YT: CTA -->
@@ -1290,40 +1447,20 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
               </div>
             </div>
           </div>
-          <!-- CapCut: Tab -->
-          <div style="padding:10px 20px 0;">
-            <div style="display:inline-flex;background:rgba(0,0,0,0.3);border:1px solid rgba(168,85,247,0.18);border-radius:100px;padding:3px;">
-              <button id="ccTab1" onclick="ccTabSwitch(1)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:linear-gradient(135deg,#6b21a8,#A855F7,#C084FC);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3);">1 tháng</button>
-              <button id="ccTab12" onclick="ccTabSwitch(12)" style="font-family:'Be Vietnam Pro',sans-serif;font-size:10.5px;font-weight:700;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;transition:all .18s;background:transparent;color:rgba(192,132,252,0.45);box-shadow:none;">12 tháng</button>
-            </div>
-          </div>
           <!-- CapCut: Giá -->
           <div style="padding:10px 20px 14px;border-bottom:1px solid rgba(168,85,247,0.1);">
-            <div id="ccPane1">
-              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">59K</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">145.000đ</span></div>
-              </div>
-              <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span id="ccPerDay1">chỉ 2.000đ / ngày</span>
-              </div>
+            <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+              <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">59K</div>
+              <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);">145.000đ</span></div>
             </div>
-            <div id="ccPane12" style="display:none;">
-              <div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:3px;">
-                <div style="font-size:2.2rem;font-weight:900;line-height:1;letter-spacing:-0.03em;background:linear-gradient(90deg,#B06EF5,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" id="ccYearlyOur">—</div>
-                <div style="padding-bottom:3px;font-size:9px;color:rgba(240,236,248,0.38);font-weight:500;">Giá gốc: <span style="text-decoration:line-through;text-decoration-color:rgba(255,60,60,0.65);text-decoration-thickness:1px;font-weight:700;color:rgba(240,236,248,0.4);" id="ccYearlyList">—</span></div>
-              </div>
-              <div style="font-size:7.5px;font-weight:800;color:rgba(52,211,153,0.85);margin-bottom:6px;" id="ccYearlySaving">💰 Tiết kiệm —</div>
-              <div class="chip-per-day"><span class="chip-per-day-b"></span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span id="ccPerDay12">chỉ 1.815đ / ngày</span>
-              </div>
+            <div class="chip-per-day"><span class="chip-per-day-b"></span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FF7A30" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span id="ccPerDay1">chỉ 2.000đ / ngày</span>
             </div>
           </div>
           <!-- CapCut: Footer -->
           <div style="padding:12px 20px 18px;display:flex;flex-direction:column;gap:7px;margin-top:auto;">
-            <div style="font-size:10.5px;color:rgba(240,236,248,0.38);line-height:1.5;">Mở khóa toàn bộ tính năng, template · xuất 4K không logo</div>
+
             <button onclick="openModal('❆ CapCut Pro · 59K/tháng')" style="width:100%;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,rgba(168,85,247,0.16),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.42);border-radius:100px;color:#C084FC;font-size:12px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;padding:9px 16px;cursor:pointer;transition:all .18s;box-shadow:0 1px 0 rgba(255,255,255,0.08) inset,0 3px 0 rgba(50,5,110,0.55),0 5px 12px rgba(0,0,0,0.28);" onmousedown="this.style.transform='translateY(2px)'" onmouseup="this.style.transform=''">Đăng ký ngay <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
           </div>
         </div>
@@ -1334,20 +1471,43 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" style="padding:60px 0 64px;position:relative;z-index:1;">
+<!-- SERVICES + VISA grouped -->
+<section id="services" style="padding:60px 0 0;position:relative;z-index:1;">
   <div class="container">
-    <div class="section-wrap"><div class="section-beams"><div class="section-beam"></div><div class="section-label">Dịch Vụ Thiết Kế Web · Bot Telegram</div><div class="section-beam r"></div></div></div>
-    <div class="glass-card glass-card-glow">
-      <div style="padding:clamp(28px,5vw,48px) clamp(24px,5vw,52px);">
-        <div style="margin-bottom:28px;">
-          <div style="font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:rgba(168,85,247,0.7);margin-bottom:12px;">Dịch Vụ Lập Trình</div>
-          <div style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:20px;">Thiết Kế Website&nbsp;•&nbsp;Tạo Bot Telegram&nbsp;•&nbsp;Hỗ Trợ Làm Bài Tập</div>
-          <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:26px;">
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Thiết kế Website theo yêu cầu — từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bot Telegram thông minh — bot bán hàng, box chat, tool, script &amp; phân tích dữ liệu.</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Hỗ trợ làm bài tập lập trình — code theo yêu cầu, giải thích chi tiết, giao bài đúng tiến độ.</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;"><span style="color:#34d399;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span><span>Bảo hành miễn phí sau bàn giao · Báo giá nhanh · Giao hàng đúng hẹn.</span></div>
+    <div style="max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(20px,3vw,28px);">
+
+      <!-- GROUP: Dịch Vụ Lập Trình -->
+      <div class="grp-label grp-label-vid">
+        <div class="grp-bar grp-bar-vid"></div>
+        <div class="grp-body">
+          <div class="grp-title grp-title-vid">Dịch Vụ Lập Trình</div>
+          <div class="grp-chips">
+            <span class="grp-chip grp-chip-vid"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:3px;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Website</span>
+            <span class="grp-chip grp-chip-vid"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:3px;"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Bot Telegram</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card glass-card-glow">
+        <div style="padding:clamp(22px,4vw,40px) clamp(20px,4vw,44px);">
+          <div style="font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.3;margin-bottom:18px;">Thiết Kế Website&nbsp;•&nbsp;Tạo Bot Telegram&nbsp;•&nbsp;Hỗ Trợ Làm Bài Tập</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px;">
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;">
+              <span style="width:16px;height:16px;min-width:16px;border-radius:50%;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.35);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span>Thiết kế Website theo yêu cầu — từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;">
+              <span style="width:16px;height:16px;min-width:16px;border-radius:50%;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.35);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span>Bot Telegram thông minh — bot bán hàng, box chat, tool, script &amp; phân tích dữ liệu.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;">
+              <span style="width:16px;height:16px;min-width:16px;border-radius:50%;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.35);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span>Hỗ trợ làm bài tập lập trình — code theo yêu cầu, giải thích chi tiết, giao bài đúng tiến độ.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(240,236,248,0.6);line-height:1.55;">
+              <span style="width:16px;height:16px;min-width:16px;border-radius:50%;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.35);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span>Bảo hành miễn phí sau bàn giao · Báo giá nhanh · Giao hàng đúng hẹn.</span>
+            </div>
           </div>
           <button onclick="openServiceModal()" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:14px 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1));border:1.5px solid rgba(168,85,247,0.45);border-radius:100px;color:#C084FC;font-size:14px;font-weight:800;font-family:'Be Vietnam Pro',sans-serif;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s;letter-spacing:0.02em;" onmouseover="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.25),rgba(236,72,153,0.18))';this.style.borderColor='rgba(168,85,247,0.7)';this.style.boxShadow='0 0 22px rgba(168,85,247,0.3)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(168,85,247,0.15),rgba(236,72,153,0.1))';this.style.borderColor='rgba(168,85,247,0.45)';this.style.boxShadow='none'">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
@@ -1356,41 +1516,56 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
           </button>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- THANH TOÁN HỘ -->
-<section style="padding:0 0 clamp(48px,6vw,72px);position:relative;z-index:1;">
-  <div class="container">
-    <div id="tth-anchor" class="tth-card" style="max-width:680px;margin:0 auto;border-color:rgba(34,197,94,0.45);background:linear-gradient(145deg,rgba(2,10,4,0.08) 0%,rgba(2,8,3,0.10) 50%,rgba(3,12,5,0.08) 100%);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 2px 10px rgba(0,0,0,0.15),0 0 20px rgba(34,197,94,0.05);">
-      <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(34,197,94,0.85) 30%,rgba(16,185,129,0.55) 70%,transparent 100%);margin:0 5%;"></div>
-      <div class="tth-inner" style="cursor:pointer;" onclick="openTthModal()">
-        <div style="display:flex;align-items:center;gap:14px;">
-          <img src="assets/images/VISA.jpg" alt="VISA" style="width:52px;height:52px;min-width:52px;border-radius:16px;object-fit:cover;flex-shrink:0;box-shadow:0 0 16px rgba(34,197,94,0.25);border:1.5px solid rgba(34,197,94,0.4);">
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px;">Thanh Toán Hộ Quốc Tế</div>
-            <div style="font-size:11px;color:rgba(52,211,153,0.55);font-weight:500;line-height:1.5;">Không cần thẻ quốc tế · Nhanh · Uy tín</div>
+      <!-- GROUP: Thanh Toán Quốc Tế -->
+      <div class="grp-label grp-label-grn">
+        <div class="grp-bar" style="background:linear-gradient(180deg,#22c55e 0%,#16a34a 100%);box-shadow:0 0 10px rgba(34,197,94,0.55);"></div>
+        <div class="grp-body">
+          <div class="grp-title" style="color:#4ade80;">Thanh Toán Quốc Tế</div>
+          <div class="grp-chips">
+            <span class="grp-chip" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.22);color:rgba(74,222,128,0.65);">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:3px;"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Visa · Mastercard
+            </span>
           </div>
-          <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;">
-            <div class="tth-badge tth-bv">VISA</div>
-            <div class="tth-badge tth-bm">
-              <svg width="18" height="12" viewBox="0 0 36 24" fill="none">
-                <circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/>
-                <circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/>
-                <path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/>
-              </svg>MC
+        </div>
+      </div>
+
+      <div style="padding-bottom:clamp(48px,6vw,72px);">
+        <div id="tth-anchor" class="tth-card" style="max-width:100%;border-color:rgba(34,197,94,0.45);background:linear-gradient(145deg,rgba(2,10,4,0.08) 0%,rgba(2,8,3,0.10) 50%,rgba(3,12,5,0.08) 100%);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 1px 0 rgba(255,255,255,0.07) inset,0 2px 10px rgba(0,0,0,0.15),0 0 20px rgba(34,197,94,0.05);">
+          <div style="height:1px;background:linear-gradient(90deg,transparent 0%,rgba(34,197,94,0.85) 30%,rgba(16,185,129,0.55) 70%,transparent 100%);margin:0 5%;"></div>
+          <div class="tth-inner" style="cursor:pointer;" onclick="openTthModal()">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <img src="assets/images/VISA.jpg" alt="VISA" style="width:52px;height:52px;min-width:52px;border-radius:16px;object-fit:cover;flex-shrink:0;box-shadow:0 0 16px rgba(34,197,94,0.25);border:1.5px solid rgba(34,197,94,0.4);">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:3px;">Thanh Toán Hộ Quốc Tế</div>
+                <div style="font-size:11px;color:rgba(52,211,153,0.55);font-weight:500;line-height:1.5;">Không cần thẻ quốc tế · Nhanh · Uy tín</div>
+              </div>
+              <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;">
+                <div class="tth-badge tth-bv">VISA</div>
+                <div class="tth-badge tth-bm">
+                  <svg width="18" height="12" viewBox="0 0 36 24" fill="none">
+                    <circle cx="13" cy="12" r="10" fill="rgba(220,50,30,0.8)"/>
+                    <circle cx="23" cy="12" r="10" fill="rgba(255,160,0,0.8)"/>
+                    <path d="M18 4.5a10 10 0 010 15 10 10 0 000-15z" fill="rgba(255,100,0,0.95)"/>
+                  </svg>MC
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+              <div style="display:flex;gap:16px;">
+                <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Xử lý nhanh
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Sử dụng ổn định
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:rgba(34,197,94,0.75);">Xem chi tiết <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,0.75)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
             </div>
           </div>
         </div>
-        <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
-          <div style="display:flex;gap:16px;">
-            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">✓</span> Xử lý nhanh</div>
-            <div style="display:flex;align-items:center;gap:5px;font-size:11.5px;color:rgba(52,211,153,0.7);font-weight:600;"><span style="color:#34d399;">✓</span> Hoàn tiền nếu lỗi</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:rgba(34,197,94,0.75);">Xem chi tiết <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,0.75)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1399,7 +1574,7 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
 <div class="modal-overlay" id="serviceModal" onclick="if(event.target===this)closeServiceModal()">
   <div class="modal-box" style="max-width:380px;">
     <div id="serviceModalHeader" style="background:linear-gradient(135deg,rgba(168,85,247,0.18),rgba(236,72,153,0.12));border:1px solid rgba(168,85,247,0.4);border-radius:14px;padding:14px 18px;margin-bottom:16px;text-align:center;">
-      <div style="font-size:13px;font-weight:800;color:#E0B4FF;line-height:1.5;">💻 Dịch Vụ Lập Trình · Tư Vấn Miễn Phí</div>
+      <div style="font-size:13px;font-weight:800;color:#E0B4FF;line-height:1.5;display:flex;align-items:center;justify-content:center;gap:7px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E0B4FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Dịch Vụ Lập Trình · Tư Vấn Miễn Phí</div>
     </div>
     <div style="font-size:13.5px;font-weight:800;margin-bottom:18px;color:var(--text);">Chọn kênh liên hệ:</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
@@ -1675,7 +1850,8 @@ body{padding-bottom:calc(80px + env(safe-area-inset-bottom));}
 const PRICING = {
   gpt:        { monthly: 99000,  listMonth: 522000  },
   yt:         { monthly: 35000,  listMonth: 79000   },
-  capcut:     { monthly: 59000,  listMonth: 145000  }
+  capcut:     { monthly: 59000,  listMonth: 145000  },
+  gemini:     { monthly: 99000,  listMonth: 489000  }
 };
 
 function fmtVND(n){return Math.round(n).toLocaleString('vi-VN')+'đ';}
@@ -1684,43 +1860,13 @@ function perDay(total,months){return Math.round(total/(months*30));}
 function setText(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
 
 function initAllPricing(){
-  var g=PRICING.gpt, y=PRICING.yt, c=PRICING.capcut;
+  var g=PRICING.gpt, y=PRICING.yt, c=PRICING.capcut, gm=PRICING.gemini;
 
-  // GPT
-  setText('gptPerDay1',       'chỉ '+perDay(g.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
-  setText('plusYearlyOur',    fmtK(g.monthly*12));
-  setText('plusYearlyListFull',fmtVND(g.listMonth*12));
-  setText('plusYearlySaving', '💰 Tiết kiệm '+fmtVND(g.listMonth*12-g.monthly*12));
-  setText('gptPerDay12',      'chỉ '+perDay(g.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
-  var pb=document.getElementById('plusDiscountBadge');
-  if(pb)pb.textContent='-'+Math.round((1-g.monthly/g.listMonth)*100)+'%';
-
-  // YouTube — chỉ cập nhật perDay1, giá 12 tháng do ytPlanSwitch handle
-  setText('ytPerDay1', 'chỉ '+perDay(y.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
-
-  // CapCut
+  setText('gptPerDay1',   'chỉ '+perDay(g.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
+  setText('ytPerDay1',    'chỉ '+perDay(y.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
   setText('ccPerDay1',    'chỉ '+perDay(c.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
-  setText('ccYearlyOur',  fmtK(c.monthly*12));
-  setText('ccYearlyList', fmtVND(c.listMonth*12));
-  setText('ccYearlySaving','💰 Tiết kiệm '+fmtVND(c.listMonth*12-c.monthly*12));
-  setText('ccPerDay12',   'chỉ '+perDay(c.monthly*12,12).toLocaleString('vi-VN')+'đ / ngày');
+  setText('geminiPerDay', 'chỉ '+perDay(gm.monthly,1).toLocaleString('vi-VN')+'đ / ngày');
 }
-
-function _tabSwitch(tab,id1,id12,p1,p12,actBg,actColor){
-  var t1=document.getElementById(id1),t12=document.getElementById(id12);
-  var pn1=document.getElementById(p1),pn12=document.getElementById(p12);
-  if(!t1||!t12||!pn1||!pn12)return;
-  if(tab===1){
-    t1.style.background=actBg;t1.style.color=actColor;t1.style.boxShadow='0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3)';
-    t12.style.background='transparent';t12.style.color='rgba(192,132,252,0.45)';t12.style.boxShadow='none';
-    pn1.style.display='block';pn12.style.display='none';
-  }else{
-    t12.style.background=actBg;t12.style.color=actColor;t12.style.boxShadow='0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3)';
-    t1.style.background='transparent';t1.style.color='rgba(192,132,252,0.45)';t1.style.boxShadow='none';
-    pn1.style.display='none';pn12.style.display='block';
-  }
-}
-function plusTabSwitch(t){_tabSwitch(t,'plusTab1','plusTab12','plusPane1','plusPane12','linear-gradient(135deg,#92400e,#D97706,#EAB308)','#1a0800');if(t===12)showFreeMonthToast();}
 
 var _ytPlan='canhan';
 const YT_PLANS={
@@ -1735,19 +1881,7 @@ const YT_PLANS={
     features:['Nâng cấp gmail chính chủ','Nhóm gia đình ổn định, lâu dài','Bảo hành toàn bộ thời gian sử dụng']
   }
 };
-function ytRenderFeatures(plan){
-  var list=document.getElementById('ytFeatureList');if(!list)return;
-  list.innerHTML=YT_PLANS[plan].features.map(function(f){
-    return '<div style="display:flex;align-items:center;gap:6px;">'
-      +'<span style="width:15px;height:15px;border-radius:50%;background:rgba(52,211,153,0.18);border:1px solid rgba(52,211,153,0.4);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">'
-      +'<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
-      +'</span>'
-      +'<span style="font-size:10px;color:rgba(240,236,248,0.55);font-weight:500;">'+f+'</span>'
-      +'</div>';
-  }).join('');
-}
 function ytPlanSwitch(plan){
-  _ytPlan=plan;
   var d=YT_PLANS[plan];
   var actBg='linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)',actSh='0 1px 0 rgba(255,255,255,0.18) inset,0 2px 6px rgba(0,0,0,0.3)';
   var b1=document.getElementById('ytPlanCanhan'),b2=document.getElementById('ytPlanChinhchu');
@@ -1759,15 +1893,6 @@ function ytPlanSwitch(plan){
   setText('ytOrigVal',d.orig);
   setText('ytPerDay1','chỉ '+d.perday+' / ngày');
   var cta=document.getElementById('ytCtaBtn');if(cta)cta.setAttribute('onclick',"openModal('"+d.modal+"')");
-  ytRenderFeatures(plan);
-}
-function ccTabSwitch(t){_tabSwitch(t,'ccTab1','ccTab12','ccPane1','ccPane12','linear-gradient(135deg,#6b21a8,#A855F7,#C084FC)','#fff');if(t===12)showFreeMonthToast();}
-var _fmtTimer=null;
-function showFreeMonthToast(){
-  var el=document.getElementById('freeMonthToast');if(!el)return;
-  if(_fmtTimer){clearTimeout(_fmtTimer);}
-  el.classList.add('show');
-  _fmtTimer=setTimeout(function(){el.classList.remove('show');_fmtTimer=null;},2800);
 }
 function openTthModal(){var m=document.getElementById('tthModal');m.classList.add('open');document.body.style.overflow='hidden';}
 function closeTthModal(){var m=document.getElementById('tthModal');m.classList.remove('open');document.body.style.overflow='';}
@@ -1820,6 +1945,18 @@ var V1_DATA={
       '- <span style="color:#60a5fa;font-weight:600;">Bảo hành</span> toàn bộ thời gian sử dụng',
       '- Truy cập mọi <span style="color:#60a5fa;font-weight:600;">tính năng cao cấp Pro</span> của Capcut'
     ]
+  },
+  gemini:{
+    ico:'assets/images/gemini.jpg',
+    name:'Gemini Pro',
+    tag:'Gemini 3.1 Pro · Google AI Pro · 2TB Drive',
+    price:'99K / tháng',
+    badge:'-80% ✦',
+    bullets:[
+      '- Tài khoản sử dụng <span style="color:#60a5fa;font-weight:600;">1 mình</span>',
+      '- Gói Google One bao gồm: <span style="color:#8AB4F8;font-weight:600;">Gemini Pro</span>, <span style="color:#8AB4F8;font-weight:600;">Google Drive 2TB</span>, <span style="color:#8AB4F8;font-weight:600;">NotebookLM Pro</span>...',
+      '- <span style="color:#60a5fa;font-weight:600;">Bảo hành</span> toàn bộ thời gian sử dụng'
+    ]
   }
 };
 function _fillV1Modal(key){
@@ -1838,7 +1975,13 @@ function openModal(n){
   if(n.indexOf('YouTube')!==-1)key='yt';
   else if(n.indexOf('CapCut')!==-1)key='capcut';
   else if(n.indexOf('Visa')!==-1||n.indexOf('Thanh Toán')!==-1)key='visa';
+  else if(n.indexOf('Gemini')!==-1)key='gemini';
   _fillV1Modal(key);
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function openGeminiModal(){
+  _fillV1Modal('gemini');
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
@@ -2015,7 +2158,7 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 })();
 // ─────────────────────────────────────────────────────────
 
-document.addEventListener('DOMContentLoaded',function(){initAllPricing();ytRenderFeatures('canhan');});
+document.addEventListener('DOMContentLoaded',function(){initAllPricing();});
 
 function idxNavClick(e,idx,target){
   [0,1,2,3].forEach(i=>{var el=document.getElementById('idxNav'+i);if(el)el.classList.toggle('active',i===idx);});
@@ -2149,13 +2292,7 @@ function idxNavClick(e,idx,target){
   requestAnimationFrame(draw);
   document.addEventListener('visibilitychange',function(){if(document.hidden){cancelAnimationFrame(draw._raf);}else{draw._raf=requestAnimationFrame(draw);}});
 })();
-</script><!-- FREE MONTH TOAST -->
-<div id="freeMonthToast">
-  <div class="fmt-ico">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-5"/></svg>
-  </div>
-  <span class="fmt-text">🎁 Mua <em>12 tháng</em> tặng <em>1 tháng miễn phí</em></span>
-</div>
+</script>
 
 <!-- WELCOME POPUP -->
 <div id="welcomeOverlay">
@@ -2169,31 +2306,35 @@ function idxNavClick(e,idx,target){
       </div>
     </div>
     <div class="wp-title">Dịch vụ xịn. <em>Giá sinh viên.</em></div>
-    <div class="wp-sub">Xem nhanh các dịch vụ đang có tại store 👇</div>
+    <div class="wp-sub">Xem nhanh các dịch vụ đang có tại store</div>
     <div class="wp-list">
+      <!-- Row 1: AI accounts -->
       <div class="wp-row">
-        <div class="wp-ico" style="background:rgba(234,179,8,.13);border:1px solid rgba(234,179,8,.28);">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#EAB308" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><circle cx="12" cy="5" r="2"/></svg>
+        <div class="wp-ico" style="background:rgba(16,163,127,.13);border:1px solid rgba(16,163,127,.28);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="rgba(16,163,127,0.9)"><path d="M21.66 10.18a5.95 5.95 0 00-.44-4.81 5.99 5.99 0 00-6.43-2.87 5.95 5.95 0 00-4.49-2.02 5.99 5.99 0 00-5.71 4.15 5.95 5.95 0 00-3.97 2.88 5.99 5.99 0 00.74 7.04 5.95 5.95 0 00.44 4.81 5.99 5.99 0 006.43 2.87A5.95 5.95 0 0012.76 24a5.99 5.99 0 005.72-4.15 5.95 5.95 0 003.97-2.88 5.99 5.99 0 00-.79-6.79zM12.76 22.5a4.48 4.48 0 01-2.88-1.04l.14-.08 4.78-2.76a.78.78 0 00.39-.68v-6.74l2.02 1.17a.07.07 0 01.04.05v5.58a4.5 4.5 0 01-4.49 4.5zm-9.63-4.13a4.48 4.48 0 01-.54-3.01l.14.09 4.78 2.76a.77.77 0 00.78 0l5.84-3.37v2.33a.07.07 0 01-.03.06l-4.84 2.8a4.5 4.5 0 01-6.13-1.66zm-1.25-10.6a4.47 4.47 0 012.33-1.96v5.7a.77.77 0 00.39.67l5.82 3.36-2.02 1.17a.07.07 0 01-.07 0L3.5 13.98a4.5 4.5 0 01-.62-6.21zm16.6 3.86L13.65 8.27l2.02-1.16a.07.07 0 01.07 0l4.84 2.79a4.5 4.5 0 01-.68 8.11v-5.7a.78.78 0 00-.42-.68zm2.01-3.02l-.14-.09-4.77-2.76a.77.77 0 00-.78 0L9.97 9.13V6.8a.07.07 0 01.03-.06l4.84-2.79a4.5 4.5 0 016.65 4.66zm-12.62 4.14L5.85 11.58a.07.07 0 01-.04-.06V5.95a4.5 4.5 0 017.38-3.45l-.14.08-4.78 2.76a.78.78 0 00-.39.68v6.73zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5z"/></svg>
         </div>
-        <div class="wp-row-name">ChatGPT Plus · YouTube · CapCut Pro</div>
+        <div class="wp-row-name">ChatGPT Plus · Gemini Pro</div>
       </div>
+      <!-- Row 2: Video -->
+      <div class="wp-row">
+        <div class="wp-ico" style="background:rgba(255,0,0,.12);border:1px solid rgba(255,60,60,.28);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="rgba(255,80,80,0.9)"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.13-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.37.55A3.02 3.02 0 0 0 .5 6.19C0 8.03 0 12 0 12s0 3.97.5 5.81a3.02 3.02 0 0 0 2.13 2.14C4.46 20.5 12 20.5 12 20.5s7.54 0 9.37-.55a3.02 3.02 0 0 0 2.13-2.14C24 15.97 24 12 24 12s0-3.97-.5-5.81zM9.75 15.5V8.5l6.25 3.5-6.25 3.5z"/></svg>
+        </div>
+        <div class="wp-row-name">YouTube Premium · CapCut Pro</div>
+      </div>
+      <!-- Row 3: Visa -->
       <div class="wp-row">
         <div class="wp-ico" style="background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.25);">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/><rect x="5" y="13.5" width="4" height="2" rx="1" fill="rgba(96,165,250,.3)" stroke="none"/></svg>
         </div>
         <div class="wp-row-name">Thanh toán hộ Visa · Mastercard</div>
       </div>
+      <!-- Row 4: Dev -->
       <div class="wp-row">
         <div class="wp-ico" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.25);">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
         <div class="wp-row-name">Bot Telegram · Website</div>
-      </div>
-      <div class="wp-row">
-        <div class="wp-ico" style="background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.28);">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12l3 3 5-5"/></svg>
-        </div>
-        <div class="wp-row-name" style="color:#34d399;">12 tháng tặng 1 tháng miễn phí</div>
       </div>
     </div>
     <div class="wp-div"></div>
@@ -2251,7 +2392,4 @@ function idxNavClick(e,idx,target){
 </script>
 
 </body>
-  </html>
-
-
-
+          </html>

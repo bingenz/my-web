@@ -97,14 +97,12 @@ body::after{content:'';position:fixed;inset:0;z-index:0;
              radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,0,0,0.38) 0%,transparent 60%);
   pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
 body::before{content:'';position:fixed;inset:0;z-index:0;
-  /* mobile default: coarse 72px + sub-grid 18px — nhẹ, nhiều ô, có chiều sâu */
   background-image:
     linear-gradient(rgba(168,85,247,0.16) 1px,transparent 1px),
     linear-gradient(90deg,rgba(168,85,247,0.16) 1px,transparent 1px),
     linear-gradient(rgba(168,85,247,0.055) 1px,transparent 1px),
     linear-gradient(90deg,rgba(168,85,247,0.055) 1px,transparent 1px);
   background-size:72px 72px,72px 72px,18px 18px,18px 18px;
-  /* mask hẹp hơn ở trên → tạo ảo giác horizon xa */
   -webkit-mask-image:radial-gradient(ellipse 160% 130% at 50% 35%,black 0%,black 45%,transparent 88%);
   mask-image:radial-gradient(ellipse 160% 130% at 50% 35%,black 0%,black 45%,transparent 88%);
   pointer-events:none;will-change:transform;transform:translateZ(0);contain:strict;}
@@ -2179,7 +2177,6 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
 // ── 3D SPACE BANNER ──────────────────────────────────────
 (function(){
   var IS_MOB = window.innerWidth < 768;
-  if(IS_MOB && window.innerWidth < 480){var cv=document.getElementById('bannerCanvas');if(cv)cv.style.display='none';return;}
   var cv=document.getElementById('bannerCanvas');
   if(!cv)return;
   var ctx=cv.getContext('2d');
@@ -2295,16 +2292,14 @@ function idxNavClick(e,idx,target){
 (function(){
   const canvas = document.getElementById('bgGrid3d');
   const IS_MOBILE = window.innerWidth < 768;
-  // Skip heavy 3D grid on mobile — CSS grid background is sufficient
-  if(IS_MOBILE){canvas.style.display='none';return;}
   const ctx = canvas.getContext('2d');
   let W, H, gridPts=[], segments=[];
 
-  const FOV=650,
-        TILT=Math.PI*0.40,
-        CAM_Y=-520, CAM_Z=30, SPHERE_R=1200,
-        GRID_N=32,
-        EXT=600;
+  const FOV=IS_MOBILE ? 480 : 650,
+        TILT=IS_MOBILE ? Math.PI*0.46 : Math.PI*0.40,
+        CAM_Y=IS_MOBILE ? -980 : -520, CAM_Z=30, SPHERE_R=1200,
+        GRID_N = IS_MOBILE ? 38 : 32,
+        EXT=IS_MOBILE ? 900 : 600;
 
   function surfaceY(wx,wz){
     const d2=wx*wx+wz*wz,R2=SPHERE_R*SPHERE_R;
@@ -2354,13 +2349,13 @@ function idxNavClick(e,idx,target){
   setInterval(spawnSpark,IS_MOBILE?150:90);
 
   function drawPulseHead(x,y,scale,hue,fade){
-    const r=Math.max(2,scale*9),g=ctx.createRadialGradient(x,y,0,x,y,r);
-    g.addColorStop(0,`hsla(${hue},95%,82%,${(fade*.95).toFixed(3)})`);
-    g.addColorStop(0.4,`hsla(${hue},80%,65%,${(fade*.45).toFixed(3)})`);
+    const r=Math.max(2.5,scale*12),g=ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,`hsla(${hue},100%,90%,${(fade*1.0).toFixed(3)})`);
+    g.addColorStop(0.35,`hsla(${hue},90%,72%,${(fade*.6).toFixed(3)})`);
     g.addColorStop(1,'transparent');
     ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle=`hsla(${hue},100%,95%,${(fade*.85).toFixed(3)})`;
-    ctx.beginPath();ctx.arc(x,y,Math.max(0.8,scale*1.6),0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=`hsla(${hue},100%,98%,${(fade*.95).toFixed(3)})`;
+    ctx.beginPath();ctx.arc(x,y,Math.max(1,scale*2),0,Math.PI*2);ctx.fill();
   }
 
   function draw(){
@@ -2376,10 +2371,10 @@ function idxNavClick(e,idx,target){
       const wd=Math.sqrt(seg.wx*seg.wx+seg.wz*seg.wz);
       let boost=0;
       activeR.forEach(r=>{const diff=Math.abs(wd-r.worldR),bw=EXT*.15;if(diff<bw)boost+=(1-diff/bw)*(1-r.age)*.85;});
-      const a=Math.min(0.95,seg.alpha*(IS_MOBILE ? 0.75+boost : 0.5+boost)),e=wd/EXT;
+      const a=Math.min(0.95,seg.alpha*(IS_MOBILE ? 0.65+boost : 0.5+boost)),e=wd/EXT;
       const rr=Math.floor(148+e*88+boost*35),gg=Math.floor(85-e*13),bb=Math.floor(247-e*100);
       ctx.strokeStyle=`rgba(${rr},${gg},${bb},${a.toFixed(3)})`;
-      ctx.lineWidth=0.75+boost*2;
+      ctx.lineWidth=IS_MOBILE ? 0.45+boost*1.2 : 0.75+boost*2;
       ctx.beginPath();ctx.moveTo(seg.ax,seg.ay);ctx.lineTo(seg.bx,seg.by);ctx.stroke();
     });
     for(let pi=pulses.length-1;pi>=0;pi--){
@@ -2398,10 +2393,10 @@ function idxNavClick(e,idx,target){
       if(age>=1){sparks.splice(si,1);continue;}
       const alpha=age<.25?age/.25:1-(age-.25)/.75,r2=sp.size*(.6+alpha*1.4);
       if(sp.mobile){
-        // mobile: chấm sáng đơn giản, không gradient nặng
-        ctx.save();ctx.globalAlpha=alpha*0.7;
-        ctx.fillStyle=`hsl(${278+Math.random()*60},90%,75%)`;
-        ctx.beginPath();ctx.arc(sp.x,sp.y,Math.max(1,r2*0.5),0,Math.PI*2);ctx.fill();
+        // mobile: chấm sáng rõ hơn
+        ctx.save();ctx.globalAlpha=alpha*1.0;
+        ctx.fillStyle=`hsl(${278+Math.random()*60},100%,85%)`;
+        ctx.beginPath();ctx.arc(sp.x,sp.y,Math.max(1.5,r2*0.75),0,Math.PI*2);ctx.fill();
         ctx.restore();continue;
       }
       const g2=ctx.createRadialGradient(sp.x,sp.y,0,sp.x,sp.y,r2);
@@ -2518,4 +2513,4 @@ function idxNavClick(e,idx,target){
 </script>
 
 </body>
-              </html>
+          </html>

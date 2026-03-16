@@ -2221,9 +2221,9 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
   }
 
   var lastFrame=0;
-  var FRAME_INTERVAL = IS_MOB ? 1000/30 : 0; // 30fps on mobile, uncapped desktop
+  var FRAME_INTERVAL = 1000/30; // 30fps on all devices
   function draw(ts){
-    if(IS_MOB && ts - lastFrame < FRAME_INTERVAL){RAF=requestAnimationFrame(draw);return;}
+    if(ts - lastFrame < FRAME_INTERVAL){RAF=requestAnimationFrame(draw);return;}
     lastFrame=ts;
     ctx.clearRect(0,0,W,H);
     var alive=[];
@@ -2246,10 +2246,6 @@ document.addEventListener('click',e=>{if(!e.target.closest('#topHam')&&!e.target
       ctx.globalAlpha=alpha;
       ctx.font='600 '+fs.toFixed(1)+'px "SF Mono","Fira Code",monospace';
       ctx.fillStyle='hsl('+p.hue+',80%,72%)';
-      if(!IS_MOB){
-        ctx.shadowColor='hsl('+p.hue+',90%,65%)';
-        ctx.shadowBlur=fs*0.9;
-      }
       ctx.fillText(p.token,sx,sy);
       ctx.restore();
       alive.push(p);
@@ -2332,21 +2328,20 @@ function idxNavClick(e,idx,target){
 
   const ripples=[];
   function spawnRipple(){ripples.push({born:performance.now(),life:3200});}
-  setInterval(spawnRipple,1600);spawnRipple();
+  setInterval(spawnRipple,2400);spawnRipple();
 
   const pulses=[];
   function spawnPulse(){const isX=Math.random()>.5,idx=Math.floor(Math.random()*(GRID_N+1)),hue=Math.random()>.5?278:328,fwd=Math.random()>.5;pulses.push({isX,idx,t:fwd?0:1,speed:(0.010+Math.random()*0.016)*(fwd?1:-1),hue});}
-  setInterval(spawnPulse, IS_MOBILE ? 280 : 320);
-  for(let i=0;i<(IS_MOBILE?18:10);i++){spawnPulse();pulses[pulses.length-1].t=Math.random();}
+  setInterval(spawnPulse, IS_MOBILE ? 420 : 480);
+  for(let i=0;i<(IS_MOBILE?10:6);i++){spawnPulse();pulses[pulses.length-1].t=Math.random();}
 
   const sparks=[];
   function spawnSpark(){
     if(IS_MOBILE){
-      // mobile: hạt nhẹ không blur
       const i=Math.floor(Math.random()*(GRID_N+1)),j=Math.floor(Math.random()*(GRID_N+1));if(!gridPts[i]?.[j]?.p)return;const{sx,sy,scale}=gridPts[i][j].p;if(Math.sqrt(gridPts[i][j].wx**2+gridPts[i][j].wz**2)>EXT*0.68)return;sparks.push({x:sx,y:sy,born:performance.now(),life:500+Math.random()*500,size:scale*4,mobile:true});return;
     }
     const i=Math.floor(Math.random()*(GRID_N+1)),j=Math.floor(Math.random()*(GRID_N+1));if(!gridPts[i]?.[j]?.p)return;const{sx,sy,scale}=gridPts[i][j].p;if(Math.sqrt(gridPts[i][j].wx**2+gridPts[i][j].wz**2)>EXT*0.72)return;sparks.push({x:sx,y:sy,born:performance.now(),life:700+Math.random()*700,size:scale*6});}
-  setInterval(spawnSpark,IS_MOBILE?150:90);
+  setInterval(spawnSpark,IS_MOBILE?300:350);
 
   function drawPulseHead(x,y,scale,hue,fade){
     const r=Math.max(2.5,scale*12),g=ctx.createRadialGradient(x,y,0,x,y,r);
@@ -2358,25 +2353,46 @@ function idxNavClick(e,idx,target){
     ctx.beginPath();ctx.arc(x,y,Math.max(1,scale*2),0,Math.PI*2);ctx.fill();
   }
 
-  function draw(){
+  let _raf=null, _lastT=0;
+  const _FRAME_MS = 1000/30; // cap 30fps
+
+  function draw(now){
+    if(now - _lastT < _FRAME_MS){ _raf=requestAnimationFrame(draw); return; }
+    _lastT = now;
     ctx.clearRect(0,0,W,H);
     const bg=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.8);
     bg.addColorStop(0,'#0c0420');bg.addColorStop(0.6,'#080218');bg.addColorStop(1,'#04010e');
     ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-    const now=performance.now();
-    for(let ri=ripples.length-1;ri>=0;ri--){if(now-ripples[ri].born>=ripples[ri].life)ripples.splice(ri,1);}
-    const activeR=ripples.map(r=>({worldR:(now-r.born)/r.life*EXT*2.4,age:(now-r.born)/r.life}));
+    const now2=performance.now();
+    for(let ri=ripples.length-1;ri>=0;ri--){if(now2-ripples[ri].born>=ripples[ri].life)ripples.splice(ri,1);}
+    const activeR=ripples.map(r=>({worldR:(now2-r.born)/r.life*EXT*2.4,age:(now2-r.born)/r.life}));
+
+    // Batch segment drawing: group into 4 alpha buckets to minimize ctx.stroke() calls
+    const BUCKETS=4;
+    const buckets=[];
+    for(let b=0;b<BUCKETS;b++)buckets.push([]);
     segments.forEach(seg=>{
       if(seg.alpha<0.01)return;
       const wd=Math.sqrt(seg.wx*seg.wx+seg.wz*seg.wz);
       let boost=0;
       activeR.forEach(r=>{const diff=Math.abs(wd-r.worldR),bw=EXT*.15;if(diff<bw)boost+=(1-diff/bw)*(1-r.age)*.85;});
-      const a=Math.min(0.95,seg.alpha*(IS_MOBILE ? 0.65+boost : 0.5+boost)),e=wd/EXT;
-      const rr=Math.floor(148+e*88+boost*35),gg=Math.floor(85-e*13),bb=Math.floor(247-e*100);
-      ctx.strokeStyle=`rgba(${rr},${gg},${bb},${a.toFixed(3)})`;
-      ctx.lineWidth=IS_MOBILE ? 0.45+boost*1.2 : 0.75+boost*2;
-      ctx.beginPath();ctx.moveTo(seg.ax,seg.ay);ctx.lineTo(seg.bx,seg.by);ctx.stroke();
+      const a=Math.min(0.95,seg.alpha*(IS_MOBILE ? 0.65+boost : 0.5+boost));
+      const bi=Math.min(BUCKETS-1,Math.floor(a*(BUCKETS-0.01)));
+      buckets[bi].push({seg,a,boost,wd});
     });
+    for(let b=0;b<BUCKETS;b++){
+      if(!buckets[b].length)continue;
+      const rep=buckets[b][0];
+      const e=rep.wd/EXT;
+      const rr=Math.floor(148+e*88+rep.boost*35),gg=Math.floor(85-e*13),bb2=Math.floor(247-e*100);
+      const lw=IS_MOBILE ? 0.45+rep.boost*1.2 : 0.75+rep.boost*2;
+      ctx.strokeStyle=`rgba(${rr},${gg},${bb2},${rep.a.toFixed(2)})`;
+      ctx.lineWidth=lw;
+      ctx.beginPath();
+      buckets[b].forEach(({seg})=>{ctx.moveTo(seg.ax,seg.ay);ctx.lineTo(seg.bx,seg.by);});
+      ctx.stroke();
+    }
+
     for(let pi=pulses.length-1;pi>=0;pi--){
       const p=pulses[pi];p.t+=p.speed;
       if(p.t<0||p.t>1){pulses.splice(pi,1);continue;}
@@ -2389,11 +2405,10 @@ function idxNavClick(e,idx,target){
       }
     }
     for(let si=sparks.length-1;si>=0;si--){
-      const sp=sparks[si],age=(now-sp.born)/sp.life;
+      const sp=sparks[si],age=(now2-sp.born)/sp.life;
       if(age>=1){sparks.splice(si,1);continue;}
       const alpha=age<.25?age/.25:1-(age-.25)/.75,r2=sp.size*(.6+alpha*1.4);
       if(sp.mobile){
-        // mobile: chấm sáng rõ hơn
         ctx.save();ctx.globalAlpha=alpha*1.0;
         ctx.fillStyle=`hsl(${278+Math.random()*60},100%,85%)`;
         ctx.beginPath();ctx.arc(sp.x,sp.y,Math.max(1.5,r2*0.75),0,Math.PI*2);ctx.fill();
@@ -2408,10 +2423,14 @@ function idxNavClick(e,idx,target){
     const vig=ctx.createRadialGradient(W/2,H*.5,H*.12,W/2,H*.5,Math.max(W,H)*.82);
     vig.addColorStop(0,'transparent');vig.addColorStop(1,'rgba(4,1,12,0.88)');
     ctx.fillStyle=vig;ctx.fillRect(0,0,W,H);
-    requestAnimationFrame(draw);
+    _raf=requestAnimationFrame(draw);
   }
-  requestAnimationFrame(draw);
-  document.addEventListener('visibilitychange',function(){if(document.hidden){cancelAnimationFrame(draw._raf);}else{draw._raf=requestAnimationFrame(draw);}});
+  _raf=requestAnimationFrame(draw);
+  // Fix: properly pause when tab hidden
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){cancelAnimationFrame(_raf);_raf=null;}
+    else if(!_raf){_raf=requestAnimationFrame(draw);}
+  });
 })();
 </script>
 

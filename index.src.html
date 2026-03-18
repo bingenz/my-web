@@ -24,6 +24,11 @@
 
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
+    html.scroll-lock,
+    body.scroll-lock {
+      overflow: hidden !important;
+      overscroll-behavior: none;
+    }
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 84px;
@@ -1057,7 +1062,7 @@
         </div>
       </div>
       <div class="welcome-actions">
-        <a class="cta buy welcome-primary" href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noopener" onclick="closeWelcome()">Tham gia Group ngay</a>
+        <a class="cta buy welcome-primary" href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noopener" onclick="attemptCloseWelcome()">Tham gia Group ngay</a>
         <button class="welcome-skip" id="welcomeSkipBtn" onclick="attemptCloseWelcome()" disabled>Bỏ qua, xem Store (2s)</button>
       </div>
     </div>
@@ -1336,6 +1341,29 @@
 
     let welcomeOpen = false;
     let welcomeCanClose = false;
+    let lockedScrollY = 0;
+
+    function lockWelcomeScroll() {
+      lockedScrollY = window.scrollY || window.pageYOffset || 0;
+      document.documentElement.classList.add("scroll-lock");
+      document.body.classList.add("scroll-lock");
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${lockedScrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+    }
+
+    function unlockWelcomeScroll() {
+      document.documentElement.classList.remove("scroll-lock");
+      document.body.classList.remove("scroll-lock");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      window.scrollTo(0, lockedScrollY);
+    }
 
     function preventWelcomeScroll(event) {
       if (!welcomeOpen) return;
@@ -1344,7 +1372,7 @@
 
     function preventWelcomeKeyScroll(event) {
       if (!welcomeOpen) return;
-      const blockedKeys = [" ", "ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End"];
+      const blockedKeys = [" ", "ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", "Escape"];
       if (blockedKeys.includes(event.key)) {
         event.preventDefault();
       }
@@ -1359,7 +1387,7 @@
       welcomeCanClose = false;
       skipBtn.disabled = true;
       overlay.classList.add("open");
-      document.body.style.overflow = "hidden";
+      lockWelcomeScroll();
       window.scrollTo(0, 0);
 
       let remain = 2;
@@ -1387,7 +1415,7 @@
       if (!overlay) return;
       overlay.classList.remove("open");
       welcomeOpen = false;
-      document.body.style.overflow = "";
+      unlockWelcomeScroll();
     }
 
     window.addEventListener("wheel", preventWelcomeScroll, { passive: false });

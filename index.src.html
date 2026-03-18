@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BinGenZ Â· TÃ i khoáº£n premium GiÃ¡ sinh viÃªn</title>
-  <meta name="description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cáº¥p. Nháº­n thanh toÃ¡n Visa, Mastercard, PayPal vÃ  nháº­n Code Bot Telegram.">
+  <title>BinGenZ · Tài khoản premium Giá sinh viên</title>
+  <meta name="description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -596,135 +596,135 @@
     .welcome-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.62);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       display: none;
       place-items: center;
       z-index: 120;
-      padding: 16px;
+      padding: 20px;
     }
     .welcome-overlay.open { display: grid; }
     .welcome-box {
-      width: min(640px, 95vw);
-      border-radius: 30px;
-      border: 1px solid #c7d2fe;
+      width: min(460px, 94vw);
+      border-radius: 28px;
       background: #fff;
-      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
-      padding: clamp(18px, 4vw, 28px);
+      box-shadow: 0 32px 80px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(199,210,254,0.7);
+      padding: clamp(20px, 5vw, 32px);
       display: grid;
       gap: 16px;
     }
-    .welcome-kicker {
-      width: fit-content;
+    .welcome-badge {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       border-radius: 999px;
-      border: 1px solid #bfdbfe;
-      background: #eef2ff;
-      padding: 8px 14px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      padding: 7px 14px;
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.09em;
-      color: #4338ca;
+      letter-spacing: 0.1em;
+      color: #475569;
       text-transform: uppercase;
+      width: fit-content;
     }
-    .welcome-kicker::before {
-      content: "";
-      width: 8px;
-      height: 8px;
+    .welcome-badge-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #6366f1;
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+      flex-shrink: 0;
     }
     .welcome-title {
       margin: 0;
-      font-size: clamp(1.45rem, 4.2vw, 2.5rem);
+      font-size: clamp(1.25rem, 4.5vw, 1.7rem);
       line-height: 1.15;
       letter-spacing: -0.02em;
       color: #0f172a;
+      font-weight: 800;
     }
     .welcome-sub {
       margin: 0;
-      font-size: clamp(14px, 2.4vw, 18px);
-      color: #475569;
-      line-height: 1.45;
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
     }
-    .welcome-sub strong {
+    .welcome-reward {
+      font-weight: 700;
       color: #4338ca;
-      display: block;
-      margin-top: 2px;
     }
-    .welcome-gift {
-      margin: 0;
-      border-radius: 18px;
-      border: 1px solid #dbeafe;
-      background: #f9fbff;
-      color: #334155;
-      padding: 14px 15px;
+    .welcome-gift-card {
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      padding: 14px 16px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
-    .welcome-gift-ico {
-      width: 44px;
-      height: 44px;
+    .welcome-gift-icon {
+      width: 46px;
+      height: 46px;
       border-radius: 14px;
-      border: 1px solid #c7d2fe;
-      background: #eef2ff;
-      color: #4338ca;
+      border: 1px solid #e2e8f0;
+      background: #fff;
       display: grid;
       place-items: center;
       flex-shrink: 0;
+      font-size: 22px;
     }
-    .welcome-gift-title {
-      font-size: clamp(1.45rem, 3.2vw, 2rem);
-      font-weight: 800;
-      line-height: 1.1;
+    .welcome-gift-name {
+      font-size: 15px;
+      font-weight: 700;
       color: #0f172a;
+      line-height: 1.3;
     }
-    .welcome-gift-sub {
+    .welcome-gift-note {
       font-size: 12px;
       color: #64748b;
+      margin-top: 2px;
     }
-    .welcome-actions {
-      display: grid;
-      gap: 10px;
-    }
-    .welcome-primary {
-      width: fit-content;
-      border-radius: 999px;
-      padding: 12px 22px;
-      font-size: clamp(1rem, 2.2vw, 1.45rem);
+    .welcome-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border-radius: 16px;
+      padding: 15px 20px;
+      font-size: 15px;
       font-weight: 800;
-      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
-      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.25);
+      color: #fff;
+      background: #4f46e5;
+      text-decoration: none;
+      text-align: center;
+      border: 0;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(79,70,229,0.28);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-    .welcome-primary:hover {
+    .welcome-cta:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(79, 70, 229, 0.32);
+      box-shadow: 0 12px 28px rgba(79,70,229,0.36);
     }
-    .welcome-note {
-      margin: 0;
-      color: #64748b;
+    .welcome-cta:active { transform: translateY(0); }
+    .welcome-skip {
+      display: block;
+      width: 100%;
+      border: 0;
+      background: none;
+      color: #94a3b8;
       font-size: 12px;
       font-weight: 600;
-    }
-    .welcome-skip {
-      border: 1px solid #cbd5e1;
-      background: #fff;
-      color: #475569;
-      border-radius: 999px;
-      padding: 10px 14px;
-      font-weight: 700;
-      font-size: 13px;
       cursor: pointer;
+      padding: 6px;
       text-align: center;
-      width: 100%;
+      margin-top: 8px;
+      transition: color 0.15s;
     }
+    .welcome-skip:not(:disabled):hover { color: #475569; }
     .welcome-skip:disabled {
-      opacity: 0.7;
+      opacity: 0.5;
       cursor: not-allowed;
     }
 
@@ -894,8 +894,6 @@
       .personal-list li { width: 100%; }
       .community-sub { white-space: normal; }
       .community-sub-reward { display: block; margin-top: 2px; }
-      .welcome-gift-title { font-size: clamp(1.2rem, 5.4vw, 1.5rem); }
-      .welcome-primary { width: 100%; justify-content: center; }
     }
   </style>
   <script src="protect.js"></script>
@@ -911,11 +909,11 @@
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
-      <div class="logo">Bin<span>GenZ</span> Â· AI Â· Premium</div>
+      <div class="logo">Bin<span>GenZ</span> · AI · Premium</div>
       <div class="top-actions">
         <a class="chip" href="#home">Home</a>
-        <a class="chip primary" href="#product-note">Xem sáº£n pháº©m</a>
-        <a class="chip" href="#contact">LiÃªn há»‡</a>
+        <a class="chip primary" href="#product-note">Xem sản phẩm</a>
+        <a class="chip" href="#contact">Liên hệ</a>
       </div>
     </div>
   </header>
@@ -925,30 +923,30 @@
       <div class="container hero-box">
         <div>
           <span class="kicker">AI & Premium Account Store</span>
-          <h1 class="title"><span class="title-main">TÃ i khoáº£n premium </span><span class="accent">GiÃ¡ sinh viÃªn</span></h1>
-          <p>ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cáº¥p. Nháº­n thanh toÃ¡n Visa, Mastercard, PayPal vÃ  nháº­n Code Bot Telegram.</p>
+          <h1 class="title"><span class="title-main">Tài khoản premium </span><span class="accent">Giá sinh viên</span></h1>
+          <p>ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.</p>
           <div class="hero-pill">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9a3412" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            Chá»‰ tá»« 3.000Ä‘ / ngÃ y
+            Chỉ từ 3.000đ / ngày
           </div>
           <ul class="hero-note-list">
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Xá»­ lÃ½ nhanh trong 1 phÃºt</li>
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Báº£o hÃ nh vÃ  hoÃ n tiá»n náº¿u lá»—i</li>
-            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Facebook chÃ­nh chá»§</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Xử lý nhanh trong 1 phút</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Bảo hành và hoàn tiền nếu lỗi</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Facebook chính chủ</li>
           </ul>
           <div class="hero-proof">
             <span class="hero-proof-avatars">
-              <img src="assets/images/avt1.jpg" alt="KhÃ¡ch hÃ ng 1" width="34" height="34" decoding="async">
-              <img src="assets/images/avt2.jpg" alt="KhÃ¡ch hÃ ng 2" width="34" height="34" decoding="async">
-              <img src="assets/images/avt3.jpg" alt="KhÃ¡ch hÃ ng 3" width="34" height="34" decoding="async">
-              <img src="assets/images/avt4.jpg" alt="KhÃ¡ch hÃ ng 4" width="34" height="34" decoding="async">
-              <img src="assets/images/avt5.jpg" alt="KhÃ¡ch hÃ ng 5" width="34" height="34" decoding="async">
+              <img src="assets/images/avt1.jpg" alt="Khách hàng 1" width="34" height="34" decoding="async">
+              <img src="assets/images/avt2.jpg" alt="Khách hàng 2" width="34" height="34" decoding="async">
+              <img src="assets/images/avt3.jpg" alt="Khách hàng 3" width="34" height="34" decoding="async">
+              <img src="assets/images/avt4.jpg" alt="Khách hàng 4" width="34" height="34" decoding="async">
+              <img src="assets/images/avt5.jpg" alt="Khách hàng 5" width="34" height="34" decoding="async">
             </span>
-            <span>200+ khÃ¡ch tin tÆ°á»Ÿng</span>
+            <span>200+ khách tin tưởng</span>
           </div>
           <div class="hero-cta-row">
             <a class="chip hero-fb hero-fb-soft" href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noopener">
-              Check uy tÃ­n Facebook
+              Check uy tín Facebook
               <span class="hero-fb-arrow">
                 <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"/>
@@ -960,16 +958,16 @@
         </div>
       </div>
       <div class="container community-wrap">
-        <div class="community-badge"><span style="width:6px;height:6px;border-radius:50%;background:#6366f1;"></span> Cá»™ng Ä‘á»“ng</div>
-        <h3 class="community-title">GenZ Äam MÃª IT Â· Vibe Code Â· AI</h3>
-        <p class="community-sub">Tham gia group â†’ chÆ¡i mini game â†’ nháº­n <strong class="community-sub-reward">ChatGPT Plus Codex Â· YouTube Â· CapCut miá»…n phÃ­</strong></p>
+        <div class="community-badge"><span style="width:6px;height:6px;border-radius:50%;background:#6366f1;"></span> Cộng đồng</div>
+        <h3 class="community-title">GenZ Đam Mê IT · Vibe Code · AI</h3>
+        <p class="community-sub">Tham gia group → chơi mini game → nhận <strong class="community-sub-reward">ChatGPT Plus Codex · YouTube · CapCut miễn phí</strong></p>
         <div class="gift-box">
           <span class="ico">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 1 1 0-5c3.5 0 4.5 5 4.5 5z"/><path d="M12 7h4.5a2.5 2.5 0 1 0 0-5c-3.5 0-4.5 5-4.5 5z"/></svg>
           </span>
           <div>
-            <div class="gift-title">QuÃ  táº·ng miá»…n phÃ­</div>
-            <div class="gift-sub">á»Ÿ bÃ i viáº¿t ghim trong group</div>
+            <div class="gift-title">Quà tặng miễn phí</div>
+            <div class="gift-sub">ở bài viết ghim trong group</div>
           </div>
         </div>
         <a class="cta buy community-btn" href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noopener">Tham gia Group ngay</a>
@@ -978,13 +976,13 @@
         <div class="personal-head">
           <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></span>
           <div>
-            <h3 class="personal-title">TÃ i khoáº£n cÃ¡ nhÃ¢n Â· Chá»‰ mÃ¬nh báº¡n dÃ¹ng</h3>
+            <h3 class="personal-title">Tài khoản cá nhân · Chỉ mình bạn dùng</h3>
           </div>
         </div>
         <ul class="personal-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 1 mÃ¬nh báº¡n dÃ¹ng 1 tÃ i khoáº£n</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Báº£o hÃ nh toÃ n bá»™ thá»i gian sá»­ dá»¥ng</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Truy cáº­p má»i tÃ­nh nÄƒng cao cáº¥p</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 1 mình bạn dùng 1 tài khoản</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Bảo hành toàn bộ thời gian sử dụng</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Truy cập mọi tính năng cao cấp</li>
         </ul>
       </div>
     </section>
@@ -997,30 +995,30 @@
 
     <section class="section" id="source-code">
       <div class="container">
-        <h2>Dá»‹ch vá»¥ bá»• sung</h2>
+        <h2>Dịch vụ bổ sung</h2>
         <div class="grid">
           <article class="wide">
-            <h3>Dá»‹ch vá»¥ láº­p trÃ¬nh</h3>
+            <h3>Dịch vụ lập trình</h3>
             <ul>
-              <li>Thiáº¿t káº¿ Website theo yÃªu cáº§u, tá»« landing page, portfolio Ä‘áº¿n web bÃ¡n hÃ ng Ä‘áº§y Ä‘á»§ tÃ­nh nÄƒng.</li>
-              <li>Bot Telegram thÃ´ng minh: bot bÃ¡n hÃ ng, box chat, script vÃ  phÃ¢n tÃ­ch dá»¯ liá»‡u.</li>
-              <li>Há»— trá»£ lÃ m bÃ i táº­p láº­p trÃ¬nh: code theo yÃªu cáº§u, giáº£i thÃ­ch chi tiáº¿t, giao Ä‘Ãºng tiáº¿n Ä‘á»™.</li>
-              <li>Báº£o hÃ nh miá»…n phÃ­ sau bÃ n giao, bÃ¡o giÃ¡ nhanh, giao Ä‘Ãºng háº¹n.</li>
+              <li>Thiết kế Website theo yêu cầu, từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</li>
+              <li>Bot Telegram thông minh: bot bán hàng, box chat, script và phân tích dữ liệu.</li>
+              <li>Hỗ trợ làm bài tập lập trình: code theo yêu cầu, giải thích chi tiết, giao đúng tiến độ.</li>
+              <li>Bảo hành miễn phí sau bàn giao, báo giá nhanh, giao đúng hẹn.</li>
             </ul>
             <div class="cta-row" style="margin-top:14px">
-              <button class="cta buy" onclick="openCustomModal('Dá»‹ch vá»¥ láº­p trÃ¬nh Â· TÆ° váº¥n miá»…n phÃ­')">LiÃªn há»‡ tÆ° váº¥n miá»…n phÃ­</button>
+              <button class="cta buy" onclick="openCustomModal('Dịch vụ lập trình · Tư vấn miễn phí')">Liên hệ tư vấn miễn phí</button>
             </div>
           </article>
           <article class="wide">
-            <h3>Thanh toÃ¡n há»™ quá»‘c táº¿</h3>
+            <h3>Thanh toán hộ quốc tế</h3>
             <ul>
-              <li>Há»— trá»£ Visa, Mastercard, PayPal, USDT.</li>
-              <li>Thanh toÃ¡n má»i dá»‹ch vá»¥, xá»­ lÃ½ nhanh trong 1 phÃºt.</li>
-              <li>PhÃ­ dá»‹ch vá»¥: 22% vá»›i Ä‘Æ¡n dÆ°á»›i 1.000.000Ä‘, vÃ  15% vá»›i Ä‘Æ¡n tá»« 1.000.000Ä‘ trá»Ÿ lÃªn.</li>
-              <li>Báº£o hÃ nh & hoÃ n tiá»n náº¿u giao dá»‹ch phÃ¡t sinh lá»—i tá»« phÃ­a xá»­ lÃ½.</li>
+              <li>Hỗ trợ Visa, Mastercard, PayPal, USDT.</li>
+              <li>Thanh toán mọi dịch vụ, xử lý nhanh trong 1 phút.</li>
+              <li>Phí dịch vụ: 22% với đơn dưới 1.000.000đ, và 15% với đơn từ 1.000.000đ trở lên.</li>
+              <li>Bảo hành & hoàn tiền nếu giao dịch phát sinh lỗi từ phía xử lý.</li>
             </ul>
             <div class="cta-row" style="margin-top:14px">
-              <button class="cta light" onclick="openCustomModal('Thanh ToÃ¡n Há»™ Quá»‘c Táº¿ Â· Visa / Mastercard / PayPal')">Xem chi tiáº¿t</button>
+              <button class="cta light" onclick="openCustomModal('Thanh Toán Hộ Quốc Tế · Visa / Mastercard / PayPal')">Xem chi tiết</button>
             </div>
           </article>
         </div>
@@ -1029,7 +1027,7 @@
 
     <section class="section" id="contact">
       <div class="container">
-        <h2>LiÃªn há»‡</h2>
+        <h2>Liên hệ</h2>
         <div class="contact-list">
           <a class="contact-item" href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noopener" aria-label="Facebook">
             <img src="assets/images/fb.jpg" alt="Facebook" width="42" height="42" loading="lazy" decoding="async">
@@ -1048,51 +1046,53 @@
     </section>
   </main>
 
-  <div class="footer">Â© 2026 Bingenz.com Â· 08989.08101</div>
+  <div class="footer">© 2026 Bingenz.com · 08989.08101</div>
 
-  <div class="welcome-overlay" id="welcomeOverlay" onclick="if(event.target===this)attemptCloseWelcome()">
+  <div class="welcome-overlay" id="welcomeOverlay">
     <div class="welcome-box" id="welcomeBox">
-      <div class="welcome-kicker">Cá»™ng Ä‘á»“ng</div>
-      <h3 class="welcome-title">GenZ Äam MÃª IT Â· Vibe Code Â· AI</h3>
-      <p class="welcome-sub">Tham gia group â†’ chÆ¡i mini game â†’ nháº­n <strong>ChatGPT Plus Codex Â· YouTube Â· CapCut miá»…n phÃ­</strong></p>
-      <div class="welcome-gift">
-        <div class="welcome-gift-ico">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 1 1 0-5c3.5 0 4.5 5 4.5 5z"/><path d="M12 7h4.5a2.5 2.5 0 1 0 0-5c-3.5 0-4.5 5-4.5 5z"/></svg>
-        </div>
+      <div class="welcome-badge"><span class="welcome-badge-dot"></span>Cộng đồng</div>
+      <h3 class="welcome-title">GenZ Đam Mê IT · Vibe Code · AI</h3>
+      <p class="welcome-sub">
+        Tham gia group → chơi mini game → nhận<br>
+        <span class="welcome-reward">ChatGPT Plus Codex · YouTube · CapCut miễn phí</span>
+      </p>
+      <div class="welcome-gift-card">
+        <div class="welcome-gift-icon">🎁</div>
         <div>
-          <div class="welcome-gift-title">QuÃ  táº·ng miá»…n phÃ­</div>
-          <div class="welcome-gift-sub">á»Ÿ bÃ i viáº¿t ghim trong group</div>
+          <div class="welcome-gift-name">Quà tặng miễn phí</div>
+          <div class="welcome-gift-note">ở bài viết ghim trong group</div>
         </div>
       </div>
-      <div class="welcome-actions">
-        <a class="cta buy welcome-primary" href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noopener" onclick="closeWelcome()">Tham gia Group ngay</a>
-        <button class="welcome-skip" id="welcomeSkipBtn" onclick="attemptCloseWelcome()" disabled>Bá» qua, xem Store (2s)</button>
+      <div>
+        <a class="welcome-cta" href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noopener" onclick="closeWelcome()">Tham gia Group ngay</a>
+        <button class="welcome-skip" id="welcomeSkipBtn" onclick="attemptCloseWelcome()" disabled>Bỏ qua, xem Store (2s)</button>
       </div>
     </div>
+  </div>
   </div>
 
   <div class="modal" id="productModal" onclick="if(event.target===this)closeModal()">
     <div class="modal-box">
       <div class="modal-head">
         <div class="modal-head-left">
-          <img id="mHeadIco" class="modal-head-ico" src="assets/images/GPT.jpg" alt="Icon sáº£n pháº©m" width="32" height="32" loading="lazy" decoding="async">
-          <h3 class="modal-title" id="mName">ThÃ´ng tin sáº£n pháº©m</h3>
+          <img id="mHeadIco" class="modal-head-ico" src="assets/images/GPT.jpg" alt="Icon sản phẩm" width="32" height="32" loading="lazy" decoding="async">
+          <h3 class="modal-title" id="mName">Thông tin sản phẩm</h3>
         </div>
-        <button class="close-btn" onclick="closeModal()">ÄÃ³ng</button>
+        <button class="close-btn" onclick="closeModal()">Đóng</button>
       </div>
       <div class="modal-body">
         <div class="modal-desc-wrap" id="mDescWrap">
           <ul class="modal-list" id="mBullets"></ul>
         </div>
-        <div class="modal-contact-note" id="mContactNote">LiÃªn há»‡ Zalo hoáº·c Telegram Ä‘á»ƒ nháº­n tÃ i khoáº£n ngay</div>
+        <div class="modal-contact-note" id="mContactNote">Liên hệ Zalo hoặc Telegram để nhận tài khoản ngay</div>
         <div class="modal-actions">
           <a class="cta light contact-cta" href="https://t.me/binpinkgold" target="_blank" rel="noopener">
             <img src="assets/images/tele.jpg" alt="Telegram" width="18" height="18" loading="lazy" decoding="async">
-            LiÃªn há»‡ Telegram
+            Liên hệ Telegram
           </a>
           <a class="cta light contact-cta" href="https://zalo.me/0898908101" target="_blank" rel="noopener">
             <img src="assets/images/zalo.jpg" alt="Zalo" width="18" height="18" loading="lazy" decoding="async">
-            LiÃªn há»‡ Zalo
+            Liên hệ Zalo
           </a>
         </div>
       </div>
@@ -1102,32 +1102,32 @@
     <div class="modal-box">
       <div class="modal-head">
         <div class="modal-head-left">
-          <img class="modal-head-ico" src="assets/images/tele.jpg" alt="TÃ­nh phÃ­" width="32" height="32" loading="lazy" decoding="async">
-          <h3 class="modal-title">TÃ­nh phÃ­ thanh toÃ¡n há»™</h3>
+          <img class="modal-head-ico" src="assets/images/tele.jpg" alt="Tính phí" width="32" height="32" loading="lazy" decoding="async">
+          <h3 class="modal-title">Tính phí thanh toán hộ</h3>
         </div>
-        <button class="close-btn" onclick="closeFeeModal()">ÄÃ³ng</button>
+        <button class="close-btn" onclick="closeFeeModal()">Đóng</button>
       </div>
       <div class="modal-body">
         <div class="fee-form">
-          <label class="fee-label" for="feeAmountInput">Nháº­p sá»‘ tiá»n cáº§n thanh toÃ¡n há»™ (VND)</label>
-          <input id="feeAmountInput" class="fee-input" type="text" inputmode="numeric" placeholder="VÃ­ dá»¥: 1500000" oninput="calculateFee()">
+          <label class="fee-label" for="feeAmountInput">Nhập số tiền cần thanh toán hộ (VND)</label>
+          <input id="feeAmountInput" class="fee-input" type="text" inputmode="numeric" placeholder="Ví dụ: 1500000" oninput="calculateFee()">
           <p class="fee-error" id="feeError"></p>
           <div class="fee-result" id="feeResult">
-            <div class="fee-row"><span>Sá»‘ tiá»n gá»‘c</span><strong id="feeAmountText">0Ä‘</strong></div>
-            <div class="fee-row"><span>Má»©c phÃ­ Ã¡p dá»¥ng</span><strong id="feeRateText">0%</strong></div>
-            <div class="fee-row"><span>PhÃ­ dá»‹ch vá»¥</span><strong id="feeFeeText">0Ä‘</strong></div>
-            <div class="fee-row"><span>Tá»•ng cáº§n thanh toÃ¡n</span><strong id="feeTotalText">0Ä‘</strong></div>
+            <div class="fee-row"><span>Số tiền gốc</span><strong id="feeAmountText">0đ</strong></div>
+            <div class="fee-row"><span>Mức phí áp dụng</span><strong id="feeRateText">0%</strong></div>
+            <div class="fee-row"><span>Phí dịch vụ</span><strong id="feeFeeText">0đ</strong></div>
+            <div class="fee-row"><span>Tổng cần thanh toán</span><strong id="feeTotalText">0đ</strong></div>
           </div>
         </div>
         <div class="fee-actions">
           <div class="fee-contacts">
             <a class="cta light contact-cta" href="https://t.me/binpinkgold" target="_blank" rel="noopener">
               <img src="assets/images/tele.jpg" alt="Telegram" width="18" height="18" loading="lazy" decoding="async">
-              LiÃªn há»‡ Telegram
+              Liên hệ Telegram
             </a>
             <a class="cta light contact-cta" href="https://zalo.me/0898908101" target="_blank" rel="noopener">
               <img src="assets/images/zalo.jpg" alt="Zalo" width="18" height="18" loading="lazy" decoding="async">
-              LiÃªn há»‡ Zalo
+              Liên hệ Zalo
             </a>
           </div>
         </div>
@@ -1144,85 +1144,85 @@
         id: "gpt",
         image: "assets/images/GPT.jpg",
         name: "ChatGPT Plus Codex",
-        tag: "GPT-5.4 Â· Codex Â· Sora AI Â· Agent Â· ADA",
-        price: "99K / thÃ¡ng",
+        tag: "GPT-5.4 · Codex · Sora AI · Agent · ADA",
+        price: "99K / tháng",
         rawPrice: "99K",
-        oldPrice: "522.000Ä‘",
-        perDay: "chá»‰ 3.300Ä‘ / ngÃ y",
-        badge: "-81% ðŸ”¥",
+        oldPrice: "522.000đ",
+        perDay: "chỉ 3.300đ / ngày",
+        badge: "-81% 🔥",
         badgeType: "green",
         bullets: [
-          "TÃ i khoáº£n sá»­ dá»¥ng 1 mÃ¬nh",
-          "Báº£o hÃ nh toÃ n bá»™ thá»i gian sá»­ dá»¥ng",
-          "Truy cáº­p má»i tÃ­nh nÄƒng cao cáº¥p Plus cá»§a ChatGPT"
+          "Tài khoản sử dụng 1 mình",
+          "Bảo hành toàn bộ thời gian sử dụng",
+          "Truy cập mọi tính năng cao cấp Plus của ChatGPT"
         ]
       },
       {
         id: "gemini",
         image: "assets/images/gemini.jpg",
         name: "Gemini Pro",
-        tag: "Gemini 3.1 Pro Â· Google AI Pro Â· 2TB Drive",
-        price: "99K / thÃ¡ng",
+        tag: "Gemini 3.1 Pro · Google AI Pro · 2TB Drive",
+        price: "99K / tháng",
         rawPrice: "99K",
-        oldPrice: "489.000Ä‘",
-        perDay: "chá»‰ 3.300Ä‘ / ngÃ y",
-        badge: "-80% âœ¦",
+        oldPrice: "489.000đ",
+        perDay: "chỉ 3.300đ / ngày",
+        badge: "-80% ✦",
         badgeType: "green",
         bullets: [
-          "TÃ i khoáº£n sá»­ dá»¥ng 1 mÃ¬nh",
-          "Bao gá»“m Gemini Pro, Google Drive 2TB, NotebookLM Pro",
-          "Báº£o hÃ nh toÃ n bá»™ thá»i gian sá»­ dá»¥ng"
+          "Tài khoản sử dụng 1 mình",
+          "Bao gồm Gemini Pro, Google Drive 2TB, NotebookLM Pro",
+          "Bảo hành toàn bộ thời gian sử dụng"
         ]
       },
       {
         id: "yt",
         image: "assets/images/YT.jpg",
         name: "YouTube Premium",
-        tag: "Táº·ng kÃ¨m YT Music Â· KhÃ´ng quáº£ng cÃ¡o",
-        price: "49K / thÃ¡ng",
+        tag: "Tặng kèm YT Music · Không quảng cáo",
+        price: "49K / tháng",
         rawPrice: "49K",
-        oldPrice: "99.000Ä‘",
-        perDay: "chá»‰ 1.633Ä‘ / ngÃ y",
-        badge: "-51% ðŸŽ¬",
+        oldPrice: "99.000đ",
+        perDay: "chỉ 1.633đ / ngày",
+        badge: "-51% 🎬",
         badgeType: "red",
         bullets: [
-          "TÃ i khoáº£n sá»­ dá»¥ng 1 mÃ¬nh",
-          "Táº·ng kÃ¨m Youtube Music Premium",
-          "KhÃ´ng quáº£ng cÃ¡o + Ä‘áº§y Ä‘á»§ tÃ­nh nÄƒng cao cáº¥p Youtube Premium"
+          "Tài khoản sử dụng 1 mình",
+          "Tặng kèm Youtube Music Premium",
+          "Không quảng cáo + đầy đủ tính năng cao cấp Youtube Premium"
         ]
       },
       {
         id: "capcut",
         image: "assets/images/CAPCUT.jpg",
         name: "CapCut Pro",
-        tag: "Xuáº¥t 4K Â· KhÃ´ng watermark",
-        price: "79K / thÃ¡ng",
+        tag: "Xuất 4K · Không watermark",
+        price: "79K / tháng",
         rawPrice: "79K",
-        oldPrice: "145.000Ä‘",
-        perDay: "chá»‰ 2.633Ä‘ / ngÃ y",
-        badge: "-46% âœ‚ï¸",
+        oldPrice: "145.000đ",
+        perDay: "chỉ 2.633đ / ngày",
+        badge: "-46% ✂️",
         badgeType: "green",
         bullets: [
-          "TÃ i khoáº£n sá»­ dá»¥ng 1 mÃ¬nh",
-          "Báº£o hÃ nh toÃ n bá»™ thá»i gian sá»­ dá»¥ng",
-          "Truy cáº­p má»i tÃ­nh nÄƒng cao cáº¥p Pro cá»§a CapCut"
+          "Tài khoản sử dụng 1 mình",
+          "Bảo hành toàn bộ thời gian sử dụng",
+          "Truy cập mọi tính năng cao cấp Pro của CapCut"
         ]
       },
       {
         id: "netflix",
         image: "assets/images/netflix.jpg",
-        name: "Netflix Cao Cáº¥p",
-        tag: "GÃ³i Cao Cáº¥p Â· FULL HD Â· Má»i thiáº¿t bá»‹",
-        price: "179K / thÃ¡ng",
+        name: "Netflix Cao Cấp",
+        tag: "Gói Cao Cấp · FULL HD · Mọi thiết bị",
+        price: "179K / tháng",
         rawPrice: "179K",
-        oldPrice: "287.000Ä‘",
-        perDay: "chá»‰ 5.967Ä‘ / ngÃ y",
-        badge: "-38% ðŸŽ¬",
+        oldPrice: "287.000đ",
+        perDay: "chỉ 5.967đ / ngày",
+        badge: "-38% 🎬",
         badgeType: "red",
         bullets: [
-          "Xem Ä‘Æ°á»£c trÃªn má»i thiáº¿t bá»‹",
-          "Xem phim cháº¥t lÆ°á»£ng FULL HD",
-          "Truy cáº­p má»i tÃ­nh nÄƒng cao cáº¥p cá»§a Netflix"
+          "Xem được trên mọi thiết bị",
+          "Xem phim chất lượng FULL HD",
+          "Truy cập mọi tính năng cao cấp của Netflix"
         ]
       }
     ];
@@ -1240,15 +1240,15 @@
                 <p class="tag">${p.tag}</p>
               </div>
             </div>
-            <span class="${badgeClass}">CÃ NHÃ‚N</span>
+            <span class="${badgeClass}">CÁ NHÂN</span>
           </div>
           <div class="price-row">
             <div class="price">${p.rawPrice}</div>
-            <div class="old">GiÃ¡ gá»‘c: <s>${p.oldPrice}</s></div>
+            <div class="old">Giá gốc: <s>${p.oldPrice}</s></div>
           </div>
           <div class="day">${p.perDay}</div>
           <div class="cta-row">
-            <button class="cta buy" onclick="openProduct('${p.id}')">ÄÄƒng kÃ½ ngay</button>
+            <button class="cta buy" onclick="openProduct('${p.id}')">Đăng ký ngay</button>
           </div>
         </article>
       `;
@@ -1273,13 +1273,13 @@
     }
 
     function openCustomModal(title) {
-      if (title.indexOf("Thanh ToÃ¡n Há»™") !== -1) {
+      if (title.indexOf("Thanh Toán Hộ") !== -1) {
         openFeeBotPrompt();
         return;
       }
       document.getElementById("mName").textContent = title;
       document.getElementById("mHeadIco").src = "assets/images/tele.jpg";
-      document.getElementById("mHeadIco").alt = "LiÃªn há»‡";
+      document.getElementById("mHeadIco").alt = "Liên hệ";
       document.getElementById("mContactNote").style.display = "none";
       document.getElementById("mDescWrap").style.display = "none";
       document.getElementById("mBullets").innerHTML = "";
@@ -1293,7 +1293,7 @@
     let feeState = null;
 
     function formatVnd(value) {
-      return `${value.toLocaleString("vi-VN")}Ä‘`;
+      return `${value.toLocaleString("vi-VN")}đ`;
     }
 
     function openFeeBotPrompt() {
@@ -1318,7 +1318,7 @@
       const errorEl = document.getElementById("feeError");
       if (!cleaned) {
         feeState = null;
-        errorEl.textContent = "Báº¡n chÆ°a nháº­p sá»‘ tiá»n há»£p lá»‡.";
+        errorEl.textContent = "Bạn chưa nhập số tiền hợp lệ.";
         document.getElementById("feeResult").classList.remove("open");
         return;
       }
@@ -1371,17 +1371,17 @@
       window.scrollTo(0, 0);
 
       let remain = 2;
-      skipBtn.textContent = `Bá» qua, xem Store (${remain}s)`;
+      skipBtn.textContent = `Bỏ qua, xem Store (${remain}s)`;
       const timer = setInterval(() => {
         remain -= 1;
         if (remain > 0) {
-          skipBtn.textContent = `Bá» qua, xem Store (${remain}s)`;
+          skipBtn.textContent = `Bỏ qua, xem Store (${remain}s)`;
           return;
         }
         clearInterval(timer);
         welcomeCanClose = true;
         skipBtn.disabled = false;
-        skipBtn.textContent = "Bá» qua, xem Store";
+        skipBtn.textContent = "Bỏ qua, xem Store";
       }, 1000);
     }
 
@@ -1410,4 +1410,6 @@
   </script>
 </body>
 </html>
+
+
 

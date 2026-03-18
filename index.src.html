@@ -7,7 +7,7 @@
   <meta name="description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f7f8fc;
@@ -37,7 +37,7 @@
         var(--bg);
       line-height: 1.5;
     }
-    h1, h2, h3, .price, .badge, .cta { font-family: "Space Grotesk", "Be Vietnam Pro", sans-serif; }
+    h1, h2, h3, .price, .badge, .cta { font-family: "Be Vietnam Pro", sans-serif; }
 
     .container { width: min(1120px, 92vw); margin: 0 auto; }
     .topbar {
@@ -86,13 +86,13 @@
         radial-gradient(circle at 0% 32%, rgba(129, 140, 248, 0.26) 0%, rgba(129, 140, 248, 0) 42%),
         radial-gradient(circle at 100% 4%, rgba(56, 189, 248, 0.24) 0%, rgba(56, 189, 248, 0) 40%),
         linear-gradient(120deg, #ede9fe 0%, #e8ecff 46%, #e1efff 100%);
-      border-top: 1px solid #c7d2fe;
-      border-bottom: 1px solid #c7d2fe;
+      border-top: 2px solid #a5b4fc;
+      border-bottom: 2px solid #a5b4fc;
       border-left: 0;
       border-right: 0;
       border-radius: 0;
-      padding: clamp(24px, 4.6vw, 48px) clamp(18px, 5vw, 34px);
-      box-shadow: none;
+      padding: clamp(28px, 5vw, 52px) clamp(18px, 5vw, 34px);
+      box-shadow: 0 4px 32px rgba(99,102,241,0.08);
     }
     .hero-box::before,
     .hero-box::after {
@@ -383,25 +383,23 @@
       line-height: 1.2;
     }
     .personal-card {
-      margin-top: 14px;
-      border-top: 1px solid #c7d2fe;
-      border-bottom: 1px solid #c7d2fe;
-      border-left: 0;
-      border-right: 0;
-      background: linear-gradient(120deg, rgba(238, 242, 255, 0.55), rgba(236, 254, 255, 0.35));
-      border-radius: 0;
-      box-shadow: none;
-      padding: 14px 2px;
+      margin-top: 18px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #6366f1;
+      border-radius: 20px;
+      box-shadow: 0 2px 12px rgba(99,102,241,0.08);
+      padding: 18px 18px 18px 16px;
     }
     .personal-head {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
+      gap: 12px;
+      margin-bottom: 14px;
     }
     .personal-head .ico {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 12px;
       border: 1px solid #c7d2fe;
       display: grid;
@@ -418,33 +416,38 @@
       text-transform: uppercase;
     }
     .personal-title {
-      margin: 2px 0 0;
-      font-size: 1.575rem;
+      margin: 0;
+      font-size: 1rem;
       font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
       color: #0f172a;
     }
     .personal-list {
       margin: 0;
       padding: 0;
       list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 12px;
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
       color: #334155;
       font-weight: 600;
     }
     .personal-list li {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 8px;
-      border: 1px solid #dbeafe;
-      background: #fff;
-      border-radius: 999px;
-      padding: 7px 12px;
+      gap: 10px;
       word-break: break-word;
+    }
+    .personal-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
     }
 
     .section { padding: 10px 0 26px; }
@@ -468,9 +471,9 @@
       grid-column: span 4;
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 22px;
+      border-radius: 28px;
       box-shadow: var(--shadow);
-      padding: 16px;
+      padding: 18px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -506,8 +509,8 @@
 
     .price-row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }
     .price { font-size: 2rem; line-height: 1; letter-spacing: -0.03em; }
-    .old { font-size: 12px; color: #64748b; }
-    .old s { color: #334155; }
+    .old { font-size: 12px; color: #94a3b8; }
+    .old s { color: #94a3b8 !important; text-decoration: line-through #ef4444 !important; text-decoration-thickness: 2px !important; }
     .day {
       font-size: 12px;
       color: #9a3412;
@@ -553,9 +556,9 @@
       grid-column: span 6;
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 22px;
+      border-radius: 28px;
       box-shadow: var(--shadow);
-      padding: 18px;
+      padding: 20px;
     }
     .wide h3 { margin: 0 0 10px; font-size: 1.1rem; }
     .wide ul { margin: 0; padding-left: 18px; color: #334155; display: grid; gap: 7px; font-size: 14px; }
@@ -906,14 +909,15 @@
     })();
   </script>
 </head>
-<body>
+<body style="overflow:hidden">
   <header class="topbar">
     <div class="container topbar-inner">
       <div class="logo">Bin<span>GenZ</span> · AI · Premium</div>
       <div class="top-actions">
         <a class="chip" href="#home">Home</a>
-        <a class="chip primary" href="#product-note">Xem sản phẩm</a>
         <a class="chip" href="#contact">Liên hệ</a>
+        <span style="flex:1"></span>
+        <a class="chip primary" href="#product-note">Xem sản phẩm</a>
       </div>
     </div>
   </header>
@@ -975,14 +979,12 @@
       <div class="container personal-card" id="product-note">
         <div class="personal-head">
           <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg></span>
-          <div>
-            <h3 class="personal-title">Tài khoản cá nhân · Chỉ mình bạn dùng</h3>
-          </div>
+          <h3 class="personal-title">Tài khoản cá nhân · Chỉ mình bạn dùng</h3>
         </div>
         <ul class="personal-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 1 mình bạn dùng 1 tài khoản</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Bảo hành toàn bộ thời gian sử dụng</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Truy cập mọi tính năng cao cấp</li>
+          <li><span class="personal-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> 1 mình bạn dùng 1 tài khoản</li>
+          <li><span class="personal-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Bảo hành toàn bộ thời gian sử dụng</li>
+          <li><span class="personal-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Truy cập mọi tính năng cao cấp</li>
         </ul>
       </div>
     </section>
@@ -1398,10 +1400,11 @@
       document.body.style.overflow = "";
     }
 
+    window.scrollTo(0, 0);
     window.addEventListener("wheel", preventWelcomeScroll, { passive: false });
     window.addEventListener("touchmove", preventWelcomeScroll, { passive: false });
     window.addEventListener("keydown", preventWelcomeKeyScroll);
-    window.addEventListener("load", () => {
+    document.addEventListener("DOMContentLoaded", () => {
       window.scrollTo(0, 0);
       openWelcome();
     });

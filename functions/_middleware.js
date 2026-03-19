@@ -22,16 +22,18 @@ const SHELL_HTML = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BinGenZ.com - Tai Khoan Premium Gia Re</title>
-  <meta name="description" content="ChatGPT Plus, YouTube Premium, Netflix Cao Cap, CapCut Pro - Giao ngay sau mua, bao hanh 24/7, uy tin. Chi tu 1.633d/ngay">
-
-  <!-- Open Graph -->
+  <title>BinGenZ · Tài khoản premium Giá sinh viên</title>
+  <meta name="description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="BinGenZ.com - Tai Khoan Premium Gia Re">
-  <meta property="og:description" content="ChatGPT Plus, YouTube Premium, Netflix Cao Cap, CapCut Pro - Giao ngay sau mua, bao hanh 24/7, uy tin. Chi tu 1.633d/ngay">
   <meta property="og:url" content="https://bingenz.com">
+  <meta property="og:title" content="BinGenZ · Tài khoản premium Giá sinh viên">
+  <meta property="og:description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
+  <meta property="og:locale" content="vi_VN">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BinGenZ · Tài khoản premium Giá sinh viên">
+  <meta name="twitter:description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
 </head>
-<body><p>Vui long mo tren trinh duyet de xem noi dung.</p></body>
+<body><p>Vui lòng mở trên trình duyệt để xem nội dung.</p></body>
 </html>`;
 
 

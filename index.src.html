@@ -33,6 +33,8 @@
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     html {
+      /* Scale toàn bộ text theo viewport: 360px→14px, 430px→16px, desktop giữ 16px */
+      font-size: clamp(14px, 3.8vw, 16px);
       scroll-behavior: smooth;
       scroll-padding-top: 84px;
     }
@@ -1232,6 +1234,24 @@
         ]
       },
       {
+        id: "gpt-gmail",
+        label: "CHÍNH CHỦ",
+        image: "assets/images/GPT.jpg",
+        name: "ChatGPT Plus · Gmail Chính Chủ",
+        tag: "GPT-5.4 · Codex · Sora AI · Đăng ký Gmail của bạn",
+        price: "149K / tháng",
+        rawPrice: "149K",
+        oldPrice: "522.000đ",
+        perDay: "chỉ 4.967đ / ngày",
+        bullets: [
+          "Kích hoạt thẳng vào Gmail chính chủ của bạn",
+          "Tài khoản 100% của riêng bạn, không chia sẻ với ai",
+          "Bảo hành toàn bộ thời gian sử dụng",
+          "Truy cập mọi tính năng cao cấp Plus của ChatGPT",
+          "Chỉ cần cung cấp Gmail → kích hoạt trong 1 phút (không cần mật khẩu)"
+        ]
+      },
+      {
         id: "gemini",
         image: "assets/images/gemini.jpg",
         name: "Gemini Pro",
@@ -1314,7 +1334,7 @@
                 <p class="tag">${p.tag}</p>
               </div>
             </div>
-            <span class="${badgeClass}">CÁ NHÂN</span>
+            <span class="${badgeClass}">${p.label || "CÁ NHÂN"}</span>
           </div>
           <div class="price-row">
             <div class="price">${p.rawPrice}</div>

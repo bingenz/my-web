@@ -135,8 +135,13 @@ export default {
       return env.ASSETS.fetch(request);
     }
 
-    // ✅ Fix 2: Trả SHELL_HTML (có og:image) cho bot/crawler để social preview hoạt động
-    if (!ua || ua.length < 10 || BOT_UA_PATTERNS.some(p => p.test(ua))) {
+    // Chỉ serve encoded page cho browser thật, còn lại trả SHELL_HTML cho crawler đọc meta
+    const isRealBrowser = ua.length > 20
+      && /Mozilla\/5\.0/i.test(ua)
+      && /(Chrome|Firefox|Safari|Edg|OPR|CocCoc)\/[\d.]+/i.test(ua)
+      && !BOT_UA_PATTERNS.some(p => p.test(ua));
+
+    if (!isRealBrowser) {
       return new Response(SHELL_HTML, {
         status: 200,
         headers: {
@@ -156,6 +161,7 @@ export default {
     newHeaders.set("X-Content-Type-Options", "nosniff");
     newHeaders.set("Referrer-Policy", "no-referrer");
     newHeaders.set("Cache-Control", "no-store, no-cache");
+    newHeaders.set("X-Robots-Tag", "noindex, nofollow");
 
     return new Response(response.body, {
       status: response.status,
@@ -163,4 +169,3 @@ export default {
     });
   }
 };
-

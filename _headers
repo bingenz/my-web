@@ -5,5 +5,4 @@
   Referrer-Policy: no-referrer
   X-DNS-Prefetch-Control: off
   Cache-Control: no-store, no-cache, must-revalidate
-  X-Robots-Tag: noindex, nofollow
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()

@@ -156,7 +156,6 @@ export default {
     newHeaders.set("X-Content-Type-Options", "nosniff");
     newHeaders.set("Referrer-Policy", "no-referrer");
     newHeaders.set("Cache-Control", "no-store, no-cache");
-    newHeaders.set("X-Robots-Tag", "noindex, nofollow");
 
     return new Response(response.body, {
       status: response.status,
@@ -164,3 +163,4 @@ export default {
     });
   }
 };
+

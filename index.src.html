@@ -518,7 +518,7 @@
     .price-row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }
     .price { font-size: 2rem; line-height: 1; letter-spacing: -0.03em; }
     .old { font-size: 12px; color: #94a3b8; }
-    .old s { color: #94a3b8 !important; text-decoration: line-through #ef4444 !important; text-decoration-thickness: 1.3px !important; }
+    .old s { color: #94a3b8 !important; text-decoration: line-through #ef4444 !important; text-decoration-thickness: 2px !important; }
     .day {
       font-size: 12px;
       color: #9a3412;
@@ -605,143 +605,143 @@
       font-size: 13px;
     }
     .welcome-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.65);
+      position: fixed; inset: 0;
+      background: rgba(15,23,42,0.65);
       backdrop-filter: blur(16px) saturate(1.4);
       -webkit-backdrop-filter: blur(16px) saturate(1.4);
-      display: none;
-      place-items: center;
-      z-index: 120;
-      padding: 16px;
+      display: none; place-items: center;
+      z-index: 120; padding: 16px;
     }
     .welcome-overlay.open { display: grid; }
     .welcome-box {
-      width: min(460px, 94vw);
+      width: min(440px, 94vw);
       border-radius: 40px;
-      background: #ffffff;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: #fff;
       border: 1.5px solid #c7d2fe;
       box-shadow: 0 40px 100px rgba(15,23,42,0.45), 0 0 0 4px rgba(99,102,241,0.10);
-      padding: clamp(20px, 5vw, 32px);
-      display: grid;
-      gap: 16px;
+      padding: 18px;
+      display: grid; gap: 10px;
+    }
+    /* Community box */
+    .wlc-comm {
+      background: linear-gradient(135deg, #eef2ff, #eff6ff);
+      border: 1.5px solid #c7d2fe;
+      border-radius: 26px; padding: 11px 13px; display: grid; gap: 8px;
     }
     .welcome-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      border: 1px solid #e2e8f0;
-      background: #f8fafc;
-      padding: 7px 14px;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      color: #475569;
-      text-transform: uppercase;
-      width: fit-content;
+      display: inline-flex; align-items: center; gap: 7px;
+      border-radius: 999px; border: 1px solid #e2e8f0;
+      background: #fff; padding: 5px 12px;
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 0.1em; color: #475569;
+      text-transform: uppercase; width: fit-content;
     }
-    .welcome-badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #6366f1;
-      flex-shrink: 0;
-    }
+    .welcome-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #6366f1; flex-shrink: 0; }
     .welcome-title {
-      margin: 0;
-      font-size: clamp(1.25rem, 4.5vw, 1.7rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: #0f172a;
-      font-weight: 800;
+      font-size: clamp(1rem, 4vw, 1.25rem);
+      font-weight: 800; color: #0f172a; line-height: 1.2;
+      letter-spacing: -0.02em; margin: 0;
     }
-    .welcome-sub {
-      margin: 0;
-      font-size: 14px;
-      color: #64748b;
-      line-height: 1.6;
+    .welcome-sub { font-size: 13px; color: #64748b; line-height: 1.5; margin: 0; }
+    .welcome-reward { color: #4338ca; font-weight: 700; display: block; margin-top: 1px; }
+    .wlc-gift {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.7); border: 1px solid #dbeafe;
+      border-radius: 16px; padding: 10px 12px;
     }
-    .welcome-reward {
-      font-weight: 700;
-      color: #4338ca;
-    }
-    .welcome-gift-card {
-      border-radius: 24px;
-      border: 1px solid #e2e8f0;
-      background: #f8fafc;
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .welcome-gift-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      border: 1px solid #e2e8f0;
-      background: #fff;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      font-size: 22px;
-    }
-    .welcome-gift-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: #0f172a;
-      line-height: 1.3;
-    }
-    .welcome-gift-note {
-      font-size: 12px;
-      color: #64748b;
-      margin-top: 2px;
-    }
+    .wlc-gift-ico { font-size: 20px; flex-shrink: 0; }
+    .wlc-gift-name { font-size: 13px; font-weight: 700; color: #0f172a; }
+    .wlc-gift-note { font-size: 11px; color: #64748b; }
     .welcome-cta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      border-radius: 999px;
-      padding: 16px 20px;
-      font-size: 15px;
-      font-weight: 800;
-      color: #fff;
-      background: #4f46e5;
-      text-decoration: none;
-      text-align: center;
-      border: 0;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(79,70,229,0.28);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; border-radius: 999px; padding: 13px;
+      font-size: 14px; font-weight: 800; color: #fff;
+      background: #4f46e5; text-decoration: none; border: 0; cursor: pointer;
+      box-shadow: 0 6px 16px rgba(79,70,229,0.28);
+      transition: transform 0.15s, box-shadow 0.15s;
     }
-    .welcome-cta:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 28px rgba(79,70,229,0.36);
+    .welcome-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(79,70,229,0.36); }
+    /* Ad box */
+    .wlc-ad {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #0369a1 0%, #0284c7 60%, #38bdf8 100%);
+      border: 1px solid rgba(56,189,248,0.3);
+      border-radius: 26px; padding: 14px;
     }
-    .welcome-cta:active { transform: translateY(0); }
+    .wlc-ad::before {
+      content: ''; position: absolute; right: -24px; top: -24px;
+      width: 110px; height: 110px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%);
+      pointer-events: none;
+    }
+    .wlc-ad::after {
+      content: ''; position: absolute; left: -16px; bottom: -24px;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(14,165,233,0.3), transparent 70%);
+      pointer-events: none;
+    }
+    .wlc-ad-inner { position: relative; z-index: 1; display: grid; gap: 6px; }
+    .wlc-ad-head { display: flex; align-items: center; gap: 9px; }
+    .wlc-ad-logo {
+      width: 34px; height: 34px; border-radius: 10px;
+      overflow: hidden; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+    }
+    .wlc-ad-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .wlc-ad-qc { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.65); letter-spacing: 0.1em; text-transform: uppercase; }
+    .wlc-ad-brand { font-size: 17px; font-weight: 800; color: #fff; line-height: 1.1; }
+    .wlc-ad-desc { font-size: 11px; color: rgba(255,255,255,0.85); line-height: 1.45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wlc-ad-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+    .wlc-ad-pill {
+      font-size: 10px; font-weight: 600; color: #fff;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 999px; padding: 3px 9px;
+    }
+    .wlc-ad-cta {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: #fff; border: 0;
+      color: #0369a1; font-size: 12px; font-weight: 800;
+      padding: 8px 16px; border-radius: 999px;
+      text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .wlc-ad-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(0,0,0,0.28); }
+    .wlc-ad-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #0284c7; flex-shrink: 0;
+      animation: wlcdot 1.5s ease-in-out infinite;
+    }
+    @keyframes wlcdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.65)} }
+    /* Skip */
     .welcome-skip {
-      display: block;
-      width: 100%;
-      border: 0;
-      background: none;
-      color: #94a3b8;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      padding: 6px;
-      text-align: center;
-      margin-top: 8px;
+      display: block; width: 100%; border: 0; background: none;
+      color: #94a3b8; font-size: 11px; font-weight: 600;
+      cursor: pointer; padding: 2px; text-align: center;
       transition: color 0.15s;
     }
     .welcome-skip:not(:disabled):hover { color: #475569; }
-    .welcome-skip:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    .welcome-skip:disabled { opacity: 0.5; cursor: not-allowed; }
 
+
+    .redirect-toast {
+      position: fixed;
+      bottom: -100px;
+      left: 50%; transform: translateX(-50%);
+      background: #0f172a;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 12px 20px;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      z-index: 200;
+      transition: bottom 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      white-space: nowrap;
+    }
+    .redirect-toast.show { bottom: 28px; }
+    .redirect-toast .t-ico { font-size: 16px; flex-shrink: 0; }
+    .redirect-toast .t-text { font-size: 13px; font-weight: 600; color: #fff; }
     .modal {
       position: fixed;
       inset: 0;
@@ -1073,23 +1073,39 @@
 
   <div class="welcome-overlay" id="welcomeOverlay">
     <div class="welcome-box" id="welcomeBox">
-      <div class="welcome-badge"><span class="welcome-badge-dot"></span>Cộng đồng</div>
-      <h3 class="welcome-title">GenZ Đam Mê IT · Vibe Code · AI</h3>
-      <p class="welcome-sub">
-        Tham gia group → chơi mini game → nhận<br>
-        <span class="welcome-reward">ChatGPT Plus Codex · YouTube · CapCut miễn phí</span>
-      </p>
-      <div class="welcome-gift-card">
-        <div class="welcome-gift-icon">🎁</div>
-        <div>
-          <div class="welcome-gift-name">Quà tặng miễn phí</div>
-          <div class="welcome-gift-note">ở bài viết ghim trong group</div>
+      <div class="wlc-comm">
+        <div class="welcome-badge"><span class="welcome-badge-dot"></span>Cộng đồng</div>
+        <h3 class="welcome-title">GenZ Đam Mê IT · Vibe Code · AI</h3>
+        <p class="welcome-sub">Tham gia group → chơi mini game → nhận <span class="welcome-reward">ChatGPT Plus Codex · YouTube · CapCut miễn phí</span></p>
+        <div class="wlc-gift">
+          <span class="wlc-gift-ico">🎁</span>
+          <div>
+            <div class="wlc-gift-name">Quà tặng miễn phí</div>
+            <div class="wlc-gift-note">ở bài viết ghim trong group</div>
+          </div>
+        </div>
+        <a class="welcome-cta" href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noopener" onclick="closeWelcome()">Tham gia Group ngay</a>
+      </div>
+      <div class="wlc-ad">
+        <div class="wlc-ad-inner">
+          <div class="wlc-ad-head">
+            <div class="wlc-ad-logo"><img src="assets/images/fhd.jpg" alt="FullHouse Dev" loading="lazy" decoding="async"></div>
+            <div>
+              <div class="wlc-ad-qc">Trung tâm dạy học lập trình</div>
+              <div class="wlc-ad-brand">FullHouse Dev</div>
+            </div>
+          </div>
+          <p class="wlc-ad-desc">Giảng viên chuyên nghiệp & kèm 1:1, từ cơ bản đến nâng cao</p>
+          <div class="wlc-ad-pills">
+            <span class="wlc-ad-pill">C / C++ / Java</span>
+            <span class="wlc-ad-pill">Web Full-Stack</span>
+            <span class="wlc-ad-pill">AI & Data</span>
+            <span class="wlc-ad-pill">Python</span>
+          </div>
+          <button class="wlc-ad-cta" onclick="showRedirectToast()" style="border:0;cursor:pointer;font-family:inherit;"><span class="wlc-ad-dot"></span>Khám phá khóa học ngay</button>
         </div>
       </div>
-      <div>
-        <a class="welcome-cta" href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" target="_blank" rel="noopener" onclick="closeWelcome()">Tham gia Group ngay</a>
-        <button class="welcome-skip" id="welcomeSkipBtn" onclick="attemptCloseWelcome()" disabled>Bỏ qua, xem Store (2s)</button>
-      </div>
+      <button class="welcome-skip" id="welcomeSkipBtn" onclick="attemptCloseWelcome()" disabled>Bỏ qua, xem Store (2s)</button>
     </div>
   </div>
   </div>
@@ -1430,10 +1446,23 @@
       setTimeout(openWelcome, 600);
     });
 
+
+    function showRedirectToast() {
+      const toast = document.getElementById('redirectToast');
+      toast.classList.add('show');
+      setTimeout(() => {
+        window.open('https://fullhousedev.com/khoa-hoc/course-cpp-beginner/?ref=4de39e7557', '_blank');
+        setTimeout(() => toast.classList.remove('show'), 600);
+      }, 1200);
+    }
     renderProducts();
   </script>
+
+  <div class="redirect-toast" id="redirectToast">
+    <img src="assets/images/fhd.jpg" style="width:28px;height:28px;border-radius:8px;object-fit:cover;flex-shrink:0;">
+    <div class="t-text">Đang chuyển đến FullHouse Dev</div>
+  </div>
 </body>
 </html>
-
 
 

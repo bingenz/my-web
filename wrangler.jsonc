@@ -1,4 +1,3 @@
-```jsonc
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "bingenz",
@@ -15,4 +14,3 @@
     "nodejs_compat"
   ]
 }
-```

@@ -24,7 +24,7 @@ const SHELL_HTML = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BinGenZ · Tài khoản premium Giá sinh viên</title>
+  <title>BinGenZ · AI & PREMIUM ACCOUNT STORE</title>
   <meta name="description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bingenz.com">

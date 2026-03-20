@@ -23,11 +23,26 @@ function encodeFile(srcName, destName) {
   const headMatch = raw.match(/<head>([\s\S]*?)<\/head>/i);
   const headContent = headMatch ? headMatch[1].trim() : "";
 
-  // Chỉ lấy title và meta viewport từ head gốc cho shell
+  // Lấy title
   const titleMatch = raw.match(/<title>(.*?)<\/title>/i);
   const title = titleMatch ? titleMatch[1] : "Binpinkgold Code Store";
 
-  const shell = `<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title></head><body><script>!function(){try{var e="${encoded}",d=atob(e),b=new Uint8Array(d.length);for(var i=0;i<d.length;i++)b[i]=d.charCodeAt(i);var h=new TextDecoder("utf-8").decode(b);var doc=document.implementation.createHTMLDocument("");doc.documentElement.innerHTML=h;var scripts=doc.querySelectorAll("script");var headHTML=doc.head.innerHTML;var bodyHTML=doc.body.innerHTML;document.head.innerHTML=headHTML;document.body.innerHTML=bodyHTML;scripts.forEach(function(s){var ns=document.createElement("script");if(s.src)ns.src=s.src;else ns.textContent=s.textContent;document.body.appendChild(ns);});}catch(e){document.body.innerHTML="<p>Lỗi tải trang.</p>";}}();<\/script></body></html>`;
+  // Extract tất cả meta tags (trừ charset và viewport đã có sẵn)
+  // và các tag SEO quan trọng: description, og:*, twitter:*
+  const metaRegex = /<meta\s[^>]+>/gi;
+  const allMetas = raw.match(metaRegex) || [];
+  const seoMetas = allMetas
+    .filter(m => {
+      const lower = m.toLowerCase();
+      // Bỏ charset và viewport (đã hardcode trong shell)
+      if (lower.includes('charset=')) return false;
+      if (lower.includes('name="viewport"') || lower.includes("name='viewport'")) return false;
+      return true;
+    })
+    .map(m => m.trim())
+    .join("");
+
+  const shell = `<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title>${seoMetas}</head><body><script>!function(){try{var e="${encoded}",d=atob(e),b=new Uint8Array(d.length);for(var i=0;i<d.length;i++)b[i]=d.charCodeAt(i);var h=new TextDecoder("utf-8").decode(b);var doc=document.implementation.createHTMLDocument("");doc.documentElement.innerHTML=h;var scripts=doc.querySelectorAll("script");var headHTML=doc.head.innerHTML;var bodyHTML=doc.body.innerHTML;document.head.innerHTML=headHTML;document.body.innerHTML=bodyHTML;scripts.forEach(function(s){var ns=document.createElement("script");if(s.src)ns.src=s.src;else ns.textContent=s.textContent;document.body.appendChild(ns);});}catch(e){document.body.innerHTML="<p>Lỗi tải trang.</p>";}}();<\/script></body></html>`;
 
   fs.writeFileSync(DEST, shell, "utf8");
   console.log(`✅ ${srcName} → ${destName}`);

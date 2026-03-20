@@ -1237,9 +1237,10 @@
       {
         id: "gpt-gmail",
         label: "CHÍNH CHỦ",
+        gmailChip: true,
         image: "assets/images/GPT.jpg",
-        name: "ChatGPT Plus · Gmail Chính Chủ",
-        tag: "<span style='background:linear-gradient(135deg,#4338ca,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>GPT-5.4 PRO · Business · Codex · Sora AI</span> · Đăng ký Gmail của bạn",
+        name: "ChatGPT Plus · Business",
+        tag: "<span style='display:block;background:linear-gradient(135deg,#4338ca,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>GPT-5.4 PRO · Business · Codex · Sora AI</span>",
         price: "149K / tháng",
         rawPrice: "149K",
         oldPrice: "522.000đ",
@@ -1342,6 +1343,7 @@
             <div class="old">Giá gốc: <s>${p.oldPrice}</s></div>
           </div>
           <div class="day">${p.perDay}</div>
+          ${p.gmailChip ? `<span style='display:inline-flex;align-items:center;gap:4px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:999px;padding:3px 9px 3px 5px;color:#15803d;font-size:clamp(10px,2.8vw,13px);font-weight:600;white-space:nowrap;'><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='#15803d' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>Nâng cấp trên Gmail chính chủ của bạn</span>` : ""}
           <div class="cta-row">
             <button class="cta buy" onclick="openProduct('${p.id}')">Đăng ký ngay</button>
           </div>
@@ -1517,6 +1519,7 @@
   </script>
 </body>
 </html>
+
 
 
 

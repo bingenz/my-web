@@ -25,15 +25,15 @@ const SHELL_HTML = `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>BinGenZ · AI & PREMIUM ACCOUNT STORE</title>
-  <meta name="description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bingenz.com">
-  <meta property="og:title" content="BinGenZ · Tài khoản premium Giá sinh viên">
+  <meta property="og:title" content="BinGenZ · AI & PREMIUM ACCOUNT STORE">
   <meta property="og:description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
   <meta property="og:locale" content="vi_VN">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BinGenZ · Tài khoản premium Giá sinh viên">
-  <meta name="twitter:description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
+  <meta name="twitter:description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp.">
+  <meta name="description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
 </head>
 <body><p>Vui lòng mở trên trình duyệt để xem nội dung.</p></body>
 </html>`;

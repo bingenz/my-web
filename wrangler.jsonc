@@ -1,6 +1,7 @@
+```jsonc
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "binpinkgold",
+  "name": "bingenz",
   "compatibility_date": "2025-09-27",
   "main": "functions/_middleware.js",
   "observability": {
@@ -14,3 +15,4 @@
     "nodejs_compat"
   ]
 }
+```

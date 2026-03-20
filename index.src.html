@@ -626,8 +626,8 @@
       background: rgba(255,255,255,0.1);
     }
     .wlc-ad-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .wlc-ad-qc { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.65); letter-spacing: 0.1em; text-transform: uppercase; }
-    .wlc-ad-brand { font-size: 17px; font-weight: 800; color: #fff; line-height: 1.1; }
+    .wlc-ad-qc { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.65); letter-spacing: 0.1em; text-transform: uppercase; }
+    .wlc-ad-brand { font-size: 1rem; font-weight: 800; color: #fff; line-height: 1.1; }
     .wlc-ad-desc { font-size: 11px; color: rgba(255,255,255,0.85); line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: -1px 0; }
     .wlc-ad-pills {
       display: flex; flex-wrap: wrap; gap: 4px;
@@ -681,7 +681,6 @@
       white-space: nowrap;
     }
     .redirect-toast.show { bottom: 28px; }
-    .redirect-toast .t-ico { font-size: 16px; flex-shrink: 0; }
     .redirect-toast .t-text {
       font-size: 13px; font-weight: 600;
       background: linear-gradient(90deg, #fff 0%, #fff 30%, #a5b4fc 50%, #fff 70%, #fff 100%);
@@ -965,7 +964,6 @@
       .topbar-inner { height: auto; padding: 10px 0; align-items: start; flex-direction: column; }
       .card { grid-column: span 12; }
       .contact-list { gap: 8px; }
-      .stats-grid { grid-template-columns: 1fr; }
       .personal-list li { width: 100%; }
       .community-sub { white-space: normal; }
       .community-sub-reward { display: block; margin-top: 2px; }
@@ -1282,7 +1280,6 @@
         image: "assets/images/GPT.jpg",
         name: "ChatGPT Plus Codex",
         tag: "GPT-5.4 · Codex · Sora AI · Agent · ADA",
-        price: "99K / tháng",
         rawPrice: "99K",
         oldPrice: "522.000đ",
         perDay: "chỉ 3.300đ / ngày",
@@ -1299,10 +1296,9 @@
         image: "assets/images/GPT.jpg",
         name: "ChatGPT PRO · Business",
         tag: "<span style='display:block;background:linear-gradient(135deg,#4338ca,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>GPT-5.4 PRO · Business · Codex · Sora AI</span>",
-        price: "149K / tháng",
-        rawPrice: "149K",
+        rawPrice: "169K",
         oldPrice: "522.000đ",
-        perDay: "chỉ 4.967đ / ngày",
+        perDay: "chỉ 5.633đ / ngày",
         bullets: [
           "Kích hoạt thẳng vào Gmail chính chủ của bạn",
           "Tài khoản 100% của riêng bạn, không chia sẻ với ai",
@@ -1316,7 +1312,6 @@
         image: "assets/images/gemini.jpg",
         name: "Gemini Pro",
         tag: "Gemini 3.1 Pro · Google AI Pro · 2TB Drive",
-        price: "99K / tháng",
         rawPrice: "99K",
         oldPrice: "489.000đ",
         perDay: "chỉ 3.300đ / ngày",
@@ -1331,7 +1326,6 @@
         image: "assets/images/YT.jpg",
         name: "YouTube Premium",
         tag: "Tặng kèm YT Music · Không quảng cáo",
-        price: "49K / tháng",
         rawPrice: "49K",
         oldPrice: "99.000đ",
         perDay: "chỉ 1.633đ / ngày",
@@ -1346,7 +1340,6 @@
         image: "assets/images/CAPCUT.jpg",
         name: "CapCut Pro",
         tag: "Xuất 4K · Không watermark",
-        price: "79K / tháng",
         rawPrice: "79K",
         oldPrice: "145.000đ",
         perDay: "chỉ 2.633đ / ngày",
@@ -1361,7 +1354,6 @@
         image: "assets/images/netflix.jpg",
         name: "Netflix Cao Cấp",
         tag: "Gói Cao Cấp · FULL HD · Mọi thiết bị",
-        price: "179K / tháng",
         rawPrice: "179K",
         oldPrice: "287.000đ",
         perDay: "chỉ 5.967đ / ngày",
@@ -1432,15 +1424,12 @@
     const FEE_THRESHOLD = 1000000;
     const FEE_RATE_LOW = 0.22;
     const FEE_RATE_HIGH = 0.15;
-    let feeState = null;
-
     function formatVnd(value) {
       return `${value.toLocaleString("vi-VN")}đ`;
     }
 
     function openFeeBotPrompt() {
       document.getElementById("productModal").classList.remove("open");
-      feeState = null;
       const input = document.getElementById("feeAmountInput");
       input.value = "";
       document.getElementById("feeError").textContent = "";
@@ -1461,7 +1450,6 @@
       const cleaned = String(raw).replace(/[^\d]/g, "");
       const errorEl = document.getElementById("feeError");
       if (!cleaned) {
-        feeState = null;
         errorEl.textContent = "Bạn chưa nhập số tiền hợp lệ.";
         document.getElementById("feeResult").classList.remove("open");
         return;
@@ -1471,7 +1459,6 @@
       const rate = amount < FEE_THRESHOLD ? FEE_RATE_LOW : FEE_RATE_HIGH;
       const fee = Math.round(amount * rate);
       const total = amount + fee;
-      feeState = { amount, rate, fee, total };
       errorEl.textContent = "";
       document.getElementById("feeAmountText").textContent = formatVnd(amount);
       document.getElementById("feeRateText").textContent = `${Math.round(rate * 100)}%`;
@@ -1485,7 +1472,6 @@
       const input = document.getElementById("feeAmountInput");
       input.value = "";
       input.blur();
-      feeState = null;
       document.getElementById("feeError").textContent = "";
       document.getElementById("feeResult").classList.remove("open");
       document.getElementById("feeClearBtn").style.display = "none";
@@ -1578,4 +1564,3 @@
   </script>
 </body>
 </html>
-

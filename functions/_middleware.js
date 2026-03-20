@@ -17,6 +17,8 @@ const BOT_UA_PATTERNS = [
   /preview/i, /metadata/i, /unfurl/i, /opengraph/i,
 ];
 
+// ⚠️  QUAN TRỌNG: Khi cập nhật title/description/og tags trong index.src.html,
+//    nhớ cập nhật SHELL_HTML bên dưới cho đồng bộ (dùng cho bot/crawler).
 const SHELL_HTML = `<!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -147,6 +149,12 @@ export default {
         headers: {
           "Content-Type": "text/html; charset=utf-8",
           "Cache-Control": "no-store",
+          "X-Frame-Options": "DENY",
+          "X-Content-Type-Options": "nosniff",
+          "X-XSS-Protection": "1; mode=block",
+          "Referrer-Policy": "no-referrer",
+          "X-DNS-Prefetch-Control": "off",
+          "Permissions-Policy": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()",
         },
       });
     }
@@ -159,9 +167,12 @@ export default {
     const newHeaders = new Headers(response.headers);
     newHeaders.set("X-Frame-Options", "DENY");
     newHeaders.set("X-Content-Type-Options", "nosniff");
+    newHeaders.set("X-XSS-Protection", "1; mode=block");
     newHeaders.set("Referrer-Policy", "no-referrer");
+    newHeaders.set("X-DNS-Prefetch-Control", "off");
     newHeaders.set("Cache-Control", "no-store, no-cache");
     newHeaders.set("X-Robots-Tag", "noindex, nofollow");
+    newHeaders.set("Permissions-Policy", "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()");
 
     return new Response(response.body, {
       status: response.status,

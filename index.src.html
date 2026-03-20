@@ -966,7 +966,8 @@
       .wide { grid-column: span 12; }
     }
     @media (max-width: 680px) {
-      .topbar-inner { height: auto; padding: 10px 0; align-items: start; flex-direction: column; }
+      .topbar-inner { height: 56px; padding: 0; align-items: center; flex-direction: row; justify-content: space-between; }
+      .logo { font-size: 1.1rem !important; }
       .card { grid-column: span 12; }
       .contact-list { gap: 8px; }
       .personal-list li { width: 100%; }
@@ -1010,6 +1011,65 @@
     }
 
     .topbar-spacer { flex: 1; }
+
+    /* Mobile: ẩn chips, hiện icons liên hệ */
+    .mob-contact-icons { display: none; }
+    @media (max-width: 680px) {
+      .top-actions { display: none; }
+      .mob-contact-icons {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .mob-icon {
+        width: 28px; height: 28px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: 0 2px 8px rgba(15,23,42,0.08);
+        flex-shrink: 0;
+        display: inline-flex;
+      }
+      .mob-icon img {
+        width: 100%; height: 100%;
+        object-fit: cover; display: block;
+      }
+    }
+
+    /* ── Bottom Nav Bar ── */
+    .bottom-nav { display: none; }
+    @media (max-width: 680px) {
+      .bottom-nav {
+        display: block;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 40;
+        background: linear-gradient(to top, rgba(247,248,252,0.98) 0%, rgba(247,248,252,0.82) 55%, rgba(247,248,252,0) 100%);
+        padding: 10px 14px calc(12px + env(safe-area-inset-bottom));
+        pointer-events: none;
+      }
+      .bottom-nav-float {
+        pointer-events: all;
+        width: fit-content;
+        margin: 0 auto;
+        background: rgba(255,255,255,0.80);
+        backdrop-filter: blur(24px) saturate(2);
+        -webkit-backdrop-filter: blur(24px) saturate(2);
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.96);
+        box-shadow:
+          0 1.5px 0 rgba(255,255,255,1) inset,
+          0 -1px 0  rgba(0,0,0,0.04)    inset,
+          0 6px 24px rgba(99,102,241,0.10),
+          0 2px 10px rgba(0,0,0,0.08);
+        padding: 6px 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      body { padding-bottom: 90px; }
+    }
     .cta-row--mt { margin-top: 14px; }
   </style>
   <script src="protect.js"></script>
@@ -1030,7 +1090,21 @@
         <a class="chip" href="#home">Home</a>
         <a class="chip" href="#contact">Liên hệ</a>
         <span class="topbar-spacer"></span>
-        <a class="chip primary" href="#product-note">Xem sản phẩm</a>
+        <a class="chip primary" href="#products">Xem sản phẩm</a>
+      </div>
+      <div class="mob-contact-icons">
+        <a class="mob-icon" href="https://www.facebook.com/share/1AUUKX6NHa/" onclick="showRedirectToast('Facebook','assets/images/fb.jpg')" target="_blank" rel="noopener" aria-label="Facebook">
+          <img src="assets/images/fb.jpg" alt="Facebook" width="34" height="34" loading="lazy" decoding="async">
+        </a>
+        <a class="mob-icon" href="https://www.tiktok.com/@binpinkgold" onclick="showRedirectToast('TikTok','assets/images/tiktok.jpg')" target="_blank" rel="noopener" aria-label="TikTok">
+          <img src="assets/images/tiktok.jpg" alt="TikTok" width="34" height="34" loading="lazy" decoding="async">
+        </a>
+        <a class="mob-icon" href="https://t.me/binpinkgold" onclick="showRedirectToast('Telegram','assets/images/tele.jpg')" target="_blank" rel="noopener" aria-label="Telegram">
+          <img src="assets/images/tele.jpg" alt="Telegram" width="34" height="34" loading="lazy" decoding="async">
+        </a>
+        <a class="mob-icon" href="https://zalo.me/0898908101" onclick="showRedirectToast('Zalo','assets/images/zalo.jpg')" target="_blank" rel="noopener" aria-label="Zalo">
+          <img src="assets/images/zalo.jpg" alt="Zalo" width="34" height="34" loading="lazy" decoding="async">
+        </a>
       </div>
     </div>
   </header>
@@ -1580,6 +1654,15 @@
 
     renderProducts();
   </script>
+
+  <!-- Bottom Nav (mobile only) -->
+  <nav class="bottom-nav" aria-label="Bottom navigation">
+    <div class="bottom-nav-float">
+      <a class="chip" href="#home">Home</a>
+      <a class="chip" href="#contact">Liên hệ</a>
+      <a class="chip primary" href="#products">Xem sản phẩm</a>
+    </div>
+  </nav>
 </body>
 </html>
 

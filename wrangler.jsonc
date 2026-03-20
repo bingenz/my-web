@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "bingenz",
+  "name": "binpinkgold",
   "compatibility_date": "2025-09-27",
   "main": "functions/_middleware.js",
   "observability": {

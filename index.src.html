@@ -1612,6 +1612,7 @@
 
     function attemptCloseWelcome() {
       if (!welcomeCanClose) return;
+      if (document.getElementById('confirmToast').classList.contains('show')) return;
       closeWelcome();
     }
 

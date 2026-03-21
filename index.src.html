@@ -763,6 +763,7 @@
       width: min(560px, calc(100vw - 32px));
       max-height: calc(100vh - 32px);
       overflow-y: auto;
+      overflow-x: hidden;
       background: #ffffff;
       border: 1.5px solid #c7d2fe;
       border-radius: 36px;
@@ -865,9 +866,11 @@
     .fee-input {
       flex: 1;
       min-width: 0;
+      width: 0;
       border: 1px solid #cbd5e1;
       border-radius: 20px;
       padding: 12px 42px 12px 16px;
+      font: inherit;
       font-size: 14px;
       color: #0f172a;
       outline: none;
@@ -882,6 +885,7 @@
       align-items: center;
       gap: 8px;
       position: relative;
+      min-width: 0;
     }
     .fee-clear-btn {
       position: absolute;

@@ -750,6 +750,7 @@
       z-index: 50;
       padding: 16px;
       overflow-y: auto;
+      overflow-x: hidden;
     }
     .modal.open { display: grid; }
     #feeModal.open {
@@ -867,6 +868,7 @@
       flex: 1;
       min-width: 0;
       width: 0;
+      box-sizing: border-box;
       border: 1px solid #cbd5e1;
       border-radius: 20px;
       padding: 12px 42px 12px 16px;
@@ -932,6 +934,7 @@
       min-height: 18px;
     }
     .fee-result {
+      display: none;
       border: 1px solid var(--line);
       border-radius: 22px;
       background: #f8fafc;
@@ -1331,11 +1334,11 @@
         <div class="fee-form">
           <label class="fee-label" for="feeAmountInput">Nhập số tiền cần thanh toán hộ (VND)</label>
           <div class="fee-input-row">
-            <input id="feeAmountInput" class="fee-input" type="text" inputmode="numeric" placeholder="Ví dụ: 1500000">
+            <input id="feeAmountInput" class="fee-input" type="text" inputmode="numeric" placeholder="Ví dụ: 1500000" oninput="onFeeInput()">
             <button class="fee-clear-btn" id="feeClearBtn" onclick="clearFee()" aria-label="Xóa" style="display:none">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
-            <button class="fee-calc-inline-btn" onclick="calculateFee()">Tính phí</button>
+            <button class="fee-calc-inline-btn" id="feeCalcBtn" onclick="calculateFee()" disabled style="opacity:0.5;cursor:not-allowed">Tính phí</button>
           </div>
           <p class="fee-error" id="feeError"></p>
           <div class="fee-result" id="feeResult">
@@ -1548,6 +1551,22 @@
       document.body.style.overflow = "";
     }
 
+    function onFeeInput() {
+      const val = document.getElementById("feeAmountInput").value.replace(/[^\d]/g, "");
+      const btn = document.getElementById("feeCalcBtn");
+      if (val) {
+        btn.disabled = false;
+        btn.style.opacity = "1";
+        btn.style.cursor = "pointer";
+      } else {
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+        btn.style.cursor = "not-allowed";
+        document.getElementById("feeResult").classList.remove("open");
+        document.getElementById("feeError").textContent = "";
+      }
+    }
+
     function calculateFee() {
       const input = document.getElementById("feeAmountInput");
       const raw = input.value;
@@ -1579,6 +1598,10 @@
       document.getElementById("feeError").textContent = "";
       document.getElementById("feeResult").classList.remove("open");
       document.getElementById("feeClearBtn").style.display = "none";
+      const btn = document.getElementById("feeCalcBtn");
+      btn.disabled = true;
+      btn.style.opacity = "0.5";
+      btn.style.cursor = "not-allowed";
     }
 
     function closeModal() {
@@ -1678,6 +1701,7 @@
   </nav>
 </body>
 </html>
+
 
 
 

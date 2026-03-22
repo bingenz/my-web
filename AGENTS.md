@@ -140,6 +140,100 @@ Yeu cau:
 - Sau khi sua, build lai `index.html` tu `index.src.html`.
 ```
 
+## Ghi chu kich hoat audit hoac debug toan du an
+
+### Dieu kien kich hoat
+
+- Chi kich hoat muc nay khi nguoi dung yeu cau ro rang mot trong cac y sau:
+  - kiem tra toan bo du an
+  - audit toan bo project
+  - debug toan bo du an
+  - ra soat tong the website
+- Neu nguoi dung chi yeu cau sua 1 loi cu the hoac 1 section cu the, khong tu dong chay quy trinh audit tong the nay.
+
+### Muc tieu khi kich hoat
+
+- Doc va hieu cau truc du an truoc khi ket luan.
+- Uu tien tim bug thuc te, bug tiem an, va rui ro production.
+- Uu tien sua nho, an toan, de test, de rollback.
+- Khong tu y doi text kinh doanh, gia, CTA, link lien he, hoac logic ban hang neu chua duoc yeu cau.
+
+### Prompt audit-debug toan du an
+
+```text
+Hay dong vai senior frontend/debug engineer va audit toan bo project website nay theo huong production-safe.
+
+Boi canh:
+- Day la landing page ban tai khoan Premium va dich vu lien quan.
+- Uu tien cao nhat la khong lam hong luong ban hang, CTA, modal, popup, redirect, contact link va mobile UX.
+- Moi de xuat phai uu tien sua nho, an toan, de test, de rollback.
+
+Yeu cau audit toan dien:
+1. Doc va hieu cau truc du an truoc khi ket luan.
+2. Xac dinh source of truth:
+   - index.src.html la file nguon chinh
+   - index.html la file build
+   - functions/_middleware.js xu ly middleware, redirect, social metadata
+   - share-meta.js la nguon metadata share
+3. Kiem tra toan bo cac nhom sau:
+   - layout desktop va mobile
+   - responsive tren mobile nho
+   - topbar, hero, CTA, button, chip, product card, service card
+   - bottom nav mobile
+   - welcome popup
+   - confirm toast / info toast / redirect toast
+   - product modal
+   - dev service modal
+   - fee calculator
+   - contact links
+   - redirect domain cu sang domain moi
+   - hash tren URL nhu #home, #products
+   - scroll behavior giua cac section
+   - pointer-events, z-index, overlay, fixed elements
+   - script co the nuot touch/click tren mobile
+   - hieu nang mobile, dac biet voi blur, shadow, toast, popup
+4. Tim loi thuc te va nguy co tiem an, khong chi doc code cho co.
+5. Uu tien phat hien:
+   - bug tren mobile
+   - click khong an
+   - toast/popup hien sai thoi diem
+   - scroll sai section
+   - phan tu fixed chan thao tac
+   - loi race condition giua popup / toast / observer / scroll
+   - loi build source va production file khong dong bo
+   - loi middleware hoac redirect co the anh huong production
+6. Neu phat hien van de:
+   - giai thich nguyen nhan goc
+   - chi ro file lien quan
+   - neu muc do nghiem trong
+   - de xuat cach sua it rui ro nhat
+7. Neu sua code:
+   - chi sua trong file nguon phu hop
+   - khong sua bua index.html neu chua sua index.src.html
+   - sau khi sua phai build lai index.html
+8. Sau cung tra ket qua theo format:
+   - Findings
+   - Root cause
+   - Safe fix proposal
+   - Files involved
+   - What to verify manually
+9. Neu khong thay bug ro rang, van phai neu:
+   - cac vung rui ro cao
+   - cac luong can test tay
+   - cac diem de gay loi ve sau
+
+Luu y dac biet:
+- Khong tu y doi text kinh doanh, gia, CTA, link lien he neu khong co yeu cau.
+- Khong refactor lon neu chua can.
+- Khong duoc lam thay doi hanh vi ban hang ngoai pham vi bugfix.
+- Neu co nhieu cach sua, chon cach an toan nhat cho production.
+
+Muc tieu cuoi:
+- debug toan bo du an
+- tim bug thuc te + bug tiem an
+- dua ra danh sach fix an toan, ro rang, co the ap dung ngay
+```
+
 ## Cach ra quyet dinh
 
 - Neu yeu cau mo ho, uu tien giu nguyen hanh vi hien tai.

@@ -1120,10 +1120,18 @@
       .community-sub-reward { display: block; margin-top: 2px; }
     }
     @media (max-width: 430px) {
-      .hero-cta-row { gap: 8px; }
+      .hero-cta-row {
+        gap: 8px;
+        flex-wrap: nowrap;
+      }
       .hero-cta-row .chip.primary,
-      .hero-outline-btn { padding: 10px 14px; }
-      .hero-outline-btn { font-size: 13px; }
+      .hero-outline-btn {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 46px;
+        padding: 9px 18px;
+        font-size: 13.5px;
+      }
     }
     /* Stack contact buttons vertically on narrow modal */
     @media (max-width: 400px) {

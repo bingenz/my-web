@@ -1840,7 +1840,7 @@
           <button class="wlc-ad-cta" onclick="showConfirmToast('https://fullhousedev.com/khoa-hoc/course-cpp-beginner/?ref=4de39e7557','FullHouse Dev','assets/images/fhd.jpg','Trung tâm dạy học lập trình')"><span class="wlc-ad-dot"></span>Khám phá khóa học ngay</button>
         </div>
       </div>
-      <button class="welcome-skip" id="welcomeSkipBtn" onclick="attemptCloseWelcome()" disabled>Bỏ qua, xem Store (2s)</button>
+      <button class="welcome-skip" id="welcomeSkipBtn" onclick="attemptCloseWelcome(event)" disabled>Bỏ qua, xem Store (2s)</button>
     </div>
   </div>
 
@@ -2303,10 +2303,14 @@
       }, 1000);
     }
 
-    function attemptCloseWelcome() {
+    function attemptCloseWelcome(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       if (!welcomeCanClose) return;
       if (document.getElementById('confirmToast').classList.contains('show')) return;
-      closeWelcome();
+      setTimeout(closeWelcome, 30);
     }
 
     function closeWelcome() {

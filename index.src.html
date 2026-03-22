@@ -536,7 +536,13 @@
     .badge.red { border: 1px solid #fecaca; background: #fef2f2; color: #b91c1c; }
 
     .price-row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }
-    .price { font-size: 2rem; line-height: 1; letter-spacing: -0.03em; }
+    .price {
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      font-weight: 900;
+      color: #0f172a;
+    }
     .old { font-size: 12px; color: #94a3b8; }
     .old s { color: #94a3b8 !important; text-decoration: line-through #ef4444 !important; text-decoration-thickness: 1.3px !important; }
     .day {
@@ -1105,6 +1111,12 @@
       .community-sub { white-space: normal; }
       .community-sub-reward { display: block; margin-top: 2px; }
     }
+    @media (max-width: 430px) {
+      .hero-cta-row { gap: 8px; }
+      .hero-cta-row .chip.primary,
+      .hero-outline-btn { padding: 10px 14px; }
+      .hero-outline-btn { font-size: 13px; }
+    }
     /* Stack contact buttons vertically on narrow modal */
     @media (max-width: 400px) {
       .modal-actions,
@@ -1194,13 +1206,13 @@
           0 -1px 0  rgba(0,0,0,0.04)      inset,
           0 6px 24px rgba(99,102,241,0.10),
           0 2px 10px rgba(0,0,0,0.08);
-        padding: 4px 4px;
+        padding: 6px 6px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 2px;
+        gap: 4px;
       }
-      body { padding-bottom: 80px; }
+      body { padding-bottom: 86px; }
     }
     .cta-row--mt { margin-top: 14px; }
 
@@ -1296,6 +1308,20 @@
       var oldHosts = new Set(["binpinkgold.lnth.workers.dev"]);
       if (oldHosts.has(location.hostname) || location.hostname.endsWith(".workers.dev")) {
         location.replace("https://bingenz.com" + location.pathname + location.search);
+        return;
+      }
+
+      var knownSectionHashes = new Set([
+        "#home",
+        "#products",
+        "#product",
+        "#contact",
+        "#community",
+        "#source-code"
+      ]);
+
+      if (knownSectionHashes.has(location.hash) && history.replaceState) {
+        history.replaceState(null, "", location.pathname + location.search);
       }
     })();
   </script>

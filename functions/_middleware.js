@@ -1,4 +1,6 @@
-// functions/_middleware.js — Cloudflare Worker Middleware + Visitor Tracking
+// functions/_middleware.js -- Cloudflare Worker Middleware + Visitor Tracking
+
+import { SHARE_META } from "../share-meta.js";
 
 const BOT_UA_PATTERNS = [
   /bot/i, /crawl/i, /spider/i, /scraper/i,
@@ -17,28 +19,36 @@ const BOT_UA_PATTERNS = [
   /preview/i, /metadata/i, /unfurl/i, /opengraph/i,
 ];
 
-// ⚠️  QUAN TRỌNG: Khi cập nhật title/description/og tags trong index.src.html,
-//    nhớ cập nhật SHELL_HTML bên dưới cho đồng bộ (dùng cho bot/crawler).
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+const SHARE_TITLE = escapeHtml(SHARE_META.title);
+const SHARE_DESCRIPTION = escapeHtml(SHARE_META.description);
+
+// Chinh caption share mang xa hoi tai ../share-meta.js.
 const SHELL_HTML = `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BinGenZ · AI & PREMIUM ACCOUNT STORE</title>
+  <title>${SHARE_TITLE}</title>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bingenz.com">
-  <meta property="og:title" content="BinGenZ · AI & PREMIUM ACCOUNT STORE">
-  <meta property="og:description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
+  <meta property="og:title" content="${SHARE_TITLE}">
+  <meta property="og:description" content="${SHARE_DESCRIPTION}">
   <meta property="og:locale" content="vi_VN">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="BinGenZ · AI & PREMIUM ACCOUNT STORE">
-  <meta name="twitter:description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp.">
-  <meta name="description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
+  <meta name="twitter:title" content="${SHARE_TITLE}">
+  <meta name="twitter:description" content="${SHARE_DESCRIPTION}">
+  <meta name="description" content="${SHARE_DESCRIPTION}">
 </head>
-<body><p>Vui lòng mở trên trình duyệt để xem nội dung.</p></body>
+<body><p>Vui long mo tren trinh duyet de xem noi dung.</p></body>
 </html>`;
-
-
 
 function getDeviceType(ua) {
   if (/Mobile|Android|iPhone|iPad|iPod/i.test(ua)) {
@@ -58,7 +68,7 @@ function getOS(ua) {
 }
 
 function getBrowser(ua) {
-  if (/CocCoc/i.test(ua)) return "Cốc Cốc";
+  if (/CocCoc/i.test(ua)) return "Coc Coc";
   if (/Edg/i.test(ua)) return "Edge";
   if (/OPR|Opera/i.test(ua)) return "Opera";
   if (/Chrome/i.test(ua)) return "Chrome";
@@ -76,20 +86,20 @@ async function trackVisitor(request, env) {
     const ip = request.headers.get("CF-Connecting-IP") || "unknown";
     const now = new Date();
 
-    // Dùng timezone +7
+    // Dung timezone +7
     const vnTime = new Date(now.getTime() + 7 * 60 * 60 * 1000);
     const dateStr = vnTime.toISOString().slice(0, 10); // YYYY-MM-DD
     const timeStr = vnTime.toISOString().slice(11, 16); // HH:MM
 
-    // Dedup: cùng IP trong cùng ngày không tính lại
+    // Dedup: cung IP trong cung ngay khong tinh lai
     const dedupKey = `dedup:${dateStr}:${ip}`;
     const alreadyCounted = await kv.get(dedupKey);
     if (alreadyCounted) return;
 
-    // Lưu dedup flag, TTL 48 giờ
+    // Luu dedup flag, TTL 48 gio
     await kv.put(dedupKey, "1", { expirationTtl: 172800 });
 
-    // Lấy log ngày hiện tại
+    // Lay log ngay hien tai
     const logKey = `log:${dateStr}`;
     const existing = await kv.get(logKey, { type: "json" }) || [];
 
@@ -103,16 +113,15 @@ async function trackVisitor(request, env) {
     };
 
     existing.push(entry);
-    // Lưu log, TTL 30 ngày
+    // Luu log, TTL 30 ngay
     await kv.put(logKey, JSON.stringify(existing), { expirationTtl: 2592000 });
 
-    // Cập nhật tổng theo ngày
+    // Cap nhat tong theo ngay
     const totalKey = `total:${dateStr}`;
-    const total = parseInt(await kv.get(totalKey) || "0") + 1;
+    const total = parseInt(await kv.get(totalKey) || "0", 10) + 1;
     await kv.put(totalKey, String(total), { expirationTtl: 2592000 });
-
   } catch (e) {
-    // Không làm crash middleware nếu KV lỗi
+    // Khong lam crash middleware neu KV loi
     console.error("Tracker error:", e);
   }
 }
@@ -126,22 +135,22 @@ export default {
       "binpinkgold.lnth.workers.dev",
     ]);
 
-    // ✅ Redirect domain cũ sang domain mới
-    if (legacyHosts.has(url.hostname) || url.hostname.endsWith(".workers.dev")) {
+    // Redirect domain cu sang domain moi
+    if (legacyHosts.has(url.hostname)) {
       const target = NEW_ORIGIN + url.pathname + url.search + url.hash;
       return Response.redirect(target, 308);
     }
 
-    // Bỏ qua tracking cho /stats
+    // Bo qua tracking cho /stats
     if (url.pathname === "/stats") {
       return env.ASSETS.fetch(request);
     }
 
-    // Chỉ serve encoded page cho browser thật, còn lại trả SHELL_HTML cho crawler đọc meta
+    // Chi serve encoded page cho browser that, con lai tra SHELL_HTML cho crawler doc meta
     const isRealBrowser = ua.length > 20
       && /Mozilla\/5\.0/i.test(ua)
       && /(Chrome|Firefox|Safari|Edg|OPR|CocCoc)\/[\d.]+/i.test(ua)
-      && !BOT_UA_PATTERNS.some(p => p.test(ua));
+      && !BOT_UA_PATTERNS.some((pattern) => pattern.test(ua));
 
     if (!isRealBrowser) {
       return new Response(SHELL_HTML, {
@@ -159,10 +168,10 @@ export default {
       });
     }
 
-    // Track visitor (không await để không làm chậm response)
+    // Track visitor (khong await de khong lam cham response)
     ctx.waitUntil(trackVisitor(request, env));
 
-    // Serve static asset + thêm security headers
+    // Serve static asset + them security headers
     const response = await env.ASSETS.fetch(request);
     const newHeaders = new Headers(response.headers);
     newHeaders.set("X-Frame-Options", "DENY");
@@ -178,5 +187,5 @@ export default {
       status: response.status,
       headers: newHeaders,
     });
-  }
+  },
 };

@@ -2,6 +2,11 @@
 (() => {
   "use strict";
 
+  const isEditableTarget = (target) => {
+    if (!target || !(target instanceof Element)) return false;
+    return !!target.closest("input, textarea, [contenteditable], [contenteditable='true'], [contenteditable='']");
+  };
+
   // ============================================================
   // LAYER 1 — CHỐNG COPY / CHỌN TEXT
   // ============================================================
@@ -21,14 +26,19 @@
   `;
   (document.head || document.documentElement).appendChild(antiSelectStyle);
 
-  document.addEventListener("selectstart", (e) => e.preventDefault(), true);
-  document.addEventListener("dragstart",   (e) => e.preventDefault(), true);
-  document.addEventListener("copy",        (e) => { try{ e.clipboardData?.setData("text/plain",""); }catch{}; e.preventDefault(); }, true);
-  document.addEventListener("cut",         (e) => e.preventDefault(), true);
-  document.addEventListener("paste",       (e) => e.preventDefault(), true);
+  document.addEventListener("selectstart", (e) => { if (!isEditableTarget(e.target)) e.preventDefault(); }, true);
+  document.addEventListener("dragstart",   (e) => { if (!isEditableTarget(e.target)) e.preventDefault(); }, true);
+  document.addEventListener("copy",        (e) => {
+    if (isEditableTarget(e.target)) return;
+    try { e.clipboardData?.setData("text/plain", ""); } catch {}
+    e.preventDefault();
+  }, true);
+  document.addEventListener("cut",         (e) => { if (!isEditableTarget(e.target)) e.preventDefault(); }, true);
+  document.addEventListener("paste",       (e) => { if (!isEditableTarget(e.target)) e.preventDefault(); }, true);
   document.addEventListener("mousedown",   (e) => { if(e.button===2) e.preventDefault(); }, true);
 
   const antiCopyKeys = (e) => {
+    if (isEditableTarget(e.target)) return;
     const key  = (e.key || "").toLowerCase();
     const ctrl = e.ctrlKey || e.metaKey;
     if (ctrl && ["c","x","a","v"].includes(key)) {
@@ -47,6 +57,7 @@
   const ctrlOrCmd = (e) => e.ctrlKey || e.metaKey;
 
   const blockHotkeys = (e) => {
+    if (isEditableTarget(e.target)) return;
     const key  = (e.key || "").toLowerCase();
     const code = (e.code || "");
     const ctrl  = ctrlOrCmd(e);
@@ -66,4 +77,3 @@
   window.addEventListener("keyup",   blockHotkeys, true);
 
 })();
-

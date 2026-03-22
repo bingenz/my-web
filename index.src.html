@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-visual">
+  <!-- Share metadata is injected from share-meta.js during build and in middleware. -->
   <title>BinGenZ · AI & PREMIUM ACCOUNT STORE</title>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bingenz.com">
   <meta property="og:title" content="BinGenZ · AI & PREMIUM ACCOUNT STORE">
-  <meta property="og:description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
+  <meta property="og:description" content="Đăng ký tài khoản Premium (ChatGPT Plus, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp). Cung cấp thiết kế website chuyên nghiệp và hỗ trợ thanh toán Visa siêu tốc, tối ưu chi phí.">
   <meta property="og:locale" content="vi_VN">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BinGenZ · AI & PREMIUM ACCOUNT STORE">
-  <meta name="twitter:description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp.">
-  <meta name="description" content="ChatGPT Plus Codex, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp. Nhận thanh toán Visa, Mastercard, PayPal và nhận Code Bot Telegram.">
+  <meta name="twitter:description" content="Đăng ký tài khoản Premium (ChatGPT Plus, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp). Cung cấp thiết kế website chuyên nghiệp và hỗ trợ thanh toán Visa siêu tốc, tối ưu chi phí.">
+  <meta name="description" content="Đăng ký tài khoản Premium (ChatGPT Plus, Gemini Pro, YouTube Premium, CapCut Pro, Netflix Cao Cấp). Cung cấp thiết kế website chuyên nghiệp và hỗ trợ thanh toán Visa siêu tốc, tối ưu chi phí.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -514,8 +515,6 @@
       display: block;
     }
     .head-text { min-width: 0; }
-    .name { font-size: 1rem; font-weight: 800; letter-spacing: -0.01em; margin: 0; }
-    .tag { margin: 3px 0 0; color: #64748b; font-size: 10px; }
     .name { font-size: 1rem; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 3px; }
     .tag { color: #64748b; font-size: 11px; margin: 0; line-height: 1.4; }
     .badge {
@@ -1982,12 +1981,47 @@
     }
 
     let welcomeCanClose = false;
+    let welcomeDismissed = false;
+    let infoToastObserver = null;
+    let infoToastShown = false;
+
+    function isWelcomeOpen() {
+      const overlay = document.getElementById("welcomeOverlay");
+      return !!(overlay && overlay.classList.contains("open"));
+    }
+
+    function showInfoToast() {
+      const toast = document.getElementById('infoToast');
+      if (!toast || infoToastShown || isWelcomeOpen() || !welcomeDismissed) return;
+      infoToastShown = true;
+      toast.classList.add('show');
+    }
+
+    function startInfoToastObserver() {
+      const target = document.getElementById('products');
+      if (!target || !('IntersectionObserver' in window) || infoToastObserver || !welcomeDismissed) return;
+
+      infoToastObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting || isWelcomeOpen()) return;
+          setTimeout(function () {
+            if (!isWelcomeOpen()) showInfoToast();
+          }, 300);
+          infoToastObserver.unobserve(target);
+          infoToastObserver.disconnect();
+          infoToastObserver = null;
+        });
+      }, { threshold: 0.15 });
+
+      infoToastObserver.observe(target);
+    }
 
     function openWelcome() {
       const overlay = document.getElementById("welcomeOverlay");
       const skipBtn = document.getElementById("welcomeSkipBtn");
       if (!overlay || !skipBtn) return;
 
+      welcomeDismissed = false;
       welcomeCanClose = false;
       skipBtn.disabled = true;
       overlay.classList.add("open");
@@ -2020,6 +2054,8 @@
       if (!overlay) return;
       overlay.classList.remove("open");
       document.body.style.overflow = "";
+      welcomeDismissed = true;
+      startInfoToastObserver();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -2068,10 +2104,10 @@
         var topbarH = topbar ? topbar.offsetHeight : 68;
         // Show toast first so we can measure its height
         var toast = document.getElementById('infoToast');
-        if (toast) {
+        if (toast && !isWelcomeOpen() && welcomeDismissed) {
           toast.classList.remove('show');
           void toast.offsetWidth;
-          toast.classList.add('show');
+          showInfoToast();
         }
         var toastH = toast ? toast.offsetHeight + 16 : 0;
         var top = target.getBoundingClientRect().top + window.scrollY - topbarH - toastH;
@@ -2088,32 +2124,11 @@
       var okBtn = document.getElementById('infoToastOk');
       if (!toast || !okBtn) return;
 
-      var shown = false;
-
-      function showInfoToast() {
-        if (shown) return;
-        shown = true;
-        toast.classList.add('show');
-      }
-
       function closeInfoToast() {
         toast.classList.remove('show');
       }
 
       okBtn.addEventListener('click', closeInfoToast);
-
-      var target = document.getElementById('products');
-      if (target && 'IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              setTimeout(showInfoToast, 300);
-              observer.unobserve(target);
-            }
-          });
-        }, { threshold: 0.15 });
-        observer.observe(target);
-      }
     });
   </script>
 

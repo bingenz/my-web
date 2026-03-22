@@ -842,8 +842,12 @@
       z-index: 200;
       transition: bottom 0.35s cubic-bezier(0.34,1.56,0.64,1);
       width: min(300px, 88vw);
+      pointer-events: none;
     }
-    .confirm-toast.show { bottom: 28px; }
+    .confirm-toast.show {
+      bottom: 28px;
+      pointer-events: auto;
+    }
     .confirm-toast-top { display: flex; align-items: center; gap: 10px; }
     .confirm-toast-top img {
       width: 40px; height: 40px; border-radius: 14px;
@@ -1976,7 +1980,7 @@
         <div class="confirm-toast-sub" id="confirmToastSub">Bấm xác nhận để mở trang này</div>
       </div>
     </div>
-    <a class="confirm-btn-yes" id="confirmBtnYes" href="#" target="_blank" rel="noopener" onclick="cancelConfirm()">Mở trang ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    <a class="confirm-btn-yes" id="confirmBtnYes" href="javascript:void(0)" target="_self" rel="noopener" onclick="cancelConfirm()">Mở trang ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     <button class="confirm-btn-no" onclick="cancelConfirm()">Để sau</button>
   </div>
 
@@ -2347,6 +2351,7 @@
       document.getElementById('confirmToastSub').textContent = sub || 'Bấm xác nhận để mở trang này';
       document.getElementById('confirmToastImg').src = img;
       btnYes.href = url;
+      btnYes.target = '_blank';
       toast.classList.add('show');
       if (skipBtn) skipBtn.disabled = true;
       clearTimeout(_confirmTimer);
@@ -2355,7 +2360,11 @@
 
     function cancelConfirm() {
       clearTimeout(_confirmTimer);
-      document.getElementById('confirmToast').classList.remove('show');
+      const toast = document.getElementById('confirmToast');
+      const btnYes = document.getElementById('confirmBtnYes');
+      toast.classList.remove('show');
+      btnYes.href = 'javascript:void(0)';
+      btnYes.target = '_self';
       const skipBtn = document.getElementById('welcomeSkipBtn');
       if (skipBtn && welcomeCanClose) skipBtn.disabled = false;
     }

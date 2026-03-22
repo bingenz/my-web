@@ -1788,7 +1788,7 @@
           Xem chi tiết dịch vụ
           <svg id="devDetailArrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4338ca" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <ul id="devDetailList" style="display:none;list-style:none;padding:8px 4px 4px;margin:0;display:none;">
+        <ul id="devDetailList" style="display:none;list-style:none;padding:8px 4px 4px;margin:0;">
           <li style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:13px;color:#334155;"><svg style="flex-shrink:0;margin-top:2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Thiết kế Website theo yêu cầu, từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</li>
           <li style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:13px;color:#334155;"><svg style="flex-shrink:0;margin-top:2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Bot Telegram thông minh: bot bán hàng, box chat, script và phân tích dữ liệu.</li>
           <li style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:13px;color:#334155;"><svg style="flex-shrink:0;margin-top:2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Hỗ trợ làm bài tập lập trình: code theo yêu cầu, giải thích chi tiết, giao đúng tiến độ.</li>
@@ -1844,7 +1844,7 @@
         <div class="fee-form">
           <label class="fee-label" for="feeAmountInput">Nhập số tiền cần thanh toán hộ (VND)</label>
           <div class="fee-input-row">
-            <input id="feeAmountInput" class="fee-input" type="text" inputmode="numeric" placeholder="Ví dụ: 1500000">
+            <input id="feeAmountInput" class="fee-input" type="text" inputmode="numeric" placeholder="Ví dụ: 1500000" onkeydown="if(event.key==='Enter')calculateFee()">
             <button class="fee-clear-btn" id="feeClearBtn" onclick="clearFee()" aria-label="Xóa" style="display:none">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>

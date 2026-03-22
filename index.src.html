@@ -302,12 +302,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
     }
     .hero-stat-avatars {
       display: flex;
       align-items: center;
+      flex-shrink: 0;
     }
+    .hero-stat-top .hero-stat-value { white-space: nowrap; }
     .hero-stat-avatars img {
       width: 18px;
       height: 18px;
@@ -1131,6 +1133,11 @@
         min-height: 46px;
         padding: 9px 18px;
         font-size: 13.5px;
+      }
+      .hero-stat-top { gap: 6px; }
+      .hero-stat-avatars img {
+        width: 16px;
+        height: 16px;
       }
     }
     /* Stack contact buttons vertically on narrow modal */

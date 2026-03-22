@@ -35,7 +35,7 @@
   }, true);
   document.addEventListener("cut",         (e) => { if (!isEditableTarget(e.target)) e.preventDefault(); }, true);
   document.addEventListener("paste",       (e) => { if (!isEditableTarget(e.target)) e.preventDefault(); }, true);
-  document.addEventListener("mousedown",   (e) => { if(e.button===2) e.preventDefault(); }, true);
+  document.addEventListener("mousedown",   (e) => { if(e.button===2 && !isEditableTarget(e.target)) e.preventDefault(); }, true);
 
   const antiCopyKeys = (e) => {
     if (isEditableTarget(e.target)) return;
@@ -52,7 +52,7 @@
   // LAYER 2 — CHẶN PHÍM TẮT DEVTOOLS / VIEW SOURCE
   // ============================================================
 
-  document.addEventListener("contextmenu", (e) => e.preventDefault(), true);
+  document.addEventListener("contextmenu", (e) => { if (!isEditableTarget(e.target)) e.preventDefault(); }, true);
 
   const ctrlOrCmd = (e) => e.ctrlKey || e.metaKey;
 

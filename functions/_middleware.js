@@ -41,10 +41,14 @@ const SHELL_HTML = `<!DOCTYPE html>
   <meta property="og:url" content="https://bingenz.com">
   <meta property="og:title" content="${SHARE_TITLE}">
   <meta property="og:description" content="${SHARE_DESCRIPTION}">
+  <meta property="og:image" content="https://bingenz.com/assets/images/fhd.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:locale" content="vi_VN">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${SHARE_TITLE}">
   <meta name="twitter:description" content="${SHARE_DESCRIPTION}">
+  <meta name="twitter:image" content="https://bingenz.com/assets/images/fhd.jpg">
   <meta name="description" content="${SHARE_DESCRIPTION}">
 </head>
 <body><p>Vui long mo tren trinh duyet de xem noi dung.</p></body>

@@ -100,11 +100,18 @@
       font-weight: 600;
     }
     .chip.primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border-color: transparent;
       background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #0ea5e9 100%);
       color: #fff;
       padding: 10px 20px;
       font-size: 15px;
+      line-height: 1.2;
+      appearance: none;
+      -webkit-appearance: none;
+      overflow: hidden;
       box-shadow: 0 6px 20px rgba(99,102,241,0.38);
       transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
     }
@@ -545,14 +552,21 @@
 
     .cta-row { margin-top: auto; display: grid; gap: 8px; }
     .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border: 0;
       border-radius: 999px;
       padding: 13px 18px;
       font-size: 15px;
       font-weight: 700;
+      line-height: 1.2;
+      appearance: none;
+      -webkit-appearance: none;
       cursor: pointer;
       text-decoration: none;
       text-align: center;
+      overflow: hidden;
     }
     .cta.buy {
       color: #fff;
@@ -1281,7 +1295,7 @@
     (function () {
       var oldHosts = new Set(["binpinkgold.lnth.workers.dev"]);
       if (oldHosts.has(location.hostname) || location.hostname.endsWith(".workers.dev")) {
-        location.replace("https://bingenz.com" + location.pathname + location.search + location.hash);
+        location.replace("https://bingenz.com" + location.pathname + location.search);
       }
     })();
   </script>

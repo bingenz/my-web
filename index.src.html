@@ -978,6 +978,20 @@
     }
     .contact-cta:hover { transform: translateY(-1px); }
     .contact-cta:active { transform: translateY(0); }
+    #devModal .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    #devModal .modal-body { gap: 6px; }
+    #devModal .contact-box { margin-top: 4px !important; }
+    #devModal .wlc-services { margin-bottom: 10px !important; }
+    #devModal .wlc-svc-note {
+      font-size: 9.5px;
+      line-height: 1.35;
+      word-break: normal;
+    }
+    #devModal .wlc-svc-note br { display: none; }
     .contact-cta.tele {
       background: linear-gradient(135deg, #2AABEE, #1a8fc7);
       box-shadow: 0 6px 16px rgba(42,171,238,0.35);
@@ -1120,6 +1134,54 @@
       .personal-list li { width: 100%; }
       .community-sub { white-space: normal; }
       .community-sub-reward { display: block; margin-top: 2px; }
+      .redirect-toast,
+      .confirm-toast,
+      .info-toast {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        will-change: transform, opacity;
+      }
+      .redirect-toast {
+        bottom: 20px;
+        transform: translate(-50%, 22px);
+        opacity: 0;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+      }
+      .redirect-toast.show {
+        bottom: 20px;
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
+      .redirect-toast .t-text {
+        animation: none;
+        background: none;
+        -webkit-text-fill-color: currentColor;
+        color: #fff;
+      }
+      .confirm-toast {
+        bottom: 20px;
+        transform: translate(-50%, 22px);
+        opacity: 0;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+        box-shadow: 0 10px 28px rgba(15,23,42,0.22);
+      }
+      .confirm-toast.show {
+        bottom: 20px;
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
+      .info-toast {
+        top: calc(72px + env(safe-area-inset-top, 0px));
+        transform: translate(-50%, -18px);
+        opacity: 0;
+        transition: transform 0.22s ease, opacity 0.22s ease;
+        box-shadow: 0 10px 28px rgba(15,23,42,0.18);
+      }
+      .info-toast.show {
+        top: calc(72px + env(safe-area-inset-top, 0px));
+        transform: translate(-50%, 0);
+        opacity: 1;
+      }
     }
     @media (max-width: 430px) {
       html { font-size: 13.35px; }
@@ -1128,6 +1190,10 @@
       .section h2 { margin-bottom: 18px; }
       .topbar-inner { height: 54px; }
       .logo { font-size: 1.42rem !important; }
+      .hero-box {
+        width: auto;
+        margin-left: 0;
+      }
       .hero-box { padding: 20px 12px 26px; }
       .hero-card {
         border-radius: 24px;
@@ -2296,14 +2362,16 @@
       if (target) {
         var topbar = document.querySelector('.topbar');
         var topbarH = topbar ? topbar.offsetHeight : 68;
-        // Show toast first so we can measure its height
         var toast = document.getElementById('infoToast');
+        var toastH = 0;
         if (toast && !isWelcomeOpen() && welcomeDismissed) {
-          toast.classList.remove('show');
-          void toast.offsetWidth;
-          showInfoToast();
+          if (!infoToastShown) {
+            showInfoToast();
+            toastH = window.innerWidth <= 680 ? 120 : 136;
+          } else {
+            toastH = toast.getBoundingClientRect().height + 16;
+          }
         }
-        var toastH = toast ? toast.offsetHeight + 16 : 0;
         var top = target.getBoundingClientRect().top + window.scrollY - topbarH - toastH;
         window.scrollTo({ top: top, behavior: 'smooth' });
       }

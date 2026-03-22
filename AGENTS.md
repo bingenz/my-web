@@ -82,6 +82,64 @@ Tai lieu nay danh cho AI agent khi lam viec trong repo nay.
 - Khong toi uu kieu "dep code" ma vo tinh doi hanh vi.
 - Neu de xuat refactor lon, phai neu ro rui ro va cach verify.
 
+## Ghi chu xu ly cac case button hero va responsive tuong tu
+
+### Khi nao can nghi den loi nay
+
+- 2 button trong hero/banner bi xuong dong tren mobile pho bien khoang 390px den 430px.
+- 2 button dung canh nhau nhung nhin khong can doi: 1 nut to hon, 1 nut day hon, hoặc khoang cach qua sat.
+- Button gradient/pill bi khuyet nen hoac khuyet vien o 2 dau bo tron.
+- Cum CTA va cum chip/stats ben duoi nhin bi dinh vao nhau, thieu khoang tho.
+- URL bi giu lai hash noi bo nhu `#home`, `#products`, `#contact` sau redirect hoac sau khi vao link cu.
+
+### Cach xu ly an toan uu tien
+
+- Uu tien chi sua CSS o khu vuc hero truoc, khong doi logic click, id, hook DOM, hay text kinh doanh neu chua can.
+- Neu 2 button bi xuong dong tren mobile hep:
+  - dung media query nho, uu tien moc `max-width: 430px`
+  - cho 2 button `flex: 1 1 0`
+  - them `min-width: 0`
+  - neu can thi `flex-wrap: nowrap`
+  - giam `min-height`, `padding`, `font-size` de button thon hon
+- Neu 2 button khong can doi:
+  - dat style chung rieng trong `.hero-cta-row` de can `min-height`, `padding`, `font-size`, `line-height`, `border-radius`
+  - khong sua class global neu chua can, tranh anh huong CTA o noi khac
+- Neu button gradient/pill bi khuyet vien:
+  - kiem tra no co dang ke thua `border` tu class base hay khong
+  - uu tien set ro `border: 0`
+  - co the them `background-clip: padding-box`
+  - kiem tra `appearance`, `-webkit-appearance`, `overflow`
+- Neu cum CTA va chip/stats qua sat:
+  - tang `margin-bottom` cua `.hero-cta-row`
+  - hoac them `margin-top` nho cho `.hero-stats`
+- Neu URL con giu hash noi bo:
+  - khong giu `location.hash` khi redirect domain cu sang domain moi neu khong can
+  - co the dung `history.replaceState(null, "", location.pathname + location.search)` de lam sach hash noi bo sau khi load
+
+### Checklist rieng cho case nay
+
+- 2 button hero van cung 1 hang tren mobile 390px den 430px.
+- Button nhin thon gon, khong bi "u".
+- Button gradient khong bi khuyet 2 dau bo tron.
+- Khoang cach giua CTA va 4 chip/stats du de tach thanh 2 tang thi giac.
+- Khong doi text CTA neu chua duoc yeu cau.
+- Sau khi sua `index.src.html`, phai build lai `index.html`.
+
+### Prompt mau co the dung lai
+
+```text
+Hay sua 2 button trong hero/banner.
+
+Yeu cau:
+- 2 button phai nam cung 1 hang tren mobile pho bien khoang 390px den 430px, khong bi xuong dong.
+- 2 button phai nhin thon gon hon, can doi nhau ve chieu cao, padding, font-size va border-radius.
+- Button gradient khong duoc bi khuyet nen/khuyet vien o 2 dau bo tron.
+- Uu tien chi sua CSS trong hero, khong doi logic click, id, hook DOM, hay text kinh doanh neu chua that su can.
+- Neu can, dung media query de giam min-height, padding, font-size, cho 2 button chia deu chieu ngang bang flex va tranh wrap.
+- Neu URL con hash noi bo nhu #home, #products thi lam sach bang cach an toan ma khong reload trang.
+- Sau khi sua, build lai `index.html` tu `index.src.html`.
+```
+
 ## Cach ra quyet dinh
 
 - Neu yeu cau mo ho, uu tien giu nguyen hanh vi hien tai.

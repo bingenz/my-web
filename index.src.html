@@ -233,7 +233,7 @@
     }
 
     .hero-cta-row {
-      margin-bottom: 30px;
+      margin-bottom: 36px;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
@@ -268,7 +268,7 @@
       border-color: #6366f1;
     }
     .hero-stats {
-      margin-top: 6px;
+      margin-top: 10px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
@@ -488,6 +488,7 @@
     }
 
     .section { padding: 36px 0 36px; }
+    #source-code.section { padding-top: 56px; }
     .section h2 {
       margin: 0 0 24px;
       font-size: clamp(1.3rem, 3vw, 2rem);
@@ -811,8 +812,12 @@
       z-index: 200;
       transition: bottom 0.3s cubic-bezier(0.34,1.56,0.64,1);
       white-space: nowrap;
+      pointer-events: none;
     }
-    .redirect-toast.show { bottom: 28px; }
+    .redirect-toast.show {
+      bottom: 28px;
+      pointer-events: auto;
+    }
     .redirect-toast .t-text {
       font-size: 13px; font-weight: 600;
       background: linear-gradient(90deg, #fff 0%, #fff 30%, #a5b4fc 50%, #fff 70%, #fff 100%);
@@ -829,16 +834,18 @@
       position: fixed;
       bottom: -180px;
       left: 50%; transform: translateX(-50%);
-      background: rgba(15, 23, 42, 0.55);
-      backdrop-filter: blur(20px) saturate(1.6);
-      -webkit-backdrop-filter: blur(20px) saturate(1.6);
-      border: 1px solid rgba(255,255,255,0.13);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.08) 100%),
+        rgba(15, 23, 42, 0.46);
+      backdrop-filter: blur(16px) saturate(1.25);
+      -webkit-backdrop-filter: blur(16px) saturate(1.25);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 32px;
       padding: 14px 16px 10px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.04) inset;
+      box-shadow: 0 16px 36px rgba(15,23,42,0.24), 0 0 0 1px rgba(255,255,255,0.06) inset;
       z-index: 200;
       transition: bottom 0.35s cubic-bezier(0.34,1.56,0.64,1);
       width: min(300px, 88vw);
@@ -855,27 +862,27 @@
       border: 1px solid rgba(255,255,255,0.15);
     }
     .confirm-toast-label { font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.95); flex: 1; }
-    .confirm-toast-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .confirm-toast-sub { font-size: 11px; color: rgba(255,255,255,0.74); margin-top: 1px; }
     .confirm-btn-yes {
-      background: #4f46e5; color: #fff;
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #0ea5e9 100%); color: #fff;
       border: 0; border-radius: 999px;
       padding: 10px 12px; font-size: 13px; font-weight: 700;
       cursor: pointer; font-family: "Be Vietnam Pro", sans-serif;
       text-decoration: none; text-align: center;
       display: flex; align-items: center; justify-content: center;
       width: 100%;
-      box-shadow: 0 4px 14px rgba(79,70,229,0.35);
+      box-shadow: 0 8px 20px rgba(79,70,229,0.3);
       transition: filter 0.15s, box-shadow 0.15s;
     }
-    .confirm-btn-yes:hover { filter: brightness(1.12); box-shadow: 0 6px 18px rgba(79,70,229,0.5); }
+    .confirm-btn-yes:hover { filter: brightness(1.08); box-shadow: 0 10px 24px rgba(79,70,229,0.38); }
     .confirm-btn-no {
       display: block; width: 100%; border: 0; background: none;
-      color: rgba(255,255,255,0.38); font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.72); font-size: 11px; font-weight: 600;
       cursor: pointer; font-family: "Be Vietnam Pro", sans-serif;
       padding: 2px 0 4px; text-align: center;
       transition: color 0.15s;
     }
-    .confirm-btn-no:hover { color: rgba(255,255,255,0.65); }
+    .confirm-btn-no:hover { color: rgba(255,255,255,0.92); }
 
     .modal {
       position: fixed;
@@ -1139,10 +1146,14 @@
       .community-sub { white-space: normal; }
       .community-sub-reward { display: block; margin-top: 2px; }
       .redirect-toast,
-      .confirm-toast,
       .info-toast {
         -webkit-backdrop-filter: none !important;
         backdrop-filter: none !important;
+        will-change: transform, opacity;
+      }
+      .confirm-toast {
+        -webkit-backdrop-filter: blur(10px) saturate(1.15) !important;
+        backdrop-filter: blur(10px) saturate(1.15) !important;
         will-change: transform, opacity;
       }
       .redirect-toast {
@@ -1167,7 +1178,11 @@
         transform: translate(-50%, 22px);
         opacity: 0;
         transition: transform 0.22s ease, opacity 0.22s ease;
-        box-shadow: 0 10px 28px rgba(15,23,42,0.22);
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.06) 100%),
+          rgba(15, 23, 42, 0.56);
+        border-color: rgba(255,255,255,0.18);
+        box-shadow: 0 10px 28px rgba(15,23,42,0.2);
       }
       .confirm-toast.show {
         bottom: 20px;
@@ -1188,39 +1203,18 @@
       }
     }
     @media (max-width: 430px) {
-      html { font-size: 13.35px; }
-      .container { width: min(100%, calc(100vw - 24px)); }
-      .section { padding: 30px 0; }
-      .section h2 { margin-bottom: 18px; }
-      .topbar-inner { height: 54px; }
-      .logo { font-size: 1.42rem !important; }
       .hero-box {
         width: auto;
         margin-left: 0;
       }
-      .hero-box { padding: 20px 12px 26px; }
-      .hero-card {
-        border-radius: 24px;
-        padding: 22px 18px;
-      }
-      .kicker {
-        font-size: 9.5px;
-        padding: 4px 9px;
+      .title {
+        font-size: clamp(1.72rem, 8.4vw, 2.35rem);
         margin-bottom: 12px;
       }
-      .title {
-        font-size: clamp(2.7rem, 11vw, 3.15rem);
-        margin-bottom: 14px;
-      }
       .hero p {
-        font-size: 14.5px;
-        line-height: 1.55;
-        margin-bottom: 18px;
-      }
-      .hero-pill {
-        margin-bottom: 14px;
-        font-size: 10.5px;
-        padding: 3px 8px;
+        font-size: 14px;
+        line-height: 1.58;
+        margin-bottom: 16px;
       }
       .hero-cta-row {
         gap: 8px;
@@ -1234,118 +1228,10 @@
         padding: 9px 18px;
         font-size: 13.5px;
       }
-      .hero-stats { gap: 8px; }
-      .hero-stat-card {
-        border-radius: 13px;
-        padding: 10px 12px;
-      }
-      .hero-stat-value { font-size: 1.04rem; }
-      .hero-stat-label { font-size: 11px; }
       .hero-stat-top { gap: 6px; }
       .hero-stat-avatars img {
         width: 16px;
         height: 16px;
-      }
-      .card {
-        border-radius: 22px;
-        padding: 16px;
-        gap: 10px;
-      }
-      .head-ico {
-        width: 44px;
-        height: 44px;
-        border-radius: 13px;
-      }
-      .name {
-        font-size: 0.96rem;
-        margin-bottom: 2px;
-      }
-      .tag {
-        font-size: 10.5px;
-        line-height: 1.35;
-      }
-      .badge {
-        font-size: 9.5px;
-        padding: 5px 8px;
-      }
-      .price-row { gap: 8px; }
-      .price { font-size: 1.86rem; }
-      .old { font-size: 11.5px; }
-      .day {
-        font-size: 10.5px;
-        padding: 4px 8px;
-      }
-      .gmail-chip {
-        font-size: 10px;
-        padding: 3px 8px 3px 5px;
-      }
-      .cta {
-        padding: 12px 16px;
-        font-size: 14.5px;
-      }
-      .wide {
-        border-radius: 22px;
-        padding: 18px 18px 22px;
-      }
-      .wide h3 { font-size: 1.06rem; }
-      .wide p {
-        font-size: 12.5px !important;
-        line-height: 1.5 !important;
-      }
-      .community-wrap {
-        border-radius: 28px;
-        padding: 24px 20px;
-      }
-      .community-title {
-        margin-top: 12px;
-        font-size: 1.62rem;
-      }
-      .community-sub {
-        font-size: 14.5px;
-        line-height: 1.5;
-      }
-      .gift-box {
-        border-radius: 22px;
-        padding: 12px 14px;
-        gap: 9px;
-      }
-      .gift-box .ico {
-        width: 38px;
-        height: 38px;
-      }
-      .gift-title { font-size: 13.5px; }
-      .gift-sub { font-size: 11.5px; }
-      .community-btn {
-        padding: 12px 16px;
-        font-size: 14.5px;
-      }
-      .contact-list { gap: 8px; }
-      .contact-item {
-        width: 40px;
-        height: 40px;
-      }
-      .footer {
-        padding: 22px 12px 34px;
-        font-size: 12.5px;
-      }
-      .bottom-nav {
-        padding: 9px 12px calc(14px + env(safe-area-inset-bottom));
-      }
-      .bottom-nav-float {
-        padding: 5px 5px;
-        gap: 3px;
-      }
-      .bottom-nav .chip,
-      .bottom-nav .chip.primary {
-        font-size: 11.5px !important;
-        padding: 7px 12px !important;
-      }
-      .bottom-nav button.chip,
-      .bottom-nav button.chip.primary {
-        appearance: none;
-        -webkit-appearance: none;
-        font-family: "Be Vietnam Pro", sans-serif;
-        cursor: pointer;
       }
     }
     /* Stack contact buttons vertically on narrow modal */
@@ -1424,7 +1310,8 @@
         pointer-events: auto;
       }
       .bottom-nav-float {
-        pointer-events: all;
+        pointer-events: auto;
+        touch-action: manipulation;
         width: fit-content;
         margin: 0 auto;
         background: rgba(255,255,255,0.45);
@@ -1444,6 +1331,14 @@
         gap: 4px;
       }
       body { padding-bottom: 86px; }
+    }
+    .bottom-nav .chip,
+    .bottom-nav .chip.primary {
+      appearance: none;
+      -webkit-appearance: none;
+      font-family: "Be Vietnam Pro", sans-serif;
+      cursor: pointer;
+      touch-action: manipulation;
     }
     .cta-row--mt { margin-top: 14px; }
 
@@ -1469,8 +1364,12 @@
       transition: top 0.45s cubic-bezier(0.34,1.46,0.64,1);
       display: grid;
       gap: 12px;
+      pointer-events: none;
     }
-    .info-toast.show { top: calc(76px + env(safe-area-inset-top, 0px)); }
+    .info-toast.show {
+      top: calc(76px + env(safe-area-inset-top, 0px));
+      pointer-events: auto;
+    }
     .info-toast-head {
       display: flex;
       align-items: center;
@@ -1851,7 +1750,7 @@
           <button class="wlc-ad-cta" onclick="showConfirmToast('https://fullhousedev.com/khoa-hoc/course-cpp-beginner/?ref=4de39e7557','FullHouse Dev','assets/images/fhd.jpg','Trung tâm dạy học lập trình')"><span class="wlc-ad-dot"></span>Khám phá khóa học ngay</button>
         </div>
       </div>
-      <button class="welcome-skip" id="welcomeSkipBtn" onclick="attemptCloseWelcome(event)" disabled>Bỏ qua, xem Store (2s)</button>
+      <button class="welcome-skip" id="welcomeSkipBtn" onclick="attemptCloseWelcome()" disabled>Bỏ qua, xem Store (2s)</button>
     </div>
   </div>
 
@@ -1866,8 +1765,8 @@
         <button class="close-btn" onclick="closeDevModal()">Đóng</button>
       </div>
       <div class="modal-body">
-        <div style="background:#f8faff;border:1px solid #e0e7ff;border-radius:18px;padding:16px;margin-bottom:14px;">
-          <div class="wlc-services" style="margin-bottom:14px;">
+        <div style="background:#f8faff;border:1px solid #e0e7ff;border-radius:18px;padding:16px;margin-bottom:6px;">
+          <div class="wlc-services" style="margin-bottom:8px;">
           <div class="wlc-service-item">
             <svg class="wlc-svc-svg" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="8" y="72" width="58" height="3" rx="1.5" fill="#d8dfe8"/><rect x="10" y="40" width="54" height="34" rx="4" fill="#dce3f0"/><rect x="12" y="42" width="50" height="30" rx="3" fill="#2d3a4a"/><rect x="14" y="44" width="46" height="26" rx="2" fill="#f8faff"/><rect x="14" y="44" width="46" height="6" rx="2" fill="#6366f1"/><rect x="14" y="44" width="46" height="2.5" rx="1" fill="#4f46e5"/><circle cx="18" cy="47" r="1.2" fill="rgba(255,255,255,0.8)"/><circle cx="22" cy="47" r="1.2" fill="rgba(255,255,255,0.8)"/><circle cx="26" cy="47" r="1.2" fill="rgba(255,255,255,0.8)"/><rect x="16" y="52" width="28" height="10" rx="1.5" fill="#f97316" opacity="0.85"/><rect x="16" y="52" width="28" height="3" rx="1" fill="#ea6c00" opacity="0.6"/><rect x="46" y="52" width="12" height="4" rx="1" fill="#22c55e" opacity="0.85"/><rect x="46" y="58" width="12" height="4" rx="1" fill="#06b6d4" opacity="0.85"/><rect x="16" y="64" width="42" height="2" rx="1" fill="#e2e8f0"/><rect x="16" y="68" width="30" height="2" rx="1" fill="#e2e8f0"/><g transform="translate(2,62)"><rect x="0" y="4" width="10" height="10" rx="1.5" fill="#f97316"/><polygon points="0,4 5,0 15,0 10,4" fill="#fb923c"/><polygon points="10,4 15,0 15,10 10,14" fill="#ea6c00"/></g><g transform="translate(14,66)"><rect x="0" y="4" width="8" height="8" rx="1" fill="#3b82f6"/><polygon points="0,4 4,0 12,0 8,4" fill="#60a5fa"/><polygon points="8,4 12,0 12,8 8,12" fill="#2563eb"/></g>
@@ -1897,7 +1796,7 @@
         </ul>
         </div><!-- end box -->
 
-        <div class="contact-box" style="margin-top:12px;">
+        <div class="contact-box" style="margin-top:4px;">
           <span class="contact-box-label">Liên hệ để xem mẫu thiết kế</span>
           <a class="contact-cta zalo" href="https://zalo.me/0898908101" onclick="showRedirectToast('Zalo','assets/images/zalo.jpg')" target="_blank" rel="noopener">
             <img src="assets/images/zalo.jpg" width="22" height="22" style="border-radius:6px;object-fit:cover;flex-shrink:0;" alt="Zalo">
@@ -1987,7 +1886,7 @@
         <div class="confirm-toast-sub" id="confirmToastSub">Bấm xác nhận để mở trang này</div>
       </div>
     </div>
-    <a class="confirm-btn-yes" id="confirmBtnYes" href="javascript:void(0)" target="_self" rel="noopener" onclick="cancelConfirm()">Mở trang ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    <a class="confirm-btn-yes" id="confirmBtnYes" href="#" target="_blank" rel="noopener" onclick="cancelConfirm()">Mở trang ngay <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;flex-shrink:0"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     <button class="confirm-btn-no" onclick="cancelConfirm()">Để sau</button>
   </div>
 
@@ -1995,22 +1894,28 @@
     const NAV_CTA = { text: "Xem dịch vụ", target: "source-code" };
 
     function navScrollTo(id) {
+      if (id === 'source-code') {
+        suppressInfoToastUntil = Date.now() + 2200;
+      }
       const el = document.getElementById(id);
-      if (!el) return;
-      const topbar = document.querySelector('.topbar');
-      const topbarH = topbar ? topbar.offsetHeight : 68;
-      const top = el.getBoundingClientRect().top + window.scrollY - topbarH - 12;
-      window.scrollTo({ top, behavior: 'smooth' });
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
     function syncNavCTA() {
       document.querySelectorAll('.js-nav-cta').forEach(el => {
         el.textContent = NAV_CTA.text;
-        el.onclick = (e) => {
+        el.onclick = () => navScrollTo(NAV_CTA.target);
+      });
+    }
+
+    function bindBottomNav() {
+      document.querySelectorAll('.js-bottom-nav').forEach(el => {
+        el.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
-          navScrollTo(NAV_CTA.target);
-        };
+          var target = el.getAttribute('data-target');
+          if (target) navScrollTo(target);
+        });
       });
     }
 
@@ -2261,18 +2166,48 @@
 
     let welcomeCanClose = false;
     let welcomeDismissed = false;
+    let infoToastObserver = null;
+    let infoToastShown = false;
+    let suppressInfoToastUntil = 0;
+
     function isWelcomeOpen() {
       const overlay = document.getElementById("welcomeOverlay");
       return !!(overlay && overlay.classList.contains("open"));
     }
 
-    function showInfoToast() {
+    function shouldSuppressInfoToast() {
+      return Date.now() < suppressInfoToastUntil;
+    }
+
+    function showInfoToast(force) {
       const toast = document.getElementById('infoToast');
-      if (!toast || isWelcomeOpen()) return;
+      if (!toast || isWelcomeOpen() || !welcomeDismissed || shouldSuppressInfoToast()) return;
+      if (!force && infoToastShown) return;
+      infoToastShown = true;
       toast.classList.remove('show');
-      requestAnimationFrame(() => {
-        toast.classList.add('show');
-      });
+      void toast.offsetWidth;
+      toast.classList.add('show');
+    }
+
+    function startInfoToastObserver() {
+      const target = document.getElementById('products');
+      if (!target || !('IntersectionObserver' in window) || infoToastObserver || !welcomeDismissed) return;
+
+      infoToastObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting || isWelcomeOpen()) return;
+          setTimeout(function () {
+            if (isWelcomeOpen() || shouldSuppressInfoToast()) return;
+            showInfoToast(false);
+            if (!infoToastShown || !infoToastObserver) return;
+            infoToastObserver.unobserve(target);
+            infoToastObserver.disconnect();
+            infoToastObserver = null;
+          }, 300);
+        });
+      }, { threshold: 0.15 });
+
+      infoToastObserver.observe(target);
     }
 
     function openWelcome() {
@@ -2302,14 +2237,10 @@
       }, 1000);
     }
 
-    function attemptCloseWelcome(e) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
+    function attemptCloseWelcome() {
       if (!welcomeCanClose) return;
       if (document.getElementById('confirmToast').classList.contains('show')) return;
-      setTimeout(closeWelcome, 30);
+      closeWelcome();
     }
 
     function closeWelcome() {
@@ -2318,6 +2249,7 @@
       overlay.classList.remove("open");
       document.body.style.overflow = "";
       welcomeDismissed = true;
+      startInfoToastObserver();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -2345,7 +2277,6 @@
       document.getElementById('confirmToastSub').textContent = sub || 'Bấm xác nhận để mở trang này';
       document.getElementById('confirmToastImg').src = img;
       btnYes.href = url;
-      btnYes.target = '_blank';
       toast.classList.add('show');
       if (skipBtn) skipBtn.disabled = true;
       clearTimeout(_confirmTimer);
@@ -2354,11 +2285,7 @@
 
     function cancelConfirm() {
       clearTimeout(_confirmTimer);
-      const toast = document.getElementById('confirmToast');
-      const btnYes = document.getElementById('confirmBtnYes');
-      toast.classList.remove('show');
-      btnYes.href = 'javascript:void(0)';
-      btnYes.target = '_self';
+      document.getElementById('confirmToast').classList.remove('show');
       const skipBtn = document.getElementById('welcomeSkipBtn');
       if (skipBtn && welcomeCanClose) skipBtn.disabled = false;
     }
@@ -2369,12 +2296,11 @@
       if (target) {
         var topbar = document.querySelector('.topbar');
         var topbarH = topbar ? topbar.offsetHeight : 68;
-        var toastH = 0;
-        if (!isWelcomeOpen()) {
-          showInfoToast();
-          var toast = document.getElementById('infoToast');
-          toastH = toast ? toast.getBoundingClientRect().height + 16 : (window.innerWidth <= 680 ? 120 : 136);
+        var toast = document.getElementById('infoToast');
+        if (toast && !isWelcomeOpen() && welcomeDismissed) {
+          showInfoToast(true);
         }
+        var toastH = toast ? toast.offsetHeight + 16 : 0;
         var top = target.getBoundingClientRect().top + window.scrollY - topbarH - toastH;
         window.scrollTo({ top: top, behavior: 'smooth' });
       }
@@ -2394,15 +2320,10 @@
       }
 
       okBtn.addEventListener('click', closeInfoToast);
+    });
 
-      document.querySelectorAll('.js-bottom-nav').forEach(function (btn) {
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          var target = btn.getAttribute('data-target');
-          if (target) navScrollTo(target);
-        });
-      });
+    document.addEventListener('DOMContentLoaded', function () {
+      bindBottomNav();
     });
   </script>
 
@@ -2440,7 +2361,7 @@
     <div class="bottom-nav-float">
       <button type="button" class="chip js-bottom-nav" data-target="home" style="font-size:12px;padding:7px 12px;">Home</button>
       <button type="button" class="chip js-bottom-nav" data-target="contact" style="font-size:12px;padding:7px 12px;">Liên hệ</button>
-      <button type="button" class="chip primary js-bottom-nav" data-target="source-code" style="font-size:12px;padding:7px 14px;">Xem dịch vụ</button>
+      <button type="button" class="chip primary js-bottom-nav js-nav-cta" data-target="source-code" style="font-size:12px;padding:7px 14px;">Xem dịch vụ</button>
     </div>
   </nav>
 </body>

@@ -1989,13 +1989,21 @@
 
     function navScrollTo(id) {
       const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (!el) return;
+      const topbar = document.querySelector('.topbar');
+      const topbarH = topbar ? topbar.offsetHeight : 68;
+      const top = el.getBoundingClientRect().top + window.scrollY - topbarH - 12;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
 
     function syncNavCTA() {
       document.querySelectorAll('.js-nav-cta').forEach(el => {
         el.textContent = NAV_CTA.text;
-        el.onclick = () => navScrollTo(NAV_CTA.target);
+        el.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          navScrollTo(NAV_CTA.target);
+        };
       });
     }
 
@@ -2246,9 +2254,6 @@
 
     let welcomeCanClose = false;
     let welcomeDismissed = false;
-    let infoToastObserver = null;
-    let infoToastShown = false;
-
     function isWelcomeOpen() {
       const overlay = document.getElementById("welcomeOverlay");
       return !!(overlay && overlay.classList.contains("open"));
@@ -2256,28 +2261,8 @@
 
     function showInfoToast() {
       const toast = document.getElementById('infoToast');
-      if (!toast || infoToastShown || isWelcomeOpen() || !welcomeDismissed) return;
-      infoToastShown = true;
+      if (!toast || isWelcomeOpen() || !welcomeDismissed) return;
       toast.classList.add('show');
-    }
-
-    function startInfoToastObserver() {
-      const target = document.getElementById('products');
-      if (!target || !('IntersectionObserver' in window) || infoToastObserver || !welcomeDismissed) return;
-
-      infoToastObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting || isWelcomeOpen()) return;
-          setTimeout(function () {
-            if (!isWelcomeOpen()) showInfoToast();
-          }, 300);
-          infoToastObserver.unobserve(target);
-          infoToastObserver.disconnect();
-          infoToastObserver = null;
-        });
-      }, { threshold: 0.15 });
-
-      infoToastObserver.observe(target);
     }
 
     function openWelcome() {
@@ -2323,7 +2308,6 @@
       overlay.classList.remove("open");
       document.body.style.overflow = "";
       welcomeDismissed = true;
-      startInfoToastObserver();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -2375,15 +2359,11 @@
       if (target) {
         var topbar = document.querySelector('.topbar');
         var topbarH = topbar ? topbar.offsetHeight : 68;
-        var toast = document.getElementById('infoToast');
         var toastH = 0;
-        if (toast && !isWelcomeOpen() && welcomeDismissed) {
-          if (!infoToastShown) {
-            showInfoToast();
-            toastH = window.innerWidth <= 680 ? 120 : 136;
-          } else {
-            toastH = toast.getBoundingClientRect().height + 16;
-          }
+        if (!isWelcomeOpen() && welcomeDismissed) {
+          showInfoToast();
+          var toast = document.getElementById('infoToast');
+          toastH = toast ? toast.getBoundingClientRect().height + 16 : (window.innerWidth <= 680 ? 120 : 136);
         }
         var top = target.getBoundingClientRect().top + window.scrollY - topbarH - toastH;
         window.scrollTo({ top: top, behavior: 'smooth' });

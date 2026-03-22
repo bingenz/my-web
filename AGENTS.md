@@ -234,8 +234,85 @@ Muc tieu cuoi:
 - dua ra danh sach fix an toan, ro rang, co the ap dung ngay
 ```
 
-## Cach ra quyet dinh
+## He thong scaling fluid (QUAN TRONG - doc truoc khi sua CSS)
+
+### Nguyen tac nen tang
+
+Toan bo CSS da duoc chuyen sang he thong **fluid scaling** de dam bao giao dien hien thi dong nhat tren moi kich thuoc man hinh (360px den 430px mobile, desktop). Khong phu thuoc media query de thay doi font-size theo tung breakpoint.
+
+### Root font-size
+
+```css
+html {
+  font-size: min(3.72vw, 16px);
+}
+```
+
+- 430px viewport → 16px (max)
+- 393px viewport → 14.63px
+- 360px viewport → 13.4px
+- Desktop → 16px (cap boi min())
+
+**Moi thu scale theo ty le nay.**
+
+### Quy tac bat buoc khi them/sua CSS
+
+**PHAI dung `em` cho:**
+- `font-size` cua tat ca element con (tru root)
+- `padding`, `gap` cua card, button, modal, toast
+- `border-radius` cua card va container chinh
+- `width`, `height` cua icon, avatar trong card
+
+**PHAI dung `rem` hoac `clamp(...vw...)` cho:**
+- `font-size` cua heading lon (`.title`, `.section h2`, `.community-title`)
+- Ten san pham `.name`: dung `clamp(0.88rem, 3.5vw, 1.15rem)` de tu co ma khong wrap, khong ellipsis
+
+**KHONG DUOC dung `px` cho font-size va spacing** (ngoai tru: `1px` border, shadow offset, position offset nho)
+
+### Vi du dung/sai
+
+```css
+/* SAI - px cung, khong scale */
+.badge { font-size: 10px; padding: 5px 9px; }
+
+/* DUNG - em, scale theo root */
+.badge { font-size: 0.65em; padding: 0.31em 0.56em; }
+
+/* SAI - ten card bi ... tren man hinh nho */
+.name { font-size: 1.15rem; white-space: nowrap; text-overflow: ellipsis; }
+
+/* DUNG - ten card tu co size, khong bao gio bi ... */
+.name { font-size: clamp(0.88rem, 3.5vw, 1.15rem); white-space: nowrap; }
+```
+
+### Bang quy doi nhanh px -> em (goc 16px)
+
+| px  | em     |
+|-----|--------|
+| 9   | 0.56em |
+| 10  | 0.625em|
+| 11  | 0.69em |
+| 12  | 0.75em |
+| 13  | 0.81em |
+| 14  | 0.875em|
+| 15  | 0.94em |
+| 16  | 1em    |
+| 18  | 1.125em|
+| 20  | 1.25em |
+| 22  | 1.375em|
+| 24  | 1.5em  |
+
+### Checklist truoc khi commit CSS moi
+
+- [ ] Khong co `font-size: [so]px` nao moi them (tru root va border)
+- [ ] Spacing (padding/gap) dung `em` hoac `clamp`
+- [ ] Ten san pham `.name` van dung `clamp(...vw...)`
+- [ ] Kiem tra visual tren 360px, 393px, 430px (resize browser)
+- [ ] Build lai `index.html` sau khi sua `index.src.html`
+
+
 
 - Neu yeu cau mo ho, uu tien giu nguyen hanh vi hien tai.
 - Neu co xung dot giua dep code va an toan production, uu tien an toan production.
 - Neu mot thay doi co the anh huong doanh thu hoac luong chuyen doi, dung lai va yeu cau xac nhan.
+

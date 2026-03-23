@@ -2381,9 +2381,38 @@
       if (isTikTok) {
         zaloLinks.forEach(function (el) {
           el.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openInAppHelp();
+            // Let the user gesture attempt opening Zalo first.
+            // If TikTok blocks it, page stays visible and we show fallback help.
+            var handled = false;
+            var fallbackTimer = setTimeout(function () {
+              if (handled) return;
+              handled = true;
+              if (document.visibilityState === "visible") {
+                openInAppHelp();
+              }
+              cleanup();
+            }, 1000);
+
+            function cleanup() {
+              clearTimeout(fallbackTimer);
+              document.removeEventListener("visibilitychange", onVisibilityChange, true);
+              window.removeEventListener("pagehide", onPageHide, true);
+            }
+
+            function onVisibilityChange() {
+              if (document.visibilityState === "hidden") {
+                handled = true;
+                cleanup();
+              }
+            }
+
+            function onPageHide() {
+              handled = true;
+              cleanup();
+            }
+
+            document.addEventListener("visibilitychange", onVisibilityChange, true);
+            window.addEventListener("pagehide", onPageHide, true);
           });
         });
       }
@@ -2504,4 +2533,3 @@
   </nav>
 </body>
 </html>
-

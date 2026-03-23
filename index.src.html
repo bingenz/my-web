@@ -684,7 +684,12 @@
       gap: 8px;
     }
     .wlc-brand { font-size: 1.375em; font-weight: 800; color: #0f172a; letter-spacing: -0.01em; }
-    .wlc-brand span { color: #6366f1; }
+    .wlc-brand span {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     /* Community box */
     .wlc-comm {
       background: linear-gradient(135deg, #eef2ff, #eff6ff);
@@ -1439,7 +1444,6 @@
           <h1 class="title"><span class="title-main">Tài khoản premium </span><span class="accent">Giá sinh viên</span></h1>
           <p>Đăng ký ChatGPT Plus, Gemini Pro và YouTube Premium, CapCutPro với chi phí tối ưu nhất.</p>
           <div class="hero-pill">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9a3412" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             Chỉ từ 3,000đ / ngày
           </div>
           <div class="hero-cta-row">

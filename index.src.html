@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <script>!function(){var u=new URL(location.href);['safeSearch','utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function(p){u.searchParams.delete(p)});if(u.href!==location.href)history.replaceState(null,'',u)}();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-visual">
   <!-- Share metadata is injected from share-meta.js during build and in middleware. -->
   <title>BinGenZ · AI & PREMIUM ACCOUNT</title>
@@ -1281,11 +1282,11 @@
           0 -1px 0  rgba(0,0,0,0.04)      inset,
           0 6px 24px rgba(99,102,241,0.10),
           0 2px 10px rgba(0,0,0,0.08);
-        padding: 6px 6px;
+        padding: 7px 7px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 4px;
+        gap: 5px;
       }
       body { padding-bottom: 86px; }
     }
@@ -1855,10 +1856,10 @@
         oldPrice: "649,000đ",
         perDay: "chỉ 5,633đ / ngày",
         bullets: [
-          "Kích hoạt thẳng vào <b class='hl'>Gmail chính chủ</b> của bạn",
-          "Truy cập mọi tính năng cao cấp <b class='hl'>PRO</b> của ChatGPT",
-          "Truy cập <b class='hl'>Workspace Business Team</b>",
-          "Chỉ cần cung cấp Gmail → <b class='hl'>kích hoạt trong 1 phút</b> (không cần mật khẩu)"
+          "Kích hoạt trong <b class='hl'>1 phút</b> (không cần mật khẩu)",
+          "Dùng <b class='hl'>Codex VSCode</b> không giới hạn",
+          "Truy cập <b class='hl'>Model cao cấp nhất</b> của ChatGPT",
+          "Truy cập <b class='hl'>Workspace Business Team</b>"
         ]
       },
       {
@@ -1872,7 +1873,7 @@
         bullets: [
           "Tài khoản sử dụng 1 mình",
           "Cập nhật model ChatGPT mới nhất",
-          "Dùng <b class='hl'>Codex VSCode</b> không giới hạn, Full Model",
+          "Dùng <b class='hl'>Codex VSCode</b> không giới hạn",
           "Truy cập mọi tính năng cao cấp <b class='hl'>Plus</b> của ChatGPT"
         ]
       },
@@ -1940,7 +1941,7 @@
             <div class="old">Giá gốc: <s>${p.oldPrice}</s></div>
           </div>
           <div class="day">${p.perDay}</div>
-          ${p.gmailChip ? `<span class="gmail-chip"><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='#15803d' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>Nâng cấp trên Gmail chính chủ của bạn</span>` : ""}
+          ${p.gmailChip ? `<span class="gmail-chip"><svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='#15803d' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>Nâng cấp chính chủ ( không cần mật khẩu )</span>` : ""}
           <div class="cta-row">
             <button class="cta buy" onclick="openProduct('${p.id}')">Đăng ký ngay</button>
           </div>
@@ -2264,10 +2265,11 @@
   <!-- Bottom Nav (mobile only) -->
   <nav class="bottom-nav" aria-label="Bottom navigation">
     <div class="bottom-nav-float">
-      <button type="button" class="chip js-bottom-nav" data-target="home" style="font-size:0.75em;padding:7px 12px;">Home</button>
-      <button type="button" class="chip js-bottom-nav" data-target="contact" style="font-size:0.75em;padding:7px 12px;">Liên hệ</button>
-      <button type="button" class="chip primary js-bottom-nav js-nav-cta" data-target="source-code" style="font-size:0.75em;padding:7px 14px;">Xem dịch vụ</button>
+      <button type="button" class="chip js-bottom-nav" data-target="home" style="font-size:0.86em;padding:8px 14px;">Home</button>
+      <button type="button" class="chip js-bottom-nav" data-target="contact" style="font-size:0.86em;padding:8px 14px;">Liên hệ</button>
+      <button type="button" class="chip primary js-bottom-nav js-nav-cta" data-target="source-code" style="font-size:0.86em;padding:8px 16px;">Xem dịch vụ</button>
     </div>
   </nav>
 </body>
 </html>
+

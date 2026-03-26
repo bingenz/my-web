@@ -328,55 +328,46 @@
     .hero-stat-avatars img:first-child { margin-left: 0; }
 
     .community-split-top {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 20px;
-      align-items: end;
+      display: block;
       margin-bottom: 18px;
     }
     .community-split-text {
       min-width: 0;
     }
     .community-mockup {
-      width: clamp(110px, 34vw, 152px);
+      width: 152px;
       background: #fff;
       border-radius: 18px 18px 0 0;
       box-shadow: 0 -6px 24px rgba(99,102,241,0.15);
       padding: 12px 12px 0;
-      flex-shrink: 0;
-      align-self: end;
-    }
-    /* ẩn mockup trên màn hình rất nhỏ để text có đủ chỗ */
-    @media (max-width: 340px) {
-      .community-mockup { display: none; }
     }
     .cm-bar {
-      height: 7px;
+      height: 0.44em;
       background: linear-gradient(90deg, #4338ca, #6366f1);
       border-radius: 999px;
-      margin-bottom: 9px;
+      margin-bottom: 0.56em;
     }
     .cm-code {
       border-radius: 10px;
       background: #0f172a;
-      padding: 8px;
-      margin-bottom: 8px;
+      padding: 0.5em;
+      margin-bottom: 0.5em;
     }
     .cm-dots {
       display: flex;
       gap: 4px;
-      margin-bottom: 6px;
+      margin-bottom: 0.375em;
     }
     .cm-dots span {
-      width: 5px;
-      height: 5px;
+      width: 0.3125em;
+      height: 0.3125em;
       border-radius: 50%;
       display: inline-block;
     }
     .cm-code-line {
-      height: 4px;
+      height: 0.25em;
       border-radius: 999px;
-      margin-bottom: 5px;
+      margin-bottom: 0.3125em;
       background: rgba(255,255,255,0.18);
     }
     .cm-code-line.purple { background: #8b5cf6; }
@@ -384,17 +375,17 @@
     .cm-code-line.green { background: #34d399; }
     .cm-social {
       display: flex;
-      gap: 6px;
-      padding-bottom: 12px;
+      gap: 0.375em;
+      padding-bottom: 0.75em;
     }
     .cm-pill {
       flex: 1;
       border-radius: 999px;
-      height: 18px;
+      height: 1.125em;
       display: grid;
       place-items: center;
       color: #fff;
-      font-size: 0.52rem;
+      font-size: 0.52em;
       font-weight: 800;
     }
     .community-wrap {
@@ -427,46 +418,40 @@
       font-size: 0.69em; font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 6px 10px;
+      padding: 0.4em 0.75em;
     }
     .community-title {
-      margin: 12px 0 8px;
-      font-size: clamp(1.05rem, 3.5vw, 2.1rem);
-      line-height: 1.15;
+      margin: 0.6em 0 0.4em;
+      font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+      line-height: 1.12;
       letter-spacing: -0.02em;
-      white-space: normal;
-    }
-    @media (max-width: 400px) {
-      .community-title {
-        font-size: clamp(0.92rem, 3.2vw, 1.3rem);
-      }
+      white-space: nowrap;
     }
     .community-sub {
       margin: 0;
       color: rgba(255,255,255,0.82);
-      font-size: clamp(0.78rem, 2.4vw, 1rem);
+      font-size: clamp(0.75rem, 2.4vw, 1rem);
       line-height: 1.5;
-      white-space: normal;
+      white-space: nowrap;
     }
     .community-sub strong {
       color: #fff;
       font-weight: 800;
-      white-space: nowrap; /* ép reward text không bị tách giữa chừng */
     }
     .gift-box {
       margin-top: 0;
       border: 1px solid rgba(255,255,255,0.18);
       background: rgba(255,255,255,0.14);
       border-radius: 26px;
-      padding: 14px 16px;
+      padding: 0.875em 1em;
       display: flex;
       align-items: center;
       gap: 10px;
       box-shadow: none;
     }
     .gift-box .ico {
-      width: 34px;
-      height: 34px;
+      width: 2.125em;
+      height: 2.125em;
       border-radius: 11px;
       display: grid;
       place-items: center;
@@ -486,9 +471,106 @@
       color: rgba(255,255,255,0.74);
       line-height: 1.3;
     }
+    /* ── Facebook Group Mockup ── */
+    .fb-mockup {
+      width: min(280px, 80vw);
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(15,23,42,0.22);
+    }
+    .fb-cover {
+      height: 5em;
+      background: linear-gradient(135deg, #1877f2, #4338ca, #0ea5e9);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.5em 0.75em;
+    }
+    .fb-cover-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.35));
+    }
+    .fb-cover-text {
+      position: relative;
+      color: #fff;
+      font-size: 0.75em;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+    .fb-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      padding: 0.625em 0.75em;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .fb-avatar {
+      width: 2em;
+      height: 2em;
+      border-radius: 50%;
+      background: #eef2ff;
+      border: 2px solid #c7d2fe;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .fb-name {
+      font-size: 0.72em;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 10em;
+    }
+    .fb-meta {
+      font-size: 0.62em;
+      color: #64748b;
+      margin-top: 1px;
+    }
+    .fb-join-btn {
+      margin-left: auto;
+      background: #1877f2;
+      color: #fff;
+      font-size: 0.62em;
+      font-weight: 700;
+      border-radius: 6px;
+      padding: 0.3em 0.6em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .fb-post {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      padding: 0.625em 0.75em;
+    }
+    .fb-post-avatar {
+      width: 1.5em;
+      height: 1.5em;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6366f1, #0ea5e9);
+      flex-shrink: 0;
+    }
+    .fb-post-body { flex: 1; }
+    .fb-post-line {
+      height: 0.375em;
+      border-radius: 999px;
+      background: #e2e8f0;
+      margin-bottom: 0.375em;
+    }
+    .fb-post-line:last-child { margin-bottom: 0; }
+    /* ── end Facebook Mockup ── */
     .community-btn {
-      margin-top: 20px;
+      margin-top: 1.25em;
       width: 100%;
+      display: flex;
+      justify-content: center;
       box-shadow: 0 12px 24px rgba(15,23,42,0.18);
     }
     .cta.buy.community-btn {
@@ -498,24 +580,27 @@
     .community-metrics {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 18px;
+      gap: 0.625em;
+      margin-bottom: 1.125em;
+    }
+    @media (max-width: 680px) {
+      .community-metrics { grid-template-columns: 1fr; }
     }
     .community-metric {
       border-radius: 18px;
-      padding: 14px;
+      padding: 0.875em;
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.16);
     }
     .community-metric strong {
       display: block;
-      margin-bottom: 4px;
-      font-size: 1.05rem;
+      margin-bottom: 0.25em;
+      font-size: 1.05em;
       color: #fff;
     }
     .community-metric span {
       color: rgba(255,255,255,0.74);
-      font-size: 0.84rem;
+      font-size: 0.84em;
     }
     .community-stats {
       display: grid;
@@ -1135,10 +1220,6 @@
       .wide { grid-column: span 12; }
       .contact-list { gap: 8px; }
       .personal-list li { width: 100%; }
-      .community-sub-reward { display: block; margin-top: 2px; }
-      .community-split-top { grid-template-columns: 1fr; }
-      .community-mockup { width: 132px; }
-      .community-metrics { grid-template-columns: 1fr; }
       .redirect-toast,
       .info-toast {
         -webkit-backdrop-filter: none !important;
@@ -1598,50 +1679,58 @@
           <div class="community-split-text">
             <div class="community-badge"><span style="width:6px;height:6px;border-radius:50%;background:#6366f1;"></span> Cộng đồng</div>
             <h3 class="community-title">GenZ Đam Mê IT · Vibe Code · AI</h3>
-            <p class="community-sub">Tham gia group → chơi mini game → nhận <strong class="community-sub-reward">ChatGPT Plus Codex · YouTube · CapCut</strong></p>
+            <p class="community-sub">Chơi mini game nhận <strong class="community-sub-reward">ChatGPT Plus Codex · YouTube · CapCut</strong></p>
           </div>
-          <div class="community-mockup">
-            <div class="cm-bar"></div>
-            <div class="cm-code">
-              <div class="cm-dots">
-                <span style="background:#f87171"></span>
-                <span style="background:#fbbf24"></span>
-                <span style="background:#34d399"></span>
+        </div>
+
+        <!-- Facebook Group Mockup -->
+        <div style="display:flex;justify-content:center;margin-bottom:1.125em;">
+          <div class="fb-mockup">
+            <!-- Cover photo -->
+            <div class="fb-cover">
+              <div class="fb-cover-gradient"></div>
+              <div class="fb-cover-text">GenZ Đam Mê IT · Vibe Code · AI</div>
+            </div>
+            <!-- Group info row -->
+            <div class="fb-info">
+              <div class="fb-avatar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4338ca" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               </div>
-              <div class="cm-code-line purple"></div>
-              <div class="cm-code-line blue" style="width:82%;"></div>
-              <div class="cm-code-line green" style="width:64%;"></div>
-              <div class="cm-code-line" style="width:76%;"></div>
+              <div>
+                <div class="fb-name">GenZ Đam Mê IT · Vibe Code · AI</div>
+                <div class="fb-meta">200+ thành viên · Công khai</div>
+              </div>
+              <a class="fb-join-btn" href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" onclick="showRedirectToast('Facebook Group','assets/images/fb.jpg')" target="_blank" rel="noopener">+ Tham gia</a>
             </div>
-            <div class="cm-social">
-              <div class="cm-pill" style="background:#6366f1;">AI</div>
-              <div class="cm-pill" style="background:#f97316;">CHAT</div>
-              <div class="cm-pill" style="background:#22c55e;">DEV</div>
+            <!-- Post preview -->
+            <div class="fb-post">
+              <div class="fb-post-avatar"></div>
+              <div class="fb-post-body">
+                <div class="fb-post-line" style="width:70%;background:#c7d2fe;"></div>
+                <div class="fb-post-line" style="width:50%;"></div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="community-metrics">
-          <div class="community-metric">
-            <strong>Mini game</strong>
-            <span>Tham gia group để chơi mini game cùng mọi người</span>
-          </div>
-          <div class="community-metric">
-            <strong>Quà miễn phí</strong>
-            <span>Nhận quà ở bài viết ghim trong group</span>
-          </div>
-          <div class="community-metric">
-            <strong>Chat · code · AI</strong>
-            <span>Nơi giao lưu cho GenZ đam mê IT và vibe code</span>
-          </div>
-        </div>
+
         <div>
-          <div class="gift-box">
+          <!-- Gift boxes -->
+          <div class="gift-box" style="margin-bottom:0.625em;">
             <span class="ico">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 1 1 0-5c3.5 0 4.5 5 4.5 5z"/><path d="M12 7h4.5a2.5 2.5 0 1 0 0-5c-3.5 0-4.5 5-4.5 5z"/></svg>
             </span>
             <div>
               <div class="gift-title">Quà tặng miễn phí</div>
               <div class="gift-sub">ở bài viết ghim trong group</div>
+            </div>
+          </div>
+          <div class="gift-box">
+            <span class="ico">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </span>
+            <div>
+              <div class="gift-title">File code miễn phí</div>
+              <div class="gift-sub">HTML · CSS · JS · mini tools cho dev</div>
             </div>
           </div>
           <a class="cta buy community-btn" href="https://www.facebook.com/groups/1083123091540550/?ref=share&mibextid=NSMWBT" onclick="showRedirectToast('Facebook Group','assets/images/fb.jpg')" target="_blank" rel="noopener">Tham gia Group ngay</a>
@@ -1961,7 +2050,7 @@
   </div>
 
   <script>
-    const NAV_CTA = { text: "Xem dịch vụ", target: "source-code" };
+    const NAV_CTA = { text: "Xem sản phẩm", target: "products" };
 
     function navScrollTo(id) {
       if (id === 'source-code') {
@@ -2414,8 +2503,9 @@
     <div class="bottom-nav-float">
       <button type="button" class="chip js-bottom-nav" data-target="home" style="font-size:0.86em;padding:8px 14px;">Home</button>
       <button type="button" class="chip js-bottom-nav" data-target="contact" style="font-size:0.86em;padding:8px 14px;">Liên hệ</button>
-      <button type="button" class="chip primary js-bottom-nav js-nav-cta" data-target="source-code" style="font-size:0.86em;padding:8px 16px;">Xem dịch vụ</button>
+      <button type="button" class="chip primary js-bottom-nav js-nav-cta" data-target="products" style="font-size:0.86em;padding:8px 16px;">Xem sản phẩm</button>
     </div>
   </nav>
 </body>
 </html>
+

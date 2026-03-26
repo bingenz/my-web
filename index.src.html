@@ -338,13 +338,17 @@
       min-width: 0;
     }
     .community-mockup {
-      width: 152px;
+      width: clamp(110px, 34vw, 152px);
       background: #fff;
       border-radius: 18px 18px 0 0;
       box-shadow: 0 -6px 24px rgba(99,102,241,0.15);
       padding: 12px 12px 0;
       flex-shrink: 0;
       align-self: end;
+    }
+    /* ẩn mockup trên màn hình rất nhỏ để text có đủ chỗ */
+    @media (max-width: 340px) {
+      .community-mockup { display: none; }
     }
     .cm-bar {
       height: 7px;
@@ -427,22 +431,27 @@
     }
     .community-title {
       margin: 12px 0 8px;
-      font-size: clamp(1.45rem, 4vw, 2.1rem);
-      line-height: 1.12;
+      font-size: clamp(1.05rem, 3.5vw, 2.1rem);
+      line-height: 1.15;
       letter-spacing: -0.02em;
       white-space: normal;
+    }
+    @media (max-width: 400px) {
+      .community-title {
+        font-size: clamp(0.92rem, 3.2vw, 1.3rem);
+      }
     }
     .community-sub {
       margin: 0;
       color: rgba(255,255,255,0.82);
-      font-size: 1rem;
-      line-height: 1.65;
+      font-size: clamp(0.78rem, 2.4vw, 1rem);
+      line-height: 1.5;
       white-space: normal;
     }
     .community-sub strong {
       color: #fff;
       font-weight: 800;
-      white-space: normal;
+      white-space: nowrap; /* ép reward text không bị tách giữa chừng */
     }
     .gift-box {
       margin-top: 0;

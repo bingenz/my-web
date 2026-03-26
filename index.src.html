@@ -328,73 +328,87 @@
     .hero-stat-avatars img:first-child { margin-left: 0; }
 
     .community-split-top {
-      background: linear-gradient(135deg, #ede9fe 0%, #dbeafe 100%);
-      padding: clamp(20px,5vw,36px) clamp(20px,5vw,36px) 0;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 12px;
-      min-height: 170px;
-      border-radius: 32px 32px 0 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 18px;
     }
     .community-split-text {
-      flex: 1;
-      padding-bottom: 20px;
+      min-width: 0;
     }
     .community-mockup {
-      flex-shrink: 0;
-      width: 100px;
+      width: 152px;
       background: #fff;
-      border-radius: 14px 14px 0 0;
-      box-shadow: 0 -4px 20px rgba(99,102,241,0.15);
-      padding: 12px 10px 0;
-      align-self: flex-end;
+      border-radius: 18px 18px 0 0;
+      box-shadow: 0 -6px 24px rgba(99,102,241,0.15);
+      padding: 12px 12px 0;
+      flex-shrink: 0;
+      align-self: end;
     }
     .cm-bar {
-      height: 6px;
+      height: 7px;
       background: linear-gradient(90deg, #4338ca, #6366f1);
-      border-radius: 3px;
+      border-radius: 999px;
+      margin-bottom: 9px;
+    }
+    .cm-code {
+      border-radius: 10px;
+      background: #0f172a;
+      padding: 8px;
       margin-bottom: 8px;
     }
-    .cm-line {
-      height: 5px;
-      background: #e2e8f0;
-      border-radius: 3px;
-      margin-bottom: 6px;
-    }
-    .cm-short { width: 60%; }
-    .cm-avatars {
+    .cm-dots {
       display: flex;
       gap: 4px;
-      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+    .cm-dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .cm-code-line {
+      height: 4px;
+      border-radius: 999px;
+      margin-bottom: 5px;
+      background: rgba(255,255,255,0.18);
+    }
+    .cm-code-line.purple { background: #8b5cf6; }
+    .cm-code-line.blue { background: #38bdf8; }
+    .cm-code-line.green { background: #34d399; }
+    .cm-social {
+      display: flex;
+      gap: 6px;
       padding-bottom: 12px;
     }
-    .cm-av {
-      width: 22px; height: 22px;
-      border-radius: 50%;
-      font-size: 0.5em;
-      font-weight: 800;
+    .cm-pill {
+      flex: 1;
+      border-radius: 999px;
+      height: 18px;
+      display: grid;
+      place-items: center;
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #fff;
+      font-size: 0.52rem;
+      font-weight: 800;
     }
     .community-wrap {
-      background: #fff;
-      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(67,56,202,0.96), rgba(14,165,233,0.9)), #4338ca;
+      color: #fff;
+      border: 1px solid rgba(99,102,241,0.18);
       border-radius: 32px;
-      box-shadow: 0 20px 60px rgba(99,102,241,0.1);
-      padding: clamp(28px, 5vw, 48px) clamp(24px, 5vw, 48px);
+      box-shadow: 0 20px 60px rgba(79,70,229,0.18);
+      padding: clamp(24px, 5vw, 28px);
       position: relative;
       overflow: hidden;
     }
     .community-wrap::before {
       content: '';
       position: absolute;
-      top: -60px; right: -60px;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
+      inset: auto -90px -90px auto;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -403,41 +417,43 @@
       align-items: center;
       gap: 7px;
       border-radius: 999px;
-      border: 1px solid #c7d2fe;
-      background: #eef2ff;
-      color: #4338ca;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.14);
+      color: #fff;
       font-size: 0.69em; font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 6px 10px;
     }
     .community-title {
-      margin: 10px 0 4px;
-      font-size: min(4.8vw, 1.9rem);
+      margin: 12px 0 8px;
+      font-size: clamp(1.45rem, 4vw, 2.1rem);
+      line-height: 1.12;
       letter-spacing: -0.02em;
-      white-space: nowrap;
+      white-space: normal;
     }
     .community-sub {
       margin: 0;
-      color: #475569;
-      font-size: 0.88em;
+      color: rgba(255,255,255,0.82);
+      font-size: 1rem;
+      line-height: 1.65;
       white-space: normal;
     }
     .community-sub strong {
-      color: #4338ca;
+      color: #fff;
       font-weight: 800;
-      white-space: nowrap;
+      white-space: normal;
     }
     .gift-box {
-      margin-top: 12px;
-      border: 1px solid #dbeafe;
-      background: #f8fafc;
+      margin-top: 0;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.14);
       border-radius: 26px;
       padding: 14px 16px;
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 0.5em 1.2em rgba(15,23,42,0.08), 0 0.1em 0.25em rgba(15,23,42,0.06);
+      box-shadow: none;
     }
     .gift-box .ico {
       width: 34px;
@@ -445,25 +461,52 @@
       border-radius: 11px;
       display: grid;
       place-items: center;
-      background: #eef2ff;
-      color: #4338ca;
-      border: 1px solid #c7d2fe;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.18);
       flex-shrink: 0;
     }
     .gift-title {
-      font-size: 0.875em;
+      font-size: 0.95em;
       font-weight: 700;
-      color: #1e293b;
+      color: #fff;
       line-height: 1.3;
     }
     .gift-sub {
-      font-size: 0.75em;
-      color: #64748b;
+      font-size: 0.8em;
+      color: rgba(255,255,255,0.74);
       line-height: 1.3;
     }
     .community-btn {
       margin-top: 20px;
       width: 100%;
+      box-shadow: 0 12px 24px rgba(15,23,42,0.18);
+    }
+    .cta.buy.community-btn {
+      background: #fff;
+      color: #312e81;
+    }
+    .community-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .community-metric {
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+    .community-metric strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+    .community-metric span {
+      color: rgba(255,255,255,0.74);
+      font-size: 0.84rem;
     }
     .community-stats {
       display: grid;
@@ -1084,6 +1127,9 @@
       .contact-list { gap: 8px; }
       .personal-list li { width: 100%; }
       .community-sub-reward { display: block; margin-top: 2px; }
+      .community-split-top { grid-template-columns: 1fr; }
+      .community-mockup { width: 132px; }
+      .community-metrics { grid-template-columns: 1fr; }
       .redirect-toast,
       .info-toast {
         -webkit-backdrop-filter: none !important;
@@ -1538,30 +1584,48 @@
     </section>
 
     <section class="section" id="community" style="padding-bottom: 48px;">
-      <div class="container community-wrap" style="padding:0;overflow:hidden;">
-        <!-- Top: split visual -->
+      <div class="container community-wrap">
         <div class="community-split-top">
           <div class="community-split-text">
             <div class="community-badge"><span style="width:6px;height:6px;border-radius:50%;background:#6366f1;"></span> Cộng đồng</div>
-            <h3 class="community-title" style="font-size:clamp(1rem,4.5vw,1.5rem);margin:10px 0 6px;">GenZ Đam Mê IT · Vibe Code · AI</h3>
+            <h3 class="community-title">GenZ Đam Mê IT · Vibe Code · AI</h3>
             <p class="community-sub">Tham gia group → chơi mini game → nhận <strong class="community-sub-reward">ChatGPT Plus Codex · YouTube · CapCut</strong></p>
           </div>
           <div class="community-mockup">
             <div class="cm-bar"></div>
-            <div class="cm-line"></div>
-            <div class="cm-line cm-short"></div>
-            <div class="cm-line"></div>
-            <div class="cm-line cm-short"></div>
-            <div class="cm-line"></div>
-            <div class="cm-avatars">
-              <div class="cm-av" style="background:#6366f1">T</div>
-              <div class="cm-av" style="background:#f97316">M</div>
-              <div class="cm-av" style="background:#22c55e">H</div>
+            <div class="cm-code">
+              <div class="cm-dots">
+                <span style="background:#f87171"></span>
+                <span style="background:#fbbf24"></span>
+                <span style="background:#34d399"></span>
+              </div>
+              <div class="cm-code-line purple"></div>
+              <div class="cm-code-line blue" style="width:82%;"></div>
+              <div class="cm-code-line green" style="width:64%;"></div>
+              <div class="cm-code-line" style="width:76%;"></div>
+            </div>
+            <div class="cm-social">
+              <div class="cm-pill" style="background:#6366f1;">AI</div>
+              <div class="cm-pill" style="background:#f97316;">CHAT</div>
+              <div class="cm-pill" style="background:#22c55e;">DEV</div>
             </div>
           </div>
         </div>
-        <!-- Bottom: gift + CTA -->
-        <div style="padding: clamp(14px,4vw,24px) clamp(20px,5vw,36px) clamp(20px,4vw,30px);">
+        <div class="community-metrics">
+          <div class="community-metric">
+            <strong>Mini game</strong>
+            <span>Tham gia group để chơi mini game cùng mọi người</span>
+          </div>
+          <div class="community-metric">
+            <strong>Quà miễn phí</strong>
+            <span>Nhận quà ở bài viết ghim trong group</span>
+          </div>
+          <div class="community-metric">
+            <strong>Chat · code · AI</strong>
+            <span>Nơi giao lưu cho GenZ đam mê IT và vibe code</span>
+          </div>
+        </div>
+        <div>
           <div class="gift-box">
             <span class="ico">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 1 1 0-5c3.5 0 4.5 5 4.5 5z"/><path d="M12 7h4.5a2.5 2.5 0 1 0 0-5c-3.5 0-4.5 5-4.5 5z"/></svg>

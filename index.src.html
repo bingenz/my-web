@@ -422,17 +422,19 @@
     }
     .community-title {
       margin: 0.6em 0 0.4em;
-      font-size: clamp(1.4rem, 4.5vw, 2.4rem);
+      font-size: clamp(1.25rem, 4.5vw, 2.4rem);
       line-height: 1.12;
       letter-spacing: -0.02em;
-      white-space: nowrap;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
     .community-sub {
       margin: 0;
       color: rgba(255,255,255,0.82);
       font-size: clamp(0.75rem, 2.4vw, 1rem);
       line-height: 1.5;
-      white-space: nowrap;
+      overflow-wrap: break-word;
+      word-break: break-word;
     }
     .community-sub strong {
       color: #fff;
@@ -473,9 +475,9 @@
     }
     /* ── Facebook Group Mockup ── */
     .fb-mockup {
-      width: min(280px, 80vw);
+      width: 100%;
       background: #fff;
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 8px 32px rgba(15,23,42,0.22);
     }
@@ -1684,7 +1686,7 @@
         </div>
 
         <!-- Facebook Group Mockup -->
-        <div style="display:flex;justify-content:center;margin-bottom:1.125em;">
+        <div style="margin-bottom:1.125em;">
           <div class="fb-mockup">
             <!-- Cover photo -->
             <div class="fb-cover">
@@ -2508,4 +2510,5 @@
   </nav>
 </body>
 </html>
+
 

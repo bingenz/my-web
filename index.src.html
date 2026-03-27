@@ -926,59 +926,7 @@
     }
 
     /* ── Welcome Overlay (FIXED) ── */
-    .welcome-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(16px) saturate(1.4);
-      -webkit-backdrop-filter: blur(16px) saturate(1.4);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 120;
-      padding: 16px;
-    }
-    .welcome-overlay.open { display: flex; }
-
-    .welcome-box {
-      width: min(400px, calc(100vw - 32px));
-      border-radius: 28px;
-      background: #fff;
-      border: 1.5px solid #c7d2fe;
-      box-shadow: 0 40px 100px rgba(15,23,42,0.45), 0 0 0 4px rgba(99,102,241,0.10);
-      padding: 14px;
-      display: grid;
-      gap: 8px;
-    }
-    .wlc-brand { font-size: 1.375em; font-weight: 800; color: #0f172a; letter-spacing: -0.01em; }
-    .wlc-brand span {
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    /* Community box */
-    .wlc-comm {
-      background: linear-gradient(135deg, #eef2ff, #eff6ff);
-      border: 1.5px solid #c7d2fe;
-      border-radius: 26px; padding: 10px 11px; display: grid; gap: 6px;
-    }
-    .welcome-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      border-radius: 999px; border: 1px solid #e2e8f0;
-      background: #fff; padding: 5px 12px;
-      font-size: 0.625em; font-weight: 800;
-      letter-spacing: 0.1em; color: #475569;
-      text-transform: uppercase; width: fit-content;
-    }
-    .welcome-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #6366f1; flex-shrink: 0; }
-    .welcome-title {
-      font-size: clamp(1rem, 4vw, 1.25rem);
-      font-weight: 800; color: #0f172a; line-height: 1.2;
-      letter-spacing: -0.02em; margin: 0;
-    }
-    .welcome-sub { font-size: 0.81em; color: #64748b; line-height: 1.5; margin: 0; }
-    .welcome-reward { color: #4338ca; font-weight: 700; display: inline; }
+    /* welcome overlay removed */
     .wlc-services { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
     .wlc-service-item {
       display: flex; flex-direction: column; align-items: center; gap: 4px;
@@ -992,17 +940,7 @@
       font-size: 0.81em; color: #334155; text-align: center; line-height: 1.5; margin: 0;
     }
     .wlc-cta-text strong { color: #4338ca; }
-    .welcome-cta {
-      display: flex; align-items: center; justify-content: center;
-      width: 100%; border-radius: 999px; padding: 0.81em;
-      font-size: 0.875em; font-weight: 800; color: #fff;
-      font-family: "Be Vietnam Pro", sans-serif;
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
-      text-decoration: none; border: 0; cursor: pointer;
-      box-shadow: 0 6px 16px rgba(79,70,229,0.28);
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .welcome-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(79,70,229,0.36); }
+
     /* Ad box */
     .wlc-ad {
       position: relative; overflow: hidden;
@@ -1062,16 +1000,6 @@
       animation: none;
     }
     @keyframes wlcdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.65)} }
-    /* Skip */
-    .welcome-skip {
-      display: block; width: 100%; border: 0; background: none;
-      color: #94a3b8; font-size: 0.69em; font-weight: 600;
-      font-family: "Be Vietnam Pro", sans-serif;
-      cursor: pointer; padding: 2px; text-align: center;
-      transition: color 0.15s;
-    }
-    .welcome-skip:not(:disabled):hover { color: #475569; }
-    .welcome-skip:disabled { opacity: 0.5; cursor: not-allowed; }
 
     .redirect-toast {
       position: fixed;
@@ -2078,27 +2006,28 @@
       align-items: center;
     }
     #commPopup .link-popup-btn {
-      min-height: 2.9em;
-      min-width: 5.8em;
-      padding: 0.48em 1.18em;
-      font-size: 0.86em;
-      font-weight: 800;
+      min-height: 2.8em;
+      min-width: 6em;
+      padding: 0.6em 1.4em;
+      font-size: 0.88em;
+      font-weight: 700;
       border-radius: 999em;
       letter-spacing: -0.01em;
-      box-shadow: 0 0.65em 1.35em rgba(37, 99, 235, 0.2);
       transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+      font-family: "Be Vietnam Pro", sans-serif;
     }
     #commPopup .link-popup-btn.open {
       border: 0;
       color: #fff;
       background: linear-gradient(135deg, #4f46e5 0%, #0ea5e9 100%);
-      box-shadow: 0 0.8em 1.6em rgba(79,70,229,0.22);
+      box-shadow: 0 3px 10px rgba(79,70,229,0.28);
     }
     #commPopup .link-popup-btn.copy {
-      border: 0.07em solid #dbe3f4;
+      border: 1px solid #dbe3f4;
       color: #3730a3;
       background: #ffffff;
-      box-shadow: 0 0.3em 0.8em rgba(15,23,42,0.06);
+      box-shadow: 0 2px 6px rgba(15,23,42,0.07);
     }
     #commPopup .link-popup-btn:hover {
       transform: translateY(-0.05em);
@@ -2157,9 +2086,9 @@
         justify-content: flex-end;
       }
       #commPopup .link-popup-btn {
-        min-width: 0;
+        min-width: 5em;
         font-size: 0.84em;
-        padding: 0.46em 1em;
+        padding: 0.56em 1.1em;
       }
     }
 
@@ -3088,31 +3017,42 @@
     }
 
     function copyTextWithFallback(text) {
+      // 1. Try modern Clipboard API (works on HTTPS / trusted contexts)
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        return navigator.clipboard.writeText(text);
+        return navigator.clipboard.writeText(text).catch(function () {
+          return tryExecCommandCopy(text);
+        });
       }
+      return tryExecCommandCopy(text);
+    }
 
+    function tryExecCommandCopy(text) {
       return new Promise(function (resolve, reject) {
         try {
           var input = document.createElement("textarea");
           input.value = text;
           input.setAttribute("readonly", "");
-          input.style.position = "fixed";
-          input.style.top = "-9999px";
+          // Must be visible/interactive for execCommand to work in WebView
+          input.style.cssText = "position:fixed;top:0;left:0;width:2em;height:2em;padding:0;border:none;outline:none;box-shadow:none;background:transparent;font-size:16px;opacity:0;z-index:-1;";
           document.body.appendChild(input);
           input.focus();
           input.select();
+          input.setSelectionRange(0, text.length);
           var copied = document.execCommand("copy");
           document.body.removeChild(input);
-          if (copied) {
-            resolve();
-            return;
-          }
+          if (copied) { resolve(); return; }
           reject(new Error("copy_failed"));
         } catch (err) {
           reject(err);
         }
       });
+    }
+
+    function showCopyPrompt(text, message) {
+      // Final fallback: window.prompt lets user long-press to copy in any WebView
+      window.prompt("Giữ để sao chép:", text);
+      // prompt() is synchronous — show toast after it closes
+      showStatusToast(message || ("Đã sao chép: " + text), "");
     }
 
     function bindZaloCopyButtons() {
@@ -3123,7 +3063,7 @@
           copyTextWithFallback(zaloId).then(function () {
             showStatusToast("Đã sao chép số Zalo: " + zaloId, "assets/images/zalo.jpg");
           }).catch(function () {
-            showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: " + zaloId, "assets/images/zalo.jpg");
+            showCopyPrompt(zaloId, "Đã sao chép số Zalo: " + zaloId);
           });
         });
       });
@@ -3158,7 +3098,7 @@
           btn._resetTimer = null;
         }, 1800);
       }).catch(function () {
-        showStatusToast('Không thể copy tự động. Vui lòng sao chép thủ công.', img || 'assets/images/fb.jpg');
+        showCopyPrompt(url, label ? ("Đã copy: " + label) : "Đã copy link");
       });
     }
 
@@ -3193,7 +3133,7 @@
           copyBtn._resetTimer = null;
         }, 1800);
       }).catch(function () {
-        showStatusToast('Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101', 'assets/images/zalo.jpg');
+        showCopyPrompt('0898908101', "Đã sao chép số Zalo: 0898908101");
       });
     }
 
@@ -3217,7 +3157,7 @@
         showStatusToast('Đã copy link FullHouse Dev', 'assets/images/fhd.jpg');
         fhdClosePopup();
       }).catch(function () {
-        showStatusToast('Không thể copy tự động. Vui lòng sao chép thủ công.', 'assets/images/fhd.jpg');
+        showCopyPrompt('https://fullhousedev.com/khoa-hoc/course-cpp-beginner/?ref=4de39e7557', "Đã copy link FullHouse Dev");
       });
     }
 
@@ -3297,4 +3237,4 @@
     </div>
   </nav>
 </body>
-</html>
+          </html>

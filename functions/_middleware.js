@@ -30,6 +30,14 @@ function escapeHtml(value) {
 const SHARE_TITLE = escapeHtml(SHARE_META.title);
 const SHARE_DESCRIPTION = escapeHtml(SHARE_META.description);
 
+function applyNoStoreHeaders(headers) {
+  headers.set("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0, s-maxage=0");
+  headers.set("Pragma", "no-cache");
+  headers.set("Expires", "0");
+  headers.set("CDN-Cache-Control", "no-store");
+  headers.set("Cloudflare-CDN-Cache-Control", "no-store");
+}
+
 // Chinh caption share mang xa hoi tai ../share-meta.js.
 const SHELL_HTML = `<!DOCTYPE html>
 <html lang="vi">
@@ -137,12 +145,20 @@ export default {
     const NEW_ORIGIN = "https://bingenz.com";
     const legacyHosts = new Set([
       "binpinkgold.lnth.workers.dev",
+      "www.bingenz.com",
     ]);
 
     // Redirect domain cu sang domain moi
     if (legacyHosts.has(url.hostname)) {
-      const target = NEW_ORIGIN + url.pathname + url.search + url.hash;
-      return Response.redirect(target, 308);
+      const target = NEW_ORIGIN + url.pathname + url.search;
+      const redirectHeaders = new Headers({
+        Location: target,
+      });
+      applyNoStoreHeaders(redirectHeaders);
+      return new Response(null, {
+        status: 308,
+        headers: redirectHeaders,
+      });
     }
 
     // Bo qua tracking cho /stats
@@ -157,18 +173,19 @@ export default {
       && !BOT_UA_PATTERNS.some((pattern) => pattern.test(ua));
 
     if (!isRealBrowser) {
+      const shellHeaders = new Headers({
+        "Content-Type": "text/html; charset=utf-8",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "X-XSS-Protection": "1; mode=block",
+        "Referrer-Policy": "no-referrer",
+        "X-DNS-Prefetch-Control": "off",
+        "Permissions-Policy": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()",
+      });
+      applyNoStoreHeaders(shellHeaders);
       return new Response(SHELL_HTML, {
         status: 200,
-        headers: {
-          "Content-Type": "text/html; charset=utf-8",
-          "Cache-Control": "no-store",
-          "X-Frame-Options": "DENY",
-          "X-Content-Type-Options": "nosniff",
-          "X-XSS-Protection": "1; mode=block",
-          "Referrer-Policy": "no-referrer",
-          "X-DNS-Prefetch-Control": "off",
-          "Permissions-Policy": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()",
-        },
+        headers: shellHeaders,
       });
     }
 
@@ -183,9 +200,9 @@ export default {
     newHeaders.set("X-XSS-Protection", "1; mode=block");
     newHeaders.set("Referrer-Policy", "no-referrer");
     newHeaders.set("X-DNS-Prefetch-Control", "off");
-    newHeaders.set("Cache-Control", "no-store, no-cache");
     newHeaders.set("X-Robots-Tag", "noindex, nofollow");
     newHeaders.set("Permissions-Policy", "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()");
+    applyNoStoreHeaders(newHeaders);
 
     return new Response(response.body, {
       status: response.status,

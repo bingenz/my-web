@@ -3197,6 +3197,24 @@
       bindBottomNav();
       bindZaloCopyButtons();
     });
+
+    // Fix bfcache: khi user back về từ link ngoài (TikTok, Zalo...),
+    // trình duyệt khôi phục trang từ cache → đóng mọi popup/modal đang mở.
+    window.addEventListener('pageshow', function (event) {
+      if (event.persisted) {
+        // Đóng tất cả modal & link-popup
+        document.querySelectorAll('.modal.open, .link-popup.open').forEach(function (el) {
+          el.classList.remove('open');
+        });
+        // Xóa class overlay trên body nếu có
+        document.body.classList.remove('modal-open', 'overlay-open', 'no-scroll');
+        // Ẩn toast nếu đang hiện
+        var redirectToast = document.getElementById('redirectToast');
+        if (redirectToast) redirectToast.classList.remove('show');
+        var infoToast = document.getElementById('infoToast');
+        if (infoToast) infoToast.classList.remove('show');
+      }
+    });
   </script>
 
   <!-- Info Toast (slides from top on scroll to products) -->
@@ -3238,3 +3256,4 @@
   </nav>
 </body>
           </html>
+

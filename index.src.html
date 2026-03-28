@@ -2084,11 +2084,23 @@
       #commPopup .link-popup-actions {
         grid-column: 1 / -1;
         justify-content: flex-end;
+        flex-wrap: nowrap;
+        width: 100%;
       }
       #commPopup .link-popup-btn {
-        min-width: 5em;
+        min-width: 0;
+        flex: 1 1 0;
         font-size: 0.84em;
         padding: 0.56em 1.1em;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .link-popup-actions {
+        flex-wrap: nowrap;
+      }
+      .link-popup-btn {
+        min-width: 0;
       }
     }
 
@@ -2127,7 +2139,7 @@
         bottom: 0; left: 0; right: 0;
         z-index: 40;
         background: linear-gradient(to top, rgba(247,248,252,0.98) 0%, rgba(247,248,252,0.82) 55%, rgba(247,248,252,0) 100%);
-        padding: 10px 14px calc(16px + env(safe-area-inset-bottom));
+        padding: 12px 14px calc(20px + env(safe-area-inset-bottom));
         pointer-events: auto;
       }
       .bottom-nav-float {
@@ -2145,13 +2157,13 @@
           0 -1px 0  rgba(0,0,0,0.04)      inset,
           0 6px 24px rgba(99,102,241,0.10),
           0 2px 10px rgba(0,0,0,0.08);
-        padding: 7px 7px;
+        padding: 10px 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 5px;
+        gap: 6px;
       }
-      body { padding-bottom: 86px; }
+      body { padding-bottom: 98px; }
     }
     .bottom-nav .chip,
     .bottom-nav .chip.primary {
@@ -2685,11 +2697,14 @@
   </div>
 
   <script>
-    const NAV_CTA = { text: "Xem sản phẩm", target: "products" };
+    const NAV_CTA = { text: "Xem dịch vụ", target: "source-code" };
 
-    function navScrollTo(id) {
-      if (id === 'source-code') {
-        suppressInfoToastUntil = Date.now() + 2200;
+    function navScrollTo(id, options) {
+      options = options || {};
+      if (options.suppressInfoToast) {
+        suppressInfoToastUntil = Date.now() + 1200;
+        var infoToast = document.getElementById('infoToast');
+        if (infoToast) infoToast.classList.remove('show');
       }
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -2708,7 +2723,7 @@
           e.preventDefault();
           e.stopPropagation();
           var target = el.getAttribute('data-target');
-          if (target) navScrollTo(target);
+          if (target) navScrollTo(target, { suppressInfoToast: true });
         });
       });
     }
@@ -2962,7 +2977,8 @@
 
     function showInfoToast(force) {
       const toast = document.getElementById('infoToast');
-      if (!toast || shouldSuppressInfoToast()) return;
+      if (!toast) return;
+      if (!force && shouldSuppressInfoToast()) return;
       if (!force && infoToastShown) return;
       infoToastShown = true;
       toast.classList.remove('show');
@@ -3163,6 +3179,7 @@
 
     function openFirstProduct(e) {
       e.preventDefault();
+      suppressInfoToastUntil = 0;
       var target = document.getElementById('products');
       if (target) {
         var topbar = document.querySelector('.topbar');
@@ -3279,7 +3296,7 @@
     <div class="bottom-nav-float">
       <button type="button" class="chip js-bottom-nav" data-target="home" style="font-size:0.86em;padding:8px 14px;">Home</button>
       <button type="button" class="chip js-bottom-nav" data-target="contact" style="font-size:0.86em;padding:8px 14px;">Liên hệ</button>
-      <button type="button" class="chip primary js-bottom-nav js-nav-cta" data-target="products" style="font-size:0.86em;padding:8px 16px;">Xem sản phẩm</button>
+      <button type="button" class="chip primary js-bottom-nav" data-target="source-code" style="font-size:0.86em;padding:8px 16px;">Xem dịch vụ</button>
     </div>
   </nav>
 </body>

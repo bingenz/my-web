@@ -1382,8 +1382,7 @@
       .wide { grid-column: span 12; }
       .contact-list { gap: 8px; }
       .personal-list li { width: 100%; }
-      .redirect-toast,
-      .info-toast {
+      .redirect-toast {
         -webkit-backdrop-filter: none !important;
         backdrop-filter: none !important;
         will-change: transform, opacity;
@@ -1423,18 +1422,6 @@
       }
       .confirm-toast.show {
         bottom: 20px;
-        transform: translate(-50%, 0);
-        opacity: 1;
-      }
-      .info-toast {
-        top: calc(72px + env(safe-area-inset-top, 0px));
-        transform: translate(-50%, -18px);
-        opacity: 0;
-        transition: transform 0.22s ease, opacity 0.22s ease;
-        box-shadow: 0 10px 28px rgba(15,23,42,0.18);
-      }
-      .info-toast.show {
-        top: calc(72px + env(safe-area-inset-top, 0px));
         transform: translate(-50%, 0);
         opacity: 1;
       }
@@ -2141,32 +2128,37 @@
         position: fixed;
         bottom: 0; left: 0; right: 0;
         z-index: 40;
-        background: linear-gradient(to top, rgba(247,248,252,0.98) 0%, rgba(247,248,252,0.82) 55%, rgba(247,248,252,0) 100%);
-        padding: 12px 14px calc(20px + env(safe-area-inset-bottom));
-        pointer-events: auto;
+        padding: 8px 16px calc(10px + env(safe-area-inset-bottom));
+        pointer-events: none;
+        background: none;
       }
       .bottom-nav-float {
         pointer-events: auto;
         touch-action: manipulation;
         width: fit-content;
         margin: 0 auto;
-        background: rgba(255,255,255,0.45);
-        backdrop-filter: blur(16px) saturate(1.6);
-        -webkit-backdrop-filter: blur(16px) saturate(1.6);
+        /* liquid glass — iPhone pill style */
+        background:
+          linear-gradient(180deg,
+            rgba(255,255,255,0.62) 0%,
+            rgba(240,243,255,0.48) 100%
+          );
+        backdrop-filter: blur(24px) saturate(1.9) brightness(1.04);
+        -webkit-backdrop-filter: blur(24px) saturate(1.9) brightness(1.04);
         border-radius: 999px;
-        border: 1px solid rgba(255,255,255,0.60);
+        border: 1px solid rgba(255,255,255,0.72);
         box-shadow:
-          0 1.5px 0 rgba(255,255,255,0.8) inset,
-          0 -1px 0  rgba(0,0,0,0.04)      inset,
-          0 6px 24px rgba(99,102,241,0.10),
-          0 2px 10px rgba(0,0,0,0.08);
-        padding: 10px 10px;
+          0 1.5px 0 rgba(255,255,255,0.90) inset,
+          0 -0.5px 0 rgba(0,0,0,0.05) inset,
+          0 8px 28px rgba(79,70,229,0.13),
+          0 2px 8px rgba(0,0,0,0.10);
+        padding: 5px 5px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 6px;
+        gap: 4px;
       }
-      body { padding-bottom: 98px; }
+      body { padding-bottom: 88px; }
     }
     .bottom-nav .chip,
     .bottom-nav .chip.primary {
@@ -2175,6 +2167,12 @@
       font-family: "Be Vietnam Pro", sans-serif;
       cursor: pointer;
       touch-action: manipulation;
+      font-size: 0.84em !important;
+      padding: 7px 13px !important;
+      border-radius: 999px !important;
+    }
+    .bottom-nav .chip.primary {
+      padding: 7px 15px !important;
     }
     .cta-row--mt { margin-top: 14px; }
 
@@ -2184,89 +2182,303 @@
       color: #4338ca;
     }
 
-    /* ── Info Toast (slides from top) ── */
-    .info-toast {
+    .topbar-spacer { flex: 1; }
+
+    /* ── Welcome Popup ── */
+    .welcome-overlay {
       position: fixed;
-      top: -240px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(360px, calc(100vw - 28px));
-      background: #fff;
-      border: 1.5px solid #c7d2fe;
-      border-radius: 28px;
-      box-shadow: 0 8px 16px rgba(67,56,202,0.2), 0 24px 64px rgba(15,23,42,0.3), 0 2px 4px rgba(15,23,42,0.12);
-      padding: 16px;
-      z-index: 210;
-      transition: top 0.45s cubic-bezier(0.34,1.46,0.64,1);
-      display: grid;
-      gap: 12px;
-      pointer-events: none;
-    }
-    .info-toast.show {
-      top: calc(76px + env(safe-area-inset-top, 0px));
-      pointer-events: auto;
-    }
-    .info-toast-head {
-      display: flex;
+      inset: 0;
+      background: rgba(15,23,42,0.58);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 300;
+      display: none;
       align-items: center;
-      gap: 11px;
+      justify-content: center;
+      padding: 1em;
     }
-    .info-toast-ico {
-      width: 40px; height: 40px;
-      border-radius: 12px;
-      background: #eef2ff;
-      border: 1px solid #c7d2fe;
+    .welcome-overlay.open {
+      display: flex;
+    }
+    .welcome-box {
+      width: min(26em, calc(100vw - 1.5em));
+      background: linear-gradient(180deg, #ffffff 0%, #f7f8ff 100%);
+      border: 1px solid rgba(199,210,254,0.7);
+      border-radius: 1.6em;
+      box-shadow: 0 2em 5em rgba(79,70,229,0.18), 0 0.4em 1em rgba(15,23,42,0.1);
+      transform: translateY(0.8em) scale(0.97);
+      transition: transform 0.22s ease;
+      max-height: calc(100dvh - 2em);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .welcome-overlay.open .welcome-box {
+      transform: translateY(0) scale(1);
+    }
+    .welcome-header {
+      padding: 1em 1em 0.6em;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75em;
+    }
+    .welcome-header-icon {
+      width: 2.5em;
+      height: 2.5em;
+      border-radius: 0.75em;
+      background: linear-gradient(135deg, #4338ca, #0ea5e9);
       display: grid;
       place-items: center;
-      color: #4338ca;
       flex-shrink: 0;
+      color: #fff;
     }
-    .info-toast-title {
-      font-size: 1.125em;
+    .welcome-header-text { flex: 1; min-width: 0; }
+    .welcome-title {
+      margin: 0;
+      font-size: 0.9em;
       font-weight: 800;
       color: #0f172a;
       letter-spacing: -0.01em;
       line-height: 1.2;
     }
-    .info-toast-list {
+    .welcome-sub {
+      margin: 0.2em 0 0;
+      font-size: 0.69em;
+      color: #64748b;
+      line-height: 1.4;
+    }
+    .welcome-close {
+      width: 1.875em;
+      height: 1.875em;
+      border-radius: 50%;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      color: #64748b;
+      font-size: 1em;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      line-height: 1;
+      font-family: "Be Vietnam Pro", sans-serif;
+    }
+    .welcome-close:hover { background: #f1f5f9; }
+    .welcome-body {
+      padding: 0 1em 1em;
+      display: grid;
+      gap: 0.75em;
+    }
+    .welcome-products {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5em;
+    }
+    .welcome-product-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      background: linear-gradient(180deg, #f8fbff 0%, #fff 100%);
+      border: 1px solid rgba(199,210,254,0.7);
+      border-radius: 0.875em;
+      padding: 0.5em 0.625em;
+    }
+    .welcome-product-dot {
+      width: 0.4em; height: 0.4em;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4338ca, #0ea5e9);
+      flex-shrink: 0;
+    }
+    .welcome-product-name {
+      font-size: 0.72em;
+      font-weight: 700;
+      color: #1e293b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .welcome-notice {
+      background: linear-gradient(180deg, #fffbf0 0%, #fffef8 100%);
+      border: 1px solid #fde68a;
+      border-radius: 1em;
+      padding: 0.75em 0.875em;
+      display: grid;
+      gap: 0.5em;
+    }
+    .welcome-notice-title {
+      font-size: 0.66em;
+      font-weight: 800;
+      color: #92400e;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+    }
+    .welcome-notice-list {
       margin: 0; padding: 0;
       list-style: none;
       display: grid;
-      gap: 7px;
+      gap: 0.45em;
     }
-    .info-toast-list li {
+    .welcome-notice-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45em;
+      font-size: 0.72em;
+      color: #78350f;
+      line-height: 1.5;
+    }
+    .welcome-notice-list li .wn-dot {
+      width: 0.4em; height: 0.4em;
+      border-radius: 50%;
+      background: #f59e0b;
+      flex-shrink: 0;
+      margin-top: 0.45em;
+    }
+    .badge-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 999px;
+      padding: 1px 5px;
+      font-size: 0.875em;
+      font-weight: 800;
+      color: #065f46;
+      white-space: nowrap;
+    }
+    .badge-inline.red {
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: #991b1b;
+    }
+    .welcome-contact-box {
+      background: linear-gradient(180deg, #eef2ff 0%, #e0e7ff 100%);
+      border: 1px solid #a5b4fc;
+      border-radius: 1em;
+      padding: 0.72em 0.875em;
       display: flex;
       align-items: center;
-      gap: 9px;
-      font-size: 0.81em;
-      font-weight: 600;
-      color: #334155;
+      justify-content: space-between;
+      gap: 0.75em;
+      flex-wrap: wrap;
     }
-    .info-toast-check {
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
+    .welcome-contact-label {
+      font-size: 0.63em;
+      font-weight: 700;
+      color: #475569;
     }
-    .info-toast-ok {
+    .welcome-contact-number {
+      font-size: 0.9em;
+      font-weight: 800;
+      color: #1e1b4b;
+      letter-spacing: -0.01em;
+    }
+    .welcome-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
       border: 0;
       border-radius: 999px;
-      padding: 0.69em;
-      font-size: 0.875em;
-      font-weight: 700;
+      padding: 0.5em 0.875em;
+      background: linear-gradient(135deg, #4338ca, #0ea5e9);
       color: #fff;
-      background: linear-gradient(135deg, #4f46e5, #0ea5e9);
-      cursor: pointer;
+      font-size: 0.72em;
+      font-weight: 700;
       font-family: "Be Vietnam Pro", sans-serif;
-      box-shadow: 0 4px 14px rgba(79,70,229,0.3);
-      transition: filter 0.15s, box-shadow 0.15s, transform 0.1s;
-      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(79,70,229,0.3);
+      transition: transform 0.15s, filter 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .info-toast-ok:hover { filter: brightness(1.1); transform: translateY(-1px); }
-    .info-toast-ok:active { transform: translateY(0); }
+    .welcome-copy-btn:hover { transform: translateY(-1px); filter: brightness(1.07); }
+    .welcome-copy-btn:active { transform: translateY(0); }
+    .welcome-copy-btn.is-copied {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      box-shadow: 0 4px 12px rgba(22,163,74,0.3);
+    }
+    .welcome-dismiss {
+      width: 100%;
+      border: 1px solid #dbe3f4;
+      border-radius: 999px;
+      background: #fff;
+      color: #3730a3;
+      font-size: 0.84em;
+      font-weight: 700;
+      font-family: "Be Vietnam Pro", sans-serif;
+      padding: 0.72em;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .welcome-dismiss:hover { background: #f8faff; border-color: #a5b4fc; }
+
+    /* ── Notification Bar (sticky below header) ── */
+    .notif-bar {
+      position: sticky;
+      top: 68px;
+      z-index: 29;
+      display: flex;
+      justify-content: center;
+      padding: 6px 12px;
+      pointer-events: none;
+    }
+    @media (max-width: 680px) {
+      .notif-bar { top: 56px; }
+    }
+    .notif-btn {
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55em;
+      padding: 0.48em 1em;
+      border-radius: 999px;
+      font-family: "Be Vietnam Pro", sans-serif;
+      font-size: 0.78em;
+      font-weight: 700;
+      color: #1e1b4b;
+      cursor: pointer;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.75) 0%,
+        rgba(232,238,255,0.55) 100%
+      );
+      backdrop-filter: blur(18px) saturate(1.8);
+      -webkit-backdrop-filter: blur(18px) saturate(1.8);
+      border: 1px solid rgba(255,255,255,0.78);
+      box-shadow:
+        0 1.5px 0 rgba(255,255,255,0.88) inset,
+        0 -1px 0 rgba(0,0,0,0.04) inset,
+        0 6px 20px rgba(99,102,241,0.14),
+        0 2px 8px rgba(15,23,42,0.09);
+      transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+      white-space: nowrap;
+    }
+    .notif-btn:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 1.5px 0 rgba(255,255,255,0.88) inset,
+        0 -1px 0 rgba(0,0,0,0.04) inset,
+        0 10px 28px rgba(99,102,241,0.2),
+        0 3px 10px rgba(15,23,42,0.11);
+      filter: brightness(1.03);
+    }
+    .notif-btn:active { transform: translateY(0); }
+    .notif-btn-dot {
+      width: 0.45em; height: 0.45em;
+      border-radius: 50%;
+      background: #ef4444;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 0.18em rgba(239,68,68,0.22);
+      animation: notifDotPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes notifDotPulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.45; transform:scale(0.6); }
+    }
+
   </style>
   <script src="protect.js"></script>
   <script>
@@ -2313,6 +2525,17 @@
       </div>
     </div>
   </header>
+
+  <!-- Notification Bar -->
+  <div class="notif-bar">
+    <button class="notif-btn" type="button" onclick="welcomeOpen()">
+      <span class="notif-btn-dot"></span>
+      <svg class="notif-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      Xem thông báo mới từ BinGenZ
+    </button>
+  </div>
 
   <main>
     <section class="hero" id="home">
@@ -2672,6 +2895,7 @@
         <div class="modal-desc-wrap" id="mDescWrap">
           <ul class="modal-list" id="mBullets"></ul>
         </div>
+        <div id="mPlansWrap" style="display:none;"></div>
         <div class="contact-box">
           <div class="contact-box-main">
             <span class="contact-box-label">Liên hệ Zalo</span>
@@ -2704,11 +2928,6 @@
 
     function navScrollTo(id, options) {
       options = options || {};
-      if (options.suppressInfoToast) {
-        suppressInfoToastUntil = Date.now() + 1200;
-        var infoToast = document.getElementById('infoToast');
-        if (infoToast) infoToast.classList.remove('show');
-      }
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -2734,6 +2953,27 @@
     history.scrollRestoration = "manual";
 
     const PRODUCTS = [
+      {
+        id: "grok",
+        label: "CÁ NHÂN",
+        image: "assets/images/grok.jpg",
+        name: "Grok Super",
+        tag: "<span style='display:block;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460,#533483);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>Aurora · DeepSearch · Big Brain</span>",
+        rawPrice: "249K - 1,399K",
+        oldPrice: "792,000đ",
+        perDay: "chỉ 8,000đ / ngày",
+        plans: [
+          { label: "1 tháng", price: "249,000đ" },
+          { label: "3 tháng", price: "699,000đ" },
+          { label: "6 tháng", price: "1,399,000đ" }
+        ],
+        bullets: [
+          "Tài khoản sử dụng 1 mình",
+          "Truy cập <b class='hl'>Grok Super</b> – model mạnh nhất của xAI",
+          "Dùng <b class='hl'>Aurora</b> tạo ảnh chất lượng cao không giới hạn",
+          "Tính năng <b class='hl'>DeepSearch & Big Brain</b> không giới hạn"
+        ]
+      },
       {
         id: "gpt-gmail",
         label: "CHÍNH CHỦ",
@@ -2854,6 +3094,29 @@
       ico.style.display = "block";
       document.getElementById("mDescWrap").style.display = "block";
       document.getElementById("mBullets").innerHTML = p.bullets.map(item => `<li style="display:flex;align-items:flex-start;gap:8px;"><svg style="flex-shrink:0;margin-top:2px;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>${item}</span></li>`).join("");
+
+      // Show/hide plans section
+      var plansWrap = document.getElementById("mPlansWrap");
+      if (p.plans && p.plans.length) {
+        plansWrap.style.display = "block";
+        plansWrap.innerHTML = `
+          <div style="font-size:0.75em;font-weight:700;color:#475569;margin-bottom:8px;">Chọn gói đăng ký:</div>
+          <div style="display:grid;gap:8px;">
+            ${p.plans.map(plan => `
+              <a href="https://zalo.me/0898908101" target="_blank" rel="noopener"
+                onclick="showRedirectToast('Zalo','assets/images/zalo.jpg')"
+                style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;border:1px solid #c7d2fe;background:linear-gradient(180deg,#f8fbff 0%,#fff 100%);text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;cursor:pointer;"
+                onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 18px rgba(99,102,241,0.15)'"
+                onmouseout="this.style.transform='';this.style.boxShadow=''">
+                <span style="font-size:0.875em;font-weight:700;color:#1e293b;">${plan.label}</span>
+                <span style="font-size:0.9em;font-weight:800;color:#4338ca;">${plan.price}</span>
+              </a>`).join("")}
+          </div>`;
+      } else {
+        plansWrap.style.display = "none";
+        plansWrap.innerHTML = "";
+      }
+
       document.getElementById("productModal").classList.add("open");
       document.body.style.overflow = "hidden";
     }
@@ -2970,50 +3233,6 @@
       document.body.style.overflow = "";
     }
 
-    let infoToastObserver = null;
-    let infoToastShown = false;
-    let suppressInfoToastUntil = 0;
-
-    function shouldSuppressInfoToast() {
-      return Date.now() < suppressInfoToastUntil;
-    }
-
-    function showInfoToast(force) {
-      const toast = document.getElementById('infoToast');
-      if (!toast) return;
-      if (!force && shouldSuppressInfoToast()) return;
-      if (!force && infoToastShown) return;
-      infoToastShown = true;
-      toast.classList.remove('show');
-      void toast.offsetWidth;
-      toast.classList.add('show');
-    }
-
-    function startInfoToastObserver() {
-      const target = document.getElementById('products');
-      if (!target || !('IntersectionObserver' in window) || infoToastObserver) return;
-
-      infoToastObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          setTimeout(function () {
-            if (shouldSuppressInfoToast()) return;
-            showInfoToast(false);
-            if (!infoToastShown || !infoToastObserver) return;
-            infoToastObserver.unobserve(target);
-            infoToastObserver.disconnect();
-            infoToastObserver = null;
-          }, 300);
-        });
-      }, { threshold: 0.15 });
-
-      infoToastObserver.observe(target);
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      window.scrollTo(0, 0);
-      startInfoToastObserver();
-    });
 
     function showRedirectToast(label, img) {
       const toast = document.getElementById('redirectToast');
@@ -3182,17 +3401,11 @@
 
     function openFirstProduct(e) {
       e.preventDefault();
-      suppressInfoToastUntil = 0;
       var target = document.getElementById('products');
       if (target) {
         var topbar = document.querySelector('.topbar');
         var topbarH = topbar ? topbar.offsetHeight : 68;
-        var toast = document.getElementById('infoToast');
-        if (toast) {
-          showInfoToast(true);
-        }
-        var toastH = toast ? toast.offsetHeight + 16 : 0;
-        var top = target.getBoundingClientRect().top + window.scrollY - topbarH - toastH;
+        var top = target.getBoundingClientRect().top + window.scrollY - topbarH;
         window.scrollTo({ top: top, behavior: 'smooth' });
       }
     }
@@ -3200,25 +3413,75 @@
     renderProducts();
     syncNavCTA();
 
-    // ── Info Toast: trigger when #products scrolls into view ──
-    document.addEventListener('DOMContentLoaded', function () {
-      var toast = document.getElementById('infoToast');
-      var okBtn = document.getElementById('infoToastOk');
-      if (!toast || !okBtn) return;
+    // ── Welcome Popup ──
+    function welcomeOpen() {
+      var overlay = document.getElementById('welcomeNotif');
+      if (!overlay) return;
+      overlay.style.display = 'flex';
+      // force reflow để animation chạy
+      void overlay.offsetWidth;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-      function closeInfoToast() {
-        toast.classList.remove('show');
-      }
+    function welcomeClose() {
+      var overlay = document.getElementById('welcomeNotif');
+      if (!overlay) return;
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      // Đợi transition xong rồi display none (nếu có transition trên box)
+      setTimeout(function () {
+        if (!overlay.classList.contains('open')) {
+          overlay.style.display = '';
+        }
+      }, 250);
+    }
 
-      okBtn.addEventListener('click', closeInfoToast);
-    });
+    function welcomeCopyZalo() {
+      var btn = document.getElementById('welcomeCopyBtn');
+      if (!btn) return;
+      var label = btn.querySelector('.wc-label') || btn;
+      copyTextWithFallback('0898908101').then(function () {
+        if (btn._resetTimer) clearTimeout(btn._resetTimer);
+        btn.classList.add('is-copied');
+        btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Đã copy';
+        btn._resetTimer = setTimeout(function () {
+          btn.classList.remove('is-copied');
+          btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy số';
+          btn._resetTimer = null;
+        }, 1800);
+      }).catch(function () {
+        showCopyPrompt('0898908101', 'Đã sao chép số Zalo: 0898908101');
+      });
+    }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    function initPage() {
+      window.scrollTo(0, 0);
       bindBottomNav();
       bindZaloCopyButtons();
+    }
+
+    // Chạy ngay nếu DOM đã sẵn sàng, hoặc đợi DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+
+    // Welcome popup: dùng window load để chắc #welcomeNotif đã trong DOM
+    window.addEventListener('load', function () {
+      try {
+        var key = '__bgz_wlc_v2__';
+        if (!sessionStorage.getItem(key)) {
+          sessionStorage.setItem(key, '1');
+          setTimeout(welcomeOpen, 350);
+        }
+      } catch (e) {
+        setTimeout(welcomeOpen, 350);
+      }
     });
 
-    function normalizeRestoredUiState() {
+    function normalizeRestoredUiState(isBackForward) {
       document.querySelectorAll('.modal.open, .link-popup.open').forEach(function (el) {
         el.classList.remove('open');
       });
@@ -3230,26 +3493,34 @@
         el.style.display = 'none';
       });
 
+      // welcomeNotif: chỉ reset khi back-forward, không reset khi first load
+      if (isBackForward) {
+        var wn = document.getElementById('welcomeNotif');
+        if (wn) {
+          wn.classList.remove('open', 'show', 'active');
+          wn.style.display = '';
+        }
+      }
+
       document.body.classList.remove('modal-open', 'overlay-open', 'no-scroll');
       document.body.style.overflow = '';
 
       var redirectToast = document.getElementById('redirectToast');
       if (redirectToast) redirectToast.classList.remove('show');
-      var infoToast = document.getElementById('infoToast');
-      if (infoToast) infoToast.classList.remove('show');
     }
 
     // Fix bfcache/back-forward restore trong in-app browser (TikTok, Zalo...):
     // luôn dọn state UI và ép tải lại cùng URL để tránh hiện snapshot giao diện cũ.
     window.addEventListener('pageshow', function (event) {
-      normalizeRestoredUiState();
-
       var nav = null;
       if (window.performance && typeof window.performance.getEntriesByType === 'function') {
         var entries = window.performance.getEntriesByType('navigation');
         if (entries && entries.length) nav = entries[0];
       }
       var isBackForward = !!event.persisted || (nav && nav.type === 'back_forward');
+
+      normalizeRestoredUiState(isBackForward);
+
       if (!isBackForward) return;
 
       var reloadKey = '__bingenz_bf_reloaded__';
@@ -3265,33 +3536,80 @@
     });
   </script>
 
-  <!-- Info Toast (slides from top on scroll to products) -->
-  <div class="info-toast" id="infoToast" role="dialog" aria-modal="true" aria-label="Thông tin tài khoản">
-    <div class="info-toast-head">
-      <span class="info-toast-ico">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
-      </span>
-      <span class="info-toast-title">Tài khoản dùng cá nhân</span>
+  <!-- Welcome Popup -->
+  <div class="welcome-overlay" id="welcomeNotif" onclick="if(event.target===this)welcomeClose()">
+    <div class="welcome-box">
+      <div class="welcome-header">
+        <div class="welcome-header-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <div class="welcome-header-text">
+          <h3 class="welcome-title">🎉 Shop đang có sản phẩm mới!</h3>
+          <p class="welcome-sub">Cập nhật danh sách tài khoản Premium từ BinGenZ</p>
+        </div>
+      </div>
+      <div class="welcome-body">
+        <!-- Product list -->
+        <div class="welcome-products">
+          <div class="welcome-product-item">
+            <span class="welcome-product-dot"></span>
+            <span class="welcome-product-name">Grok Super</span>
+          </div>
+          <div class="welcome-product-item">
+            <span class="welcome-product-dot"></span>
+            <span class="welcome-product-name">ChatGPT Plus Codex</span>
+          </div>
+          <div class="welcome-product-item">
+            <span class="welcome-product-dot"></span>
+            <span class="welcome-product-name">Gemini Pro</span>
+          </div>
+          <div class="welcome-product-item">
+            <span class="welcome-product-dot"></span>
+            <span class="welcome-product-name">CapCut Pro</span>
+          </div>
+          <div class="welcome-product-item" style="grid-column:1/-1;">
+            <span class="welcome-product-dot"></span>
+            <span class="welcome-product-name">YouTube Premium</span>
+          </div>
+        </div>
+
+        <!-- Notice -->
+        <div class="welcome-notice">
+          <div class="welcome-notice-title">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Lưu ý quan trọng
+          </div>
+          <ul class="welcome-notice-list">
+            <li>
+              <span class="wn-dot"></span>
+              <span>Tất cả tài khoản đều là <strong>của riêng bạn</strong> — không dùng chung với ai</span>
+            </li>
+            <li>
+              <span class="wn-dot"></span>
+              <span>Tài khoản có tag <span class="badge-inline">CÁ NHÂN</span> là tài khoản shop cấp cho bạn sử dụng</span>
+            </li>
+            <li>
+              <span class="wn-dot"></span>
+              <span>Tài khoản có tag <span class="badge-inline red">CHÍNH CHỦ</span> là tài khoản được nâng cấp thẳng Gmail của bạn — không cần đưa mật khẩu, chỉ cần tên Gmail, shop sẽ thêm vào gói</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="welcome-contact-box">
+          <div>
+            <div class="welcome-contact-label">Liên hệ hỗ trợ: Zalo</div>
+            <div class="welcome-contact-number">0898908101</div>
+          </div>
+          <button class="welcome-copy-btn" id="welcomeCopyBtn" type="button" onclick="welcomeCopyZalo()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy số
+          </button>
+        </div>
+
+        <button class="welcome-dismiss" type="button" onclick="welcomeClose()">Đã hiểu, xem sản phẩm →</button>
+      </div>
     </div>
-    <ul class="info-toast-list">
-      <li>
-        <span class="info-toast-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        1 mình bạn dùng 1 tài khoản
-      </li>
-      <li>
-        <span class="info-toast-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        Kích hoạt trong 1 phút
-      </li>
-      <li>
-        <span class="info-toast-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        Bảo hành toàn bộ thời gian sử dụng
-      </li>
-      <li>
-        <span class="info-toast-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        Truy cập mọi tính năng cao cấp
-      </li>
-    </ul>
-    <button class="info-toast-ok" id="infoToastOk">Đã hiểu, đăng ký ngay →</button>
   </div>
 
   <!-- Bottom Nav (mobile only) -->

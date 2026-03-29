@@ -799,7 +799,7 @@
     }
     .head-text { min-width: 0; }
     .name { font-size: clamp(0.88rem, 3.5vw, 1.15rem); font-weight: 800; letter-spacing: -0.01em; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: clip; }
-    .tag { color: #64748b; font-size: 0.72em; margin: 0; line-height: 1.4; }
+    .tag { color: #94a3b8; font-size: 0.60em; margin: 0; line-height: 1.4; }
     .badge {
       border-radius: 999px;
       padding: 5px 9px;
@@ -1112,7 +1112,7 @@
       overflow-x: hidden;
       background: #ffffff;
       border: 1.5px solid #c7d2fe;
-      border-radius: 36px;
+      border-radius: 1.5em;
       box-shadow: 0 40px 100px rgba(15,23,42,0.45), 0 0 0 4px rgba(99,102,241,0.10);
     }
     .modal-head {
@@ -1155,7 +1155,7 @@
     .modal-desc-wrap {
       background: rgba(241,245,255,0.8);
       border: 1px solid rgba(199,210,254,0.5);
-      border-radius: 1.375em;
+      border-radius: 1em;
       padding: 0.875em 1em;
     }
     .modal-list { margin: 0; padding: 0; list-style: none; color: #334155; font-size: 0.85em; display: grid; gap: 6px; }
@@ -1493,7 +1493,7 @@
     .contact-box {
       background: rgba(241,245,255,0.8);
       border: 1px solid rgba(199,210,254,0.5);
-      border-radius: 18px;
+      border-radius: 1.125em;
       padding: 12px 14px;
       display: flex;
       flex-direction: column;
@@ -2096,6 +2096,50 @@
 
     .topbar-spacer { flex: 1; }
 
+    /* ── Glass Nav Pill ── */
+    .glass-nav-pill {
+      display: flex; align-items: center; gap: 4px;
+      background: linear-gradient(160deg, rgba(255,255,255,0.72) 0%, rgba(230,235,255,0.52) 100%);
+      backdrop-filter: blur(24px) saturate(2) brightness(1.04);
+      -webkit-backdrop-filter: blur(24px) saturate(2) brightness(1.04);
+      border: 1px solid rgba(255,255,255,0.82);
+      border-radius: 999px;
+      padding: 5px 6px;
+      box-shadow:
+        0 2px 0 rgba(255,255,255,0.9) inset,
+        0 -0.5px 0 rgba(0,0,0,0.04) inset,
+        0 8px 28px rgba(79,70,229,0.13),
+        0 2px 8px rgba(15,23,42,0.09);
+    }
+    .gnp-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 7px 14px; border-radius: 999px;
+      font-family: "Be Vietnam Pro", sans-serif;
+      font-size: 0.82em; font-weight: 600; color: var(--muted);
+      background: transparent; border: none; cursor: pointer;
+      transition: background 0.16s, color 0.16s;
+      white-space: nowrap;
+      touch-action: manipulation;
+    }
+    .gnp-btn:hover { background: rgba(99,102,241,0.09); color: #4338ca; }
+    .gnp-btn svg { flex-shrink: 0; }
+    .gnp-btn.gnp-cta {
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 55%, #0ea5e9 100%);
+      color: #fff; font-weight: 700;
+      box-shadow: 0 3px 12px rgba(79,70,229,0.30);
+      transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+    }
+    .gnp-btn.gnp-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(79,70,229,0.42);
+      filter: brightness(1.07);
+    }
+    .gnp-btn.gnp-cta:active { transform: translateY(0); }
+    /* Mobile: thu gọn text Dịch vụ, giữ CTA */
+    @media (max-width: 400px) {
+      .gnp-btn:not(.gnp-cta) span.gnp-text { display: none; }
+    }
+
     /* Mobile: ẩn chips, hiện icons liên hệ */
     .mob-contact-icons { display: none; }
     @media (max-width: 680px) {
@@ -2120,60 +2164,84 @@
       }
     }
 
-    /* ── Bottom Nav Bar ── */
-    .bottom-nav { display: none; }
-    @media (max-width: 680px) {
-      .bottom-nav {
-        display: block;
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        z-index: 40;
-        padding: 8px 16px calc(10px + env(safe-area-inset-bottom));
-        pointer-events: none;
-        background: none;
-      }
-      .bottom-nav-float {
-        pointer-events: auto;
-        touch-action: manipulation;
-        width: fit-content;
-        margin: 0 auto;
-        /* liquid glass — iPhone pill style */
-        background:
-          linear-gradient(180deg,
-            rgba(255,255,255,0.62) 0%,
-            rgba(240,243,255,0.48) 100%
-          );
-        backdrop-filter: blur(24px) saturate(1.9) brightness(1.04);
-        -webkit-backdrop-filter: blur(24px) saturate(1.9) brightness(1.04);
-        border-radius: 999px;
-        border: 1px solid rgba(255,255,255,0.72);
-        box-shadow:
-          0 1.5px 0 rgba(255,255,255,0.90) inset,
-          0 -0.5px 0 rgba(0,0,0,0.05) inset,
-          0 8px 28px rgba(79,70,229,0.13),
-          0 2px 8px rgba(0,0,0,0.10);
-        padding: 5px 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-      }
-      body { padding-bottom: 88px; }
-    }
-    .bottom-nav .chip,
-    .bottom-nav .chip.primary {
-      appearance: none;
-      -webkit-appearance: none;
+    /* ── Modal Notice Button ── */
+    .modal-notice-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45em;
+      width: 100%;
+      background: linear-gradient(180deg, #fffbf0 0%, #fff8e8 100%);
+      border: 1px solid #fde68a;
+      border-radius: 1em;
+      padding: 0.72em 1em;
+      font-size: 0.81em;
+      font-weight: 700;
+      color: #92400e;
       font-family: "Be Vietnam Pro", sans-serif;
       cursor: pointer;
-      touch-action: manipulation;
-      font-size: 0.84em !important;
-      padding: 7px 13px !important;
-      border-radius: 999px !important;
+      transition: background 0.15s, border-color 0.15s, transform 0.15s;
     }
-    .bottom-nav .chip.primary {
-      padding: 7px 15px !important;
+    .modal-notice-btn:hover { transform: translateY(-1px); filter: brightness(0.98); }
+    .modal-notice-btn:active { transform: translateY(0); }
+
+    /* ── Modal inline notice box ── */
+    .modal-notice-inline {
+      width: 100%;
+      background: linear-gradient(180deg, #fffbf0 0%, #fff8e8 100%);
+      border: 1px solid #fde68a;
+      border-radius: 1em;
+      padding: 0.8em 1em;
+      margin-bottom: 10px;
     }
+    .modal-notice-inline-title {
+      display: flex;
+      align-items: center;
+      gap: 0.45em;
+      font-size: 0.78em;
+      font-weight: 800;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+    .modal-notice-inline ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .modal-notice-inline li {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      font-size: 0.78em;
+      color: #78350f;
+      line-height: 1.45;
+    }
+    .modal-notice-inline li .wn-dot {
+      width: 0.4em; height: 0.4em;
+      border-radius: 50%;
+      background: #f59e0b;
+      flex-shrink: 0;
+      margin-top: 0.45em;
+    }
+    /* ── Zalo note gộp vào contact-box ── */
+    .contact-box-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 0.76em;
+      color: #dc2626;
+      padding-top: 8px;
+      margin-top: 8px;
+      border-top: 1px solid #fecaca;
+      line-height: 1.4;
+      font-weight: 600;
+    }
+    .contact-box-note strong { color: #b91c1c; }
+
+    /* bottom-nav removed */
     .cta-row--mt { margin-top: 14px; }
 
     /* ── Keyword highlight in bullets ── */
@@ -2433,7 +2501,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.55em;
-      padding: 0.48em 1em;
+      padding: 0.58em 1.15em;
       border-radius: 999px;
       font-family: "Be Vietnam Pro", sans-serif;
       font-size: 0.78em;
@@ -2442,41 +2510,70 @@
       cursor: pointer;
       background: linear-gradient(
         180deg,
-        rgba(255,255,255,0.75) 0%,
-        rgba(232,238,255,0.55) 100%
+        rgba(255,255,255,0.82) 0%,
+        rgba(224,231,255,0.6) 100%
       );
       backdrop-filter: blur(18px) saturate(1.8);
       -webkit-backdrop-filter: blur(18px) saturate(1.8);
-      border: 1px solid rgba(255,255,255,0.78);
+      border: 1px solid rgba(255,255,255,0.85);
       box-shadow:
         0 1.5px 0 rgba(255,255,255,0.88) inset,
-        0 -1px 0 rgba(0,0,0,0.04) inset,
         0 6px 20px rgba(99,102,241,0.14),
         0 2px 8px rgba(15,23,42,0.09);
-      transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
       white-space: nowrap;
+      min-height: 40px;
+      position: relative;
+      overflow: visible;
+      animation: notifShake 1.8s ease-in-out infinite;
+    }
+    @keyframes notifShake {
+      0%, 60%, 100% { transform: rotate(0deg); }
+      65%  { transform: rotate(-3.5deg); }
+      70%  { transform: rotate(3.5deg); }
+      75%  { transform: rotate(-2.5deg); }
+      80%  { transform: rotate(2.5deg); }
+      85%  { transform: rotate(-1deg); }
+      90%  { transform: rotate(1deg); }
+      95%  { transform: rotate(0deg); }
     }
     .notif-btn:hover {
       transform: translateY(-1px);
       box-shadow:
         0 1.5px 0 rgba(255,255,255,0.88) inset,
-        0 -1px 0 rgba(0,0,0,0.04) inset,
         0 10px 28px rgba(99,102,241,0.2),
         0 3px 10px rgba(15,23,42,0.11);
       filter: brightness(1.03);
     }
     .notif-btn:active { transform: translateY(0); }
+    /* Badge MỚI */
+    .notif-btn-badge {
+      position: absolute;
+      top: -0.55em;
+      right: -0.1em;
+      background: linear-gradient(135deg, #f43f5e, #ef4444);
+      color: #fff;
+      font-size: 0.52em;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      padding: 0.18em 0.52em;
+      border-radius: 999px;
+      border: 1.5px solid #fff;
+      white-space: nowrap;
+      animation: notifBadgePop 2s ease-in-out infinite;
+      box-shadow: 0 2px 8px rgba(244,63,94,0.45);
+      pointer-events: none;
+      line-height: 1.4;
+    }
+    @keyframes notifBadgePop {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
     .notif-btn-dot {
       width: 0.45em; height: 0.45em;
       border-radius: 50%;
       background: #ef4444;
       flex-shrink: 0;
       box-shadow: 0 0 0 0.18em rgba(239,68,68,0.22);
-      animation: notifDotPulse 1.8s ease-in-out infinite;
-    }
-    @keyframes notifDotPulse {
-      0%,100% { opacity:1; transform:scale(1); }
-      50% { opacity:0.45; transform:scale(0.6); }
     }
 
   </style>
@@ -2517,11 +2614,14 @@
           <div class="logo-particle lp5"></div>
         </div>
       </div>
-      <div class="top-actions">
-        <a class="chip" href="javascript:void(0)" onclick="navScrollTo('home')">Home</a>
-        <a class="chip" href="javascript:void(0)" onclick="navScrollTo('contact')">Liên hệ</a>
-        <span class="topbar-spacer"></span>
-        <a class="chip primary js-nav-cta" href="javascript:void(0)">Xem dịch vụ</a>
+      <div class="glass-nav-pill">
+        <button class="gnp-btn" onclick="navScrollTo('source-code')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dịch vụ
+        </button>
+        <button class="gnp-btn gnp-cta" onclick="navScrollTo('products')">
+          Tài khoản
+        </button>
       </div>
     </div>
   </header>
@@ -2529,6 +2629,7 @@
   <!-- Notification Bar -->
   <div class="notif-bar">
     <button class="notif-btn" type="button" onclick="welcomeOpen()">
+      <span class="notif-btn-badge">MỚI</span>
       <span class="notif-btn-dot"></span>
       <svg class="notif-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
@@ -2549,7 +2650,7 @@
           </h1>
           <p>Nhận đăng ký tài khoản Premium, thiết kế website theo yêu cầu và tạo bot Telegram phục vụ bán hàng/chăm sóc khách hàng.</p>
           <div class="hero-pill">
-            Chỉ từ 3,000đ / ngày
+            Chỉ từ 3.000đ / ngày
           </div>
           <div class="hero-cta-row">
             <a class="chip primary" href="javascript:void(0)" onclick="openFirstProduct(event)">Xem sản phẩm</a>
@@ -2830,7 +2931,7 @@
         <button class="close-btn" onclick="closeDevModal()">Đóng</button>
       </div>
       <div class="modal-body">
-        <div style="background:#f8faff;border:1px solid #e0e7ff;border-radius:18px;padding:16px;margin-bottom:6px;">
+        <div style="background:#f8faff;border:1px solid #e0e7ff;border-radius:1.125em;padding:16px;margin-bottom:6px;">
           <div class="wlc-services" style="margin-bottom:8px;">
           <div class="wlc-service-item">
             <svg class="wlc-svc-svg" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2873,10 +2974,10 @@
             </a>
             <button class="contact-copy-btn" id="devZaloCopyBtn" type="button" onclick="copyDevZalo()">Copy số</button>
           </div>
-        </div>
-        <div class="inline-zalo-note">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <div>Nếu không mở được. <strong>Copy số</strong> rồi tìm trên Zalo.</div>
+          <div class="contact-box-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Nếu không mở được — <strong>Copy số</strong> rồi tìm trên Zalo.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -2892,8 +2993,25 @@
         <button class="close-btn" onclick="closeModal()">Đóng</button>
       </div>
       <div class="modal-body">
-        <div class="modal-desc-wrap" id="mDescWrap">
-          <ul class="modal-list" id="mBullets"></ul>
+        <div class="modal-notice-inline">
+          <div class="modal-notice-inline-title">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Lưu ý quan trọng
+          </div>
+          <ul>
+            <li>
+              <span class="wn-dot"></span>
+              <span>Mọi tài khoản tại <strong>BINGENZ.COM</strong> đều <strong>của riêng bạn</strong> — không dùng chung với ai</span>
+            </li>
+            <li>
+              <span class="wn-dot"></span>
+              <span>Tag <span class="badge-inline">CÁ NHÂN</span> là tài khoản shop cấp cho bạn sử dụng</span>
+            </li>
+            <li>
+              <span class="wn-dot"></span>
+              <span>Tag <span class="badge-inline red">CHÍNH CHỦ</span> là nâng cấp thẳng Gmail của bạn — chỉ cần tên Gmail, không cần mật khẩu</span>
+            </li>
+          </ul>
         </div>
         <div id="mPlansWrap" style="display:none;"></div>
         <div class="contact-box">
@@ -2908,10 +3026,10 @@
             </a>
             <button class="contact-copy-btn" id="modalZaloCopyBtn" type="button" onclick="copyModalZalo()">Copy số</button>
           </div>
-        </div>
-        <div class="inline-zalo-note">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <div>Nếu không mở được. <strong>Copy số</strong> rồi tìm trên Zalo.</div>
+          <div class="contact-box-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Nếu không mở được — <strong>Copy số</strong> rồi tìm trên Zalo.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -2939,17 +3057,6 @@
       });
     }
 
-    function bindBottomNav() {
-      document.querySelectorAll('.js-bottom-nav').forEach(el => {
-        el.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          var target = el.getAttribute('data-target');
-          if (target) navScrollTo(target, { suppressInfoToast: true });
-        });
-      });
-    }
-
     history.scrollRestoration = "manual";
 
     const PRODUCTS = [
@@ -2959,13 +3066,14 @@
         image: "assets/images/grok.jpg",
         name: "Grok Super",
         tag: "<span style='display:block;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460,#533483);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>Aurora · DeepSearch · Big Brain</span>",
-        rawPrice: "249K - 1,399K",
-        oldPrice: "792,000đ",
-        perDay: "chỉ 8,000đ / ngày",
+        rawPrice: "249K",
+        oldPrice: "792.000đ",
+        perDay: "chỉ 8.000đ / ngày",
+        no12Month: true,
         plans: [
-          { label: "1 tháng", price: "249,000đ" },
-          { label: "3 tháng", price: "699,000đ" },
-          { label: "6 tháng", price: "1,399,000đ" }
+          { label: "1 tháng", price: "249.000đ" },
+          { label: "3 tháng", price: "699.000đ", saving: "Tiết kiệm 48.000đ" },
+          { label: "6 tháng", price: "1.399.000đ", saving: "Tiết kiệm 100.000đ" }
         ],
         bullets: [
           "Tài khoản sử dụng 1 mình",
@@ -2982,8 +3090,13 @@
         name: "ChatGPT Pro Codex",
         tag: "<span style='display:block;background:linear-gradient(135deg,#4338ca,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>GPT-5.4 PRO · Workspace Business Team</span>",
         rawPrice: "149K",
-        oldPrice: "649,000đ",
-        perDay: "chỉ 4,900đ / ngày",
+        oldPrice: "649.000đ",
+        perDay: "chỉ 4.900đ / ngày",
+        monthlyPrice: 149000,
+        plans: [
+          { label: "1 tháng", price: "149.000đ" },
+          { label: "6 tháng", price: "894.000đ" }
+        ],
         bullets: [
           "Kích hoạt trong <b class='hl'>1 phút</b> (không cần mật khẩu)",
           "Dùng <b class='hl'>Codex VSCode</b> không giới hạn",
@@ -2993,12 +3106,18 @@
       },
       {
         id: "gpt",
+        label: "CÁ NHÂN",
         image: "assets/images/GPT.jpg",
         name: "ChatGPT Plus Codex",
         tag: "GPT-5.4 · Planning Preview · Deep Research",
         rawPrice: "99K",
-        oldPrice: "522,500đ",
-        perDay: "chỉ 3,000đ / ngày",
+        oldPrice: "522.500đ",
+        perDay: "chỉ 3.000đ / ngày",
+        monthlyPrice: 99000,
+        plans: [
+          { label: "1 tháng", price: "99.000đ" },
+          { label: "6 tháng", price: "594.000đ" }
+        ],
         bullets: [
           "Tài khoản sử dụng 1 mình",
           "Cập nhật model ChatGPT mới nhất",
@@ -3008,12 +3127,18 @@
       },
       {
         id: "gemini",
+        label: "CÁ NHÂN",
         image: "assets/images/gemini.jpg",
         name: "Gemini Pro",
         tag: "<span style='display:block;background:linear-gradient(90deg,#1a73e8 0%,#12a87a 30%,#f9ab00 60%,#e8453c 85%,#c2185b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>Gemini 3.1 Pro · Veo 3 · NotebookLM</span>",
         rawPrice: "99K",
-        oldPrice: "489,000đ",
-        perDay: "chỉ 3,000đ / ngày",
+        oldPrice: "489.000đ",
+        perDay: "chỉ 3.000đ / ngày",
+        monthlyPrice: 99000,
+        plans: [
+          { label: "1 tháng", price: "99.000đ" },
+          { label: "6 tháng", price: "594.000đ" }
+        ],
         bullets: [
           "Tài khoản sử dụng 1 mình",
           "Truy cập mọi tính năng <b class='hl'>PRO</b> của Gemini",
@@ -3028,8 +3153,13 @@
         name: "YouTube Premium",
         tag: "Tặng kèm YT Music · Không quảng cáo",
         rawPrice: "49K",
-        oldPrice: "105,000đ",
-        perDay: "chỉ 1,500đ / ngày",
+        oldPrice: "105.000đ",
+        perDay: "chỉ 1.500đ / ngày",
+        monthlyPrice: 49000,
+        plans: [
+          { label: "1 tháng", price: "49.000đ" },
+          { label: "6 tháng", price: "294.000đ" }
+        ],
         bullets: [
           "Kích hoạt thẳng vào <b class='hl'>Gmail chính chủ</b> của bạn",
           "Truy cập mọi tính năng <b class='hl'>Premium</b> của Youtube",
@@ -3038,12 +3168,18 @@
       },
       {
         id: "capcut",
+        label: "CÁ NHÂN",
         image: "assets/images/CAPCUT.jpg",
         name: "CapCut Pro",
         tag: "Xuất 4K · Không watermark",
         rawPrice: "49K",
-        oldPrice: "145,000đ",
-        perDay: "chỉ 1,500đ / ngày",
+        oldPrice: "145.000đ",
+        perDay: "chỉ 1.500đ / ngày",
+        monthlyPrice: 49000,
+        plans: [
+          { label: "1 tháng", price: "49.000đ" },
+          { label: "6 tháng", price: "294.000đ" }
+        ],
         bullets: [
           "Tài khoản sử dụng 1 mình",
           "Xuất <b class='hl'>Video 4K · AI ULTRA HD</b>",
@@ -3087,29 +3223,44 @@
       const p = PRODUCTS.find(x => x.id === id);
       if (!p) return;
       resetModalZaloCopyState();
-      document.getElementById("mName").textContent = p.name;
+      // Tên + tag CÁ NHÂN / CHÍNH CHỦ
+      const mName = document.getElementById("mName");
+      if (p.label) {
+        const isCC = p.label === "CHÍNH CHỦ";
+        mName.innerHTML = `${p.name} <span style="display:inline-block;font-size:0.55em;font-weight:800;letter-spacing:0.04em;padding:0.15em 0.55em;border-radius:999px;vertical-align:middle;line-height:1.5;${isCC ? "color:#b91c1c;border:1.5px solid #fca5a5;background:#fff1f2;" : "color:#166534;border:1.5px solid #86efac;background:#f0fdf4;"}">${p.label}</span>`;
+      } else {
+        mName.textContent = p.name;
+      }
       const ico = document.getElementById("mHeadIco");
       ico.src = p.image;
       ico.alt = p.name;
       ico.style.display = "block";
-      document.getElementById("mDescWrap").style.display = "block";
-      document.getElementById("mBullets").innerHTML = p.bullets.map(item => `<li style="display:flex;align-items:flex-start;gap:8px;"><svg style="flex-shrink:0;margin-top:2px;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>${item}</span></li>`).join("");
 
       // Show/hide plans section
       var plansWrap = document.getElementById("mPlansWrap");
       if (p.plans && p.plans.length) {
+        // Gói 12 tháng tự tính (trừ sản phẩm có no12Month)
+        const price12Raw = p.monthlyPrice ? p.monthlyPrice * 12 : null;
+        const price12Fmt = price12Raw ? price12Raw.toLocaleString("vi-VN") + "đ" : null;
+        const allPlans = (p.no12Month || !price12Fmt)
+          ? p.plans
+          : [...p.plans, { label: "12 tháng", price: price12Fmt, gift: true }];
         plansWrap.style.display = "block";
         plansWrap.innerHTML = `
           <div style="font-size:0.75em;font-weight:700;color:#475569;margin-bottom:8px;">Chọn gói đăng ký:</div>
           <div style="display:grid;gap:8px;">
-            ${p.plans.map(plan => `
+            ${allPlans.map(plan => `
               <a href="https://zalo.me/0898908101" target="_blank" rel="noopener"
                 onclick="showRedirectToast('Zalo','assets/images/zalo.jpg')"
-                style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;border:1px solid #c7d2fe;background:linear-gradient(180deg,#f8fbff 0%,#fff 100%);text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;cursor:pointer;"
+                style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;${plan.gift ? "border:1.5px solid #f59e0b;background:linear-gradient(180deg,#fffbeb 0%,#fef3c7 100%);" : "border:1px solid #c7d2fe;background:linear-gradient(180deg,#f8fbff 0%,#fff 100%);"}text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;cursor:pointer;"
                 onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 18px rgba(99,102,241,0.15)'"
                 onmouseout="this.style.transform='';this.style.boxShadow=''">
-                <span style="font-size:0.875em;font-weight:700;color:#1e293b;">${plan.label}</span>
-                <span style="font-size:0.9em;font-weight:800;color:#4338ca;">${plan.price}</span>
+                <span style="display:flex;align-items:center;gap:0.5em;">
+                  <span style="font-size:0.875em;font-weight:700;color:#1e293b;">${plan.label}</span>
+                  ${plan.gift ? `<span style="font-size:0.58em;font-weight:800;letter-spacing:0.04em;padding:0.15em 0.55em;border-radius:999px;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;white-space:nowrap;">🎁 TẶNG 1 THÁNG</span>` : ""}
+                  ${plan.saving ? `<span style="font-size:0.65em;font-weight:700;color:#16a34a;white-space:nowrap;">${plan.saving}</span>` : ""}
+                </span>
+                <span style="font-size:0.9em;font-weight:800;color:${plan.gift ? "#b45309" : "#4338ca"};">${plan.price}</span>
               </a>`).join("")}
           </div>`;
       } else {
@@ -3148,21 +3299,6 @@
     function openCustomModal(title, bullets) {
       document.getElementById("mName").textContent = title;
       document.getElementById("mHeadIco").style.display = "none";
-      const bulletsEl = document.getElementById("mBullets");
-      const descWrap = document.getElementById("mDescWrap");
-      if (bullets && bullets.length) {
-        bulletsEl.innerHTML = bullets.map(b => `
-          <li style="display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:0.84em;color:#334155;line-height:1.5;">
-            <svg style="flex-shrink:0;margin-top:2px;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>${b}</span>
-          </li>`).join("");
-        bulletsEl.style.listStyle = "none";
-        bulletsEl.style.padding = "0";
-        bulletsEl.style.margin = "0";
-        descWrap.style.display = "";
-      } else {
-        descWrap.style.display = "none";
-      }
       document.getElementById("productModal").classList.add("open");
       document.body.style.overflow = "hidden";
     }
@@ -3457,7 +3593,6 @@
 
     function initPage() {
       window.scrollTo(0, 0);
-      bindBottomNav();
       bindZaloCopyButtons();
     }
 
@@ -3468,18 +3603,23 @@
       initPage();
     }
 
-    // Welcome popup: dùng window load để chắc #welcomeNotif đã trong DOM
-    window.addEventListener('load', function () {
-      try {
-        var key = '__bgz_wlc_v2__';
-        if (!sessionStorage.getItem(key)) {
-          sessionStorage.setItem(key, '1');
+    // Welcome popup: hiện mỗi lần vào web / reload
+    (function() {
+      function tryShowWelcome() {
+        if (document.getElementById('welcomeNotif')) {
           setTimeout(welcomeOpen, 350);
+        } else {
+          window.addEventListener('load', function() {
+            setTimeout(welcomeOpen, 350);
+          });
         }
-      } catch (e) {
-        setTimeout(welcomeOpen, 350);
       }
-    });
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', tryShowWelcome);
+      } else {
+        tryShowWelcome();
+      }
+    })();
 
     function normalizeRestoredUiState(isBackForward) {
       document.querySelectorAll('.modal.open, .link-popup.open').forEach(function (el) {
@@ -3573,6 +3713,18 @@
           </div>
         </div>
 
+        <!-- Promo 12 tháng -->
+        <div style="margin:12px 0;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#1e1b4b 0%,#4338ca 55%,#0ea5e9 100%);padding:1px;">
+          <div style="border-radius:13px;background:linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#0c4a6e 100%);padding:12px 14px;display:flex;align-items:center;gap:10px;">
+            <div style="font-size:1.45em;flex-shrink:0;line-height:1;">🎁</div>
+            <div>
+              <div style="font-size:0.75em;font-weight:800;color:#fbbf24;letter-spacing:0.03em;line-height:1.3;">KHUYẾN MÃI ĐẶC BIỆT</div>
+              <div style="font-size:0.82em;font-weight:700;color:#fff;line-height:1.4;margin-top:2px;">Đăng ký <span style="color:#fde68a;font-weight:900;">12 tháng</span> — tặng <span style="color:#fde68a;font-weight:900;">1 tháng miễn phí</span></div>
+              <div style="font-size:0.65em;color:#93c5fd;margin-top:3px;font-weight:500;">Tiết kiệm hơn so với mua từng tháng · Áp dụng tất cả sản phẩm</div>
+            </div>
+          </div>
+        </div>
+
         <!-- Notice -->
         <div class="welcome-notice">
           <div class="welcome-notice-title">
@@ -3582,7 +3734,7 @@
           <ul class="welcome-notice-list">
             <li>
               <span class="wn-dot"></span>
-              <span>Tất cả tài khoản đều là <strong>của riêng bạn</strong> — không dùng chung với ai</span>
+              <span>Mọi tài khoản tại <strong>BINGENZ.COM</strong> đều <strong>của riêng bạn</strong> — không dùng chung với ai</span>
             </li>
             <li>
               <span class="wn-dot"></span>
@@ -3612,13 +3764,7 @@
     </div>
   </div>
 
-  <!-- Bottom Nav (mobile only) -->
-  <nav class="bottom-nav" aria-label="Bottom navigation">
-    <div class="bottom-nav-float">
-      <button type="button" class="chip js-bottom-nav" data-target="home" style="font-size:0.86em;padding:8px 14px;">Home</button>
-      <button type="button" class="chip js-bottom-nav" data-target="contact" style="font-size:0.86em;padding:8px 14px;">Liên hệ</button>
-      <button type="button" class="chip primary js-bottom-nav" data-target="source-code" style="font-size:0.86em;padding:8px 16px;">Xem dịch vụ</button>
-    </div>
-  </nav>
+
 </body>
           </html>
+

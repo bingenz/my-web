@@ -165,7 +165,7 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Be Vietnam Pro", sans-serif; }
 .head-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .head-ico { width: 3em; height: 3em; border-radius: 0.875em; background: #eef2ff; flex-shrink: 0; display: block; }
 .head-text { min-width: 0; }
-.name { font-size: clamp(0.88rem, 3.5vw, 1.15rem); font-weight: 800; letter-spacing: -0.01em; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: clip; }
+.name { font-size: clamp(0.88rem, 3.5vw, 1.15rem); font-weight: 800; letter-spacing: -0.01em; margin: 0 0 3px; word-break: break-word; overflow-wrap: break-word; }
 .tag { color: #94a3b8; font-size: 0.60em; margin: 0; line-height: 1.4; }
 .badge { border-radius: 999px; padding: 5px 10px; font-size: 0.65em; white-space: nowrap; font-weight: 800; flex-shrink: 0; letter-spacing: 0.04em; }
 .badge.green { border: 2px solid #22c55e; background: #dcfce7; color: #15803d; box-shadow: 0 2px 8px rgba(22,163,74,0.18); }
@@ -521,6 +521,10 @@ rgba(15, 23, 42, 0.56); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px
 .welcome-notice-list li .wn-dot { width: 0.4em; height: 0.4em; border-radius: 50%; background: #f59e0b; flex-shrink: 0; margin-top: 0.45em; }
 .badge-inline { display: inline-flex; align-items: center; justify-content: center; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 999px; padding: 0.16em 0.6em; margin: 0 0.24em; font-size: 0.875em; font-weight: 800; line-height: 1.2; color: #065f46; white-space: nowrap; vertical-align: baseline; }
 .badge-inline.red { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+.notice-attn-chip { display: flex; align-items: center; flex-wrap: wrap; gap: 0.1em 0; }
+.notice-attn-chip .badge-inline { margin: 0 0.3em; flex-shrink: 0; vertical-align: middle; }
+.notice-attn-chip-title { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 0; }
+.notice-attn-chip-sub { color: #475569; font-size: 0.9em; }
 .welcome-contact-box { background: linear-gradient(180deg, #eef2ff 0%, #e0e7ff 100%); border: 1px solid #a5b4fc; border-radius: 1em; padding: 0.72em 0.875em; display: flex; align-items: center; justify-content: space-between; gap: 0.75em; flex-wrap: wrap; }
 .welcome-contact-label { font-size: 0.63em; font-weight: 700; color: #475569; }
 .welcome-contact-number { font-size: 0.9em; font-weight: 800; color: #1e1b4b; letter-spacing: -0.01em; }
@@ -1121,7 +1125,6 @@ return `
 <img class="head-ico" src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" width="48" height="48">
 <div class="head-text">
 <h3 class="name">${p.name}</h3>
-<p class="tag">${p.tag}</p>
 </div>
 </div>
 <span class="badge ${p.label === 'CHÍNH CHỦ' ? 'red' : 'green'}">${p.label || "CÁ NHÂN"}</span>
@@ -1605,5 +1608,6 @@ Copy số
 
 </body>
 </html>
+
 
 

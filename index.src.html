@@ -167,9 +167,9 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Be Vietnam Pro", sans-serif; }
 .head-text { min-width: 0; }
 .name { font-size: clamp(0.88rem, 3.5vw, 1.15rem); font-weight: 800; letter-spacing: -0.01em; margin: 0 0 3px; white-space: nowrap; overflow: hidden; text-overflow: clip; }
 .tag { color: #94a3b8; font-size: 0.60em; margin: 0; line-height: 1.4; }
-.badge { border-radius: 999px; padding: 5px 9px; font-size: 0.65em; white-space: nowrap; font-weight: 700; flex-shrink: 0; }
-.badge.green { border: 1px solid #bbf7d0; background: #f0fdf4; color: #166534; }
-.badge.red { border: 1px solid #fecaca; background: #fef2f2; color: #b91c1c; }
+.badge { border-radius: 999px; padding: 5px 10px; font-size: 0.65em; white-space: nowrap; font-weight: 800; flex-shrink: 0; letter-spacing: 0.04em; }
+.badge.green { border: 2px solid #22c55e; background: #dcfce7; color: #15803d; box-shadow: 0 2px 8px rgba(22,163,74,0.18); }
+.badge.red { border: 2px solid #f87171; background: #fee2e2; color: #b91c1c; box-shadow: 0 2px 8px rgba(185,28,28,0.18); }
 .price-row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }
 .price { font-size: 2em; line-height: 1; letter-spacing: -0.03em; font-weight: 900; color: #0f172a; }
 .old { font-size: 0.75em; color: #94a3b8; }
@@ -329,6 +329,17 @@ rgba(15, 23, 42, 0.56); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px
 .modal-actions { grid-template-columns: 1fr; }
 }
 .gmail-chip { display: inline-flex; align-items: center; gap: 4px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 999px; padding: 3px 9px 3px 5px; color: #15803d; font-size: 0.69em; font-weight: 600; white-space: nowrap; }
+.gmail-upgrade-chip { display: inline-flex; align-items: center; gap: 5px; background: linear-gradient(180deg,#fef2f2 0%,#fff1f2 100%); border: 1px solid #fca5a5; border-radius: 999px; padding: 4px 10px 4px 7px; color: #b91c1c; font-size: 0.68em; font-weight: 700; white-space: nowrap; width: fit-content; }
+.gmail-upgrade-chip svg { flex-shrink: 0; }
+.product-section-label { display: flex; align-items: center; gap: 7px; font-size: 0.84em; font-weight: 800; color: #334155; letter-spacing: -0.01em; padding: 10px 2px 6px; flex-wrap: wrap; }
+.product-section-label svg { flex-shrink: 0; color: #4338ca; }
+.product-section-label.product-label-red svg { color: #b91c1c; }
+.product-section-label.product-label-red { color: #7f1d1d; }
+.product-section-sub { font-size: 0.82em; font-weight: 500; color: #64748b; letter-spacing: 0; }
+.product-group-glass { border-radius: 1.75em; padding: 1em 1em 1em; background: linear-gradient(145deg, rgba(255,255,255,0.72) 0%, rgba(240,245,255,0.52) 100%); backdrop-filter: blur(28px) saturate(1.8) brightness(1.03); -webkit-backdrop-filter: blur(28px) saturate(1.8) brightness(1.03); border: 1px solid rgba(255,255,255,0.85); box-shadow: 0 2px 24px rgba(99,102,241,0.07), 0 1px 0 rgba(255,255,255,0.9) inset; }
+.product-group-glass.group-red { background: linear-gradient(145deg, rgba(255,255,255,0.72) 0%, rgba(255,240,242,0.52) 100%); border-color: rgba(255,220,220,0.75); box-shadow: 0 2px 24px rgba(185,28,28,0.07), 0 1px 0 rgba(255,255,255,0.9) inset; }
+.product-group-glass .product-section-label { padding: 2px 2px 8px; }
+.product-group-glass .grid { gap: 1em; }
 .contact-box { background: rgba(241,245,255,0.8); border: 1px solid rgba(199,210,254,0.5); border-radius: 1.125em; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
 .contact-box-label { font-size: 0.75em; font-weight: 700; color: #475569; text-align: left; }
 .contact-box-main { display: flex; align-items: center; gap: 0.45em; flex-wrap: wrap; }
@@ -479,16 +490,36 @@ rgba(15, 23, 42, 0.56); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px
 .welcome-close { width: 1.875em; height: 1.875em; border-radius: 50%; border: 1px solid #e2e8f0; background: #f8fafc; color: #64748b; font-size: 1em; font-weight: 700; display: grid; place-items: center; cursor: pointer; flex-shrink: 0; line-height: 1; font-family: "Be Vietnam Pro", sans-serif; }
 .welcome-close:hover { background: #f1f5f9; }
 .welcome-body { padding: 0 1em 1em; display: grid; gap: 0.75em; }
-.welcome-products { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5em; }
-.welcome-product-item { display: flex; align-items: center; gap: 0.5em; background: linear-gradient(180deg, #f8fbff 0%, #fff 100%); border: 1px solid rgba(199,210,254,0.7); border-radius: 0.875em; padding: 0.5em 0.625em; }
-.welcome-product-dot { width: 0.4em; height: 0.4em; border-radius: 50%; background: linear-gradient(135deg, #4338ca, #0ea5e9); flex-shrink: 0; }
-.welcome-product-name { font-size: 0.72em; font-weight: 700; color: #1e293b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.welcome-products { display: grid; gap: 0.75em; }
+.welcome-product-marquee { position: relative; overflow: hidden; border-radius: 1.05em; border: 1px solid rgba(199,210,254,0.75); background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%); padding: 0.72em 0; box-shadow: inset 0 1px 0 rgba(255,255,255,0.72); }
+.welcome-product-marquee::before,
+.welcome-product-marquee::after { content: ""; position: absolute; top: 0; bottom: 0; width: 2.6em; z-index: 1; pointer-events: none; }
+.welcome-product-marquee::before { left: 0; background: linear-gradient(90deg, rgba(248,251,255,1) 0%, rgba(248,251,255,0) 100%); }
+.welcome-product-marquee::after { right: 0; background: linear-gradient(270deg, rgba(248,251,255,1) 0%, rgba(248,251,255,0) 100%); }
+.welcome-product-track { display: flex; align-items: center; gap: 0.62em; width: max-content; padding: 0 0.72em; animation: welcomeMarquee 22s linear infinite; will-change: transform; }
+.welcome-product-marquee:hover .welcome-product-track { animation-play-state: paused; }
+@keyframes welcomeMarquee {
+0% { transform: translateX(0); }
+100% { transform: translateX(calc(-50% - 0.31em)); }
+}
+.welcome-product-item { display: inline-flex; align-items: center; gap: 0.52em; min-width: max-content; background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%); border: 1px solid rgba(199,210,254,0.82); border-radius: 999px; padding: 0.42em 0.72em 0.42em 0.42em; box-shadow: 0 0.5em 1em rgba(79,70,229,0.08); }
+.welcome-product-thumb { width: 1.85em; height: 1.85em; border-radius: 999px; object-fit: cover; display: block; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.88); box-shadow: 0 0.25em 0.7em rgba(15,23,42,0.12); background: #e2e8f0; }
+.welcome-product-name { font-size: 0.72em; font-weight: 800; color: #1e293b; line-height: 1.2; white-space: nowrap; }
+.welcome-attn-box { display: grid; gap: 0.62em; background: linear-gradient(180deg, #fffaf1 0%, #fff7e8 100%); border: 1px solid #fde68a; border-radius: 1.15em; padding: 0.82em 0.9em; box-shadow: 0 0.85em 1.8em rgba(245,158,11,0.10); }
+.welcome-attn-head { display: flex; align-items: center; gap: 0.48em; font-size: 0.7em; font-weight: 800; color: #92400e; text-transform: uppercase; letter-spacing: 0.06em; }
+.welcome-attn-grid { display: grid; gap: 0.58em; }
+.welcome-attn-item { display: grid; grid-template-columns: auto 1fr; gap: 0.7em; align-items: start; background: rgba(255,255,255,0.66); border: 1px solid rgba(253,230,138,0.95); border-radius: 1em; padding: 0.8em 0.82em; }
+.welcome-attn-icon { width: 2.1em; height: 2.1em; border-radius: 0.72em; display: grid; place-items: center; flex-shrink: 0; }
+.welcome-attn-icon.red { background: rgba(254,226,226,0.95); color: #b91c1c; border: 1px solid rgba(252,165,165,0.7); }
+.welcome-attn-icon.blue { background: rgba(238,242,255,0.95); color: #4338ca; border: 1px solid rgba(165,180,252,0.75); }
+.welcome-attn-title { font-size: 0.83em; font-weight: 800; line-height: 1.25; color: #0f172a; }
+.welcome-attn-sub { margin-top: 0.16em; font-size: 0.73em; font-weight: 600; line-height: 1.45; color: #64748b; }
 .welcome-notice { background: linear-gradient(180deg, #fffbf0 0%, #fffef8 100%); border: 1px solid #fde68a; border-radius: 1em; padding: 0.75em 0.875em; display: grid; gap: 0.5em; }
 .welcome-notice-title { font-size: 0.66em; font-weight: 800; color: #92400e; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.4em; }
 .welcome-notice-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.45em; }
 .welcome-notice-list li { display: flex; align-items: flex-start; gap: 0.45em; font-size: 0.72em; color: #78350f; line-height: 1.5; }
 .welcome-notice-list li .wn-dot { width: 0.4em; height: 0.4em; border-radius: 50%; background: #f59e0b; flex-shrink: 0; margin-top: 0.45em; }
-.badge-inline { display: inline-flex; align-items: center; gap: 2px; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 999px; padding: 1px 5px; font-size: 0.875em; font-weight: 800; color: #065f46; white-space: nowrap; }
+.badge-inline { display: inline-flex; align-items: center; justify-content: center; background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 999px; padding: 0.16em 0.6em; margin: 0 0.24em; font-size: 0.875em; font-weight: 800; line-height: 1.2; color: #065f46; white-space: nowrap; vertical-align: baseline; }
 .badge-inline.red { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
 .welcome-contact-box { background: linear-gradient(180deg, #eef2ff 0%, #e0e7ff 100%); border: 1px solid #a5b4fc; border-radius: 1em; padding: 0.72em 0.875em; display: flex; align-items: center; justify-content: space-between; gap: 0.75em; flex-wrap: wrap; }
 .welcome-contact-label { font-size: 0.63em; font-weight: 700; color: #475569; }
@@ -678,7 +709,7 @@ Xem thông báo mới từ BinGenZ
 <div class="container">
 <h2 style="margin-bottom:6px;">Tài khoản Premium</h2>
 <div style="width:40px;height:4px;background:linear-gradient(135deg,#4338ca,#0ea5e9);border-radius:999px;margin-bottom:22px;"></div>
-<div class="grid" id="productGrid"></div>
+<div id="productGrid" style="display:flex;flex-direction:column;gap:1.1em;"></div>
 </div>
 </section>
 
@@ -880,11 +911,11 @@ Lưu ý quan trọng
 </li>
 <li>
 <span class="wn-dot"></span>
-<span>Tag <span class="badge-inline">CÁ NHÂN</span> là tài khoản shop cấp cho bạn sử dụng</span>
+<span class="notice-attn-chip"><span class="notice-attn-chip-title">Tài khoản <span class="badge-inline">CÁ NHÂN</span></span><span class="notice-attn-chip-sub">Shop cấp tài khoản riêng · Sử dụng 1 mình</span></span>
 </li>
 <li>
 <span class="wn-dot"></span>
-<span>Tag <span class="badge-inline red">CHÍNH CHỦ</span> là nâng cấp thẳng Gmail của bạn — chỉ cần tên Gmail, không cần mật khẩu</span>
+<span class="notice-attn-chip"><span class="notice-attn-chip-title">Tài khoản <span class="badge-inline red">CHÍNH CHỦ</span></span><span class="notice-attn-chip-sub">Nâng cấp thẳng vào Gmail của bạn · Không cần mật khẩu</span></span>
 </li>
 </ul>
 </div>
@@ -961,11 +992,12 @@ name: "ChatGPT Pro Codex",
 tag: "<span style='display:block;background:linear-gradient(135deg,#4338ca,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>GPT-5.4 PRO · Workspace Business Team</span>",
 rawPrice: "149K",
 oldPrice: "649.000đ",
-perDay: "chỉ 4.900đ / ngày",
+perDay: "chỉ 5.000đ / ngày",
 monthlyPrice: 149000,
 plans: [
 { label: "1 tháng", price: "149.000đ" },
-{ label: "6 tháng", price: "894.000đ" }
+{ label: "6 tháng", price: "894.000đ" },
+{ label: "12 tháng", price: "1.788.000đ" }
 ],
 bullets: [
 "Kích hoạt trong <b class='hl'>1 phút</b> (không cần mật khẩu)",
@@ -993,6 +1025,29 @@ bullets: [
 "Cập nhật model ChatGPT mới nhất",
 "Dùng <b class='hl'>Codex VSCode</b> không giới hạn",
 "Truy cập mọi tính năng cao cấp <b class='hl'>Plus</b> của ChatGPT"
+]
+},
+{
+id: "gemini-gmail",
+label: "CHÍNH CHỦ",
+gmailChip: true,
+image: "assets/images/gemini.jpg",
+name: "Gemini Pro",
+tag: "<span style='display:block;background:linear-gradient(90deg,#1a73e8 0%,#12a87a 30%,#f9ab00 60%,#e8453c 85%,#c2185b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>Gemini 3.1 Pro · Veo 3 · NotebookLM</span>",
+rawPrice: "129K",
+oldPrice: "489.000đ",
+perDay: "chỉ 4.000đ / ngày",
+monthlyPrice: 129000,
+plans: [
+{ label: "1 tháng", price: "129.000đ" },
+{ label: "6 tháng", price: "774.000đ" },
+{ label: "12 tháng", price: "1.548.000đ" }
+],
+bullets: [
+"Kích hoạt thẳng vào <b class='hl'>Gmail chính chủ</b> của bạn",
+"Truy cập mọi tính năng <b class='hl'>PRO</b> của Gemini",
+"Truy cập <b class='hl'>Google Drive 2TB</b>, <b class='hl'>NotebookLM Pro</b>",
+"Chỉ cần cung cấp Gmail → <b class='hl'>kích hoạt trong 1 phút</b> (không cần mật khẩu)"
 ]
 },
 {
@@ -1028,7 +1083,8 @@ perDay: "chỉ 1.500đ / ngày",
 monthlyPrice: 49000,
 plans: [
 { label: "1 tháng", price: "49.000đ" },
-{ label: "6 tháng", price: "294.000đ" }
+{ label: "6 tháng", price: "294.000đ" },
+{ label: "12 tháng", price: "588.000đ" }
 ],
 bullets: [
 "Kích hoạt thẳng vào <b class='hl'>Gmail chính chủ</b> của bạn",
@@ -1075,16 +1131,20 @@ return `
 <div class="old">Giá gốc: <s>${p.oldPrice}</s></div>
 </div>
 <div class="day">${p.perDay}</div>
-
 <div class="cta-row">
 <button class="cta buy" onclick="openProduct('${p.id}')">Đăng ký ngay</button>
 </div>
 </article>
 `;
 }
+const CHINH_CHU_ORDER = ["gemini-gmail", "gpt-gmail", "yt"];
 function renderProducts() {
-const grid = document.getElementById("productGrid");
-grid.innerHTML = PRODUCTS.map(productCard).join("");
+const wrap = document.getElementById("productGrid");
+const chinhChu = CHINH_CHU_ORDER.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
+const caNhan = PRODUCTS.filter(p => p.label !== "CHÍNH CHỦ");
+wrap.innerHTML =
+`<div class="product-group-glass group-red"><div class="product-section-label product-label-red"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Tài khoản Chính Chủ<span class="product-section-sub">Nâng cấp thẳng vào Gmail của bạn · Không cần mật khẩu</span></div><div class="grid">${chinhChu.map(productCard).join("")}</div></div>`
++ `<div class="product-group-glass"><div class="product-section-label"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Tài khoản Cá Nhân<span class="product-section-sub">Shop cấp tài khoản riêng · Sử dụng 1 mình</span></div><div class="grid">${caNhan.map(productCard).join("")}</div></div>`;
 }
 function openProduct(id) {
 const p = PRODUCTS.find(x => x.id === id);
@@ -1108,8 +1168,11 @@ if (p.plans && p.plans.length) {
 // Gói 12 tháng tự tính (trừ sản phẩm có no12Month)
 const price12Raw = p.monthlyPrice ? p.monthlyPrice * 12 : null;
 const price12Fmt = price12Raw ? price12Raw.toLocaleString("vi-VN") + "đ" : null;
+const has12MonthPlan = (p.plans || []).some(plan => /12\s*tháng/i.test(plan.label));
 const allPlans = (p.no12Month || !price12Fmt)
 ? p.plans
+: has12MonthPlan
+? p.plans.map(plan => /12\s*tháng/i.test(plan.label) ? { ...plan, gift: true } : plan)
 : [...p.plans, { label: "12 tháng", price: price12Fmt, gift: true }];
 plansWrap.style.display = "block";
 plansWrap.innerHTML = `
@@ -1479,25 +1542,19 @@ location.replace(location.pathname + location.search);
 </div>
 <div class="welcome-body">
 <div class="welcome-products">
-<div class="welcome-product-item">
-<span class="welcome-product-dot"></span>
-<span class="welcome-product-name">Grok Super</span>
+<div class="welcome-product-marquee" aria-label="Sản phẩm nổi bật">
+<div class="welcome-product-track">
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/GPT.jpg" alt="ChatGPT" loading="lazy" decoding="async"><span class="welcome-product-name">ChatGPT</span></div>
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/gemini.jpg" alt="Gemini" loading="lazy" decoding="async"><span class="welcome-product-name">Gemini</span></div>
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/grok.jpg" alt="Grok" loading="lazy" decoding="async"><span class="welcome-product-name">Grok</span></div>
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/CAPCUT.jpg" alt="CapCut" loading="lazy" decoding="async"><span class="welcome-product-name">CapCut</span></div>
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/YT.jpg" alt="YouTube" loading="lazy" decoding="async"><span class="welcome-product-name">YouTube</span></div>
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/GPT.jpg" alt="ChatGPT" loading="lazy" decoding="async"><span class="welcome-product-name">ChatGPT</span></div>
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/gemini.jpg" alt="Gemini" loading="lazy" decoding="async"><span class="welcome-product-name">Gemini</span></div>
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/grok.jpg" alt="Grok" loading="lazy" decoding="async"><span class="welcome-product-name">Grok</span></div>
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/CAPCUT.jpg" alt="CapCut" loading="lazy" decoding="async"><span class="welcome-product-name">CapCut</span></div>
+<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/YT.jpg" alt="YouTube" loading="lazy" decoding="async"><span class="welcome-product-name">YouTube</span></div>
 </div>
-<div class="welcome-product-item">
-<span class="welcome-product-dot"></span>
-<span class="welcome-product-name">ChatGPT Plus Codex</span>
-</div>
-<div class="welcome-product-item">
-<span class="welcome-product-dot"></span>
-<span class="welcome-product-name">Gemini Pro</span>
-</div>
-<div class="welcome-product-item">
-<span class="welcome-product-dot"></span>
-<span class="welcome-product-name">CapCut Pro</span>
-</div>
-<div class="welcome-product-item" style="grid-column:1/-1;">
-<span class="welcome-product-dot"></span>
-<span class="welcome-product-name">YouTube Premium</span>
 </div>
 </div>
 <div style="margin:12px 0;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#1e1b4b 0%,#4338ca 55%,#0ea5e9 100%);padding:1px;">
@@ -1522,11 +1579,11 @@ Lưu ý quan trọng
 </li>
 <li>
 <span class="wn-dot"></span>
-<span>Tài khoản có tag <span class="badge-inline">CÁ NHÂN</span> là tài khoản shop cấp cho bạn sử dụng</span>
+<span>Tài khoản <span class="badge-inline">CÁ NHÂN</span> Shop cấp tài khoản riêng · Sử dụng 1 mình</span>
 </li>
 <li>
 <span class="wn-dot"></span>
-<span>Tài khoản có tag <span class="badge-inline red">CHÍNH CHỦ</span> là tài khoản được nâng cấp thẳng Gmail của bạn — không cần đưa mật khẩu, chỉ cần tên Gmail, shop sẽ thêm vào gói</span>
+<span>Tài khoản <span class="badge-inline red">CHÍNH CHỦ</span> Nâng cấp thẳng vào Gmail của bạn · Không cần mật khẩu</span>
 </li>
 </ul>
 </div>
@@ -1548,4 +1605,5 @@ Copy số
 
 </body>
 </html>
+
 

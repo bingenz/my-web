@@ -170,9 +170,10 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Be Vietnam Pro", sans-serif; }
 .badge { border-radius: 999px; padding: 5px 10px; font-size: 0.65em; white-space: nowrap; font-weight: 800; flex-shrink: 0; letter-spacing: 0.04em; }
 .badge.green { border: 2px solid #22c55e; background: #dcfce7; color: #15803d; box-shadow: 0 2px 8px rgba(22,163,74,0.18); }
 .badge.red { border: 2px solid #f87171; background: #fee2e2; color: #b91c1c; box-shadow: 0 2px 8px rgba(185,28,28,0.18); }
-.price-row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }
+.price-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .price { font-size: 2em; line-height: 1; letter-spacing: -0.03em; font-weight: 900; color: #0f172a; }
-.old { font-size: 0.75em; color: #94a3b8; }
+.price-month { font-size: 0.72em; color: #64748b; font-weight: 600; margin-bottom: 2px; }
+.old { font-size: 0.75em; color: #94a3b8; margin-top: 2px; }
 .old s { color: #94a3b8 !important; text-decoration: line-through #ef4444 !important; text-decoration-thickness: 1.3px !important; }
 .day { font-size: 0.72em; color: #ea580c; background: linear-gradient(180deg, #fffaf4 0%, #fff 100%); border: 0.09em solid #f6d0a9; border-radius: 999px; padding: 0.4em 0.9em; width: fit-content; font-weight: 700; box-shadow: 0 0.5em 1.2em rgba(15,23,42,0.08), 0 0.1em 0.25em rgba(15,23,42,0.06); }
 .cta-row { margin-top: auto; display: grid; gap: 8px; }
@@ -713,7 +714,7 @@ Xem thông báo mới từ BinGenZ
 <div class="container">
 <h2 style="margin-bottom:6px;">Tài khoản Premium</h2>
 <div style="width:40px;height:4px;background:linear-gradient(135deg,#4338ca,#0ea5e9);border-radius:999px;margin-bottom:22px;"></div>
-<div id="productGrid" style="display:flex;flex-direction:column;gap:2.2em;"></div>
+<div id="productGrid"></div>
 </div>
 </section>
 
@@ -992,7 +993,7 @@ id: "gpt-gmail",
 label: "CHÍNH CHỦ",
 gmailChip: true,
 image: "assets/images/GPT.jpg",
-name: "ChatGPT Pro Codex",
+name: "ChatGPT Plus",
 tag: "<span style='display:block;background:linear-gradient(135deg,#4338ca,#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>GPT-5.4 PRO · Workspace Business Team</span>",
 rawPrice: "149K",
 oldPrice: "649.000đ",
@@ -1014,7 +1015,7 @@ bullets: [
 id: "gpt",
 label: "CÁ NHÂN",
 image: "assets/images/GPT.jpg",
-name: "ChatGPT Plus Codex",
+name: "ChatGPT Plus",
 tag: "GPT-5.4 · Planning Preview · Deep Research",
 rawPrice: "99K",
 oldPrice: "522.500đ",
@@ -1081,10 +1082,10 @@ gmailChip: true,
 image: "assets/images/YT.jpg",
 name: "YouTube Premium",
 tag: "Tặng kèm YT Music · Không quảng cáo",
-rawPrice: "49K",
+rawPrice: "39K",
 oldPrice: "105.000đ",
-perDay: "chỉ 1.500đ / ngày",
-monthlyPrice: 49000,
+perDay: "chỉ 1.300đ / ngày",
+monthlyPrice: 39000,
 plans: [
 { label: "1 tháng", months: 1 },
 { label: "6 tháng", months: 6 },
@@ -1136,24 +1137,23 @@ return `
 <span class="badge ${p.label === 'CHÍNH CHỦ' ? 'red' : 'green'}">${p.label || "CÁ NHÂN"}</span>
 </div>
 <div class="price-row">
-<div class="price">${displayPrice}</div>
-<div class="old">Giá gốc: <s>${p.oldPrice}</s></div>
-</div>
+<div class="price">${displayPrice}</div><span class="price-month">/tháng</span>
 <div class="day">${p.perDay}</div>
+</div>
+<div class="old">Giá gốc: <s>${p.oldPrice}</s></div>
 <div class="cta-row">
 <button class="cta buy" onclick="openProduct('${p.id}')">Đăng ký ngay</button>
 </div>
 </article>
 `;
 }
-const CHINH_CHU_ORDER = ["gemini-gmail", "gpt-gmail", "yt"];
+// Thứ tự hiển thị tối ưu: cặp Cá Nhân → Chính Chủ cho từng app, rẻ→đắt
+const DISPLAY_ORDER = ["gpt", "gpt-gmail", "gemini", "gemini-gmail", "grok", "yt", "capcut"];
 function renderProducts() {
 const wrap = document.getElementById("productGrid");
-const chinhChu = CHINH_CHU_ORDER.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
-const caNhan = PRODUCTS.filter(p => p.label !== "CHÍNH CHỦ");
+const ordered = DISPLAY_ORDER.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
 wrap.innerHTML =
-`<div class="product-group-glass group-red"><div class="product-section-label product-label-red"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Tài khoản Chính Chủ<span class="product-section-sub">Nâng cấp thẳng vào Gmail của bạn · Không cần mật khẩu</span></div><div class="grid">${chinhChu.map(productCard).join("")}</div></div>`
-+ `<div class="product-group-glass"><div class="product-section-label"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Tài khoản Cá Nhân<span class="product-section-sub">Shop cấp tài khoản riêng · Sử dụng 1 mình</span></div><div class="grid">${caNhan.map(productCard).join("")}</div></div>`;
+`<div class="grid">${ordered.map(productCard).join("")}</div>`;
 }
 function openProduct(id) {
 const p = PRODUCTS.find(x => x.id === id);

@@ -336,8 +336,8 @@ rgba(15, 23, 42, 0.56); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px
 .product-section-label.product-label-red svg { color: #b91c1c; }
 .product-section-label.product-label-red { color: #7f1d1d; }
 .product-section-sub { font-size: 0.82em; font-weight: 500; color: #64748b; letter-spacing: 0; }
-.product-group-glass { border-radius: 1.75em; padding: 1em 1em 1em; background: linear-gradient(145deg, rgba(255,255,255,0.72) 0%, rgba(240,245,255,0.52) 100%); backdrop-filter: blur(28px) saturate(1.8) brightness(1.03); -webkit-backdrop-filter: blur(28px) saturate(1.8) brightness(1.03); border: 1px solid rgba(255,255,255,0.85); box-shadow: 0 2px 24px rgba(99,102,241,0.07), 0 1px 0 rgba(255,255,255,0.9) inset; }
-.product-group-glass.group-red { background: linear-gradient(145deg, rgba(255,255,255,0.72) 0%, rgba(255,240,242,0.52) 100%); border-color: rgba(255,220,220,0.75); box-shadow: 0 2px 24px rgba(185,28,28,0.07), 0 1px 0 rgba(255,255,255,0.9) inset; }
+.product-group-glass { border-radius: 1.75em; padding: 1em 1em 1em; background: linear-gradient(145deg, rgba(255,255,255,0.62) 0%, rgba(220,230,255,0.38) 100%); backdrop-filter: blur(36px) saturate(2.2) brightness(1.05); -webkit-backdrop-filter: blur(36px) saturate(2.2) brightness(1.05); border: 1px solid rgba(255,255,255,0.88); box-shadow: 0 4px 32px rgba(99,102,241,0.09), 0 1.5px 0 rgba(255,255,255,0.95) inset, 0 0 0 0.5px rgba(99,102,241,0.08); }
+.product-group-glass.group-red { background: linear-gradient(145deg, rgba(255,255,255,0.62) 0%, rgba(255,220,225,0.38) 100%); border-color: rgba(255,255,255,0.88); box-shadow: 0 4px 32px rgba(185,28,28,0.09), 0 1.5px 0 rgba(255,255,255,0.95) inset, 0 0 0 0.5px rgba(185,28,28,0.08); }
 .product-group-glass .product-section-label { padding: 2px 2px 8px; }
 .product-group-glass .grid { gap: 1em; }
 .contact-box { background: rgba(241,245,255,0.8); border: 1px solid rgba(199,210,254,0.5); border-radius: 1.125em; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
@@ -713,7 +713,7 @@ Xem thông báo mới từ BinGenZ
 <div class="container">
 <h2 style="margin-bottom:6px;">Tài khoản Premium</h2>
 <div style="width:40px;height:4px;background:linear-gradient(135deg,#4338ca,#0ea5e9);border-radius:999px;margin-bottom:22px;"></div>
-<div id="productGrid" style="display:flex;flex-direction:column;gap:1.1em;"></div>
+<div id="productGrid" style="display:flex;flex-direction:column;gap:2.2em;"></div>
 </div>
 </section>
 
@@ -976,9 +976,9 @@ perDay: "chỉ 5.000đ / ngày",
 monthlyPrice: 149000,
 no12Month: true,
 plans: [
-{ label: "1 tháng", price: "199.000đ" },
-{ label: "3 tháng", price: "597.000đ" },
-{ label: "6 tháng", price: "1.194.000đ" }
+{ label: "1 tháng", months: 1 },
+{ label: "3 tháng", months: 3 },
+{ label: "6 tháng", months: 6 }
 ],
 bullets: [
 "Tài khoản sử dụng 1 mình",
@@ -999,9 +999,9 @@ oldPrice: "649.000đ",
 perDay: "chỉ 5.000đ / ngày",
 monthlyPrice: 149000,
 plans: [
-{ label: "1 tháng", price: "149.000đ" },
-{ label: "6 tháng", price: "894.000đ" },
-{ label: "12 tháng", price: "1.788.000đ" }
+{ label: "1 tháng", months: 1 },
+{ label: "6 tháng", months: 6 },
+{ label: "12 tháng", months: 12 }
 ],
 bullets: [
 "Kích hoạt trong <b class='hl'>1 phút</b> (không cần mật khẩu)",
@@ -1021,8 +1021,8 @@ oldPrice: "522.500đ",
 perDay: "chỉ 3.000đ / ngày",
 monthlyPrice: 99000,
 plans: [
-{ label: "1 tháng", price: "99.000đ" },
-{ label: "6 tháng", price: "594.000đ" }
+{ label: "1 tháng", months: 1 },
+{ label: "6 tháng", months: 6 }
 ],
 bullets: [
 "Tài khoản sử dụng 1 mình",
@@ -1043,9 +1043,9 @@ oldPrice: "489.000đ",
 perDay: "chỉ 4.000đ / ngày",
 monthlyPrice: 129000,
 plans: [
-{ label: "1 tháng", price: "129.000đ" },
-{ label: "6 tháng", price: "774.000đ" },
-{ label: "12 tháng", price: "1.548.000đ" }
+{ label: "1 tháng", months: 1 },
+{ label: "6 tháng", months: 6 },
+{ label: "12 tháng", months: 12 }
 ],
 bullets: [
 "Kích hoạt thẳng vào <b class='hl'>Gmail chính chủ</b> của bạn",
@@ -1065,8 +1065,8 @@ oldPrice: "489.000đ",
 perDay: "chỉ 3.000đ / ngày",
 monthlyPrice: 99000,
 plans: [
-{ label: "1 tháng", price: "99.000đ" },
-{ label: "6 tháng", price: "594.000đ" }
+{ label: "1 tháng", months: 1 },
+{ label: "6 tháng", months: 6 }
 ],
 bullets: [
 "Tài khoản sử dụng 1 mình",
@@ -1086,9 +1086,9 @@ oldPrice: "105.000đ",
 perDay: "chỉ 1.500đ / ngày",
 monthlyPrice: 49000,
 plans: [
-{ label: "1 tháng", price: "49.000đ" },
-{ label: "6 tháng", price: "294.000đ" },
-{ label: "12 tháng", price: "588.000đ" }
+{ label: "1 tháng", months: 1 },
+{ label: "6 tháng", months: 6 },
+{ label: "12 tháng", months: 12 }
 ],
 bullets: [
 "Kích hoạt thẳng vào <b class='hl'>Gmail chính chủ</b> của bạn",
@@ -1107,8 +1107,8 @@ oldPrice: "145.000đ",
 perDay: "chỉ 1.500đ / ngày",
 monthlyPrice: 49000,
 plans: [
-{ label: "1 tháng", price: "49.000đ" },
-{ label: "6 tháng", price: "294.000đ" }
+{ label: "1 tháng", months: 1 },
+{ label: "6 tháng", months: 6 }
 ],
 bullets: [
 "Tài khoản sử dụng 1 mình",
@@ -1117,7 +1117,13 @@ bullets: [
 ]
 }
 ];
+function fmtPriceShort(n) {
+if (!n) return "";
+if (n % 1000 === 0) return (n / 1000) + "K";
+return n.toLocaleString("vi-VN") + "đ";
+}
 function productCard(p) {
+const displayPrice = p.monthlyPrice ? fmtPriceShort(p.monthlyPrice) : (p.rawPrice || "");
 return `
 <article class="card">
 <div class="head">
@@ -1130,7 +1136,7 @@ return `
 <span class="badge ${p.label === 'CHÍNH CHỦ' ? 'red' : 'green'}">${p.label || "CÁ NHÂN"}</span>
 </div>
 <div class="price-row">
-<div class="price">${p.rawPrice}</div>
+<div class="price">${displayPrice}</div>
 <div class="old">Giá gốc: <s>${p.oldPrice}</s></div>
 </div>
 <div class="day">${p.perDay}</div>
@@ -1168,15 +1174,19 @@ ico.style.display = "block";
 // Show/hide plans section
 var plansWrap = document.getElementById("mPlansWrap");
 if (p.plans && p.plans.length) {
-// Gói 12 tháng tự tính (trừ sản phẩm có no12Month)
+// Tự tính giá từ monthlyPrice × months — chỉ cần sửa monthlyPrice
+function computePlanPrice(plan) {
+if (plan.months && p.monthlyPrice) return (p.monthlyPrice * plan.months).toLocaleString("vi-VN") + "đ";
+return plan.price || "";
+}
+const has12MonthPlan = (p.plans || []).some(plan => /12\s*tháng/i.test(plan.label) || plan.months === 12);
 const price12Raw = p.monthlyPrice ? p.monthlyPrice * 12 : null;
 const price12Fmt = price12Raw ? price12Raw.toLocaleString("vi-VN") + "đ" : null;
-const has12MonthPlan = (p.plans || []).some(plan => /12\s*tháng/i.test(plan.label));
 const allPlans = (p.no12Month || !price12Fmt)
 ? p.plans
 : has12MonthPlan
-? p.plans.map(plan => /12\s*tháng/i.test(plan.label) ? { ...plan, gift: true } : plan)
-: [...p.plans, { label: "12 tháng", price: price12Fmt, gift: true }];
+? p.plans.map(plan => (/12\s*tháng/i.test(plan.label) || plan.months === 12) ? { ...plan, gift: true } : plan)
+: [...p.plans, { label: "12 tháng", months: 12, gift: true }];
 plansWrap.style.display = "block";
 plansWrap.innerHTML = `
 <div style="font-size:0.75em;font-weight:700;color:#475569;margin-bottom:8px;">Gói đăng ký</div>
@@ -1189,7 +1199,7 @@ style="display:flex;align-items:center;justify-content:space-between;padding:10p
 ${plan.gift ? `<span style="font-size:0.58em;font-weight:800;letter-spacing:0.04em;padding:0.15em 0.55em;border-radius:999px;background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;white-space:nowrap;">🎁 TẶNG 1 THÁNG</span>` : ""}
 ${plan.saving ? `<span style="font-size:0.65em;font-weight:700;color:#16a34a;white-space:nowrap;">${plan.saving}</span>` : ""}
 </span>
-<span style="font-size:0.9em;font-weight:800;color:${plan.gift ? "#b45309" : "#4338ca"};">${plan.price}</span>
+<span style="font-size:0.9em;font-weight:800;color:${plan.gift ? "#b45309" : "#4338ca"};">${computePlanPrice(plan)}</span>
 </div>`).join("")}
 </div>`;
 } else {
@@ -1608,6 +1618,7 @@ Copy số
 
 </body>
 </html>
+
 
 
 

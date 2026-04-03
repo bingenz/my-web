@@ -1,39 +1,94 @@
 # BINGENZ.COM
-Landing page giới thiệu và bán tài khoản Premium của BinGenZ, dịch vụ thiết kế website, bot Telegram và cộng đồng GenZ Đam Mê IT.
 
-README này chỉ tập trung vào cách đọc cấu trúc, sửa nội dung, đổi giao diện và nâng cấp tính năng của web.
+Landing page static deploy bằng Cloudflare Worker.
 
-## Nội dung hiện có trên web
+README này chỉ tập trung vào 3 việc:
+- file nào dùng để làm gì
+- muốn sửa phần nào thì vào file nào
+- build và deploy ra sao
 
-- Hero giới thiệu BinGenZ với 2 mảng chính: tài khoản Premium và dịch vụ lập trình.
-- Danh sách sản phẩm Premium: ChatGPT Plus, Grok Super, Gemini Pro, YouTube Premium, CapCut Pro.
-- Phân loại gói `CÁ NHÂN` và `CHÍNH CHỦ`.
-- Khối cộng đồng dẫn về group Facebook.
-- Khối dịch vụ lập trình: thiết kế website, bot Telegram, hỗ trợ bài tập lập trình.
-- Popup và nút liên hệ Zalo để mở nhanh hoặc copy số.
-- Thanh social gồm Facebook, TikTok, GitHub, Telegram.
+## Cây thư mục chính
 
-## Cấu trúc chính
+```text
+bingenz-my-web/
+├─ public/
+│  ├─ index.html                # Khung trang, section, popup, modal, link liên hệ
+│  ├─ _headers                  # Header cho static asset
+│  └─ assets/
+│     ├─ css/
+│     │  └─ main.css            # Toàn bộ giao diện, responsive, spacing, shadow, gradient
+│     ├─ js/
+│     │  ├─ app.js              # Logic popup, modal, copy, toast, tương tác UI
+│     │  ├─ products.js         # Dữ liệu sản phẩm và thứ tự hiển thị
+│     │  └─ head.js             # Script phụ cho head/boot
+│     ├─ images/                # Ảnh sản phẩm, ảnh thương hiệu, icon
+│     └─ fonts/                 # Font web
+├─ dist/                        # Bản build tạo ra từ public/, không sửa tay
+├─ scripts/
+│  ├─ build.mjs                 # Build từ public/ sang dist/
+│  └─ check.mjs                 # Check nhanh sau build
+├─ .github/
+│  └─ workflows/
+│     └─ deploy-worker.yml      # Auto deploy khi push lên main
+├─ share-meta.js                # Tiêu đề, mô tả, ảnh share
+├─ sync-share-meta.js           # Đồng bộ meta vào public/index.html
+├─ wrangler.jsonc               # Cấu hình Cloudflare Worker
+├─ package.json                 # Script npm
+└─ README.md
+```
 
-- [public/index.html](C:/Users/Acer/Downloads/binpinkgold2-main/public/index.html): toàn bộ khung trang, section, modal, popup Zalo, social link, block dịch vụ.
-- [public/assets/css/main.css](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/css/main.css): style giao diện, responsive, animation, modal, button.
-- [public/assets/js/app.js](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/js/app.js): logic mở modal, copy Zalo, toast, popup welcome, render hành vi trang.
-- [public/assets/js/products.js](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/js/products.js): dữ liệu sản phẩm Premium và thứ tự hiển thị.
-- [public/assets/images](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/images): ảnh sản phẩm, ảnh thương hiệu và icon Zalo đang dùng trên web.
-- [share-meta.js](C:/Users/Acer/Downloads/binpinkgold2-main/share-meta.js): tiêu đề và mô tả chia sẻ.
-- [sync-share-meta.js](C:/Users/Acer/Downloads/binpinkgold2-main/sync-share-meta.js): đồng bộ metadata vào `public/index.html`.
-- [scripts/build.mjs](C:/Users/Acer/Downloads/binpinkgold2-main/scripts/build.mjs): build thư mục `dist/` từ `public/`.
-- [scripts/check.mjs](C:/Users/Acer/Downloads/binpinkgold2-main/scripts/check.mjs): kiểm tra asset sau khi build.
-- [wrangler.jsonc](C:/Users/Acer/Downloads/binpinkgold2-main/wrangler.jsonc): cấu hình worker hiện tại.
+## Muốn sửa gì thì vào đâu
 
-## Cách chạy khi chỉnh sửa
+Sửa nội dung trang:
+- `public/index.html`
+- Dùng khi cần đổi tiêu đề, đoạn mô tả, text nút, link social, số điện thoại, block cộng đồng, popup liên hệ.
 
-Yêu cầu:
+Sửa giao diện:
+- `public/assets/css/main.css`
+- Dùng khi cần đổi màu, gradient, shadow, bo góc, khoảng cách, responsive, style card, style button.
 
-- Node.js 20+
-- npm
+Sửa danh sách sản phẩm:
+- `public/assets/js/products.js`
+- Dùng khi cần thêm sản phẩm, đổi giá, đổi badge, đổi ảnh, đổi thứ tự hiển thị.
 
-Lệnh cơ bản:
+Sửa hành vi popup và tương tác:
+- `public/assets/js/app.js`
+- Dùng khi cần đổi logic mở popup, modal, copy số, toast, chuyển hướng, hiệu ứng tương tác.
+
+Sửa ảnh:
+- `public/assets/images/`
+- Dùng khi cần thay icon, logo, ảnh sản phẩm.
+
+Sửa thông tin chia sẻ link:
+- `share-meta.js`
+- Sau khi sửa file này nên chạy lại build để meta được sync vào HTML.
+
+Sửa cấu hình deploy:
+- `wrangler.jsonc`
+- `.github/workflows/deploy-worker.yml`
+
+## Một số tác vụ thường gặp
+
+Đổi số Zalo:
+- tìm trong `public/index.html`
+- nếu logic popup/copy có liên quan thì sửa thêm trong `public/assets/js/app.js`
+
+Đổi màu nút và card:
+- sửa trong `public/assets/css/main.css`
+
+Thêm sản phẩm mới:
+- thêm object trong `public/assets/js/products.js`
+
+Đổi thứ tự sản phẩm:
+- sửa mảng thứ tự hiển thị trong `public/assets/js/products.js`
+
+Đổi icon Zalo hoặc ảnh sản phẩm:
+- thay file trong `public/assets/images/`
+
+Đổi tiêu đề khi share Facebook/Zalo:
+- sửa `share-meta.js`
+
+## Chạy local
 
 ```bash
 npm install
@@ -41,65 +96,31 @@ npm run build
 npm run check
 ```
 
-`npm run build` sẽ sync metadata rồi tạo lại `dist/` từ source trong `public/`.
+Ý nghĩa:
+- `npm run build`: sync meta rồi build từ `public/` sang `dist/`
+- `npm run check`: kiểm tra nhanh asset và cấu hình sau build
 
-## Auto deploy khi push
+## Deploy
 
-Repo này đã được cấu hình để tự deploy lên Worker `bingenz-web` mỗi khi có `push` vào nhánh `main`.
+Repo đã có auto-deploy.
 
-Trước khi workflow chạy được, cần tạo GitHub Actions secret sau trong repo:
+Luồng deploy:
+1. sửa source trong `public/` hoặc file config liên quan
+2. commit
+3. push lên `main`
+4. GitHub Actions chạy workflow `deploy-worker.yml`
+5. Cloudflare Worker cập nhật site
 
-- `CLOUDFLARE_API_TOKEN`: API token có quyền deploy Workers.
-
-Workflow nằm tại [.github/workflows/deploy-worker.yml](C:/Users/Acer/Downloads/bingenz-my-web/.github/workflows/deploy-worker.yml).
-
-## Chỉnh sửa theo nhu cầu
-
-Đổi nội dung trang:
-
-- Sửa text, tiêu đề section, link mạng xã hội, số Zalo, popup liên hệ trong [public/index.html](C:/Users/Acer/Downloads/binpinkgold2-main/public/index.html).
-
-Đổi danh sách sản phẩm:
-
-- Sửa object trong [public/assets/js/products.js](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/js/products.js).
-- Muốn đổi thứ tự card thì sửa `window.DISPLAY_ORDER`.
-
-Đổi giao diện:
-
-- Sửa màu sắc, spacing, button, modal, responsive trong [public/assets/css/main.css](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/css/main.css).
-
-Đổi ảnh:
-
-- Ảnh sản phẩm và ảnh thương hiệu nằm trong [public/assets/images](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/images).
-- Icon Zalo hiện đang dùng file [public/assets/images/zalo.svg](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/images/zalo.svg).
-
-Đổi thông tin chia sẻ:
-
-- Sửa [share-meta.js](C:/Users/Acer/Downloads/binpinkgold2-main/share-meta.js), sau đó chạy lại:
-
-```bash
-npm run build
-```
-
-## Gợi ý nâng cấp
-
-- Tách dữ liệu social link và contact link ra file JS riêng để đỡ sửa lặp trong HTML.
-- Gom các block Zalo lặp lại thành template render chung.
-- Tách block dịch vụ lập trình và block cộng đồng thành component nếu sau này chuyển sang framework.
-- Chuẩn hóa UTF-8 cho các file dữ liệu nếu muốn tránh lỗi ký tự tiếng Việt ở một số file JS cũ.
+Secret cần có trên GitHub:
+- `CLOUDFLARE_API_TOKEN`
 
 ## Lưu ý
 
-- `dist/` là thư mục build, không nên sửa tay.
-- Web này đang ưu tiên sửa trực tiếp trên source tĩnh để bàn giao nhanh.
-- Nếu thay ảnh hoặc sửa metadata, nên build lại ngay để tránh lệch giữa source và bản build.
-
-## Liên hệ
-ZALO: 08989 08101
+- Không sửa tay thư mục `dist/`
+- Muốn web đổi thật thì sửa source ở `public/` hoặc file config gốc
+- Nếu sửa `share-meta.js`, nên chạy `npm run build`
+- Nếu web chưa đổi sau deploy, thử `Ctrl+F5`
 
 ## License
 
 Copyright (c) 2026 BINGENZ.COM. All rights reserved.
-
-Dự án này của **BINGENZ.COM**. Không được sao chép, chỉnh sửa, phân phối, công khai hoặc tái sử dụng mã nguồn, giao diện, tài nguyên và nội dung của dự án khi chưa có sự cho phép từ **BINGENZ.COM**.
-

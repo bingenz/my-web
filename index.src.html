@@ -20,14 +20,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root { --bg: #e5e4e2; --panel: #ffffff; --line: #d2d0cc; --text: #0f172a; --muted: #55627a; --brand: #4f46e5; --brand-2: #0ea5e9; --ok: #0f766e; --danger: #b91c1c; --shadow: 0 8px 32px rgba(15, 23, 42, 0.10), 0 2px 8px rgba(15,23,42,0.05); }
+:root { --bg: #e5e4e2; --panel: #ffffff; --line: #d2d0cc; --text: #0f172a; --muted: #55627a; --brand: #4f46e5; --brand-2: #0ea5e9; --ok: #0f766e; --danger: #b91c1c; --shadow: 0 4px 20px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.06); }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
 html { font-size: min(3.72vw, 16px); scroll-behavior: smooth; scroll-padding-top: 84px; }
-body { font-family: "Be Vietnam Pro", sans-serif; color: var(--text); background: linear-gradient(180deg, #e5e4e2 0%, #f3f2f0 100%); line-height: 1.5; }
+body { font-family: "Be Vietnam Pro", sans-serif; color: var(--text); background: #f8fafc; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px); background-size: 22px 28px; -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 55%, transparent 100%); pointer-events: none; }
 h1, h2, h3, .price, .badge, .cta { font-family: "Be Vietnam Pro", sans-serif; }
 .container { width: min(1120px, 86vw); margin: 0 auto; }
-.topbar { position: sticky; top: 0; z-index: 30; background: rgba(255, 255, 255, 0.78); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06); }
+.topbar { position: sticky; top: 0; z-index: 30; background: rgba(255, 255, 255, 0.78); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
 .topbar-inner { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.01em; }
 .logo span { background: linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -45,34 +46,37 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Be Vietnam Pro", sans-serif; }
 .lp5 { background: #818cf8; left: 82%; animation-delay: 1.2s; animation-duration: 2.0s; }
 .top-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .chip { border: 1px solid var(--line); background: #fff; color: #334155; border-radius: 999px; font-size: 0.875em; padding: 0.625em 1em; text-decoration: none; font-weight: 600; }
-.chip.primary { display: inline-flex; align-items: center; justify-content: center; border: 0; background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #0ea5e9 100%); background-clip: padding-box; color: #fff; padding: 0.625em 1.25em; font-size: 0.94em; line-height: 1.2; appearance: none; -webkit-appearance: none; overflow: hidden; box-shadow: 0 6px 20px rgba(99,102,241,0.38); transition: transform 0.15s, box-shadow 0.15s, filter 0.15s; }
-.chip.primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(99,102,241,0.48); filter: brightness(1.07); }
+.chip.primary { display: inline-flex; align-items: center; justify-content: center; border: 0; background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #0ea5e9 100%); background-clip: padding-box; color: #fff; padding: 0.625em 1.25em; font-size: 0.94em; line-height: 1.2; appearance: none; -webkit-appearance: none; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.10); transition: transform 0.15s, box-shadow 0.15s, filter 0.15s; }
+.chip.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.22), 0 2px 6px rgba(0,0,0,0.12); filter: brightness(1.07); }
 .chip.primary:active { transform: translateY(0); }
 .hero { padding: 0 0 24px; }
-.hero-box { position: relative; overflow: hidden; width: 100vw; margin-left: calc(50% - 50vw); background: transparent; padding: clamp(28px, 5vw, 52px) clamp(18px, 5vw, 34px); }
+.hero-box { position: relative; overflow: visible; width: 100vw; margin-left: calc(50% - 50vw); background: transparent; padding: clamp(32px, 5vw, 64px) clamp(18px, 5vw, 34px); display: flex; flex-direction: column; align-items: center; text-align: center; }
 .hero-box::before,
 .hero-box::after { content: ""; position: absolute; border-radius: 999px; pointer-events: none; }
 .hero-box::before { width: 280px; height: 280px; right: -90px; bottom: -130px; background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0) 72%); }
 .hero-box::after { width: 220px; height: 220px; right: 18%; top: -120px; background: radial-gradient(circle, rgba(14, 165, 233, 0.13) 0%, rgba(14, 165, 233, 0) 72%); }
-.hero-box > div { position: relative; z-index: 1; max-width: min(1120px, 92vw); margin: 0 auto; }
+.hero-box > div { position: relative; z-index: 1; max-width: min(680px, 92vw); margin: 0 auto; width: 100%; }
 .kicker { display: inline-flex; align-items: center; gap: 6px; background: rgba(99,102,241,0.09); border: 1px solid #c7d2fe; color: #4338ca; border-radius: 999px; padding: 4px 10px; font-size: 0.625em; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
 .kicker-dot { width: 8px; height: 8px; border-radius: 50%; background: #6366f1; flex-shrink: 0; }
-.title { margin: 0 0 16px; font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.05; letter-spacing: -0.025em; display: grid; gap: 0.12em; }
-.title-main { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 0.26em; color: #0f172a; font-weight: 800; }
-.title-sub { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 0.26em; font-weight: 800; color: #0f172a; }
+.title { margin: 0 0 16px; font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1.05; letter-spacing: -0.025em; display: grid; gap: 0.12em; text-align: center; }
+.title-main { display: block; color: #0f172a; font-weight: 800; }
+.title-sub { display: block; font-weight: 800; color: #0f172a; }
 .title-and { color: #475569; font-weight: 700; }
 .title .accent { display: inline-block; font-weight: 800; background: linear-gradient(135deg, #4338ca, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hero p { margin: 0 0 20px; color: #475569; max-width: 58ch; font-size: 0.94em; line-height: 1.65; }
+.hero p { margin: 0 0 20px; color: #475569; max-width: 56ch; font-size: 0.94em; line-height: 1.65; margin-left: auto; margin-right: auto; }
 .hero-pill { margin-bottom: 16px; width: fit-content; border-radius: 999px; border: 0.09em solid #f6d0a9; background: linear-gradient(180deg, #fffaf4 0%, #fff 100%); color: #ea580c; padding: 0.4em 0.9em; font-weight: 700; font-size: 0.72em; display: inline-flex; align-items: center; gap: 0.5em; box-shadow: 0 0.5em 1.2em rgba(15,23,42,0.08), 0 0.1em 0.25em rgba(15,23,42,0.06); }
-.hero-card { background: rgba(255,255,255,0.74); border: 1px solid rgba(15,23,42,0.07); border-radius: 28px; padding: clamp(24px, 4vw, 36px); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow); }
-.hero-cta-row { margin-bottom: 2.6em; display: flex; gap: 0.8em; flex-wrap: wrap; align-items: center; }
+.hero-card { background: transparent; border: none; border-radius: 0; padding: 0; box-shadow: none; }
+.hero-cta-row { margin-bottom: 2.6em; display: flex; gap: 0.8em; flex-wrap: wrap; align-items: center; justify-content: center; }
+.hero-social-icons { position: absolute; top: clamp(10px,2vw,18px); right: clamp(14px,4vw,28px); display: flex; gap: 10px; z-index: 2; }
+.hero-social-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.82); border: 1px solid rgba(15,23,42,0.1); color: #334155; text-decoration: none; transition: background 0.15s, transform 0.15s, box-shadow 0.15s; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+.hero-social-icon:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 4px 14px rgba(15,23,42,0.13); }
 .hero-cta-row .chip.primary,
 .hero-outline-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5em; white-space: nowrap; min-height: 3.35em; padding: 0.82em 1.38em; font-size: 0.96em; line-height: 1.2; font-weight: 800; border-radius: 999px; text-decoration: none; letter-spacing: -0.01em; }
-.hero-cta-row .chip.primary { box-shadow: 0 0.85em 2em rgba(99,102,241,0.26), 0 0.18em 0.42em rgba(15,23,42,0.1); }
-.hero-outline-btn { border: 1.5px solid rgba(165,180,252,0.6); background: rgba(255,255,255,0.76); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #3730a3; cursor: pointer; box-shadow: 0 0.85em 2em rgba(79,70,229,0.12), 0 0.18em 0.42em rgba(15,23,42,0.08); transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
-.hero-outline-btn:hover { background: rgba(255,255,255,0.92); border-color: #6366f1; transform: translateY(-0.05em); box-shadow: 0 1em 2.2em rgba(79,70,229,0.18), 0 0.2em 0.46em rgba(15,23,42,0.1); }
-.hero-trust-btn { border: 0.07em solid #bfdbfe; background: #ffffff; color: #0f172a; box-shadow: 0 0.45em 1em rgba(14,165,233,0.12); transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s; }
-.hero-trust-btn:hover { transform: translateY(-0.05em); border-color: #93c5fd; box-shadow: 0 0.65em 1.28em rgba(14,165,233,0.18); }
+.hero-cta-row .chip.primary { box-shadow: 0 6px 22px rgba(0,0,0,0.22), 0 2px 6px rgba(0,0,0,0.12); }
+.hero-outline-btn { border: 1.5px solid rgba(165,180,252,0.6); background: rgba(255,255,255,0.76); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #3730a3; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.07); transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s; }
+.hero-outline-btn:hover { background: rgba(255,255,255,0.92); border-color: #6366f1; transform: translateY(-0.05em); box-shadow: 0 4px 16px rgba(0,0,0,0.14), 0 1px 4px rgba(0,0,0,0.08); }
+.hero-trust-btn { border: 0.07em solid #bfdbfe; background: #ffffff; color: #0f172a; box-shadow: 0 2px 10px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.07); transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s; }
+.hero-trust-btn:hover { transform: translateY(-0.05em); border-color: #93c5fd; box-shadow: 0 4px 16px rgba(0,0,0,0.14), 0 1px 4px rgba(0,0,0,0.08); }
 .hero-trust-pill { display: inline-flex; align-items: center; justify-content: center; padding: 0.34em 0.78em; border-radius: 999px; background: linear-gradient(135deg, #16a34a, #22c55e); color: #fff; font-size: 0.78em; font-weight: 800; line-height: 1; white-space: nowrap; box-shadow: 0 0.35em 0.9em rgba(22,163,74,0.22); }
 
 .hero-trust-dot { width: 0.56em; height: 0.56em; border-radius: 50%; background: #16a34a; box-shadow: 0 0 0 0.2em rgba(22,163,74,0.2); flex-shrink: 0; animation: heroTrustDotPulse 1.5s ease-in-out infinite; }
@@ -81,10 +85,11 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Be Vietnam Pro", sans-serif; }
 50% { opacity: 0.45; transform: scale(0.72); }
 }
 .hero-trust-fb { width: 1.2em; height: 1.2em; border-radius: 50%; background: #dbeafe; color: #1877f2; font-size: 0.86em; font-weight: 900; line-height: 1; display: inline-grid; place-items: center; flex-shrink: 0; }
-.hero-stats { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.hero-stat-card { background: rgba(255,255,255,0.75); border: 1px solid rgba(165,180,252,0.55); border-radius: 14px; padding: 10px 14px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow); }
-.hero-stat-value { font-size: 1.1rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; background: linear-gradient(135deg, #4338ca, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hero-stat-label { font-size: 0.72em; color: #64748b; font-weight: 500; margin-top: 4px; }
+.hero-stats { margin-top: 28px; display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: nowrap; }
+.hero-stat-card { background: transparent; border: none; border-radius: 0; padding: 8px 20px; box-shadow: none; text-align: center; position: relative; }
+.hero-stat-card + .hero-stat-card::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 1px; height: 28px; background: #e2e8f0; }
+.hero-stat-value { font-size: 1.1rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em; color: #0f172a; background: none; -webkit-text-fill-color: #0f172a; }
+.hero-stat-label { font-size: 0.68em; color: #64748b; font-weight: 600; margin-top: 4px; white-space: nowrap; }
 .hero-stat-top { display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; }
 .hero-stat-avatars { display: flex; align-items: center; flex-shrink: 0; }
 .hero-stat-top .hero-stat-value { white-space: nowrap; }
@@ -159,8 +164,8 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Be Vietnam Pro", sans-serif; }
 #source-code.section { padding-top: 56px; }
 .section h2 { margin: 0 0 24px; font-size: clamp(1.3rem, 3vw, 2rem); letter-spacing: -0.02em; background: linear-gradient(135deg, #1e1b4b, #4338ca); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.35em; }
-.card { grid-column: span 6; background: rgba(255,255,255,0.78); border: 1px solid var(--line); border-radius: 1.5em; box-shadow: var(--shadow); padding: 1.1em; display: flex; flex-direction: column; gap: 0.75em; min-width: 0; scroll-margin-top: 92px; transition: box-shadow 0.18s, transform 0.18s; }
-.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.card { grid-column: span 6; background: #ffffff; border: 1px solid #e8edf5; border-radius: 1.5em; box-shadow: 0 4px 20px rgba(15,23,42,0.08), 0 1px 4px rgba(15,23,42,0.05); padding: 1.1em; display: flex; flex-direction: column; gap: 0.75em; min-width: 0; scroll-margin-top: 92px; transition: box-shadow 0.18s, transform 0.18s; }
+.card:hover { box-shadow: 0 10px 36px rgba(15,23,42,0.13), 0 2px 8px rgba(15,23,42,0.07); transform: translateY(-2px); }
 .head { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
 .head-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .head-ico { width: 3em; height: 3em; border-radius: 0.875em; background: #eef2ff; flex-shrink: 0; display: block; }
@@ -177,8 +182,8 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Be Vietnam Pro", sans-serif; }
 .old s { color: #94a3b8 !important; text-decoration: line-through #ef4444 !important; text-decoration-thickness: 1.3px !important; }
 .day { font-size: 0.72em; color: #ea580c; background: linear-gradient(180deg, #fffaf4 0%, #fff 100%); border: 0.09em solid #f6d0a9; border-radius: 999px; padding: 0.4em 0.9em; width: fit-content; font-weight: 700; box-shadow: 0 0.5em 1.2em rgba(15,23,42,0.08), 0 0.1em 0.25em rgba(15,23,42,0.06); }
 .cta-row { margin-top: auto; display: grid; gap: 8px; }
-.cta { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; padding: 0.8em 1.1em; font-size: 0.94rem; font-weight: 700; line-height: 1.2; appearance: none; -webkit-appearance: none; cursor: pointer; text-decoration: none; text-align: center; overflow: hidden; box-shadow: 0 0.45em 1.1em rgba(15,23,42,0.10), 0 0.1em 0.24em rgba(15,23,42,0.07); transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease; }
-.cta:hover { transform: translateY(-0.06em); box-shadow: 0 0.65em 1.35em rgba(15,23,42,0.14), 0 0.12em 0.3em rgba(15,23,42,0.08); filter: brightness(1.02); }
+.cta { display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; padding: 0.8em 1.1em; font-size: 0.94rem; font-weight: 700; line-height: 1.2; appearance: none; -webkit-appearance: none; cursor: pointer; text-decoration: none; text-align: center; overflow: hidden; box-shadow: 0 3px 12px rgba(0,0,0,0.14), 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease; }
+.cta:hover { transform: translateY(-0.06em); box-shadow: 0 6px 20px rgba(0,0,0,0.18), 0 2px 5px rgba(0,0,0,0.10); filter: brightness(1.02); }
 .cta:active { transform: translateY(0); }
 .cta.buy { color: #fff; background: linear-gradient(135deg, var(--brand), var(--brand-2)); }
 .cta.light { color: #1e293b; background: #f8fafc; border: 1px solid var(--line); }
@@ -337,8 +342,8 @@ rgba(15, 23, 42, 0.56); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px
 .product-section-label.product-label-red svg { color: #b91c1c; }
 .product-section-label.product-label-red { color: #7f1d1d; }
 .product-section-sub { font-size: 0.82em; font-weight: 500; color: #64748b; letter-spacing: 0; }
-.product-group-glass { border-radius: 1.75em; padding: 1em 1em 1em; background: linear-gradient(145deg, rgba(255,255,255,0.62) 0%, rgba(220,230,255,0.38) 100%); backdrop-filter: blur(36px) saturate(2.2) brightness(1.05); -webkit-backdrop-filter: blur(36px) saturate(2.2) brightness(1.05); border: 1px solid rgba(255,255,255,0.88); box-shadow: 0 4px 32px rgba(99,102,241,0.09), 0 1.5px 0 rgba(255,255,255,0.95) inset, 0 0 0 0.5px rgba(99,102,241,0.08); }
-.product-group-glass.group-red { background: linear-gradient(145deg, rgba(255,255,255,0.62) 0%, rgba(255,220,225,0.38) 100%); border-color: rgba(255,255,255,0.88); box-shadow: 0 4px 32px rgba(185,28,28,0.09), 0 1.5px 0 rgba(255,255,255,0.95) inset, 0 0 0 0.5px rgba(185,28,28,0.08); }
+.product-group-glass { border-radius: 1.75em; padding: 1em 1em 1em; background: rgba(248,250,255,0.9); border: 1px solid rgba(199,210,254,0.5); box-shadow: 0 2px 16px rgba(99,102,241,0.06); }
+.product-group-glass.group-red { background: rgba(255,250,250,0.9); border-color: rgba(254,202,202,0.5); box-shadow: 0 2px 16px rgba(185,28,28,0.05); }
 .product-group-glass .product-section-label { padding: 2px 2px 8px; }
 .product-group-glass .grid { gap: 1em; }
 .contact-box { background: rgba(241,245,255,0.8); border: 1px solid rgba(199,210,254,0.5); border-radius: 1.125em; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
@@ -449,8 +454,8 @@ rgba(15, 23, 42, 0.56); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px
 .gnp-btn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 999px; font-family: "Be Vietnam Pro", sans-serif; font-size: 0.82em; font-weight: 600; color: var(--muted); background: transparent; border: none; cursor: pointer; transition: background 0.16s, color 0.16s; white-space: nowrap; touch-action: manipulation; }
 .gnp-btn:hover { background: rgba(99,102,241,0.09); color: #4338ca; }
 .gnp-btn svg { flex-shrink: 0; }
-.gnp-btn.gnp-cta { background: linear-gradient(135deg, #4338ca 0%, #6366f1 55%, #0ea5e9 100%); color: #fff; font-weight: 700; box-shadow: 0 3px 12px rgba(79,70,229,0.30); transition: transform 0.15s, box-shadow 0.15s, filter 0.15s; }
-.gnp-btn.gnp-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(79,70,229,0.42); filter: brightness(1.07); }
+.gnp-btn.gnp-cta { background: linear-gradient(135deg, #4338ca 0%, #6366f1 55%, #0ea5e9 100%); color: #fff; font-weight: 700; box-shadow: 0 3px 12px rgba(0,0,0,0.18); transition: transform 0.15s, box-shadow 0.15s, filter 0.15s; }
+.gnp-btn.gnp-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.22); filter: brightness(1.07); }
 .gnp-btn.gnp-cta:active { transform: translateY(0); }
 @media (max-width: 400px) {
 .gnp-btn:not(.gnp-cta) span.gnp-text { display: none; }
@@ -535,7 +540,8 @@ rgba(15, 23, 42, 0.56); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px
 .welcome-copy-btn.is-copied { background: linear-gradient(135deg, #16a34a, #15803d); box-shadow: 0 4px 12px rgba(22,163,74,0.3); }
 .welcome-dismiss { width: 100%; border: 1px solid #dbe3f4; border-radius: 999px; background: #fff; color: #3730a3; font-size: 0.84em; font-weight: 700; font-family: "Be Vietnam Pro", sans-serif; padding: 0.72em; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
 .welcome-dismiss:hover { background: #f8faff; border-color: #a5b4fc; }
-.notif-bar { position: sticky; top: 68px; z-index: 29; display: flex; justify-content: center; padding: 6px 12px; pointer-events: none; }
+.notif-bar { position: sticky; top: 68px; z-index: 29; display: flex; justify-content: center; padding: 6px 12px; pointer-events: none; opacity: 0; transform: translateY(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.notif-bar.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 @media (max-width: 680px) {
 .notif-bar { top: 56px; }
 }
@@ -687,6 +693,14 @@ history.replaceState(null, "", location.pathname + location.search);
 </div>
 </div>
 <div class="topbar-spacer" aria-hidden="true"></div>
+<div style="display:flex;align-items:center;gap:8px;">
+<a href="https://github.com/bingenz" target="_blank" rel="noopener" aria-label="GitHub" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.72);border:1px solid rgba(15,23,42,0.1);color:#334155;text-decoration:none;transition:background 0.15s,transform 0.15s,box-shadow 0.15s;box-shadow:0 2px 8px rgba(15,23,42,0.07);" onmouseover="this.style.background='#fff';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='rgba(255,255,255,0.72)';this.style.transform=''">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+</a>
+<a href="https://zalo.me/0898908101" target="_blank" rel="noopener" aria-label="Zalo" onclick="showRedirectToast('Zalo','assets/images/zalo.jpg')" style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;overflow:hidden;border:1px solid rgba(15,23,42,0.1);text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 2px 8px rgba(15,23,42,0.07);" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">
+<svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" fill="#0068FF"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14" font-weight="700" font-family="Be Vietnam Pro,sans-serif">Z</text></svg>
+</a>
+</div>
 </div>
 </header>
 <div class="notif-bar">
@@ -721,20 +735,7 @@ Xem thông báo mới từ BinGenZ
 <div class="hero-stat-label">Kích hoạt tài khoản</div>
 </div>
 <div class="hero-stat-card">
-<div class="hero-stat-value">24/7</div>
-<div class="hero-stat-label">Hỗ trợ phản hồi</div>
-</div>
-<div class="hero-stat-card">
-<div class="hero-stat-top">
 <div class="hero-stat-value">2k+</div>
-<div class="hero-stat-avatars">
-<img src="assets/images/avt1.jpg" alt="" width="22" height="22" decoding="async">
-<img src="assets/images/avt2.jpg" alt="" width="22" height="22" decoding="async">
-<img src="assets/images/avt3.jpg" alt="" width="22" height="22" decoding="async">
-<img src="assets/images/avt4.jpg" alt="" width="22" height="22" decoding="async">
-<img src="assets/images/avt5.jpg" alt="" width="22" height="22" decoding="async">
-</div>
-</div>
 <div class="hero-stat-label">Khách theo dõi</div>
 </div>
 <div class="hero-stat-card">
@@ -1541,6 +1542,23 @@ window.scrollTo({ top: top, behavior: 'smooth' });
 }
 renderProducts();
 syncNavCTA();
+// ── Notif bar: hiện khi scroll tới community ──
+(function() {
+var notifBar = document.querySelector('.notif-bar');
+var commSection = document.getElementById('community');
+if (!notifBar || !commSection) return;
+var observer = new IntersectionObserver(function(entries) {
+entries.forEach(function(e) {
+if (e.isIntersecting) {
+notifBar.classList.add('visible');
+} else if (e.boundingClientRect.top > 0) {
+// Chỉ ẩn khi chưa tới community (scroll lên lại)
+notifBar.classList.remove('visible');
+}
+});
+}, { threshold: 0.1 });
+observer.observe(commSection);
+})();
 // ── Welcome Popup ──
 function welcomeOpen() {
 var overlay = document.getElementById('welcomeNotif');
@@ -1749,6 +1767,7 @@ Copy số
 
 </body>
 </html>
+
 
 
 

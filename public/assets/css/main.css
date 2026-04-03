@@ -6,7 +6,7 @@
   font-display: swap;
 }
 
-:root { --bg: #e5e4e2; --panel: #ffffff; --line: #d2d0cc; --text: #0f172a; --muted: #55627a; --brand: #4f46e5; --brand-2: #0ea5e9; --ok: #0f766e; --danger: #b91c1c; --grad-brand: linear-gradient(135deg, #15a7e7 0%, #356eea 34%, #4c4be8 70%, #4f46e5 100%); --grad-brand-alt: linear-gradient(135deg, #38bdf8 0%, #3673f0 38%, #6366f1 74%, #4338ca 100%); --grad-brand-soft: linear-gradient(135deg, #ecfeff 0%, #eef2ff 52%, #dbeafe 100%); --shadow-3d: 0 14px 34px rgba(15,23,42,0.10), 0 4px 12px rgba(15,23,42,0.07), 0 1px 0 rgba(255,255,255,0.72) inset; --shadow-3d-hover: 0 18px 42px rgba(15,23,42,0.14), 0 6px 16px rgba(15,23,42,0.09), 0 1px 0 rgba(255,255,255,0.78) inset; --shadow-3d-strong: 0 24px 58px rgba(15,23,42,0.16), 0 8px 22px rgba(15,23,42,0.10), 0 1px 0 rgba(255,255,255,0.82) inset; --shadow: var(--shadow-3d); }
+:root { --bg: #e5e4e2; --panel: #ffffff; --line: #d2d0cc; --text: #0f172a; --muted: #55627a; --brand: #4f46e5; --brand-2: #0ea5e9; --ok: #0f766e; --danger: #b91c1c; --grad-brand: linear-gradient(135deg, #4f46e5 0%, #4c4be8 32%, #356eea 68%, #15a7e7 100%); --grad-brand-alt: linear-gradient(135deg, #4338ca 0%, #6366f1 38%, #3673f0 72%, #38bdf8 100%); --grad-brand-soft: linear-gradient(135deg, #dbeafe 0%, #eef2ff 52%, #ecfeff 100%); --shadow-3d: 0 14px 34px rgba(15,23,42,0.10), 0 4px 12px rgba(15,23,42,0.07), 0 1px 0 rgba(255,255,255,0.72) inset; --shadow-3d-hover: 0 18px 42px rgba(15,23,42,0.14), 0 6px 16px rgba(15,23,42,0.09), 0 1px 0 rgba(255,255,255,0.78) inset; --shadow-3d-strong: 0 24px 58px rgba(15,23,42,0.16), 0 8px 22px rgba(15,23,42,0.10), 0 1px 0 rgba(255,255,255,0.82) inset; --shadow: var(--shadow-3d); }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; overflow-x: hidden; }
 html { font-size: min(3.72vw, 16px); scroll-behavior: smooth; scroll-padding-top: 84px; }
@@ -109,7 +109,7 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Geist Sans", sans-serif; }
 .gift-title { font-size: 0.84em; font-weight: 700; color: #fff; line-height: 1.25; }
 .gift-sub { font-size: 0.68em; color: rgba(255,255,255,0.72); line-height: 1.25; }
 .fb-mockup { width: 100%; background: #fff; border-radius: 20px; overflow: hidden; border: 1px solid rgba(191,219,254,0.82); box-shadow: var(--shadow-3d-strong); }
-.fb-cover { height: 5em; background: linear-gradient(135deg, #60a5fa 0%, #4c4be8 46%, #4338ca 100%); position: relative; display: flex; align-items: flex-end; padding: 0.5em 0.75em; }
+.fb-cover { height: 5em; background: linear-gradient(135deg, #4338ca 0%, #4c4be8 46%, #60a5fa 100%); position: relative; display: flex; align-items: flex-end; padding: 0.5em 0.75em; }
 .fb-cover-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.35)); }
 .fb-cover-text { position: relative; color: #fff; font-size: 0.75em; font-weight: 800; letter-spacing: 0.01em; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
 .fb-info { display: flex; align-items: center; gap: 0.5em; padding: 0.625em 0.75em; border-bottom: 1px solid #f1f5f9; }
@@ -155,7 +155,7 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Geist Sans", sans-serif; }
 .section { padding: 2.25em 0; }
 #source-code.section { padding-top: 56px; }
 #products .container { width: min(1020px, calc(100vw - 88px)); }
-.section h2 { margin: 0 0 24px; font-size: clamp(1.3rem, 3vw, 2rem); letter-spacing: -0.02em; background: linear-gradient(135deg, #60a5fa 0%, #4c4be8 48%, #1e1b4b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.section h2 { margin: 0 0 24px; font-size: clamp(1.3rem, 3vw, 2rem); letter-spacing: -0.02em; background: linear-gradient(135deg, #1e1b4b 0%, #4c4be8 48%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 1.35em; row-gap: 2em; }
 .card { grid-column: span 6; background: #ffffff; border: 1px solid #e8edf5; border-radius: 1.5em; box-shadow: var(--shadow-3d); padding: 1.1em; display: flex; flex-direction: column; gap: 0.75em; min-width: 0; scroll-margin-top: 92px; transition: box-shadow 0.18s, transform 0.18s; }
 .card:hover { box-shadow: var(--shadow-3d-hover); transform: translateY(-2px); }
@@ -184,7 +184,7 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Geist Sans", sans-serif; }
 .cta.light { color: #1e293b; background: #f8fafc; border: 1px solid var(--line); }
 .wide { grid-column: span 6; border-radius: 1.5em; padding: 1.25em; position: relative; overflow: hidden; }
 #source-code .wide { grid-column: span 12; }
-.wide.wide-code { background: linear-gradient(135deg, #818cf8 0%, #6366f1 34%, #4f46e5 100%); color: #fff; box-shadow: var(--shadow-3d-strong); }
+.wide.wide-code { background: linear-gradient(135deg, #4f46e5 0%, #6366f1 34%, #818cf8 100%); color: #fff; box-shadow: var(--shadow-3d-strong); }
 .wide h3 { margin: 0 0 10px; font-size: 1.15rem; font-weight: 800; color: #fff; }
 .wide ul { margin: 0 0 16px; padding-left: 18px; color: rgba(255,255,255,0.85); display: grid; gap: 7px; font-size: 0.84em; }
 .wide-deco { position: absolute; right: -10px; bottom: -10px; opacity: 0.18; pointer-events: none; user-select: none; }
@@ -201,7 +201,7 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Geist Sans", sans-serif; }
 .wlc-svc-note { font-size: 0.625em; color: #64748b; line-height: 1.4; }
 .wlc-cta-text { font-size: 0.81em; color: #334155; text-align: center; line-height: 1.5; margin: 0; }
 .wlc-cta-text strong { color: #4338ca; }
-.wlc-ad { position: relative; overflow: hidden; background: linear-gradient(135deg, #38bdf8 0%, #0284c7 58%, #0369a1 100%); border: 1px solid rgba(56,189,248,0.3); border-radius: 20px; padding: 10px 12px; box-shadow: var(--shadow-3d-strong); }
+.wlc-ad { position: relative; overflow: hidden; background: linear-gradient(135deg, #0369a1 0%, #0284c7 58%, #38bdf8 100%); border: 1px solid rgba(56,189,248,0.3); border-radius: 20px; padding: 10px 12px; box-shadow: var(--shadow-3d-strong); }
 .wlc-ad::before { content: ''; position: absolute; right: -24px; top: -24px; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 70%); pointer-events: none; }
 .wlc-ad::after { content: ''; position: absolute; left: -16px; bottom: -24px; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle, rgba(14,165,233,0.3), transparent 70%); pointer-events: none; }
 .wlc-ad-inner { position: relative; z-index: 1; display: grid; gap: 6px; }

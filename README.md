@@ -2,7 +2,7 @@
 
 Website landing page tĩnh được triển khai bằng Cloudflare Worker.
 
-Tài liệu này tập trung vào các nội dung cần thiết cho việc bàn giao và chỉnh sửa:
+Tài liệu này tập trung vào các nội dung cần thiết để quản lý và phát triển website:
 - cấu trúc thư mục chính
 - chức năng của từng file quan trọng
 - muốn chỉnh phần nào thì cần sửa ở đâu

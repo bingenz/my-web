@@ -85,36 +85,11 @@ npm run build
 - Nếu thay ảnh hoặc sửa metadata, nên build lại ngay để tránh lệch giữa source và bản build.
 
 ## Liên hệ
-
-<p align="left">
-  <em>Kênh liên hệ chính:</em><br>
-  <a href="https://zalo.me/0898908101" target="_blank" rel="noopener noreferrer" title="Zalo">
-    <img src="./public/assets/images/zalo.svg" alt="Zalo" width="22" height="22" align="center">
-  </a>
-  <a href="https://zalo.me/0898908101" target="_blank" rel="noopener noreferrer"><strong>0898908101</strong></a>
-</p>
-
-<p align="left">
-  <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noopener noreferrer" title="Facebook">
-    <img src="https://cdn.simpleicons.org/facebook/1877F2" alt="Facebook" width="22" height="22">
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://www.tiktok.com/@bingenz_" target="_blank" rel="noopener noreferrer" title="TikTok">
-    <img src="https://cdn.simpleicons.org/tiktok/000000" alt="TikTok" width="22" height="22">
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://t.me/binpinkgold" target="_blank" rel="noopener noreferrer" title="Telegram">
-    <img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram" width="22" height="22">
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://github.com/bingenz" target="_blank" rel="noopener noreferrer" title="GitHub">
-    <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" width="22" height="22">
-  </a>
-</p>
+ZALO: 08989 08101
 
 ## License
 
 Copyright (c) 2026 BINGENZ.COM. All rights reserved.
 
-Dự án này là tài sản riêng của **BINGENZ.COM**. Không được sao chép, chỉnh sửa, phân phối, công khai hoặc tái sử dụng mã nguồn, giao diện, tài nguyên và nội dung của dự án khi chưa có sự cho phép bằng văn bản từ **BINGENZ.COM**.
+Dự án này của **BINGENZ.COM**. Không được sao chép, chỉnh sửa, phân phối, công khai hoặc tái sử dụng mã nguồn, giao diện, tài nguyên và nội dung của dự án khi chưa có sự cho phép từ **BINGENZ.COM**.
 

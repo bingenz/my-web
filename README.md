@@ -1,5 +1,5 @@
 # BINGENZ.COM
-Landing page giới thiệu và bán tài khoản Premium của BinGenZ, đồng thời giới thiệu dịch vụ thiết kế website, bot Telegram và cộng đồng GenZ Đam Mê IT.
+Landing page giới thiệu và bán tài khoản Premium của BinGenZ, dịch vụ thiết kế website, bot Telegram và cộng đồng GenZ Đam Mê IT.
 
 README này chỉ tập trung vào cách đọc cấu trúc, sửa nội dung, đổi giao diện và nâng cấp tính năng của web.
 

@@ -43,6 +43,16 @@ npm run check
 
 `npm run build` sẽ sync metadata rồi tạo lại `dist/` từ source trong `public/`.
 
+## Auto deploy khi push
+
+Repo này đã được cấu hình để tự deploy lên Worker `bingenz-web` mỗi khi có `push` vào nhánh `main`.
+
+Trước khi workflow chạy được, cần tạo GitHub Actions secret sau trong repo:
+
+- `CLOUDFLARE_API_TOKEN`: API token có quyền deploy Workers.
+
+Workflow nằm tại [.github/workflows/deploy-worker.yml](C:/Users/Acer/Downloads/bingenz-my-web/.github/workflows/deploy-worker.yml).
+
 ## Chỉnh sửa theo nhu cầu
 
 Đổi nội dung trang:

@@ -1,0 +1,17 @@
+{
+  "name": "my-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static BinGenZ site for editing content, styling, and premium product listings.",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "sync-meta": "node sync-share-meta.js",
+    "build": "node sync-share-meta.js && node scripts/build.mjs",
+    "check": "node sync-share-meta.js && node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.41.0"
+  }
+}

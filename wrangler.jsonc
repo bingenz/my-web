@@ -1,16 +1,8 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "binpinkgold",
-  "compatibility_date": "2025-09-27",
-  "main": "functions/_middleware.js",
-  "observability": {
-    "enabled": true
-  },
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "my-web",
+  "compatibility_date": "2026-04-03",
   "assets": {
-    "directory": ".",
-    "binding": "ASSETS"
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+    "directory": "./dist"
+  }
 }

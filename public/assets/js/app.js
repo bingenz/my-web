@@ -1,4 +1,4 @@
-﻿const NAV_CTA = { text: "Xem dịch vụ", target: "source-code" };
+const NAV_CTA = { text: "Xem dịch vụ", target: "source-code" };
 function navScrollTo(id, options) {
 options = options || {};
 const el = document.getElementById(id);
@@ -120,7 +120,7 @@ copyBtn.textContent = 'Copy số';
 copyBtn._resetTimer = null;
 }, 1800);
 }).catch(function () {
-showStatusToast('Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101', 'assets/images/zalo.svg');
+showStatusToast('Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101', 'https://cdn.simpleicons.org/zalo/0068FF');
 });
 }
 function resetDevZaloCopyState() {
@@ -148,7 +148,7 @@ copyBtn.textContent = 'Copy số';
 copyBtn._resetTimer = null;
 }, 1800);
 }).catch(function () {
-showStatusToast('Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101', 'assets/images/zalo.svg');
+showStatusToast('Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101', 'https://cdn.simpleicons.org/zalo/0068FF');
 });
 }
 function closeModal() {
@@ -216,7 +216,7 @@ copyButtons.forEach(function (btn) {
 btn.addEventListener("click", function () {
 var zaloId = btn.getAttribute("data-zalo-copy") || "0898908101";
 copyTextWithFallback(zaloId).then(function () {
-showStatusToast("Đã sao chép số Zalo: " + zaloId, "assets/images/zalo.svg");
+showStatusToast("Đã sao chép số Zalo: " + zaloId, "https://cdn.simpleicons.org/zalo/0068FF");
 }).catch(function () {
 showCopyPrompt(zaloId, "Đã sao chép số Zalo: " + zaloId);
 });

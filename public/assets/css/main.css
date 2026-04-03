@@ -115,11 +115,13 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Geist Sans", sans-serif; }
 .fb-avatar { width: 2em; height: 2em; border-radius: 50%; background: #eef2ff; border: 2px solid #c7d2fe; display: grid; place-items: center; flex-shrink: 0; }
 .fb-name { font-size: 0.72em; font-weight: 800; color: #0f172a; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 10em; }
 .fb-meta { font-size: 0.62em; color: #64748b; margin-top: 1px; }
-.fb-join-btn { margin-left: auto; background: #1877f2; color: #fff; font-size: 0.62em; font-weight: 700; border-radius: 6px; padding: 0.3em 0.6em; white-space: nowrap; flex-shrink: 0; text-decoration: none; box-shadow: 0 0.45em 1.1em rgba(15,23,42,0.10), 0 0.1em 0.24em rgba(15,23,42,0.07); transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease; }
-.fb-join-btn:hover { transform: translateY(-0.06em); box-shadow: 0 0.65em 1.35em rgba(15,23,42,0.14), 0 0.12em 0.3em rgba(15,23,42,0.08); filter: brightness(1.03); }
+.fb-join-btn { margin-left: auto; position: relative; background: linear-gradient(135deg, #4f46e5 0%, #4c4be8 24%, #356eea 68%, #15a7e7 100%); color: #fff; font-size: 0.62em; font-weight: 700; border-radius: 999px; padding: 0.3em 0.6em; white-space: nowrap; flex-shrink: 0; text-decoration: none; overflow: hidden; box-shadow: 0 0.12em 0.28em rgba(255,255,255,0.22) inset, 0 0.62em 1.4em rgba(79,70,229,0.22), 0 0.16em 0.42em rgba(15,23,42,0.09); transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease; }
+.fb-join-btn::before { content: ""; position: absolute; inset: 1px 1px auto; height: 48%; border-radius: inherit; background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0)); pointer-events: none; }
+.fb-join-btn:hover { transform: translateY(-1px); box-shadow: 0 0.12em 0.28em rgba(255,255,255,0.22) inset, 0 0.85em 1.7em rgba(79,70,229,0.26), 0 0.2em 0.5em rgba(15,23,42,0.1); filter: brightness(1.03); }
+.fb-join-btn:active { transform: translateY(0); box-shadow: 0 0.12em 0.24em rgba(255,255,255,0.2) inset, 0 0.5em 1.1em rgba(79,70,229,0.2), 0 0.12em 0.34em rgba(15,23,42,0.08); }
 .community-card-link { display: block; text-decoration: none; color: inherit; }
 .community-card-link:focus-visible { outline: 0.16em solid rgba(59,130,246,0.4); outline-offset: 0.25em; border-radius: 1.5em; }
-.fb-join-btn { min-height: 3em; padding: 0.62em 1em; font-size: 0.76em; border-radius: 999px; box-shadow: 0 0.55em 1.2em rgba(24,119,242,0.18), 0 0.12em 0.28em rgba(15,23,42,0.07); }
+.fb-join-btn { min-height: 3em; padding: 0.62em 1em; font-size: 0.76em; border-radius: 999px; }
 .community-note-bar { margin-top: 0.75em; background: linear-gradient(180deg, #fffbeb 0%, #fff7d6 100%); border: 1px solid #fde68a; border-radius: 1em; padding: 0.82em 1em; display: flex; align-items: flex-start; gap: 0.62em; }
 .community-note-ico { width: 1.8em; height: 1.8em; border-radius: 0.68em; background: rgba(245,158,11,0.12); color: #b45309; display: grid; place-items: center; flex-shrink: 0; }
 .community-note-title { font-size: 0.82em; font-weight: 800; color: #92400e; line-height: 1.35; }

@@ -189,6 +189,27 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Geist Sans", sans-serif; }
 .contact-item:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(15,23,42,0.12), 0 2px 8px rgba(15,23,42,0.06); border-color: #c7d2fe; color: #312e81; }
 .contact-item svg { width: 20px; height: 20px; display: block; flex-shrink: 0; }
 .contact-item span { font-size: 0.82em; font-weight: 700; letter-spacing: -0.01em; }
+.header-social-link.social-brand-tiktok,
+.header-social-link.social-brand-github,
+.social-chip.social-brand-tiktok,
+.social-chip.social-brand-github,
+.contact-item.social-brand-tiktok,
+.contact-item.social-brand-github {
+  background: linear-gradient(180deg, rgba(15,23,42,0.98) 0%, rgba(30,41,59,0.96) 100%);
+  border-color: rgba(148,163,184,0.36);
+  color: #f8fafc;
+  box-shadow: 0 10px 26px rgba(2,6,23,0.26), 0 2px 8px rgba(15,23,42,0.18);
+}
+.header-social-link.social-brand-tiktok:hover,
+.header-social-link.social-brand-github:hover,
+.social-chip.social-brand-tiktok:hover,
+.social-chip.social-brand-github:hover,
+.contact-item.social-brand-tiktok:hover,
+.contact-item.social-brand-github:hover {
+  background: linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%);
+  border-color: rgba(96,165,250,0.45);
+  color: #ffffff;
+}
 .footer { text-align: center; color: #64748b; padding: 26px 12px 40px; font-size: 0.81em; }
 .wlc-services { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .wlc-service-item { display: flex; flex-direction: column; align-items: center; gap: 4px; background: rgba(255,255,255,0.75); border: 1px solid #c7d2fe; border-radius: 22px; padding: 9px 6px; text-align: center; }
@@ -569,3 +590,4 @@ rgba(246,248,255,0.84) 100%
 50% { transform: scale(1.12); }
 }
 .notif-btn-dot { width: 0.45em; height: 0.45em; border-radius: 50%; background: #ef4444; flex-shrink: 0; box-shadow: 0 0 0 0.18em rgba(239,68,68,0.22); }
+

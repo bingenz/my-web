@@ -1,91 +1,92 @@
 # BINGENZ.COM
 
-Landing page static deploy bằng Cloudflare Worker.
+Website landing page tĩnh được triển khai bằng Cloudflare Worker.
 
-README này chỉ tập trung vào 3 việc:
-- file nào dùng để làm gì
-- muốn sửa phần nào thì vào file nào
-- build và deploy ra sao
+Tài liệu này tập trung vào các nội dung cần thiết cho việc bàn giao và chỉnh sửa:
+- cấu trúc thư mục chính
+- chức năng của từng file quan trọng
+- muốn chỉnh phần nào thì cần sửa ở đâu
+- quy trình build và deploy
 
-## Cây thư mục chính
+## Cấu trúc thư mục
 
 ```text
 bingenz-my-web/
 ├─ public/
-│  ├─ index.html                # Khung trang, section, popup, modal, link liên hệ
+│  ├─ index.html                # Cấu trúc trang, section, popup, modal, thông tin liên hệ
 │  ├─ _headers                  # Header cho static asset
 │  └─ assets/
 │     ├─ css/
-│     │  └─ main.css            # Toàn bộ giao diện, responsive, spacing, shadow, gradient
+│     │  └─ main.css            # Toàn bộ giao diện: màu sắc, spacing, responsive, shadow, button
 │     ├─ js/
-│     │  ├─ app.js              # Logic popup, modal, copy, toast, tương tác UI
+│     │  ├─ app.js              # Logic popup, modal, copy, toast và tương tác UI
 │     │  ├─ products.js         # Dữ liệu sản phẩm và thứ tự hiển thị
-│     │  └─ head.js             # Script phụ cho head/boot
-│     ├─ images/                # Ảnh sản phẩm, ảnh thương hiệu, icon
-│     └─ fonts/                 # Font web
-├─ dist/                        # Bản build tạo ra từ public/, không sửa tay
+│     │  └─ head.js             # Script phụ cho phần head/khởi tạo
+│     ├─ images/                # Ảnh sản phẩm, logo, icon
+│     └─ fonts/                 # Font sử dụng trên website
+├─ dist/                        # Bản build sinh ra từ public/, không chỉnh sửa trực tiếp
 ├─ scripts/
-│  ├─ build.mjs                 # Build từ public/ sang dist/
-│  └─ check.mjs                 # Check nhanh sau build
+│  ├─ build.mjs                 # Build source từ public/ sang dist/
+│  └─ check.mjs                 # Kiểm tra nhanh sau build
 ├─ .github/
 │  └─ workflows/
-│     └─ deploy-worker.yml      # Auto deploy khi push lên main
-├─ share-meta.js                # Tiêu đề, mô tả, ảnh share
-├─ sync-share-meta.js           # Đồng bộ meta vào public/index.html
+│     └─ deploy-worker.yml      # Workflow auto-deploy khi push lên main
+├─ share-meta.js                # Metadata dùng khi chia sẻ link
+├─ sync-share-meta.js           # Đồng bộ metadata vào public/index.html
 ├─ wrangler.jsonc               # Cấu hình Cloudflare Worker
 ├─ package.json                 # Script npm
 └─ README.md
 ```
 
-## Muốn sửa gì thì vào đâu
+## Hướng dẫn chỉnh sửa
 
-Sửa nội dung trang:
+Chỉnh nội dung hiển thị trên trang:
 - `public/index.html`
-- Dùng khi cần đổi tiêu đề, đoạn mô tả, text nút, link social, số điện thoại, block cộng đồng, popup liên hệ.
+- Dùng khi cần thay tiêu đề, mô tả, text nút, link mạng xã hội, số điện thoại, popup liên hệ hoặc nội dung section.
 
-Sửa giao diện:
+Chỉnh giao diện:
 - `public/assets/css/main.css`
-- Dùng khi cần đổi màu, gradient, shadow, bo góc, khoảng cách, responsive, style card, style button.
+- Dùng khi cần thay màu sắc, gradient, khoảng cách, bo góc, shadow, responsive, card và button.
 
-Sửa danh sách sản phẩm:
+Chỉnh danh sách sản phẩm:
 - `public/assets/js/products.js`
-- Dùng khi cần thêm sản phẩm, đổi giá, đổi badge, đổi ảnh, đổi thứ tự hiển thị.
+- Dùng khi cần thêm sản phẩm, sửa giá, đổi badge, thay ảnh hoặc đổi thứ tự hiển thị.
 
-Sửa hành vi popup và tương tác:
+Chỉnh hành vi popup và tương tác:
 - `public/assets/js/app.js`
-- Dùng khi cần đổi logic mở popup, modal, copy số, toast, chuyển hướng, hiệu ứng tương tác.
+- Dùng khi cần cập nhật logic mở popup, modal, copy số, toast, chuyển hướng hoặc hiệu ứng tương tác.
 
-Sửa ảnh:
+Chỉnh hình ảnh và icon:
 - `public/assets/images/`
-- Dùng khi cần thay icon, logo, ảnh sản phẩm.
+- Dùng khi cần thay logo, ảnh sản phẩm hoặc icon thương hiệu.
 
-Sửa thông tin chia sẻ link:
+Chỉnh metadata khi chia sẻ link:
 - `share-meta.js`
-- Sau khi sửa file này nên chạy lại build để meta được sync vào HTML.
+- Sau khi thay đổi file này, cần chạy lại `npm run build` để đồng bộ vào HTML.
 
-Sửa cấu hình deploy:
+Chỉnh cấu hình deploy:
 - `wrangler.jsonc`
 - `.github/workflows/deploy-worker.yml`
 
-## Một số tác vụ thường gặp
+## Tác vụ thường gặp
 
 Đổi số Zalo:
-- tìm trong `public/index.html`
-- nếu logic popup/copy có liên quan thì sửa thêm trong `public/assets/js/app.js`
+- sửa nội dung trong `public/index.html`
+- nếu liên quan đến popup hoặc nút copy, sửa thêm trong `public/assets/js/app.js`
 
-Đổi màu nút và card:
+Đổi màu nút, card hoặc khoảng cách:
 - sửa trong `public/assets/css/main.css`
 
 Thêm sản phẩm mới:
-- thêm object trong `public/assets/js/products.js`
+- thêm object mới trong `public/assets/js/products.js`
 
 Đổi thứ tự sản phẩm:
-- sửa mảng thứ tự hiển thị trong `public/assets/js/products.js`
+- chỉnh mảng thứ tự hiển thị trong `public/assets/js/products.js`
 
 Đổi icon Zalo hoặc ảnh sản phẩm:
-- thay file trong `public/assets/images/`
+- thay file tương ứng trong `public/assets/images/`
 
-Đổi tiêu đề khi share Facebook/Zalo:
+Đổi tiêu đề và mô tả khi chia sẻ Facebook/Zalo:
 - sửa `share-meta.js`
 
 ## Chạy local
@@ -96,30 +97,30 @@ npm run build
 npm run check
 ```
 
-Ý nghĩa:
-- `npm run build`: sync meta rồi build từ `public/` sang `dist/`
+Ý nghĩa các lệnh:
+- `npm run build`: đồng bộ metadata và build từ `public/` sang `dist/`
 - `npm run check`: kiểm tra nhanh asset và cấu hình sau build
 
 ## Deploy
 
-Repo đã có auto-deploy.
+Repository đã được cấu hình auto-deploy.
 
-Luồng deploy:
-1. sửa source trong `public/` hoặc file config liên quan
-2. commit
-3. push lên `main`
+Quy trình triển khai:
+1. Chỉnh sửa source trong `public/` hoặc file cấu hình liên quan
+2. Commit thay đổi
+3. Push lên nhánh `main`
 4. GitHub Actions chạy workflow `deploy-worker.yml`
-5. Cloudflare Worker cập nhật site
+5. Cloudflare Worker cập nhật website
 
-Secret cần có trên GitHub:
+GitHub secret bắt buộc:
 - `CLOUDFLARE_API_TOKEN`
 
 ## Lưu ý
 
-- Không sửa tay thư mục `dist/`
-- Muốn web đổi thật thì sửa source ở `public/` hoặc file config gốc
-- Nếu sửa `share-meta.js`, nên chạy `npm run build`
-- Nếu web chưa đổi sau deploy, thử `Ctrl+F5`
+- Không chỉnh sửa trực tiếp thư mục `dist/`
+- Mọi thay đổi cần thực hiện ở source gốc trong `public/` hoặc file cấu hình tương ứng
+- Nếu chỉnh `share-meta.js`, nên chạy lại `npm run build`
+- Nếu website chưa cập nhật ngay sau deploy, thử tải lại bằng `Ctrl+F5`
 
 ## License
 

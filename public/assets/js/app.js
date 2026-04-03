@@ -120,7 +120,7 @@ copyBtn.textContent = 'Copy số';
 copyBtn._resetTimer = null;
 }, 1800);
 }).catch(function () {
-showStatusToast('Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101', 'assets/icons/zalo.svg');
+showStatusToast('Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101', 'assets/images/zalo.svg');
 });
 }
 function resetDevZaloCopyState() {
@@ -148,7 +148,7 @@ copyBtn.textContent = 'Copy số';
 copyBtn._resetTimer = null;
 }, 1800);
 }).catch(function () {
-showStatusToast('Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101', 'assets/icons/zalo.svg');
+showStatusToast('Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101', 'assets/images/zalo.svg');
 });
 }
 function closeModal() {
@@ -216,7 +216,7 @@ copyButtons.forEach(function (btn) {
 btn.addEventListener("click", function () {
 var zaloId = btn.getAttribute("data-zalo-copy") || "0898908101";
 copyTextWithFallback(zaloId).then(function () {
-showStatusToast("Đã sao chép số Zalo: " + zaloId, "assets/icons/zalo.svg");
+showStatusToast("Đã sao chép số Zalo: " + zaloId, "assets/images/zalo.svg");
 }).catch(function () {
 showCopyPrompt(zaloId, "Đã sao chép số Zalo: " + zaloId);
 });

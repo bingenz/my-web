@@ -1,28 +1,40 @@
-# BinGenZ Web
+# BinGenZ
 
-Repo nay chua source cua landing page BinGenZ. Tai lieu nay chi tap trung vao cach sua noi dung, giao dien va nang cap tinh nang. Khong huong dan deploy.
+Landing page giới thiệu và bán tài khoản Premium của BinGenZ, đồng thời giới thiệu dịch vụ thiết kế website, bot Telegram và cộng đồng GenZ Đam Mê IT.
 
-## Cau truc chinh
+README này chỉ tập trung vào cách đọc cấu trúc, sửa nội dung, đổi giao diện và nâng cấp tính năng của web. Không hướng dẫn deploy.
 
-- `public/index.html`: khung trang chinh, section, modal, thong tin lien he.
-- `public/assets/css/main.css`: toan bo style giao dien.
-- `public/assets/js/app.js`: tuong tac modal, copy Zalo, toast, popup.
-- `public/assets/js/products.js`: du lieu san pham premium.
-- `public/assets/icons/zalo.svg`: icon Zalo dang dung trong giao dien.
-- `public/assets/images/`: anh san pham va anh thuong hieu.
-- `share-meta.js`: tieu de va mo ta chia se.
-- `sync-share-meta.js`: dong bo meta vao `public/index.html`.
-- `scripts/build.mjs`: tao lai thu muc `dist/` tu `public/`.
-- `scripts/check.mjs`: kiem tra asset sau khi build.
+## Nội dung hiện có trên web
 
-## Bat dau
+- Hero giới thiệu BinGenZ với 2 mảng chính: tài khoản Premium và dịch vụ lập trình.
+- Danh sách sản phẩm Premium: ChatGPT Plus, Grok Super, Gemini Pro, YouTube Premium, CapCut Pro.
+- Phân loại gói `CÁ NHÂN` và `CHÍNH CHỦ`.
+- Khối cộng đồng dẫn về group Facebook.
+- Khối dịch vụ lập trình: thiết kế website, bot Telegram, hỗ trợ bài tập lập trình.
+- Popup và nút liên hệ Zalo để mở nhanh hoặc copy số.
+- Thanh social gồm Facebook, TikTok, GitHub, Telegram.
 
-Yeu cau:
+## Cấu trúc chính
 
-- Node.js 20 tro len
+- [public/index.html](C:/Users/Acer/Downloads/binpinkgold2-main/public/index.html): toàn bộ khung trang, section, modal, popup Zalo, social link, block dịch vụ.
+- [public/assets/css/main.css](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/css/main.css): style giao diện, responsive, animation, modal, button.
+- [public/assets/js/app.js](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/js/app.js): logic mở modal, copy Zalo, toast, popup welcome, render hành vi trang.
+- [public/assets/js/products.js](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/js/products.js): dữ liệu sản phẩm Premium và thứ tự hiển thị.
+- [public/assets/images](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/images): ảnh sản phẩm, ảnh thương hiệu và icon Zalo đang dùng trên web.
+- [share-meta.js](C:/Users/Acer/Downloads/binpinkgold2-main/share-meta.js): tiêu đề và mô tả chia sẻ.
+- [sync-share-meta.js](C:/Users/Acer/Downloads/binpinkgold2-main/sync-share-meta.js): đồng bộ metadata vào `public/index.html`.
+- [scripts/build.mjs](C:/Users/Acer/Downloads/binpinkgold2-main/scripts/build.mjs): build thư mục `dist/` từ `public/`.
+- [scripts/check.mjs](C:/Users/Acer/Downloads/binpinkgold2-main/scripts/check.mjs): kiểm tra asset sau khi build.
+- [wrangler.jsonc](C:/Users/Acer/Downloads/binpinkgold2-main/wrangler.jsonc): cấu hình worker hiện tại.
+
+## Cách chạy khi chỉnh sửa
+
+Yêu cầu:
+
+- Node.js 20+
 - npm
 
-Lenh can dung:
+Lệnh cơ bản:
 
 ```bash
 npm install
@@ -30,44 +42,68 @@ npm run build
 npm run check
 ```
 
-`npm run build` se tao lai thu muc `dist/` tu source trong `public/`.
+`npm run build` sẽ sync metadata rồi tạo lại `dist/` từ source trong `public/`.
 
-## Cach sua nhanh
+## Chỉnh sửa theo nhu cầu
 
-Sua noi dung trang:
+Đổi nội dung trang:
 
-- Mo [public/index.html](C:/Users/Acer/Downloads/binpinkgold2-main/public/index.html) de thay text, section, link mang xa hoi, so Zalo.
-- Mo [public/assets/js/products.js](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/js/products.js) de them, xoa hoac sua goi san pham.
+- Sửa text, tiêu đề section, link mạng xã hội, số Zalo, popup liên hệ trong [public/index.html](C:/Users/Acer/Downloads/binpinkgold2-main/public/index.html).
 
-Sua giao dien:
+Đổi danh sách sản phẩm:
 
-- Mo [public/assets/css/main.css](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/css/main.css) de doi mau, khoang cach, button, modal, responsive.
+- Sửa object trong [public/assets/js/products.js](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/js/products.js).
+- Muốn đổi thứ tự card thì sửa `window.DISPLAY_ORDER`.
 
-Sua thong tin chia se:
+Đổi giao diện:
 
-- Mo [share-meta.js](C:/Users/Acer/Downloads/binpinkgold2-main/share-meta.js), sua `title` va `description`, sau do chay:
+- Sửa màu sắc, spacing, button, modal, responsive trong [public/assets/css/main.css](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/css/main.css).
+
+Đổi ảnh:
+
+- Ảnh sản phẩm và ảnh thương hiệu nằm trong [public/assets/images](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/images).
+- Icon Zalo hiện đang dùng file [public/assets/images/zalo.svg](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/images/zalo.svg).
+
+Đổi thông tin chia sẻ:
+
+- Sửa [share-meta.js](C:/Users/Acer/Downloads/binpinkgold2-main/share-meta.js), sau đó chạy lại:
 
 ```bash
 npm run build
 ```
 
-## Nang cap repo
+## Gợi ý nâng cấp
 
-- Muon them san pham moi: them object moi trong `window.PRODUCTS`.
-- Muon doi icon Zalo: thay file [public/assets/icons/zalo.svg](C:/Users/Acer/Downloads/binpinkgold2-main/public/assets/icons/zalo.svg).
-- Muon doi anh san pham: thay file trong `public/assets/images/` va cap nhat duong dan trong `products.js`.
-- Muon tach noi dung ra gon hon: dua cac doan HTML lap lai thanh template trong JS hoac tach thanh partial neu sau nay chuyen qua framework.
+- Tách dữ liệu social link và contact link ra file JS riêng để đỡ sửa lặp trong HTML.
+- Gom các block Zalo lặp lại thành template render chung.
+- Tách block dịch vụ lập trình và block cộng đồng thành component nếu sau này chuyển sang framework.
+- Chuẩn hóa UTF-8 cho các file dữ liệu nếu muốn tránh lỗi ký tự tiếng Việt ở một số file JS cũ.
 
-## Luu y khi chinh sua
+## Lưu ý
 
-- Repo nay dang uu tien sua truc tiep tren file tinh, khong can them huong dan deploy cho khach.
-- `dist/` la thu muc build lai duoc, khong nen sua tay.
-- Neu doi text co dau tieng Viet, nen luu file bang UTF-8 de tranh loi font/ky tu.
+- `dist/` là thư mục build, không nên sửa tay.
+- Web này đang ưu tiên sửa trực tiếp trên source tĩnh để bàn giao nhanh.
+- Nếu thay ảnh hoặc sửa metadata, nên build lại ngay để tránh lệch giữa source và bản build.
 
-## Thong tin lien he
+## Liên hệ
 
-- Zalo: `0898908101`
-- Facebook: [https://www.facebook.com/share/1AUUKX6NHa/](https://www.facebook.com/share/1AUUKX6NHa/)
-- TikTok: [https://www.tiktok.com/@bingenz_](https://www.tiktok.com/@bingenz_)
-- Telegram: [https://t.me/binpinkgold](https://t.me/binpinkgold)
-- GitHub: [https://github.com/bingenz](https://github.com/bingenz)
+<p>
+  <a href="https://zalo.me/0898908101" target="_blank" rel="noopener noreferrer">
+    <img alt="Zalo" src="https://img.shields.io/badge/Zalo-0898908101-0068FF?style=for-the-badge&logo=zalo&logoColor=white">
+  </a>
+  <a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noopener noreferrer">
+    <img alt="Facebook" src="https://img.shields.io/badge/Facebook-BinGenZ-1877F2?style=for-the-badge&logo=facebook&logoColor=white">
+  </a>
+  <a href="https://www.tiktok.com/@bingenz_" target="_blank" rel="noopener noreferrer">
+    <img alt="TikTok" src="https://img.shields.io/badge/TikTok-@bingenz__-000000?style=for-the-badge&logo=tiktok&logoColor=white">
+  </a>
+</p>
+
+<p>
+  <a href="https://t.me/binpinkgold" target="_blank" rel="noopener noreferrer">
+    <img alt="Telegram" src="https://img.shields.io/badge/Telegram-binpinkgold-26A5E4?style=for-the-badge&logo=telegram&logoColor=white">
+  </a>
+  <a href="https://github.com/bingenz" target="_blank" rel="noopener noreferrer">
+    <img alt="GitHub" src="https://img.shields.io/badge/GitHub-bingenz-181717?style=for-the-badge&logo=github&logoColor=white">
+  </a>
+</p>

@@ -13,5 +13,6 @@
   },
   "devDependencies": {
     "wrangler": "^4.41.0"
-  }
+  },
+  "license": "UNLICENSED"
 }

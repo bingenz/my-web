@@ -123,7 +123,7 @@ function toggleDevDetail() {
 }
 
 function resetModalZaloCopyState() {
-  var copyBtn = document.getElementById("modalZaloCopyBtn");
+  const copyBtn = document.getElementById("modalZaloCopyBtn");
   if (!copyBtn) return;
   if (copyBtn._resetTimer) {
     clearTimeout(copyBtn._resetTimer);
@@ -134,13 +134,11 @@ function resetModalZaloCopyState() {
 }
 
 function copyModalZalo() {
-  var copyBtn = document.getElementById("modalZaloCopyBtn");
+  const copyBtn = document.getElementById("modalZaloCopyBtn");
   if (!copyBtn) return;
 
   copyTextWithFallback("0898908101").then(function () {
-    if (copyBtn._resetTimer) {
-      clearTimeout(copyBtn._resetTimer);
-    }
+    if (copyBtn._resetTimer) clearTimeout(copyBtn._resetTimer);
     copyBtn.classList.add("is-copied");
     copyBtn.textContent = "Đã copy";
     copyBtn._resetTimer = setTimeout(function () {
@@ -154,7 +152,7 @@ function copyModalZalo() {
 }
 
 function resetDevZaloCopyState() {
-  var copyBtn = document.getElementById("devZaloCopyBtn");
+  const copyBtn = document.getElementById("devZaloCopyBtn");
   if (!copyBtn) return;
   if (copyBtn._resetTimer) {
     clearTimeout(copyBtn._resetTimer);
@@ -165,13 +163,11 @@ function resetDevZaloCopyState() {
 }
 
 function copyDevZalo() {
-  var copyBtn = document.getElementById("devZaloCopyBtn");
+  const copyBtn = document.getElementById("devZaloCopyBtn");
   if (!copyBtn) return;
 
   copyTextWithFallback("0898908101").then(function () {
-    if (copyBtn._resetTimer) {
-      clearTimeout(copyBtn._resetTimer);
-    }
+    if (copyBtn._resetTimer) clearTimeout(copyBtn._resetTimer);
     copyBtn.classList.add("is-copied");
     copyBtn.textContent = "Đã copy";
     copyBtn._resetTimer = setTimeout(function () {
@@ -228,7 +224,7 @@ function copyTextWithFallback(text) {
 function tryExecCommandCopy(text) {
   return new Promise(function (resolve, reject) {
     try {
-      var input = document.createElement("textarea");
+      const input = document.createElement("textarea");
       input.value = text;
       input.setAttribute("readonly", "");
       input.style.cssText = "position:fixed;top:0;left:0;width:2em;height:2em;padding:0;border:none;outline:none;box-shadow:none;background:transparent;font-size:16px;opacity:0;z-index:-1;";
@@ -237,7 +233,7 @@ function tryExecCommandCopy(text) {
       input.select();
       input.setSelectionRange(0, text.length);
 
-      var copied = document.execCommand("copy");
+      const copied = document.execCommand("copy");
       document.body.removeChild(input);
       if (copied) {
         resolve();
@@ -256,7 +252,7 @@ function showCopyPrompt(text, message) {
 }
 
 function zaloOpenPopup() {
-  var popup = document.getElementById("zaloPopup");
+  const popup = document.getElementById("zaloPopup");
   if (!popup) return;
   popup.classList.add("open");
   document.body.style.overflow = "hidden";
@@ -264,22 +260,20 @@ function zaloOpenPopup() {
 }
 
 function zaloClosePopup() {
-  var popup = document.getElementById("zaloPopup");
+  const popup = document.getElementById("zaloPopup");
   if (!popup) return;
   popup.classList.remove("open");
   document.body.style.overflow = "";
 }
 
 function copyContactZalo() {
-  var copyBtn = document.getElementById("zaloCopyBtn");
-  var copyLabel = copyBtn ? copyBtn.querySelector(".copy-label") : null;
-  var resetTimer = copyBtn ? copyBtn._resetTimer : null;
+  const copyBtn = document.getElementById("zaloCopyBtn");
+  const copyLabel = copyBtn ? copyBtn.querySelector(".copy-label") : null;
+  const resetTimer = copyBtn ? copyBtn._resetTimer : null;
 
   copyTextWithFallback("0898908101").then(function () {
     if (!copyBtn || !copyLabel) return;
-    if (resetTimer) {
-      clearTimeout(resetTimer);
-    }
+    if (resetTimer) clearTimeout(resetTimer);
     copyBtn.classList.add("is-copied");
     copyLabel.textContent = "Đã copy";
     copyBtn._resetTimer = setTimeout(function () {
@@ -294,33 +288,33 @@ function copyContactZalo() {
 
 function openFirstProduct(e) {
   e.preventDefault();
-  var target = document.getElementById("products");
+  const target = document.getElementById("products");
   if (!target) return;
 
-  var topbar = document.querySelector(".topbar");
-  var topbarH = topbar ? topbar.offsetHeight : 68;
-  var top = target.getBoundingClientRect().top + window.scrollY - topbarH;
-  window.scrollTo({ top: top, behavior: "smooth" });
+  const topbar = document.querySelector(".topbar");
+  const topbarH = topbar ? topbar.offsetHeight : 68;
+  const top = target.getBoundingClientRect().top + window.scrollY - topbarH;
+  window.scrollTo({ top, behavior: "smooth" });
 }
 
 renderProducts();
 
 (function () {
-  var notifBar = document.querySelector(".notif-bar");
-  var communityCard = document.querySelector("#community .community-card-link");
-  var topbar = document.querySelector(".topbar");
+  const notifBar = document.querySelector(".notif-bar");
+  const communityCard = document.querySelector("#community .community-card-link");
+  const topbar = document.querySelector(".topbar");
   if (!notifBar || !communityCard || !topbar) return;
 
   function syncNotifBar() {
-    var welcomeOverlay = document.getElementById("welcomeNotif");
+    const welcomeOverlay = document.getElementById("welcomeNotif");
     if (welcomeOverlay && welcomeOverlay.classList.contains("open")) {
       notifBar.classList.remove("visible");
       return;
     }
 
-    var topbarH = topbar.offsetHeight || 68;
-    var triggerBottom = communityCard.getBoundingClientRect().bottom + window.scrollY;
-    var viewportTop = window.scrollY + topbarH + 8;
+    const topbarH = topbar.offsetHeight || 68;
+    const triggerBottom = communityCard.getBoundingClientRect().bottom + window.scrollY;
+    const viewportTop = window.scrollY + topbarH + 8;
 
     if (viewportTop >= triggerBottom) {
       notifBar.classList.add("visible");
@@ -342,7 +336,7 @@ renderProducts();
 })();
 
 function welcomeOpen() {
-  var overlay = document.getElementById("welcomeNotif");
+  const overlay = document.getElementById("welcomeNotif");
   if (!overlay) return;
   overlay.style.display = "flex";
   void overlay.offsetWidth;
@@ -352,7 +346,7 @@ function welcomeOpen() {
 }
 
 function welcomeClose() {
-  var overlay = document.getElementById("welcomeNotif");
+  const overlay = document.getElementById("welcomeNotif");
   if (!overlay) return;
   overlay.classList.remove("open");
   document.body.style.overflow = "";
@@ -366,7 +360,7 @@ function welcomeClose() {
 }
 
 function welcomeCopyZalo() {
-  var btn = document.getElementById("welcomeCopyBtn");
+  const btn = document.getElementById("welcomeCopyBtn");
   if (!btn) return;
 
   copyTextWithFallback("0898908101").then(function () {
@@ -417,14 +411,14 @@ function normalizeRestoredUiState(isBackForward) {
   });
 
   ["welcomePopup", "welcomeModal", "welcomeOverlay", "wlcPopup"].forEach(function (id) {
-    var el = document.getElementById(id);
+    const el = document.getElementById(id);
     if (!el) return;
     el.classList.remove("open", "show", "active");
     el.style.display = "none";
   });
 
   if (isBackForward) {
-    var wn = document.getElementById("welcomeNotif");
+    const wn = document.getElementById("welcomeNotif");
     if (wn) {
       wn.classList.remove("open", "show", "active");
       wn.style.display = "";
@@ -434,22 +428,22 @@ function normalizeRestoredUiState(isBackForward) {
   document.body.classList.remove("modal-open", "overlay-open", "no-scroll");
   document.body.style.overflow = "";
 
-  var redirectToast = document.getElementById("redirectToast");
+  const redirectToast = document.getElementById("redirectToast");
   if (redirectToast) redirectToast.classList.remove("show");
 }
 
 window.addEventListener("pageshow", function (event) {
-  var nav = null;
+  let nav = null;
   if (window.performance && typeof window.performance.getEntriesByType === "function") {
-    var entries = window.performance.getEntriesByType("navigation");
+    const entries = window.performance.getEntriesByType("navigation");
     if (entries && entries.length) nav = entries[0];
   }
 
-  var isBackForward = !!event.persisted || (nav && nav.type === "back_forward");
+  const isBackForward = !!event.persisted || (nav && nav.type === "back_forward");
   normalizeRestoredUiState(isBackForward);
   if (!isBackForward) return;
 
-  var reloadKey = "__bingenz_bf_reloaded__";
+  const reloadKey = "__bingenz_bf_reloaded__";
   try {
     if (sessionStorage.getItem(reloadKey) === "1") {
       sessionStorage.removeItem(reloadKey);

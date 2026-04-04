@@ -1,8 +1,8 @@
 # BinGenZ Website
 
-Landing page t)nh cho `bingenz.com`, build t� th� m�c `public/` sang `dist/` v� deploy qua Cloudflare.
+Static landing page cho `bingenz.com`, build tu thu muc `public/` sang `dist/` va deploy qua Cloudflare.
 
-## C�u tr�c repo
+## Cau truc repo
 
 ```text
 my-web/
@@ -20,61 +20,60 @@ my-web/
 |-- scripts/
 |   |-- build.mjs
 |   `-- check.mjs
-|-- dist/
 |-- .github/workflows/deploy-worker.yml
 |-- wrangler.jsonc
 |-- package.json
 `-- README.md
 ```
 
-## File n�o ch�nh ph�n g�
+## File nao chinh phan gi
 
 `public/index.html`
 
-- C�u tr�c trang.
-- N�i dung section, modal, popup, social links, s� i�n tho�i.
-- Metadata chia s� m�ng x� h�i nh� `title`, `description`, `og:*`, `twitter:*`.
+- Cau truc trang.
+- Noi dung section, modal, popup, social links, so dien thoai.
+- Metadata chia se mang xa hoi nhu `title`, `description`, `og:*`, `twitter:*`.
 
 `public/assets/css/main.css`
 
-- To�n b� giao di�n: m�u, gradient, spacing, card, button, popup, responsive.
+- Toan bo giao dien: mau, gradient, spacing, card, button, popup, responsive.
 
 `public/assets/js/products.js`
 
-- D� li�u s�n ph�m.
-- Gi�, badge, tag, �nh, th� t� hi�n th�.
+- Du lieu san pham.
+- Gia, badge, tag, anh, thu tu hien thi.
 
 `public/assets/js/app.js`
 
-- Logic popup, modal, copy s� i�n tho�i, toast, chuy�n h��ng.
+- Logic popup, modal, copy so dien thoai, toast, chuyen huong.
 
 `public/assets/js/head.js`
 
-- Logic kh�i t�o s�m trong ph�n `<head>`.
+- Logic khoi tao som trong phan `<head>`.
 
 `public/assets/images/`
 
-- �nh s�n ph�m, �nh th��ng hi�u, logo d�ng trong UI.
+- Anh san pham, anh thuong hieu, logo dung trong UI.
 
-## Metadata chia s� link
+## Metadata chia se link
 
-Metadata hi�n ��c �t tr�c ti�p trong `public/index.html`.
+Metadata hien duoc dat truc tiep trong `public/index.html`.
 
-N�u mu�n ch�nh preview khi chia s� l�n Facebook, Zalo, Telegram, Messenger:
+Neu muon chinh preview khi chia se len Facebook, Zalo, Telegram, Messenger:
 
-- s�a `<title>`
-- s�a `<meta name="description">`
-- s�a `og:title`
-- s�a `og:description`
-- s�a `twitter:title`
-- s�a `twitter:description`
+- sua `<title>`
+- sua `<meta name="description">`
+- sua `og:title`
+- sua `og:description`
+- sua `twitter:title`
+- sua `twitter:description`
 
-L�u �:
+Luu y:
 
-- `og:image` hi�n ang � tr�ng. N�u mu�n card chia s� c� �nh c� �nh, h�y th�m URL �nh public h�p l� v�o `og:image`.
-- Sau khi s�a metadata, c�n build l�i � c�p nh�t `dist/`.
+- `og:image` hien de trong. Neu muon card chia se co anh co dinh, hay them URL anh public hop le vao `og:image`.
+- Sau khi sua metadata, can build lai de cap nhat `dist/`.
 
-## Ch�y local
+## Chay local
 
 ```bash
 npm install
@@ -82,43 +81,43 @@ npm run build
 npm run check
 ```
 
-� ngh)a:
+Y nghia:
 
-- `npm run build`: copy to�n b� site t� `public/` sang `dist/`
-- `npm run check`: ki�m tra `dist/index.html`, asset refs v� ch�y `wrangler check`
+- `npm run build`: copy toan bo site tu `public/` sang `dist/`
+- `npm run check`: kiem tra `dist/index.html`, asset refs va chay `wrangler check`
 
-Mu�n xem nhanh local:
+Muon xem nhanh local:
 
 ```bash
 cd dist
 python -m http.server 4173
 ```
 
-M� [http://localhost:4173](http://localhost:4173).
+Mo [http://localhost:4173](http://localhost:4173).
 
-## Quy tr�nh ch�nh s�a
+## Quy trinh chinh sua
 
-1. S�a file trong `public/`
-2. Ch�y `npm run build`
-3. Ch�y `npm run check`
-4. Xem l�i local preview
-5. Commit v� push l�n `main`
+1. Sua file trong `public/`
+2. Chay `npm run build`
+3. Chay `npm run check`
+4. Xem lai local preview
+5. Commit va push len `main`
 
 ## Deploy
 
-Repo ang d�ng GitHub Actions qua `.github/workflows/deploy-worker.yml`.
+Repo dang dung GitHub Actions qua `.github/workflows/deploy-worker.yml`.
 
-Khi push l�n `main`, workflow s� deploy b�n m�i l�n Cloudflare.
+Khi push len `main`, workflow se deploy ban moi len Cloudflare.
 
-Secret b�t bu�c:
+Secret bat buoc:
 
 - `CLOUDFLARE_API_TOKEN`
 
-## L�u �
+## Luu y
 
-- Kh�ng s�a tr�c ti�p trong `dist/`
-- `dist/` lu�n l� output build t� `public/`
-- N�u social preview ch�a c�p nh�t ngay sau deploy, c�c n�n t�ng m�ng x� h�i c� th� ang cache metadata ci
+- Khong sua truc tiep trong `dist/`
+- `dist/` luon la output build tu `public/`
+- Neu social preview chua cap nhat ngay sau deploy, cac nen tang mang xa hoi co the dang cache metadata cu
 
 ## License
 

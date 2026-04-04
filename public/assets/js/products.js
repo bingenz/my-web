@@ -86,23 +86,6 @@ bullets: [
 ]
 },
 {
-id: "yt",
-label: "CHÍNH CHỦ",
-gmailChip: true,
-image: "assets/images/YT.jpg",
-name: "YouTube Premium",
-tag: "Tặng kèm YT Music · Không quảng cáo",
-rawPrice: "39K",
-oldPrice: "105.000đ",
-perDay: "chỉ 1.300đ / ngày",
-monthlyPrice: 39000,
-bullets: [
-"Kích hoạt thẳng vào <b class='hl'>Gmail chính chủ</b> của bạn",
-"Truy cập mọi tính năng <b class='hl'>Premium</b> của Youtube",
-"Chỉ cần cung cấp Gmail → <b class='hl'>kích hoạt trong 1 phút</b> (không cần mật khẩu)"
-]
-},
-{
 id: "capcut",
 label: "CÁ NHÂN",
 image: "assets/images/CAPCUT.jpg",
@@ -120,4 +103,4 @@ bullets: [
 }
 ];
 
-window.DISPLAY_ORDER = ["gpt", "gpt-gmail", "gemini", "gemini-gmail", "grok", "yt", "capcut"];
+window.DISPLAY_ORDER = ["gpt", "gpt-gmail", "gemini", "gemini-gmail", "grok", "capcut"];

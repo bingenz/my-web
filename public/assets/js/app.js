@@ -15,7 +15,6 @@ function escapeAttr(value) {
 
 function productCard(p) {
   const displayPrice = p.monthlyPrice ? fmtPriceShort(p.monthlyPrice) : p.rawPrice || "";
-  const tagHtml = p.tag ? `<div class="tag">${p.tag}</div>` : "";
 
   return `
 <article class="card">
@@ -24,7 +23,6 @@ function productCard(p) {
 <img class="head-ico" src="${p.image}" alt="${escapeAttr(p.name)}" loading="lazy" decoding="async" width="48" height="48">
 <div class="head-text">
 <h3 class="name">${p.name}</h3>
-${tagHtml}
 </div>
 </div>
 <span class="badge ${p.label === "CHÍNH CHỦ" ? "red" : "green"}">${p.label || "CÁ NHÂN"}</span>

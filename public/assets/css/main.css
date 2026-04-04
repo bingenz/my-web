@@ -138,7 +138,6 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Geist Sans", sans-serif; }
 .head-ico { width: 3em; height: 3em; border-radius: 0.875em; background: #eef3f9; flex-shrink: 0; display: block; }
 .head-text { min-width: 0; }
 .name { font-size: clamp(0.88rem, 3.5vw, 1.15rem); font-weight: 800; letter-spacing: -0.01em; margin: 0 0 3px; word-break: break-word; overflow-wrap: break-word; }
-.tag { color: #94a3b8; font-size: 0.60em; margin: 0; line-height: 1.4; }
 .badge { border-radius: 999px; padding: 5px 10px; font-size: 0.65em; white-space: nowrap; font-weight: 800; flex-shrink: 0; letter-spacing: 0.04em; }
 .badge.green { border: 2px solid #22c55e; background: #dcfce7; color: #15803d; box-shadow: 0 2px 8px rgba(22,163,74,0.18); }
 .badge.red { border: 2px solid #f87171; background: #fee2e2; color: #b91c1c; box-shadow: 0 2px 8px rgba(185,28,28,0.18); }

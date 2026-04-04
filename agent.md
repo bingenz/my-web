@@ -34,6 +34,8 @@
 - Do not add new product fields unless the UI actually renders them.
 - If a field becomes unused, remove it instead of leaving dead data behind.
 - Product ordering must continue to flow through `DISPLAY_ORDER`.
+- Do not keep legacy marketing copy in product data when the current UI does not use it.
+- If the user rejects old copy, tags, bullets, or labels, delete them from source instead of merely hiding them in the UI.
 
 ## JavaScript Rules
 
@@ -73,3 +75,5 @@
 - Do not add frameworks, bundlers, or major architecture changes unless the user explicitly asks.
 - Do not migrate this project to React, Next.js, Vite, Tailwind, or any SPA setup by default.
 - Keep changes minimal, local, and consistent with the current static-site structure.
+- Do not restore old content, old UI blocks, old colors, or old copy from git history unless the user explicitly asks for that exact restoration.
+- When using git history for reference, treat it as read-only context, not as approval to bring old content back.

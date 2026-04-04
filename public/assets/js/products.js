@@ -19,7 +19,6 @@ bullets: [
 {
 id: "gpt-gmail",
 label: "CHÍNH CHỦ",
-gmailChip: true,
 image: "assets/images/GPT.jpg",
 name: "ChatGPT Plus",
 tag: "<span style='display:block;background:linear-gradient(135deg,#121c33 0%,#22304a 40%,#4f6482 72%,#7d95ae 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>GPT-5.4 PRO · Workspace Business Team</span>",
@@ -54,7 +53,6 @@ bullets: [
 {
 id: "gemini-gmail",
 label: "CHÍNH CHỦ",
-gmailChip: true,
 image: "assets/images/gemini.jpg",
 name: "Gemini Pro",
 tag: "<span style='display:block;background:linear-gradient(90deg,#1a73e8 0%,#12a87a 30%,#f9ab00 60%,#e8453c 85%,#c2185b 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;'>Gemini 3.1 Pro · Veo 3 · NotebookLM</span>",

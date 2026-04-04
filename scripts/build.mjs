@@ -6,8 +6,13 @@ const sourceDir = path.join(rootDir, "public");
 const outputDir = path.join(rootDir, "dist");
 
 async function resetDir(dirPath) {
-  await fs.rm(dirPath, { recursive: true, force: true });
   await fs.mkdir(dirPath, { recursive: true });
+  const entries = await fs.readdir(dirPath, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const targetPath = path.join(dirPath, entry.name);
+    await fs.rm(targetPath, { recursive: true, force: true });
+  }
 }
 
 async function copyDir(from, to) {

@@ -7,9 +7,8 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "sync-meta": "node sync-share-meta.js",
-    "build": "node sync-share-meta.js && node scripts/build.mjs",
-    "check": "node sync-share-meta.js && node scripts/check.mjs"
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.41.0"

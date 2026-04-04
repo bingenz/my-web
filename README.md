@@ -41,7 +41,7 @@ my-web/
 `public/assets/js/products.js`
 
 - Dữ liệu sản phẩm.
-- Giá, badge, tag, ảnh, thứ tự hiển thị.
+- Giá, badge, ảnh, thứ tự hiển thị.
 
 `public/assets/js/app.js`
 

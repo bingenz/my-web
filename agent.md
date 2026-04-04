@@ -24,6 +24,7 @@
 
 - Keep the current slate/navy gradient palette.
 - Do not reintroduce the old purple-heavy palette.
+- Exception: product/service illustration colors that the user explicitly keeps as original reference art may remain unchanged.
 - Reuse existing tokens in `public/assets/css/main.css` when possible.
 - Prefer shared CSS classes over adding new inline styles.
 - Preserve the current visual language unless the user explicitly asks for a redesign.

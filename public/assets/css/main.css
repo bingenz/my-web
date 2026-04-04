@@ -226,8 +226,6 @@ rgba(15, 23, 42, 0.46); backdrop-filter: blur(16px) saturate(1.25); -webkit-back
 .modal-title { font-size: 1em; font-weight: 800; margin: 0; }
 .close-btn { border: 1px solid #cbd5e1; border-radius: 999px; background: #fff; padding: 0.5em 1em; cursor: pointer; font-weight: 700; font-family: "Geist Sans", sans-serif; font-size: 0.82em; }
 .modal-body { padding: 0.75em 0.875em; display: grid; gap: 0.5em; }
-.modal-desc-wrap { background: rgba(241,245,255,0.8); border: 1px solid rgba(199,210,254,0.5); border-radius: 1em; padding: 0.875em 1em; }
-.modal-list { margin: 0; padding: 0; list-style: none; color: #334155; font-size: 0.85em; display: grid; gap: 6px; }
 .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .modal-contact-note { font-size: 0.75em; font-weight: 600; color: #334155; background: rgba(241,245,255,0.8); border: 1px solid rgba(199,210,254,0.5); border-radius: 20px; padding: 12px 16px; }
 .contact-cta { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border-radius: 999px; padding: 0.82em 0.75em; font-size: 0.82em; font-weight: 700; font-family: "Geist Sans", sans-serif; text-decoration: none; text-align: center; white-space: nowrap; overflow: hidden; min-width: 0; width: 100%; color: #fff; transition: transform 0.15s ease, box-shadow 0.15s ease; }

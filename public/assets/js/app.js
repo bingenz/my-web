@@ -76,19 +76,6 @@ function openProduct(id) {
     ico.style.display = "block";
   }
 
-  const mTag = document.getElementById("mTag");
-  if (mTag) {
-    mTag.innerHTML = p.tag || "";
-    mTag.hidden = !p.tag;
-  }
-
-  const mBullets = document.getElementById("mBullets");
-  if (mBullets) {
-    const bullets = Array.isArray(p.bullets) ? p.bullets : [];
-    mBullets.innerHTML = bullets.map(item => `<li>${item}</li>`).join("");
-    mBullets.hidden = bullets.length === 0;
-  }
-
   const modal = document.getElementById("productModal");
   if (!modal) return;
   modal.classList.add("open");

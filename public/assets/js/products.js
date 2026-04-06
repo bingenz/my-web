@@ -4,10 +4,9 @@ id: "grok",
 label: "CÁ NHÂN",
 image: "assets/images/grok.jpg",
 name: "Grok Super",
-rawPrice: "149K",
+rawPrice: "99K",
 oldPrice: "792.000đ",
-perDay: "chỉ 5.000đ / ngày",
-monthlyPrice: 149000
+perDay: "chỉ 3.000đ / ngày",
 },
 {
 id: "gpt-gmail",
@@ -17,7 +16,6 @@ name: "ChatGPT Plus",
 rawPrice: "149K",
 oldPrice: "649.000đ",
 perDay: "chỉ 5.000đ / ngày",
-monthlyPrice: 149000
 },
 {
 id: "gpt",
@@ -27,7 +25,6 @@ name: "ChatGPT Plus",
 rawPrice: "99K",
 oldPrice: "522.500đ",
 perDay: "chỉ 3.000đ / ngày",
-monthlyPrice: 99000
 },
 {
 id: "gemini-gmail",
@@ -37,7 +34,6 @@ name: "Gemini Pro",
 rawPrice: "129K",
 oldPrice: "489.000đ",
 perDay: "chỉ 4.000đ / ngày",
-monthlyPrice: 129000
 },
 {
 id: "gemini",
@@ -47,7 +43,6 @@ name: "Gemini Pro",
 rawPrice: "99K",
 oldPrice: "489.000đ",
 perDay: "chỉ 3.000đ / ngày",
-monthlyPrice: 99000
 },
 {
 id: "capcut",
@@ -57,7 +52,6 @@ name: "CapCut Pro",
 rawPrice: "49K",
 oldPrice: "145.000đ",
 perDay: "chỉ 1.500đ / ngày",
-monthlyPrice: 49000
 }
 ];
 

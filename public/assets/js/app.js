@@ -236,7 +236,64 @@ function showCopyPrompt(text, message) {
   showStatusToast(message || ("Đã sao chép: " + text), "");
 }
 
-function zaloOpenPopup() {
+function communityOpenPopup() {
+  resetCommunityCopyState("communityFbCopyBtn", "Copy link");
+  resetCommunityCopyState("communityZaloCopyBtn", "Copy link");
+  const popup = document.getElementById("communityPopup");
+  if (!popup) return;
+  popup.classList.add("open");
+  document.body.style.overflow = "hidden";
+  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
+}
+
+function communityClosePopup() {
+  const popup = document.getElementById("communityPopup");
+  if (!popup) return;
+  popup.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function resetCommunityCopyState(btnId, label) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+  if (btn._resetTimer) { clearTimeout(btn._resetTimer); btn._resetTimer = null; }
+  btn.classList.remove("is-copied");
+  btn.querySelector(".copy-label").textContent = label;
+}
+
+function communityFbCopy() {
+  const btn = document.getElementById("communityFbCopyBtn");
+  copyTextWithFallback("https://www.facebook.com/groups/1083123091540550/").then(function () {
+    if (btn._resetTimer) clearTimeout(btn._resetTimer);
+    btn.classList.add("is-copied");
+    btn.querySelector(".copy-label").textContent = "Đã copy";
+    btn._resetTimer = setTimeout(function () {
+      btn.classList.remove("is-copied");
+      btn.querySelector(".copy-label").textContent = "Copy link";
+      btn._resetTimer = null;
+    }, 1800);
+  }).catch(function () {
+    showCopyPrompt("https://www.facebook.com/groups/1083123091540550/", "Đã sao chép link Facebook");
+  });
+}
+
+function communityZaloCopy() {
+  const btn = document.getElementById("communityZaloCopyBtn");
+  copyTextWithFallback("https://zalo.me/g/iaujemqdy7tpv6d0bapx").then(function () {
+    if (btn._resetTimer) clearTimeout(btn._resetTimer);
+    btn.classList.add("is-copied");
+    btn.querySelector(".copy-label").textContent = "Đã copy";
+    btn._resetTimer = setTimeout(function () {
+      btn.classList.remove("is-copied");
+      btn.querySelector(".copy-label").textContent = "Copy link";
+      btn._resetTimer = null;
+    }, 1800);
+  }).catch(function () {
+    showCopyPrompt("https://zalo.me/g/iaujemqdy7tpv6d0bapx", "Đã sao chép link Zalo");
+  });
+}
+
+
   const popup = document.getElementById("zaloPopup");
   if (!popup) return;
   popup.classList.add("open");

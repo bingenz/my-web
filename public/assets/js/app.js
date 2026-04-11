@@ -16,29 +16,21 @@ function escapeAttr(value) {
 
 function productCard(p) {
   const displayPrice = p.monthlyPrice ? fmtPriceShort(p.monthlyPrice) : p.rawPrice || "";
+  const isOfficial = p.label === "CHÍNH CHỦ";
 
   return `
-<article class="card">
-<div class="head">
-<div class="head-left">
-<img class="head-ico" src="${p.image}" alt="${escapeAttr(p.name)}" loading="lazy" decoding="async" width="48" height="48">
-<div class="head-text">
-<h3 class="name">${p.name}</h3>
+<article class="card pcard" onclick="openProduct('${escapeAttr(p.id)}')">
+<span class="badge ${isOfficial ? "red" : "green"} pcard-badge">${p.label || "CÁ NHÂN"}</span>
+<div class="pcard-top">
+<img class="pcard-ico" src="${p.image}" alt="${escapeAttr(p.name)}" loading="lazy" decoding="async" width="42" height="42">
+<h3 class="pcard-name">${p.name}</h3>
 </div>
+<div class="pcard-bottom">
+<div class="pcard-price-block">
+<div class="pcard-price-val">${displayPrice}<span class="pcard-price-mo"> /tháng</span></div>
+<div class="pcard-price-old">Gốc: <s>${p.oldPrice}</s></div>
 </div>
-<span class="badge ${p.label === "CHÍNH CHỦ" ? "red" : "green"}">${p.label || "CÁ NHÂN"}</span>
-</div>
-<div class="price-row">
-<div class="price-main">
-<div class="price">${displayPrice}</div><span class="price-month">/tháng</span>
-</div>
-</div>
-<div class="price-subrow">
-<div class="old">Giá gốc: <s>${p.oldPrice}</s></div>
-<div class="day">${p.perDay}</div>
-</div>
-<div class="cta-row">
-<button class="cta buy" onclick="openProduct('${p.id}')">Đăng ký ngay</button>
+<button class="pcard-cta" onclick="event.stopPropagation();openProduct('${escapeAttr(p.id)}')">Mua ngay</button>
 </div>
 </article>
 `;
@@ -53,7 +45,7 @@ function renderProducts() {
   if (!wrap) return;
 
   const ordered = DISPLAY_ORDER.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
-  wrap.innerHTML = `<div class="grid">${ordered.map(productCard).join("")}</div>`;
+  wrap.innerHTML = `<div class="pcard-list">${ordered.map(productCard).join("")}</div>`;
 }
 
 function openProduct(id) {

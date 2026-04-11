@@ -124,7 +124,7 @@ Xem thông báo mới từ BinGenZ
 <div style="width:40px;height:4px;background:linear-gradient(135deg,#4338ca,#0ea5e9);border-radius:999px;"></div>
 </div>
 <div class="container community-wrap">
-<a class="community-card-link" href="https://www.facebook.com/groups/1083123091540550/" target="_blank" rel="noopener" aria-label="Tham gia group Facebook GenZ Đam Mê IT · Vibe Code · AI">
+<a class="community-card-link" href="javascript:void(0)" onclick="communityOpenPopup()" aria-label="Tham gia group GenZ Đam Mê IT · Vibe Code · AI">
 <div class="fb-mockup" role="link" tabindex="0">
 <div class="fb-cover">
 <div class="fb-cover-gradient"></div>
@@ -262,6 +262,41 @@ Xem thông báo mới từ BinGenZ
 <div class="link-popup-note">
 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
 <div>Nếu không mở được. <strong>Copy số</strong> rồi tìm trên Zalo.</div>
+</div>
+</div>
+</div>
+
+<div class="link-popup" id="communityPopup" onclick="if(event.target===this)communityClosePopup()">
+<div class="link-popup-box">
+<div class="link-popup-list">
+<div class="link-popup-item">
+<div class="link-popup-row">
+<div class="link-popup-name">Nhóm Facebook</div>
+<div class="link-popup-url">facebook.com/groups/1083123091540550</div>
+</div>
+<div class="link-popup-actions">
+<a class="link-popup-btn open" href="https://www.facebook.com/groups/1083123091540550/" target="_blank" rel="noopener" onclick="showRedirectToast('Facebook','https://cdn.simpleicons.org/facebook/1877F2');communityClosePopup()">Mở nhóm</a>
+<button class="link-popup-btn copy" id="communityFbCopyBtn" type="button" onclick="communityFbCopy()">
+<span class="copy-label">Copy link</span>
+</button>
+</div>
+</div>
+<div class="link-popup-item">
+<div class="link-popup-row">
+<div class="link-popup-name">Nhóm Zalo</div>
+<div class="link-popup-url">zalo.me/g/iaujemqdy7tpv6d0bapx</div>
+</div>
+<div class="link-popup-actions">
+<a class="link-popup-btn open" href="https://zalo.me/g/iaujemqdy7tpv6d0bapx" target="_blank" rel="noopener" onclick="showRedirectToast('Zalo','https://cdn.simpleicons.org/zalo/0068FF');communityClosePopup()">Mở nhóm</a>
+<button class="link-popup-btn copy" id="communityZaloCopyBtn" type="button" onclick="communityZaloCopy()">
+<span class="copy-label">Copy link</span>
+</button>
+</div>
+</div>
+</div>
+<div class="link-popup-note">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+<div>Nếu không mở được — <strong>Copy link</strong> rồi dán vào <strong>Chrome</strong> hoặc <strong>Safari</strong>.</div>
 </div>
 </div>
 </div>
@@ -445,3 +480,4 @@ Copy số
 <script src="assets/js/app.js" defer></script>
 </body>
   </html>
+

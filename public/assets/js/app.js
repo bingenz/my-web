@@ -58,7 +58,7 @@ function openProduct(id) {
   if (mName) {
     if (p.label) {
       const isOfficial = p.label === "CHÍNH CHỦ";
-      mName.innerHTML = `${p.name} <span style="display:inline-block;font-size:0.55em;font-weight:800;letter-spacing:0.04em;padding:0.15em 0.55em;border-radius:999px;vertical-align:middle;line-height:1.5;${isOfficial ? "color:#b91c1c;border:1.5px solid #fca5a5;background:#fff1f2;" : "color:#166534;border:1.5px solid #86efac;background:#f0fdf4;"}">${p.label}</span>`;
+      mName.innerHTML = `${p.name} <span style="display:inline-block;font-size:0.55em;font-weight:800;letter-spacing:0.04em;padding:0.15em 0.55em;border-radius:999px;vertical-align:middle;line-height:1.5;${isOfficial ? "color:#f87171;border:1.5px solid rgba(239,68,68,0.3);background:rgba(239,68,68,0.12);" : "color:#4ade80;border:1.5px solid rgba(34,197,94,0.3);background:rgba(34,197,94,0.12);"}">${p.label}</span>`;
     } else {
       mName.textContent = p.name;
     }
@@ -494,3 +494,4 @@ window.addEventListener("pageshow", function (event) {
 
   location.replace(location.pathname + location.search);
 });
+

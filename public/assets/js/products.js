@@ -1,12 +1,12 @@
 window.PRODUCTS = [
 {
-id: "grok",
+id: "veo3",
 label: "CÁ NHÂN",
-image: "assets/images/grok.jpg",
-name: "Grok Super",
-rawPrice: "99K",
-oldPrice: "792.000đ",
-perDay: "chỉ 3.000đ / ngày",
+image: "assets/images/veo.jpg",
+name: "Veo3 Ultra + Antigravity 25k Credit",
+rawPrice: "139K",
+oldPrice: "1.800.000đ",
+perDay: "chỉ 4.600đ / ngày",
 },
 {
 id: "gpt-gmail",
@@ -55,4 +55,4 @@ perDay: "chỉ 1.500đ / ngày",
 }
 ];
 
-window.DISPLAY_ORDER = ["gpt", "gpt-gmail", "gemini", "gemini-gmail", "grok", "capcut"];
+window.DISPLAY_ORDER = ["veo3", "gpt", "gpt-gmail", "gemini", "gemini-gmail", "capcut"];

@@ -299,6 +299,7 @@ function communityZaloCopy() {
 }
 
 
+function zaloOpenPopup() {
   const popup = document.getElementById("zaloPopup");
   if (!popup) return;
   popup.classList.add("open");

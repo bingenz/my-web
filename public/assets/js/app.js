@@ -1,7 +1,8 @@
 history.scrollRestoration = "manual";
 
-const PRODUCTS = window.PRODUCTS || [];
-const DISPLAY_ORDER = window.DISPLAY_ORDER || [];
+// Không snapshot sớm — đọc từ window lúc renderProducts() chạy để tránh defer race condition
+let PRODUCTS = [];
+let DISPLAY_ORDER = [];
 
 function fmtPriceShort(n) {
   if (!n) return "";
@@ -44,6 +45,10 @@ function productCard(p) {
 }
 
 function renderProducts() {
+  // Đọc lại từ window tại thời điểm gọi — tránh race condition defer
+  PRODUCTS = window.PRODUCTS || [];
+  DISPLAY_ORDER = window.DISPLAY_ORDER || [];
+
   const wrap = document.getElementById("productGrid");
   if (!wrap) return;
 

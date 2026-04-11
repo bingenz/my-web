@@ -1,6 +1,12 @@
 history.scrollRestoration = "manual";
 
-// Không snapshot sớm — đọc từ window lúc renderProducts() chạy để tránh defer race condition
+const CONTACT_ZALO_NUMBER = "0898908101";
+const COMMUNITY_FACEBOOK_URL = "https://www.facebook.com/groups/1083123091540550/";
+const COMMUNITY_ZALO_URL = "https://zalo.me/g/iaujemqdy7tpv6d0bapx";
+const ZALO_ICON_URL = "https://cdn.simpleicons.org/zalo/0068FF";
+const FACEBOOK_ICON_URL = "https://cdn.simpleicons.org/facebook/1877F2";
+const COPY_RESET_DELAY = 1800;
+
 let PRODUCTS = [];
 let DISPLAY_ORDER = [];
 
@@ -14,184 +20,295 @@ function escapeAttr(value) {
   return String(value || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 }
 
-function productCard(p) {
-  const displayPrice = p.monthlyPrice ? fmtPriceShort(p.monthlyPrice) : p.rawPrice || "";
-  const isOfficial = p.label === "CHÍNH CHỦ";
+function getElement(id) {
+  return document.getElementById(id);
+}
+
+function setBodyLocked(isLocked) {
+  document.body.style.overflow = isLocked ? "hidden" : "";
+}
+
+function getBadgeTone(label) {
+  return label === "CHÍNH CHỦ" ? "red" : "green";
+}
+
+function getBadgeClass(label, extraClass) {
+  const classes = ["badge-inline"];
+  if (getBadgeTone(label) === "red") classes.push("red");
+  if (extraClass) classes.push(extraClass);
+  return classes.join(" ");
+}
+
+function getProductNoticeItems(product) {
+  const label = product && product.label === "CHÍNH CHỦ" ? "CHÍNH CHỦ" : "CÁ NHÂN";
+  const isOfficial = label === "CHÍNH CHỦ";
+
+  return [
+    {
+      tone: "neutral",
+      title: '<strong>BINGENZ.COM</strong> luôn cấp tài khoản <strong>riêng cho bạn</strong>',
+      sub: "Không dùng chung với người khác"
+    },
+    isOfficial
+      ? {
+          tone: "red",
+          title: 'Tài khoản <span class="badge-inline red">CHÍNH CHỦ</span>',
+          sub: "Nâng cấp thẳng vào Gmail của bạn · Không cần mật khẩu"
+        }
+      : {
+          tone: "green",
+          title: 'Tài khoản <span class="badge-inline">CÁ NHÂN</span>',
+          sub: "Shop cấp tài khoản riêng · Sử dụng 1 mình"
+        }
+  ];
+}
+
+function renderProductNotice(product) {
+  const noticeList = getElement("productNoticeList");
+  if (!noticeList) return;
+
+  const items = getProductNoticeItems(product);
+  noticeList.innerHTML = items.map(function (item) {
+    const toneClass = item.tone && item.tone !== "neutral" ? " notice-item-" + item.tone : "";
+    return `
+<li class="notice-item${toneClass}">
+<span class="wn-dot"></span>
+<span class="notice-item-body"><span class="notice-item-title">${item.title}</span><span class="notice-item-sub">${item.sub}</span></span>
+</li>`;
+  }).join("");
+}
+
+function productCard(product) {
+  const displayPrice = product.monthlyPrice ? fmtPriceShort(product.monthlyPrice) : product.rawPrice || "";
+  const badgeTone = getBadgeTone(product.label);
 
   return `
-<article class="card pcard" onclick="openProduct('${escapeAttr(p.id)}')">
-<span class="badge ${isOfficial ? "red" : "green"} pcard-badge">${p.label || "CÁ NHÂN"}</span>
+<article class="card pcard" onclick="openProduct('${escapeAttr(product.id)}')">
+<span class="badge ${badgeTone} pcard-badge">${product.label || "CÁ NHÂN"}</span>
 <div class="pcard-top">
-<img class="pcard-ico" src="${p.image}" alt="${escapeAttr(p.name)}" loading="lazy" decoding="async" width="42" height="42">
-<h3 class="pcard-name">${p.name}</h3>
+<img class="pcard-ico" src="${product.image}" alt="${escapeAttr(product.name)}" loading="lazy" decoding="async" width="42" height="42">
+<h3 class="pcard-name">${product.name}</h3>
 </div>
 <div class="pcard-bottom">
 <div class="pcard-price-block">
 <div class="pcard-price-val">${displayPrice}<span class="pcard-price-mo"> /tháng</span></div>
-<div class="pcard-price-old">Gốc: <s>${p.oldPrice}</s></div>
+<div class="pcard-price-old">Gốc: <s>${product.oldPrice}</s></div>
 </div>
-<button class="pcard-cta" onclick="event.stopPropagation();openProduct('${escapeAttr(p.id)}')">Mua ngay</button>
+<button class="pcard-cta" onclick="event.stopPropagation();openProduct('${escapeAttr(product.id)}')">Mua ngay</button>
 </div>
 </article>
 `;
 }
 
 function renderProducts() {
-  // Đọc lại từ window tại thời điểm gọi — tránh race condition defer
-  PRODUCTS = window.PRODUCTS || [];
-  DISPLAY_ORDER = window.DISPLAY_ORDER || [];
+  PRODUCTS = Array.isArray(window.PRODUCTS) ? window.PRODUCTS : [];
+  DISPLAY_ORDER = Array.isArray(window.DISPLAY_ORDER) ? window.DISPLAY_ORDER : [];
 
-  const wrap = document.getElementById("productGrid");
+  const wrap = getElement("productGrid");
   if (!wrap) return;
 
-  const ordered = DISPLAY_ORDER.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
+  const ordered = DISPLAY_ORDER
+    .map(function (id) {
+      return PRODUCTS.find(function (product) {
+        return product.id === id;
+      });
+    })
+    .filter(Boolean);
+
   wrap.innerHTML = `<div class="pcard-list">${ordered.map(productCard).join("")}</div>`;
 }
 
+function resetTimedButtonState(button, idleMarkup) {
+  if (!button) return;
+  if (button._resetTimer) {
+    clearTimeout(button._resetTimer);
+    button._resetTimer = null;
+  }
+  button.classList.remove("is-copied");
+  button.innerHTML = idleMarkup;
+}
+
+function markButtonCopied(button, copiedMarkup, idleMarkup) {
+  if (!button) return;
+  if (button._resetTimer) clearTimeout(button._resetTimer);
+  button.classList.add("is-copied");
+  button.innerHTML = copiedMarkup;
+  button._resetTimer = setTimeout(function () {
+    button.classList.remove("is-copied");
+    button.innerHTML = idleMarkup;
+    button._resetTimer = null;
+  }, COPY_RESET_DELAY);
+}
+
+function withCopiedText(button, text, onSuccess, onError) {
+  if (!button) return;
+
+  copyTextWithFallback(text)
+    .then(function () {
+      onSuccess(button);
+    })
+    .catch(function () {
+      onError();
+    });
+}
+
+function openLayer(id) {
+  const layer = getElement(id);
+  if (!layer) return null;
+
+  if (layer.classList.contains("welcome-overlay")) {
+    layer.style.display = "flex";
+    void layer.offsetWidth;
+  }
+
+  layer.classList.add("open");
+  setBodyLocked(true);
+  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
+  return layer;
+}
+
+function closeLayer(id, options) {
+  const layer = getElement(id);
+  if (!layer) return null;
+
+  const config = options || {};
+  layer.classList.remove("open");
+  setBodyLocked(false);
+  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
+
+  if (config.restoreDisplayAfterMs) {
+    setTimeout(function () {
+      if (!layer.classList.contains("open")) {
+        layer.style.display = config.restoreDisplayValue || "";
+      }
+    }, config.restoreDisplayAfterMs);
+  }
+
+  return layer;
+}
+
 function openProduct(id) {
-  const p = PRODUCTS.find(x => x.id === id);
-  if (!p) return;
+  const product = PRODUCTS.find(function (item) {
+    return item.id === id;
+  });
+  if (!product) return;
 
   resetModalZaloCopyState();
 
-  const mName = document.getElementById("mName");
+  const mName = getElement("mName");
   if (mName) {
-    if (p.label) {
-      const isOfficial = p.label === "CHÍNH CHỦ";
-      mName.innerHTML = `${p.name} <span style="display:inline-block;font-size:0.55em;font-weight:800;letter-spacing:0.04em;padding:0.15em 0.55em;border-radius:999px;vertical-align:middle;line-height:1.5;${isOfficial ? "color:#f87171;border:1.5px solid rgba(239,68,68,0.3);background:rgba(239,68,68,0.12);" : "color:#4ade80;border:1.5px solid rgba(34,197,94,0.3);background:rgba(34,197,94,0.12);"}">${p.label}</span>`;
+    if (product.label) {
+      mName.innerHTML = `${product.name} <span class="${getBadgeClass(product.label, "modal-title-badge")}">${product.label}</span>`;
     } else {
-      mName.textContent = p.name;
+      mName.textContent = product.name;
     }
   }
 
-  const ico = document.getElementById("mHeadIco");
+  renderProductNotice(product);
+
+  const ico = getElement("mHeadIco");
   if (ico) {
-    ico.src = p.image;
-    ico.alt = p.name;
+    ico.src = product.image;
+    ico.alt = product.name;
     ico.style.display = "block";
   }
 
-  const modal = document.getElementById("productModal");
-  if (!modal) return;
-  modal.classList.add("open");
-  document.body.style.overflow = "hidden";
+  openLayer("productModal");
 }
 
 function openDevModal() {
-  const list = document.getElementById("devDetailList");
-  const arrow = document.getElementById("devDetailArrow");
+  const list = getElement("devDetailList");
+  const arrow = getElement("devDetailArrow");
   if (list) list.style.display = "none";
   if (arrow) arrow.style.transform = "";
   resetDevZaloCopyState();
-  document.getElementById("devModal").classList.add("open");
-  document.body.style.overflow = "hidden";
+  openLayer("devModal");
 }
 
 function closeDevModal() {
   resetDevZaloCopyState();
-  document.getElementById("devModal").classList.remove("open");
-  document.body.style.overflow = "";
+  closeLayer("devModal");
 }
 
 function toggleDevDetail() {
-  const list = document.getElementById("devDetailList");
-  const arrow = document.getElementById("devDetailArrow");
+  const list = getElement("devDetailList");
+  const arrow = getElement("devDetailArrow");
   if (!list || !arrow) return;
 
-  const open = list.style.display !== "none";
-  list.style.display = open ? "none" : "block";
-  arrow.style.transform = open ? "" : "rotate(180deg)";
+  const isOpen = list.style.display !== "none";
+  list.style.display = isOpen ? "none" : "block";
+  arrow.style.transform = isOpen ? "" : "rotate(180deg)";
   arrow.style.transition = "transform 0.2s";
 }
 
 function resetModalZaloCopyState() {
-  const copyBtn = document.getElementById("modalZaloCopyBtn");
-  if (!copyBtn) return;
-  if (copyBtn._resetTimer) {
-    clearTimeout(copyBtn._resetTimer);
-    copyBtn._resetTimer = null;
-  }
-  copyBtn.classList.remove("is-copied");
-  copyBtn.textContent = "Copy số";
+  resetTimedButtonState(getElement("modalZaloCopyBtn"), "Copy số");
 }
 
 function copyModalZalo() {
-  const copyBtn = document.getElementById("modalZaloCopyBtn");
-  if (!copyBtn) return;
-
-  copyTextWithFallback("0898908101").then(function () {
-    if (copyBtn._resetTimer) clearTimeout(copyBtn._resetTimer);
-    copyBtn.classList.add("is-copied");
-    copyBtn.textContent = "Đã copy";
-    copyBtn._resetTimer = setTimeout(function () {
-      copyBtn.classList.remove("is-copied");
-      copyBtn.textContent = "Copy số";
-      copyBtn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101", "https://cdn.simpleicons.org/zalo/0068FF");
-  });
+  withCopiedText(
+    getElement("modalZaloCopyBtn"),
+    CONTACT_ZALO_NUMBER,
+    function (button) {
+      markButtonCopied(button, "Đã copy", "Copy số");
+    },
+    function () {
+      showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: " + CONTACT_ZALO_NUMBER, ZALO_ICON_URL);
+    }
+  );
 }
 
 function resetDevZaloCopyState() {
-  const copyBtn = document.getElementById("devZaloCopyBtn");
-  if (!copyBtn) return;
-  if (copyBtn._resetTimer) {
-    clearTimeout(copyBtn._resetTimer);
-    copyBtn._resetTimer = null;
-  }
-  copyBtn.classList.remove("is-copied");
-  copyBtn.textContent = "Copy số";
+  resetTimedButtonState(getElement("devZaloCopyBtn"), "Copy số");
 }
 
 function copyDevZalo() {
-  const copyBtn = document.getElementById("devZaloCopyBtn");
-  if (!copyBtn) return;
-
-  copyTextWithFallback("0898908101").then(function () {
-    if (copyBtn._resetTimer) clearTimeout(copyBtn._resetTimer);
-    copyBtn.classList.add("is-copied");
-    copyBtn.textContent = "Đã copy";
-    copyBtn._resetTimer = setTimeout(function () {
-      copyBtn.classList.remove("is-copied");
-      copyBtn.textContent = "Copy số";
-      copyBtn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101", "https://cdn.simpleicons.org/zalo/0068FF");
-  });
+  withCopiedText(
+    getElement("devZaloCopyBtn"),
+    CONTACT_ZALO_NUMBER,
+    function (button) {
+      markButtonCopied(button, "Đã copy", "Copy số");
+    },
+    function () {
+      showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: " + CONTACT_ZALO_NUMBER, ZALO_ICON_URL);
+    }
+  );
 }
 
 function closeModal() {
   resetModalZaloCopyState();
-  document.getElementById("productModal").classList.remove("open");
-  document.body.style.overflow = "";
+  closeLayer("productModal");
 }
 
-function showRedirectToast(label, img) {
-  const toast = document.getElementById("redirectToast");
-  if (!toast) return;
-
-  const toastImg = toast.querySelector(".t-img");
-  const toastTxt = toast.querySelector(".t-text");
-  if (toastImg && img) toastImg.src = img;
-  if (toastTxt && label) toastTxt.textContent = "Đang chuyển đến " + label;
-
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 2600);
-}
-
-function showStatusToast(message, img) {
-  const toast = document.getElementById("redirectToast");
-  if (!toast) return;
+function setToastContent(message, img) {
+  const toast = getElement("redirectToast");
+  if (!toast) return null;
 
   const toastImg = toast.querySelector(".t-img");
   const toastTxt = toast.querySelector(".t-text");
   if (toastImg && img) toastImg.src = img;
   if (toastTxt && message) toastTxt.textContent = message;
+  return toast;
+}
+
+function showRedirectToast(label, img) {
+  const toast = setToastContent(label ? "Đang chuyển đến " + label : "", img);
+  if (!toast) return;
 
   toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 2800);
+  setTimeout(function () {
+    toast.classList.remove("show");
+  }, 2600);
+}
+
+function showStatusToast(message, img) {
+  const toast = setToastContent(message, img);
+  if (!toast) return;
+
+  toast.classList.add("show");
+  setTimeout(function () {
+    toast.classList.remove("show");
+  }, 2800);
 }
 
 function copyTextWithFallback(text) {
@@ -233,134 +350,125 @@ function showCopyPrompt(text, message) {
   showStatusToast(message || ("Đã sao chép: " + text), "");
 }
 
+function resetCommunityCopyState(buttonId, label) {
+  const button = getElement(buttonId);
+  if (!button) return;
+
+  if (button._resetTimer) {
+    clearTimeout(button._resetTimer);
+    button._resetTimer = null;
+  }
+
+  button.classList.remove("is-copied");
+  const copyLabel = button.querySelector(".copy-label");
+  if (copyLabel) copyLabel.textContent = label;
+}
+
+function handleCommunityCopy(buttonId, text, fallbackMessage) {
+  const button = getElement(buttonId);
+  if (!button) return;
+
+  copyTextWithFallback(text)
+    .then(function () {
+      const copyLabel = button.querySelector(".copy-label");
+      if (!copyLabel) return;
+
+      if (button._resetTimer) clearTimeout(button._resetTimer);
+      button.classList.add("is-copied");
+      copyLabel.textContent = "Đã copy";
+      button._resetTimer = setTimeout(function () {
+        button.classList.remove("is-copied");
+        copyLabel.textContent = "Copy link";
+        button._resetTimer = null;
+      }, COPY_RESET_DELAY);
+    })
+    .catch(function () {
+      showCopyPrompt(text, fallbackMessage);
+    });
+}
+
 function communityOpenPopup() {
   resetCommunityCopyState("communityFbCopyBtn", "Copy link");
   resetCommunityCopyState("communityZaloCopyBtn", "Copy link");
-  const popup = document.getElementById("communityPopup");
-  if (!popup) return;
-  popup.classList.add("open");
-  document.body.style.overflow = "hidden";
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
+  openLayer("communityPopup");
 }
 
 function communityClosePopup() {
-  const popup = document.getElementById("communityPopup");
-  if (!popup) return;
-  popup.classList.remove("open");
-  document.body.style.overflow = "";
-}
-
-function resetCommunityCopyState(btnId, label) {
-  const btn = document.getElementById(btnId);
-  if (!btn) return;
-  if (btn._resetTimer) { clearTimeout(btn._resetTimer); btn._resetTimer = null; }
-  btn.classList.remove("is-copied");
-  btn.querySelector(".copy-label").textContent = label;
+  closeLayer("communityPopup");
 }
 
 function communityFbCopy() {
-  const btn = document.getElementById("communityFbCopyBtn");
-  copyTextWithFallback("https://www.facebook.com/groups/1083123091540550/").then(function () {
-    if (btn._resetTimer) clearTimeout(btn._resetTimer);
-    btn.classList.add("is-copied");
-    btn.querySelector(".copy-label").textContent = "Đã copy";
-    btn._resetTimer = setTimeout(function () {
-      btn.classList.remove("is-copied");
-      btn.querySelector(".copy-label").textContent = "Copy link";
-      btn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showCopyPrompt("https://www.facebook.com/groups/1083123091540550/", "Đã sao chép link Facebook");
-  });
+  handleCommunityCopy("communityFbCopyBtn", COMMUNITY_FACEBOOK_URL, "Đã sao chép link Facebook");
 }
 
 function communityZaloCopy() {
-  const btn = document.getElementById("communityZaloCopyBtn");
-  copyTextWithFallback("https://zalo.me/g/iaujemqdy7tpv6d0bapx").then(function () {
-    if (btn._resetTimer) clearTimeout(btn._resetTimer);
-    btn.classList.add("is-copied");
-    btn.querySelector(".copy-label").textContent = "Đã copy";
-    btn._resetTimer = setTimeout(function () {
-      btn.classList.remove("is-copied");
-      btn.querySelector(".copy-label").textContent = "Copy link";
-      btn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showCopyPrompt("https://zalo.me/g/iaujemqdy7tpv6d0bapx", "Đã sao chép link Zalo");
-  });
+  handleCommunityCopy("communityZaloCopyBtn", COMMUNITY_ZALO_URL, "Đã sao chép link Zalo");
 }
 
-
 function zaloOpenPopup() {
-  const popup = document.getElementById("zaloPopup");
-  if (!popup) return;
-  popup.classList.add("open");
-  document.body.style.overflow = "hidden";
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
+  openLayer("zaloPopup");
 }
 
 function zaloClosePopup() {
-  const popup = document.getElementById("zaloPopup");
-  if (!popup) return;
-  popup.classList.remove("open");
-  document.body.style.overflow = "";
+  closeLayer("zaloPopup");
 }
 
 function copyContactZalo() {
-  const copyBtn = document.getElementById("zaloCopyBtn");
-  const copyLabel = copyBtn ? copyBtn.querySelector(".copy-label") : null;
-  const resetTimer = copyBtn ? copyBtn._resetTimer : null;
+  const button = getElement("zaloCopyBtn");
+  if (!button) return;
 
-  copyTextWithFallback("0898908101").then(function () {
-    if (!copyBtn || !copyLabel) return;
-    if (resetTimer) clearTimeout(resetTimer);
-    copyBtn.classList.add("is-copied");
-    copyLabel.textContent = "Đã copy";
-    copyBtn._resetTimer = setTimeout(function () {
-      copyBtn.classList.remove("is-copied");
-      copyLabel.textContent = "Copy số";
-      copyBtn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showCopyPrompt("0898908101", "Đã sao chép số Zalo: 0898908101");
-  });
+  copyTextWithFallback(CONTACT_ZALO_NUMBER)
+    .then(function () {
+      const copyLabel = button.querySelector(".copy-label");
+      if (!copyLabel) return;
+
+      if (button._resetTimer) clearTimeout(button._resetTimer);
+      button.classList.add("is-copied");
+      copyLabel.textContent = "Đã copy";
+      button._resetTimer = setTimeout(function () {
+        button.classList.remove("is-copied");
+        copyLabel.textContent = "Copy số";
+        button._resetTimer = null;
+      }, COPY_RESET_DELAY);
+    })
+    .catch(function () {
+      showCopyPrompt(CONTACT_ZALO_NUMBER, "Đã sao chép số Zalo: " + CONTACT_ZALO_NUMBER);
+    });
 }
 
-function openFirstProduct(e) {
-  e.preventDefault();
-  const target = document.getElementById("products");
+function openFirstProduct(event) {
+  event.preventDefault();
+  const target = getElement("products");
   if (!target) return;
 
   const topbar = document.querySelector(".topbar");
-  const topbarH = topbar ? topbar.offsetHeight : 68;
-  const top = target.getBoundingClientRect().top + window.scrollY - topbarH;
-  window.scrollTo({ top, behavior: "smooth" });
+  const topbarHeight = topbar ? topbar.offsetHeight : 68;
+  const top = target.getBoundingClientRect().top + window.scrollY - topbarHeight;
+  window.scrollTo({ top: top, behavior: "smooth" });
 }
 
-renderProducts();
+function initProducts() {
+  renderProducts();
+}
 
-(function () {
+function initNotifBarVisibility() {
   const notifBar = document.querySelector(".notif-bar");
   const communityCard = document.querySelector("#community .community-card-link");
   const topbar = document.querySelector(".topbar");
   if (!notifBar || !communityCard || !topbar) return;
 
   function syncNotifBar() {
-    const welcomeOverlay = document.getElementById("welcomeNotif");
+    const welcomeOverlay = getElement("welcomeNotif");
     if (welcomeOverlay && welcomeOverlay.classList.contains("open")) {
       notifBar.classList.remove("visible");
       return;
     }
 
-    const topbarH = topbar.offsetHeight || 68;
+    const topbarHeight = topbar.offsetHeight || 68;
     const triggerBottom = communityCard.getBoundingClientRect().bottom + window.scrollY;
-    const viewportTop = window.scrollY + topbarH + 8;
+    const viewportTop = window.scrollY + topbarHeight + 8;
 
-    if (viewportTop >= triggerBottom) {
-      notifBar.classList.add("visible");
-    } else {
-      notifBar.classList.remove("visible");
-    }
+    notifBar.classList.toggle("visible", viewportTop >= triggerBottom);
   }
 
   window.syncNotifBarVisibility = syncNotifBar;
@@ -373,113 +481,95 @@ renderProducts();
   } else {
     syncNotifBar();
   }
-})();
+}
 
 function welcomeOpen() {
-  const overlay = document.getElementById("welcomeNotif");
-  if (!overlay) return;
-  overlay.style.display = "flex";
-  void overlay.offsetWidth;
-  overlay.classList.add("open");
-  document.body.style.overflow = "hidden";
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
+  openLayer("welcomeNotif");
 }
 
 function welcomeClose() {
-  const overlay = document.getElementById("welcomeNotif");
-  if (!overlay) return;
-  overlay.classList.remove("open");
-  document.body.style.overflow = "";
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
-
-  setTimeout(function () {
-    if (!overlay.classList.contains("open")) {
-      overlay.style.display = "";
-    }
-  }, 250);
+  closeLayer("welcomeNotif", { restoreDisplayAfterMs: 250, restoreDisplayValue: "" });
 }
 
 function welcomeCopyZalo() {
-  const btn = document.getElementById("welcomeCopyBtn");
-  if (!btn) return;
+  const button = getElement("welcomeCopyBtn");
+  if (!button) return;
 
-  copyTextWithFallback("0898908101").then(function () {
-    if (btn._resetTimer) clearTimeout(btn._resetTimer);
-    btn.classList.add("is-copied");
-    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Đã copy';
-    btn._resetTimer = setTimeout(function () {
-      btn.classList.remove("is-copied");
-      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy số';
-      btn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showCopyPrompt("0898908101", "Đã sao chép số Zalo: 0898908101");
-  });
+  withCopiedText(
+    button,
+    CONTACT_ZALO_NUMBER,
+    function (currentButton) {
+      markButtonCopied(
+        currentButton,
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Đã copy',
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy số'
+      );
+    },
+    function () {
+      showCopyPrompt(CONTACT_ZALO_NUMBER, "Đã sao chép số Zalo: " + CONTACT_ZALO_NUMBER);
+    }
+  );
 }
 
 function initPage() {
   window.scrollTo(0, 0);
+  initProducts();
+  initNotifBarVisibility();
+}
+
+function scheduleWelcomePopup() {
+  function tryShowWelcome() {
+    if (getElement("welcomeNotif")) {
+      setTimeout(welcomeOpen, 350);
+      return;
+    }
+
+    window.addEventListener("load", function () {
+      setTimeout(welcomeOpen, 350);
+    }, { once: true });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", tryShowWelcome, { once: true });
+  } else {
+    tryShowWelcome();
+  }
+}
+
+function normalizeRestoredUiState(isBackForward) {
+  document.querySelectorAll(".modal.open, .link-popup.open").forEach(function (element) {
+    element.classList.remove("open");
+  });
+
+  const welcomeNotif = getElement("welcomeNotif");
+  if (welcomeNotif) {
+    welcomeNotif.classList.remove("open", "show", "active");
+    welcomeNotif.style.display = isBackForward ? "" : "none";
+  }
+
+  document.body.classList.remove("modal-open", "overlay-open", "no-scroll");
+  setBodyLocked(false);
+
+  const redirectToast = getElement("redirectToast");
+  if (redirectToast) redirectToast.classList.remove("show");
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initPage);
+  document.addEventListener("DOMContentLoaded", initPage, { once: true });
 } else {
   initPage();
 }
 
-(function () {
-  function tryShowWelcome() {
-    if (document.getElementById("welcomeNotif")) {
-      setTimeout(welcomeOpen, 350);
-    } else {
-      window.addEventListener("load", function () {
-        setTimeout(welcomeOpen, 350);
-      });
-    }
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", tryShowWelcome);
-  } else {
-    tryShowWelcome();
-  }
-})();
-
-function normalizeRestoredUiState(isBackForward) {
-  document.querySelectorAll(".modal.open, .link-popup.open").forEach(function (el) {
-    el.classList.remove("open");
-  });
-
-  ["welcomePopup", "welcomeModal", "welcomeOverlay", "wlcPopup"].forEach(function (id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.remove("open", "show", "active");
-    el.style.display = "none";
-  });
-
-  if (isBackForward) {
-    const wn = document.getElementById("welcomeNotif");
-    if (wn) {
-      wn.classList.remove("open", "show", "active");
-      wn.style.display = "";
-    }
-  }
-
-  document.body.classList.remove("modal-open", "overlay-open", "no-scroll");
-  document.body.style.overflow = "";
-
-  const redirectToast = document.getElementById("redirectToast");
-  if (redirectToast) redirectToast.classList.remove("show");
-}
+scheduleWelcomePopup();
 
 window.addEventListener("pageshow", function (event) {
-  let nav = null;
+  let navigationEntry = null;
   if (window.performance && typeof window.performance.getEntriesByType === "function") {
     const entries = window.performance.getEntriesByType("navigation");
-    if (entries && entries.length) nav = entries[0];
+    if (entries && entries.length) navigationEntry = entries[0];
   }
 
-  const isBackForward = !!event.persisted || (nav && nav.type === "back_forward");
+  const isBackForward = Boolean(event.persisted || (navigationEntry && navigationEntry.type === "back_forward"));
   normalizeRestoredUiState(isBackForward);
   if (!isBackForward) return;
 
@@ -490,8 +580,7 @@ window.addEventListener("pageshow", function (event) {
       return;
     }
     sessionStorage.setItem(reloadKey, "1");
-  } catch (e) {}
+  } catch (error) {}
 
   location.replace(location.pathname + location.search);
 });
-

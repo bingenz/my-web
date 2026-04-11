@@ -1035,3 +1035,190 @@ body::before {
 .product-section-label svg { color: var(--y1); }
 .product-section-label.product-label-red svg { color: #f87171; }
 
+/* ═══════════════════════════════
+   PATCH v2 — sync & fix remaining
+   ═══════════════════════════════ */
+
+/* social chips — tăng contrast */
+.social-chip {
+  background: #1c1f28 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #c8cdd8 !important;
+}
+.social-chip span { color: #c8cdd8; }
+.social-chip svg { color: #c8cdd8; }
+.social-chip:hover {
+  background: rgba(232,217,78,0.10) !important;
+  border-color: rgba(232,217,78,0.30) !important;
+  color: var(--y1) !important;
+}
+.social-chip:hover span,
+.social-chip:hover svg { color: var(--y1); }
+
+/* topbar social icons — tăng contrast */
+.header-social-link {
+  background: #1c1f28 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #c8cdd8 !important;
+}
+.header-social-link:hover {
+  color: var(--y1) !important;
+  background: rgba(232,217,78,0.10) !important;
+  border-color: rgba(232,217,78,0.25) !important;
+}
+
+/* section bar underline — đổi sang vàng */
+.section-bar,
+[class*="section-bar"] {
+  background: var(--grad-brand) !important;
+}
+/* target the specific element used in repo */
+.section h2 + *,
+.section-head > *:last-child {
+  background: var(--grad-brand);
+}
+
+/* contact items — tăng contrast */
+.contact-item {
+  background: #1c1f28 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #c8cdd8 !important;
+}
+.contact-item span { color: #c8cdd8; }
+.contact-item svg { color: #c8cdd8; }
+.contact-item:hover {
+  background: rgba(232,217,78,0.08) !important;
+  border-color: rgba(232,217,78,0.28) !important;
+  color: var(--y1) !important;
+}
+.contact-item:hover span,
+.contact-item:hover svg { color: var(--y1); }
+
+/* comm popup items — đủ dark */
+#commPopup .link-popup-item {
+  background: #181b22 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+#commPopup .link-popup-name { color: var(--text) !important; font-weight: 800; }
+#commPopup .link-popup-url { color: var(--muted) !important; }
+#commPopup .link-popup-box { background: #111318 !important; border-color: rgba(232,217,78,0.15) !important; }
+#commPopup .link-popup-title { color: var(--text) !important; }
+#commPopup .link-popup-sub { color: var(--muted) !important; }
+#commPopup .link-popup-note {
+  background: rgba(232,217,78,0.07) !important;
+  border-color: rgba(232,217,78,0.18) !important;
+  color: var(--muted) !important;
+}
+#commPopup .link-popup-note strong { color: var(--y1) !important; }
+#commPopup .link-popup-btn.open { background: var(--grad-brand) !important; color: #0c0c0e !important; }
+#commPopup .link-popup-btn.copy {
+  background: #1c1f28 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #c8cdd8 !important;
+}
+#commPopup .link-popup-dismiss {
+  background: #1c1f28 !important;
+  border-color: rgba(255,255,255,0.10) !important;
+  color: var(--muted) !important;
+}
+
+/* zalo popup items */
+#zaloPopup .link-popup-item {
+  background: #181b22 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+#zaloPopup .link-popup-box { background: #111318 !important; border-color: rgba(232,217,78,0.15) !important; }
+#zaloPopup .link-popup-btn.open { background: var(--grad-brand) !important; color: #0c0c0e !important; }
+#zaloPopup .link-popup-btn.copy {
+  background: #1c1f28 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #c8cdd8 !important;
+}
+#zaloPopup .link-popup-note {
+  background: rgba(232,217,78,0.07) !important;
+  border-color: rgba(232,217,78,0.18) !important;
+  color: var(--muted) !important;
+}
+#zaloPopup .link-popup-note strong { color: var(--y1) !important; }
+
+/* dev modal — wlc-services nền dark */
+#devModal .modal-box { background: #111318 !important; border-color: var(--line) !important; }
+#devModal .wlc-service-item {
+  background: #181b22 !important;
+  border-color: rgba(255,255,255,0.10) !important;
+  box-shadow: none !important;
+}
+#devModal .wlc-svc-name { color: var(--text) !important; }
+#devModal .wlc-svc-note { color: var(--muted) !important; }
+/* "Xem chi tiết" accordion — đổi sang vàng */
+#devModal [onclick="toggleDevDetail()"],
+#devModal .modal-notice-btn,
+.modal-notice-btn {
+  background: rgba(232,217,78,0.07) !important;
+  border-color: rgba(232,217,78,0.20) !important;
+  color: var(--y1) !important;
+}
+/* accordion arrow */
+#devDetailArrow { color: var(--y1) !important; }
+
+/* contact-cta.tele — giữ xanh telegram, ok */
+/* contact-cta.zalo — yellow */
+.contact-cta.zalo { background: var(--grad-brand) !important; color: #0c0c0e !important; }
+
+/* modal notice inline — bớt chói */
+.modal-notice-inline {
+  background: rgba(24,27,34,0.9) !important;
+  border-color: rgba(232,217,78,0.18) !important;
+}
+.modal-notice-inline-title { color: var(--y1) !important; }
+.modal-notice-inline li { color: var(--muted) !important; }
+.modal-notice-inline li strong { color: var(--text) !important; }
+
+/* notice items in product modal */
+.notice-item-title { color: var(--text) !important; font-weight: 700; }
+.notice-item-title .wn-dot { background: var(--y1) !important; }
+.notice-item-sub { color: var(--muted) !important; }
+.notice-item-red .notice-item-title { color: #f87171 !important; }
+
+/* modal-desc-wrap — softer */
+.modal-desc-wrap {
+  background: rgba(24,27,34,0.85) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+.modal-list { color: #b0b8c8 !important; }
+.modal-list strong { color: var(--text) !important; }
+.modal-list .badge-inline { vertical-align: middle; }
+
+/* contact-box-note softer */
+.contact-box-note {
+  background: rgba(24,27,34,0.85) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  color: var(--muted) !important;
+}
+.contact-box-note strong { color: var(--y1) !important; }
+
+/* copy btn — tăng contrast */
+.contact-copy-btn {
+  background: #1c1f28 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #c8cdd8 !important;
+}
+.contact-copy-btn:hover { color: var(--y1) !important; border-color: rgba(232,217,78,0.28) !important; }
+
+/* close-btn tăng contrast */
+.close-btn {
+  background: #1c1f28 !important;
+  border-color: rgba(255,255,255,0.12) !important;
+  color: #c8cdd8 !important;
+}
+.close-btn:hover { color: var(--text) !important; background: #252933 !important; }
+
+/* wlc-ad dark */
+.wlc-ad { border-color: rgba(232,217,78,0.15) !important; }
+.wlc-ad-cta { color: #0c0c0e !important; }
+
+/* product group glass softer border */
+.product-group-glass { border-color: rgba(255,255,255,0.07) !important; }
+.product-group-glass.group-red { border-color: rgba(239,68,68,0.12) !important; }
+
+

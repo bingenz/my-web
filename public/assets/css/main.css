@@ -1222,3 +1222,95 @@ body::before {
 .product-group-glass.group-red { border-color: rgba(239,68,68,0.12) !important; }
 
 
+
+/* ═══════════════════════════════════════════
+   PATCH v3 — final color sync dark theme
+   ═══════════════════════════════════════════ */
+
+/* community note bar — already overridden but base had wrong warm amber */
+.community-note-title { color: var(--y1) !important; }
+.community-note-sub { color: var(--muted) !important; }
+.community-note-ico { background: rgba(232,217,78,0.10) !important; color: var(--y1) !important; border: 1px solid rgba(232,217,78,0.18) !important; }
+
+/* fb-post-avatar — was purple gradient, now subtle */
+.fb-post-avatar { background: rgba(232,217,78,0.22) !important; }
+
+/* pcard hover border — was old blue */
+.pcard:hover { border-color: rgba(232,217,78,0.28) !important; }
+
+/* kicker dot — sync to yellow */
+.kicker-dot { background: var(--y1) !important; }
+
+/* logo particle lp1 — sync to yellow */
+.lp1 { background: var(--y1) !important; }
+
+/* notice-item-title / sub in modals + welcome — was amber/brown from light */
+.notice-item-title { color: var(--y1) !important; }
+.notice-item-sub { color: var(--muted) !important; }
+.notice-item-red .notice-item-title { color: #f87171 !important; }
+.notice-item-red .wn-dot { background: #f87171 !important; }
+
+/* modal-notice-inline base light colors → dark */
+.modal-notice-inline-title { color: var(--y1) !important; }
+.modal-notice-inline li { color: var(--muted) !important; }
+.modal-notice-inline { background: rgba(232,217,78,0.06) !important; border-color: rgba(232,217,78,0.18) !important; }
+
+/* modal-notice-btn (Xem chi tiết) */
+.modal-notice-btn {
+  background: rgba(232,217,78,0.08) !important;
+  border-color: rgba(232,217,78,0.20) !important;
+  color: var(--y1) !important;
+}
+
+/* welcome-notice base colors */
+.welcome-notice-title { color: var(--y1) !important; }
+.welcome-notice-list li { color: var(--muted) !important; }
+.welcome-notice { background: rgba(232,217,78,0.06) !important; border-color: rgba(232,217,78,0.18) !important; }
+.welcome-notice-list li .wn-dot { background: var(--y1) !important; }
+
+/* welcome-attn-head */
+.welcome-attn-head { color: var(--y1) !important; }
+
+/* contact-box-note */
+.contact-box-note {
+  background: rgba(232,217,78,0.06) !important;
+  border-color: rgba(232,217,78,0.18) !important;
+  color: var(--muted) !important;
+}
+.contact-box-note strong { color: var(--y1) !important; }
+#productModal .contact-box-note strong { color: var(--y1) !important; }
+
+/* product-section-label */
+.product-section-label { color: var(--muted) !important; }
+.product-section-label svg { color: var(--y1) !important; }
+
+/* modal-list */
+.modal-list { color: var(--muted) !important; }
+.modal-list strong { color: var(--text) !important; }
+
+/* modal-contact-note */
+.modal-contact-note {
+  background: rgba(232,217,78,0.06) !important;
+  border-color: rgba(232,217,78,0.14) !important;
+  color: var(--muted) !important;
+}
+
+/* zalo-fallback-note */
+.zalo-fallback-note { color: var(--muted) !important; }
+
+/* wlc-cta-text */
+.wlc-cta-text { color: var(--muted) !important; }
+
+/* hl (highlight text) */
+.hl { color: var(--y1) !important; }
+
+/* personal-list dark */
+.personal-list { color: var(--muted) !important; }
+
+/* wn-dot in modals/welcome default */
+.welcome-notice-list li .wn-dot,
+.modal-notice-inline li .wn-dot { background: var(--y1) !important; }
+
+/* fb-cover — already correct via .fb-cover override in dark, but ensure cm-bar too */
+.cm-bar { background: var(--grad-brand) !important; }
+

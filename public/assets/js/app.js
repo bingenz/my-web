@@ -1,5 +1,47 @@
 history.scrollRestoration = "manual";
 
+// ── Scroll lock ──────────────────────────────────────────────────────────────
+// Giữ nguyên scroll position khi mở popup (tránh trang nhảy/shift)
+let _scrollLockCount = 0;
+let _scrollLockX = 0;
+let _scrollLockY = 0;
+function restoreWindowScroll(x, y) {
+  const root = document.documentElement;
+  const previousInlineBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  window.scrollTo(x, y);
+  requestAnimationFrame(function () {
+    root.style.scrollBehavior = previousInlineBehavior;
+  });
+}
+function clearScrollLockState() {
+  _scrollLockCount = 0;
+  document.body.classList.remove("scroll-locked");
+  document.body.style.left = "";
+  document.body.style.top = "";
+  document.body.style.width = "";
+}
+function scrollLock() {
+  _scrollLockCount++;
+  if (_scrollLockCount > 1) return; // already locked
+  _scrollLockX = window.scrollX || window.pageXOffset || 0;
+  _scrollLockY = window.scrollY || window.pageYOffset || 0;
+  document.body.style.left = "-" + _scrollLockX + "px";
+  document.body.style.top = "-" + _scrollLockY + "px";
+  document.body.style.width = "100%";
+  document.body.classList.add("scroll-locked");
+}
+function scrollUnlock() {
+  if (_scrollLockCount === 0) return;
+  _scrollLockCount--;
+  if (_scrollLockCount > 0) return; // another popup still open
+  const restoreX = _scrollLockX;
+  const restoreY = _scrollLockY;
+  clearScrollLockState();
+  restoreWindowScroll(restoreX, restoreY);
+}
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Không snapshot sớm — đọc từ window lúc renderProducts() chạy để tránh defer race condition
 let PRODUCTS = [];
 let DISPLAY_ORDER = [];
@@ -98,7 +140,7 @@ function productCard(p) {
   const badgeTone = getBadgeTone(p.label);
 
   return `
-<article class="card pcard" onclick="openProduct('${escapeAttr(p.id)}')">
+<article class="pcard" onclick="openProduct('${escapeAttr(p.id)}')">
 <span class="badge ${badgeTone} pcard-badge">${p.label || "CÁ NHÂN"}</span>
 <div class="pcard-top">
 <img class="pcard-ico" src="${p.image}" alt="${escapeAttr(p.name)}" loading="lazy" decoding="async" width="42" height="42">
@@ -124,7 +166,12 @@ function renderProducts() {
   if (!wrap) return;
 
   const ordered = DISPLAY_ORDER.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
-  wrap.innerHTML = `<div class="pcard-list">${ordered.map(productCard).join("")}</div>`;
+  const desktopCols = window.innerWidth >= 1100 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+  const listStyle = desktopCols === 1
+    ? "display:flex;flex-direction:column;gap:22px;"
+    : "display:grid;grid-template-columns:repeat(" + desktopCols + ", minmax(0, 1fr));gap:18px;align-items:stretch;";
+  const cardStyle = desktopCols === 1 ? "" : ' style="height:100%"';
+  wrap.innerHTML = `<div class="pcard-list" style="${listStyle}">${ordered.map(function (p) { return productCard(p).replace('<article class="pcard"', '<article class="pcard"' + cardStyle); }).join("")}</div>`;
 }
 
 function openProduct(id) {
@@ -155,8 +202,9 @@ function openProduct(id) {
 
   const modal = document.getElementById("productModal");
   if (!modal) return;
+  if (modal.classList.contains("open")) return;
   modal.classList.add("open");
-  document.body.style.overflow = "hidden";
+  scrollLock();
 }
 
 function openDevModal() {
@@ -165,14 +213,18 @@ function openDevModal() {
   if (list) list.style.display = "none";
   if (arrow) arrow.style.transform = "";
   resetDevZaloCopyState();
-  document.getElementById("devModal").classList.add("open");
-  document.body.style.overflow = "hidden";
+  const modal = document.getElementById("devModal");
+  if (!modal || modal.classList.contains("open")) return;
+  modal.classList.add("open");
+  scrollLock();
 }
 
 function closeDevModal() {
   resetDevZaloCopyState();
-  document.getElementById("devModal").classList.remove("open");
-  document.body.style.overflow = "";
+  const modal = document.getElementById("devModal");
+  if (!modal || !modal.classList.contains("open")) return;
+  modal.classList.remove("open");
+  scrollUnlock();
 }
 
 function toggleDevDetail() {
@@ -246,8 +298,10 @@ function copyDevZalo() {
 
 function closeModal() {
   resetModalZaloCopyState();
-  document.getElementById("productModal").classList.remove("open");
-  document.body.style.overflow = "";
+  const modal = document.getElementById("productModal");
+  if (!modal || !modal.classList.contains("open")) return;
+  modal.classList.remove("open");
+  scrollUnlock();
 }
 
 function initTrustProofModal() {
@@ -299,17 +353,17 @@ function openTrustProofModal(e) {
   initTrustProofModal();
   resetTrustProofSelection();
   const modal = document.getElementById("trustProofModal");
-  if (!modal) return;
+  if (!modal || modal.classList.contains("open")) return;
   modal.classList.add("open");
-  document.body.style.overflow = "hidden";
+  scrollLock();
 }
 
 function closeTrustProofModal() {
   const modal = document.getElementById("trustProofModal");
-  if (!modal) return;
+  if (!modal || !modal.classList.contains("open")) return;
   modal.classList.remove("open");
   closeTrustProofViewer();
-  document.body.style.overflow = "";
+  scrollUnlock();
 }
 
 function resetTrustProofSelection() {
@@ -418,19 +472,18 @@ function showCopyPrompt(text, message) {
 
 function communityOpenPopup() {
   resetCommunityCopyState("communityFbCopyBtn", "Copy link");
-  resetCommunityCopyState("communityZaloCopyBtn", "Copy link");
   const popup = document.getElementById("communityPopup");
-  if (!popup) return;
+  if (!popup || popup.classList.contains("open")) return;
   popup.classList.add("open");
-  document.body.style.overflow = "hidden";
+  scrollLock();
   if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
 }
 
 function communityClosePopup() {
   const popup = document.getElementById("communityPopup");
-  if (!popup) return;
+  if (!popup || !popup.classList.contains("open")) return;
   popup.classList.remove("open");
-  document.body.style.overflow = "";
+  scrollUnlock();
 }
 
 function resetCommunityCopyState(btnId, label) {
@@ -457,36 +510,20 @@ function communityFbCopy() {
   });
 }
 
-function communityZaloCopy() {
-  const btn = document.getElementById("communityZaloCopyBtn");
-  copyTextWithFallback("https://zalo.me/g/iaujemqdy7tpv6d0bapx").then(function () {
-    if (btn._resetTimer) clearTimeout(btn._resetTimer);
-    btn.classList.add("is-copied");
-    btn.querySelector(".copy-label").textContent = "Đã copy";
-    btn._resetTimer = setTimeout(function () {
-      btn.classList.remove("is-copied");
-      btn.querySelector(".copy-label").textContent = "Copy link";
-      btn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showCopyPrompt("https://zalo.me/g/iaujemqdy7tpv6d0bapx", "Đã sao chép link Zalo");
-  });
-}
-
 
 function zaloOpenPopup() {
   const popup = document.getElementById("zaloPopup");
-  if (!popup) return;
+  if (!popup || popup.classList.contains("open")) return;
   popup.classList.add("open");
-  document.body.style.overflow = "hidden";
+  scrollLock();
   if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
 }
 
 function zaloClosePopup() {
   const popup = document.getElementById("zaloPopup");
-  if (!popup) return;
+  if (!popup || !popup.classList.contains("open")) return;
   popup.classList.remove("open");
-  document.body.style.overflow = "";
+  scrollUnlock();
 }
 
 function copyContactZalo() {
@@ -520,6 +557,7 @@ function openFirstProduct(e) {
 }
 
 renderProducts();
+window.addEventListener("resize", renderProducts);
 
 (function () {
   const notifBar = document.querySelector(".notif-bar");
@@ -535,10 +573,10 @@ renderProducts();
     }
 
     const topbarH = topbar.offsetHeight || 68;
-    const triggerBottom = communityCard.getBoundingClientRect().bottom + window.scrollY;
+    const triggerTop = communityCard.getBoundingClientRect().top + window.scrollY;
     const viewportTop = window.scrollY + topbarH + 8;
 
-    if (viewportTop >= triggerBottom) {
+    if (viewportTop >= triggerTop) {
       notifBar.classList.add("visible");
     } else {
       notifBar.classList.remove("visible");
@@ -559,19 +597,19 @@ renderProducts();
 
 function welcomeOpen() {
   const overlay = document.getElementById("welcomeNotif");
-  if (!overlay) return;
+  if (!overlay || overlay.classList.contains("open")) return;
   overlay.style.display = "flex";
   void overlay.offsetWidth;
   overlay.classList.add("open");
-  document.body.style.overflow = "hidden";
+  scrollLock();
   if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
 }
 
 function welcomeClose() {
   const overlay = document.getElementById("welcomeNotif");
-  if (!overlay) return;
+  if (!overlay || !overlay.classList.contains("open")) return;
   overlay.classList.remove("open");
-  document.body.style.overflow = "";
+  scrollUnlock();
   if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
 
   setTimeout(function () {
@@ -614,6 +652,16 @@ document.addEventListener("keydown", function (event) {
   const trustViewer = document.getElementById("trustProofViewer");
   if (trustViewer && trustViewer.classList.contains("open")) {
     closeTrustProofViewer();
+    return;
+  }
+  const communityPopup = document.getElementById("communityPopup");
+  if (communityPopup && communityPopup.classList.contains("open")) {
+    communityClosePopup();
+    return;
+  }
+  const zaloPopup = document.getElementById("zaloPopup");
+  if (zaloPopup && zaloPopup.classList.contains("open")) {
+    zaloClosePopup();
     return;
   }
   const trustModal = document.getElementById("trustProofModal");
@@ -661,7 +709,7 @@ function normalizeRestoredUiState(isBackForward) {
   }
 
   document.body.classList.remove("modal-open", "overlay-open", "no-scroll");
-  document.body.style.overflow = "";
+  clearScrollLockState();
 
   const redirectToast = document.getElementById("redirectToast");
   if (redirectToast) redirectToast.classList.remove("show");

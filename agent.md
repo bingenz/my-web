@@ -42,6 +42,7 @@
 
 - Main interaction logic lives in `public/assets/js/app.js`.
 - Do not keep dead selectors, dead event handlers, or unused helper functions.
+- Remove superseded UI workarounds, temporary cache-busting, and duplicate overrides once the final fix is in place.
 - Any new modal or popup must include open, close, and UI state reset behavior.
 - Preserve working flows for:
   - product modal

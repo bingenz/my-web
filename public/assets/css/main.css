@@ -1644,6 +1644,10 @@ body::before {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.62em;
+  max-height: 28em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 0.5em;
 }
 .trust-proof-thumb,
 .trust-proof-more {

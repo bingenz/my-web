@@ -75,6 +75,13 @@ Xem thông báo mới từ BinGenZ
 <div class="hero-cta-row">
 <a class="chip primary" href="javascript:void(0)" onclick="openFirstProduct(event)">Khám phá tài khoản premium</a>
 </div>
+<div class="hero-proof-row">
+<button class="hero-proof-btn" type="button" onclick="openTrustProofModal(event)">
+<span class="hero-proof-btn-dot"></span>
+<span>Check uy tín</span>
+<span class="hero-proof-btn-badge">Nhấn vào đây</span>
+</button>
+</div>
 <div class="hero-stats">
 <div class="hero-stat-card">
 <div class="hero-stat-value">1 phút</div>
@@ -356,6 +363,31 @@ Liên hệ
 </div>
 </div>
 
+<div class="modal" id="trustProofModal" onclick="if(event.target===this)closeTrustProofModal()">
+<div class="modal-box">
+<div class="modal-head">
+<div class="modal-head-left">
+<h3 class="modal-title">Bill giao dịch khách đã thanh toán</h3>
+</div>
+<button class="close-btn" onclick="closeTrustProofModal()">Đóng</button>
+</div>
+<div class="modal-body">
+<div class="trust-proof-shell">
+<p class="trust-proof-intro">Xem nhanh một phần bill giao dịch thực tế ngay trên website.</p>
+<div class="trust-proof-grid" id="trustProofGrid"></div>
+<p class="trust-proof-note">Bill chỉ tải khi bấm xem để giữ trang luôn nhẹ và mượt.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="trust-proof-viewer" id="trustProofViewer" onclick="if(event.target===this)closeTrustProofViewer()">
+<button class="trust-proof-viewer-close" type="button" aria-label="Đóng ảnh" onclick="closeTrustProofViewer()">×</button>
+<div class="trust-proof-viewer-shell">
+<img id="trustProofViewerImage" src="" alt="Bill giao dịch" decoding="async">
+</div>
+</div>
+
 <div class="modal" id="productModal" onclick="if(event.target===this)closeModal()">
 <div class="modal-box">
 <div class="modal-head">
@@ -451,6 +483,12 @@ Copy số
 </button>
 </div>
 
+<button class="welcome-proof-btn" type="button" onclick="openTrustProofFromWelcome(event)">
+<span class="welcome-proof-btn-dot"></span>
+<span>Xem bill giao dịch</span>
+<span class="welcome-proof-btn-badge">Check uy tín</span>
+</button>
+
 <button class="welcome-dismiss" type="button" onclick="welcomeClose()">Đã hiểu, xem sản phẩm →</button>
 </div>
 </div>
@@ -459,5 +497,3 @@ Copy số
 <script src="assets/js/app.js" defer></script>
 </body>
   </html>
-
-

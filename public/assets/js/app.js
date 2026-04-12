@@ -3,6 +3,41 @@ history.scrollRestoration = "manual";
 // Không snapshot sớm — đọc từ window lúc renderProducts() chạy để tránh defer race condition
 let PRODUCTS = [];
 let DISPLAY_ORDER = [];
+const TRUST_PROOF_ITEMS = [
+  { full: "assets/proofs/display/Screenshot_20260315_150720_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260315_150720_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260316_211126_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260316_211126_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260319_095440_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260319_095440_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260319_155802_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260319_155802_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260320_193706_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260320_193706_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_093346_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_093346_Messenger.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_093909_Photos.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_093909_Photos.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_094706_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_094706_Messenger.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_095052_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_095052_Messenger.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_100158_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100158_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_100232_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100232_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_100250_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100250_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_100710_Photos.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100710_Photos.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_101003_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_101003_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_101027_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_101027_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_101238_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_101238_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_101253_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_101253_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260314_203622_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260314_203622_Messenger.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260317_143054_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260317_143054_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260321_170230_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260321_170230_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_093801_Photos.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_093801_Photos.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_100126_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100126_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_100751_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100751_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_100832_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100832_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260312_100942_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100942_Zalo.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260314_203458_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260314_203458_Messenger.jpg" },
+  { full: "assets/proofs/display/Screenshot_20260323_001701_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260323_001701_Zalo.jpg" }
+];
+const TRUST_PROOF_TEASER = {
+  full: "assets/proofs/display/Screenshot_20260315_150720_Zalo.jpg",
+  thumb: "assets/proofs/thumbs/Screenshot_20260315_150720_Zalo.jpg"
+};
+let trustProofInitialized = false;
+let currentTrustProofIndex = -1;
 
 function fmtPriceShort(n) {
   if (!n) return "";
@@ -213,6 +248,107 @@ function closeModal() {
   resetModalZaloCopyState();
   document.getElementById("productModal").classList.remove("open");
   document.body.style.overflow = "";
+}
+
+function initTrustProofModal() {
+  if (trustProofInitialized) return;
+  const grid = document.getElementById("trustProofGrid");
+  if (!grid) return;
+
+  const thumbs = TRUST_PROOF_ITEMS.map(function (item, index) {
+    return `
+<button class="trust-proof-thumb" type="button" data-proof-index="${index}" aria-label="Xem bill giao dịch ${index + 1}">
+<img src="${item.thumb}" alt="Bill giao dịch ${index + 1}" loading="lazy" decoding="async" width="280" height="360">
+<span class="trust-proof-thumb-label">Bill giao dịch ${index + 1}</span>
+</button>`;
+  }).join("");
+
+  const teaser = `
+<div class="trust-proof-more" aria-hidden="true">
+<img src="${TRUST_PROOF_TEASER.thumb}" alt="" loading="lazy" decoding="async" width="280" height="360">
+<div class="trust-proof-more-overlay">
+<div class="trust-proof-more-title">Còn hơn 200 giao dịch với khách hàng</div>
+<div class="trust-proof-more-note">Một phần bill được hiển thị ở đây để khách tiện tham khảo nhanh.</div>
+</div>
+</div>`;
+
+  grid.innerHTML = thumbs + teaser;
+
+  grid.querySelectorAll("[data-proof-index]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      setTrustProof(Number(btn.getAttribute("data-proof-index")));
+    });
+  });
+
+  trustProofInitialized = true;
+}
+
+function setTrustProof(index) {
+  if (!TRUST_PROOF_ITEMS[index]) return;
+  currentTrustProofIndex = index;
+
+  document.querySelectorAll(".trust-proof-thumb").forEach(function (btn) {
+    btn.classList.toggle("is-active", Number(btn.getAttribute("data-proof-index")) === index);
+  });
+
+  openTrustProofViewer(index);
+}
+
+function openTrustProofModal(e) {
+  if (e) e.preventDefault();
+  initTrustProofModal();
+  resetTrustProofSelection();
+  const modal = document.getElementById("trustProofModal");
+  if (!modal) return;
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeTrustProofModal() {
+  const modal = document.getElementById("trustProofModal");
+  if (!modal) return;
+  modal.classList.remove("open");
+  closeTrustProofViewer();
+  document.body.style.overflow = "";
+}
+
+function resetTrustProofSelection() {
+  currentTrustProofIndex = -1;
+
+  document.querySelectorAll(".trust-proof-thumb").forEach(function (btn) {
+    btn.classList.remove("is-active");
+  });
+}
+
+function openTrustProofViewer(index) {
+  const item = TRUST_PROOF_ITEMS[index];
+  if (!item) return;
+
+  const viewer = document.getElementById("trustProofViewer");
+  const image = document.getElementById("trustProofViewerImage");
+  if (!viewer || !image) return;
+
+  image.src = item.full;
+  image.alt = "Bill giao dịch " + (index + 1);
+  viewer.classList.add("open");
+}
+
+function closeTrustProofViewer() {
+  const viewer = document.getElementById("trustProofViewer");
+  const image = document.getElementById("trustProofViewerImage");
+  if (!viewer || !image) return;
+
+  viewer.classList.remove("open");
+  image.removeAttribute("src");
+  image.alt = "Bill giao dịch";
+}
+
+function openTrustProofFromWelcome(e) {
+  if (e) e.preventDefault();
+  welcomeClose();
+  setTimeout(function () {
+    openTrustProofModal();
+  }, 180);
 }
 
 function showRedirectToast(label, img) {
@@ -473,6 +609,19 @@ if (document.readyState === "loading") {
   initPage();
 }
 
+document.addEventListener("keydown", function (event) {
+  if (event.key !== "Escape") return;
+  const trustViewer = document.getElementById("trustProofViewer");
+  if (trustViewer && trustViewer.classList.contains("open")) {
+    closeTrustProofViewer();
+    return;
+  }
+  const trustModal = document.getElementById("trustProofModal");
+  if (trustModal && trustModal.classList.contains("open")) {
+    closeTrustProofModal();
+  }
+});
+
 (function () {
   function tryShowWelcome() {
     if (document.getElementById("welcomeNotif")) {
@@ -540,4 +689,3 @@ window.addEventListener("pageshow", function (event) {
 
   location.replace(location.pathname + location.search);
 });
-

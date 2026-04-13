@@ -565,33 +565,78 @@ window.addEventListener("resize", renderProducts);
   const topbar = document.querySelector(".topbar");
   if (!notifBar || !communityCard || !topbar) return;
 
-  function syncNotifBar() {
-    const welcomeOverlay = document.getElementById("welcomeNotif");
-    if (welcomeOverlay && welcomeOverlay.classList.contains("open")) {
-      notifBar.classList.remove("visible");
-      return;
-    }
+  let io = null;
+  let rafId = 0;
 
-    const topbarH = topbar.offsetHeight || 68;
-    const triggerTop = communityCard.getBoundingClientRect().top + window.scrollY;
-    const viewportTop = window.scrollY + topbarH + 8;
-
-    if (viewportTop >= triggerTop) {
+  function setNotifVisibility(isVisible) {
+    if (isVisible) {
       notifBar.classList.add("visible");
     } else {
       notifBar.classList.remove("visible");
     }
   }
 
-  window.syncNotifBarVisibility = syncNotifBar;
-  window.addEventListener("scroll", syncNotifBar, { passive: true });
-  window.addEventListener("resize", syncNotifBar);
-  window.addEventListener("load", syncNotifBar);
+  function syncNotifBar() {
+    const welcomeOverlay = document.getElementById("welcomeNotif");
+    if (welcomeOverlay && welcomeOverlay.classList.contains("open")) {
+      setNotifVisibility(false);
+      return;
+    }
+
+    const topbarH = topbar.offsetHeight || 68;
+    const triggerTop = communityCard.getBoundingClientRect().top + window.scrollY;
+    const viewportTop = window.scrollY + topbarH + 8;
+    setNotifVisibility(viewportTop >= triggerTop);
+  }
+
+  function scheduleSync() {
+    if (rafId) return;
+    rafId = window.requestAnimationFrame(function () {
+      rafId = 0;
+      syncNotifBar();
+    });
+  }
+
+  function bindObserver() {
+    if (!("IntersectionObserver" in window)) {
+      window.addEventListener("scroll", scheduleSync, { passive: true });
+      window.addEventListener("resize", scheduleSync);
+      window.addEventListener("load", scheduleSync);
+      scheduleSync();
+      return;
+    }
+
+    function rebuildObserver() {
+      if (io) io.disconnect();
+      const topbarH = topbar.offsetHeight || 68;
+      io = new IntersectionObserver(function (entries) {
+        const entry = entries[0];
+        const welcomeOverlay = document.getElementById("welcomeNotif");
+        if (welcomeOverlay && welcomeOverlay.classList.contains("open")) {
+          setNotifVisibility(false);
+          return;
+        }
+        setNotifVisibility(!entry.isIntersecting);
+      }, {
+        root: null,
+        threshold: 0,
+        rootMargin: '-' + (topbarH + 8) + 'px 0px 0px 0px'
+      });
+      io.observe(communityCard);
+      scheduleSync();
+    }
+
+    rebuildObserver();
+    window.addEventListener("resize", rebuildObserver);
+    window.addEventListener("load", scheduleSync);
+  }
+
+  window.syncNotifBarVisibility = scheduleSync;
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", syncNotifBar);
+    document.addEventListener("DOMContentLoaded", bindObserver);
   } else {
-    syncNotifBar();
+    bindObserver();
   }
 })();
 

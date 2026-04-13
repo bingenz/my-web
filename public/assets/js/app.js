@@ -26,108 +26,50 @@ function scrollUnlock() {
   clearScrollLockState();
   window.scrollTo(0, y);
 }
-
-const WELCOME_DISMISSED_KEY = "__bingenz_welcome_dismissed__";
-
-function isWelcomeDismissed() {
-  try {
-    return localStorage.getItem(WELCOME_DISMISSED_KEY) === "1";
-  } catch (e) {
-    return false;
-  }
-}
-
-function setWelcomeDismissed(value) {
-  try {
-    if (value) {
-      localStorage.setItem(WELCOME_DISMISSED_KEY, "1");
-    } else {
-      localStorage.removeItem(WELCOME_DISMISSED_KEY);
-    }
-  } catch (e) {}
-}
-
-function hasOpenUiLayer() {
-  return !!document.querySelector(
-    ".modal.open, .link-popup.open, .welcome-overlay.open, .trust-proof-viewer.open"
-  );
-}
-
-function syncUiObscuredState() {
-  var obscured = hasOpenUiLayer();
-  document.documentElement.classList.toggle("ui-obscured", obscured);
-  document.body.classList.toggle("ui-obscured", obscured);
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
-}
-
-function getScrollableOverlayContainer(target) {
-  if (!target || !target.closest) return null;
-  return target.closest(
-    ".modal-box, .link-popup-box, .welcome-box, .trust-proof-viewer-shell"
-  );
-}
-
-function shouldPreventOverlayScroll(event) {
-  if (_scrollLockCount <= 0) return false;
-  return !getScrollableOverlayContainer(event.target);
-}
-
-window.addEventListener(
-  "wheel",
-  function (event) {
-    if (shouldPreventOverlayScroll(event)) {
-      event.preventDefault();
-    }
-  },
-  { passive: false }
-);
-
-window.addEventListener(
-  "touchmove",
-  function (event) {
-    if (shouldPreventOverlayScroll(event)) {
-      event.preventDefault();
-    }
-  },
-  { passive: false }
-);
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Không snapshot sớm — đọc từ window lúc renderProducts() chạy để tránh defer race condition
 let PRODUCTS = [];
 let DISPLAY_ORDER = [];
-const TRUST_PROOF_ITEMS = [
-  { full: "assets/proofs/Screenshot_20260315_150720_Zalo.png", thumb: "assets/proofs/Screenshot_20260315_150720_Zalo.png" },
-  { full: "assets/proofs/Screenshot_20260319_095440_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260319_095440_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260320_193706_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260320_193706_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_093346_Messenger.jpg", thumb: "assets/proofs/Screenshot_20260312_093346_Messenger.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_093801_Photos.jpg", thumb: "assets/proofs/Screenshot_20260312_093801_Photos.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_093909_Photos.jpg", thumb: "assets/proofs/Screenshot_20260312_093909_Photos.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_094706_Messenger.jpg", thumb: "assets/proofs/Screenshot_20260312_094706_Messenger.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_095052_Messenger.jpg", thumb: "assets/proofs/Screenshot_20260312_095052_Messenger.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_100126_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100126_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_100158_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100158_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_100232_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100232_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_100250_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100250_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_100710_Photos.jpg", thumb: "assets/proofs/Screenshot_20260312_100710_Photos.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_100751_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100751_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_100832_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100832_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_100942_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100942_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_101003_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_101003_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_101027_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_101027_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_101238_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_101238_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260312_101253_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_101253_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260314_203458_Messenger.png", thumb: "assets/proofs/Screenshot_20260314_203458_Messenger.png" },
-  { full: "assets/proofs/Screenshot_20260314_203622_Messenger.png", thumb: "assets/proofs/Screenshot_20260314_203622_Messenger.png" },
-  { full: "assets/proofs/Screenshot_20260317_143054_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260317_143054_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260321_170230_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260321_170230_Zalo.jpg" },
-  { full: "assets/proofs/Screenshot_20260323_001701_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260323_001701_Zalo.jpg" }
+const TRUST_PROOF_FILES = [
+  "Screenshot_20260315_150720_Zalo.png",
+  "Screenshot_20260319_095440_Zalo.jpg",
+  "Screenshot_20260320_193706_Zalo.jpg",
+  "Screenshot_20260312_093346_Messenger.jpg",
+  "Screenshot_20260312_093801_Photos.jpg",
+  "Screenshot_20260312_093909_Photos.jpg",
+  "Screenshot_20260312_094706_Messenger.jpg",
+  "Screenshot_20260312_095052_Messenger.jpg",
+  "Screenshot_20260312_100126_Zalo.jpg",
+  "Screenshot_20260312_100158_Zalo.jpg",
+  "Screenshot_20260312_100232_Zalo.jpg",
+  "Screenshot_20260312_100250_Zalo.jpg",
+  "Screenshot_20260312_100710_Photos.jpg",
+  "Screenshot_20260312_100751_Zalo.jpg",
+  "Screenshot_20260312_100832_Zalo.jpg",
+  "Screenshot_20260312_100942_Zalo.jpg",
+  "Screenshot_20260312_101003_Zalo.jpg",
+  "Screenshot_20260312_101027_Zalo.jpg",
+  "Screenshot_20260312_101238_Zalo.jpg",
+  "Screenshot_20260312_101253_Zalo.jpg",
+  "Screenshot_20260314_203458_Messenger.png",
+  "Screenshot_20260314_203622_Messenger.png",
+  "Screenshot_20260317_143054_Zalo.jpg",
+  "Screenshot_20260321_170230_Zalo.jpg",
+  "Screenshot_20260323_001701_Zalo.jpg"
 ];
-const TRUST_PROOF_TEASER = {
-  full: "assets/proofs/Screenshot_20260315_150720_Zalo.png",
-  thumb: "assets/proofs/Screenshot_20260315_150720_Zalo.png"
-};
+
+function buildTrustProofItem(fileName) {
+  return {
+    thumb: "assets/proofs/thumbs/" + fileName.replace(/\.png$/i, ".jpg"),
+    full: "assets/proofs/display/" + fileName.replace(/\.png$/i, ".jpg")
+  };
+}
+
+const TRUST_PROOF_ITEMS = TRUST_PROOF_FILES.map(buildTrustProofItem);
+const TRUST_PROOF_TEASER = buildTrustProofItem(TRUST_PROOF_FILES[0]);
 let trustProofInitialized = false;
+let trustProofThumbsBootstrapped = false;
 let currentTrustProofIndex = -1;
 
 function fmtPriceShort(n) {
@@ -365,17 +307,17 @@ function initTrustProofModal() {
   const thumbs = TRUST_PROOF_ITEMS.map(function (item, index) {
     return `
 <button class="trust-proof-thumb" type="button" data-proof-index="${index}" aria-label="Xem bill giao dịch ${index + 1}">
-<img src="${item.thumb}" alt="Bill giao dịch ${index + 1}" loading="lazy" decoding="async" width="280" height="360">
+<img data-src="${item.thumb}" alt="Bill giao dịch ${index + 1}" loading="lazy" decoding="async" width="280" height="360">
 <span class="trust-proof-thumb-label">Bill giao dịch ${index + 1}</span>
 </button>`;
   }).join("");
 
   const teaser = `
 <div class="trust-proof-more" aria-hidden="true">
-<img src="${TRUST_PROOF_TEASER.thumb}" alt="" loading="lazy" decoding="async" width="280" height="360">
+<img data-src="${TRUST_PROOF_TEASER.thumb}" alt="" loading="lazy" decoding="async" width="280" height="360">
 <div class="trust-proof-more-overlay">
 <div class="trust-proof-more-title">Còn hơn 200 giao dịch với khách hàng</div>
-<div class="trust-proof-more-note">Một phần bill được hiển thị ở đây để khách tiện tham khảo nhanh.</div>
+<div class="trust-proof-more-note">Ảnh bill chỉ tải khi bạn mở mục này để xem, không tải từ lúc mới vào web.</div>
 </div>
 </div>`;
 
@@ -388,6 +330,21 @@ function initTrustProofModal() {
   });
 
   trustProofInitialized = true;
+}
+
+function bootstrapTrustProofThumbs() {
+  if (trustProofThumbsBootstrapped) return;
+  const grid = document.getElementById("trustProofGrid");
+  if (!grid) return;
+
+  grid.querySelectorAll("img[data-src]").forEach(function (img) {
+    const src = img.getAttribute("data-src");
+    if (!src) return;
+    img.src = src;
+    img.removeAttribute("data-src");
+  });
+
+  trustProofThumbsBootstrapped = true;
 }
 
 function setTrustProof(index) {
@@ -408,6 +365,7 @@ function openTrustProofModal(e) {
   const modal = document.getElementById("trustProofModal");
   if (!modal || modal.classList.contains("open")) return;
   modal.classList.add("open");
+  bootstrapTrustProofThumbs();
   scrollLock();
   syncUiObscuredState();
 }
@@ -418,7 +376,6 @@ function closeTrustProofModal() {
   modal.classList.remove("open");
   closeTrustProofViewer();
   scrollUnlock();
-  syncUiObscuredState();
 }
 
 function resetTrustProofSelection() {
@@ -454,7 +411,7 @@ function closeTrustProofViewer() {
 
 function openTrustProofFromWelcome(e) {
   if (e) e.preventDefault();
-  welcomeClose({ remember: true });
+  welcomeClose();
   setTimeout(function () {
     openTrustProofModal();
   }, 180);
@@ -723,28 +680,22 @@ renderProducts();
   }
 })();
 
-function welcomeOpen(options) {
+function welcomeOpen() {
   const overlay = document.getElementById("welcomeNotif");
-  const opts = options || {};
   if (!overlay || overlay.classList.contains("open")) return;
-  if (opts.auto && isWelcomeDismissed()) return;
   overlay.style.display = "flex";
   void overlay.offsetWidth;
   overlay.classList.add("open");
   scrollLock();
-  syncUiObscuredState();
+  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
 }
 
-function welcomeClose(options) {
+function welcomeClose() {
   const overlay = document.getElementById("welcomeNotif");
-  const opts = options || {};
   if (!overlay || !overlay.classList.contains("open")) return;
   overlay.classList.remove("open");
   scrollUnlock();
-  if (opts.remember !== false) {
-    setWelcomeDismissed(true);
-  }
-  syncUiObscuredState();
+  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
 
   setTimeout(function () {
     if (!overlay.classList.contains("open")) {
@@ -807,10 +758,10 @@ document.addEventListener("keydown", function (event) {
 (function () {
   function tryShowWelcome() {
     if (document.getElementById("welcomeNotif")) {
-      setTimeout(function () { welcomeOpen({ auto: true }); }, 350);
+      setTimeout(welcomeOpen, 350);
     } else {
       window.addEventListener("load", function () {
-        setTimeout(function () { welcomeOpen({ auto: true }); }, 350);
+        setTimeout(welcomeOpen, 350);
       });
     }
   }
@@ -827,13 +778,22 @@ function normalizeRestoredUiState(isBackForward) {
     el.classList.remove("open");
   });
 
-  const wn = document.getElementById("welcomeNotif");
-  if (wn) {
-    wn.classList.remove("open", "show", "active");
-    wn.style.display = isBackForward ? "" : wn.style.display;
+  ["welcomePopup", "welcomeModal", "welcomeOverlay", "wlcPopup"].forEach(function (id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove("open", "show", "active");
+    el.style.display = "none";
+  });
+
+  if (isBackForward) {
+    const wn = document.getElementById("welcomeNotif");
+    if (wn) {
+      wn.classList.remove("open", "show", "active");
+      wn.style.display = "";
+    }
   }
 
-  document.body.classList.remove("modal-open", "overlay-open", "no-scroll", "ui-obscured");
+  document.body.classList.remove("modal-open", "overlay-open", "no-scroll");
   document.documentElement.classList.remove("ui-obscured");
   clearScrollLockState();
 }

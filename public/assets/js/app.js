@@ -585,6 +585,8 @@ renderProducts();
     }
   }
 
+  var isTikTokBrowser = document.documentElement.classList.contains('tiktok-browser');
+
   function syncNotifBar() {
     const welcomeOverlay = document.getElementById("welcomeNotif");
     if (welcomeOverlay && welcomeOverlay.classList.contains("open")) {
@@ -592,10 +594,19 @@ renderProducts();
       return;
     }
 
-    // topbar là fixed — dùng getBoundingClientRect trực tiếp (không cộng scrollY)
     const topbarH = topbar.offsetHeight || 68;
-    const rect = communityCard.getBoundingClientRect();
-    setNotifVisibility(rect.top < topbarH + 8);
+
+    if (isTikTokBrowser) {
+      // Sticky mode: notif-bar nằm trong flow, cần set top đúng dưới topbar
+      notifBar.style.top = topbarH + 'px';
+      // Trigger dựa trên scroll position so với communityCard
+      const rect = communityCard.getBoundingClientRect();
+      setNotifVisibility(rect.top < topbarH + 8);
+    } else {
+      // Fixed mode: topbar luôn ở trên, dùng rect trực tiếp
+      const rect = communityCard.getBoundingClientRect();
+      setNotifVisibility(rect.top < topbarH + 8);
+    }
   }
 
   function scheduleSync() {
@@ -618,6 +629,12 @@ renderProducts();
     function rebuildObserver() {
       if (io) io.disconnect();
       const topbarH = topbar.offsetHeight || 68;
+
+      // Trong TikTok sticky mode, set đúng top của notif-bar
+      if (isTikTokBrowser) {
+        notifBar.style.top = topbarH + 'px';
+      }
+
       io = new IntersectionObserver(function (entries) {
         const entry = entries[0];
         const welcomeOverlay = document.getElementById("welcomeNotif");
@@ -625,7 +642,6 @@ renderProducts();
           setNotifVisibility(false);
           return;
         }
-        // isIntersecting = false khi communityCard bị che hoàn toàn bởi topbar → hiện notif
         setNotifVisibility(!entry.isIntersecting);
       }, {
         root: null,

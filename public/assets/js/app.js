@@ -424,6 +424,8 @@ function showStatusToast(message) {
     toast.style.transform = "translateX(-50%) translateY(12px)";
   }, 2800);
 }
+
+function copyTextWithFallback(text) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     return navigator.clipboard.writeText(text).catch(function () {
       return tryExecCommandCopy(text);
@@ -797,5 +799,4 @@ window.addEventListener("pageshow", function (event) {
 
   location.replace(location.pathname + location.search);
 });
-
 

@@ -20,6 +20,11 @@ h1, h2, h3, .price, .badge, .cta { font-family: "Geist Sans", sans-serif; }
 .header-social-link { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.72); border: 1px solid rgba(15,23,42,0.1); color: #334155; text-decoration: none; box-shadow: 0 2px 8px rgba(15,23,42,0.07); transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease, color 0.15s ease; }
 .header-social-link:hover { background: #fff; transform: translateY(-1px); color: #312e81; box-shadow: 0 6px 14px rgba(15,23,42,0.1); }
 .header-social-link svg { width: 16px; height: 16px; display: block; }
+@media (max-width: 480px) {
+  .header-social { gap: 5px; }
+  .header-social-link { width: 30px; height: 30px; }
+  .header-social-link svg { width: 14px; height: 14px; }
+}
 .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.01em; }
 .logo span { background: var(--grad-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .logo-sub { background: var(--grad-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
@@ -2032,4 +2037,3 @@ html, body {
   }
   .cfp-dot { display: none; }
 }
-

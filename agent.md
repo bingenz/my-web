@@ -48,8 +48,20 @@
   - product modal
   - Zalo popup
   - copy-to-clipboard buttons
-  - redirect/status toast
+  - status toast (`showStatusToast` — self-contained, no external HTML element dependency)
   - welcome popup
+
+## Social Links and External References
+
+- Canonical social links for this project:
+  - TikTok: `https://www.tiktok.com/@bingenz_`
+  - Instagram: `https://www.instagram.com/bingenz_ig`
+  - GitHub: `https://github.com/bingenz`
+  - Facebook: `https://www.facebook.com/share/1AUUKX6NHa/`
+  - Telegram: `https://t.me/binpinkgold`
+- When updating a social link, search and replace ALL occurrences across `index.html` — header, social-strip section, and contact section each have their own copy.
+- Do not add new external brand references (sponsor blocks, ad banners, partner cards) unless the user explicitly requests them.
+- When a sponsor or partner block is removed, delete all related HTML, CSS classes, JS handlers, and asset files (images, etc.) in the same commit. Do not leave orphaned `.wlc-ad`, `.redirect-toast`, or similar component CSS behind.
 
 ## Metadata Rules
 

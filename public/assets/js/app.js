@@ -1,44 +1,30 @@
 history.scrollRestoration = "manual";
 
 // ── Scroll lock ──────────────────────────────────────────────────────────────
-// Giữ nguyên scroll position khi mở popup (tránh trang nhảy/shift)
+// Dùng overflow:hidden thay vì position:fixed để tránh tạo stacking context mới
+// (position:fixed trên body sẽ trap các fixed children, viewer không thoát được)
 let _scrollLockCount = 0;
-let _scrollLockX = 0;
 let _scrollLockY = 0;
-function restoreWindowScroll(x, y) {
-  const root = document.documentElement;
-  const previousInlineBehavior = root.style.scrollBehavior;
-  root.style.scrollBehavior = "auto";
-  window.scrollTo(x, y);
-  requestAnimationFrame(function () {
-    root.style.scrollBehavior = previousInlineBehavior;
-  });
-}
 function clearScrollLockState() {
   _scrollLockCount = 0;
   document.body.classList.remove("scroll-locked");
-  document.body.style.left = "";
-  document.body.style.top = "";
-  document.body.style.width = "";
+  document.documentElement.style.removeProperty("--scrollbar-width");
 }
 function scrollLock() {
   _scrollLockCount++;
-  if (_scrollLockCount > 1) return; // already locked
-  _scrollLockX = window.scrollX || window.pageXOffset || 0;
+  if (_scrollLockCount > 1) return;
   _scrollLockY = window.scrollY || window.pageYOffset || 0;
-  document.body.style.left = "-" + _scrollLockX + "px";
-  document.body.style.top = "-" + _scrollLockY + "px";
-  document.body.style.width = "100%";
+  // Tính scrollbar width để bù khi overflow:hidden ẩn scrollbar
+  const sw = window.innerWidth - document.documentElement.clientWidth;
+  document.documentElement.style.setProperty("--scrollbar-width", sw + "px");
   document.body.classList.add("scroll-locked");
 }
 function scrollUnlock() {
   if (_scrollLockCount === 0) return;
   _scrollLockCount--;
-  if (_scrollLockCount > 0) return; // another popup still open
-  const restoreX = _scrollLockX;
-  const restoreY = _scrollLockY;
+  if (_scrollLockCount > 0) return;
   clearScrollLockState();
-  restoreWindowScroll(restoreX, restoreY);
+  window.scrollTo(0, _scrollLockY);
 }
 // ─────────────────────────────────────────────────────────────────────────────
 

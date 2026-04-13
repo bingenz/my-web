@@ -46,37 +46,35 @@ function scrollUnlock() {
 let PRODUCTS = [];
 let DISPLAY_ORDER = [];
 const TRUST_PROOF_ITEMS = [
-  { full: "assets/proofs/display/Screenshot_20260315_150720_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260315_150720_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260316_211126_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260316_211126_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260319_095440_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260319_095440_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260319_155802_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260319_155802_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260320_193706_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260320_193706_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_093346_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_093346_Messenger.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_093909_Photos.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_093909_Photos.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_094706_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_094706_Messenger.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_095052_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_095052_Messenger.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_100158_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100158_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_100232_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100232_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_100250_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100250_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_100710_Photos.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100710_Photos.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_101003_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_101003_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_101027_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_101027_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_101238_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_101238_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_101253_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_101253_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260314_203622_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260314_203622_Messenger.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260317_143054_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260317_143054_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260321_170230_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260321_170230_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_093801_Photos.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_093801_Photos.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_100126_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100126_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_100751_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100751_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_100832_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100832_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260312_100942_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260312_100942_Zalo.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260314_203458_Messenger.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260314_203458_Messenger.jpg" },
-  { full: "assets/proofs/display/Screenshot_20260323_001701_Zalo.jpg", thumb: "assets/proofs/thumbs/Screenshot_20260323_001701_Zalo.jpg" }
+  { full: "assets/proofs/Screenshot_20260315_150720_Zalo.png", thumb: "assets/proofs/Screenshot_20260315_150720_Zalo.png" },
+  { full: "assets/proofs/Screenshot_20260319_095440_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260319_095440_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260320_193706_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260320_193706_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_093346_Messenger.jpg", thumb: "assets/proofs/Screenshot_20260312_093346_Messenger.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_093801_Photos.jpg", thumb: "assets/proofs/Screenshot_20260312_093801_Photos.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_093909_Photos.jpg", thumb: "assets/proofs/Screenshot_20260312_093909_Photos.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_094706_Messenger.jpg", thumb: "assets/proofs/Screenshot_20260312_094706_Messenger.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_095052_Messenger.jpg", thumb: "assets/proofs/Screenshot_20260312_095052_Messenger.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_100126_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100126_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_100158_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100158_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_100232_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100232_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_100250_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100250_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_100710_Photos.jpg", thumb: "assets/proofs/Screenshot_20260312_100710_Photos.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_100751_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100751_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_100832_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100832_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_100942_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_100942_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_101003_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_101003_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_101027_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_101027_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_101238_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_101238_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260312_101253_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260312_101253_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260314_203458_Messenger.png", thumb: "assets/proofs/Screenshot_20260314_203458_Messenger.png" },
+  { full: "assets/proofs/Screenshot_20260314_203622_Messenger.png", thumb: "assets/proofs/Screenshot_20260314_203622_Messenger.png" },
+  { full: "assets/proofs/Screenshot_20260317_143054_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260317_143054_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260321_170230_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260321_170230_Zalo.jpg" },
+  { full: "assets/proofs/Screenshot_20260323_001701_Zalo.jpg", thumb: "assets/proofs/Screenshot_20260323_001701_Zalo.jpg" }
 ];
 const TRUST_PROOF_TEASER = {
-  full: "assets/proofs/display/Screenshot_20260315_150720_Zalo.jpg",
-  thumb: "assets/proofs/thumbs/Screenshot_20260315_150720_Zalo.jpg"
+  full: "assets/proofs/Screenshot_20260315_150720_Zalo.png",
+  thumb: "assets/proofs/Screenshot_20260315_150720_Zalo.png"
 };
 let trustProofInitialized = false;
 let currentTrustProofIndex = -1;

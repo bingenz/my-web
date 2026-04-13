@@ -205,6 +205,7 @@ function openProduct(id) {
   if (modal.classList.contains("open")) return;
   modal.classList.add("open");
   scrollLock();
+  syncUiObscuredState();
 }
 
 function openDevModal() {
@@ -217,6 +218,7 @@ function openDevModal() {
   if (!modal || modal.classList.contains("open")) return;
   modal.classList.add("open");
   scrollLock();
+  syncUiObscuredState();
 }
 
 function closeDevModal() {
@@ -225,6 +227,7 @@ function closeDevModal() {
   if (!modal || !modal.classList.contains("open")) return;
   modal.classList.remove("open");
   scrollUnlock();
+  syncUiObscuredState();
 }
 
 function toggleDevDetail() {
@@ -302,6 +305,7 @@ function closeModal() {
   if (!modal || !modal.classList.contains("open")) return;
   modal.classList.remove("open");
   scrollUnlock();
+  syncUiObscuredState();
 }
 
 function initTrustProofModal() {
@@ -356,6 +360,7 @@ function openTrustProofModal(e) {
   if (!modal || modal.classList.contains("open")) return;
   modal.classList.add("open");
   scrollLock();
+  syncUiObscuredState();
 }
 
 function closeTrustProofModal() {
@@ -470,6 +475,7 @@ function communityOpenPopup() {
   if (!popup || popup.classList.contains("open")) return;
   popup.classList.add("open");
   scrollLock();
+  syncUiObscuredState();
   if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
 }
 
@@ -478,6 +484,7 @@ function communityClosePopup() {
   if (!popup || !popup.classList.contains("open")) return;
   popup.classList.remove("open");
   scrollUnlock();
+  syncUiObscuredState();
 }
 
 function resetCommunityCopyState(btnId, label) {
@@ -510,6 +517,7 @@ function zaloOpenPopup() {
   if (!popup || popup.classList.contains("open")) return;
   popup.classList.add("open");
   scrollLock();
+  syncUiObscuredState();
   if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
 }
 
@@ -518,6 +526,7 @@ function zaloClosePopup() {
   if (!popup || !popup.classList.contains("open")) return;
   popup.classList.remove("open");
   scrollUnlock();
+  syncUiObscuredState();
 }
 
 function copyContactZalo() {
@@ -778,6 +787,7 @@ function normalizeRestoredUiState(isBackForward) {
   }
 
   document.body.classList.remove("modal-open", "overlay-open", "no-scroll");
+  document.documentElement.classList.remove("ui-obscured");
   clearScrollLockState();
 }
 
@@ -803,4 +813,3 @@ window.addEventListener("pageshow", function (event) {
 
   location.replace(location.pathname + location.search);
 });
-

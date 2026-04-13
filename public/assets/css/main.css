@@ -1847,11 +1847,9 @@ body::before {
 
 /* scroll lock — prevents background scroll when popup is open */
 body.scroll-locked {
-  position: fixed;
-  left: 0;
-  right: 0;
-  width: 100%;
-  overflow-y: scroll; /* keep scrollbar width to avoid layout shift */
+  overflow: hidden;
+  /* padding-right để bù scrollbar width, tránh layout shift */
+  padding-right: var(--scrollbar-width, 0px);
 }
 
 #productGrid .pcard {
@@ -2229,4 +2227,5 @@ html.tiktok-browser.ui-obscured .footer {
     background: rgba(2, 6, 16, 0.82) !important;
   }
       }
+
 

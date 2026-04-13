@@ -72,10 +72,27 @@
 - Do not run `build` and `check` in parallel.
 - If the task changes visible UI, verify against a local preview when practical.
 
+## Required Testing After Every Change
+
+- After finishing any task, test the logic you changed before handoff.
+- Test all affected buttons, links, toggles, popups, close actions, and copy actions.
+- Test all affected UI states, hover states, disabled states, open/close states, transitions, and animations.
+- If the task affects scrolling, sticky/fixed UI, overlays, or mobile behavior, test those flows specifically.
+- Verify that no existing working flow was broken while fixing the requested issue.
+- Include a short testing summary in the final handoff covering what was tested and the result.
+- Do not mark work as complete if logic, buttons, and visible effects were not tested.
+
+## Legacy Code and Cleanup Rules
+
+- Do not reintroduce or reuse legacy code, old UI patterns, old styles, old handlers, old copy, or deprecated data unless the user explicitly asks for that exact restoration.
+- When a feature, component, section, field, button, effect, or flow is removed, delete all related code completely instead of hiding, bypassing, or leaving partial leftovers.
+- Full removal includes related HTML, CSS, JS, selectors, listeners, helper functions, state, assets, mock data, content, and config references tied to the removed behavior.
+- Do not leave commented-out old code, legacy fallback branches, temporary compatibility code, or unused duplicate implementations in the final source.
+- Do not restore old content, old UI blocks, old colors, or old copy from git history unless the user explicitly asks for that exact restoration.
+- When using git history for reference, treat it as read-only context, not as approval to bring old content back.
+
 ## Repo Discipline
 
 - Do not add frameworks, bundlers, or major architecture changes unless the user explicitly asks.
 - Do not migrate this project to React, Next.js, Vite, Tailwind, or any SPA setup by default.
 - Keep changes minimal, local, and consistent with the current static-site structure.
-- Do not restore old content, old UI blocks, old colors, or old copy from git history unless the user explicitly asks for that exact restoration.
-- When using git history for reference, treat it as read-only context, not as approval to bring old content back.

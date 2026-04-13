@@ -813,3 +813,4 @@ window.addEventListener("pageshow", function (event) {
 
   location.replace(location.pathname + location.search);
 });
+

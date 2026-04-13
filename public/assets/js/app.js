@@ -552,12 +552,21 @@ function openFirstProduct(e) {
 
   const topbar = document.querySelector(".topbar");
   const topbarH = topbar ? topbar.offsetHeight : 68;
-  const top = target.getBoundingClientRect().top + window.scrollY - topbarH;
+  const notifBar = document.querySelector(".notif-bar.visible");
+  const notifH = notifBar ? notifBar.offsetHeight : 0;
+  const offset = topbarH + notifH + 8;
+  const top = target.getBoundingClientRect().top + window.scrollY - offset;
   window.scrollTo({ top, behavior: "smooth" });
 }
 
 renderProducts();
-window.addEventListener("resize", renderProducts);
+(function() {
+  var _rpTimer = 0;
+  window.addEventListener("resize", function() {
+    clearTimeout(_rpTimer);
+    _rpTimer = setTimeout(renderProducts, 120);
+  });
+})();
 
 (function () {
   const notifBar = document.querySelector(".notif-bar");
@@ -583,10 +592,10 @@ window.addEventListener("resize", renderProducts);
       return;
     }
 
+    // topbar là fixed — dùng getBoundingClientRect trực tiếp (không cộng scrollY)
     const topbarH = topbar.offsetHeight || 68;
-    const triggerTop = communityCard.getBoundingClientRect().top + window.scrollY;
-    const viewportTop = window.scrollY + topbarH + 8;
-    setNotifVisibility(viewportTop >= triggerTop);
+    const rect = communityCard.getBoundingClientRect();
+    setNotifVisibility(rect.top < topbarH + 8);
   }
 
   function scheduleSync() {
@@ -616,6 +625,7 @@ window.addEventListener("resize", renderProducts);
           setNotifVisibility(false);
           return;
         }
+        // isIntersecting = false khi communityCard bị che hoàn toàn bởi topbar → hiện notif
         setNotifVisibility(!entry.isIntersecting);
       }, {
         root: null,
@@ -782,3 +792,4 @@ window.addEventListener("pageshow", function (event) {
 
   location.replace(location.pathname + location.search);
 });
+

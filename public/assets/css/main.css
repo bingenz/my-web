@@ -1848,7 +1848,6 @@ body::before {
 /* scroll lock — prevents background scroll when popup is open */
 body.scroll-locked {
   overflow: hidden;
-  /* padding-right để bù scrollbar width, tránh layout shift */
   padding-right: var(--scrollbar-width, 0px);
 }
 
@@ -2227,5 +2226,4 @@ html.tiktok-browser.ui-obscured .footer {
     background: rgba(2, 6, 16, 0.82) !important;
   }
       }
-
 

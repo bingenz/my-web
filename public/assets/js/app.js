@@ -26,6 +26,71 @@ function scrollUnlock() {
   clearScrollLockState();
   window.scrollTo(0, y);
 }
+
+const WELCOME_DISMISSED_KEY = "__bingenz_welcome_dismissed__";
+
+function isWelcomeDismissed() {
+  try {
+    return localStorage.getItem(WELCOME_DISMISSED_KEY) === "1";
+  } catch (e) {
+    return false;
+  }
+}
+
+function setWelcomeDismissed(value) {
+  try {
+    if (value) {
+      localStorage.setItem(WELCOME_DISMISSED_KEY, "1");
+    } else {
+      localStorage.removeItem(WELCOME_DISMISSED_KEY);
+    }
+  } catch (e) {}
+}
+
+function hasOpenUiLayer() {
+  return !!document.querySelector(
+    ".modal.open, .link-popup.open, .welcome-overlay.open, .trust-proof-viewer.open"
+  );
+}
+
+function syncUiObscuredState() {
+  var obscured = hasOpenUiLayer();
+  document.documentElement.classList.toggle("ui-obscured", obscured);
+  document.body.classList.toggle("ui-obscured", obscured);
+  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
+}
+
+function getScrollableOverlayContainer(target) {
+  if (!target || !target.closest) return null;
+  return target.closest(
+    ".modal-box, .link-popup-box, .welcome-box, .trust-proof-viewer-shell"
+  );
+}
+
+function shouldPreventOverlayScroll(event) {
+  if (_scrollLockCount <= 0) return false;
+  return !getScrollableOverlayContainer(event.target);
+}
+
+window.addEventListener(
+  "wheel",
+  function (event) {
+    if (shouldPreventOverlayScroll(event)) {
+      event.preventDefault();
+    }
+  },
+  { passive: false }
+);
+
+window.addEventListener(
+  "touchmove",
+  function (event) {
+    if (shouldPreventOverlayScroll(event)) {
+      event.preventDefault();
+    }
+  },
+  { passive: false }
+);
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Không snapshot sớm — đọc từ window lúc renderProducts() chạy để tránh defer race condition
@@ -353,6 +418,7 @@ function closeTrustProofModal() {
   modal.classList.remove("open");
   closeTrustProofViewer();
   scrollUnlock();
+  syncUiObscuredState();
 }
 
 function resetTrustProofSelection() {
@@ -388,7 +454,7 @@ function closeTrustProofViewer() {
 
 function openTrustProofFromWelcome(e) {
   if (e) e.preventDefault();
-  welcomeClose();
+  welcomeClose({ remember: true });
   setTimeout(function () {
     openTrustProofModal();
   }, 180);
@@ -657,22 +723,28 @@ renderProducts();
   }
 })();
 
-function welcomeOpen() {
+function welcomeOpen(options) {
   const overlay = document.getElementById("welcomeNotif");
+  const opts = options || {};
   if (!overlay || overlay.classList.contains("open")) return;
+  if (opts.auto && isWelcomeDismissed()) return;
   overlay.style.display = "flex";
   void overlay.offsetWidth;
   overlay.classList.add("open");
   scrollLock();
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
+  syncUiObscuredState();
 }
 
-function welcomeClose() {
+function welcomeClose(options) {
   const overlay = document.getElementById("welcomeNotif");
+  const opts = options || {};
   if (!overlay || !overlay.classList.contains("open")) return;
   overlay.classList.remove("open");
   scrollUnlock();
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
+  if (opts.remember !== false) {
+    setWelcomeDismissed(true);
+  }
+  syncUiObscuredState();
 
   setTimeout(function () {
     if (!overlay.classList.contains("open")) {
@@ -735,10 +807,10 @@ document.addEventListener("keydown", function (event) {
 (function () {
   function tryShowWelcome() {
     if (document.getElementById("welcomeNotif")) {
-      setTimeout(welcomeOpen, 350);
+      setTimeout(function () { welcomeOpen({ auto: true }); }, 350);
     } else {
       window.addEventListener("load", function () {
-        setTimeout(welcomeOpen, 350);
+        setTimeout(function () { welcomeOpen({ auto: true }); }, 350);
       });
     }
   }
@@ -755,22 +827,13 @@ function normalizeRestoredUiState(isBackForward) {
     el.classList.remove("open");
   });
 
-  ["welcomePopup", "welcomeModal", "welcomeOverlay", "wlcPopup"].forEach(function (id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.remove("open", "show", "active");
-    el.style.display = "none";
-  });
-
-  if (isBackForward) {
-    const wn = document.getElementById("welcomeNotif");
-    if (wn) {
-      wn.classList.remove("open", "show", "active");
-      wn.style.display = "";
-    }
+  const wn = document.getElementById("welcomeNotif");
+  if (wn) {
+    wn.classList.remove("open", "show", "active");
+    wn.style.display = isBackForward ? "" : wn.style.display;
   }
 
-  document.body.classList.remove("modal-open", "overlay-open", "no-scroll");
+  document.body.classList.remove("modal-open", "overlay-open", "no-scroll", "ui-obscured");
   document.documentElement.classList.remove("ui-obscured");
   clearScrollLockState();
 }
@@ -797,5 +860,4 @@ window.addEventListener("pageshow", function (event) {
 
   location.replace(location.pathname + location.search);
 });
-
 

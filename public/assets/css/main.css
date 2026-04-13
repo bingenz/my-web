@@ -1885,3 +1885,59 @@ body.scroll-locked {
   width: 100% !important;
   min-width: 0 !important;
 }
+
+
+/* Performance-preserving fallback for TikTok / in-app browsers */
+html.perf-lite {
+  scroll-behavior: auto;
+}
+
+html.perf-lite body::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: 20px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 56%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 56%, transparent 100%);
+  opacity: 0.92;
+  transform: translateZ(0);
+}
+
+html.perf-lite .topbar {
+  position: sticky;
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html.perf-lite .notif-bar {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+html.perf-lite .notif-btn {
+  background: rgba(17, 24, 39, 0.94);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+html.perf-lite .logo-particle,
+html.perf-lite .notif-btn,
+html.perf-lite .notif-btn-badge {
+  animation-play-state: paused;
+}
+
+html.perf-lite .topbar,
+html.perf-lite .notif-bar,
+html.perf-lite .hero-card,
+html.perf-lite .pcard,
+html.perf-lite .wide,
+html.perf-lite .community-card-link,
+html.perf-lite .proof-card,
+html.perf-lite .wlc-ad-inner {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+                    }

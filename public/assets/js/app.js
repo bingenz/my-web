@@ -263,7 +263,7 @@ function copyModalZalo() {
       copyBtn._resetTimer = null;
     }, 1800);
   }).catch(function () {
-    showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101", "https://cdn.simpleicons.org/zalo/0068FF");
+    showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101");
   });
 }
 
@@ -292,7 +292,7 @@ function copyDevZalo() {
       copyBtn._resetTimer = null;
     }, 1800);
   }).catch(function () {
-    showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101", "https://cdn.simpleicons.org/zalo/0068FF");
+    showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101");
   });
 }
 
@@ -405,33 +405,25 @@ function openTrustProofFromWelcome(e) {
   }, 180);
 }
 
-function showRedirectToast(label, img) {
-  const toast = document.getElementById("redirectToast");
-  if (!toast) return;
-
-  const toastImg = toast.querySelector(".t-img");
-  const toastTxt = toast.querySelector(".t-text");
-  if (toastImg && img) toastImg.src = img;
-  if (toastTxt && label) toastTxt.textContent = "Đang chuyển đến " + label;
-
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 2600);
+function showStatusToast(message) {
+  var toast = document.getElementById("statusToast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "statusToast";
+    toast.style.cssText = "position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(12px);background:#0f172a;border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:10px 18px;font-size:0.82em;font-weight:600;color:#fff;z-index:300;opacity:0;transition:opacity 0.22s ease,transform 0.22s ease;white-space:nowrap;pointer-events:none;";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message || "";
+  requestAnimationFrame(function () {
+    toast.style.opacity = "1";
+    toast.style.transform = "translateX(-50%) translateY(0)";
+  });
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(function () {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateX(-50%) translateY(12px)";
+  }, 2800);
 }
-
-function showStatusToast(message, img) {
-  const toast = document.getElementById("redirectToast");
-  if (!toast) return;
-
-  const toastImg = toast.querySelector(".t-img");
-  const toastTxt = toast.querySelector(".t-text");
-  if (toastImg && img) toastImg.src = img;
-  if (toastTxt && message) toastTxt.textContent = message;
-
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 2800);
-}
-
-function copyTextWithFallback(text) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     return navigator.clipboard.writeText(text).catch(function () {
       return tryExecCommandCopy(text);
@@ -467,7 +459,7 @@ function tryExecCommandCopy(text) {
 
 function showCopyPrompt(text, message) {
   window.prompt("Giữ để sao chép:", text);
-  showStatusToast(message || ("Đã sao chép: " + text), "");
+  showStatusToast(message || ("Đã sao chép: " + text));
 }
 
 function communityOpenPopup() {
@@ -781,9 +773,6 @@ function normalizeRestoredUiState(isBackForward) {
 
   document.body.classList.remove("modal-open", "overlay-open", "no-scroll");
   clearScrollLockState();
-
-  const redirectToast = document.getElementById("redirectToast");
-  if (redirectToast) redirectToast.classList.remove("show");
 }
 
 window.addEventListener("pageshow", function (event) {
@@ -808,4 +797,5 @@ window.addEventListener("pageshow", function (event) {
 
   location.replace(location.pathname + location.search);
 });
+
 

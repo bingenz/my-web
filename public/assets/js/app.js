@@ -629,14 +629,18 @@ renderProducts();
         notifBar.style.top = topbarH + 'px';
       }
 
-      io = new IntersectionObserver(function (entries) {
-        const entry = entries[0];
+      io = new IntersectionObserver(function () {
         const welcomeOverlay = document.getElementById("welcomeNotif");
         if (welcomeOverlay && welcomeOverlay.classList.contains("open")) {
           setNotifVisibility(false);
           return;
         }
-        setNotifVisibility(!entry.isIntersecting);
+
+        const rect = communityCard.getBoundingClientRect();
+        const hasPassedTrigger = rect.top < topbarH + 8;
+        const hasUserScrolled = window.scrollY > 24;
+
+        setNotifVisibility(hasPassedTrigger && hasUserScrolled);
       }, {
         root: null,
         threshold: 0,

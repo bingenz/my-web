@@ -1,8 +1,8 @@
 history.scrollRestoration = "manual";
 
 // ── Scroll lock ──────────────────────────────────────────────────────────────
-// Dùng overflow:hidden thay vì position:fixed để tránh tạo stacking context mới
-// (position:fixed trên body sẽ trap các fixed children, viewer không thoát được)
+// Dùng overflow:hidden thay vì position:fixed — position:fixed tạo stacking context
+// khiến trust-proof-viewer (fixed child) bị trap, không hiện được trên modal
 let _scrollLockCount = 0;
 let _scrollLockY = 0;
 function clearScrollLockState() {
@@ -14,8 +14,7 @@ function scrollLock() {
   _scrollLockCount++;
   if (_scrollLockCount > 1) return;
   _scrollLockY = window.scrollY || window.pageYOffset || 0;
-  // Tính scrollbar width để bù khi overflow:hidden ẩn scrollbar
-  const sw = window.innerWidth - document.documentElement.clientWidth;
+  var sw = window.innerWidth - document.documentElement.clientWidth;
   document.documentElement.style.setProperty("--scrollbar-width", sw + "px");
   document.body.classList.add("scroll-locked");
 }
@@ -23,8 +22,9 @@ function scrollUnlock() {
   if (_scrollLockCount === 0) return;
   _scrollLockCount--;
   if (_scrollLockCount > 0) return;
+  var y = _scrollLockY;
   clearScrollLockState();
-  window.scrollTo(0, _scrollLockY);
+  window.scrollTo(0, y);
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -797,4 +797,5 @@ window.addEventListener("pageshow", function (event) {
 
   location.replace(location.pathname + location.search);
 });
+
 

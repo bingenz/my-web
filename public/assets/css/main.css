@@ -2166,4 +2166,48 @@ html, body {
   .fullhouse-card-btn {
     width: 100%;
   }
-                          }
+}
+
+
+/* --- fallback blur for TikTok / Facebook / other in-app browsers --- */
+.perf-lite .modal,
+.perf-lite .link-popup,
+.perf-lite .welcome-overlay {
+  background: rgba(2, 6, 16, 0.84) !important;
+}
+
+html.perf-lite.ui-obscured .topbar,
+html.perf-lite.ui-obscured .notif-bar,
+html.perf-lite.ui-obscured main,
+html.perf-lite.ui-obscured .footer {
+  filter: blur(7px) brightness(0.62);
+  -webkit-filter: blur(7px) brightness(0.62);
+  transform: translateZ(0);
+  transition: filter 0.2s ease, -webkit-filter 0.2s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+html.perf-lite.ui-obscured .modal,
+html.perf-lite.ui-obscured .link-popup,
+html.perf-lite.ui-obscured .welcome-overlay {
+  filter: none !important;
+  -webkit-filter: none !important;
+  pointer-events: auto;
+}
+
+html.tiktok-browser.ui-obscured .topbar,
+html.tiktok-browser.ui-obscured .notif-bar,
+html.tiktok-browser.ui-obscured main,
+html.tiktok-browser.ui-obscured .footer {
+  filter: blur(7px) brightness(0.62);
+  -webkit-filter: blur(7px) brightness(0.62);
+}
+
+@supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+  .modal,
+  .link-popup,
+  .welcome-overlay {
+    background: rgba(2, 6, 16, 0.82) !important;
+  }
+                      }

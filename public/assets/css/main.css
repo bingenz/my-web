@@ -1861,30 +1861,17 @@ body.scroll-locked {
             }
 
 /* ── PERFORMANCE: reduce backdrop-filter on low-end / in-app browsers ── */
+/* perf-lite: tắt blur trên persistent elements (topbar, notif) để tránh repaint liên tục */
+/* KHÔNG tắt blur của modal/popup/overlay vì chúng chỉ render khi open */
 .perf-lite .topbar {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  background: rgba(9,9,12,0.97) !important; /* dark — was white, caused white header bug in FB/TikTok */
+  background: rgba(9,9,12,0.97) !important;
 }
 .perf-lite .notif-btn {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  background: rgba(17,19,24,0.97) !important; /* dark */
-}
-.perf-lite .modal {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  background: rgba(15,23,42,0.82) !important;
-}
-.perf-lite .link-popup {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  background: rgba(15,23,42,0.80) !important;
-}
-.perf-lite .welcome-overlay {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  background: rgba(15,23,42,0.78) !important;
+  background: rgba(17,19,24,0.97) !important;
 }
 .perf-lite .hero-outline-btn {
   backdrop-filter: none !important;
@@ -1893,6 +1880,37 @@ body.scroll-locked {
 /* Reduce heavy animation on low-end */
 .perf-lite .logo-particle { animation: none !important; display: none !important; }
 .perf-lite .welcome-product-track { animation-duration: 36s !important; }
+
+/* ── FB IN-APP BROWSER: backdrop-filter hoạt động nhưng cần giảm tải ── */
+.fb-inapp .topbar {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(9,9,12,0.97) !important;
+}
+.fb-inapp .notif-btn {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(17,19,24,0.97) !important;
+}
+.fb-inapp .hero-outline-btn {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(255,255,255,0.88) !important;
+}
+/* Giảm blur strength cho modal/popup để nhẹ hơn nhưng vẫn có hiệu ứng */
+.fb-inapp .modal {
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+.fb-inapp .link-popup {
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+.fb-inapp .welcome-overlay {
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+.fb-inapp .logo-particle { animation-duration: 3s !important; }
 
 /* ── SCROLL-LOCK: khi topbar fixed, giữ đúng padding-top ── */
 body.scroll-locked {
@@ -2169,12 +2187,12 @@ html, body {
 }
 
 
-/* --- fallback blur for TikTok / Facebook / other in-app browsers --- */
-.perf-lite .modal,
-.perf-lite .link-popup,
-.perf-lite .welcome-overlay {
-  background: rgba(2, 6, 16, 0.84) !important;
-}
+/* --- fallback blur for TikTok in-app browser (perf-lite) --- */
+/* Modal/popup blur được giữ nguyên để UX đúng */
+/* Chỉ tăng opacity background một chút để rõ hơn nếu blur chậm */
+.perf-lite .modal { background: rgba(10, 14, 28, 0.85) !important; }
+.perf-lite .link-popup { background: rgba(10, 14, 28, 0.83) !important; }
+.perf-lite .welcome-overlay { background: rgba(10, 14, 28, 0.82) !important; }
 
 html.perf-lite.ui-obscured .topbar,
 html.perf-lite.ui-obscured .notif-bar,
@@ -2211,3 +2229,4 @@ html.tiktok-browser.ui-obscured .footer {
     background: rgba(2, 6, 16, 0.82) !important;
   }
       }
+

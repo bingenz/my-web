@@ -1695,7 +1695,7 @@ body::before {
 .trust-proof-viewer {
   position: fixed;
   inset: 0;
-  z-index: 260;
+  z-index: 2001;
   display: none;
   align-items: center;
   justify-content: center;
@@ -1735,7 +1735,7 @@ body::before {
   font-size: 1.4em;
   line-height: 1;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2002;
 }
 .trust-proof-viewer-close:hover { background: rgba(255,255,255,0.18); }
 
@@ -2226,4 +2226,3 @@ html.tiktok-browser.ui-obscured .footer {
     background: rgba(2, 6, 16, 0.82) !important;
   }
       }
-

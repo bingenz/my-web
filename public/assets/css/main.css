@@ -10,11 +10,11 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; overflow-x: hidden; }
 html { font-size: min(3.72vw, 16px); scroll-behavior: smooth; scroll-padding-top: 84px; }
-body { font-family: "Geist Sans", sans-serif; color: var(--text); background: #f8fafc; line-height: 1.5; padding-top: 68px; }
+body { font-family: "Geist Sans", sans-serif; color: var(--text); background: #f8fafc; line-height: 1.5; padding-top: 0; }
 body::before { content: ""; position: fixed; inset: 0; z-index: -1; background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px); background-size: 20px 30px; -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%); mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%); pointer-events: none; }
 h1, h2, h3, .price, .badge, .cta { font-family: "Geist Sans", sans-serif; }
 .container { width: min(1120px, 86vw); margin: 0 auto; }
-.topbar { position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 30; background: rgba(255, 255, 255, 0.78); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+.topbar { position: sticky; top: 0; left: 0; right: 0; width: 100%; z-index: 30; background: rgba(255, 255, 255, 0.78); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
 .topbar-inner { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .header-social { display: flex; align-items: center; gap: 8px; }
 .header-social-link { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.72); border: 1px solid rgba(15,23,42,0.1); color: #334155; text-decoration: none; box-shadow: 0 2px 8px rgba(15,23,42,0.07); transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease, color 0.15s ease; }
@@ -300,7 +300,7 @@ rgba(15, 23, 42, 0.46); backdrop-filter: blur(16px) saturate(1.25); -webkit-back
 .wide { grid-column: span 6; }
 }
 @media (max-width: 680px) {
-body { padding-top: 56px; }
+body { padding-top: 0; }
 .topbar-inner { height: 56px; padding: 0; align-items: center; flex-direction: row; justify-content: space-between; }
 .logo { font-size: 1.5rem !important; }
 #products .container { width: min(100%, calc(100vw - 72px)); }
@@ -557,10 +557,10 @@ rgba(15, 23, 42, 0.56); border-color: rgba(255,255,255,0.18); box-shadow: 0 10px
 }
 .welcome-dismiss { width: 100%; border: 1px solid #f0d9e6; border-radius: 999px; background: #fff; color: #7b4d6a; font-size: 0.84em; font-weight: 700; font-family: "Geist Sans", sans-serif; padding: 0.72em; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
 .welcome-dismiss:hover { background: #fff8fc; border-color: #e8bfd7; }
-.notif-bar { position: fixed; top: 68px; left: 0; right: 0; z-index: 29; display: flex; justify-content: center; padding: 6px 12px; pointer-events: none; opacity: 0; transform: translateY(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.notif-bar { position: sticky; top: 0; left: 0; right: 0; z-index: 29; display: flex; justify-content: center; padding: 6px 12px; pointer-events: none; opacity: 0; transform: translateY(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
 .notif-bar.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 @media (max-width: 680px) {
-.notif-bar { top: 56px; }
+.notif-bar { top: 0; }
 }
 .notif-btn { pointer-events: auto; display: inline-flex; align-items: center; gap: 0.55em; padding: 0.58em 1.15em; border-radius: 999px; font-family: "Geist Sans", sans-serif; font-size: 0.78em; font-weight: 700; color: #1e1b4b; cursor: pointer; background: linear-gradient(
 180deg,
@@ -1884,60 +1884,4 @@ body.scroll-locked {
   grid-column: auto !important;
   width: 100% !important;
   min-width: 0 !important;
-}
-
-
-/* Performance-preserving fallback for TikTok / in-app browsers */
-html.perf-lite {
-  scroll-behavior: auto;
-}
-
-html.perf-lite body::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-size: 20px 30px;
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 56%, transparent 100%);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 56%, transparent 100%);
-  opacity: 0.92;
-  transform: translateZ(0);
-}
-
-html.perf-lite .topbar {
-  position: sticky;
-  background: rgba(255, 255, 255, 0.92);
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-}
-
-html.perf-lite .notif-bar {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-}
-
-html.perf-lite .notif-btn {
-  background: rgba(17, 24, 39, 0.94);
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
-}
-
-html.perf-lite .logo-particle,
-html.perf-lite .notif-btn,
-html.perf-lite .notif-btn-badge {
-  animation-play-state: paused;
-}
-
-html.perf-lite .topbar,
-html.perf-lite .notif-bar,
-html.perf-lite .hero-card,
-html.perf-lite .pcard,
-html.perf-lite .wide,
-html.perf-lite .community-card-link,
-html.perf-lite .proof-card,
-html.perf-lite .wlc-ad-inner {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-                    }
+            }

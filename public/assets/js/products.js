@@ -28,4 +28,4 @@ perDay: "chỉ 1.500đ / ngày",
 }
 ];
 
-window.DISPLAY_ORDER = ["gpt", "gpt-gmail", "gemini", "gemini-gmail", "capcut"];
+window.DISPLAY_ORDER = ["gpt", "gpt-gmail", "gemini-gmail", "capcut"];

@@ -1,509 +1,327 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <script src="assets/js/head.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-visual">
-<meta name="theme-color" content="#09090c">
-<meta name="color-scheme" content="dark">
-<!-- sync-share-meta:start -->
+<meta name="theme-color" content="#f8fafc" id="metaThemeColor">
+<meta name="color-scheme" content="light dark">
 <title>BinGenZ · AI &amp; PREMIUM ACCOUNT</title>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://bingenz.com">
 <meta property="og:title" content="BinGenZ · AI &amp; PREMIUM ACCOUNT">
-<meta property="og:description" content="Đăng ký tài khoản Premium (Veo3 Ultra, ChatGPT Plus, Gemini Pro, CapCut Pro). Cung cấp thiết kế website chuyên nghiệp, tối ưu chi phí.">
+<meta property="og:description" content="Đăng ký tài khoản Premium (ChatGPT Plus, Gemini Pro, Grok Super, CapCut). Cung cấp thiết kế website chuyên nghiệp, tối ưu chi phí.">
 <meta property="og:locale" content="vi_VN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BinGenZ · AI &amp; PREMIUM ACCOUNT">
-<meta name="twitter:description" content="Đăng ký tài khoản Premium (Veo3 Ultra, ChatGPT Plus, Gemini Pro, CapCut Pro). Cung cấp thiết kế website chuyên nghiệp, tối ưu chi phí.">
-<meta name="description" content="Đăng ký tài khoản Premium (Veo3 Ultra, ChatGPT Plus, Gemini Pro, CapCut Pro). Cung cấp thiết kế website chuyên nghiệp, tối ưu chi phí.">
-<!-- sync-share-meta:end -->
-<link rel="preload" href="assets/fonts/geist-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="description" content="Đăng ký tài khoản Premium (ChatGPT Plus, Gemini Pro, Grok Super, CapCut). Cung cấp thiết kế website chuyên nghiệp, tối ưu chi phí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
-
 </head>
 <body>
+
+<!-- ─── NAVBAR (Dark Glass Pill — Fuser style) ─── -->
 <header class="topbar">
-<div class="container topbar-inner">
-<div class="logo">
-<div class="logo-wrap">
-<span>BinGenZ</span>
-<div class="logo-particle lp1"></div>
-<div class="logo-particle lp2"></div>
-<div class="logo-particle lp3"></div>
-<div class="logo-particle lp4"></div>
-<div class="logo-particle lp5"></div>
-</div>
-</div>
-<div class="topbar-spacer" aria-hidden="true"></div>
-<div class="header-social" aria-label="Liên kết mạng xã hội">
-<a class="header-social-link" href="https://www.tiktok.com/@bingenz_" target="_blank" rel="noopener" aria-label="TikTok">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.5 3c.3 1.7 1.3 3 2.9 3.8.8.4 1.6.6 2.5.6v2.9c-1 0-2-.2-2.9-.6v5.1c0 3-2.4 5.3-5.4 5.3s-5.4-2.4-5.4-5.3 2.4-5.4 5.4-5.4c.3 0 .6 0 .9.1V12a2.9 2.9 0 0 0-.9-.1 2.6 2.6 0 0 0 0 5.2c1.5 0 2.6-1.2 2.6-2.7V3h2.3Z"/></svg>
-</a>
-<a class="header-social-link" href="https://www.instagram.com/bingenz_ig" target="_blank" rel="noopener" aria-label="Instagram">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-</a>
-<a class="header-social-link" href="https://github.com/bingenz" target="_blank" rel="noopener" aria-label="GitHub">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1 .6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.2-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 22 12c0-5.5-4.5-10-10-10Z"/></svg>
-</a>
-</div>
+<div class="glass-pill">
+  <a class="logo" href="#">
+    <span class="logo-icon">⚡</span>
+    <span class="logo-text">BinGenZ</span>
+  </a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#products">Sản phẩm</a>
+    <a href="#source-code">Dịch vụ</a>
+    <a href="#community">Cộng đồng</a>
+    <a href="#contact">Liên hệ</a>
+  </nav>
+  <div class="pill-right">
+    <a class="nav-cta" href="javascript:void(0)" onclick="openFirstProduct(event)">Khám phá <span class="nav-cta-arrow">›</span></a>
+    <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Đổi theme" id="themeToggleBtn">
+      <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+  <button class="burger-btn" type="button" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </div>
 </header>
-<div class="notif-bar">
-<button class="notif-btn" type="button" onclick="welcomeOpen()">
-<span class="notif-btn-badge">MỚI</span>
-<span class="notif-btn-dot"></span>
-<svg class="notif-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-</svg>
-Xem thông báo mới từ BinGenZ
+
+<!-- ─── MOBILE MENU ─── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#products" onclick="closeMobileMenu()">Sản phẩm</a>
+  <a href="#source-code" onclick="closeMobileMenu()">Dịch vụ</a>
+  <a href="#community" onclick="closeMobileMenu()">Cộng đồng</a>
+  <a href="#contact" onclick="closeMobileMenu()">Liên hệ</a>
+  <button type="button" onclick="toggleTheme();closeMobileMenu()">
+    <span id="mobileThemeLabel">🌙 Chế độ tối</span>
+  </button>
+</div>
+
+<!-- ─── BELL ICON (fixed left) ─── -->
+<button class="notif-bell" id="notifBell" type="button" onclick="toggleNotifPopup()" aria-label="Xem thông báo">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
 </button>
+
+<!-- ─── NOTIFICATION POPUP (from bell, left side) ─── -->
+<div class="notif-popup" id="notifPopup">
+  <div class="notif-popup-header">
+    <div class="notif-popup-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      THÔNG BÁO
+    </div>
+  </div>
+  <div class="notif-popup-body">
+    <p>Mọi tài khoản tại <strong>BINGENZ.COM</strong> đều <span class="notif-highlight">sử dụng một mình, không dùng chung</span> với ai.</p>
+    <p>Tài khoản chính chủ sẽ được nâng cấp thẳng vào Gmail của bạn.</p>
+  </div>
+  <div class="notif-popup-zalo">
+    <span>Zalo hỗ trợ: <strong>0898908101</strong></span>
+    <button class="notif-popup-copy" type="button" onclick="copyNotifZalo()">Copy số</button>
+  </div>
+  <button class="notif-popup-ok" type="button" onclick="closeNotifPopup()">OK, tắt thông báo</button>
 </div>
 
 <main>
+
+<!-- ─── HERO (no kicker chip) ─── -->
 <section class="hero" id="home">
 <div class="container hero-box">
-<div>
-<div class="hero-card">
-<span class="kicker"><span class="kicker-dot"></span>AI &amp; Premium Account Store</span>
-<h1 class="title">
-<span class="title-main">Tài khoản premium</span>
-<span class="title-sub">Thiết kế web <span class="title-and">và</span> <span class="accent">bot Telegram</span></span>
-</h1>
-<p>Nhận đăng ký tài khoản Premium, thiết kế website theo yêu cầu và tạo bot Telegram phục vụ bán hàng/chăm sóc khách hàng.</p>
-<div class="hero-cta-row">
-<a class="chip primary" href="javascript:void(0)" onclick="openFirstProduct(event)">Khám phá tài khoản premium</a>
-</div>
-<div class="hero-proof-row">
-<button class="hero-proof-btn" type="button" onclick="openTrustProofModal(event)">
-<span class="hero-proof-btn-dot"></span>
-<span>Check uy tín</span>
-<span class="hero-proof-btn-badge">Nhấn vào đây</span>
-</button>
-</div>
-<div class="hero-stats">
-<div class="hero-stat-card">
-<div class="hero-stat-value">1 phút</div>
-<div class="hero-stat-label">Kích hoạt tài khoản</div>
-</div>
-<div class="hero-stat-card">
-<div class="hero-stat-value">2k+</div>
-<div class="hero-stat-label">Khách theo dõi</div>
-</div>
-<div class="hero-stat-card">
-<div class="hero-stat-value">100%</div>
-<div class="hero-stat-label">Bảo hành hoàn tiền</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</section>
-
-
-<section class="social-strip" aria-label="Kênh mạng xã hội">
-<div class="container">
-<div class="contact-footer-pill social-strip-pill">
-<a class="cfp-btn" href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noopener" aria-label="Facebook">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7h2.3l.4-2.8h-2.7V9.4c0-.8.2-1.4 1.4-1.4H16V5.6c-.2 0-.9-.1-1.8-.1-1.8 0-3.1 1.1-3.1 3.3v2.4H9v2.8h2.3v7h2.2Z"/></svg>
-<span>Facebook</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn" href="https://www.tiktok.com/@bingenz_" target="_blank" rel="noopener" aria-label="TikTok">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.5 3c.3 1.7 1.3 3 2.9 3.8.8.4 1.6.6 2.5.6v2.9c-1 0-2-.2-2.9-.6v5.1c0 3-2.4 5.3-5.4 5.3s-5.4-2.4-5.4-5.3 2.4-5.4 5.4-5.4c.3 0 .6 0 .9.1V12a2.9 2.9 0 0 0-.9-.1 2.6 2.6 0 0 0 0 5.2c1.5 0 2.6-1.2 2.6-2.7V3h2.3Z"/></svg>
-<span>TikTok</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn" href="https://t.me/binpinkgold" target="_blank" rel="noopener" aria-label="Telegram">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 4.3 3.8 10.8c-1.2.5-1.2 1.2-.2 1.5l4.3 1.3 1.7 5.2c.2.6.1.8.7.8.4 0 .6-.2.8-.4l2.4-2.3 5 3.7c.9.5 1.5.2 1.8-.8l2.9-13.6c.4-1.2-.5-1.8-1.5-1.4ZM9 13.3l8.4-5.3c.4-.2.8-.1.5.2l-6.9 6.2-.3 3.3-1.7-4.4Z"/></svg>
-<span>Telegram</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn" href="https://www.instagram.com/bingenz_ig" target="_blank" rel="noopener" aria-label="Instagram">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-<span>Instagram</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn js-zalo-link" href="javascript:void(0)" onclick="zaloOpenPopup()" aria-label="Zalo">
-<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="10" width="44" height="44" rx="14" fill="none" stroke="currentColor" stroke-width="4"/><path fill="currentColor" d="M23 22h19v5L30.2 42H42v5H22.5v-4.6L34.3 27H23z"/></svg>
-<span>Zalo</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn" href="https://github.com/bingenz" target="_blank" rel="noopener" aria-label="GitHub">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1 .6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.2-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 22 12c0-5.5-4.5-10-10-10Z"/></svg>
-<span>GitHub</span>
-</a>
-</div>
+  <div class="hero-card">
+    <h1 class="title">
+      <span class="title-main">Tài khoản Premium</span>
+      <span class="title-sub"><span class="accent">thiết kế web</span> và bot Telegram</span>
+    </h1>
+    <p class="hero-desc">Nhận đăng ký tài khoản Premium, thiết kế website theo yêu cầu và tạo bot Telegram phục vụ bán hàng &amp; chăm sóc khách hàng.</p>
+    <div class="hero-cta-row">
+      <a class="btn-primary" href="javascript:void(0)" onclick="openFirstProduct(event)">Khám phá sản phẩm <span>→</span></a>
+      <button class="btn-trust" type="button" onclick="openTrustProofModal(event)">
+        <span class="btn-trust-dot"></span>
+        <span>Check uy tín</span>
+        <span class="btn-trust-badge">Nhấn vào đây</span>
+      </button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-value">1 phút</div><div class="hero-stat-label">Kích hoạt tài khoản</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">2k+</div><div class="hero-stat-label">Khách theo dõi</div></div>
+      <div class="hero-stat"><div class="hero-stat-value">100%</div><div class="hero-stat-label">Bảo hành hoàn tiền</div></div>
+    </div>
+  </div>
 </div>
 </section>
 
-
-<section class="section" id="community" style="padding-bottom: 48px;">
-<div class="container" style="margin-bottom:16px;">
-<h2 style="margin-bottom:6px;">Cộng đồng</h2>
-<div style="width:40px;height:4px;background:linear-gradient(135deg,#f5e642,#d4a017);border-radius:999px;"></div>
-</div>
-<div class="container community-wrap">
-<a class="community-card-link" href="javascript:void(0)" onclick="communityOpenPopup()" aria-label="Tham gia group GenZ Đam Mê IT · Vibe Code · AI">
-<div class="fb-mockup" role="link" tabindex="0">
-<div class="fb-cover">
-<div class="fb-cover-gradient"></div>
-<div class="fb-cover-text">GenZ Đam Mê IT · Vibe Code · AI</div>
-</div>
-<div class="fb-info">
-<div class="fb-avatar">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5e642" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-</div>
-<div>
-<div class="fb-name">GenZ Đam Mê IT · Vibe Code · AI</div>
-<div class="fb-meta">200+ thành viên · Công khai</div>
-</div>
-<span class="fb-join-btn" style="pointer-events:none;">Tham gia ngay</span>
-</div>
-<div class="fb-post">
-<div class="fb-post-avatar"></div>
-<div class="fb-post-body">
-<div class="fb-post-line" style="width:70%;background:rgba(245,230,66,0.18);"></div>
-<div class="fb-post-line" style="width:50%;"></div>
-</div>
-</div>
-</div>
-<div class="community-note-bar">
-<span class="community-note-ico">
-<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 1 1 0-5c3.5 0 4.5 5 4.5 5z"/><path d="M12 7h4.5a2.5 2.5 0 1 0 0-5c-3.5 0-4.5-5-4.5 5z"/></svg>
-</span>
-<div>
-<div class="community-note-title">Quà tặng miễn phí và minigame trong nhóm</div>
-<div class="community-note-sub">Giao lưu và chia sẻ kinh nghiệm, file code cùng cộng đồng</div>
-</div>
-</div>
-</div>
-</a>
+<!-- ─── SOCIAL ICONS ─── -->
+<section class="social-strip" aria-label="Mạng xã hội">
+<div class="container social-strip-center">
+  <a class="social-icon" href="https://www.instagram.com/bingenz_ig" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+  <a class="social-icon" href="https://www.tiktok.com/@bingenz_" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M14.5 3c.3 1.7 1.3 3 2.9 3.8.8.4 1.6.6 2.5.6v2.9c-1 0-2-.2-2.9-.6v5.1c0 3-2.4 5.3-5.4 5.3s-5.4-2.4-5.4-5.3 2.4-5.4 5.4-5.4c.3 0 .6 0 .9.1V12a2.9 2.9 0 00-.9-.1 2.6 2.6 0 000 5.2c1.5 0 2.6-1.2 2.6-2.7V3h2.3Z"/></svg></a>
+  <a class="social-icon" href="https://github.com/bingenz" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1 .6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.2-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0022 12c0-5.5-4.5-10-10-10Z"/></svg></a>
 </div>
 </section>
 
+<!-- ─── SẢN PHẨM ─── -->
 <section class="section" id="products">
-<div class="container">
-<h2 style="margin-bottom:6px;">Tài khoản Premium</h2>
-<div style="width:40px;height:4px;background:linear-gradient(135deg,#f5e642,#d4a017);border-radius:999px;margin-bottom:22px;"></div>
-<div id="productGrid"></div>
+<div class="container section-center">
+  <span class="section-label">SẢN PHẨM</span>
+  <h2 class="section-title">Tài khoản Premium</h2>
+  <p class="section-sub">Mọi model AI. Mọi nền tảng. Giá tốt nhất. Bảo hành toàn bộ thời gian sử dụng.</p>
+  <div id="productGrid"></div>
 </div>
 </section>
 
+<!-- ─── DỊCH VỤ ─── -->
 <section class="section" id="source-code">
-<div class="container">
-<h2 style="margin-bottom:6px;">Dịch vụ chuyên nghiệp</h2>
-<div style="width:40px;height:4px;background:linear-gradient(135deg,#f5e642,#d4a017);border-radius:999px;margin-bottom:22px;"></div>
-<div class="grid">
-<article class="wide wide-code" onclick="openDevModal()" style="cursor:pointer;">
-<div class="wide-deco">
-<svg viewBox="0 0 64 64" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg">
-<polyline points="20,20 8,32 20,44" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="44,20 56,32 44,44" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="38" y1="14" x2="26" y2="50" stroke="white" stroke-width="4" stroke-linecap="round"/>
-</svg>
-</div>
-<h3>Lập trình</h3>
-<p style="color:rgba(255,255,255,0.85);font-size:0.84em;margin:0;line-height:1.6;">Landing page, Bot Telegram, Tool tự động hóa.</p>
-</article>
-
-<article class="wide fullhouse-card">
-<img class="fullhouse-card-image" src="assets/images/fhd.jpg" alt="Fullhouse Dev - Trung tâm đào tạo lập trình 1:1" loading="lazy" decoding="async">
-<div class="fullhouse-card-content">
-<h3>Fullhouse Dev - Trung tâm đào tạo lập trình 1:1</h3>
-<p>Học lập trình theo mô hình 1:1, bám sát năng lực thực tế và lộ trình rõ ràng cho người mới bắt đầu.</p>
-<a class="fullhouse-card-btn" href="https://fullhousedev.com/khoa-hoc/course-cpp-beginner/?ref=4de39e7557" target="_blank" rel="noopener">Khám phá khóa học</a>
-</div>
-</article>
-</div>
+<div class="container section-center">
+  <span class="section-label">DỊCH VỤ</span>
+  <h2 class="section-title">Dịch vụ chuyên nghiệp</h2>
+  <p class="section-sub">Thiết kế web, bot Telegram, và tool tự động hóa — mọi thứ bạn cần để phát triển.</p>
+  <div class="services-grid">
+    <article class="service-card service-dark" onclick="openDevModal()" style="cursor:pointer;">
+      <div class="service-icon-wrap"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <h3>Lập trình theo yêu cầu</h3>
+      <p>Landing page, Bot Telegram, Tool tự động hóa — thiết kế web chuyên nghiệp, bảo hành miễn phí.</p>
+      <span class="service-link">Xem chi tiết <span>→</span></span>
+    </article>
+    <article class="service-card service-fhd">
+      <img class="service-fhd-img" src="assets/images/fhd.jpg" alt="Fullhouse Dev" loading="lazy" decoding="async">
+      <div class="service-fhd-body">
+        <h3>Fullhouse Dev — Đào tạo lập trình 1:1</h3>
+        <p>Học lập trình theo mô hình 1:1, bám sát năng lực thực tế và lộ trình rõ ràng cho người mới bắt đầu.</p>
+        <a class="btn-primary btn-sm" href="https://fullhousedev.com/khoa-hoc/course-cpp-beginner/?ref=4de39e7557" target="_blank" rel="noopener">Khám phá khóa học <span>→</span></a>
+      </div>
+    </article>
+  </div>
 </div>
 </section>
 
-<section class="section" id="contact">
-<div class="container">
-<h2>Liên hệ</h2>
-<div class="contact-footer-pill">
-<a class="cfp-btn" href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noopener" aria-label="Facebook">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7h2.3l.4-2.8h-2.7V9.4c0-.8.2-1.4 1.4-1.4H16V5.6c-.2 0-.9-.1-1.8-.1-1.8 0-3.1 1.1-3.1 3.3v2.4H9v2.8h2.3v7h2.2Z"/></svg>
-<span>Facebook</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn" href="https://www.tiktok.com/@bingenz_" target="_blank" rel="noopener" aria-label="TikTok">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.5 3c.3 1.7 1.3 3 2.9 3.8.8.4 1.6.6 2.5.6v2.9c-1 0-2-.2-2.9-.6v5.1c0 3-2.4 5.3-5.4 5.3s-5.4-2.4-5.4-5.3 2.4-5.4 5.4-5.4c.3 0 .6 0 .9.1V12a2.9 2.9 0 0 0-.9-.1 2.6 2.6 0 0 0 0 5.2c1.5 0 2.6-1.2 2.6-2.7V3h2.3Z"/></svg>
-<span>TikTok</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn" href="https://t.me/binpinkgold" target="_blank" rel="noopener" aria-label="Telegram">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.7 4.3 3.8 10.8c-1.2.5-1.2 1.2-.2 1.5l4.3 1.3 1.7 5.2c.2.6.1.8.7.8.4 0 .6-.2.8-.4l2.4-2.3 5 3.7c.9.5 1.5.2 1.8-.8l2.9-13.6c.4-1.2-.5-1.8-1.5-1.4ZM9 13.3l8.4-5.3c.4-.2.8-.1.5.2l-6.9 6.2-.3 3.3-1.7-4.4Z"/></svg>
-<span>Telegram</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn" href="https://www.instagram.com/bingenz_ig" target="_blank" rel="noopener" aria-label="Instagram">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-<span>Instagram</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn js-zalo-link" href="javascript:void(0)" onclick="zaloOpenPopup()" aria-label="Zalo">
-<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="10" y="10" width="44" height="44" rx="14" fill="none" stroke="currentColor" stroke-width="4"/><path fill="currentColor" d="M23 22h19v5L30.2 42H42v5H22.5v-4.6L34.3 27H23z"/></svg>
-<span>Zalo</span>
-</a>
-<span class="cfp-dot" aria-hidden="true"></span>
-<a class="cfp-btn" href="https://github.com/bingenz" target="_blank" rel="noopener" aria-label="GitHub">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1 .6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.2-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 22 12c0-5.5-4.5-10-10-10Z"/></svg>
-<span>GitHub</span>
-</a>
-</div>
+<!-- ─── CỘNG ĐỒNG ─── -->
+<section class="section" id="community">
+<div class="container section-center">
+  <span class="section-label">CỘNG ĐỒNG</span>
+  <h2 class="section-title">GenZ Đam Mê IT</h2>
+  <p class="section-sub">Giao lưu, chia sẻ kinh nghiệm, file code cùng cộng đồng. Quà tặng miễn phí và minigame trong nhóm.</p>
+  <div class="community-card" onclick="communityOpenPopup()" style="cursor:pointer;">
+    <div class="comm-card-top">
+      <div>
+        <h3 class="comm-card-name">GenZ Đam Mê IT · Vibe Code · AI</h3>
+        <p class="comm-card-desc">Tham gia cộng đồng lập trình, chia sẻ kinh nghiệm và nhận quà tặng miễn phí.</p>
+        <div class="comm-card-meta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <span>200+ thành viên</span><span>· Công khai</span>
+        </div>
+      </div>
+      <a class="btn-primary btn-sm comm-join-btn" href="javascript:void(0)" onclick="event.stopPropagation();communityOpenPopup()">Tham gia ngay</a>
+    </div>
+    <div class="comm-note-bar">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 110-5c3.5 0 4.5 5 4.5 5z"/><path d="M12 7h4.5a2.5 2.5 0 100-5c-3.5 0-4.5 5-4.5 5z"/></svg>
+      <div>
+        <div class="comm-note-title">Quà tặng miễn phí và minigame trong nhóm</div>
+        <div class="comm-note-sub">Giao lưu và chia sẻ kinh nghiệm, file code cùng cộng đồng</div>
+      </div>
+    </div>
+  </div>
 </div>
 </section>
+
+<!-- ─── CTA ─── -->
+<section class="section section-cta" id="cta">
+<div class="container section-center">
+  <h2 class="cta-title">Bắt đầu khám phá ngay</h2>
+  <p class="section-sub">Tài khoản Premium chính hãng · Giá tốt · Bảo hành toàn bộ thời gian</p>
+  <div class="cta-buttons">
+    <a class="btn-primary" href="javascript:void(0)" onclick="openFirstProduct(event)">Xem sản phẩm <span>→</span></a>
+    <a class="btn-outline" href="javascript:void(0)" onclick="zaloOpenPopup()">Liên hệ Zalo</a>
+  </div>
+</div>
+</section>
+
+<div id="contact" style="height:1px;"></div>
 </main>
 
-<div class="footer">© 2026 Bingenz.com · 08989.08101</div>
+<!-- ─── FOOTER ─── -->
+<footer class="footer-main">
+<div class="container footer-grid">
+  <div class="footer-col footer-brand-col">
+    <div class="footer-brand"><span class="logo-icon">⚡</span><span class="logo-text">BinGenZ</span></div>
+    <p>Đăng ký tài khoản Premium, thiết kế website<br>và bot Telegram chuyên nghiệp. Tối ưu chi phí.</p>
+  </div>
+  <div class="footer-col"><h4>SẢN PHẨM</h4><a href="#products">ChatGPT Plus</a><a href="#products">Gemini Pro</a><a href="#products">CapCut Pro</a></div>
+  <div class="footer-col"><h4>DỊCH VỤ</h4><a href="#source-code">Thiết kế Website</a><a href="#source-code">Bot Telegram</a><a href="#source-code">Tool tự động</a></div>
+  <div class="footer-col"><h4>LIÊN HỆ</h4><a href="https://www.facebook.com/share/1AUUKX6NHa/" target="_blank" rel="noopener">Facebook</a><a href="https://t.me/binpinkgold" target="_blank" rel="noopener">Telegram</a><a href="javascript:void(0)" onclick="zaloOpenPopup()">Zalo</a><a href="https://www.tiktok.com/@bingenz_" target="_blank" rel="noopener">TikTok</a></div>
+</div>
+<div class="container footer-bottom">
+  <div class="footer-copy">© 2026 Bingenz.com · 08989.08101</div>
+  <div class="footer-bottom-icons">
+    <a href="https://www.instagram.com/bingenz_ig" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a href="https://github.com/bingenz" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.9 8.2 6.8 9.5.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1 .6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.2-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0022 12c0-5.5-4.5-10-10-10Z"/></svg></a>
+  </div>
+</div>
+</footer>
 
+<!-- ─── MODALS ─── -->
+<!-- Zalo Popup -->
 <div class="link-popup" id="zaloPopup" onclick="if(event.target===this)zaloClosePopup()">
 <div class="link-popup-box">
-<div class="link-popup-list">
-<div class="link-popup-item">
-<div class="link-popup-row">
-<div class="link-popup-name">Liên hệ Zalo</div>
-<div class="link-popup-url">0898908101</div>
-</div>
-<div class="link-popup-actions">
-<a class="link-popup-btn open" href="https://zalo.me/0898908101" target="_blank" rel="noopener" onclick="zaloClosePopup()">Liên hệ</a>
-<button class="link-popup-btn copy" id="zaloCopyBtn" type="button" onclick="copyContactZalo()">
-<span class="copy-label">Copy số</span>
-</button>
-</div>
-</div>
-</div>
-<div class="link-popup-note">
-<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-<div>Nếu không mở được. <strong>Copy số</strong> rồi tìm trên Zalo.</div>
-</div>
+  <div class="link-popup-list">
+    <div class="link-popup-item">
+      <div class="link-popup-row"><div class="link-popup-name">Le Thuan · Zalo hỗ trợ</div><div class="link-popup-url">0898908101</div></div>
+      <div class="link-popup-actions">
+        <a class="link-popup-btn open" href="https://zalo.me/0898908101" target="_blank" rel="noopener" onclick="zaloClosePopup()">Liên hệ</a>
+        <button class="link-popup-btn copy" id="zaloCopyBtn" type="button" onclick="copyContactZalo()"><span class="copy-label">Copy số</span></button>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 
+<!-- Community Popup -->
 <div class="link-popup" id="communityPopup" onclick="if(event.target===this)communityClosePopup()">
 <div class="link-popup-box">
-<div class="link-popup-head">
-<div>
-<h3 class="link-popup-title">Cộng đồng</h3>
-<p class="link-popup-sub">Tham gia Facebook hoặc quét QR để vào nhóm Zalo.</p>
-</div>
-<button class="link-popup-close link-popup-dismiss" type="button" aria-label="Đóng popup cộng đồng" onclick="communityClosePopup()">×</button>
-</div>
-<div class="link-popup-list">
-<div class="link-popup-item">
-<div class="link-popup-row">
-<div class="link-popup-name">Nhóm Facebook</div>
-<div class="link-popup-url">facebook.com/groups/1083123091540550</div>
-</div>
-<div class="link-popup-actions">
-<a class="link-popup-btn open" href="https://www.facebook.com/groups/1083123091540550/" target="_blank" rel="noopener" onclick="communityClosePopup()">Mở nhóm</a>
-<button class="link-popup-btn copy" id="communityFbCopyBtn" type="button" onclick="communityFbCopy()">
-<span class="copy-label">Copy link</span>
-</button>
-</div>
-</div>
-<div class="comm-zalo-card">
-<div class="comm-zalo-header">
-<svg viewBox="0 0 64 64" width="16" height="16" aria-hidden="true"><rect x="10" y="10" width="44" height="44" rx="14" fill="none" stroke="currentColor" stroke-width="4"/><path fill="currentColor" d="M23 22h19v5L30.2 42H42v5H22.5v-4.6L34.3 27H23z"/></svg>
-<span>Nhóm Zalo</span>
-</div>
-<img class="comm-zalo-qr" src="assets/images/zalogr.jpg" alt="QR nhóm Zalo GenZ Đam Mê IT" loading="lazy" decoding="async">
-<div class="comm-zalo-hint">Mở Zalo → Quét mã QR để vào nhóm</div>
-</div>
-</div>
+  <div class="link-popup-head"><div><h3 class="link-popup-title">Cộng đồng</h3><p class="link-popup-sub">Tham gia Facebook hoặc quét QR để vào nhóm Zalo.</p></div><button class="link-popup-close" type="button" onclick="communityClosePopup()">×</button></div>
+  <div class="link-popup-list">
+    <div class="link-popup-item">
+      <div class="link-popup-row"><div class="link-popup-name">Nhóm Facebook</div><div class="link-popup-url">facebook.com/groups/1083123091540550</div></div>
+      <div class="link-popup-actions">
+        <a class="link-popup-btn open" href="https://www.facebook.com/groups/1083123091540550/" target="_blank" rel="noopener" onclick="communityClosePopup()">Mở nhóm</a>
+        <button class="link-popup-btn copy" id="communityFbCopyBtn" type="button" onclick="communityFbCopy()"><span class="copy-label">Copy link</span></button>
+      </div>
+    </div>
+    <div class="comm-zalo-card">
+      <div class="comm-zalo-header"><svg viewBox="0 0 64 64" width="16" height="16"><rect x="10" y="10" width="44" height="44" rx="14" fill="none" stroke="currentColor" stroke-width="4"/><path fill="currentColor" d="M23 22h19v5L30.2 42H42v5H22.5v-4.6L34.3 27H23z"/></svg><span>Nhóm Zalo</span></div>
+      <img class="comm-zalo-qr" src="assets/images/zalogr.jpg" alt="QR nhóm Zalo" loading="lazy" decoding="async">
+      <div class="comm-zalo-hint">Mở Zalo → Quét mã QR để vào nhóm</div>
+    </div>
+  </div>
 </div>
 </div>
 
+<!-- Dev Modal -->
 <div class="modal" id="devModal" onclick="if(event.target===this)closeDevModal()">
 <div class="modal-box">
-<div class="modal-head">
-<div class="modal-head-left">
-<h3 class="modal-title">Dịch vụ lập trình</h3>
-</div>
-<button class="close-btn" onclick="closeDevModal()">Đóng</button>
-</div>
-<div class="modal-body">
-<div style="background:#181b22;border:1px solid rgba(232,217,78,0.15);border-radius:1.125em;padding:16px;margin-bottom:6px;">
-<div class="wlc-services" style="margin-bottom:8px;">
-<div class="wlc-service-item">
-<svg class="wlc-svc-svg" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="8" y="72" width="58" height="3" rx="1.5" fill="#d8dfe8"/><rect x="10" y="40" width="54" height="34" rx="4" fill="#dce3f0"/><rect x="12" y="42" width="50" height="30" rx="3" fill="#2d3a4a"/><rect x="14" y="44" width="46" height="26" rx="2" fill="#f8faff"/><rect x="14" y="44" width="46" height="6" rx="2" fill="#6366f1"/><rect x="14" y="44" width="46" height="2.5" rx="1" fill="#4f46e5"/><circle cx="18" cy="47" r="1.2" fill="rgba(255,255,255,0.8)"/><circle cx="22" cy="47" r="1.2" fill="rgba(255,255,255,0.8)"/><circle cx="26" cy="47" r="1.2" fill="rgba(255,255,255,0.8)"/><rect x="16" y="52" width="28" height="10" rx="1.5" fill="#f97316" opacity="0.85"/><rect x="16" y="52" width="28" height="3" rx="1" fill="#ea6c00" opacity="0.6"/><rect x="46" y="52" width="12" height="4" rx="1" fill="#22c55e" opacity="0.85"/><rect x="46" y="58" width="12" height="4" rx="1" fill="#06b6d4" opacity="0.85"/><rect x="16" y="64" width="42" height="2" rx="1" fill="#e2e8f0"/><rect x="16" y="68" width="30" height="2" rx="1" fill="#e2e8f0"/><g transform="translate(2,62)"><rect x="0" y="4" width="10" height="10" rx="1.5" fill="#f97316"/><polygon points="0,4 5,0 15,0 10,4" fill="#fb923c"/><polygon points="10,4 15,0 15,10 10,14" fill="#ea6c00"/></g><g transform="translate(14,66)"><rect x="0" y="4" width="8" height="8" rx="1" fill="#3b82f6"/><polygon points="0,4 4,0 12,0 8,4" fill="#60a5fa"/><polygon points="8,4 12,0 12,8 8,12" fill="#2563eb"/></g>
-</svg>
-<div class="wlc-svc-name">Thiết kế Website</div>
-<div class="wlc-svc-note">Landing page, portfolio,<br>store đầy đủ tính năng</div>
-</div>
-<div class="wlc-service-item">
-<svg class="wlc-svc-svg" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="34" cy="42" r="26" fill="#29b6f6"/><circle cx="34" cy="42" r="26" fill="url(#tggrad2)"/><defs><radialGradient id="tggrad2" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#54d2fd"/><stop offset="100%" stop-color="#1a9fd4"/></radialGradient></defs><path d="M16 41.5 L52 28 L43 56 L34 48 L27 53 L28 44 Z" fill="white" opacity="0.95"/><path d="M28 44 L34 48 L43 56 L38 44 Z" fill="white" opacity="0.6"/><path d="M28 44 L43 36 L38 44 Z" fill="rgba(0,0,0,0.07)"/><rect x="56" y="26" width="26" height="22" rx="7" fill="#e0e7ff" stroke="#a5b4fc" stroke-width="1.2"/><line x1="69" y1="26" x2="69" y2="20" stroke="#a5b4fc" stroke-width="2" stroke-linecap="round"/><circle cx="69" cy="18.5" r="3" fill="#6366f1"/><circle cx="69" cy="18.5" r="1.5" fill="#818cf8"/><circle cx="63" cy="35" r="4" fill="white" stroke="#c7d2fe" stroke-width="0.8"/><circle cx="75" cy="35" r="4" fill="white" stroke="#c7d2fe" stroke-width="0.8"/><circle cx="64" cy="35.5" r="2" fill="#3730a3"/><circle cx="76" cy="35.5" r="2" fill="#3730a3"/><circle cx="64.8" cy="34.5" r="0.8" fill="white"/><circle cx="76.8" cy="34.5" r="0.8" fill="white"/><path d="M62 42 Q69 47 76 42" stroke="#6366f1" stroke-width="1.8" stroke-linecap="round" fill="none"/><rect x="58" y="50" width="22" height="18" rx="5" fill="#c7d2fe" stroke="#a5b4fc" stroke-width="1.2"/><rect x="65" y="47" width="8" height="4" rx="2" fill="#ddd6fe"/><circle cx="64" cy="57" r="2.5" fill="#6366f1" opacity="0.7"/><circle cx="69" cy="57" r="2.5" fill="#818cf8" opacity="0.7"/><circle cx="74" cy="57" r="2.5" fill="#a5b4fc" opacity="0.7"/><rect x="62" y="62" width="14" height="3" rx="1.5" fill="#a5b4fc" opacity="0.5"/>
-</svg>
-<div class="wlc-svc-name">Tạo Bot Telegram</div>
-<div class="wlc-svc-note">Tự động hóa, phân tích<br>dữ liệu, chat bot AI</div>
-</div>
-</div>
-<button onclick="toggleDevDetail()" style="width:100%;background:none;border:1px solid rgba(232,217,78,0.25);border-radius:12px;padding:10px 14px;font-size:0.81em;font-weight:700;color:var(--y1);cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
-Xem chi tiết dịch vụ
-<svg id="devDetailArrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4338ca" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-</button>
-<ul id="devDetailList" style="display:none;list-style:none;padding:8px 4px 4px;margin:0;">
-<li style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:0.81em;color:var(--muted);"><svg style="flex-shrink:0;margin-top:2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Thiết kế Website theo yêu cầu, từ landing page, portfolio đến web bán hàng đầy đủ tính năng.</li>
-<li style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:0.81em;color:var(--muted);"><svg style="flex-shrink:0;margin-top:2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Bot Telegram thông minh: bot bán hàng, box chat, script và phân tích dữ liệu.</li>
-<li style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:0.81em;color:var(--muted);"><svg style="flex-shrink:0;margin-top:2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Hỗ trợ làm bài tập lập trình: code theo yêu cầu, giải thích chi tiết, giao đúng tiến độ.</li>
-<li style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:0.81em;color:var(--muted);"><svg style="flex-shrink:0;margin-top:2px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Bảo hành miễn phí sau bàn giao, báo giá nhanh, giao đúng hẹn.</li>
-</ul>
-</div><!-- end box -->
-
-<div class="contact-box" style="margin-top:4px;">
-<div class="contact-box-main">
-<span class="contact-box-label">Liên hệ Zalo</span>
-<span class="contact-box-number">0898908101</span>
-</div>
-<div class="contact-box-actions">
-<a class="contact-cta zalo" href="https://zalo.me/0898908101" target="_blank" rel="noopener">
-<svg viewBox="0 0 64 64" width="22" height="22" style="flex-shrink:0;" aria-hidden="true"><rect x="10" y="10" width="44" height="44" rx="14" fill="none" stroke="currentColor" stroke-width="4"/><path fill="currentColor" d="M23 22h19v5L30.2 42H42v5H22.5v-4.6L34.3 27H23z"/></svg>
-Liên hệ
-</a>
-<button class="contact-copy-btn" id="devZaloCopyBtn" type="button" onclick="copyDevZalo()">Copy số</button>
-</div>
-<div class="contact-box-note">
-<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-<span>Nếu không mở được — <strong>Copy số</strong> rồi tìm trên Zalo.</span>
-</div>
-</div>
-</div>
+  <div class="modal-head"><h3 class="modal-title">Dịch vụ lập trình</h3><button class="close-btn" onclick="closeDevModal()">Đóng</button></div>
+  <div class="modal-body">
+    <div class="modal-notice-inline">
+      <ul>
+        <li class="notice-item"><span class="wn-dot"></span><span class="notice-item-body"><span class="notice-item-title">Thiết kế Website theo yêu cầu</span><span class="notice-item-sub">Landing page, portfolio, web bán hàng</span></span></li>
+        <li class="notice-item"><span class="wn-dot"></span><span class="notice-item-body"><span class="notice-item-title">Bot Telegram thông minh</span><span class="notice-item-sub">Bán hàng, chat bot AI, phân tích dữ liệu</span></span></li>
+        <li class="notice-item"><span class="wn-dot"></span><span class="notice-item-body"><span class="notice-item-title">Hỗ trợ bài tập lập trình</span><span class="notice-item-sub">Giao đúng tiến độ, bảo hành miễn phí</span></span></li>
+      </ul>
+    </div>
+    <div class="contact-box">
+      <div class="contact-box-main"><span class="contact-box-label">Le Thuan · Zalo</span><span class="contact-box-number">0898908101</span></div>
+      <div class="contact-box-actions"><a class="contact-cta zalo" href="https://zalo.me/0898908101" target="_blank" rel="noopener">Liên hệ</a><button class="contact-copy-btn" id="devZaloCopyBtn" type="button" onclick="copyDevZalo()">Copy số</button></div>
+    </div>
+  </div>
 </div>
 </div>
 
+<!-- Trust Proof Modal -->
 <div class="modal" id="trustProofModal" onclick="if(event.target===this)closeTrustProofModal()">
 <div class="modal-box">
-<div class="modal-head">
-<div class="modal-head-left">
-<h3 class="modal-title">Bill giao dịch khách đã thanh toán</h3>
-</div>
-<button class="close-btn" onclick="closeTrustProofModal()">Đóng</button>
-</div>
-<div class="modal-body">
-<div class="trust-proof-shell">
-<p class="trust-proof-intro">Xem nhanh một phần bill giao dịch thực tế ngay trên website.</p>
-<div class="trust-proof-grid" id="trustProofGrid"></div>
-<p class="trust-proof-note">Bill chỉ tải khi bấm xem để giữ trang luôn nhẹ và mượt.</p>
-</div>
-</div>
+  <div class="modal-head"><h3 class="modal-title">Bill giao dịch khách đã thanh toán</h3><button class="close-btn" onclick="closeTrustProofModal()">Đóng</button></div>
+  <div class="modal-body"><div class="trust-proof-shell"><p class="trust-proof-intro">Xem nhanh một phần bill giao dịch thực tế ngay trên website.</p><div class="trust-proof-grid" id="trustProofGrid"></div><p class="trust-proof-note">Bill chỉ tải khi bấm xem để giữ trang luôn nhẹ và mượt.</p></div></div>
 </div>
 </div>
 
+<!-- Product Modal (compact QR payment) -->
 <div class="modal" id="productModal" onclick="if(event.target===this)closeModal()">
-<div class="modal-box">
-<div class="modal-head">
-<div class="modal-head-left">
-<img id="mHeadIco" class="modal-head-ico" src="assets/images/GPT.jpg" alt="Icon sản phẩm" width="40" height="40" loading="lazy" decoding="async">
-<h3 class="modal-title" id="mName">Thông tin sản phẩm</h3>
-</div>
-<button class="close-btn" onclick="closeModal()">Đóng</button>
-</div>
-<div class="modal-body">
-<div class="modal-notice-inline" id="productNoticeBox">
-<ul id="productNoticeList"></ul>
-</div>
-<div class="contact-box">
-<div class="contact-box-main">
-<span class="contact-box-label">Liên hệ Zalo</span>
-<span class="contact-box-number">0898908101</span>
-</div>
-<div class="contact-box-actions">
-<a class="contact-cta zalo" href="https://zalo.me/0898908101" target="_blank" rel="noopener">
-<svg viewBox="0 0 64 64" width="22" height="22" style="flex-shrink:0;" aria-hidden="true"><rect x="10" y="10" width="44" height="44" rx="14" fill="none" stroke="currentColor" stroke-width="4"/><path fill="currentColor" d="M23 22h19v5L30.2 42H42v5H22.5v-4.6L34.3 27H23z"/></svg>
-Liên hệ
-</a>
-<button class="contact-copy-btn" id="modalZaloCopyBtn" type="button" onclick="copyModalZalo()">Copy số</button>
-</div>
-<div class="contact-box-note">
-<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-<span>Nếu không mở được — <strong>Copy số</strong> rồi tìm trên Zalo.</span>
-</div>
-</div>
-</div>
+<div class="modal-box modal-compact">
+  <div class="modal-head">
+    <div class="modal-head-left">
+      <img id="mHeadIco" class="modal-head-ico" src="" alt="" width="36" height="36">
+      <div><h3 class="modal-title" id="mName"></h3><span class="badge red modal-badge-inline" id="mBadge" style="display:none"></span></div>
+    </div>
+    <button class="close-btn" onclick="closeModal()">Đóng</button>
+  </div>
+  <div class="modal-body">
+    <p class="qr-heading">Chuyển khoản ngân hàng</p>
+    <p class="qr-hint">Quét mã QR bên dưới để chuyển</p>
+    <div class="qr-image-wrap">
+      <img class="qr-image" src="assets/images/bank.jpg" alt="QR chuyển khoản" loading="lazy" decoding="async">
+      <a class="qr-download-btn" href="assets/images/bank.jpg" download="BinGenZ-QR.jpg">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Tải ảnh QR
+      </a>
+    </div>
+    <div class="qr-info-box">
+      <div class="qr-info-row"><span class="qr-info-label">Số tiền:</span><span class="qr-info-value" id="qrPrice"></span></div>
+      <div class="qr-info-row"><span class="qr-info-label">Nội dung:</span><span class="qr-info-value" id="qrContent"></span></div>
+      <div class="qr-example-box" id="qrExampleBox"></div>
+    </div>
+    <div class="qr-success-msg">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="qrSuccessText"></span>
+    </div>
+  </div>
 </div>
 </div>
 
-
-<div class="welcome-overlay" id="welcomeNotif" onclick="if(event.target===this)welcomeClose()">
-<div class="welcome-box">
-<div class="welcome-header">
-<div class="welcome-header-icon">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-</div>
-<div class="welcome-header-text">
-<h3 class="welcome-title">Chào bạn đến BINGENZ.COM</h3>
-<p class="welcome-sub">Tài khoản Premium chính hãng · Giá tốt nhất</p>
-</div>
-</div>
-<div class="welcome-body">
-<div class="welcome-products">
-<div class="welcome-product-marquee" aria-label="Sản phẩm nổi bật">
-<div class="welcome-product-track">
-<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/GPT.jpg" alt="ChatGPT" loading="lazy" decoding="async"><span class="welcome-product-name">ChatGPT</span></div>
-<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/gemini.jpg" alt="Gemini" loading="lazy" decoding="async"><span class="welcome-product-name">Gemini</span></div>
-<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/veo.jpg" alt="Veo3" loading="lazy" decoding="async"><span class="welcome-product-name">Veo3</span></div>
-<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/CAPCUT.jpg" alt="CapCut" loading="lazy" decoding="async"><span class="welcome-product-name">CapCut</span></div>
-<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/GPT.jpg" alt="ChatGPT" loading="lazy" decoding="async"><span class="welcome-product-name">ChatGPT</span></div>
-<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/gemini.jpg" alt="Gemini" loading="lazy" decoding="async"><span class="welcome-product-name">Gemini</span></div>
-<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/veo.jpg" alt="Veo3" loading="lazy" decoding="async"><span class="welcome-product-name">Veo3</span></div>
-<div class="welcome-product-item"><img class="welcome-product-thumb" src="assets/images/CAPCUT.jpg" alt="CapCut" loading="lazy" decoding="async"><span class="welcome-product-name">CapCut</span></div>
-</div>
-</div>
-</div>
-<div class="welcome-notice">
-<div class="welcome-notice-title">
-<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-Lưu ý quan trọng
-</div>
-<ul class="welcome-notice-list">
-<li>
-<span class="wn-dot"></span>
-<span>Tài khoản tại <strong>BINGENZ.COM</strong> bảo hành toàn bộ thời gian sử dụng</span>
-</li>
-<li class="notice-item notice-item-green">
-<span class="wn-dot"></span>
-<span class="notice-item-body"><span class="notice-item-title">Tài khoản <span class="badge-inline">CÁ NHÂN</span></span><span class="notice-item-sub">Shop cấp tài khoản riêng · Sử dụng 1 mình</span></span>
-</li>
-<li class="notice-item notice-item-red">
-<span class="wn-dot"></span>
-<span class="notice-item-body"><span class="notice-item-title">Tài khoản <span class="badge-inline red">CHÍNH CHỦ</span></span><span class="notice-item-sub">Nâng cấp thẳng vào Gmail của bạn · Không cần mật khẩu</span></span>
-</li>
-</ul>
-</div>
-<div class="welcome-contact-box">
-<div>
-<div class="welcome-contact-label">Liên hệ hỗ trợ: Zalo</div>
-<div class="welcome-contact-number">0898908101</div>
-</div>
-<button class="welcome-copy-btn" id="welcomeCopyBtn" type="button" onclick="welcomeCopyZalo()">
-<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-Copy số
-</button>
+<!-- Trust Proof Viewer -->
+<div class="trust-proof-viewer" id="trustProofViewer" onclick="if(event.target===this)closeTrustProofViewer()">
+  <button class="trust-proof-viewer-close" type="button" onclick="closeTrustProofViewer()">×</button>
+  <div class="trust-proof-viewer-shell"><img id="trustProofViewerImage" src="" alt="Bill giao dịch" decoding="async"></div>
 </div>
 
-<button class="welcome-proof-btn" type="button" onclick="openTrustProofFromWelcome(event)">
-<span class="welcome-proof-btn-dot"></span>
-<span>Xem bill giao dịch</span>
-<span class="welcome-proof-btn-badge">Check uy tín</span>
-</button>
-
-<button class="welcome-dismiss" type="button" onclick="welcomeClose()">Đã hiểu, xem sản phẩm →</button>
-</div>
-</div>
-</div>
 <script src="assets/js/products.js" defer></script>
 <script src="assets/js/app.js" defer></script>
-<div class="trust-proof-viewer" id="trustProofViewer" onclick="if(event.target===this)closeTrustProofViewer()">
-<button class="trust-proof-viewer-close" type="button" aria-label="Đóng ảnh" onclick="closeTrustProofViewer()">×</button>
-<div class="trust-proof-viewer-shell">
-<img id="trustProofViewerImage" src="" alt="Bill giao dịch" decoding="async">
-</div>
-</div>
 </body>
-  </html>
-
+</html>

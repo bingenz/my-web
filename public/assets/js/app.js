@@ -1,823 +1,253 @@
-history.scrollRestoration = "manual";
+/* ═══════════════════════════════════════════
+   BinGenZ — App Logic v5 FINAL
+   DM Sans · Light Glass Pill · Compact Modal
+   ═══════════════════════════════════════════ */
 
-// ── Scroll lock ──────────────────────────────────────────────────────────────
-// Dùng overflow:hidden thay vì position:fixed — position:fixed tạo stacking context
-// khiến trust-proof-viewer (fixed child) bị trap, không hiện được trên modal
-let _scrollLockCount = 0;
-let _scrollLockY = 0;
-function clearScrollLockState() {
-  _scrollLockCount = 0;
-  document.body.classList.remove("scroll-locked");
-  document.documentElement.style.removeProperty("--scrollbar-width");
+/* ── Theme ── */
+function initTheme(){
+  const saved=localStorage.getItem('theme');
+  const theme=saved||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  applyTheme(theme);
 }
-function scrollLock() {
-  _scrollLockCount++;
-  if (_scrollLockCount > 1) return;
-  _scrollLockY = window.scrollY || window.pageYOffset || 0;
-  var sw = window.innerWidth - document.documentElement.clientWidth;
-  document.documentElement.style.setProperty("--scrollbar-width", sw + "px");
-  document.body.classList.add("scroll-locked");
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('theme',t);
+  const mc=document.getElementById('metaThemeColor');
+  if(mc)mc.content=t==='dark'?'#09090c':'#f8fafc';
+  const ml=document.getElementById('mobileThemeLabel');
+  if(ml)ml.textContent=t==='dark'?'☀️ Chế độ sáng':'🌙 Chế độ tối';
+  document.querySelectorAll('.theme-icon-moon').forEach(el=>{el.style.display=t==='light'?'block':'none'});
+  document.querySelectorAll('.theme-icon-sun').forEach(el=>{el.style.display=t==='dark'?'block':'none'});
 }
-function scrollUnlock() {
-  if (_scrollLockCount === 0) return;
-  _scrollLockCount--;
-  if (_scrollLockCount > 0) return;
-  var y = _scrollLockY;
-  clearScrollLockState();
-  window.scrollTo(0, y);
+function toggleTheme(){
+  const cur=document.documentElement.getAttribute('data-theme')||'light';
+  applyTheme(cur==='dark'?'light':'dark');
 }
-// ─────────────────────────────────────────────────────────────────────────────
 
-// Không snapshot sớm — đọc từ window lúc renderProducts() chạy để tránh defer race condition
-let PRODUCTS = [];
-let DISPLAY_ORDER = [];
-const TRUST_PROOF_FILES = [
-  "Screenshot_20260315_150720_Zalo.png",
-  "Screenshot_20260319_095440_Zalo.jpg",
-  "Screenshot_20260320_193706_Zalo.jpg",
-  "Screenshot_20260312_093346_Messenger.jpg",
-  "Screenshot_20260312_093801_Photos.jpg",
-  "Screenshot_20260312_093909_Photos.jpg",
-  "Screenshot_20260312_094706_Messenger.jpg",
-  "Screenshot_20260312_095052_Messenger.jpg",
-  "Screenshot_20260312_100126_Zalo.jpg",
-  "Screenshot_20260312_100158_Zalo.jpg",
-  "Screenshot_20260312_100232_Zalo.jpg",
-  "Screenshot_20260312_100250_Zalo.jpg",
-  "Screenshot_20260312_100710_Photos.jpg",
-  "Screenshot_20260312_100751_Zalo.jpg",
-  "Screenshot_20260312_100832_Zalo.jpg",
-  "Screenshot_20260312_100942_Zalo.jpg",
-  "Screenshot_20260312_101003_Zalo.jpg",
-  "Screenshot_20260312_101027_Zalo.jpg",
-  "Screenshot_20260312_101238_Zalo.jpg",
-  "Screenshot_20260312_101253_Zalo.jpg",
-  "Screenshot_20260314_203458_Messenger.png",
-  "Screenshot_20260314_203622_Messenger.png",
-  "Screenshot_20260317_143054_Zalo.jpg",
-  "Screenshot_20260321_170230_Zalo.jpg",
-  "Screenshot_20260323_001701_Zalo.jpg"
+/* ── Mobile Menu ── */
+function toggleMobileMenu(){
+  const menu=document.getElementById('mobileMenu');
+  const btn=document.querySelector('.burger-btn');
+  const isOpen=menu.classList.toggle('open');
+  btn.classList.toggle('active',isOpen);
+  document.body.classList.toggle('scroll-locked',isOpen);
+}
+function closeMobileMenu(){
+  const menu=document.getElementById('mobileMenu');
+  const btn=document.querySelector('.burger-btn');
+  menu.classList.remove('open');
+  if(btn)btn.classList.remove('active');
+  document.body.classList.remove('scroll-locked');
+}
+
+/* ── Render Products ── */
+function renderProducts(){
+  const grid=document.getElementById('productGrid');
+  if(!grid||!window.PRODUCTS)return;
+  const order=window.DISPLAY_ORDER||window.PRODUCTS.map(p=>p.id);
+  let html='<div class="pcard-list">';
+  order.forEach(id=>{
+    const p=window.PRODUCTS.find(x=>x.id===id);
+    if(!p)return;
+    html+=`<article class="pcard" onclick="openProduct('${p.id}')">`;
+    if(p.label)html+=`<div class="pcard-badge"><span class="badge red">${p.label}</span></div>`;
+    html+=`<div class="pcard-top"><img class="pcard-ico" src="${p.image}" alt="${p.name}" width="52" height="52" loading="lazy" decoding="async"><div class="pcard-name">${p.name}</div></div>`;
+    html+=`<div class="pcard-bottom"><div class="pcard-price-block"><div class="pcard-price-val">${p.rawPrice}<span class="pcard-price-mo">${p.period||''}</span></div><div class="pcard-price-old">Giá gốc: <s>${p.oldPrice}</s></div></div><button class="pcard-cta" type="button">Mua ngay</button></div>`;
+    html+=`</article>`;
+  });
+  html+='</div>';
+  grid.innerHTML=html;
+}
+
+/* ── Open Product Modal (compact, simplified) ── */
+function openProduct(id){
+  const p=window.PRODUCTS.find(x=>x.id===id);
+  if(!p)return;
+  const modal=document.getElementById('productModal');
+
+  // Header
+  document.getElementById('mHeadIco').src=p.image;
+  document.getElementById('mHeadIco').alt=p.name;
+  document.getElementById('mName').textContent=p.name;
+
+  // Badge
+  const badge=document.getElementById('mBadge');
+  if(p.label){badge.textContent=p.label;badge.style.display='inline-flex'}
+  else{badge.style.display='none'}
+
+  // Price
+  document.getElementById('qrPrice').textContent=p.rawPrice;
+
+  // Short name for content
+  const sn=p.shortName||p.name.toLowerCase().replace(/\s+/g,'');
+
+  if(p.isChinhChu){
+    // NÂNG CHÍNH CHỦ: shortname + tên gmail
+    document.getElementById('qrContent').innerHTML=`<strong>${sn}</strong> + tên Gmail`;
+    document.getElementById('qrExampleBox').innerHTML=`<span class="qr-example-label">Ví dụ:</span> <strong>${sn} lethuan123</strong>`;
+    document.getElementById('qrSuccessText').textContent='Sau khi chuyển khoản đợi 1p shop sẽ gửi gói đăng ký đến Gmail, bạn vào bấm xác nhận là xong.';
+  } else {
+    // Không chính chủ: shortname + sdt
+    document.getElementById('qrContent').innerHTML=`<strong>${sn}</strong> + số điện thoại`;
+    document.getElementById('qrExampleBox').innerHTML=`<span class="qr-example-label">Ví dụ:</span> <strong>${sn} 0912345678</strong>`;
+    document.getElementById('qrSuccessText').textContent='Shop gửi tk+mk ngay sau khi nhận thanh toán.';
+  }
+
+  modal.style.display='flex';
+  document.body.classList.add('scroll-locked');
+}
+
+function closeModal(){
+  document.getElementById('productModal').style.display='none';
+  document.body.classList.remove('scroll-locked');
+}
+
+/* ── Open first product ── */
+function openFirstProduct(e){
+  if(e)e.preventDefault();
+  const order=window.DISPLAY_ORDER||[];
+  if(order.length)openProduct(order[0]);
+}
+
+/* ── Dev Modal ── */
+function openDevModal(){
+  document.getElementById('devModal').style.display='flex';
+  document.body.classList.add('scroll-locked');
+}
+function closeDevModal(){
+  document.getElementById('devModal').style.display='none';
+  document.body.classList.remove('scroll-locked');
+}
+
+/* ── Zalo Popup ── */
+function zaloOpenPopup(){
+  document.getElementById('zaloPopup').style.display='flex';
+  document.body.classList.add('scroll-locked');
+}
+function zaloClosePopup(){
+  document.getElementById('zaloPopup').style.display='none';
+  document.body.classList.remove('scroll-locked');
+}
+
+/* ── Community Popup ── */
+function communityOpenPopup(){
+  document.getElementById('communityPopup').style.display='flex';
+  document.body.classList.add('scroll-locked');
+}
+function communityClosePopup(){
+  document.getElementById('communityPopup').style.display='none';
+  document.body.classList.remove('scroll-locked');
+}
+
+/* ── Trust Proof ── */
+const TRUST_PROOF_IMAGES=[
+  {src:'assets/images/proof/1.jpg',label:'Bill #1'},
+  {src:'assets/images/proof/2.jpg',label:'Bill #2'},
+  {src:'assets/images/proof/3.jpg',label:'Bill #3'},
+  {src:'assets/images/proof/4.jpg',label:'Bill #4'},
+  {src:'assets/images/proof/5.jpg',label:'Bill #5'},
+  {src:'assets/images/proof/6.jpg',label:'Bill #6'},
 ];
-
-function buildTrustProofItem(fileName) {
-  return {
-    thumb: "assets/proofs/thumbs/" + fileName.replace(/\.png$/i, ".jpg"),
-    full: "assets/proofs/display/" + fileName.replace(/\.png$/i, ".jpg")
-  };
+function openTrustProofModal(e){
+  if(e)e.preventDefault();
+  const grid=document.getElementById('trustProofGrid');
+  let html='';
+  TRUST_PROOF_IMAGES.forEach((img)=>{
+    html+=`<button class="trust-proof-thumb" onclick="openTrustProofViewer('${img.src}')"><img src="${img.src}" alt="${img.label}" loading="lazy" decoding="async"><span class="trust-proof-thumb-label">${img.label}</span></button>`;
+  });
+  grid.innerHTML=html;
+  document.getElementById('trustProofModal').style.display='flex';
+  document.body.classList.add('scroll-locked');
+}
+function closeTrustProofModal(){
+  document.getElementById('trustProofModal').style.display='none';
+  document.body.classList.remove('scroll-locked');
+}
+function openTrustProofViewer(src){
+  document.getElementById('trustProofViewerImage').src=src;
+  document.getElementById('trustProofViewer').style.display='flex';
+}
+function closeTrustProofViewer(){
+  document.getElementById('trustProofViewer').style.display='none';
 }
 
-const TRUST_PROOF_ITEMS = TRUST_PROOF_FILES.map(buildTrustProofItem);
-const TRUST_PROOF_TEASER = buildTrustProofItem(TRUST_PROOF_FILES[0]);
-let trustProofInitialized = false;
-let trustProofThumbsBootstrapped = false;
-let currentTrustProofIndex = -1;
-
-function fmtPriceShort(n) {
-  if (!n) return "";
-  if (n % 1000 === 0) return n / 1000 + "K";
-  return n.toLocaleString("vi-VN") + "đ";
+/* ── Notification Popup (bell, left side) ── */
+let notifOpen=false;
+function toggleNotifPopup(){
+  if(notifOpen){closeNotifPopup()}else{openNotifPopup()}
+}
+function openNotifPopup(){
+  const popup=document.getElementById('notifPopup');
+  const bell=document.getElementById('notifBell');
+  popup.style.display='flex';
+  bell.classList.add('active');
+  notifOpen=true;
+  // Force reflow then animate
+  popup.offsetHeight;
+  popup.classList.add('open');
+}
+function closeNotifPopup(){
+  const popup=document.getElementById('notifPopup');
+  const bell=document.getElementById('notifBell');
+  popup.classList.remove('open');
+  bell.classList.remove('active');
+  notifOpen=false;
+  setTimeout(()=>{popup.style.display='none'},280);
 }
 
-function escapeAttr(value) {
-  return String(value || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;");
-}
-
-
-function getBadgeTone(label) {
-  return label === "CHÍNH CHỦ" ? "red" : "green";
-}
-
-function getProductNoticeItems(product) {
-  const label = product && product.label === "CHÍNH CHỦ" ? "CHÍNH CHỦ" : "CÁ NHÂN";
-  const isOfficial = label === "CHÍNH CHỦ";
-
-  return [
-    {
-      tone: "neutral",
-      title: 'Bảo hành toàn bộ thời gian sử dụng',
-      sub: 'Không dùng chung với người khác'
-    },
-    isOfficial
-      ? {
-          tone: "red",
-          title: 'Tài khoản <span class="badge-inline red">CHÍNH CHỦ</span>',
-          sub: 'Nâng cấp thẳng vào Gmail của bạn · Không cần mật khẩu'
-        }
-      : {
-          tone: "green",
-          title: 'Tài khoản <span class="badge-inline">CÁ NHÂN</span>',
-          sub: 'Shop cấp tài khoản riêng · Sử dụng 1 mình'
-        }
-  ];
-}
-
-function renderProductNotice(product) {
-  const noticeList = document.getElementById("productNoticeList");
-  if (!noticeList) return;
-
-  const items = getProductNoticeItems(product);
-  noticeList.innerHTML = items.map(function (item) {
-    const toneClass = item.tone && item.tone !== "neutral" ? ' notice-item-' + item.tone : '';
-    return `
-<li class="notice-item${toneClass}">
-<span class="wn-dot"></span>
-<span class="notice-item-body"><span class="notice-item-title">${item.title}</span><span class="notice-item-sub">${item.sub}</span></span>
-</li>`;
-  }).join("");
-}
-
-function productCard(p) {
-  const displayPrice = p.monthlyPrice ? fmtPriceShort(p.monthlyPrice) : p.rawPrice || "";
-  const badgeTone = getBadgeTone(p.label);
-
-  return `
-<article class="pcard" onclick="openProduct('${escapeAttr(p.id)}')">
-<span class="badge ${badgeTone} pcard-badge">${p.label || "CÁ NHÂN"}</span>
-<div class="pcard-top">
-<img class="pcard-ico" src="${p.image}" alt="${escapeAttr(p.name)}" loading="lazy" decoding="async" width="42" height="42">
-<h3 class="pcard-name">${p.name}</h3>
-</div>
-<div class="pcard-bottom">
-<div class="pcard-price-block">
-<div class="pcard-price-val">${displayPrice}<span class="pcard-price-mo"> /tháng</span></div>
-<div class="pcard-price-old">Gốc: <s>${p.oldPrice}</s></div>
-</div>
-<button class="pcard-cta" onclick="event.stopPropagation();openProduct('${escapeAttr(p.id)}')">Mua ngay</button>
-</div>
-</article>
-`;
-}
-
-function renderProducts() {
-  // Đọc lại từ window tại thời điểm gọi — tránh race condition defer
-  PRODUCTS = window.PRODUCTS || [];
-  DISPLAY_ORDER = window.DISPLAY_ORDER || [];
-
-  const wrap = document.getElementById("productGrid");
-  if (!wrap) return;
-
-  const ordered = DISPLAY_ORDER.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
-  const desktopCols = window.innerWidth >= 1100 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
-  const listStyle = desktopCols === 1
-    ? "display:flex;flex-direction:column;gap:22px;"
-    : "display:grid;grid-template-columns:repeat(" + desktopCols + ", minmax(0, 1fr));gap:18px;align-items:stretch;";
-  const cardStyle = desktopCols === 1 ? "" : ' style="height:100%"';
-  wrap.innerHTML = `<div class="pcard-list" style="${listStyle}">${ordered.map(function (p) { return productCard(p).replace('<article class="pcard"', '<article class="pcard"' + cardStyle); }).join("")}</div>`;
-}
-
-function openProduct(id) {
-  const p = PRODUCTS.find(x => x.id === id);
-  if (!p) return;
-
-  resetModalZaloCopyState();
-
-  const mName = document.getElementById("mName");
-  if (mName) {
-    if (p.label) {
-      const badgeTone = getBadgeTone(p.label);
-      const badgeClass = badgeTone === "red" ? "badge-inline red" : "badge-inline";
-      mName.innerHTML = `${p.name} <span class="${badgeClass} modal-title-badge">${p.label}</span>`;
-    } else {
-      mName.textContent = p.name;
+/* ── Copy helpers ── */
+function copyToClipboard(text,btnId,successText){
+  navigator.clipboard.writeText(text).then(()=>{
+    if(btnId){
+      const btn=document.getElementById(btnId);
+      if(!btn)return;
+      const orig=btn.innerHTML;
+      btn.innerHTML=successText||'✓ Copied';
+      setTimeout(()=>{btn.innerHTML=orig},1500);
     }
+  });
+}
+function copyContactZalo(){copyToClipboard('0898908101','zaloCopyBtn','✓ Copied')}
+function copyDevZalo(){copyToClipboard('0898908101','devZaloCopyBtn','✓ Copied')}
+function copyNotifZalo(){
+  const btn=document.querySelector('.notif-popup-copy');
+  navigator.clipboard.writeText('0898908101').then(()=>{
+    const orig=btn.textContent;
+    btn.textContent='✓ Copied';
+    setTimeout(()=>{btn.textContent=orig},1500);
+  });
+}
+function communityFbCopy(){copyToClipboard('https://www.facebook.com/groups/1083123091540550/','communityFbCopyBtn','✓ Copied')}
+
+/* ── Init ── */
+document.addEventListener('DOMContentLoaded',function(){
+  initTheme();
+  renderProducts();
+
+  // Auto-show notification popup on first visit (from bell)
+  if(!sessionStorage.getItem('notifSeen')){
+    setTimeout(()=>{
+      openNotifPopup();
+      sessionStorage.setItem('notifSeen','1');
+    },1200);
   }
 
-  renderProductNotice(p);
-
-  const ico = document.getElementById("mHeadIco");
-  if (ico) {
-    ico.src = p.image;
-    ico.alt = p.name;
-    ico.style.display = "block";
-  }
-
-  const modal = document.getElementById("productModal");
-  if (!modal) return;
-  if (modal.classList.contains("open")) return;
-  modal.classList.add("open");
-  scrollLock();
-  syncUiObscuredState();
-}
-
-function openDevModal() {
-  const list = document.getElementById("devDetailList");
-  const arrow = document.getElementById("devDetailArrow");
-  if (list) list.style.display = "none";
-  if (arrow) arrow.style.transform = "";
-  resetDevZaloCopyState();
-  const modal = document.getElementById("devModal");
-  if (!modal || modal.classList.contains("open")) return;
-  modal.classList.add("open");
-  scrollLock();
-  syncUiObscuredState();
-}
-
-function closeDevModal() {
-  resetDevZaloCopyState();
-  const modal = document.getElementById("devModal");
-  if (!modal || !modal.classList.contains("open")) return;
-  modal.classList.remove("open");
-  scrollUnlock();
-  syncUiObscuredState();
-}
-
-function toggleDevDetail() {
-  const list = document.getElementById("devDetailList");
-  const arrow = document.getElementById("devDetailArrow");
-  if (!list || !arrow) return;
-
-  const open = list.style.display !== "none";
-  list.style.display = open ? "none" : "block";
-  arrow.style.transform = open ? "" : "rotate(180deg)";
-  arrow.style.transition = "transform 0.2s";
-}
-
-function resetModalZaloCopyState() {
-  const copyBtn = document.getElementById("modalZaloCopyBtn");
-  if (!copyBtn) return;
-  if (copyBtn._resetTimer) {
-    clearTimeout(copyBtn._resetTimer);
-    copyBtn._resetTimer = null;
-  }
-  copyBtn.classList.remove("is-copied");
-  copyBtn.textContent = "Copy số";
-}
-
-function copyModalZalo() {
-  const copyBtn = document.getElementById("modalZaloCopyBtn");
-  if (!copyBtn) return;
-
-  copyTextWithFallback("0898908101").then(function () {
-    if (copyBtn._resetTimer) clearTimeout(copyBtn._resetTimer);
-    copyBtn.classList.add("is-copied");
-    copyBtn.textContent = "Đã copy";
-    copyBtn._resetTimer = setTimeout(function () {
-      copyBtn.classList.remove("is-copied");
-      copyBtn.textContent = "Copy số";
-      copyBtn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101");
-  });
-}
-
-function resetDevZaloCopyState() {
-  const copyBtn = document.getElementById("devZaloCopyBtn");
-  if (!copyBtn) return;
-  if (copyBtn._resetTimer) {
-    clearTimeout(copyBtn._resetTimer);
-    copyBtn._resetTimer = null;
-  }
-  copyBtn.classList.remove("is-copied");
-  copyBtn.textContent = "Copy số";
-}
-
-function copyDevZalo() {
-  const copyBtn = document.getElementById("devZaloCopyBtn");
-  if (!copyBtn) return;
-
-  copyTextWithFallback("0898908101").then(function () {
-    if (copyBtn._resetTimer) clearTimeout(copyBtn._resetTimer);
-    copyBtn.classList.add("is-copied");
-    copyBtn.textContent = "Đã copy";
-    copyBtn._resetTimer = setTimeout(function () {
-      copyBtn.classList.remove("is-copied");
-      copyBtn.textContent = "Copy số";
-      copyBtn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showStatusToast("Không thể sao chép tự động. Vui lòng sao chép thủ công: 0898908101");
-  });
-}
-
-function closeModal() {
-  resetModalZaloCopyState();
-  const modal = document.getElementById("productModal");
-  if (!modal || !modal.classList.contains("open")) return;
-  modal.classList.remove("open");
-  scrollUnlock();
-  syncUiObscuredState();
-}
-
-function initTrustProofModal() {
-  if (trustProofInitialized) return;
-  const grid = document.getElementById("trustProofGrid");
-  if (!grid) return;
-
-  const thumbs = TRUST_PROOF_ITEMS.map(function (item, index) {
-    return `
-<button class="trust-proof-thumb" type="button" data-proof-index="${index}" aria-label="Xem bill giao dịch ${index + 1}">
-<img data-src="${item.thumb}" alt="Bill giao dịch ${index + 1}" loading="lazy" decoding="async" width="280" height="360">
-<span class="trust-proof-thumb-label">Bill giao dịch ${index + 1}</span>
-</button>`;
-  }).join("");
-
-  const teaser = `
-<div class="trust-proof-more" aria-hidden="true">
-<img data-src="${TRUST_PROOF_TEASER.thumb}" alt="" loading="lazy" decoding="async" width="280" height="360">
-<div class="trust-proof-more-overlay">
-<div class="trust-proof-more-title">Còn hơn 200 giao dịch với khách hàng</div>
-<div class="trust-proof-more-note">Ảnh bill chỉ tải khi bạn mở mục này để xem, không tải từ lúc mới vào web.</div>
-</div>
-</div>`;
-
-  grid.innerHTML = thumbs + teaser;
-
-  grid.querySelectorAll("[data-proof-index]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      setTrustProof(Number(btn.getAttribute("data-proof-index")));
-    });
-  });
-
-  trustProofInitialized = true;
-}
-
-function bootstrapTrustProofThumbs() {
-  if (trustProofThumbsBootstrapped) return;
-  const grid = document.getElementById("trustProofGrid");
-  if (!grid) return;
-
-  grid.querySelectorAll("img[data-src]").forEach(function (img) {
-    const src = img.getAttribute("data-src");
-    if (!src) return;
-    img.src = src;
-    img.removeAttribute("data-src");
-  });
-
-  trustProofThumbsBootstrapped = true;
-}
-
-function setTrustProof(index) {
-  if (!TRUST_PROOF_ITEMS[index]) return;
-  currentTrustProofIndex = index;
-
-  document.querySelectorAll(".trust-proof-thumb").forEach(function (btn) {
-    btn.classList.toggle("is-active", Number(btn.getAttribute("data-proof-index")) === index);
-  });
-
-  openTrustProofViewer(index);
-}
-
-function openTrustProofModal(e) {
-  if (e) e.preventDefault();
-  initTrustProofModal();
-  resetTrustProofSelection();
-  const modal = document.getElementById("trustProofModal");
-  if (!modal || modal.classList.contains("open")) return;
-  modal.classList.add("open");
-  bootstrapTrustProofThumbs();
-  scrollLock();
-  syncUiObscuredState();
-}
-
-function closeTrustProofModal() {
-  const modal = document.getElementById("trustProofModal");
-  if (!modal || !modal.classList.contains("open")) return;
-  modal.classList.remove("open");
-  closeTrustProofViewer();
-  scrollUnlock();
-}
-
-function resetTrustProofSelection() {
-  currentTrustProofIndex = -1;
-
-  document.querySelectorAll(".trust-proof-thumb").forEach(function (btn) {
-    btn.classList.remove("is-active");
-  });
-}
-
-function openTrustProofViewer(index) {
-  const item = TRUST_PROOF_ITEMS[index];
-  if (!item) return;
-
-  const viewer = document.getElementById("trustProofViewer");
-  const image = document.getElementById("trustProofViewerImage");
-  if (!viewer || !image) return;
-
-  image.src = item.full;
-  image.alt = "Bill giao dịch " + (index + 1);
-  viewer.classList.add("open");
-}
-
-function closeTrustProofViewer() {
-  const viewer = document.getElementById("trustProofViewer");
-  const image = document.getElementById("trustProofViewerImage");
-  if (!viewer || !image) return;
-
-  viewer.classList.remove("open");
-  image.removeAttribute("src");
-  image.alt = "Bill giao dịch";
-}
-
-function openTrustProofFromWelcome(e) {
-  if (e) e.preventDefault();
-  welcomeClose();
-  setTimeout(function () {
-    openTrustProofModal();
-  }, 180);
-}
-
-function showStatusToast(message) {
-  var toast = document.getElementById("statusToast");
-  if (!toast) {
-    toast = document.createElement("div");
-    toast.id = "statusToast";
-    toast.style.cssText = "position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(12px);background:#0f172a;border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:10px 18px;font-size:0.82em;font-weight:600;color:#fff;z-index:300;opacity:0;transition:opacity 0.22s ease,transform 0.22s ease;white-space:nowrap;pointer-events:none;";
-    document.body.appendChild(toast);
-  }
-  toast.textContent = message || "";
-  requestAnimationFrame(function () {
-    toast.style.opacity = "1";
-    toast.style.transform = "translateX(-50%) translateY(0)";
-  });
-  clearTimeout(toast._timer);
-  toast._timer = setTimeout(function () {
-    toast.style.opacity = "0";
-    toast.style.transform = "translateX(-50%) translateY(12px)";
-  }, 2800);
-}
-
-function copyTextWithFallback(text) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    return navigator.clipboard.writeText(text).catch(function () {
-      return tryExecCommandCopy(text);
-    });
-  }
-  return tryExecCommandCopy(text);
-}
-
-function tryExecCommandCopy(text) {
-  return new Promise(function (resolve, reject) {
-    try {
-      const input = document.createElement("textarea");
-      input.value = text;
-      input.setAttribute("readonly", "");
-      input.style.cssText = "position:fixed;top:0;left:0;width:2em;height:2em;padding:0;border:none;outline:none;box-shadow:none;background:transparent;font-size:16px;opacity:0;z-index:-1;";
-      document.body.appendChild(input);
-      input.focus();
-      input.select();
-      input.setSelectionRange(0, text.length);
-
-      const copied = document.execCommand("copy");
-      document.body.removeChild(input);
-      if (copied) {
-        resolve();
-        return;
+  // Close popups on click outside bell area
+  document.addEventListener('click',(e)=>{
+    if(notifOpen){
+      const popup=document.getElementById('notifPopup');
+      const bell=document.getElementById('notifBell');
+      if(!popup.contains(e.target)&&!bell.contains(e.target)){
+        closeNotifPopup();
       }
-      reject(new Error("copy_failed"));
-    } catch (err) {
-      reject(err);
     }
   });
-}
 
-function showCopyPrompt(text, message) {
-  window.prompt("Giữ để sao chép:", text);
-  showStatusToast(message || ("Đã sao chép: " + text));
-}
-
-function communityOpenPopup() {
-  resetCommunityCopyState("communityFbCopyBtn", "Copy link");
-  const popup = document.getElementById("communityPopup");
-  if (!popup || popup.classList.contains("open")) return;
-  popup.classList.add("open");
-  scrollLock();
-  syncUiObscuredState();
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
-}
-
-function communityClosePopup() {
-  const popup = document.getElementById("communityPopup");
-  if (!popup || !popup.classList.contains("open")) return;
-  popup.classList.remove("open");
-  scrollUnlock();
-  syncUiObscuredState();
-}
-
-function resetCommunityCopyState(btnId, label) {
-  const btn = document.getElementById(btnId);
-  if (!btn) return;
-  if (btn._resetTimer) { clearTimeout(btn._resetTimer); btn._resetTimer = null; }
-  btn.classList.remove("is-copied");
-  btn.querySelector(".copy-label").textContent = label;
-}
-
-function communityFbCopy() {
-  const btn = document.getElementById("communityFbCopyBtn");
-  copyTextWithFallback("https://www.facebook.com/groups/1083123091540550/").then(function () {
-    if (btn._resetTimer) clearTimeout(btn._resetTimer);
-    btn.classList.add("is-copied");
-    btn.querySelector(".copy-label").textContent = "Đã copy";
-    btn._resetTimer = setTimeout(function () {
-      btn.classList.remove("is-copied");
-      btn.querySelector(".copy-label").textContent = "Copy link";
-      btn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showCopyPrompt("https://www.facebook.com/groups/1083123091540550/", "Đã sao chép link Facebook");
+  // Close modals on Escape
+  document.addEventListener('keydown',(e)=>{
+    if(e.key==='Escape'){
+      closeModal();closeDevModal();closeTrustProofModal();closeTrustProofViewer();
+      zaloClosePopup();communityClosePopup();closeNotifPopup();closeMobileMenu();
+    }
   });
-}
-
-
-function zaloOpenPopup() {
-  const popup = document.getElementById("zaloPopup");
-  if (!popup || popup.classList.contains("open")) return;
-  popup.classList.add("open");
-  scrollLock();
-  syncUiObscuredState();
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
-}
-
-function zaloClosePopup() {
-  const popup = document.getElementById("zaloPopup");
-  if (!popup || !popup.classList.contains("open")) return;
-  popup.classList.remove("open");
-  scrollUnlock();
-  syncUiObscuredState();
-}
-
-function copyContactZalo() {
-  const copyBtn = document.getElementById("zaloCopyBtn");
-  const copyLabel = copyBtn ? copyBtn.querySelector(".copy-label") : null;
-
-  copyTextWithFallback("0898908101").then(function () {
-    if (!copyBtn || !copyLabel) return;
-    if (copyBtn._resetTimer) clearTimeout(copyBtn._resetTimer);
-    copyBtn.classList.add("is-copied");
-    copyLabel.textContent = "Đã copy";
-    copyBtn._resetTimer = setTimeout(function () {
-      copyBtn.classList.remove("is-copied");
-      copyLabel.textContent = "Copy số";
-      copyBtn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showCopyPrompt("0898908101", "Đã sao chép số Zalo: 0898908101");
-  });
-}
-
-function openFirstProduct(e) {
-  e.preventDefault();
-  const target = document.getElementById("products");
-  if (!target) return;
-
-  const topbar = document.querySelector(".topbar");
-  const topbarH = topbar ? topbar.offsetHeight : 68;
-  const notifBar = document.querySelector(".notif-bar.visible");
-  const notifH = notifBar ? notifBar.offsetHeight : 0;
-  const offset = topbarH + notifH + 8;
-  const top = target.getBoundingClientRect().top + window.scrollY - offset;
-  window.scrollTo({ top, behavior: "smooth" });
-}
-
-renderProducts();
-(function() {
-  var _rpTimer = 0;
-  window.addEventListener("resize", function() {
-    clearTimeout(_rpTimer);
-    _rpTimer = setTimeout(renderProducts, 120);
-  });
-})();
-
-(function () {
-  const notifBar = document.querySelector(".notif-bar");
-  const communityCard = document.querySelector("#community .community-card-link");
-  const topbar = document.querySelector(".topbar");
-  if (!notifBar || !communityCard || !topbar) return;
-
-  let io = null;
-  let rafId = 0;
-
-  function setNotifVisibility(isVisible) {
-    if (isVisible) {
-      notifBar.classList.add("visible");
-    } else {
-      notifBar.classList.remove("visible");
-    }
-  }
-
-  var isTikTokBrowser = document.documentElement.classList.contains('tiktok-browser');
-
-  function syncNotifBar() {
-    const welcomeOverlay = document.getElementById("welcomeNotif");
-    if (welcomeOverlay && welcomeOverlay.classList.contains("open")) {
-      setNotifVisibility(false);
-      return;
-    }
-
-    const topbarH = topbar.offsetHeight || 68;
-
-    if (isTikTokBrowser) {
-      // Sticky mode: notif-bar nằm trong flow, cần set top đúng dưới topbar
-      notifBar.style.top = topbarH + 'px';
-      // Trigger dựa trên scroll position so với communityCard
-      const rect = communityCard.getBoundingClientRect();
-      setNotifVisibility(rect.top < topbarH + 8);
-    } else {
-      // Fixed mode: topbar luôn ở trên, dùng rect trực tiếp
-      const rect = communityCard.getBoundingClientRect();
-      setNotifVisibility(rect.top < topbarH + 8);
-    }
-  }
-
-  function scheduleSync() {
-    if (rafId) return;
-    rafId = window.requestAnimationFrame(function () {
-      rafId = 0;
-      syncNotifBar();
-    });
-  }
-
-  function bindObserver() {
-    if (!("IntersectionObserver" in window)) {
-      window.addEventListener("scroll", scheduleSync, { passive: true });
-      window.addEventListener("resize", scheduleSync);
-      window.addEventListener("load", scheduleSync);
-      scheduleSync();
-      return;
-    }
-
-    function rebuildObserver() {
-      if (io) io.disconnect();
-      const topbarH = topbar.offsetHeight || 68;
-
-      // Trong TikTok sticky mode, set đúng top của notif-bar
-      if (isTikTokBrowser) {
-        notifBar.style.top = topbarH + 'px';
-      }
-
-      io = new IntersectionObserver(function () {
-        const welcomeOverlay = document.getElementById("welcomeNotif");
-        if (welcomeOverlay && welcomeOverlay.classList.contains("open")) {
-          setNotifVisibility(false);
-          return;
-        }
-
-        const rect = communityCard.getBoundingClientRect();
-        const hasPassedTrigger = rect.top < topbarH + 8;
-        const hasUserScrolled = window.scrollY > 24;
-
-        setNotifVisibility(hasPassedTrigger && hasUserScrolled);
-      }, {
-        root: null,
-        threshold: 0,
-        rootMargin: '-' + (topbarH + 8) + 'px 0px 0px 0px'
-      });
-      io.observe(communityCard);
-      scheduleSync();
-    }
-
-    rebuildObserver();
-    window.addEventListener("resize", rebuildObserver);
-    window.addEventListener("load", scheduleSync);
-  }
-
-  window.syncNotifBarVisibility = scheduleSync;
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bindObserver);
-  } else {
-    bindObserver();
-  }
-})();
-
-function welcomeOpen() {
-  const overlay = document.getElementById("welcomeNotif");
-  if (!overlay || overlay.classList.contains("open")) return;
-  overlay.style.display = "flex";
-  void overlay.offsetWidth;
-  overlay.classList.add("open");
-  scrollLock();
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
-}
-
-function welcomeClose() {
-  const overlay = document.getElementById("welcomeNotif");
-  if (!overlay || !overlay.classList.contains("open")) return;
-  overlay.classList.remove("open");
-  scrollUnlock();
-  if (window.syncNotifBarVisibility) window.syncNotifBarVisibility();
-
-  setTimeout(function () {
-    if (!overlay.classList.contains("open")) {
-      overlay.style.display = "";
-    }
-  }, 250);
-}
-
-function welcomeCopyZalo() {
-  const btn = document.getElementById("welcomeCopyBtn");
-  if (!btn) return;
-
-  copyTextWithFallback("0898908101").then(function () {
-    if (btn._resetTimer) clearTimeout(btn._resetTimer);
-    btn.classList.add("is-copied");
-    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Đã copy';
-    btn._resetTimer = setTimeout(function () {
-      btn.classList.remove("is-copied");
-      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy số';
-      btn._resetTimer = null;
-    }, 1800);
-  }).catch(function () {
-    showCopyPrompt("0898908101", "Đã sao chép số Zalo: 0898908101");
-  });
-}
-
-function initPage() {
-  window.scrollTo(0, 0);
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initPage);
-} else {
-  initPage();
-}
-
-document.addEventListener("keydown", function (event) {
-  if (event.key !== "Escape") return;
-  const trustViewer = document.getElementById("trustProofViewer");
-  if (trustViewer && trustViewer.classList.contains("open")) {
-    closeTrustProofViewer();
-    return;
-  }
-  const communityPopup = document.getElementById("communityPopup");
-  if (communityPopup && communityPopup.classList.contains("open")) {
-    communityClosePopup();
-    return;
-  }
-  const zaloPopup = document.getElementById("zaloPopup");
-  if (zaloPopup && zaloPopup.classList.contains("open")) {
-    zaloClosePopup();
-    return;
-  }
-  const trustModal = document.getElementById("trustProofModal");
-  if (trustModal && trustModal.classList.contains("open")) {
-    closeTrustProofModal();
-  }
 });
-
-(function () {
-  function tryShowWelcome() {
-    if (document.getElementById("welcomeNotif")) {
-      setTimeout(welcomeOpen, 350);
-    } else {
-      window.addEventListener("load", function () {
-        setTimeout(welcomeOpen, 350);
-      });
-    }
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", tryShowWelcome);
-  } else {
-    tryShowWelcome();
-  }
-})();
-
-function normalizeRestoredUiState(isBackForward) {
-  document.querySelectorAll(".modal.open, .link-popup.open").forEach(function (el) {
-    el.classList.remove("open");
-  });
-
-  ["welcomePopup", "welcomeModal", "welcomeOverlay", "wlcPopup"].forEach(function (id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.classList.remove("open", "show", "active");
-    el.style.display = "none";
-  });
-
-  if (isBackForward) {
-    const wn = document.getElementById("welcomeNotif");
-    if (wn) {
-      wn.classList.remove("open", "show", "active");
-      wn.style.display = "";
-    }
-  }
-
-  document.body.classList.remove("modal-open", "overlay-open", "no-scroll");
-  document.documentElement.classList.remove("ui-obscured");
-  clearScrollLockState();
-}
-
-window.addEventListener("pageshow", function (event) {
-  let nav = null;
-  if (window.performance && typeof window.performance.getEntriesByType === "function") {
-    const entries = window.performance.getEntriesByType("navigation");
-    if (entries && entries.length) nav = entries[0];
-  }
-
-  const isBackForward = !!event.persisted || (nav && nav.type === "back_forward");
-  normalizeRestoredUiState(isBackForward);
-  if (!isBackForward) return;
-
-  const reloadKey = "__bingenz_bf_reloaded__";
-  try {
-    if (sessionStorage.getItem(reloadKey) === "1") {
-      sessionStorage.removeItem(reloadKey);
-      return;
-    }
-    sessionStorage.setItem(reloadKey, "1");
-  } catch (e) {}
-
-  location.replace(location.pathname + location.search);
-});
-

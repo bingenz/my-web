@@ -42,7 +42,7 @@ function renderProducts(){
       html+=`<div class="pcard-badge"><span class="badge red">${product.label}</span></div>`;
     }
     html+=`<div class="pcard-top"><div class="pcard-ico-svg">${svgs[id]||''}</div><div class="pcard-name">${product.name}</div></div>`;
-    html+=`<div class="pcard-bottom"><div class="pcard-price-block"><div class="pcard-price-val">${product.rawPrice}<span class="pcard-price-mo">${product.period||''}</span></div><div class="pcard-price-old">Giá gốc: <s>${product.oldPrice}</s></div></div><button class="pcard-cta" type="button">Mua ngay</button></div>`;
+    html+=`<div class="pcard-bottom"><div class="pcard-price-block"><div class="pcard-price-val">${product.rawPrice}<span class="pcard-price-mo">${product.period||''}</span></div>${product.oldPrice?`<div class="pcard-price-old">Giá gốc: <s>${product.oldPrice}</s></div>`:''}</div><button class="pcard-cta" type="button">Mua ngay</button></div>`;
     html+='</article>';
   });
 
@@ -69,6 +69,17 @@ function openProduct(id){
     badge.style.display='inline-flex';
   }else{
     badge.style.display='none';
+  }
+
+  const modalNote=document.getElementById('qrProductNote');
+  if(modalNote){
+    if(product.modalNote){
+      modalNote.textContent=product.modalNote;
+      modalNote.style.display='block';
+    }else{
+      modalNote.textContent='';
+      modalNote.style.display='none';
+    }
   }
 
   if(product.isChinhChu){

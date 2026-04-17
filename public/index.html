@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<!-- ─── NAVBAR (Dark Glass Pill — Fuser style) ─── -->
+<!-- ─── NAVBAR (Fuser Studio style — dark glass pill, LED glow CTA) ─── -->
 <header class="topbar">
 <div class="glass-pill">
   <a class="logo" href="#">
@@ -34,11 +34,11 @@
     <a href="#contact">Liên hệ</a>
   </nav>
   <div class="pill-right">
-    <a class="nav-cta" href="javascript:void(0)" onclick="openFirstProduct(event)">Khám phá <span class="nav-cta-arrow">›</span></a>
     <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Đổi theme" id="themeToggleBtn">
       <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
       <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
+    <a class="nav-cta" href="#products">Khám phá <span class="nav-cta-arrow">›</span></a>
   </div>
   <button class="burger-btn" type="button" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -57,12 +57,12 @@
   </button>
 </div>
 
-<!-- ─── BELL ICON (fixed left) ─── -->
+<!-- ─── BELL ICON (fixed left, below header) ─── -->
 <button class="notif-bell" id="notifBell" type="button" onclick="toggleNotifPopup()" aria-label="Xem thông báo">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
 </button>
 
-<!-- ─── NOTIFICATION POPUP (from bell, left side) ─── -->
+<!-- ─── NOTIFICATION POPUP (compact, from bell, left side) ─── -->
 <div class="notif-popup" id="notifPopup">
   <div class="notif-popup-header">
     <div class="notif-popup-title">
@@ -83,7 +83,7 @@
 
 <main>
 
-<!-- ─── HERO (no kicker chip) ─── -->
+<!-- ─── HERO ─── -->
 <section class="hero" id="home">
 <div class="container hero-box">
   <div class="hero-card">
@@ -93,12 +93,7 @@
     </h1>
     <p class="hero-desc">Nhận đăng ký tài khoản Premium, thiết kế website theo yêu cầu và tạo bot Telegram phục vụ bán hàng &amp; chăm sóc khách hàng.</p>
     <div class="hero-cta-row">
-      <a class="btn-primary" href="javascript:void(0)" onclick="openFirstProduct(event)">Khám phá sản phẩm <span>→</span></a>
-      <button class="btn-trust" type="button" onclick="openTrustProofModal(event)">
-        <span class="btn-trust-dot"></span>
-        <span>Check uy tín</span>
-        <span class="btn-trust-badge">Nhấn vào đây</span>
-      </button>
+      <a class="btn-primary" href="#products">Khám phá sản phẩm <span>→</span></a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-value">1 phút</div><div class="hero-stat-label">Kích hoạt tài khoản</div></div>
@@ -188,7 +183,7 @@
   <h2 class="cta-title">Bắt đầu khám phá ngay</h2>
   <p class="section-sub">Tài khoản Premium chính hãng · Giá tốt · Bảo hành toàn bộ thời gian</p>
   <div class="cta-buttons">
-    <a class="btn-primary" href="javascript:void(0)" onclick="openFirstProduct(event)">Xem sản phẩm <span>→</span></a>
+    <a class="btn-primary" href="#products">Xem sản phẩm <span>→</span></a>
     <a class="btn-outline" href="javascript:void(0)" onclick="zaloOpenPopup()">Liên hệ Zalo</a>
   </div>
 </div>
@@ -274,20 +269,12 @@
 </div>
 </div>
 
-<!-- Trust Proof Modal -->
-<div class="modal" id="trustProofModal" onclick="if(event.target===this)closeTrustProofModal()">
-<div class="modal-box">
-  <div class="modal-head"><h3 class="modal-title">Bill giao dịch khách đã thanh toán</h3><button class="close-btn" onclick="closeTrustProofModal()">Đóng</button></div>
-  <div class="modal-body"><div class="trust-proof-shell"><p class="trust-proof-intro">Xem nhanh một phần bill giao dịch thực tế ngay trên website.</p><div class="trust-proof-grid" id="trustProofGrid"></div><p class="trust-proof-note">Bill chỉ tải khi bấm xem để giữ trang luôn nhẹ và mượt.</p></div></div>
-</div>
-</div>
-
-<!-- Product Modal (compact QR payment) -->
+<!-- Product Modal (compact QR payment) — icon now uses SVG from products.js -->
 <div class="modal" id="productModal" onclick="if(event.target===this)closeModal()">
 <div class="modal-box modal-compact">
   <div class="modal-head">
     <div class="modal-head-left">
-      <img id="mHeadIco" class="modal-head-ico" src="" alt="" width="36" height="36">
+      <div class="modal-head-svg" id="mHeadSvg"></div>
       <div><h3 class="modal-title" id="mName"></h3><span class="badge red modal-badge-inline" id="mBadge" style="display:none"></span></div>
     </div>
     <button class="close-btn" onclick="closeModal()">Đóng</button>
@@ -313,12 +300,6 @@
     </div>
   </div>
 </div>
-</div>
-
-<!-- Trust Proof Viewer -->
-<div class="trust-proof-viewer" id="trustProofViewer" onclick="if(event.target===this)closeTrustProofViewer()">
-  <button class="trust-proof-viewer-close" type="button" onclick="closeTrustProofViewer()">×</button>
-  <div class="trust-proof-viewer-shell"><img id="trustProofViewerImage" src="" alt="Bill giao dịch" decoding="async"></div>
 </div>
 
 <script src="assets/js/products.js" defer></script>

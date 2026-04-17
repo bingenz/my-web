@@ -14,30 +14,12 @@ function applyTheme(t){
   localStorage.setItem('theme',t);
   const mc=document.getElementById('metaThemeColor');
   if(mc)mc.content=t==='dark'?'#09090c':'#f8fafc';
-  const ml=document.getElementById('mobileThemeLabel');
-  if(ml)ml.textContent=t==='dark'?'☀️ Chế độ sáng':'🌙 Chế độ tối';
   document.querySelectorAll('.theme-icon-moon').forEach(el=>{el.style.display=t==='light'?'block':'none'});
   document.querySelectorAll('.theme-icon-sun').forEach(el=>{el.style.display=t==='dark'?'block':'none'});
 }
 function toggleTheme(){
   const cur=document.documentElement.getAttribute('data-theme')||'light';
   applyTheme(cur==='dark'?'light':'dark');
-}
-
-/* ── Mobile Menu ── */
-function toggleMobileMenu(){
-  const menu=document.getElementById('mobileMenu');
-  const btn=document.querySelector('.burger-btn');
-  const isOpen=menu.classList.toggle('open');
-  btn.classList.toggle('active',isOpen);
-  document.body.classList.toggle('scroll-locked',isOpen);
-}
-function closeMobileMenu(){
-  const menu=document.getElementById('mobileMenu');
-  const btn=document.querySelector('.burger-btn');
-  menu.classList.remove('open');
-  if(btn)btn.classList.remove('active');
-  document.body.classList.remove('scroll-locked');
 }
 
 /* ── Render Products (SVG icons) ── */
@@ -181,6 +163,7 @@ function copyToClipboard(text,btnId,successText){
 }
 function copyContactZalo(){copyToClipboard('0898908101','zaloCopyBtn','✓ Copied')}
 function copyDevZalo(){copyToClipboard('0898908101','devZaloCopyBtn','✓ Copied')}
+function copyQrZalo(){copyToClipboard('0898908101','qrZaloCopyBtn','✓ Copied')}
 function copyNotifZalo(){
   const btn=document.querySelector('.notif-popup-copy');
   navigator.clipboard.writeText('0898908101').then(()=>{
@@ -218,7 +201,6 @@ function addRevealClasses(){
   const selectors=[
     '.hero-card',
     '.social-strip-center',
-    '#products .section-center',
     '#source-code .section-center',
     '#community .section-center',
     '.section-cta .section-center',
@@ -273,7 +255,7 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('keydown',(e)=>{
     if(e.key==='Escape'){
       closeModal();closeDevModal();
-      zaloClosePopup();communityClosePopup();closeNotifPopup();closeMobileMenu();
+      zaloClosePopup();communityClosePopup();closeNotifPopup();
     }
   });
 });

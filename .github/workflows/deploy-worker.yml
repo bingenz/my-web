@@ -9,8 +9,6 @@ on:
       - "scripts/**"
       - "package.json"
       - "package-lock.json"
-      - "share-meta.js"
-      - "sync-share-meta.js"
       - "wrangler.jsonc"
       - ".github/workflows/deploy-worker.yml"
   workflow_dispatch:

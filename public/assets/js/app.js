@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════
-   BinGenZ — App Logic v6
-   SVG icons · No trust proof · Circuit BG
+   BinGenZ — App Logic v7
+   Scroll Reveal · Speaker toggle · SVG icons
    ═══════════════════════════════════════════ */
 
 /* ── Theme ── */
@@ -47,11 +47,13 @@ function renderProducts(){
   const order=window.DISPLAY_ORDER||window.PRODUCTS.map(p=>p.id);
   const svgs=window.PRODUCT_SVGS||{};
   let html='<div class="pcard-list">';
-  order.forEach(id=>{
+  order.forEach((id,i)=>{
     const p=window.PRODUCTS.find(x=>x.id===id);
     if(!p)return;
     const svgHtml=svgs[id]||'';
-    html+=`<article class="pcard" onclick="openProduct('${p.id}')">`;
+    // Each card gets reveal-child with stagger delay
+    const delay=i*0.1;
+    html+=`<article class="pcard reveal-child" style="transition-delay:${delay}s" onclick="openProduct('${p.id}')">`;
     if(p.label)html+=`<div class="pcard-badge"><span class="badge red">${p.label}</span></div>`;
     html+=`<div class="pcard-top"><div class="pcard-ico-svg">${svgHtml}</div><div class="pcard-name">${p.name}</div></div>`;
     html+=`<div class="pcard-bottom"><div class="pcard-price-block"><div class="pcard-price-val">${p.rawPrice}<span class="pcard-price-mo">${p.period||''}</span></div><div class="pcard-price-old">Giá gốc: <s>${p.oldPrice}</s></div></div><button class="pcard-cta" type="button">Mua ngay</button></div>`;
@@ -68,20 +70,16 @@ function openProduct(id){
   const modal=document.getElementById('productModal');
   const svgs=window.PRODUCT_SVGS||{};
 
-  // Header SVG icon
   const svgWrap=document.getElementById('mHeadSvg');
   if(svgWrap)svgWrap.innerHTML=svgs[id]||'';
   document.getElementById('mName').textContent=p.name;
 
-  // Badge
   const badge=document.getElementById('mBadge');
   if(p.label){badge.textContent=p.label;badge.style.display='inline-flex'}
   else{badge.style.display='none'}
 
-  // Price
   document.getElementById('qrPrice').textContent=p.rawPrice;
 
-  // Short name for content
   const sn=p.shortName||p.name.toLowerCase().replace(/\s+/g,'');
 
   if(p.isChinhChu){
@@ -133,27 +131,40 @@ function communityClosePopup(){
   document.body.classList.remove('scroll-locked');
 }
 
-/* ── Notification Popup (bell, left side) ── */
+/* ═══════════════════════════════════════════
+   NOTIFICATION POPUP (speaker icon)
+   Behavior: popup shows on first visit →
+   user closes → speaker icon appears →
+   click speaker → popup toggles
+   ═══════════════════════════════════════════ */
 let notifOpen=false;
+let notifClosed=false; // tracks if user ever closed the popup
+
 function toggleNotifPopup(){
   if(notifOpen){closeNotifPopup()}else{openNotifPopup()}
 }
+
 function openNotifPopup(){
   const popup=document.getElementById('notifPopup');
   const bell=document.getElementById('notifBell');
   popup.style.display='flex';
-  bell.classList.add('active');
+  bell.classList.remove('visible'); // hide speaker while popup is open
   notifOpen=true;
   popup.offsetHeight;
   popup.classList.add('open');
 }
+
 function closeNotifPopup(){
   const popup=document.getElementById('notifPopup');
   const bell=document.getElementById('notifBell');
   popup.classList.remove('open');
-  bell.classList.remove('active');
   notifOpen=false;
-  setTimeout(()=>{popup.style.display='none'},280);
+  notifClosed=true;
+  setTimeout(()=>{
+    popup.style.display='none';
+    // Show speaker icon after popup closes
+    bell.classList.add('visible');
+  },280);
 }
 
 /* ── Copy helpers ── */
@@ -180,20 +191,74 @@ function copyNotifZalo(){
 }
 function communityFbCopy(){copyToClipboard('https://www.facebook.com/groups/1083123091540550/','communityFbCopyBtn','✓ Copied')}
 
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL (IntersectionObserver)
+   ═══════════════════════════════════════════ */
+function initScrollReveal(){
+  const els=document.querySelectorAll('.reveal, .reveal-child');
+  if(!els.length)return;
+
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // only reveal once
+      }
+    });
+  },{
+    threshold:0.12,
+    rootMargin:'0px 0px -40px 0px'
+  });
+
+  els.forEach(el=>observer.observe(el));
+}
+
+function addRevealClasses(){
+  // Add .reveal to all major sections (hero card, section-center, service/community cards, footer)
+  const selectors=[
+    '.hero-card',
+    '.social-strip-center',
+    '#products .section-center',
+    '#source-code .section-center',
+    '#community .section-center',
+    '.section-cta .section-center',
+    '.footer-grid'
+  ];
+  selectors.forEach(sel=>{
+    const el=document.querySelector(sel);
+    if(el&&!el.classList.contains('reveal')){
+      el.classList.add('reveal');
+    }
+  });
+
+  // Add .reveal-child to individual cards (pcards get it from render)
+  document.querySelectorAll('.service-card, .community-card').forEach((el,i)=>{
+    if(!el.classList.contains('reveal-child')){
+      el.classList.add('reveal-child');
+      el.style.transitionDelay=(i*0.1)+'s';
+    }
+  });
+}
+
 /* ── Init ── */
 document.addEventListener('DOMContentLoaded',function(){
   initTheme();
   renderProducts();
+  addRevealClasses();
+  initScrollReveal();
 
-  // Auto-show notification popup on first visit
+  // Auto-show notification popup on first visit (no speaker icon yet)
   if(!sessionStorage.getItem('notifSeen')){
     setTimeout(()=>{
       openNotifPopup();
       sessionStorage.setItem('notifSeen','1');
-    },1200);
+    },800);
+  } else {
+    // If already seen before, show speaker icon directly
+    document.getElementById('notifBell').classList.add('visible');
   }
 
-  // Close popups on click outside bell area
+  // Close popups on click outside
   document.addEventListener('click',(e)=>{
     if(notifOpen){
       const popup=document.getElementById('notifPopup');

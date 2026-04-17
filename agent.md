@@ -105,6 +105,9 @@
 
 ## Repo Discipline
 
+- **Repository Link:** `https://github.com/bingenz/my-web`
+- **CRITICAL:** Do not push code automatically without explicit permission from the user.
+- **CRITICAL:** Do not delete commit history.
 - Do not add frameworks, bundlers, or major architecture changes unless the user explicitly asks.
 - Do not migrate this project to React, Next.js, Vite, Tailwind, or any SPA setup by default.
 - Keep changes minimal, local, and consistent with the current static-site structure.

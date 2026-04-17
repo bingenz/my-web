@@ -68,4 +68,4 @@ window.PRODUCTS = [
   }
 ];
 
-window.DISPLAY_ORDER = ["claude-opus-46", "gpt-gmail", "gemini-gmail", "grok", "capcut"];
+window.DISPLAY_ORDER = ["claude-opus-46", "gpt-gmail", "grok", "gemini-gmail", "capcut"];

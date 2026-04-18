@@ -16,8 +16,8 @@ window.PRODUCTS = [
     label: "NÂNG CHÍNH CHỦ",
     name: "Claude Opus 4.6",
     shortName: "claude",
-    rawPrice: "199.000đ",
-    priceNum: 199000,
+    rawPrice: "179.000đ",
+    priceNum: 179000,
     period: "/tháng",
     isChinhChu: true,
     modalNote: "Dùng trong Antigravity + 1000 Credit.",
@@ -27,8 +27,8 @@ window.PRODUCTS = [
     label: "NÂNG CHÍNH CHỦ",
     name: "ChatGPT Pro 100$",
     shortName: "chatgpt",
-    rawPrice: "299.000đ",
-    priceNum: 299000,
+    rawPrice: "279.000đ",
+    priceNum: 279000,
     oldPrice: "2.849.000đ",
     period: "/tháng",
     isChinhChu: true,
@@ -38,8 +38,8 @@ window.PRODUCTS = [
     label: "NÂNG CHÍNH CHỦ",
     name: "Gemini Pro 20$",
     shortName: "gemini",
-    rawPrice: "149.000đ",
-    priceNum: 149000,
+    rawPrice: "139.000đ",
+    priceNum: 139000,
     oldPrice: "489.000đ",
     period: "/tháng",
     isChinhChu: true,
@@ -68,4 +68,4 @@ window.PRODUCTS = [
   }
 ];
 
-window.DISPLAY_ORDER = ["claude-opus-46", "gpt-gmail", "grok", "gemini-gmail", "capcut"];
+window.DISPLAY_ORDER = ["claude-opus-46", "gpt-gmail", "gemini-gmail", "grok", "capcut"];

@@ -20,7 +20,7 @@ window.PRODUCTS = [
     priceNum: 199000,
     period: "/tháng",
     isChinhChu: true,
-    modalNote: "Dùng trong Antigravity, thắc mắc liên hệ zalo mình.",
+    modalNote: "Dùng trong Antigravity + 1000 Credit.",
   },
   {
     id: "gpt-gmail",

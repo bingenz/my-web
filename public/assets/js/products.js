@@ -58,7 +58,7 @@ window.PRODUCTS = [
   {
     id: "capcut",
     label: "",
-    name: "CapCut",
+    name: "CapCut Pro",
     shortName: "capcut",
     rawPrice: "59.000đ",
     priceNum: 59000,

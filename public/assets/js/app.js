@@ -59,10 +59,23 @@ function openProduct(id){
   const svgWrap=document.getElementById('mHeadSvg');
   const badge=document.getElementById('mBadge');
   const shortName=product.shortName||product.name.toLowerCase().replace(/\s+/g,'');
+  const hint=document.querySelector('#productModal .qr-hint');
+  const imageWrap=document.querySelector('#productModal .qr-image-wrap');
+  const infoBox=document.querySelector('#productModal .qr-info-box');
+  const supportRow=document.querySelector('#productModal .qr-support-row');
 
   if(svgWrap)svgWrap.innerHTML=svgs[id]||'';
   document.getElementById('mName').textContent=product.name;
   document.getElementById('qrPrice').textContent=product.rawPrice;
+  const isSupportOnly=id==='gpt-gmail';
+  if(hint)hint.style.display=isSupportOnly?'none':'';
+  if(imageWrap)imageWrap.style.display=isSupportOnly?'none':'';
+  if(infoBox)infoBox.style.display=isSupportOnly?'none':'';
+  if(supportRow){
+    supportRow.innerHTML=isSupportOnly
+      ? '<span class="qr-support-text">Zalo hỗ trợ: <strong>0898908101</strong></span><button class="qr-support-copy" id="qrZaloCopyBtn" type="button" onclick="copyQrZalo()">Copy</button>'
+      : '<span class="qr-support-text">Zalo hỗ trợ: <strong>0898908101</strong></span><button class="qr-support-copy" id="qrZaloCopyBtn" type="button" onclick="copyQrZalo()">Copy</button>';
+  }
 
   if(product.label){
     badge.textContent=product.label;
@@ -82,7 +95,11 @@ function openProduct(id){
     }
   }
 
-  if(product.isChinhChu){
+  if(isSupportOnly){
+    document.getElementById('qrContent').innerHTML=`<strong>${shortName}</strong> + tên Gmail`;
+    document.getElementById('qrExampleBox').innerHTML=`<span class="qr-example-label">Ví dụ:</span> <strong>${shortName} lethuan123</strong>`;
+    document.getElementById('qrSuccessText').textContent='Liên hệ Zalo để shop hỗ trợ nâng cấp gói này.';
+  }else if(product.isChinhChu){
     document.getElementById('qrContent').innerHTML=`<strong>${shortName}</strong> + tên Gmail`;
     document.getElementById('qrExampleBox').innerHTML=`<span class="qr-example-label">Ví dụ:</span> <strong>${shortName} lethuan123</strong>`;
     document.getElementById('qrSuccessText').textContent='Sau khi chuyển khoản đợi 1p shop sẽ gửi gói đăng ký đến Gmail, bạn vào bấm xác nhận là xong.';

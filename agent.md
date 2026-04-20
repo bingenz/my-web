@@ -83,6 +83,10 @@
   - `npm run check`
 - Do not run `build` and `check` in parallel.
 - If the task changes visible UI, verify against a local preview when practical.
+- After finishing any visible UI task, start a local web server from the project and open the site in a real browser before handoff.
+- Confirm the browser can actually load the page successfully at the local URL.
+- Do not hand off or say the site is ready if the browser shows connection errors such as `ERR_CONNECTION_REFUSED`, blank page failures, or an unreachable local server.
+- If the first local preview process exits or the port is not listening, restart the server and verify again before handoff.
 
 ## Required Testing After Every Change
 
@@ -90,6 +94,7 @@
 - Test all affected buttons, links, toggles, popups, close actions, and copy actions.
 - Test all affected UI states, hover states, disabled states, open/close states, transitions, and animations.
 - If the task affects scrolling, sticky/fixed UI, overlays, or mobile behavior, test those flows specifically.
+- For local preview testing, ensure the server process stays alive long enough for the user to open and refresh the page.
 - Verify that no existing working flow was broken while fixing the requested issue.
 - Include a short testing summary in the final handoff covering what was tested and the result.
 - Do not mark work as complete if logic, buttons, and visible effects were not tested.

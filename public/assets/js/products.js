@@ -12,7 +12,7 @@ window.PRODUCTS = [
   {
     id: "claude-opus-46",
     label: "NÂNG CHÍNH CHỦ",
-    name: "Claude Opus 4.6",
+    name: "Claude Opus 4.6 + 1000 Credit",
     shortName: "claude",
     rawPrice: "99.000đ",
     priceNum: 99000,
@@ -23,10 +23,10 @@ window.PRODUCTS = [
   {
     id: "gpt-plus",
     label: "NÂNG CHÍNH CHỦ",
-    name: "ChatGPT Plus",
+    name: "ChatGPT Codex",
     shortName: "chatgpt",
-    rawPrice: "189.000đ",
-    priceNum: 189000,
+    rawPrice: "159.000đ",
+    priceNum: 159000,
     oldPrice: "522.000đ",
     period: "/tháng",
     isChinhChu: true,
